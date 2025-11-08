@@ -1,16 +1,15 @@
 // app/teaching/page.tsx
 import Link from "next/link";
-import { BookOpen, GraduationCap, Presentation, Lightbulb } from "lucide-react";
+import { GraduationCap, Network, ShieldCheck, Lightbulb, Presentation } from "lucide-react";
 
 export default function TeachingPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* HERO */}
       <section className="text-center py-24 bg-gradient-to-b from-blue-50 to-white">
-        <h1 className="text-4xl font-bold mb-4 text-gray-800">Teaching & Learning</h1>
+        <h1 className="text-4xl font-bold mb-4 text-gray-800">Teaching & Knowledge Sharing</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Sharing knowledge in digital transformation, enterprise systems, and applied AI —
-          helping students and professionals build the future.
+          Building digital, secure, and future-oriented knowledge — connecting academia, technology, and real-world innovation.
         </p>
       </section>
 
@@ -19,67 +18,96 @@ export default function TeachingPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Course 1 */}
           <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
-            <BookOpen className="text-blue-600 mb-3 w-8 h-8" />
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">Pharmacotherapy I (Clinical Pharmacy)</h3>
+            <Presentation className="text-blue-600 mb-3 w-8 h-8" />
+            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+              Enterprise Architecture & Modeling
+            </h3>
             <p className="text-gray-700 mb-4">
-              Developed detailed lecture content on hypertension, ischemic heart disease, and renal disorders,
-              using evidence-based ACC/AHA & ASHP guidelines.
+              Teaching modern enterprise modeling languages and tools such as ArchiMate, UML, and BPMN,
+              emphasizing alignment between business and IT using ADOIT and SparxSystems.
             </p>
             <Link
-              href="/documents/pharmacotherapy-outline.pdf"
+              href="https://www.boc-group.com/products/adoit/"
+              target="_blank"
               className="text-blue-700 font-medium hover:underline"
             >
-              View Course Outline
+              Learn more about ADOIT
             </Link>
           </div>
 
           {/* Course 2 */}
           <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
-            <Presentation className="text-blue-600 mb-3 w-8 h-8" />
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">Enterprise Architecture Workshop</h3>
+            <Network className="text-blue-600 mb-3 w-8 h-8" />
+            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+              Digital Transformation & Change Management
+            </h3>
             <p className="text-gray-700 mb-4">
-              Conducted training on modeling languages (ArchiMate, UML) and EAM tools (ADOIT, SparxSystems)
-              for IT students and consultants.
+              Guiding students and professionals through frameworks like ADKAR and Kotter’s model,
+              with real project examples from TU Wien and corporate consulting practice.
             </p>
             <Link
-              href="https://www.adoit-community.com"
-              target="_blank"
+              href="/documents/thesis.pdf"
               className="text-blue-700 font-medium hover:underline"
             >
-              Workshop Resources
+              View related research
             </Link>
           </div>
 
           {/* Course 3 */}
           <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
             <GraduationCap className="text-blue-600 mb-3 w-8 h-8" />
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">Project Management (IPMA Level D)</h3>
+            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+              Project Management (IPMA Level D)
+            </h3>
             <p className="text-gray-700 mb-4">
-              Applied IPMA Standards in teaching structured project planning, stakeholder management,
-              and digital transformation case studies from University of Graz.
+              Teaching the principles of project governance, stakeholder management, and agile
+              implementation in alignment with IPMA ICB4 standards and digital PM tools.
             </p>
             <Link
-              href="/documents/projectmanagement-course.pdf"
+              href="https://www.ipma.world/"
+              target="_blank"
               className="text-blue-700 font-medium hover:underline"
             >
-              Download Materials
+              Explore IPMA Standards
             </Link>
           </div>
 
           {/* Course 4 */}
           <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
             <Lightbulb className="text-blue-600 mb-3 w-8 h-8" />
-            <h3 className="text-xl font-semibold text-blue-700 mb-2">Innovation & AI Education</h3>
+            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+              Innovation & Emerging Technologies
+            </h3>
             <p className="text-gray-700 mb-4">
-              Integrated Gemini and AI-driven tools into learning modules for innovation management
-              and digital skills development in Austrian universities.
+              Integrating AI (Gemini, LLMs) and Internet of Things (IoT) use cases into modern
+              enterprise systems — linking data-driven innovation with sustainability and scalability.
             </p>
             <Link
               href="https://ai.google.dev"
               target="_blank"
               className="text-blue-700 font-medium hover:underline"
             >
-              Learn More
+              Learn more about Gemini AI
+            </Link>
+          </div>
+
+          {/* Course 5 */}
+          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+            <ShieldCheck className="text-blue-600 mb-3 w-8 h-8" />
+            <h3 className="text-xl font-semibold text-blue-700 mb-2">
+              Information Security Fundamentals
+            </h3>
+            <p className="text-gray-700 mb-4">
+              Introducing cybersecurity standards, network defense, and risk management principles —
+              covering ISO 27001, OWASP Top 10, and secure system design practices.  
+              *(New teaching module in development for 2026.)*
+            </p>
+            <Link
+              href="https://www.iso.org/isoiec-27001-information-security.html"
+              target="_blank"
+              className="text-blue-700 font-medium hover:underline"
+            >
+              Learn about ISO 27001
             </Link>
           </div>
         </div>
@@ -87,15 +115,16 @@ export default function TeachingPage() {
 
       {/* CTA */}
       <section className="text-center py-20 bg-blue-50">
-        <h2 className="text-2xl font-semibold mb-4">Interested in Educational Collaboration?</h2>
+        <h2 className="text-2xl font-semibold mb-4">Collaborate on Education & Research</h2>
         <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-          I collaborate with universities and institutions to develop curricula on digital transformation, AI ethics, and enterprise innovation.
+          Open for joint academic projects, workshops, and innovation labs in digital transformation,
+          enterprise architecture, and information security education.
         </p>
         <Link
           href="/contact"
           className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition"
         >
-          Contact for Collaboration
+          Get in touch
         </Link>
       </section>
     </main>
