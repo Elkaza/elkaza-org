@@ -1,5 +1,4 @@
 ﻿import "./globals.css";
-import Navbar from "./components/navbar";
 import { Inter, Merriweather } from "next/font/google";
 import SubNav from "./components/SubNav";
 import LocaleProvider from "./LocaleProvider";
