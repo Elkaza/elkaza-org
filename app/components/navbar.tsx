@@ -1,70 +1,155 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import Search from "./Search";
+import MoreMenu from "./MoreMenu";
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/research", label: "Research" },
-    { href: "/projects", label: "Projects" },
-    { href: "/teaching", label: "Teaching" },
-    { href: "/contact", label: "Contact" },
-  ];
+  // Fix hydration mismatch
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
   return (
-    <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Brand */}
-        <Link href="/" className="text-2xl font-bold text-blue-700">
-          Elkaza<span className="text-gray-800 dark:text-gray-100">.org</span>
+        {/* === Logo === */}
+        <Link
+          href="/"
+          aria-label="Home"
+          className="text-2xl font-bold tracking-wide uppercase heading-serif text-blue-700 dark:text-blue-400"
+        >
+          MOHAMED ELKAZA
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8 text-gray-700 dark:text-gray-300 font-medium">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`hover:text-blue-700 transition ${
-                pathname === link.href ? "text-blue-700 font-semibold" : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* === Desktop Menu === */}
+        <div className="hidden md:flex space-x-6 text-sm font-medium">
+          <Link
+            href="/about"
+            aria-current={pathname === "/about" ? "page" : undefined}
+            className={`hover:text-blue-600 ${
+              pathname === "/about" ? "text-blue-700 dark:text-blue-400" : ""
+            }`}
+          >
+            About
+          </Link>
+          <Link
+            href="/research"
+            aria-current={pathname === "/research" ? "page" : undefined}
+            className={`hover:text-blue-600 ${
+              pathname === "/research" ? "text-blue-700 dark:text-blue-400" : ""
+            }`}
+          >
+            Research
+          </Link>
+          <Link
+            href="/projects"
+            aria-current={pathname === "/projects" ? "page" : undefined}
+            className={`hover:text-blue-600 ${
+              pathname === "/projects" ? "text-blue-700 dark:text-blue-400" : ""
+            }`}
+          >
+            Projects
+          </Link>
+          <Link
+            href="/teaching"
+            aria-current={pathname === "/teaching" ? "page" : undefined}
+            className={`hover:text-blue-600 ${
+              pathname === "/teaching" ? "text-blue-700 dark:text-blue-400" : ""
+            }`}
+          >
+            Teaching
+          </Link>
+          <Link
+            href="/contact"
+            aria-current={pathname === "/contact" ? "page" : undefined}
+            className={`hover:text-blue-600 ${
+              pathname === "/contact" ? "text-blue-700 dark:text-blue-400" : ""
+            }`}
+          >
+            Contact
+          </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700 dark:text-gray-300"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* === Right Controls === */}
+        <div className="flex items-center space-x-3">
+          {/* Search */}
+          <Search />
+          {/* Theme toggle */}
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 hover:border-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          {/* More menu */}
+          <MoreMenu />
+
+          {/* Mobile menu toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* === Mobile Dropdown === */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-          {links.map((link) => (
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <div className="flex flex-col p-4 space-y-2">
             <Link
-              key={link.href}
-              href={link.href}
+              href="/about"
+              aria-current={pathname === "/about" ? "page" : undefined}
+              className={pathname === "/about" ? "text-blue-700 dark:text-blue-400" : undefined}
               onClick={() => setIsOpen(false)}
-              className={`block px-6 py-3 hover:bg-blue-50 dark:hover:bg-gray-800 ${
-                pathname === link.href ? "text-blue-700 font-semibold" : ""
-              }`}
             >
-              {link.label}
+              About
             </Link>
-          ))}
+            <Link
+              href="/research"
+              aria-current={pathname === "/research" ? "page" : undefined}
+              className={pathname === "/research" ? "text-blue-700 dark:text-blue-400" : undefined}
+              onClick={() => setIsOpen(false)}
+            >
+              Research
+            </Link>
+            <Link
+              href="/projects"
+              aria-current={pathname === "/projects" ? "page" : undefined}
+              className={pathname === "/projects" ? "text-blue-700 dark:text-blue-400" : undefined}
+              onClick={() => setIsOpen(false)}
+            >
+              Projects
+            </Link>
+            <Link
+              href="/teaching"
+              aria-current={pathname === "/teaching" ? "page" : undefined}
+              className={pathname === "/teaching" ? "text-blue-700 dark:text-blue-400" : undefined}
+              onClick={() => setIsOpen(false)}
+            >
+              Teaching
+            </Link>
+            <Link
+              href="/contact"
+              aria-current={pathname === "/contact" ? "page" : undefined}
+              className={pathname === "/contact" ? "text-blue-700 dark:text-blue-400" : undefined}
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+          </div>
         </div>
       )}
     </nav>
