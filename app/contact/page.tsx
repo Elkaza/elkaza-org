@@ -1,112 +1,68 @@
-// app/contact/page.tsx
+﻿"use client";
 import { Mail, Github, Linkedin, Globe } from "lucide-react";
+import { useLocale } from "../LocaleProvider";
 
 export default function ContactPage() {
+  const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white text-gray-900">
-      {/* HERO SECTION */}
-      <section className="text-center py-24 bg-gradient-to-b from-blue-50 to-white">
-        <h1 className="text-4xl font-bold mb-4 text-gray-800">Get in Touch</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Whether for academic collaboration, professional consulting, or technology partnerships —
-          let’s connect and create meaningful digital solutions.
-        </p>
-      </section>
+    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
+        {/* Left rail */}
+        <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
+          <div className="w-20 h-1.5 bg-blue-600 mb-3" />
+          <h1 className="text-3xl font-bold">{t("nav_contact")}</h1>
+          <p className="mt-2 text-gray-500 italic">{t("contact_tagline")}</p>
+        </aside>
 
-      {/* CONTACT GRID */}
-      <section className="max-w-4xl mx-auto px-6 py-16 grid sm:grid-cols-2 gap-10">
-        {/* Academic / Research */}
-        <div className="p-6 bg-white rounded-xl border hover:shadow-md transition">
-          <h2 className="text-2xl font-semibold text-blue-700 mb-3">
-            Academic & Research
-          </h2>
-          <p className="text-gray-700 mb-4">
-            For collaborations, publications, or thesis-related discussions in
-            <strong> digital transformation, enterprise architecture, and IoT systems</strong>.
-          </p>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-center gap-3">
-              <Mail className="text-blue-600 w-5 h-5" />
-              <a
-                href="mailto:contact@elkaza.org"
-                className="hover:underline"
-              >
-                contact@elkaza.org
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Globe className="text-blue-600 w-5 h-5" />
-              <a
-                href="https://elkaza.org"
-                target="_blank"
-                className="hover:underline"
-              >
-                elkaza.org
-              </a>
-            </li>
-          </ul>
-        </div>
+        {/* Content */}
+        <div className="lg:col-span-9 grid sm:grid-cols-2 gap-10">
+          {/* Academic / Research */}
+          <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition">
+            <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_academic_h2")}</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_academic_desc")}</p>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+              <li className="flex items-center gap-3">
+                <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
+                <a href="mailto:contact@elkaza.org" className="hover:underline">contact@elkaza.org</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Globe className="text-blue-600 dark:text-blue-400 w-5 h-5" />
+                <a href="https://elkaza.org" target="_blank" rel="noopener noreferrer" className="hover:underline">elkaza.org</a>
+              </li>
+            </ul>
+          </div>
 
-        {/* Consulting / Services */}
-        <div className="p-6 bg-white rounded-xl border hover:shadow-md transition">
-          <h2 className="text-2xl font-semibold text-blue-700 mb-3">
-            Consulting & Digital Services
-          </h2>
-          <p className="text-gray-700 mb-4">
-            For enterprise architecture, IT strategy, and secure digital transformation
-            consulting via <strong>Elkaza.at</strong>.
-          </p>
-          <ul className="space-y-3 text-gray-700">
-            <li className="flex items-center gap-3">
-              <Mail className="text-blue-600 w-5 h-5" />
-              <a
-                href="mailto:office@elkaza.at"
-                className="hover:underline"
-              >
-                office@elkaza.at
+          {/* Consulting / Services */}
+          <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition">
+            <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_consult_h2")}</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_consult_desc")}</p>
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+              <li className="flex items-center gap-3">
+                <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
+                <a href="mailto:office@elkaza.at" className="hover:underline">office@elkaza.at</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Globe className="text-blue-600 dark:text-blue-400 w-5 h-5" />
+                <a href="https://elkaza.at" target="_blank" rel="noopener noreferrer" className="hover:underline">elkaza.at</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div className="sm:col-span-2 text-center py-8 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{t("contact_social_h3")}</h3>
+            <div className="flex justify-center gap-8 text-gray-700 dark:text-gray-300">
+              <a href="https://github.com/Elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">
+                <Github className="w-5 h-5" /> GitHub
               </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Globe className="text-blue-600 w-5 h-5" />
-              <a
-                href="https://elkaza.at"
-                target="_blank"
-                className="hover:underline"
-              >
-                elkaza.at
+              <a href="https://linkedin.com/in/elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">
+                <Linkedin className="w-5 h-5" /> LinkedIn
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </section>
-
-      {/* SOCIAL LINKS */}
-      <section className="text-center py-12 bg-gray-50">
-        <h3 className="text-xl font-semibold text-gray-800 mb-6">
-          Connect on Professional Networks
-        </h3>
-        <div className="flex justify-center gap-8 text-gray-700">
-          <a
-            href="https://github.com/Elkaza"
-            target="_blank"
-            className="flex items-center gap-2 hover:text-blue-700 transition"
-          >
-            <Github className="w-5 h-5" /> GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/elkaza"
-            target="_blank"
-            className="flex items-center gap-2 hover:text-blue-700 transition"
-          >
-            <Linkedin className="w-5 h-5" /> LinkedIn
-          </a>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="text-center py-6 text-sm text-gray-500">
-        © {new Date().getFullYear()} Elkaza. All rights reserved.
-      </footer>
     </main>
   );
 }
+
