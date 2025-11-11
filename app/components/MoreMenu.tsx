@@ -11,22 +11,35 @@ export default function MoreMenu() {
       if (!ref.current) return;
       if (!ref.current.contains(e.target as Node)) setOpen(false);
     };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
     document.addEventListener("click", onDocClick);
-    return () => document.removeEventListener("click", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("click", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
   }, []);
 
   return (
     <div ref={ref} className="relative">
       <button
         aria-label="More links"
+        aria-haspopup="menu"
+        aria-expanded={open}
         className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition"
         onClick={() => setOpen((v) => !v)}
       >
         <MoreHorizontal size={18} />
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-52 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl z-[120] p-2">
+        <div
+          role="menu"
+          className="absolute right-0 mt-2 w-52 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl z-[120] p-2"
+        >
           <a
+            role="menuitem"
             href="https://github.com/Elkaza"
             target="_blank"
             rel="noopener noreferrer"
@@ -35,6 +48,7 @@ export default function MoreMenu() {
             <Github size={16} /> GitHub
           </a>
           <a
+            role="menuitem"
             href="https://www.linkedin.com/in/elkaza"
             target="_blank"
             rel="noopener noreferrer"
@@ -43,6 +57,7 @@ export default function MoreMenu() {
             <Linkedin size={16} /> LinkedIn
           </a>
           <a
+            role="menuitem"
             href="https://twitter.com/elkaza"
             target="_blank"
             rel="noopener noreferrer"
@@ -51,6 +66,7 @@ export default function MoreMenu() {
             <Twitter size={16} /> Twitter
           </a>
           <a
+            role="menuitem"
             href="https://www.youtube.com/@elkaza"
             target="_blank"
             rel="noopener noreferrer"
@@ -63,3 +79,4 @@ export default function MoreMenu() {
     </div>
   );
 }
+

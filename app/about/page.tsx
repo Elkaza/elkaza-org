@@ -33,27 +33,27 @@ export default function AboutPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_ea_title") ?? "Enterprise Architecture"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_ea_list") ?? "ArchiMate · ADOIT · Sparx EA · BPMN 2.0"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_ea_list") ?? "ArchiMate • ADOIT • Sparx EA • BPMN 2.0"}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_sw_title") ?? "Software & Systems"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_sw_list") ?? "Python · Java · TypeScript · Git · ServiceNow · XML/XSLT"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_sw_list") ?? "Python • Java • TypeScript • Git • ServiceNow • XML/XSLT"}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_pm_title") ?? "Project Management"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_pm_list") ?? "IPMA Level D · Agile · ITIL · ADKAR · Change Management"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_pm_list") ?? "IPMA Level D • Agile • ITIL • ADKAR • Change Management"}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_net_title") ?? "Networking & Security"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_net_list") ?? "Cisco · MikroTik · VPN · ISO 27001 · OWASP Top 10"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_net_list") ?? "Cisco • MikroTik • VPN • ISO 27001 • OWASP Top 10"}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_cloud_title") ?? "Cloud & Infrastructure"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_cloud_list") ?? "AWS · Azure · VirtualBox · VMware"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_cloud_list") ?? "AWS • Azure • VirtualBox • VMware"}</p>
               </div>
               <div>
                 <h3 className="font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("comp_lang_title") ?? "Languages"}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{t("comp_lang_list") ?? "Arabic (Native) · English (C1) · German (B2)"}</p>
+                <p className="text-gray-700 dark:text-gray-300">{t("comp_lang_list") ?? "Arabic (Native) • English (C1) • German (B2)"}</p>
               </div>
             </div>
           </div>
@@ -62,3 +62,4 @@ export default function AboutPage() {
     </main>
   );
 }
+

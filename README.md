@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Elkaza.org — Digital Transformation & Research
 
-## Getting Started
+Overview
+- Next.js (App Router) site for Mohamed Elkaza’s research, projects, and teaching.
+- Focus: enterprise architecture, digital innovation, IoT, and AI-driven tooling.
+- Tech: Next.js 16, React 19, Tailwind CSS v4, lucide-react icons.
 
-First, run the development server:
+Getting Started
+- Install deps: `npm install`
+- Dev server: `npm run dev` (default port 3001)
+- Build: `npm run build`
+- Start (prod): `npm run start` (port 3001)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Internationalization
+- Lightweight client i18n with `LocaleProvider` and `app/i18n/messages.ts`.
+- Languages: DE, EN, AR (RTL toggled via `dir=rtl`).
+- Switch via header language buttons; preference saved to `localStorage`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Search & Navigation
+- Archives: `/archives` provides quick filtering by year and tags.
+- Keyboard shortcut: `/` or `Ctrl/Cmd + K` opens Archives.
+- Mobile: hamburger menu shows primary nav links.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+AI (Gemini) Integration
+- Endpoint: `POST /api/gemini` (rate-limited, in-memory per-IP).
+- Server config reads `GOOGLE_API_KEY` or `GEMINI_API_KEY` from env.
+- Sample env file: `.env.example`. For local dev, create `.env.local` and set `GOOGLE_API_KEY=...`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Security
+- HTTP headers in `next.config.ts` (frame/ct options, HSTS, referrer policy).
+- CSP with per-request nonce set in `middleware.ts`.
+- Do not expose secrets to the client. Never commit real keys.
 
-## Learn More
+Deploy
+- Standard Next.js deployment (e.g., Vercel). Ensure environment variables are configured in the host.
+- If running serverless, consider a durable rate limit store for `/api/gemini`.
 
-To learn more about Next.js, take a look at the following resources:
+Project Structure
+- `app/` — routes and UI
+  - `components/` — shared UI (navigation, search, etc.)
+  - `api/gemini/` — server helpers for Gemini
+  - `i18n/` — translations
+- `public/` — static assets
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributing
+- Run `npm run lint` before PRs.
+- Please open issues for bugs or suggestions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

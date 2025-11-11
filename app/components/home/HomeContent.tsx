@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Brain, Code, GraduationCap, Server } from "lucide-react";
+import { Brain, Code, GraduationCap } from "lucide-react";
 import { useLocale } from "../../LocaleProvider";
 
 export default function HomeContent() {
@@ -46,4 +46,3 @@ export default function HomeContent() {
     </main>
   );
 }
-
