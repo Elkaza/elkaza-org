@@ -5,7 +5,7 @@ import { useLocale } from "../LocaleProvider";
 export default function AboutClient() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors">
+    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
@@ -28,7 +28,7 @@ export default function AboutClient() {
             </div>
           </div>
 
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+          <div className="rounded-xl p-6 bg-[var(--panel-bg)] border border-[var(--card-border)]">
             <h2 className="text-2xl font-semibold mb-6">{t("about_comp_h2") ?? "Core Competencies"}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
               <div>
@@ -62,4 +62,3 @@ export default function AboutClient() {
     </main>
   );
 }
-

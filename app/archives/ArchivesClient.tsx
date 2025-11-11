@@ -31,7 +31,7 @@ export default function ArchivesClient() {
   }, [q, year, tag]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         {/* Left rail */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">

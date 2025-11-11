@@ -4,11 +4,17 @@
 :root {
   --color-bg: #ffffff;
   --color-text: #171717;
+  --card-bg: #ffffff;         /* surfaces/cards on light */
+  --panel-bg: #f8fafc;        /* subtle sections on light */
+  --card-border: #e5e7eb;     /* gray-200 */
 }
 
 .dark {
   --color-bg: #0a0a0a;
   --color-text: #ededed;
+  --card-bg: #111217;         /* near gray-950 but a touch warmer */
+  --panel-bg: #0f172a;        /* slate-900 */
+  --card-border: #374151;     /* gray-700 */
 }
 
 /* ---- Global element styles ---- */

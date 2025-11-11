@@ -5,7 +5,7 @@ import { useLocale } from "../LocaleProvider";
 export default function ContactClient() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         {/* Left rail */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
@@ -17,7 +17,7 @@ export default function ContactClient() {
         {/* Content */}
         <div className="lg:col-span-9 grid sm:grid-cols-2 gap-10">
           {/* Academic / Research */}
-          <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition">
+          <div className="p-6 rounded-xl hover:shadow-md transition bg-[var(--card-bg)] border border-[var(--card-border)]">
             <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_academic_h2")}</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_academic_desc")}</p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
@@ -33,7 +33,7 @@ export default function ContactClient() {
           </div>
 
           {/* Consulting / Services */}
-          <div className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-md transition">
+          <div className="p-6 rounded-xl hover:shadow-md transition bg-[var(--card-bg)] border border-[var(--card-border)]">
             <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_consult_h2")}</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_consult_desc")}</p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
@@ -49,7 +49,7 @@ export default function ContactClient() {
           </div>
 
           {/* Social */}
-          <div className="sm:col-span-2 text-center py-8 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="sm:col-span-2 text-center py-8 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{t("contact_social_h3")}</h3>
             <div className="flex justify-center gap-8 text-gray-700 dark:text-gray-300">
               <a href="https://github.com/Elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">
@@ -65,4 +65,3 @@ export default function ContactClient() {
     </main>
   );
 }
-

@@ -6,7 +6,7 @@ import { useLocale } from "../LocaleProvider";
 export default function TeachingClient() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
@@ -17,7 +17,7 @@ export default function TeachingClient() {
         <div className="lg:col-span-9">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Course 1 */}
-          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+          <div className="group border rounded-xl p-6 shadow-sm hover:shadow-lg transition bg-[var(--card-bg)] border-[var(--card-border)]">
             <Presentation className="text-blue-600 mb-3 w-8 h-8" />
             <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c1_title")}</h3>
             <p className="text-gray-700 mb-4">
@@ -29,7 +29,7 @@ export default function TeachingClient() {
           </div>
 
           {/* Course 2 */}
-          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+          <div className="group border rounded-xl p-6 shadow-sm hover:shadow-lg transition bg-[var(--card-bg)] border-[var(--card-border)]">
             <Network className="text-blue-600 mb-3 w-8 h-8" />
             <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c2_title")}</h3>
             <p className="text-gray-700 mb-4">
@@ -41,7 +41,7 @@ export default function TeachingClient() {
           </div>
 
           {/* Course 3 */}
-          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+          <div className="group border rounded-xl p-6 shadow-sm hover:shadow-lg transition bg-[var(--card-bg)] border-[var(--card-border)]">
             <GraduationCap className="text-blue-600 mb-3 w-8 h-8" />
             <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c3_title")}</h3>
             <p className="text-gray-700 mb-4">
@@ -53,7 +53,7 @@ export default function TeachingClient() {
           </div>
 
           {/* Course 4 */}
-          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+          <div className="group border rounded-xl p-6 shadow-sm hover:shadow-lg transition bg-[var(--card-bg)] border-[var(--card-border)]">
             <Lightbulb className="text-blue-600 mb-3 w-8 h-8" />
             <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c4_title")}</h3>
             <p className="text-gray-700 mb-4">
@@ -65,7 +65,7 @@ export default function TeachingClient() {
           </div>
 
           {/* Course 5 */}
-          <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+          <div className="group border rounded-xl p-6 shadow-sm hover:shadow-lg transition bg-[var(--card-bg)] border-[var(--card-border)]">
             <ShieldCheck className="text-blue-600 mb-3 w-8 h-8" />
             <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c5_title")}</h3>
             <p className="text-gray-700 mb-4">
@@ -88,4 +88,3 @@ export default function TeachingClient() {
     </main>
   );
 }
-

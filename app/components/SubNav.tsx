@@ -7,6 +7,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useLocale } from "../LocaleProvider";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -72,6 +73,7 @@ export default function SubNav() {
         <div className="flex items-center gap-2">
           <Search />
           <LanguageSwitcher />
+          <ThemeToggle />
           <MoreMenu />
           {/* Mobile menu toggle */}
           <button
@@ -114,4 +116,3 @@ export default function SubNav() {
     </nav>
   );
 }
-

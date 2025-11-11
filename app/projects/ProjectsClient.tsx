@@ -5,7 +5,7 @@ import { useLocale } from "../LocaleProvider";
 export default function ProjectsClient() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         {/* Left rail title */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
@@ -71,15 +71,15 @@ export default function ProjectsClient() {
           <div className="mt-10">
             <h2 className="text-xl font-semibold mb-3">{t("proj_current_h2") ?? "Current Projects"}</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+              <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
                 <h3 className="font-semibold mb-1">{t("proj_cur_freertos_title") ?? "FreeRTOS Sensor Node"}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{t("proj_cur_freertos_desc") ?? ""}</p>
               </div>
-              <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+              <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
                 <h3 className="font-semibold mb-1">{t("proj_cur_infra_title") ?? "Self-Hosted Infra"}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{t("proj_cur_infra_desc") ?? ""}</p>
               </div>
-              <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+              <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
                 <h3 className="font-semibold mb-1">{t("proj_cur_notes_title") ?? "EA + AI Notes Assistant"}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{t("proj_cur_notes_desc") ?? ""}</p>
               </div>
@@ -90,4 +90,3 @@ export default function ProjectsClient() {
     </main>
   );
 }
-

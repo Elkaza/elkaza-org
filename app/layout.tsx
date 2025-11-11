@@ -16,10 +16,18 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${serif.variable} bg-white`}>
+      <head>
+        {/* Apply saved or preferred theme before paint to avoid flashes */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var d=(t==='dark')||(t===null&&m);if(d){document.documentElement.classList.add('dark');document.body&&document.body.classList.add('dark');}}catch(e){}`,
+          }}
+        />
+      </head>
+      <body className={`${inter.variable} ${serif.variable}`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">Skip to content</a>
         <LocaleProvider>
-          <header className="sticky top-0 z-50 bg-white">
+          <header className="sticky top-0 z-50 bg-[var(--color-bg)]">
             <SubNav />
           </header>
           <main id="main">{children}</main>
