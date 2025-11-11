@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "../LocaleProvider";
 
-export default function Search() {
+type Props = { variant?: "inline" | "cta" };
+
+export default function Search({ variant = "inline" }: Props) {
   const router = useRouter();
   const { t } = useLocale();
 
@@ -20,12 +22,15 @@ export default function Search() {
     return () => window.removeEventListener("keydown", onKey);
   }, [router]);
 
+  const base =
+    "flex items-center gap-2 border bg-white transition focus:outline-none";
+  const styles =
+    variant === "cta"
+      ? "px-4 py-2 rounded-lg border-gray-300 hover:border-blue-400 hover:bg-gray-100 text-gray-800 text-sm md:text-base"
+      : "px-3 py-1.5 rounded-md border-gray-300 hover:border-blue-400 hover:bg-gray-100 text-gray-700 text-sm";
+
   return (
-    <Link
-      href="/archives"
-      aria-label={t("search")}
-      className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 bg-white text-sm text-gray-700 hover:border-blue-400 hover:bg-gray-100 transition"
-    >
+    <Link href="/archives" aria-label={t("search")} className={`${base} ${styles}`}>
       <SearchIcon size={18} />
       <span className="hidden md:inline">{t("search")}</span>
     </Link>

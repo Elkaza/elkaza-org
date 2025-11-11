@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter, Merriweather } from "next/font/google";
 import SubNav from "./components/SubNav";
 import LocaleProvider from "./LocaleProvider";
-import FooterNav from "./components/FooterNav";
+import Search from "./components/Search";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const serif = Merriweather({ subsets: ["latin"], weight: ["300","400","700"], variable: "--font-serif" });
@@ -23,13 +23,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SubNav />
           </header>
           <main id="main">{children}</main>
-          <footer className="text-center text-sm text-gray-500 py-6 border-t border-gray-200">
-            <FooterNav />
-            <div className="mt-4">(c) {new Date().getFullYear()} Elkaza. Built with Next.js & TailwindCSS.</div>
+          <footer className="border-t border-gray-200 dark:border-gray-800">
+            <div className="max-w-6xl mx-auto px-6 py-10 text-center">
+              <div className="flex justify-center">
+                <Search variant="cta" />
+              </div>
+              <div className="mt-6 text-xs text-gray-500">
+                (c) {new Date().getFullYear()} Elkaza. Built with Next.js & TailwindCSS.
+              </div>
+            </div>
           </footer>
         </LocaleProvider>
       </body>
     </html>
   );
 }
-

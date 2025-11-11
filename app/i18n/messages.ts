@@ -11,6 +11,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Lehre",
     nav_contact: "Kontakt",
     search: "Suche",
+    // Archives
+    archives_title: "Archive durchsuchen",
+    archives_subtitle: "Seiten und Bereiche auf Elkaza.org erkunden.",
+    years: "Jahre",
+    tags: "Tags",
+    no_results: "Keine Ergebnisse. Filter zurücksetzen?",
+    search_placeholder: "Alle Seiten und Bereiche durchsuchen…",
 
     // Home
     hero_title_1: "Digitale Transformation.",
@@ -126,6 +133,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Teaching",
     nav_contact: "Contact",
     search: "Search",
+    // Archives
+    archives_title: "Search the Archives",
+    archives_subtitle: "Explore pages and sections across Elkaza.org.",
+    years: "YEARS",
+    tags: "TAGS",
+    no_results: "No results. Try clearing filters.",
+    search_placeholder: "Explore all pages and sections…",
 
     // Home
     hero_title_1: "Digital Transformation.",
@@ -339,4 +353,3 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_social_h3: "\u0627\u062A\u0635\u0627\u0644 \u0639\u0628\u0631 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0645\u0647\u0646\u064A\u0629",
   },
 };
-
