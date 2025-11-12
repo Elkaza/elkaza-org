@@ -30,20 +30,20 @@ function classes(variant: Variant, size: Size) {
 }
 
 export default function Button(props: ButtonProps | LinkProps) {
-  const { variant = "filled", size = "md", className = "", children, ...rest } = props as any;
-  const cls = `${classes(variant, size)} ${className}`;
-  if ("href" in props && props.href) {
-    const { href, ...linkProps } = rest as any;
+  if ("href" in props) {
+    const { variant = "filled", size = "md", className = "", children, href, ...linkRest } = props as LinkProps & Required<Pick<LinkProps, "variant" | "size" | "className" | "children" | "href">>;
+    const cls = `${classes(variant, size)} ${className}`;
     return (
-      <Link href={href} className={cls} {...linkProps}>
+      <Link href={href} className={cls} {...linkRest}>
         {children}
       </Link>
     );
   }
+  const { variant = "filled", size = "md", className = "", children, ...btnRest } = props as ButtonProps & Required<Pick<ButtonProps, "variant" | "size" | "className" | "children">>;
+  const cls = `${classes(variant, size)} ${className}`;
   return (
-    <button className={cls} {...(rest as any)}>
+    <button className={cls} {...btnRest}>
       {children}
     </button>
   );
 }
-

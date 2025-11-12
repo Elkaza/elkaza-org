@@ -29,6 +29,8 @@ jobs:
           fetch-depth: 0
       - name: Gitleaks Secret Scan
         uses: zricethezav/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # Fail the workflow on any finding
           args: --no-git -v

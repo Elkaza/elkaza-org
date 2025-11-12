@@ -16,9 +16,8 @@ export async function runGemini(
     const fullPrompt = `${basePrompts[type]}\n\nUser prompt: ${prompt}`;
     const result = await model.generateContent(fullPrompt);
     return result.response.text();
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Gemini error:", error);
     return "Gemini failed to process your request.";
   }
 }
-
