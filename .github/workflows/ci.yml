@@ -6,8 +6,40 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    outputs:
+      code: ${{ steps.filter.outputs.code }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            code:
+              - "app/**"
+              - "pages/**"
+              - "src/**"
+              - "middleware.ts"
+              - "package.json"
+              - "package-lock.json"
+              - "tsconfig.json"
+              - "next.config.ts"
+              - "tailwind.config.ts"
+              - "eslint.config.mjs"
+              - "postcss.config.mjs"
+
   build:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,11 +54,7 @@ jobs:
       - run: npm run lint --if-present
 
   secrets-scan:
-    # Run only on pushes to main to avoid slowing PRs. Adjust as needed.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
