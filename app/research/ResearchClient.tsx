@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Button from "../components/Button";
 import { BookOpen, Network, Brain, Shield } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 
@@ -19,7 +20,7 @@ export default function ResearchClient() {
             <BookOpen className="text-blue-600 dark:text-blue-400 w-10 h-10" />
             <div>
               <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("thesis_h2") ?? "Master's Thesis"}</h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{t("thesis_desc") ?? ""}</p>
+              <p className="text-dim leading-relaxed mb-3">{t("thesis_desc") ?? ""}</p>
               <Link href="/documents/thesis.pdf" className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                 {t("download_thesis") ?? "Download Thesis (PDF)"}
               </Link>
@@ -27,27 +28,27 @@ export default function ResearchClient() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
+            <div className="p-6 rounded-xl bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1">
               <Network className="text-blue-600 dark:text-blue-400 mb-3 w-8 h-8" />
               <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("card_ea_title") ?? "Enterprise Architecture"}</h3>
-              <p className="text-gray-700 dark:text-gray-300">{t("card_ea_desc") ?? ""}</p>
+              <p className="text-dim">{t("card_ea_desc") ?? ""}</p>
             </div>
-            <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
+            <div className="p-6 rounded-xl bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1">
               <Brain className="text-blue-600 dark:text-blue-400 mb-3 w-8 h-8" />
               <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("card_ai_title") ?? "AI & Transformation"}</h3>
-              <p className="text-gray-700 dark:text-gray-300">{t("card_ai_desc") ?? ""}</p>
+              <p className="text-dim">{t("card_ai_desc") ?? ""}</p>
             </div>
-            <div className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
+            <div className="p-6 rounded-xl bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1">
               <Shield className="text-blue-600 dark:text-blue-400 mb-3 w-8 h-8" />
               <h3 className="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("card_sec_title") ?? "Security & Governance"}</h3>
-              <p className="text-gray-700 dark:text-gray-300">{t("card_sec_desc") ?? ""}</p>
+              <p className="text-dim">{t("card_sec_desc") ?? ""}</p>
             </div>
           </div>
 
           <div className="text-center">
-            <Link href="/contact" className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition">
+            <Button href="/contact" variant="filled">
               {t("research_cta") ?? "Contact for Research Collaboration"}
-            </Link>
+            </Button>
           </div>
         </div>
       </section>

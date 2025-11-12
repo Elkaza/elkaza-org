@@ -49,12 +49,12 @@ export default function ArchivesClient() {
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder={t("search_placeholder")}
-                className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+                className="w-full pl-10 pr-3 py-2 rounded-md border bg-[var(--surface)] border-[var(--outline)] text-[var(--text)] placeholder-[var(--text-dim)]"
               />
             </div>
           </div>
 
-          <div className="mb-4 text-xs tracking-wide text-gray-500">{t("years")}</div>
+          <div className="mb-4 text-xs tracking-wide text-dim">{t("years")}</div>
           <div className="flex flex-wrap gap-2 mb-6">
             {YEARS.map((y) => (
               <button
@@ -62,16 +62,17 @@ export default function ArchivesClient() {
                 onClick={() => setYear(year === y ? null : y)}
                 className={`px-3 py-1.5 rounded-md border text-sm ${
                   year === y
-                    ? "border-blue-500 text-blue-700 dark:text-blue-400"
-                    : "border-gray-300 dark:border-gray-700"
+                    ? "font-semibold"
+                    : "text-dim"
                 }`}
+                style={year === y ? { color: "var(--primary)", borderColor: "var(--primary)" } : { borderColor: "var(--outline)" }}
               >
                 {y}
               </button>
             ))}
           </div>
 
-          <div className="mb-4 text-xs tracking-wide text-gray-500">{t("tags")}</div>
+          <div className="mb-4 text-xs tracking-wide text-dim">{t("tags")}</div>
           <div className="flex flex-wrap gap-2 mb-8">
             {TAGS.map((t) => (
               <button
@@ -79,9 +80,10 @@ export default function ArchivesClient() {
                 onClick={() => setTag(tag === t ? null : t)}
                 className={`px-3 py-1.5 rounded-md border text-sm capitalize ${
                   tag === t
-                    ? "border-blue-500 text-blue-700 dark:text-blue-400"
-                    : "border-gray-300 dark:border-gray-700"
+                    ? "font-semibold"
+                    : "text-dim"
                 }`}
+                style={tag === t ? { color: "var(--primary)", borderColor: "var(--primary)" } : { borderColor: "var(--outline)" }}
               >
                 {t}
               </button>
@@ -100,7 +102,7 @@ export default function ArchivesClient() {
               </div>
             ))}
             {results.length === 0 && (
-              <div className="text-gray-600 dark:text-gray-400">{t("no_results")}</div>
+              <div className="text-dim">{t("no_results")}</div>
             )}
           </div>
         </div>

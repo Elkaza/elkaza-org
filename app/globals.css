@@ -1,20 +1,29 @@
 @import "tailwindcss";
 
 /* ---- Color variables for light & dark themes ---- */
+/* Design tokens (Material/Google-like) */
 :root {
-  --color-bg: #ffffff;
-  --color-text: #171717;
-  --card-bg: #ffffff;         /* surfaces/cards on light */
-  --panel-bg: #f8fafc;        /* subtle sections on light */
-  --card-border: #e5e7eb;     /* gray-200 */
+  /* Light */
+  --bg: #ffffff;
+  --text: #1f1f1f;
+  --text-dim: #5f6368;
+  --surface: #ffffff;
+  --surface-2: #f6f7f9;
+  --outline: #e0e0e0;
+  --primary: #1a73e8;       /* Google blue */
+  --on-primary: #ffffff;
 }
 
 .dark {
-  --color-bg: #0a0a0a;
-  --color-text: #ededed;
-  --card-bg: #111217;         /* near gray-950 but a touch warmer */
-  --panel-bg: #0f172a;        /* slate-900 */
-  --card-border: #374151;     /* gray-700 */
+  /* Dark */
+  --bg: #0f0f0f;
+  --text: #e3e3e3;
+  --text-dim: #b0b3b8;
+  --surface: #1f1f1f;
+  --surface-2: #171717;
+  --outline: #2a2a2a;
+  --primary: #8ab4f8;        /* YouTube-like blue on dark */
+  --on-primary: #0f0f0f;
 }
 
 /* ---- Global element styles ---- */
@@ -24,11 +33,16 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--bg);
+  color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
+}
+
+/* Make images slightly dimmer in dark mode for readability */
+.dark img:not([data-no-dark-adjust]) {
+  filter: brightness(0.95) saturate(1.02);
 }
 
 /* Accessible screen-reader-only helper */
@@ -51,3 +65,14 @@ h1, h2, h3, .heading-serif {
 h1 {
   letter-spacing: 0.2px;
 }
+
+/* Token-based helpers */
+.text-dim { color: var(--text-dim); }
+.link-primary { color: var(--primary); }
+.link-primary:hover { text-decoration: underline; }
+
+/* Focus rings */
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* Dark image adjustment; opt out via data-no-dark-adjust */
+.dark img:not([data-no-dark-adjust]) { filter: brightness(0.95) saturate(1.02); }

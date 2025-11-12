@@ -23,11 +23,11 @@ export default function Search({ variant = "inline" }: Props) {
   }, [router]);
 
   const base =
-    "flex items-center gap-2 border bg-white transition focus:outline-none";
+    "flex items-center gap-2 border bg-[var(--surface)] transition focus:outline-none";
   const styles =
     variant === "cta"
-      ? "px-4 py-2 rounded-lg border-gray-300 hover:border-blue-400 hover:bg-gray-100 text-gray-800 text-sm md:text-base"
-      : "px-3 py-1.5 rounded-md border-gray-300 hover:border-blue-400 hover:bg-gray-100 text-gray-700 text-sm";
+      ? "px-4 py-2 rounded-lg border-[var(--outline)] hover:border-blue-400 hover:bg-gray-100 text-gray-800 dark:text-gray-100 text-sm md:text-base"
+      : "px-3 py-1.5 rounded-md border-[var(--outline)] hover:border-blue-400 hover:bg-gray-100 text-gray-700 dark:text-gray-100 text-sm";
 
   return (
     <Link href="/archives" aria-label={t("search")} className={`${base} ${styles}`}>

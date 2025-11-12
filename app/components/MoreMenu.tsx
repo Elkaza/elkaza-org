@@ -36,7 +36,7 @@ export default function MoreMenu() {
       {open && (
         <div
           role="menu"
-          className="absolute right-0 mt-2 w-52 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl z-[120] p-2"
+          className="absolute right-0 mt-2 w-52 rounded-xl border border-[var(--outline)] bg-[var(--surface)] shadow-xl z-[120] p-2"
         >
           <a
             role="menuitem"
@@ -79,4 +79,3 @@ export default function MoreMenu() {
     </div>
   );
 }
-

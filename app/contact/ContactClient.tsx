@@ -17,9 +17,9 @@ export default function ContactClient() {
         {/* Content */}
         <div className="lg:col-span-9 grid sm:grid-cols-2 gap-10">
           {/* Academic / Research */}
-          <div className="p-6 rounded-xl hover:shadow-md transition bg-[var(--card-bg)] border border-[var(--card-border)]">
+          <div className="p-6 rounded-xl transition bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1 hover:shadow-elev-2">
             <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_academic_h2")}</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_academic_desc")}</p>
+            <p className="text-dim mb-4">{t("contact_academic_desc")}</p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li className="flex items-center gap-3">
                 <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
@@ -33,9 +33,9 @@ export default function ContactClient() {
           </div>
 
           {/* Consulting / Services */}
-          <div className="p-6 rounded-xl hover:shadow-md transition bg-[var(--card-bg)] border border-[var(--card-border)]">
+          <div className="p-6 rounded-xl transition bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1 hover:shadow-elev-2">
             <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_consult_h2")}</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">{t("contact_consult_desc")}</p>
+            <p className="text-dim mb-4">{t("contact_consult_desc")}</p>
             <ul className="space-y-3 text-gray-700 dark:text-gray-300">
               <li className="flex items-center gap-3">
                 <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
@@ -49,7 +49,7 @@ export default function ContactClient() {
           </div>
 
           {/* Social */}
-          <div className="sm:col-span-2 text-center py-8 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
+          <div className="sm:col-span-2 text-center py-8 rounded-xl bg-[var(--surface)] border border-[var(--outline)] shadow-elev-1">
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-6">{t("contact_social_h3")}</h3>
             <div className="flex justify-center gap-8 text-gray-700 dark:text-gray-300">
               <a href="https://github.com/Elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">

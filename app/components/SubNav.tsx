@@ -39,11 +39,13 @@ export default function SubNav() {
   return (
     <nav
       aria-label="Top navigation"
-      className={`border-b border-gray-200 ${scrolled ? "shadow-sm" : ""}`}
+      className={`bg-[var(--bg)] transition-[border-color,box-shadow,background-color] duration-200 ${
+        scrolled ? "border-b border-[var(--outline)] shadow-md" : "border-b-0 shadow-none"
+      }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         {/* Brand */}
-        <Link href="/" className="text-xl font-bold heading-serif text-gray-900">
+        <Link href="/" className="text-xl font-bold heading-serif" style={{ color: "var(--text)" }}>
           {t("brand")}
         </Link>
 
@@ -57,11 +59,10 @@ export default function SubNav() {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={
-                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 hover:border-blue-500 " +
-                  (active
-                    ? "text-blue-700 border-blue-600 font-semibold border-b-[3px]"
-                    : "text-gray-700 border-transparent")
+                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-[var(--primary)] hover:border-[var(--primary)] " +
+                  (active ? "font-semibold border-b-[3px]" : "text-dim border-transparent")
                 }
+                style={active ? { color: "var(--primary)", borderColor: "var(--primary)" } : undefined}
               >
                 {t(`nav_${l.label.toLowerCase()}`)}
               </Link>
@@ -78,7 +79,7 @@ export default function SubNav() {
           {/* Mobile menu toggle */}
           <button
             type="button"
-            className="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800"
+            className="md:hidden p-2 rounded-md hover:bg-[#f1f3f4] dark:hover:bg-[#2a2a2a]"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
@@ -90,7 +91,7 @@ export default function SubNav() {
 
       {/* Mobile panel */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+        <div className="md:hidden border-t border-[var(--outline)] bg-[var(--bg)]">
           <div className="max-w-6xl mx-auto px-6 py-3 grid gap-2">
             {links.map((l) => {
               const active = pathname === l.href;
@@ -100,13 +101,13 @@ export default function SubNav() {
                   href={l.href}
                   className={
                     "block px-2 py-2 rounded-md transition-colors " +
-                    (active
-                      ? "bg-blue-50 text-blue-700 dark:bg-gray-800 dark:text-blue-400"
-                      : "hover:bg-gray-100 dark:hover:bg-gray-800")
+                    (active ? "font-semibold" : "text-dim hover:bg-[#f1f3f4] dark:hover:bg-[#2a2a2a]")
                   }
                   aria-current={active ? "page" : undefined}
                 >
-                  {t(`nav_${l.label.toLowerCase()}`)}
+                  <span style={active ? { color: "var(--primary)" } : undefined}>
+                    {t(`nav_${l.label.toLowerCase()}`)}
+                  </span>
                 </Link>
               );
             })}
