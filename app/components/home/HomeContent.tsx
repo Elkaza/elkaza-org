@@ -7,7 +7,7 @@ import Button from "../Button";
 export default function HomeContent() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="text-center py-24 bg-[var(--panel-bg)] transition-colors duration-500">
         <h1 className="text-5xl font-bold mb-6 leading-tight heading-serif" style={{ color: "var(--text)" }}>
           {t("hero_title_1")} <br /> {t("hero_title_2")}

@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter, Merriweather } from "next/font/google";
 import SubNav from "./components/SubNav";
 import LocaleProvider from "./LocaleProvider";
-import Search from "./components/Search";
+//
 import SiteFooter from "./components/SiteFooter";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });

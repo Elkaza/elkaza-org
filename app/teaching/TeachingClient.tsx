@@ -7,7 +7,7 @@ import { useLocale } from "../LocaleProvider";
 export default function TeachingClient() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
