@@ -5,7 +5,7 @@ function nonce(size = 16) {
   return Buffer.from(bytes).toString("base64");
 }
 
-export function middleware(req: NextRequest) {
+export function middleware(_req: NextRequest) {
   const res = NextResponse.next();
   const n = nonce();
   res.headers.set("x-nonce", n);
@@ -33,4 +33,3 @@ export const config = {
     "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
   ],
 };
-

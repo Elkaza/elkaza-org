@@ -26,8 +26,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
     }
 
-    const body = await req.json().catch(() => ({} as any));
-    const prompt = typeof body?.prompt === "string" ? body.prompt.trim() : "";
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      body = {};
+    }
+    const prompt =
+      typeof (body as { prompt?: unknown })?.prompt === "string"
+        ? ((body as { prompt: string }).prompt.trim())
+        : "";
     if (!prompt) {
       return NextResponse.json({ error: "Invalid prompt" }, { status: 400 });
     }
@@ -55,10 +63,9 @@ export async function POST(req: Request) {
       "No response from Gemini.";
 
     return NextResponse.json({ reply: text });
-  } catch (err: any) {
-    const aborted = err?.name === "AbortError";
+  } catch (err: unknown) {
+    const aborted = (err as { name?: string })?.name === "AbortError";
     console.error("Gemini API error:", err);
     return NextResponse.json({ error: aborted ? "Request timed out" : "Failed to call Gemini API" }, { status: 500 });
   }
 }
-

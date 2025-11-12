@@ -13,10 +13,10 @@ export default function LanguageSwitcher() {
         setLocale(code);
         router.refresh();
       }}
-      className={`px-2 py-1 rounded-md text-xs border bg-white ${
+      className={`px-2 py-1 rounded-md text-xs border bg-[var(--surface)] ${
         locale === code
-          ? "border-blue-500 text-blue-700 font-semibold"
-          : "border-gray-300 text-gray-700 hover:bg-gray-100"
+          ? "border-blue-500 text-blue-700 dark:text-blue-400 font-semibold"
+          : "border-[var(--outline)] text-gray-700 dark:text-gray-100 hover:bg-gray-100"
       } focus:outline-none focus:ring-2 focus:ring-blue-400`}
       aria-pressed={locale === code}
     >

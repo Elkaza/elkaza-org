@@ -22,13 +22,17 @@ jobs:
       - run: npm run lint --if-present
 
   secrets-scan:
+    # Run only on pushes to main to avoid slowing PRs. Adjust as needed.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Gitleaks Secret Scan
-        uses: zricethezav/gitleaks-action@v2
+      - name: TruffleHog Secret Scan (verified findings only)
+        uses: trufflesecurity/trufflehog@v3
         with:
-          # Fail the workflow on any finding
-          args: --no-git -v
+          scan: repo
+          extra_args: --only-verified

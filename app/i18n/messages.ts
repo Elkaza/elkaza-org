@@ -11,6 +11,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Lehre",
     nav_contact: "Kontakt",
     search: "Suche",
+    // Archives
+    archives_title: "Archive durchsuchen",
+    archives_subtitle: "Seiten und Bereiche auf Elkaza.org erkunden.",
+    years: "Jahre",
+    tags: "Tags",
+    no_results: "Keine Ergebnisse. Filter zurücksetzen?",
+    search_placeholder: "Alle Seiten und Bereiche durchsuchen…",
 
     // Home
     hero_title_1: "Digitale Transformation.",
@@ -126,6 +133,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Teaching",
     nav_contact: "Contact",
     search: "Search",
+    // Archives
+    archives_title: "Search the Archives",
+    archives_subtitle: "Explore pages and sections across Elkaza.org.",
+    years: "YEARS",
+    tags: "TAGS",
+    no_results: "No results. Try clearing filters.",
+    search_placeholder: "Explore all pages and sections…",
 
     // Home
     hero_title_1: "Digital Transformation.",
@@ -238,6 +252,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "\u0627\u0644\u062A\u0639\u0644\u064A\u0645",
     nav_contact: "\u062A\u0648\u0627\u0635\u0644",
     search: "\u0628\u062D\u062B",
+    // Archives
+    archives_title: "\u0628\u062D\u062B \u0627\u0644\u0623\u0631\u0634\u064A\u0641",
+    archives_subtitle: "\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0627\u0644\u0635\u0641\u062D\u0627\u062A \u0648\u0627\u0644\u0623\u0642\u0633\u0627\u0645 \u0641\u064A Elkaza.org.",
+    years: "\u0627\u0644\u0633\u0646\u0648\u0627\u062A",
+    tags: "\u0627\u0644\u0648\u0633\u0648\u0645",
+    no_results: "\u0644\u0627 \u0646\u062A\u0627\u0626\u062C. \u062D\u0627\u0648\u0644 \u0625\u0632\u0627\u0644\u0629 \u0627\u0644\u0645\u0631\u0634\u062D\u0627\u062A.",
+    search_placeholder: "\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u0627\u0644\u0635\u0641\u062D\u0627\u062A \u0648\u0627\u0644\u0623\u0642\u0633\u0627\u0645…",
 
     // Home
     hero_title_1: "\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A.",
@@ -339,4 +360,3 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_social_h3: "\u0627\u062A\u0635\u0627\u0644 \u0639\u0628\u0631 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0645\u0647\u0646\u064A\u0629",
   },
 };
-
