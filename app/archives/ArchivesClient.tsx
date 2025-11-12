@@ -28,7 +28,7 @@ export default function ArchivesClient() {
       const matchTag = tag ? item.tags.includes(tag) : true;
       return matchQ && matchYear && matchTag;
     });
-  }, [q, year, tag]);
+  }, [q, year, tag, t]);
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-gray-900 dark:text-gray-100 transition-colors duration-300">
