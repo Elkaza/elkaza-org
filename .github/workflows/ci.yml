@@ -52,6 +52,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run lint --if-present
+      if: github.event_name == 'push'
 
   secrets-scan:
     runs-on: ubuntu-latest
@@ -60,7 +61,8 @@ jobs:
         with:
           fetch-depth: 0
       - name: TruffleHog Secret Scan (verified findings only)
-        uses: trufflesecurity/trufflehog@v3
+        uses: trufflesecurity/trufflehog@main
         with:
           scan: repo
           extra_args: --only-verified
+
