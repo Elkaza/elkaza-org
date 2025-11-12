@@ -64,6 +64,7 @@ jobs:
       - name: TruffleHog Secret Scan (verified findings only)
         uses: trufflesecurity/trufflehog@main
         with:
-          scan: repo
+          path: .
           extra_args: --only-verified
+
 
