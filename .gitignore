@@ -20,3 +20,9 @@ pnpm-debug.log*
 *.swp
 .idea/
 .vscode/
+
+# Local documentation (not for push)
+DESIGN_INSPIRATION.md
+BLOG_GUIDE.md
+ENHANCEMENT_SUMMARY.md
+

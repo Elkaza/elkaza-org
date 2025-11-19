@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { MESSAGES, type Locale } from "./i18n/messages";
 
 type Ctx = { locale: Locale; setLocale: (l: Locale) => void; t: (k: string) => string };
@@ -12,12 +12,11 @@ export function useLocale() {
 }
 
 export default function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("de");
-
-  useEffect(() => {
-    const stored = (localStorage.getItem("locale") as Locale | null) || undefined;
-    if (stored && ["de", "en", "ar"].includes(stored)) setLocaleState(stored);
-  }, []);
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    if (typeof window === "undefined") return "de";
+    const stored = localStorage.getItem("locale") as Locale | null;
+    return stored && ["de", "en", "ar"].includes(stored) ? stored : "de";
+  });
 
   useEffect(() => {
     localStorage.setItem("locale", locale);
@@ -27,8 +26,10 @@ export default function LocaleProvider({ children }: { children: React.ReactNode
   }, [locale]);
 
   const setLocale = (l: Locale) => setLocaleState(l);
-  const t = (k: string) => MESSAGES[locale][k] ?? k;
-  const value = useMemo(() => ({ locale, setLocale, t }), [locale]);
+  const value = useMemo(
+    () => ({ locale, setLocale, t: (k: string) => MESSAGES[locale][k] ?? k }),
+    [locale]
+  );
 
   return <C.Provider value={value}>{children}</C.Provider>;
 }

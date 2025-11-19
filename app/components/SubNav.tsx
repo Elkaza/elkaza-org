@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
   { href: "/research", label: "Research" },
   { href: "/projects", label: "Projects" },
   { href: "/teaching", label: "Teaching" },
@@ -29,7 +30,10 @@ export default function SubNav() {
   return (
     <nav
       aria-label="Top navigation"
-      className={`border-b border-gray-200 ${scrolled ? "shadow-sm" : ""}`}
+      className={`transition-all duration-300 ${scrolled
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm"
+          : "bg-transparent border-b border-transparent"
+        }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         {/* Brand */}

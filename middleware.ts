@@ -1,11 +1,11 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 function nonce(size = 16) {
   const bytes = crypto.getRandomValues(new Uint8Array(size));
   return Buffer.from(bytes).toString("base64");
 }
 
-export function middleware(req: NextRequest) {
+export function middleware() {
   const res = NextResponse.next();
   const n = nonce();
   res.headers.set("x-nonce", n);
