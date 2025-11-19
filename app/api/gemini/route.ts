@@ -14,6 +14,13 @@ function allow(ip: string) {
   return recent.length <= MAX_REQ;
 }
 
+type GeminiResponse = {
+  candidates?: { content?: { parts?: { text?: string }[] } }[];
+  error?: { message?: string };
+};
+
+type UpstreamError = { error?: { message?: string } };
+
 export async function POST(req: Request) {
   try {
     const API_KEY = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY || "";
@@ -26,8 +33,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Rate limit exceeded" }, { status: 429 });
     }
 
-    const body = await req.json().catch(() => ({} as any));
-    const prompt = typeof body?.prompt === "string" ? body.prompt.trim() : "";
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      body = {};
+    }
+    const prompt =
+      typeof (body as { prompt?: unknown })?.prompt === "string"
+        ? ((body as { prompt: string }).prompt.trim())
+        : "";
     if (!prompt) {
       return NextResponse.json({ error: "Invalid prompt" }, { status: 400 });
     }
@@ -44,19 +59,19 @@ export async function POST(req: Request) {
     }).finally(() => clearTimeout(t));
 
     if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
+      const err = (await response.json().catch(() => ({}))) as UpstreamError;
       return NextResponse.json({ error: err?.error?.message || "Upstream error" }, { status: response.status });
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as GeminiResponse;
     const text =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       data?.error?.message ||
       "No response from Gemini.";
 
     return NextResponse.json({ reply: text });
-  } catch (err: any) {
-    const aborted = err?.name === "AbortError";
+  } catch (err: unknown) {
+    const aborted = (err as { name?: string })?.name === "AbortError";
     console.error("Gemini API error:", err);
     return NextResponse.json({ error: aborted ? "Request timed out" : "Failed to call Gemini API" }, { status: 500 });
   }
