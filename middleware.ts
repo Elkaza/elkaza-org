@@ -18,7 +18,7 @@ export function middleware() {
     "object-src 'none'",
     "img-src 'self' data: https:",
     `style-src 'self' 'unsafe-inline' 'nonce-${n}'`,
-    `script-src 'self' 'unsafe-inline' 'nonce-${n}' 'strict-dynamic'`,
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval'`,
     "connect-src 'self' https://generativelanguage.googleapis.com",
     "form-action 'self'",
     "upgrade-insecure-requests",
