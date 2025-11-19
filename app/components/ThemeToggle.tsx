@@ -1,36 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial = saved || (prefersDark ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", initial === "dark");
-    setTheme(initial);
-  }, []);
-
-  const toggle = () => {
-    const next = theme === "light" ? "dark" : "light";
-    document.documentElement.classList.toggle("dark", next === "dark");
-    localStorage.setItem("theme", next);
-    setTheme(next);
-  };
-
-  return (
-    <button
-      onClick={toggle}
-      className="p-2 rounded-lg text-sm hover:bg-gray-200 dark:hover:bg-gray-800 transition"
-      aria-label="Toggle Dark Mode"
-    >
-      {theme === "light" ? "🌙" : "☀️"}
-    </button>
-  );
-}
-"use client";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 type Theme = "light" | "dark";
@@ -52,13 +21,23 @@ function apply(theme: Theme) {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [theme, setTheme] = useState<Theme>("light");
+  const [mounted, setMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    const initialValue = initialTheme();
+    apply(initialValue);
+    setTheme(initialValue);
+    setMounted(true);
+  }, []);
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
     apply(next);
+    setTheme(next);
   };
+
+  if (!mounted) return null; // Prevent hydration mismatch
 
   return (
     <button

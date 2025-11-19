@@ -11,6 +11,11 @@ export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
   title: "Elkaza | Digital Transformation & Research",
   description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${serif.variable}`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">Skip to content</a>
         <LocaleProvider>
-          <header className="sticky top-0 z-50 bg-[var(--bg)]">
+          <header className="sticky top-0 z-50">
             <SubNav />
           </header>
           <main id="main">{children}</main>
