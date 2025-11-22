@@ -1,52 +1,34 @@
 "use client";
-import { useLayoutEffect, useState } from "react";
+
+import * as React from "react";
 import { Moon, Sun } from "lucide-react";
-
-type Theme = "light" | "dark";
-
-function initialTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  const saved = (localStorage.getItem("theme") as Theme | null) || null;
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  return saved ?? (prefersDark ? "dark" : "light");
-}
-
-function apply(theme: Theme) {
-  const html = document.documentElement;
-  const body = document.body;
-  const dark = theme === "dark";
-  html.classList.toggle("dark", dark);
-  body.classList.toggle("dark", dark);
-  localStorage.setItem("theme", theme);
-}
+import { useTheme } from "next-themes";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
 
-  useLayoutEffect(() => {
-    const initialValue = initialTheme();
-    apply(initialValue);
-    setTheme(initialValue);
+  // Avoid hydration mismatch
+  React.useEffect(() => {
     setMounted(true);
   }, []);
 
-  const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    apply(next);
-    setTheme(next);
-  };
-
-  if (!mounted) return null; // Prevent hydration mismatch
+  if (!mounted) {
+    return <div className="w-9 h-9" />; // Placeholder to prevent layout shift
+  }
 
   return (
     <button
-      type="button"
-      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-      onClick={toggle}
-      className="p-2 rounded-md border border-[var(--outline)] bg-[var(--surface)] text-[var(--text)] hover:bg-[#f1f3f4] dark:hover:bg-[#2a2a2a] transition"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      aria-label="Toggle theme"
+      aria-pressed={theme === "dark"}
     >
-      {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+      {theme === "dark" ? (
+        <Moon className="w-5 h-5" />
+      ) : (
+        <Sun className="w-5 h-5" />
+      )}
     </button>
   );
 }

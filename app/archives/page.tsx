@@ -7,7 +7,6 @@ const DATA = [
   { title: "About", href: "/about", tags: ["profile", "ea"], year: 2025 },
   { title: "Research", href: "/research", tags: ["ea", "ai", "security"], year: 2025 },
   { title: "Projects", href: "/projects", tags: ["iot", "cloud", "ai"], year: 2025 },
-  { title: "Teaching", href: "/teaching", tags: ["education", "security"], year: 2025 },
   { title: "Contact", href: "/contact", tags: ["links"], year: 2025 },
 ];
 
@@ -37,57 +36,55 @@ export default function ArchivesPage() {
   }, [q, year, tag]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-page text-main transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         {/* Left rail */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
           <h1 className="text-3xl font-bold">Search the Archives</h1>
-          <p className="mt-3 text-gray-500">Explore pages and sections across Elkaza.org.</p>
+          <p className="mt-3 text-muted">Explore pages and sections across Elkaza.org.</p>
         </aside>
 
         {/* Content */}
         <div className="lg:col-span-9">
           <div className="flex items-center gap-2 mb-6">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={18} />
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Explore all pages and sections…"
-                className="w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900"
+                className="w-full pl-10 pr-3 py-2 rounded-md border border-subtle bg-card text-main placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
             </div>
           </div>
 
-          <div className="mb-4 text-xs tracking-wide text-gray-500">YEARS</div>
+          <div className="mb-4 text-xs tracking-wide text-muted">YEARS</div>
           <div className="flex flex-wrap gap-2 mb-6">
             {YEARS.map((y) => (
               <button
                 key={y}
                 onClick={() => setYear(year === y ? null : y)}
-                className={`px-3 py-1.5 rounded-md border text-sm ${
-                  year === y
-                    ? "border-blue-500 text-blue-700 dark:text-blue-400"
-                    : "border-gray-300 dark:border-gray-700"
-                }`}
+                className={`px-3 py-1.5 rounded-md border text-sm transition-colors ${year === y
+                  ? "border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                  : "border-subtle text-muted hover:border-blue-500/50 hover:text-main"
+                  }`}
               >
                 {y}
               </button>
             ))}
           </div>
 
-          <div className="mb-4 text-xs tracking-wide text-gray-500">TAGS</div>
+          <div className="mb-4 text-xs tracking-wide text-muted">TAGS</div>
           <div className="flex flex-wrap gap-2 mb-8">
             {TAGS.map((t) => (
               <button
                 key={t}
                 onClick={() => setTag(tag === t ? null : t)}
-                className={`px-3 py-1.5 rounded-md border text-sm capitalize ${
-                  tag === t
-                    ? "border-blue-500 text-blue-700 dark:text-blue-400"
-                    : "border-gray-300 dark:border-gray-700"
-                }`}
+                className={`px-3 py-1.5 rounded-md border text-sm capitalize transition-colors ${tag === t
+                  ? "border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/20"
+                  : "border-subtle text-muted hover:border-blue-500/50 hover:text-main"
+                  }`}
               >
                 {t}
               </button>
@@ -96,17 +93,17 @@ export default function ArchivesPage() {
 
           <div className="space-y-3">
             {results.map((r) => (
-              <div key={r.href} className="p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                <Link href={r.href} className="font-medium text-blue-700 dark:text-blue-400 hover:underline">
+              <div key={r.href} className="p-4 rounded-lg border border-subtle bg-card hover:border-blue-500/30 transition-colors">
+                <Link href={r.href} className="font-medium text-blue-600 hover:underline block mb-1">
                   {r.title}
                 </Link>
-                <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-muted">
                   {r.year} · {r.tags.join(", ")}
                 </div>
               </div>
             ))}
             {results.length === 0 && (
-              <div className="text-gray-600 dark:text-gray-400">No results. Try clearing filters.</div>
+              <div className="text-muted italic">No results. Try clearing filters.</div>
             )}
           </div>
         </div>

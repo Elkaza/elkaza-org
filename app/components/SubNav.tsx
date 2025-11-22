@@ -1,19 +1,19 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Search from "./Search";
 import MoreMenu from "./MoreMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import { useLocale } from "../LocaleProvider";
 import { useEffect, useState } from "react";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/research", label: "Research" },
+
   { href: "/projects", label: "Projects" },
-  { href: "/teaching", label: "Teaching" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -31,13 +31,16 @@ export default function SubNav() {
     <nav
       aria-label="Top navigation"
       className={`transition-all duration-300 ${scrolled
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm"
-          : "bg-transparent border-b border-transparent"
+        ? "bg-page/80 backdrop-blur-md border-b border-subtle shadow-sm"
+        : "bg-transparent border-b border-transparent"
         }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         {/* Brand */}
-        <Link href="/" className="text-xl font-bold heading-serif text-gray-900">{t("brand")}</Link>
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold heading-serif text-main">
+          <Image src="/icon.jpg" alt="Logo" width={32} height={32} className="w-8 h-8 rounded-md" />
+          {t("brand")}
+        </Link>
 
         {/* Center tabs */}
         <div className="hidden md:flex gap-6 text-sm">
@@ -49,10 +52,10 @@ export default function SubNav() {
                 href={l.href}
                 aria-current={active ? "page" : undefined}
                 className={
-                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 hover:border-blue-500 " +
+                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
                   (active
-                    ? "text-blue-700 border-blue-600 font-semibold border-b-[3px]"
-                    : "text-gray-700 border-transparent")
+                    ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
+                    : "text-muted border-transparent")
                 }
               >
                 {t(`nav_${l.label.toLowerCase()}`)}
@@ -61,9 +64,9 @@ export default function SubNav() {
           })}
         </div>
 
-        {/* Right controls */}
         <div className="flex items-center gap-2">
           <Search />
+          <ThemeToggle />
           <LanguageSwitcher />
           <MoreMenu />
         </div>
