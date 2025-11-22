@@ -1,47 +1,46 @@
 @import "tailwindcss";
 
+@theme {
+  --color-page: var(--bg-page);
+  --color-card: var(--bg-card);
+  --color-main: var(--text-main);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--border-subtle);
+}
+
 /* ---- Color variables for light & dark themes ---- */
 :root {
-  --color-bg: #ffffff;
-  --color-text: #171717;
+  /* Light Theme */
+  --bg-page: #f8fafc;
+  /* slate-50 */
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  /* slate-900 */
+  --text-muted: #64748b;
+  /* slate-500 */
+  --border-subtle: #e2e8f0;
+  /* slate-200 */
 }
 
 .dark {
-  --color-bg: #0a0a0a;
-  --color-text: #ededed;
-}
-
-/* ---- Global element styles ---- */
-html {
-  scroll-behavior: smooth;
-  color-scheme: light dark;
-}
-
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-}
-
-/* Accessible screen-reader-only helper */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  /* Dark Theme */
+  --bg-page: #020617;
+  /* slate-950 */
+  --bg-card: #0f172a;
+  /* slate-900 */
+  --text-main: #f8fafc;
+  /* slate-50 */
+  --text-muted: #94a3b8;
+  /* slate-400 */
+  --border-subtle: #1e293b;
+  /* slate-800 */
 }
 
 /* Serif headings to emulate editorial style */
-h1, h2, h3, .heading-serif {
+.heading-serif {
   font-family: var(--font-serif), ui-serif, Georgia, "Times New Roman", serif;
 }
+
 h1 {
   letter-spacing: 0.2px;
 }

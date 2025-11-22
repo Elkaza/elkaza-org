@@ -27,7 +27,19 @@ export default function LocaleProvider({ children }: { children: React.ReactNode
 
   const setLocale = (l: Locale) => setLocaleState(l);
   const value = useMemo(
-    () => ({ locale, setLocale, t: (k: string) => MESSAGES[locale][k] ?? k }),
+    () => ({
+      locale,
+      setLocale,
+      t: (k: string) => {
+        const val = MESSAGES[locale][k];
+        if (val) return val;
+        // Fallback to English
+        const fallback = MESSAGES["en"][k];
+        if (fallback) return fallback;
+        // Return key if nothing found
+        return k;
+      },
+    }),
     [locale]
   );
 
