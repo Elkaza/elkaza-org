@@ -12,6 +12,10 @@ export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
   title: "Elkaza | Digital Transformation & Research",
   description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
