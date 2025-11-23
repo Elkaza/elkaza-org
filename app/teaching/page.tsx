@@ -7,21 +7,21 @@ import { useLocale } from "../LocaleProvider";
 export default function TeachingPage() {
   const { t } = useLocale();
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <main className="min-h-screen bg-page text-main transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
           <h1 className="text-3xl font-bold">{t("nav_teaching")}</h1>
-          <p className="mt-2 text-gray-500 italic">{t("teach_tagline")}</p>
+          <p className="mt-2 text-muted italic">{t("teach_tagline")}</p>
         </aside>
 
         <div className="lg:col-span-9">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Course 1 - DigiTrans & EA */}
-            <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+            <div className="group bg-card border border-subtle rounded-xl p-6 shadow-sm hover:shadow-lg transition">
               <Network className="text-blue-600 mb-3 w-8 h-8" />
               <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c1_title")}</h3>
-              <p className="text-gray-700 mb-4">
+              <p className="text-main mb-4">
                 {t("teach_c1_desc")}
               </p>
               <Link href="/contact" className="text-blue-700 font-medium hover:underline">
@@ -69,7 +69,7 @@ export default function TeachingPage() {
           </div>
           <div className="text-center py-12">
             <h2 className="text-2xl font-semibold mb-4">{t("teach_cta_h2")}</h2>
-            <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-main mb-6 max-w-2xl mx-auto">
               {t("teach_cta_desc")}
             </p>
             <Link href="/contact" className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition">{t("teach_cta_btn")}</Link>
