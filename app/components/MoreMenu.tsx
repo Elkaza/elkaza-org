@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { MoreHorizontal, Github, Linkedin } from "lucide-react";
+import { MoreHorizontal, Github, Linkedin, Download } from "lucide-react";
+import { useLocale } from "../LocaleProvider";
 
 export default function MoreMenu() {
+  const { locale, t } = useLocale();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -33,6 +35,14 @@ export default function MoreMenu() {
             className="flex items-center gap-2 px-3 py-2 rounded text-main hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Github size={16} /> GitHub
+          </a>
+          <a
+            href={locale === "de" ? "/cv/Elkaza_Mohamed_CV_DE.pdf" : "/cv/Elkaza_Mohamed_CV_EN.pdf"}
+            download
+            aria-label={t("hero_cta_cv")}
+            className="flex items-center gap-2 px-3 py-2 rounded text-main hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            <Download size={16} /> {t("hero_cta_cv")}
           </a>
           <a
             href="https://www.linkedin.com/in/elkaza"

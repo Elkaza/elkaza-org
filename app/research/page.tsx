@@ -20,9 +20,11 @@ export default function ResearchPage() {
             <div>
               <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("thesis_h2") ?? "Master's Thesis"}</h2>
               <p className="text-main leading-relaxed mb-3">{t("thesis_desc") ?? ""}</p>
+              {/* TODO: Add thesis PDF download link when file is available
               <Link href="/documents/thesis.pdf" className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                 {t("download_thesis") ?? "Download Thesis (PDF)"}
               </Link>
+              */}
             </div>
           </div>
 

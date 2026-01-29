@@ -1,59 +1,11 @@
-﻿"use client";
-import { Mail, Github, Linkedin, Globe } from "lucide-react";
-import { useLocale } from "../LocaleProvider";
+﻿import type { Metadata } from 'next';
+import ContactPageContent from '../components/ContactPageContent';
+
+export const metadata: Metadata = {
+  title: 'Contact | Mohamed El-Kaza',
+  description: 'Get in touch for cybersecurity, network engineering, or project management opportunities.',
+};
 
 export default function ContactPage() {
-  const { t } = useLocale();
-  return (
-    <main className="min-h-screen bg-page text-main transition-colors duration-300">
-      <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-        {/* Left rail */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
-          <div className="w-20 h-1.5 bg-blue-600 mb-3" />
-          <h1 className="text-3xl font-bold">{t("nav_contact")}</h1>
-          <p className="mt-2 text-muted italic">{t("contact_tagline")}</p>
-        </aside>
-
-        {/* Content */}
-        <div className="lg:col-span-9 grid sm:grid-cols-2 gap-10">
-          {/* Academic / Research */}
-          <div className="p-6 bg-card border border-subtle rounded-xl hover:shadow-md transition">
-            <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-400 mb-3">{t("contact_academic_h2")}</h2>
-            <p className="text-main mb-4">{t("contact_academic_desc")}</p>
-            <ul className="space-y-3 text-main">
-              <li className="flex items-center gap-3">
-                <Mail className="text-blue-600 dark:text-blue-400 w-5 h-5" />
-                <a href="mailto:contact@elkaza.org" className="hover:underline">contact@elkaza.org</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Globe className="text-blue-600 dark:text-blue-400 w-5 h-5" />
-                <a href="https://elkaza.org" target="_blank" rel="noopener noreferrer" className="hover:underline">elkaza.org</a>
-              </li>
-            </ul>
-          </div>
-
-
-
-          {/* Social */}
-          <div className="sm:col-span-2 text-center py-8 bg-card rounded-xl border border-subtle">
-            <h3 className="text-xl font-semibold text-main mb-6">{t("contact_social_h3")}</h3>
-            <div className="flex justify-center gap-8 text-main">
-              <a href="https://github.com/Elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">
-                <Github className="w-5 h-5" /> GitHub
-              </a>
-              <a href="https://linkedin.com/in/elkaza" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-700 dark:hover:text-blue-400 transition">
-                <Linkedin className="w-5 h-5" /> LinkedIn
-              </a>
-            </div>
-          </div>
-
-          {/* Closing Sentence */}
-          <div className="sm:col-span-2 text-center mt-4">
-            <p className="text-muted">{t("contact_closing")}</p>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+  return <ContactPageContent />;
 }
-

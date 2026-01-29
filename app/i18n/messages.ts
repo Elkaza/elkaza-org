@@ -18,10 +18,86 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     search: "Suche",
 
     // Home - Hero
-    home_hero_title: "Digital Transformation & IoT Professional aus Wien",
-    home_hero_subtitle: "Verbindung von Wirtschaftsinformatik, IoT und Projektmanagement für wertschöpfende digitale Lösungen. Ich verwandle komplexe Probleme und technische Neugier in robuste Systeme.",
+    home_hero_headline: "IT-Infrastruktur & Platform Engineer",
+    home_hero_subline: "Linux · Networking · Automatisierung",
+    home_hero_desc: "Ich baue stabile, wartbare Systeme. Von Netzwerk-Segmentierung bis Self-Hosting: aus technischer Komplexität entsteht zuverlässiger Betrieb.",
+    // Proof in 3 Bullets
+    home_proof_title: "Kernstärken",
+    home_proof_impact: "Strukturierte Automatisierung, klare Dokumentation",
+    home_proof_scope: "Netzwerk, Linux, Monitoring, CI/CD",
+    home_proof_strength: "IPMA-zertifiziert, Hands-on Engineering",
+    // CTAs
+    home_cta_primary: "CV herunterladen",
+    home_cta_secondary: "Projekte ansehen",
+    // Legacy keys (kept for compatibility)
+    home_hero_title: "IT-Infrastruktur & Platform Engineer (Linux · Security · Automatisierung)",
+    home_hero_subtitle: "Aufbau sicherer, wartbarer Systeme für einen stabilen Betrieb.",
     home_btn_projects: "Meine Projekte ansehen",
     home_btn_blog: "Über mich",
+    hero_role_open: "Offen für Rollen:",
+    hero_role_security: "Security & Netzwerk",
+    hero_role_projects: "Projekte",
+    hero_role_research: "Forschung",
+    hero_role_about: "Über mich",
+    hero_badge: "❯",
+    hero_cta_cv: "CV herunterladen (PDF)",
+    hero_cta_projects: "Projekte ansehen",
+    hero_cta_security: "Security Portfolio",
+
+    // Security Page
+    nav_security: "Security",
+    security_title: "Security & Networking",
+    security_focus: "Aufbau sicherer Netzwerke und Self-Hosted-Infrastruktur. Praxis mit Firewalls, Segmentierung und Linux-Härtung.",
+    security_lab_title: "Home Lab Highlights",
+    security_lab_list: "Netzwerk-Segmentierung, Firewalls (UFW), VPN (WireGuard), DNS-Filterung (Pi-hole), Logging & Monitoring",
+    security_tools_title: "Aktiver Stack",
+    security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
+    security_tools_exploring_title: "In Vorbereitung",
+    security_tools_exploring: "WireGuard",
+    security_tools_next_title: "Roadmap",
+    security_tools_next: "Suricata, Zeek, Wazuh",
+    security_tools_list: "Wireshark, Nmap, PfSense, Snort, OpenVAS",
+    security_cases_title: "Fallstudien",
+    security_tools_stack_title: "Tools & Stack",
+    case_label_problem: "Herausforderung",
+    case_label_action: "Vorgehen",
+    case_label_result: "Ergebnis",
+    case_iot_title: "IoT-Isolation",
+    case_iot_problem: "Unsichere IoT-Geräte im Hauptnetzwerk",
+    case_iot_action: "L2-Isolation via Gast-SSID. VLAN-Segmentierung für nächste Phase entworfen.",
+    case_iot_result: "IoT-Verkehr vom Hauptnetz getrennt.",
+    case_remote_title: "Sicherer Fernzugriff",
+    case_remote_problem: "Zugriff auf Heimnetz von unterwegs nötig",
+    case_remote_action: "WireGuard VPN statt Port-Forwarding",
+    case_remote_result: "Fernzugriff per VPN statt offener Ports.",
+    security_disclaimer: "Keine sensiblen Konfigurationen veröffentlicht.",
+
+    // Terminal Snapshots
+    security_pow_title: "Lab-Snapshots",
+    security_pow_note: "Bereinigt (Zugangsdaten entfernt)",
+
+    // Terminal 1: UFW
+    term_ufw_title: "Firewall: Deny-by-default",
+    term_ufw_cmd: "<USER>@<HOST>:~$ sudo ufw status verbose",
+    term_ufw_out: "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing)\n\nTo                         Action      From\n--                         ------      ----\n<SSH_PORT>/tcp             LIMIT IN    <LAN_SUBNET>\n<DNS_PORT>/udp             ALLOW IN    <LAN_SUBNET>\n# <VPN_PORT>/udp opened only when WireGuard is enabled",
+
+    // Terminal 2: Pi-hole
+    term_pihole_title: "DNS: Ad-Blocking aktiv",
+    term_pihole_cmd: "<USER>@<HOST>:~$ pihole status",
+    term_pihole_out: "  [✓] FTL is listening on port 53\n  [✓] Pi-hole blocking is enabled\n  [✓] DNS service is running",
+
+    // Terminal 3: WireGuard
+    term_wg_title: "VPN: WireGuard-Konfig",
+    term_wg_cmd: "<USER>@<HOST>:~$ cat /etc/wireguard/wg0.conf",
+    term_wg_out: "[Interface]\nAddress = <VPN_SUBNET>\nListenPort = <VPN_PORT>\nPrivateKey = <REDACTED>\n\n[Peer]\nPublicKey = <REDACTED>\nAllowedIPs = <VPN_CLIENT_IP>",
+
+    // Home Security Lab Case
+    case_lab_title: "Home Security Lab",
+    case_lab_problem: "Einschränkungen durch ISP-Hardware und unsicheres Standard-Heimnetzwerk.",
+    case_lab_action: "ThinkCentre M710q (Proxmox), UFW (LAN-only), Pi-hole. IoT-Separation via Gast-SSID.",
+    case_lab_result: "Werbefreies DNS, Basis-Härtung. Roadmap für VPN und VLAN steht.",
+    case_lab_safe: "Keine sensiblen Konfigurationen veröffentlicht.",
+
 
     // Home - What I do
     what_do_title: "Was ich mache",
@@ -29,7 +105,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     what_do_item1_title: "Digitale Transformation & Enterprise Architecture",
     what_do_item1_desc: "Übersetzung von Geschäftsstrategien in umsetzbare digitale Roadmaps mittels ArchiMate, BPMN und modernen EA-Praktiken.",
     what_do_item2_title: "IT-Service Management & Automatisierung",
-    what_do_item2_desc: "Optimierung von ITSM- und IT-Asset-Workflows auf ServiceNow mit Fokus auf Automatisierung und User Experience.",
+    what_do_item2_desc: "Betriebsnahe IT stabil betreiben: Incident/Change/Release/Problem, saubere Schnittstellen und Doku. Leichte Automatisierung (bash/PowerShell), Monitoring & Backup (PRTG, Veeam).",
     what_do_item3_title: "Projektmanagement & Change",
     what_do_item3_desc: "Anwendung von IPMA-basiertem Projektmanagement und Change-Modellen zur Steuerung von Initiativen von der Idee bis zur Umsetzung.",
     what_do_item4_title: "IoT, Netzwerke & Infrastruktur",
@@ -37,9 +113,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Currently
     current_title: "Aktuell",
-    current_item1: "M.Sc. Wirtschaftsinformatik, TU Wien - Schwerpunkt Digitale Transformation und Enterprise Engineering.",
-    current_item2: "B.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
-    current_item3: "Abgeschlossener IPMA-basierter Projektmanagement-Lehrgang (10 ECTS) und bestandene IPMA Level D-Prüfung (Certified Project Management Associate).",
+    current_item1: "IPMA® Level D (cPMA) – seit 10/2025",
+    current_item2: "M.Sc. Wirtschaftsinformatik, TU Wien - Schwerpunkt Digitale Transformation und Enterprise Engineering.",
+    current_item3: "B.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "Einsatz meiner Kenntnisse in Enterprise Architecture, IoT und digitaler Transformation in Forschungs-, Industrie- und Innovationsprojekten.",
     exp1_title: "Application Engineer - HiCo-ICS (2023)",
     exp1_desc: "Entwicklung und Debugging von Features für eine XML/XSLT-basierte PDF-Publishing-Suite. Erstellung von User Stories zur Definition und Optimierung der Softwarefunktionalität, wodurch die Kundenzufriedenheit durch verbesserte Dokumentation direkt gesteigert wurde.",
@@ -67,7 +143,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     tech_cat2: "Tools & Plattformen",
     tech_list2: "ServiceNow, ADOIT/ADONIS, Power BI, Git/GitHub, Jira, Confluence",
     tech_cat3: "Netzwerke & Infrastruktur",
-    tech_list3: "Cisco, MikroTik, Linux, Wireshark, VPN, VLAN",
+    tech_list3: "IT-Betrieb & Netz: AD/DNS/DHCP · Routing/Switching · VLAN/VPN · Monitoring/Backup (PRTG, Veeam)",
     tech_cat4: "Architektur & Methoden",
     tech_list4: "ArchiMate, UML, BPMN, ITIL, Basis-TOGAF, IPMA-basiertes Projektmanagement",
 
@@ -76,12 +152,28 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     btn_contact_me: "Kontaktieren Sie mich",
 
     // About
-    about_tagline: "Neugierig darauf, wie Technologie, Daten und Menschen zusammenpassen, und fokussiert auf praktische Lösungen, die wirklich funktionieren.",
-    about_lead: "Spezialist für Wirtschaftsinformatik mit Fokus auf digitale Transformation und Enterprise Architecture, Verbindung von geschäftlichen Zielen mit praktischen technischen Lösungen.",
-    about_profile_h2: "Professionelles Profil",
-    about_profile_intro: "Hallo, ich bin Mohamed. Ich begeistere mich für Technologie und Innovation und blühe auf, wenn ich komplexe Probleme löse und Ideen in funktionierende Systeme verwandle.",
-    about_p1: "Das Erkunden neuer Tools und Architekturen treibt meine Neugier an, wie Dinge zusammenhängen - von Geschäftsprozessen bis zu Netzwerkpaketen. Außerhalb der Arbeit bin ich häufig mit dem Rad unterwegs und erkunde Wien und die Umgebung.",
+    about_tagline: "Technologie, Daten und Menschen zusammenbringen. Fokus auf Lösungen, die funktionieren.",
+    about_lead: "IT-Infrastruktur-Spezialist mit Erfahrung in Netzwerktechnik, Linux-Systemen und strukturiertem Projektmanagement.",
+    about_profile_h2: "Profil",
+    about_profile_intro: "Ich bin Mohamed, IT-Infrastruktur- und Platform Engineer mit Sitz in Wien. Mein Fokus liegt auf dem Aufbau stabiler, wartbarer Systeme.",
+    about_p1: "Ob Netzwerk-Segmentierung, Linux-Server oder Monitoring: Ich bringe technisches Know-how mit klarer Dokumentation zusammen. Außerhalb der Arbeit erkunde ich Wien am liebsten mit dem Rad.",
+    // Value Statement
+    about_value_statement: "Ich unterstütze Teams dabei, stabile Infrastruktur zu betreiben und Systeme zu bauen, die von Grund auf sicher sind.",
+    // New: Core Strengths
+    about_strengths_title: "Kernstärken",
+    about_strength_1: "Linux-Systemadministration (Debian, Ubuntu, Proxmox)",
+    about_strength_2: "Netzwerksicherheit: Firewalls, Segmentierung, VPN",
+    about_strength_3: "Automatisierung: Bash, PowerShell, leichtgewichtiges CI/CD",
+    about_strength_4: "Monitoring & Observability (PRTG, Pi-hole, Uptime Kuma)",
+    about_strength_5: "Projektabwicklung: IPMA Level D zertifiziert",
+    about_strength_6: "Klare Dokumentation und strukturierte Übergaben",
+    about_strength_7: "Enterprise- & Prozessmodellierung (ArchiMate, BPMN, UML)",
     about_comp_h2: "Kernkompetenzen & Tools",
+    // Experience Impact Lines
+    exp1_impact: "→ Verbesserte Dokumentations-Turnaround-Zeit",
+    exp2_impact: "→ Reduzierte manuelle Fehler im Asset-Tracking",
+    exp3_impact: "→ Datengestützte EA-Tool-Verbesserungen geliefert",
+    exp4_impact: "→ Hohe Netzwerk-Verfügbarkeit über den Campus sichergestellt",
 
     // About - Skills
     skill_ea_title: "Enterprise Architecture",
@@ -100,7 +192,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_pm_item3: "Nutzung von Change-Modellen wie ADKAR und Kotter zur Strukturierung von Transformationsarbeit",
 
     skill_net_title: "Netzwerk & Infrastruktur",
-    skill_net_item1: "Praktische Erfahrung mit Cisco & MikroTik Netzwerken",
+    skill_net_item1: "Stabiler IT-Betrieb (AD/DNS/DHCP), Routing/Switching, VLAN/VPN, Basis-Härtung (ACLs/TLS)",
     skill_net_item2: "Arbeit mit VLANs, Routing, VPN und Linux-Netzwerken",
     skill_net_item3: "Fehlerbehebung mit Wireshark und grundlegenden Monitoring-Tools",
 
@@ -127,11 +219,12 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     research_cta: "Kontakt für Forschungskooperation",
 
     // Projects
-    projects_tagline: "Übersicht laufender und künftiger Projekte in IoT, Cloud und digitaler Innovation.",
+    projects_tagline: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
     proj_timeline_h2: "Projektübersicht",
-    proj_timeline_desc: "Übersicht laufender und künftiger Projekte in IoT, Cloud und digitaler Innovation.",
+    proj_timeline_desc: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
     proj_2025_desc: "Praktische Integration von Embedded, Self-Hosted Cloud und digitalen Ökosystemen.",
-    proj_2026_desc: "Zukunft: KI-integrierte Systeme, Security-Frameworks und EA-Automatisierung.",
+
+
     proj_item_web_title: "Persönliche Website & Digitale Identität – elkaza.org",
     proj_item_web_desc: "Aufbau einer zweisprachigen Portfolio-Website mit Next.js, Tailwind CSS und GitHub-basiertem CI/CD, die als Hub für Lebenslauf, Projekte und Lehrmaterial dient.",
     proj_item_freertos_title: "FreeRTOS IoT Sensorknoten (C++)",
@@ -141,13 +234,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_focus_h2: "Aktueller Fokus",
     proj_focus_desc: "Aufbau praxisorientierter IoT-Systeme und stabiler Backend-Infrastruktur, die Embedded-Entwicklung, selbst gehostete Cloud-Dienste und Enterprise-Architecture-Konzepte verbinden.",
     proj_focus_b1: "ESP32-S3 FreeRTOS Sensorknoten mit DHT22-Temperatur-/Feuchtesensor und BLE-Telemetrie",
-    proj_focus_b2: "Self-Hosted: Reverse Proxy, TLS, Monitoring",
+    proj_focus_b2: "Self-hosted: reverse proxy, TLS, monitoring, Cloudflare Tunnel",
     proj_focus_b3: "Leichte KI-Assistenten für Forschungsnotizen und Architekturideen",
     proj_current_h2: "Aktuelle Projekte",
     proj_cur_freertos_title: "FreeRTOS Sensorknoten",
     proj_cur_freertos_desc: "ESP32-S3 liest Umweltdaten und publiziert via MQTT (Backoff + Buffer).",
     proj_cur_infra_title: "Self-Hosted Infra",
-    proj_cur_infra_desc: "Reverse Proxy, TLS, Logging und Uptime für elkaza.org.",
+    proj_cur_infra_desc: "Cloudflare Tunnel, TLS, Logging und Uptime für elkaza.org.",
     proj_cur_notes_title: "EA + KI Notizen-Assistent",
     proj_cur_notes_desc: "Kleiner LLM-Workflow für Zusammenfassungen und Architektur-Notizen.",
     proj_cur_web_title: "Persönliche Website & Digitale Identität - elkaza.org",
@@ -175,9 +268,48 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_cta_btn: "Kontakt aufnehmen",
 
     // Certifications
+    cert_nav_back: "← Zurück zu Über mich",
     cert_title: "Zertifizierungen",
-    cert_ipma_details: "IPMA Level D Certified Project Management Associate",
-    cert_planned_details: "",
+    cert_view_all: "Alle ansehen →",
+    cert_list_title: "Alle Zertifizierungen",
+    cert_list_subtitle: "Ausgewählte Zertifizierungen und Weiterbildungen (Nachweis auf Anfrage verfügbar).",
+    cert_avail_req: "Nachweis auf Anfrage verfügbar",
+    // Filters
+    cert_filter_all: "Alle",
+    cert_filter_pm: "Projektmanagement",
+    cert_filter_ba: "Business Analysis",
+    cert_filter_excel: "Excel/VBA",
+
+    // Types
+    cert_type_prof: "Zertifizierung",
+    cert_type_uni: "Universitätskurs",
+    cert_type_training: "Weiterbildung",
+
+    // Data keys
+    // Item 1: IPMA (Top)
+    cert_ipma_title: "IPMA Level D (cPMA)",
+    cert_ipma_issuer: "pma, Projekt Management Austria (IPMA)",
+    cert_ipma_date: "seit Okt 2025",
+
+    // Item 2: Uni Graz
+    cert_graz_title: "Modern Management, Project Management",
+    cert_graz_issuer: "UNI for LIFE (University of Graz)",
+    cert_graz_date_completed: "abgeschlossen 17.10.2025",
+    cert_graz_date_issued: "ausgestellt 03.11.2025",
+    cert_graz_grade: "Mit Auszeichnung bestanden",
+
+    // Item 3: LinkedIn
+    cert_li_title: "Career Essentials in Business Analysis",
+    cert_li_issuer: "LinkedIn Learning (Microsoft + LinkedIn)",
+    cert_li_date: "abgeschlossen 30.03.2023",
+
+    // Item 4: Excel
+    cert_excel_title: "Excel 365 VBA (Expert)",
+    cert_excel_issuer: "Raiffeisen Bank International",
+    cert_excel_provider: "Trainingsanbieter: CyberU",
+    cert_excel_date: "Ausgestellt: 13.09.2022",
+    proj_2026_desc: "Infrastruktur-Härtung (in Umsetzung)",
+    proj_2026_b1: "Sicherer Fernzugriff (WireGuard) · Netzwerk-Isolation (VLANs) · Security-Monitoring (Wazuh/Zeek Evaluierung)",
 
     // Contact
     contact_tagline: "Kontakt für Forschung, Beratung und Partnerschaften.",
@@ -188,6 +320,62 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_consult_desc: "Beratung zu EA, IT-Strategie und sicherer Transformation.",
     about_hobbies: "Außerhalb der Arbeit: Radfahren rund um Wien • Lesen • Experimente mit meinem Home-Lab.",
     contact_social_h3: "Vernetze Dich",
+
+    // Contact Form
+    contact_form_name: "Name",
+    contact_form_name_placeholder: "Ihr Name",
+    contact_form_email: "E-Mail",
+    contact_form_email_placeholder: "ihre.email@beispiel.de",
+    contact_form_subject: "Betreff",
+    contact_form_subject_placeholder: "Worum geht es?",
+    contact_form_message: "Nachricht",
+    contact_form_message_placeholder: "Ihre Nachricht...",
+    contact_form_submit: "Nachricht senden",
+    contact_form_sending: "Wird gesendet...",
+    contact_form_success: "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.",
+    contact_form_error: "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+
+    // Contact Page New Keys
+    contact_title: "Kontakt",
+    contact_desc: "Lassen Sie uns etwas Sicheres und Skalierbares bauen.",
+    contact_email_h3: "Kontakt aufnehmen",
+    contact_personal_inquiries: "Projekte & Anfragen",
+    contact_academic_research: "Akademisches & Forschung",
+    contact_recruiting: "Recruiting",
+    contact_code: "Code",
+    contact_resume: "Lebenslauf",
+    contact_download_cv: "CV herunterladen",
+
+    // Legal Pages - Impressum
+    legal_impressum_title: "Impressum",
+    legal_responsible_title: "Verantwortlich",
+    legal_contact_title: "Kontakt",
+    legal_purpose_title: "Zweck der Website",
+    legal_purpose_desc: "Diese private, nicht-kommerzielle Website dient der Präsentation meines professionellen Portfolios und Hintergrunds.",
+    legal_disclaimer_title: "Haftungsausschluss",
+    legal_disclaimer_desc: "Trotz sorgfältiger Prüfung übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt verlinkter Seiten sind ausschließlich deren Betreiber verantwortlich.",
+
+    // Legal Pages - Datenschutz
+    legal_privacy_title: "Datenschutzerklärung",
+    privacy_overview_title: "Überblick",
+    privacy_overview_desc: "Diese Website erfasst nur die Daten, die Sie freiwillig über das Kontaktformular übermitteln. Es werden keine Tracking- oder Analysedienste verwendet.",
+    privacy_contact_form_title: "Kontaktformular",
+    privacy_contact_form_desc: "Wenn Sie das Kontaktformular nutzen, werden folgende Daten übermittelt:",
+    privacy_data_name: "Name",
+    privacy_data_email: "E-Mail-Adresse",
+    privacy_data_message: "Nachricht",
+    privacy_purpose_title: "Zweck der Verarbeitung",
+    privacy_purpose_desc: "Die übermittelten Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet.",
+    privacy_retention_title: "Speicherdauer",
+    privacy_retention_desc: "Ihre Daten werden nur so lange gespeichert, wie es für die Beantwortung Ihrer Anfrage erforderlich ist, und anschließend gelöscht.",
+    privacy_rights_title: "Ihre Rechte",
+    privacy_rights_desc: "Sie haben das Recht auf Auskunft, Berichtigung und Löschung Ihrer persönlichen Daten gemäß der DSGVO.",
+    privacy_contact_title: "Kontakt für Datenschutzfragen",
+    privacy_contact_desc: "Bei Fragen zum Datenschutz kontaktieren Sie mich unter:",
+
+    // Footer
+    footer_impressum: "Impressum",
+    footer_datenschutz: "Datenschutz",
   },
   en: {
     // Brand + Nav
@@ -206,10 +394,86 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     search: "Search",
 
     // Home - Hero
-    home_hero_title: "Digital Transformation & IoT Professional based in Vienna",
-    home_hero_subtitle: "Combining Business Informatics, IoT, and project management to build value-driven digital solutions. I turn complex problems and technical curiosity into robust, working systems.",
+    home_hero_headline: "IT Infrastructure & Platform Engineer",
+    home_hero_subline: "Linux · Networking · Automation",
+    home_hero_desc: "I build stable, maintainable systems. From network segmentation to self-hosting, I turn technical complexity into reliable operations.",
+    // Proof in 3 Bullets
+    home_proof_title: "Key Strengths",
+    home_proof_impact: "Structured automation, clear documentation",
+    home_proof_scope: "Network, Linux, monitoring, CI/CD",
+    home_proof_strength: "IPMA-certified, hands-on engineering",
+    // CTAs
+    home_cta_primary: "Download CV",
+    home_cta_secondary: "View Projects",
+    // Legacy keys (kept for compatibility)
+    home_hero_title: "IT Infrastructure & Platform Engineer (Linux · Security · Automation)",
+    home_hero_subtitle: "Building secure, maintainable systems that keep operations running smoothly.",
     home_btn_projects: "View projects",
     home_btn_blog: "About me",
+    hero_role_open: "Open to roles:",
+    hero_role_security: "Security & Network",
+    hero_role_projects: "Projects",
+    hero_role_research: "Research",
+    hero_role_about: "About Me",
+    hero_badge: "❯",
+    hero_cta_cv: "Download CV (PDF)",
+    hero_cta_projects: "View Projects",
+    hero_cta_security: "Security Portfolio",
+
+    // Security Page
+    nav_security: "Security",
+    security_title: "Security & Networking",
+    security_focus: "Building secure networks and self-hosted infrastructure. Hands-on with firewalls, segmentation, and Linux hardening.",
+    security_lab_title: "Home Lab Highlights",
+    security_lab_list: "Network Segmentation, Firewalls (UFW), VPN (WireGuard), DNS Filtering (Pi-hole), Logging & Monitoring",
+    security_tools_title: "Active Stack",
+    security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
+    security_tools_exploring_title: "In Progress",
+    security_tools_exploring: "WireGuard",
+    security_tools_next_title: "Roadmap",
+    security_tools_next: "Suricata, Zeek, Wazuh",
+    security_tools_list: "Wireshark, Nmap, PfSense, Snort, OpenVAS",
+    security_cases_title: "Case Studies",
+    security_tools_stack_title: "Tools & Stack",
+    case_label_problem: "Challenge",
+    case_label_action: "Approach",
+    case_label_result: "Outcome",
+    case_iot_title: "IoT Isolation",
+    case_iot_problem: "Insecure IoT devices on main network",
+    case_iot_action: "L2 isolation via Guest SSID. VLAN segmentation designed for next phase.",
+    case_iot_result: "IoT traffic separated from main LAN.",
+    case_remote_title: "Secure Remote Access",
+    case_remote_problem: "Need home network access while traveling",
+    case_remote_action: "WireGuard VPN instead of port forwarding",
+    case_remote_result: "Remote access via VPN, no exposed ports.",
+    security_disclaimer: "No sensitive configs published.",
+
+    // Terminal Snapshots
+    security_pow_title: "Lab Snapshots",
+    security_pow_note: "Sanitized (credentials removed)",
+
+    // Terminal 1: UFW
+    term_ufw_title: "Firewall: Deny-by-default",
+    term_ufw_cmd: "<USER>@<HOST>:~$ sudo ufw status verbose",
+    term_ufw_out: "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing)\n\nTo                         Action      From\n--                         ------      ----\n<SSH_PORT>/tcp             LIMIT IN    <LAN_SUBNET>\n<DNS_PORT>/udp             ALLOW IN    <LAN_SUBNET>\n# <VPN_PORT>/udp opened only when WireGuard is enabled",
+
+    // Terminal 2: Pi-hole
+    term_pihole_title: "DNS: Ad-blocking active",
+    term_pihole_cmd: "<USER>@<HOST>:~$ pihole status",
+    term_pihole_out: "  [✓] FTL is listening on port 53\n  [✓] Pi-hole blocking is enabled\n  [✓] DNS service is running",
+
+    // Terminal 3: WireGuard
+    term_wg_title: "VPN: WireGuard config",
+    term_wg_cmd: "<USER>@<HOST>:~$ cat /etc/wireguard/wg0.conf",
+    term_wg_out: "[Interface]\nAddress = <VPN_SUBNET>\nListenPort = <VPN_PORT>\nPrivateKey = <REDACTED>\n\n[Peer]\nPublicKey = <REDACTED>\nAllowedIPs = <VPN_CLIENT_IP>",
+
+    // Home Security Lab Case
+    case_lab_title: "Home Security Lab",
+    case_lab_problem: "ISP hardware constraints and insecure default home network.",
+    case_lab_action: "ThinkCentre M710q (Proxmox), UFW (LAN-only), Pi-hole. IoT separation via Guest SSID.",
+    case_lab_result: "Ad-free DNS, basic hardening. Roadmap for VPN and VLAN ready.",
+    case_lab_safe: "No sensitive configs published.",
+
 
     // Home - What I do
     what_do_title: "What I do",
@@ -217,7 +481,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     what_do_item1_title: "Digital Transformation & Enterprise Architecture",
     what_do_item1_desc: "Translating business strategy into actionable digital roadmaps using ArchiMate, BPMN, and modern EA practices.",
     what_do_item2_title: "IT Service Management & Automation",
-    what_do_item2_desc: "Optimizing ITSM and IT asset workflows on ServiceNow, focusing on automation and user experience.",
+    what_do_item2_desc: "Keeping business-facing IT stable: incident/change/release/problem, clear interfaces and documentation. Light automation (bash/PowerShell), monitoring & backup (PRTG, Veeam).",
     what_do_item3_title: "Project Management & Change",
     what_do_item3_desc: "Applying IPMA-based project management and change models to guide initiatives from idea to delivery.",
     what_do_item4_title: "IoT, Networks & Infrastructure",
@@ -225,9 +489,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Currently
     current_title: "Currently",
-    current_item1: "Finalizing my M.Sc. in Business Informatics at TU Wien, specializing in digital transformation and enterprise engineering.",
-    current_item2: "Studying Internet of Things & Intelligent Systems at FH Technikum Wien.",
-    current_item3: "Completed an IPMA-based project management program (10 ECTS) and passed the IPMA Level D exam (Certified Project Management Associate).",
+    current_item1: "IPMA® Level D (cPMA) – since 10/2025",
+    current_item2: "Finalizing my M.Sc. in Business Informatics at TU Wien, specializing in digital transformation and enterprise engineering.",
+    current_item3: "Studying Internet of Things & Intelligent Systems at FH Technikum Wien.",
     current_item4: "Applying my skills in enterprise architecture, IoT, and digital transformation across academic, industry, and innovation projects.",
 
     // Home - Selected Experience (short, reverse chronological)
@@ -258,7 +522,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     tech_cat2: "Tools & Platforms",
     tech_list2: "ServiceNow, ADOIT/ADONIS, Power BI, Git/GitHub, Jira, Confluence",
     tech_cat3: "Networks & Infrastructure",
-    tech_list3: "Cisco, MikroTik, Linux, Wireshark, VPN, VLAN",
+    tech_list3: "IT Ops & Networking: AD/DNS/DHCP · routing/switching · VLAN/VPN · monitoring/backup (PRTG, Veeam)",
     tech_cat4: "Architecture & Methods",
     tech_list4: "ArchiMate, UML, BPMN, ITIL, basic TOGAF, IPMA-based project management",
 
@@ -272,7 +536,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     hero_lead:
       "Exploring the intersection of enterprise architecture, digital innovation, and artificial intelligence - bridging research and practice.",
     hero_tagline: "Digital Transformation & AI-Driven Innovation",
-    hero_mission: "Bridging enterprise architecture, digital innovation, and AI—helping organizations navigate transformation with confidence.",
+    hero_mission: "Bridging enterprise architecture, digital innovation, and AI. Helping organizations navigate transformation with confidence.",
     cta_title: "Ready to transform?",
     cta_description: "Get in touch to discuss your digital transformation journey.",
     site_description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
@@ -287,12 +551,28 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     card_teaching_desc: "Educational materials and lectures on software engineering, systems design, and IT management.",
 
     // About
-    about_tagline: "Curious about how technology, data, and people fit together, and focused on finding practical solutions that work.",
-    about_lead: "Information systems specialist working on digital transformation and enterprise architecture, connecting business goals with practical technical solutions.",
+    about_tagline: "Bringing together technology, data, and people. Focused on solutions that work.",
+    about_lead: "IT infrastructure specialist with experience in networking, Linux systems, and structured project management.",
     about_profile_h2: "Professional Profile",
     about_profile_intro: "Hello, I'm Mohamed. Passionate about technology and innovation, I thrive when solving complex problems and turning ideas into working systems.",
     about_p1: "Exploring new tools and architectures drives my curiosity about how things connect - from business processes to network packets. Outside of work I’m often on the bike, exploring Vienna and the surrounding area.",
+    // New: Value Statement
+    about_value_statement: "I help teams maintain stable infrastructure, reduce operational risk, and build systems that are secure by design, without over-engineering.",
+    // New: Core Strengths
+    about_strengths_title: "Core Strengths",
+    about_strength_1: "Linux system administration (Debian, Ubuntu, Proxmox)",
+    about_strength_2: "Network security: firewalls, segmentation, VPN",
+    about_strength_3: "Automation: Bash, PowerShell, lightweight CI/CD",
+    about_strength_4: "Monitoring & observability (PRTG, Pi-hole, Uptime Kuma)",
+    about_strength_5: "Project delivery: IPMA Level D certified",
+    about_strength_6: "Clear documentation and structured handovers",
+    about_strength_7: "Enterprise & process modeling (ArchiMate, BPMN, UML)",
     about_comp_h2: "Core Skills & Tools",
+    // Experience Impact Lines
+    exp1_impact: "→ Improved customer documentation turnaround",
+    exp2_impact: "→ Reduced manual errors in asset tracking",
+    exp3_impact: "→ Delivered data-driven EA tool improvements",
+    exp4_impact: "→ Ensured high network uptime across campus",
     skill_ea_title: "Enterprise Architecture",
     skill_ea_item1: "Designing enterprise models using ArchiMate, UML, and BPMN",
     skill_ea_item2: "Aligning processes and IT governance with target architectures",
@@ -309,16 +589,56 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_pm_item3: "Using change models like ADKAR and Kotter to structure transformation work",
 
     skill_net_title: "Networking & Infrastructure",
-    skill_net_item1: "Hands-on experience with Cisco & MikroTik networking",
+    skill_net_item1: "Stable IT ops (AD/DNS/DHCP), routing/switching, VLAN/VPN, baseline hardening (ACLs/TLS)",
     skill_net_item2: "Working with VLANs, routing, VPN, and Linux networking",
     skill_net_item3: "Troubleshooting using Wireshark and basic monitoring tools",
 
     skill_cloud_title: "Cloud & Infrastructure",
 
     // Certifications
+    // Certifications
+    cert_nav_back: "← Back to About",
     cert_title: "Certifications",
-    cert_ipma_details: "IPMA Level D Certified Project Management Associate",
-    cert_planned_details: "",
+    cert_view_all: "View all →",
+    cert_list_title: "All Certifications",
+    cert_list_subtitle: "Selected certifications and professional training (proof available on request).",
+    cert_avail_req: "Proof available on request",
+    // Filters
+    cert_filter_all: "All",
+    cert_filter_pm: "Project Management",
+    cert_filter_ba: "Business Analysis",
+    cert_filter_excel: "Excel/VBA",
+
+    // Types
+    cert_type_prof: "Professional certification",
+    cert_type_uni: "University course",
+    cert_type_training: "Professional training",
+
+    // Data keys
+    // Item 1: IPMA
+    cert_ipma_title: "IPMA Level D (cPMA)",
+    cert_ipma_issuer: "pma, Project Management Austria (IPMA)",
+    cert_ipma_date: "since Oct 2025",
+
+    // Item 2: Uni Graz
+    cert_graz_title: "Modern Management, Project Management",
+    cert_graz_issuer: "UNI for LIFE (University of Graz)",
+    cert_graz_date_completed: "completed 17 Oct 2025",
+    cert_graz_date_issued: "issued 03 Nov 2025",
+    cert_graz_grade: "Passed with distinction",
+
+    // Item 3: LinkedIn
+    cert_li_title: "Career Essentials in Business Analysis",
+    cert_li_issuer: "LinkedIn Learning (Microsoft + LinkedIn)",
+    cert_li_date: "completed 30 Mar 2023",
+
+    // Item 4: Excel
+    cert_excel_title: "Excel 365 VBA (Expert)",
+    cert_excel_issuer: "Raiffeisen Bank International",
+    cert_excel_provider: "Training Provider: CyberU",
+    cert_excel_date: "Issued: 13 Sep 2022",
+    proj_2026_desc: "Infrastructure hardening (in progress)",
+    proj_2026_b1: "Secure remote access (WireGuard) · Network isolation (VLANs) · Security monitoring (Wazuh/Zeek evaluation)",
     skill_cloud_item1: "Familiar with AWS and Azure platforms",
     skill_cloud_item2: "Running a self-hosted Linux + Docker home lab (elkaza.org stack)",
     skill_cloud_item3: "Setting up simple CI/CD and monitoring for personal services",
@@ -352,13 +672,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     card_sec_desc: "ISO 27001, NIST, OWASP integrated into EA governance.",
     research_cta: "Contact for research collaboration",
 
-    projects_tagline: "Overview of ongoing and future projects in IoT, cloud, and digital innovation.",
+    projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
     proj_timeline_h2: "Project Timeline",
-    proj_timeline_desc: "Overview of ongoing and future projects in IoT, cloud, and digital innovation.",
+    proj_timeline_desc: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
     proj_2025_desc: "Practical integration between embedded systems, self-hosted cloud, and digital ecosystems.",
-    proj_2026_desc: "Future: AI-integrated systems, security frameworks, and EA automation.",
+
+
     proj_item_web_title: "Personal Website & Digital Identity – elkaza.org",
-    proj_item_web_desc: "Building a bilingual portfolio site with Next.js, Tailwind CSS, and GitHub-based CI/CD, used as a hub for CV, projects, and teaching material.",
+    proj_item_web_desc: "Building a portfolio site with Next.js App Router, optimized for SEO/accessibility. Deployments via Vercel with GitHub Actions for CI/CD.",
     proj_item_freertos_title: "FreeRTOS IoT Sensor Node (C++)",
     proj_item_freertos_desc: "Built an ESP32-S3 FreeRTOS node with separate tasks for heartbeat, buttons, serial I/O, and a DHT22 temperature/humidity sensor. Used queues, timers, and interrupts for clean task communication, and exposed sensor data via serial and BLE notifications. Debugged timing and protocol issues with an integrated JTAG debugger and logic analyser.",
     proj_item_infra_title: "Self-Hosted Cloud Infrastructure",
@@ -408,11 +729,68 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_consult_desc: "EA, IT strategy, and secure digital transformation consulting.",
     about_hobbies: "Outside work: cycling around Vienna • reading • experimenting with my home lab.",
     contact_social_h3: "Connect on professional networks",
+
+    // Contact Form
+    contact_form_name: "Name",
+    contact_form_name_placeholder: "Your name",
+    contact_form_email: "Email",
+    contact_form_email_placeholder: "your.email@example.com",
+    contact_form_subject: "Subject",
+    contact_form_subject_placeholder: "What's this about?",
+    contact_form_message: "Message",
+    contact_form_message_placeholder: "Your message...",
+    contact_form_submit: "Send Message",
+    contact_form_sending: "Sending...",
+    contact_form_success: "Thank you! Your message has been sent successfully.",
+    contact_form_error: "An error occurred. Please try again later.",
+
+    // Contact Page New Keys
+    contact_title: "Contact",
+    contact_desc: "Let's build something secure and scalable.",
+    contact_email_h3: "Get in touch",
+    contact_personal_inquiries: "Personal / Project Inquiries",
+    contact_academic_research: "Academic / Research",
+    contact_recruiting: "Recruiting",
+    contact_code: "Code",
+    contact_resume: "Resume",
+    contact_download_cv: "Download CV",
+
+    // Legal Pages - Impressum
+    legal_impressum_title: "Imprint",
+    legal_responsible_title: "Responsible",
+    legal_contact_title: "Contact",
+    legal_purpose_title: "Purpose of the Website",
+    legal_purpose_desc: "This private, non-commercial website serves to present my professional portfolio and background.",
+    legal_disclaimer_title: "Disclaimer",
+    legal_disclaimer_desc: "Despite careful review, I assume no liability for the content of external links. The operators of linked pages are solely responsible for their content.",
+
+    // Legal Pages - Privacy Policy
+    legal_privacy_title: "Privacy Policy",
+    privacy_overview_title: "Overview",
+    privacy_overview_desc: "This website only collects data that you voluntarily submit through the contact form. No tracking or analytics services are used.",
+    privacy_contact_form_title: "Contact Form",
+    privacy_contact_form_desc: "When you use the contact form, the following data is transmitted:",
+    privacy_data_name: "Name",
+    privacy_data_email: "Email address",
+    privacy_data_message: "Message content",
+    privacy_purpose_title: "Purpose of Processing",
+    privacy_purpose_desc: "The submitted data is used exclusively to respond to your inquiry.",
+    privacy_retention_title: "Data Retention",
+    privacy_retention_desc: "Your data is stored only as long as necessary to respond to your inquiry and is then deleted.",
+    privacy_rights_title: "Your Rights",
+    privacy_rights_desc: "You have the right to access, rectify, and delete your personal data in accordance with GDPR.",
+    privacy_contact_title: "Contact for Privacy Inquiries",
+    privacy_contact_desc: "For privacy-related questions, contact me at:",
+
+    // Footer
+    footer_impressum: "Imprint",
+    footer_datenschutz: "Privacy",
   },
   ar: {
     // Brand + Nav
     brand: "محمد فرج الكزه",
     nav_home: "الرئيسية",
+    nav_security: "الأمن",
     nav_about: "نبذة",
     nav_blog: "مدونة",
     nav_research: "الأبحاث",
@@ -531,6 +909,20 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_consult_h2: "\u0627\u0633\u062A\u0634\u0627\u0631\u0629 \u0648\u062E\u062F\u0645\u0627\u062A \u0631\u0642\u0645\u064A\u0629",
     contact_consult_desc: "\u0627\u0633\u062A\u0634\u0627\u0631\u0629 EA \u0648\u0627\u0633\u062A\u0631\u0627\u062A\u064A\u062C\u064A\u0629 \u062A\u0642\u0646\u064A\u0629 \u0648\u062A\u062D\u0648\u0644 \u0631\u0642\u0645\u064A \u0622\u0645\u0646.",
     contact_social_h3: "\u0627\u062A\u0635\u0627\u0644 \u0639\u0628\u0631 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0645\u0647\u0646\u064A\u0629",
+
+    // Contact Form
+    contact_form_name: "\u0627\u0644\u0627\u0633\u0645",
+    contact_form_name_placeholder: "\u0627\u0633\u0645\u0643",
+    contact_form_email: "\u0627\u0644\u0628\u0631\u064A\u062F \u0627\u0644\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A",
+    contact_form_email_placeholder: "email@example.com",
+    contact_form_subject: "\u0627\u0644\u0645\u0648\u0636\u0648\u0639",
+    contact_form_subject_placeholder: "\u0645\u0627 \u0647\u0648 \u0645\u0648\u0636\u0648\u0639 \u0631\u0633\u0627\u0644\u062A\u0643\u061F",
+    contact_form_message: "\u0627\u0644\u0631\u0633\u0627\u0644\u0629",
+    contact_form_message_placeholder: "\u0631\u0633\u0627\u0644\u062A\u0643...",
+    contact_form_submit: "\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0631\u0633\u0627\u0644\u0629",
+    contact_form_sending: "\u062C\u0627\u0631\u064A \u0627\u0644\u0625\u0631\u0633\u0627\u0644...",
+    contact_form_success: "\u0634\u0643\u0631\u0627\u064B \u0644\u0643! \u062A\u0645 \u0625\u0631\u0633\u0627\u0644 \u0631\u0633\u0627\u0644\u062A\u0643 \u0628\u0646\u062C\u0627\u062D.",
+    contact_form_error: "\u062D\u062F\u062B \u062E\u0637\u0623. \u064A\u0631\u062C\u0649 \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0645\u0631\u0629 \u0623\u062E\u0631\u0649 \u0644\u0627\u062D\u0642\u0627\u064B.",
   },
 };
 

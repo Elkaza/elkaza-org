@@ -8,7 +8,7 @@ author: Mohamed Elkaza
 
 # Building Self-Hosted Infrastructure with Open Source Tools
 
-Self-hosting isn't just a technical hobby—it's becoming a strategic approach for organizations that need control, privacy, and cost optimization.
+Self-hosting isn't just a technical hobby - it's becoming a strategic approach for organizations that need control, privacy, and cost optimization.
 
 ## Why Self-Host?
 

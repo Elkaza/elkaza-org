@@ -14,6 +14,7 @@ const links = [
   { href: "/about", label: "About" },
 
   { href: "/projects", label: "Projects" },
+  { href: "/security", label: "Security" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -38,7 +39,7 @@ export default function SubNav() {
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2 text-xl font-bold heading-serif text-main">
-          <Image src="/icon.jpg" alt="Logo" width={32} height={32} className="w-8 h-8 rounded-md" />
+          <Image src="/logo.png" alt="ME Logo" width={36} height={36} className="w-9 h-9" />
           {t("brand")}
         </Link>
 
@@ -65,6 +66,7 @@ export default function SubNav() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Removed CV link from top nav as requested */}
           <Search />
           <ThemeToggle />
           <LanguageSwitcher />

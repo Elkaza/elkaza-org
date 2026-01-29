@@ -1,6 +1,6 @@
 ﻿"use client";
 import Link from "next/link";
-import { Network, Users, Cpu, GraduationCap } from "lucide-react";
+import { Network, Users, Cpu, GraduationCap, ExternalLink } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 
 
@@ -30,37 +30,37 @@ export default function TeachingPage() {
             </div>
 
             {/* Course 2 - PM */}
-            <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+            <div className="group bg-card border border-subtle rounded-xl p-6 shadow-sm hover:shadow-lg transition">
               <Users className="text-blue-600 mb-3 w-8 h-8" />
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c2_title")}</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("teach_c2_title")}</h3>
+              <p className="text-main mb-4">
                 {t("teach_c2_desc")}
               </p>
-              <Link href="https://www.ipma.world/" target="_blank" rel="noopener noreferrer" className="text-blue-700 font-medium hover:underline">
-                {t("teach_c2_link")}
+              <Link href="https://www.ipma.world/" target="_blank" rel="noopener noreferrer" className="text-blue-700 dark:text-blue-400 font-medium hover:underline inline-flex items-center gap-1.5">
+                {t("teach_c2_link")} <ExternalLink className="w-3.5 h-3.5" />
               </Link>
             </div>
 
             {/* Course 3 - IoT */}
-            <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+            <div className="group bg-card border border-subtle rounded-xl p-6 shadow-sm hover:shadow-lg transition">
               <Cpu className="text-blue-600 mb-3 w-8 h-8" />
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c3_title")}</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("teach_c3_title")}</h3>
+              <p className="text-main mb-4">
                 {t("teach_c3_desc")}
               </p>
-              <Link href="/contact" className="text-blue-700 font-medium hover:underline">
+              <Link href="/contact" className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                 {t("teach_c3_link")}
               </Link>
             </div>
 
             {/* Course 4 - Skills */}
-            <div className="group bg-white border rounded-xl p-6 shadow-sm hover:shadow-lg transition">
+            <div className="group bg-card border border-subtle rounded-xl p-6 shadow-sm hover:shadow-lg transition">
               <GraduationCap className="text-blue-600 mb-3 w-8 h-8" />
-              <h3 className="text-xl font-semibold text-blue-700 mb-2">{t("teach_c4_title")}</h3>
-              <p className="text-gray-700 mb-4">
+              <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{t("teach_c4_title")}</h3>
+              <p className="text-main mb-4">
                 {t("teach_c4_desc")}
               </p>
-              <Link href="/contact" className="text-blue-700 font-medium hover:underline">
+              <Link href="/contact" className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                 {t("teach_c4_link")}
               </Link>
             </div>

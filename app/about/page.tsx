@@ -87,11 +87,27 @@ export default function AboutPage() {
             </div>
             <div>
               <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">{t("about_profile_h2") ?? "Professional Profile"}</h2>
-              <p className="text-lg font-medium text-main mb-6 italic">
+              <p className="text-lg font-medium text-main mb-4 italic">
                 {t("about_profile_intro")}
               </p>
               <p className="text-main leading-relaxed mb-4">{t("about_p1") ?? ""}</p>
+              <p className="text-main leading-relaxed mb-6 font-medium text-blue-700 dark:text-blue-400">
+                {t("about_value_statement")}
+              </p>
               <Certifications />
+            </div>
+          </div>
+
+          {/* Core Strengths Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6">{t("about_strengths_title")}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+                <div key={n} className="flex items-start gap-3 p-3 bg-card border border-subtle rounded-lg">
+                  <span className="mt-1 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                  <span className="text-main text-sm">{t(`about_strength_${n}`)}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -104,6 +120,7 @@ export default function AboutPage() {
                   {t("exp1_title_full")}
                 </h3>
                 <p className="text-muted leading-relaxed">{t("exp1_desc_full")}</p>
+                <p className="text-sm text-impact font-medium">{t("exp1_impact")}</p>
               </div>
 
               <div className="space-y-2">
@@ -111,6 +128,7 @@ export default function AboutPage() {
                   {t("exp2_title_full")}
                 </h3>
                 <p className="text-muted leading-relaxed">{t("exp2_desc_full")}</p>
+                <p className="text-sm text-impact font-medium">{t("exp2_impact")}</p>
               </div>
 
               <div className="space-y-2">
@@ -118,6 +136,7 @@ export default function AboutPage() {
                   {t("exp3_title_full")}
                 </h3>
                 <p className="text-muted leading-relaxed">{t("exp3_desc_full")}</p>
+                <p className="text-sm text-impact font-medium">{t("exp3_impact")}</p>
               </div>
 
               <div className="space-y-2">
@@ -125,6 +144,7 @@ export default function AboutPage() {
                   {t("exp4_title_full")}
                 </h3>
                 <p className="text-muted leading-relaxed">{t("exp4_desc_full")}</p>
+                <p className="text-sm text-impact font-medium">{t("exp4_impact")}</p>
               </div>
             </div>
           </div>
