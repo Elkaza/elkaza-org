@@ -28,7 +28,7 @@ Today, architects must also consider:
 
 ### Data as a Strategic Asset
 
-AI systems are fundamentally different from traditional systems. They don't just process data—they learn from it. This means:
+AI systems are fundamentally different from traditional systems. They don't just process data - they learn from it. This means:
 
 1. **Data governance** becomes critical
 2. **Quality over quantity** matters more than ever

@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
+import { Download } from "lucide-react";
 
 export default function HomeContent() {
   const { t } = useLocale();
@@ -11,26 +12,61 @@ export default function HomeContent() {
   return (
     <main className="flex flex-col items-start justify-start w-full max-w-3xl mx-auto px-6 py-12 md:py-20 space-y-24 text-main">
 
-      {/* 1. Hero Section */}
-      <section className="w-full space-y-6">
-        <h1 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight">
-          {t("home_hero_title")}
-        </h1>
-        <p className="text-lg md:text-xl text-muted leading-relaxed max-w-2xl">
-          {t("home_hero_subtitle")}
-        </p>
-        <div className="flex flex-wrap gap-4 pt-2">
-          <Link
-            href="/about"
-            className="inline-flex items-center px-4 py-2 bg-main text-page rounded-md font-medium hover:opacity-90 transition-opacity"
-          >
-            {t("home_btn_blog")}
-          </Link>
+      {/* 1. Hero Section - New Focused Positioning */}
+      <section className="w-full space-y-8">
+        <div className="space-y-4">
+          {/* Terminal-style focus indicator */}
+          <div className="space-y-1">
+            <span className="font-mono text-2xl text-blue-600 dark:text-blue-400 font-bold" aria-hidden="true">
+              {t("hero_badge")}
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-main">
+              {t("home_hero_headline")}
+            </h1>
+          </div>
+          <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-medium">
+            {t("home_hero_subline")}
+          </p>
+          <p className="text-lg text-muted leading-relaxed max-w-2xl">
+            {t("home_hero_desc")}
+          </p>
+        </div>
+
+        {/* Proof in 3 Bullets */}
+        <div className="bg-card border border-subtle rounded-xl p-6 space-y-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+            {t("home_proof_title")}
+          </h2>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3">
+              <span className="mt-1.5 w-2 h-2 dot-impact rounded-full flex-shrink-0" />
+              <span className="text-main">{t("home_proof_impact")}</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+              <span className="text-main">{t("home_proof_scope")}</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-1.5 w-2 h-2 bg-slate-500 rounded-full flex-shrink-0" />
+              <span className="text-main">{t("home_proof_strength")}</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Primary CTAs */}
+        <div className="flex flex-wrap gap-4">
+          <CvLink t={t} />
           <Link
             href="/projects"
-            className="inline-flex items-center px-4 py-2 border border-subtle rounded-md font-medium hover:bg-subtle transition-colors"
+            className="inline-flex items-center px-5 py-2.5 border border-subtle bg-card text-main rounded-md font-medium hover:bg-subtle transition-colors shadow-sm"
           >
-            {t("home_btn_projects")}
+            {t("home_cta_secondary")}
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-5 py-2.5 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+          >
+            {t("btn_contact_me")}
           </Link>
         </div>
       </section>
@@ -145,5 +181,21 @@ export default function HomeContent() {
         </div>
       </section>
     </main>
+  );
+}
+
+function CvLink({ t }: { t: (key: string) => string }) {
+  const { locale } = useLocale();
+  const cvPath = locale === "de" ? "/cv/Elkaza_Mohamed_CV_DE.pdf" : "/cv/Elkaza_Mohamed_CV_EN.pdf";
+
+  return (
+    <a
+      href={cvPath}
+      download
+      className="inline-flex items-center px-5 py-2.5 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-md font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors shadow-sm"
+    >
+      <Download className="mr-2 h-4 w-4" />
+      {t("hero_cta_cv")}
+    </a>
   );
 }

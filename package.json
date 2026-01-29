@@ -2,11 +2,13 @@
   "name": "elkaza-org",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate-favicons": "node scripts/generate-favicons.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -25,6 +27,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
     "postcss": "^8.5.6",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4.1.17",
     "typescript": "^5"
   }
