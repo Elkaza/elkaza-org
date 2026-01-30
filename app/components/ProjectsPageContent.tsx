@@ -1,5 +1,5 @@
 "use client";
-import { Cpu, Server, Layers, ArrowRight } from "lucide-react";
+import { Cpu, Server, ArrowRight } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
 import { projects } from "../lib/projects";
