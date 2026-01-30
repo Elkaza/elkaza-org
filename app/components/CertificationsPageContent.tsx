@@ -64,7 +64,7 @@ export default function CertificationsPageContent() {
                         return (
                             <button
                                 key={f.value}
-                                onClick={() => setSelectedCategory(f.value as any)}
+                                onClick={() => setSelectedCategory(f.value as CertCategory | "All")}
                                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all border ${isActive
                                     ? "bg-blue-600 text-white border-blue-600 shadow-sm"
                                     : "bg-card text-main border-subtle hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-300 hover:border-blue-200 dark:hover:border-blue-800"

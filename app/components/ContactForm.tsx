@@ -38,7 +38,7 @@ export default function ContactForm() {
                 setStatus("error");
                 setErrorMessage(data.error || t("contact_form_error"));
             }
-        } catch (_error) {
+        } catch {
             setStatus("error");
             setErrorMessage(t("contact_form_error"));
         }
