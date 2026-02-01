@@ -16,6 +16,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Lehre",
     nav_contact: "Kontakt",
     search: "Suche",
+    legal_location: "Wien, Österreich",
 
     // Home - Hero
     home_hero_headline: "IT-Infrastruktur & Platform Engineer",
@@ -392,6 +393,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "Teaching",
     nav_contact: "Contact",
     search: "Search",
+    legal_location: "Vienna, Austria",
 
     // Home - Hero
     home_hero_headline: "IT Infrastructure & Platform Engineer",
@@ -802,6 +804,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_teaching: "التعليم",
     nav_contact: "تواصل",
     search: "بحث",
+    legal_location: "فيينا، النمسا",
 
     // Home
     hero_title_1: "\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A.",

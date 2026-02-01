@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github, Layers, Target, CheckCircle, Wrench } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Layers, Target, CheckCircle, Wrench, ArrowRight } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { projects } from "@/app/lib/projects";
 import { notFound } from "next/navigation";
@@ -120,6 +120,30 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                         </div>
                     </section>
                 )}
+
+                {/* Related Project */}
+                {project.relatedProject && (
+                    <section className="pt-8 border-t border-subtle">
+                        <h2 className="text-xl font-semibold mb-4">Related Project</h2>
+                        <Link
+                            href={`/projects/${project.relatedProject.slug}`}
+                            className="group block p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-all"
+                        >
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="font-semibold text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                        {project.relatedProject.name}
+                                    </h3>
+                                    <p className="text-sm text-muted mt-1">
+                                        See how this project relates to the bigger picture.
+                                    </p>
+                                </div>
+                                <ArrowRight className="w-5 h-5 text-muted group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                            </div>
+                        </Link>
+                    </section>
+                )}
+
 
             </article>
         </main>

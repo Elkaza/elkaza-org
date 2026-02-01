@@ -12,7 +12,7 @@ export default function ImpressumPage() {
                 <h2 className="text-xl font-semibold">{t("legal_responsible_title")}</h2>
                 <div className="space-y-1">
                     <p className="font-medium">Mohamed Elkaza</p>
-                    <p className="text-muted">Vienna, Austria</p>
+                    <p className="text-muted">{t("legal_location")}</p>
                 </div>
             </section>
 

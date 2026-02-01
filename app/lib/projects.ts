@@ -11,6 +11,10 @@ export interface Project {
     links: { label: string; url: string }[];
     year: string;
     tags: string[];
+    relatedProject?: {
+        name: string;
+        slug: string;
+    };
 }
 
 export const projects: Project[] = [
@@ -96,8 +100,8 @@ export const projects: Project[] = [
             ar: "كنت بحاجة إلى مركز عالي الأداء وسهل الوصول إليه وسهل التحديث لسيرتي الذاتية ومشاريعي وأبحاثي يدعم لغات متعددة.",
         },
         action: {
-            en: "Built a portfolio site with Next.js App Router optimized for SEO/accessibility and lightweight i18n. Deployed via Vercel with GitHub Actions for CI/CD.",
-            de: "Entwicklung einer Portfolio-Website mit Next.js App Router, optimiert für SEO/Barrierefreiheit und leichtgewichtiges i18n. Deployment erfolgt über Vercel mit GitHub Actions für CI/CD.",
+            en: "Built a portfolio site with Next.js App Router optimized for SEO/accessibility and lightweight i18n. Deployed via Vercel with GitHub Actions (CI/CD + preview deployments).",
+            de: "Entwicklung einer Portfolio-Website mit Next.js App Router, optimiert für SEO/Barrierefreiheit und leichtgewichtiges i18n. Deployment erfolgt via Vercel mit GitHub Actions (CI/CD + Preview-Deployments).",
             ar: "بناء موقع ثابت باستخدام Next.js App Router لتحسين محركات البحث. تنفيذ نظام i18n مخصص بدون مكتبات ثقيلة. النشر عبر Vercel مع GitHub Actions للتكامل المستمر.",
         },
         result: {
@@ -105,10 +109,50 @@ export const projects: Project[] = [
             de: "Erreichte hohe Lighthouse-Scores. Dient als zentraler Punkt für meine professionelle Identität.",
             ar: "تحقيق درجات Lighthouse عالية. يعمل كنقطة مركزية لهويتي المهنية.",
         },
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub CI/CD"],
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/elkaza-org" }],
         year: "2025",
         tags: ["Web", "Frontend", "CI/CD"],
+        relatedProject: {
+            name: "elkaza.at",
+            slug: "elkaza-at"
+        }
+    },
+    {
+        slug: "elkaza-at",
+        title: {
+            en: "Consulting Website & Static Self-Hosted Deployment",
+            de: "Consulting Website & Statisches Self-Hosted Deployment",
+            ar: "موقع استشارات ونشر ذاتي ثابت",
+        },
+        summary: {
+            en: "Static site deployment on VPS using Ubuntu & Apache.",
+            de: "Bereitstellung einer statischen Seite auf einem VPS mit Ubuntu & Apache.",
+            ar: "نشر موقع ثابت على VPS باستخدام Ubuntu و Apache.",
+        },
+        problem: {
+            en: "Need for a totally separated, self-hosted static environment to demonstrate DevOps & Hosting skills, independent of Vercel.",
+            de: "Bedarf an einer vollständig getrennten, selbst gehosteten statischen Umgebung zur Demonstration von DevOps- & Hosting-Skills, unabhängig von Vercel.",
+            ar: "الحاجة إلى بيئة ثابتة مستضافة ذاتيًا ومنفصلة تمامًا لإثبات مهارات DevOps والاستضافة، مستقلة عن Vercel.",
+        },
+        action: {
+            en: "Configured Next.js for static export. Set up Ubuntu VPS with Apache, firewall, and rsync deployment. Automated SSL ops with Certbot. Created deployment workflow involving local build -> upload to /tmp -> rsync into Webroot.",
+            de: "Konfiguration von Next.js für statischen Export. Einrichtung eines Ubuntu VPS mit Apache, Firewall und rsync-Deployment. Automatisierung von SSL mit Certbot. Erstellung eines Deployment-Workflows: lokaler Build -> Upload nach /tmp -> rsync in Webroot.",
+            ar: "تكوين Next.js للتصدير الثابت. إعداد Ubuntu VPS مع Apache و Firewall ونشر rsync. أتمتة SSL مع Certbot.",
+        },
+        result: {
+            en: "A fully self-hosted, high-performance static site reachable under elkaza.at/www.elkaza.at with A+ SSL rating.",
+            de: "Eine vollständig selbst gehostete, leistungsstarke statische Seite, erreichbar unter elkaza.at/www.elkaza.at mit A+ SSL-Rating.",
+            ar: "موقع ثابت مستضاف ذاتيًا بالكامل عالي الأداء يمكن الوصول إليه عبر elkaza.at مع تصنيف A+ SSL.",
+        },
+        tech: ["Next.js Export", "Apache", "Ubuntu VPS", "Certbot/Let’s Encrypt", "rsync"],
+        links: [{ label: "GitHub", url: "https://github.com/Elkaza/elkaza-web" }],
+        year: "2025",
+        tags: ["Web", "DevOps", "Self-Hosted"],
+        relatedProject: {
+            name: "elkaza.org",
+            slug: "elkaza-org"
+        }
     },
     {
         slug: "self-hosted-cloud",
