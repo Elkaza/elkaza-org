@@ -90,7 +90,7 @@ export const projects: Project[] = [
             ar: "الموقع الشخصي والهوية الرقمية",
         },
         summary: {
-            en: "Bilingual portfolio site with Next.js & Tailwind.",
+            en: "Bilingual portfolio site deployed via Vercel with GitHub integration.",
             de: "Zweisprachige Portfolio-Website mit Next.js & Tailwind.",
             ar: "موقع محفظة ثنائي اللغة باستخدام Next.js و Tailwind.",
         },
@@ -100,12 +100,12 @@ export const projects: Project[] = [
             ar: "كنت بحاجة إلى مركز عالي الأداء وسهل الوصول إليه وسهل التحديث لسيرتي الذاتية ومشاريعي وأبحاثي يدعم لغات متعددة.",
         },
         action: {
-            en: "Built a portfolio site with Next.js App Router optimized for SEO/accessibility and lightweight i18n. Deployed via Vercel with GitHub Actions (CI/CD + preview deployments).",
+            en: "Built a portfolio site with Next.js App Router, optimized for SEO/accessibility and lightweight i18n. Deployed via Vercel with GitHub integration (CI/CD and preview deployments).",
             de: "Entwicklung einer zweisprachigen Portfolio-Website mit Next.js (App Router), optimiert für SEO/Barrierefreiheit und leichtgewichtiges i18n. Deployment über Vercel mit GitHub-Integration (CI/CD + Preview Deployments).",
             ar: "بناء موقع ثابت باستخدام Next.js App Router لتحسين محركات البحث. تنفيذ نظام i18n مخصص بدون مكتبات ثقيلة. النشر عبر Vercel مع GitHub Actions للتكامل المستمر.",
         },
         result: {
-            en: "Achieved high Lighthouse scores. Serves as the central point for my professional identity.",
+            en: "A fast, maintainable portfolio website that serves as the central entry point for my professional identity.",
             de: "Schnelle, gut wartbare Portfolio-Seite als zentraler Einstiegspunkt für meine professionelle Identität.",
             ar: "تحقيق درجات Lighthouse عالية. يعمل كنقطة مركزية لهويتي المهنية.",
         },
@@ -126,22 +126,22 @@ export const projects: Project[] = [
             ar: "موقع استشارات ونشر ذاتي ثابت",
         },
         summary: {
-            en: "Static site deployment on VPS using Ubuntu & Apache.",
+            en: "Static export deployed to Apache on a VPS with HTTPS (Certbot).",
             de: "Bereitstellung einer statischen Seite auf einem VPS mit Ubuntu & Apache.",
             ar: "نشر موقع ثابت على VPS باستخدام Ubuntu و Apache.",
         },
         problem: {
-            en: "Need for a totally separated, self-hosted static environment to demonstrate DevOps & Hosting skills, independent of Vercel.",
+            en: "Needed a fully self-hosted static deployment setup to demonstrate DevOps and hosting skills, independent of managed platforms.",
             de: "Ich wollte eine vollständig selbst gehostete, statische Umgebung aufbauen, um DevOps-/Hosting-Skills unabhängig von Managed Plattformen zu demonstrieren.",
             ar: "الحاجة إلى بيئة ثابتة مستضافة ذاتيًا ومنفصلة تمامًا لإثبات مهارات DevOps والاستضافة، مستقلة عن Vercel.",
         },
         action: {
-            en: "Configured Next.js for static export. Set up Ubuntu VPS with Apache, firewall, and rsync deployment. Automated SSL ops with Certbot. Created deployment workflow involving local build -> upload to /tmp -> rsync into Webroot.",
+            en: "Configured Next.js for static export, generated static SEO assets (robots.txt, sitemap.xml), and deployed the build output to an Apache vhost on a VPS. Set up HTTPS using Certbot/Let’s Encrypt and created a repeatable workflow: build → upload to /tmp → rsync into webroot → permissions → Apache reload.",
             de: "Umstellung auf Next.js Static Export, Erstellung statischer robots.txt und sitemap.xml sowie Pre-Rendering dynamischer Seiten. Einrichtung eines Ubuntu-VPS mit Apache (vhost) und HTTPS via Certbot/Let’s Encrypt. Aufbau eines reproduzierbaren Deployments: Build → Upload nach /tmp → rsync in den Webroot → Rechte setzen → Apache reload.",
             ar: "تكوين Next.js للتصدير الثابت. إعداد Ubuntu VPS مع Apache و Firewall ونشر rsync. أتمتة SSL مع Certbot.",
         },
         result: {
-            en: "A fully self-hosted, high-performance static site reachable under elkaza.at/www.elkaza.at with A+ SSL rating.",
+            en: "A fully self-hosted static website served via Apache and reachable at elkaza.at and www.elkaza.at over HTTPS.",
             de: "Eine vollständig statische, selbst gehostete Website, erreichbar unter elkaza.at und www.elkaza.at – inkl. HTTPS und einem wiederholbaren Deployment-Workflow.",
             ar: "موقع ثابت مستضاف ذاتيًا بالكامل عالي الأداء يمكن الوصول إليه عبر elkaza.at مع تصنيف A+ SSL.",
         },
