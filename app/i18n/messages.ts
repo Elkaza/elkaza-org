@@ -311,6 +311,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_excel_date: "Ausgestellt: 13.09.2022",
     proj_2026_desc: "Infrastruktur-Härtung (in Umsetzung)",
     proj_2026_b1: "Sicherer Fernzugriff (WireGuard) · Netzwerk-Isolation (VLANs) · Security-Monitoring (Wazuh/Zeek Evaluierung)",
+    proj_2026_b2: "Multi-Site VPS-Hosting (geplant): Hosting weiterer statischer Seiten via Apache VHosts und demselben rsync-basierten Deployment-Workflow.",
 
     // Contact
     contact_tagline: "Kontakt für Forschung, Beratung und Partnerschaften.",
@@ -641,6 +642,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_excel_date: "Issued: 13 Sep 2022",
     proj_2026_desc: "Infrastructure hardening (in progress)",
     proj_2026_b1: "Secure remote access (WireGuard) · Network isolation (VLANs) · Security monitoring (Wazuh/Zeek evaluation)",
+    proj_2026_b2: "Multi-site VPS hosting (planned): hosting additional static sites via Apache vhosts and the same rsync-based deployment workflow.",
     skill_cloud_item1: "Familiar with AWS and Azure platforms",
     skill_cloud_item2: "Running a self-hosted Linux + Docker home lab (elkaza.org stack)",
     skill_cloud_item3: "Setting up simple CI/CD and monitoring for personal services",

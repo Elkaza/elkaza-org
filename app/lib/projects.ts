@@ -105,7 +105,7 @@ export const projects: Project[] = [
             ar: "بناء موقع ثابت باستخدام Next.js App Router لتحسين محركات البحث. تنفيذ نظام i18n مخصص بدون مكتبات ثقيلة. النشر عبر Vercel مع GitHub Actions للتكامل المستمر.",
         },
         result: {
-            en: "A fast, maintainable portfolio website that serves as the central entry point for my professional identity.",
+            en: "A fast, maintainable portfolio website that serves as the central entry point for my professional identity. Complemented by a self-hosted deployment variant on elkaza.at.",
             de: "Schnelle, gut wartbare Portfolio-Seite als zentraler Einstiegspunkt für meine professionelle Identität.",
             ar: "تحقيق درجات Lighthouse عالية. يعمل كنقطة مركزية لهويتي المهنية.",
         },
@@ -136,16 +136,16 @@ export const projects: Project[] = [
             ar: "الحاجة إلى بيئة ثابتة مستضافة ذاتيًا ومنفصلة تمامًا لإثبات مهارات DevOps والاستضافة، مستقلة عن Vercel.",
         },
         action: {
-            en: "Configured Next.js for static export, generated static SEO assets (robots.txt, sitemap.xml), and deployed the build output to an Apache vhost on a VPS. Set up HTTPS using Certbot/Let’s Encrypt and created a repeatable workflow: build → upload to /tmp → rsync into webroot → permissions → Apache reload.",
+            en: "Configured Next.js for static export, added static SEO assets (robots.txt, sitemap.xml), and deployed the build output to an Apache vhost on a VPS. Set up HTTPS using Certbot/Let’s Encrypt and created a repeatable workflow: build → upload to /tmp → rsync into webroot → permissions → Apache reload. Server administration via SSH and Webmin.",
             de: "Umstellung auf Next.js Static Export, Erstellung statischer robots.txt und sitemap.xml sowie Pre-Rendering dynamischer Seiten. Einrichtung eines Ubuntu-VPS mit Apache (vhost) und HTTPS via Certbot/Let’s Encrypt. Aufbau eines reproduzierbaren Deployments: Build → Upload nach /tmp → rsync in den Webroot → Rechte setzen → Apache reload.",
             ar: "تكوين Next.js للتصدير الثابت. إعداد Ubuntu VPS مع Apache و Firewall ونشر rsync. أتمتة SSL مع Certbot.",
         },
         result: {
-            en: "A fully self-hosted static website served via Apache and reachable at elkaza.at and www.elkaza.at over HTTPS.",
+            en: "A fully self-hosted static website served via Apache and reachable at elkaza.at and www.elkaza.at over HTTPS. Complements the Vercel-hosted portfolio version on elkaza.org.",
             de: "Eine vollständig statische, selbst gehostete Website, erreichbar unter elkaza.at und www.elkaza.at – inkl. HTTPS und einem wiederholbaren Deployment-Workflow.",
             ar: "موقع ثابت مستضاف ذاتيًا بالكامل عالي الأداء يمكن الوصول إليه عبر elkaza.at مع تصنيف A+ SSL.",
         },
-        tech: ["Next.js Export", "Apache", "Ubuntu VPS", "Certbot/Let’s Encrypt", "rsync"],
+        tech: ["Next.js Export", "Apache", "Ubuntu VPS", "Certbot/Let’s Encrypt", "rsync", "Webmin"],
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/elkaza-web" }],
         year: "2025",
         tags: ["Web", "DevOps", "Self-Hosted"],

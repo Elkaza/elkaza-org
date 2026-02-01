@@ -36,6 +36,7 @@ export default function ProjectsPageContent() {
                                 <p className="text-main mb-2">{t("proj_2026_desc")}</p>
                                 <ul className="list-disc ml-6 space-y-1 text-main text-sm">
                                     <li>{t("proj_2026_b1")}</li>
+                                    {t("proj_2026_b2") && <li>{t("proj_2026_b2")}</li>}
                                 </ul>
                             </div>
 
