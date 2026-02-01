@@ -154,7 +154,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "Technologie, Daten und Menschen zusammenbringen. Fokus auf Lösungen, die funktionieren.",
-    about_lead: "IT-Infrastruktur-Spezialist mit Erfahrung in Netzwerktechnik, Linux-Systemen und strukturiertem Projektmanagement.",
+    about_lead: "IT-Infrastruktur & Platform Engineer (Linux · Networking · Automatisierung)",
     about_profile_h2: "Profil",
     about_profile_intro: "Ich bin Mohamed, IT-Infrastruktur- und Platform Engineer mit Sitz in Wien. Mein Fokus liegt auf dem Aufbau stabiler, wartbarer Systeme.",
     about_p1: "Ob Netzwerk-Segmentierung, Linux-Server oder Monitoring: Ich bringe technisches Know-how mit klarer Dokumentation zusammen. Außerhalb der Arbeit erkunde ich Wien am liebsten mit dem Rad.",
@@ -270,7 +270,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Certifications
     cert_nav_back: "← Zurück zu Über mich",
-    cert_title: "Zertifizierungen",
+    cert_title: "Zertifikate",
     cert_view_all: "Alle ansehen →",
     cert_list_title: "Alle Zertifizierungen",
     cert_list_subtitle: "Ausgewählte Zertifizierungen und Weiterbildungen (Nachweis auf Anfrage verfügbar).",
@@ -493,8 +493,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Home - Currently
     current_title: "Currently",
     current_item1: "IPMA® Level D (cPMA) – since 10/2025",
-    current_item2: "Finalizing my M.Sc. in Business Informatics at TU Wien, specializing in digital transformation and enterprise engineering.",
-    current_item3: "Studying Internet of Things & Intelligent Systems at FH Technikum Wien.",
+    current_item2: "M.Sc. Business Informatics, TU Wien.",
+    current_item3: "B.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "Applying my skills in enterprise architecture, IoT, and digital transformation across academic, industry, and innovation projects.",
 
     // Home - Selected Experience (short, reverse chronological)
@@ -555,9 +555,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "Bringing together technology, data, and people. Focused on solutions that work.",
-    about_lead: "IT infrastructure specialist with experience in networking, Linux systems, and structured project management.",
+    about_lead: "IT Infrastructure & Platform Engineer (Linux · Networking · Automation)",
     about_profile_h2: "Professional Profile",
-    about_profile_intro: "Hello, I'm Mohamed. Passionate about technology and innovation, I thrive when solving complex problems and turning ideas into working systems.",
+    about_profile_intro: "I am Mohamed, an IT Infrastructure & Platform Engineer based in Vienna. My focus is on building stable, maintainable systems.",
     about_p1: "Exploring new tools and architectures drives my curiosity about how things connect - from business processes to network packets. Outside of work I’m often on the bike, exploring Vienna and the surrounding area.",
     // New: Value Statement
     about_value_statement: "I help teams maintain stable infrastructure, reduce operational risk, and build systems that are secure by design, without over-engineering.",
