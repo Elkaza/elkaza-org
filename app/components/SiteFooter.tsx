@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function SiteFooter() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   return (
     <footer className="bg-page text-muted py-12 border-t border-subtle">
@@ -12,7 +12,7 @@ export default function SiteFooter() {
 
         <div className="flex gap-6 text-sm">
           <Link
-            href={t("nav_about") === "Über mich" ? "/zertifikate" : "/certifications"}
+            href={locale === "de" ? "/zertifikate" : "/certifications"}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline-offset-2 hover:underline"
           >
             {t("cert_title")}

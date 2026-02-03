@@ -30,20 +30,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // CTAs
     home_cta_primary: "CV herunterladen",
     home_cta_secondary: "Projekte ansehen",
-    // Legacy keys (kept for compatibility)
-    home_hero_title: "IT-Infrastruktur & Platform Engineer (Linux · Security · Automatisierung)",
-    home_hero_subtitle: "Aufbau sicherer, wartbarer Systeme für einen stabilen Betrieb.",
-    home_btn_projects: "Meine Projekte ansehen",
-    home_btn_blog: "Über mich",
-    hero_role_open: "Offen für Rollen:",
-    hero_role_security: "Security & Netzwerk",
-    hero_role_projects: "Projekte",
-    hero_role_research: "Forschung",
-    hero_role_about: "Über mich",
-    hero_badge: "❯",
-    hero_cta_cv: "CV herunterladen (PDF)",
-    hero_cta_projects: "Projekte ansehen",
-    hero_cta_security: "Security Portfolio",
 
     // Security Page
     nav_security: "Security",
@@ -408,20 +394,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // CTAs
     home_cta_primary: "Download CV",
     home_cta_secondary: "View Projects",
-    // Legacy keys (kept for compatibility)
-    home_hero_title: "IT Infrastructure & Platform Engineer (Linux · Security · Automation)",
-    home_hero_subtitle: "Building secure, maintainable systems that keep operations running smoothly.",
-    home_btn_projects: "View projects",
-    home_btn_blog: "About me",
-    hero_role_open: "Open to roles:",
-    hero_role_security: "Security & Network",
-    hero_role_projects: "Projects",
-    hero_role_research: "Research",
-    hero_role_about: "About Me",
-    hero_badge: "❯",
-    hero_cta_cv: "Download CV (PDF)",
-    hero_cta_projects: "View Projects",
-    hero_cta_security: "Security Portfolio",
 
     // Security Page
     nav_security: "Security",
@@ -532,26 +504,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Home - Contact
     contact_text: "If you are working on digital transformation, IoT, or complex IT initiatives and need help structuring projects or systems, I am happy to talk.",
     btn_contact_me: "Contact me",
-
-    // Legacy Home keys (kept for compatibility)
-    hero_title_1: "Digital Transformation.",
-    hero_title_2: "IT Expertise. Shaping the Future.",
-    hero_lead:
-      "Exploring the intersection of enterprise architecture, digital innovation, and artificial intelligence - bridging research and practice.",
-    hero_tagline: "Digital Transformation & AI-Driven Innovation",
-    hero_mission: "Bridging enterprise architecture, digital innovation, and AI. Helping organizations navigate transformation with confidence.",
-    cta_title: "Ready to transform?",
-    cta_description: "Get in touch to discuss your digital transformation journey.",
-    site_description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
-    nav_resources: "Resources",
-    btn_learn: "Learn More",
-    btn_contact: "Get in Touch",
-    card_research_title: "Research",
-    card_research_desc: "Academic work on digital transformation, enterprise architecture, and change management.",
-    card_projects_title: "Projects",
-    card_projects_desc: "IoT systems, cloud infrastructure, and applied technology experiments hosted on elkaza.org.",
-    card_teaching_title: "Teaching",
-    card_teaching_desc: "Educational materials and lectures on software engineering, systems design, and IT management.",
 
     // About
     about_tagline: "Bringing together technology, data, and people. Focused on solutions that work.",
