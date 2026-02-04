@@ -17,7 +17,6 @@ export default function ProjectsPageContent() {
                 <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
                     <div className="w-20 h-1.5 bg-blue-600 mb-3" />
                     <h1 className="text-3xl font-bold">{t("nav_projects")}</h1>
-                    <p className="mt-2 text-muted italic">{t("projects_tagline") ?? ""}</p>
                 </aside>
 
                 {/* Content column */}

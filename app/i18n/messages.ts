@@ -17,10 +17,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_contact: "Kontakt",
     search: "Suche",
     legal_location: "Wien, Österreich",
+    back_to_top: "Nach oben",
 
     // Home - Hero
     hero_badge: "IT Operations & Security",
-    home_hero_headline: "IT-Infrastruktur & Platform Engineer",
+    home_hero_headline: "IT-Infrastruktur & Plattform Engineer",
     home_hero_subline: "Linux · Networking · Automatisierung",
     home_hero_desc: "Ich baue stabile, wartbare Systeme. Von Netzwerk-Segmentierung bis Self-Hosting: aus technischer Komplexität entsteht zuverlässiger Betrieb.",
     hero_cta_cv: "CV herunterladen",
@@ -142,14 +143,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_stack_seg_title: "Netzwerk-Segmentierung",
     sec_stack_seg_desc: "Prinzip: Angriffsfläche minimieren. \nImpl: VLANs trennen IoT/Gäste von kritischer Infrastruktur.",
     sec_stack_fw_title: "Firewall-Strategie",
-    sec_stack_fw_desc: "Prinzip: Zero Trust Defaults. \nImpl: Strikte Deny-by-Default Regeln in OPNsense.",
+    sec_stack_fw_desc: "Prinzip: Zero Trust Defaults. \nImpl: Strikte Deny-by-Default Regeln (UFW aktiv; OPNsense/PfSense in Roadmap).",
     sec_stack_vpn_title: "Sicherer Fernzugriff",
     sec_stack_vpn_desc: "Prinzip: Keine offenen Ports. \nImpl: WireGuard VPN für verschlüsselten, authentifizierten Zugang.",
     sec_stack_mon_title: "Observability",
     sec_stack_mon_desc: "Prinzip: Netzwerk-Transparenz. \nImpl: Zentrales Logging & Echtzeit-Alerts via Uptime Kuma.",
 
     sec_outcomes_title: "Messbare Ergebnisse",
-    sec_outcome_1: "Reduktion von Ad/Tracker-Traffic um 99% durch DNS-Sinkholing.",
+    sec_outcome_1: "Reduktion von Ad/Tracker-Traffic um bis zu ~99% (Lab-Traffic) durch DNS-Sinkholing.",
     sec_outcome_2: "Kein direkter externer Zugriff: Alle Dienste hinter Reverse Proxy & VPN.",
     sec_view_project: "Zum Projekt: Home Security Lab",
 
@@ -165,7 +166,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "Technologie, Daten und Menschen zusammenbringen. Fokus auf Lösungen, die funktionieren.",
-    about_lead: "IT-Infrastruktur & Platform Engineer (Linux · Networking · Automatisierung)",
+    about_lead: "IT-Infrastruktur & Plattform Engineer (Linux · Networking · Automatisierung)",
     about_profile_h2: "Profil",
     about_profile_intro: "Ich bin Mohamed, IT-Infrastruktur- und Platform Engineer mit Sitz in Wien. Mein Fokus liegt auf dem Aufbau stabiler, wartbarer Systeme.",
     about_p1: "Ob Netzwerk-Segmentierung, Linux-Server oder Monitoring: Ich bringe technisches Know-how mit klarer Dokumentation zusammen. Außerhalb der Arbeit erkunde ich Wien am liebsten mit dem Rad.",
@@ -400,9 +401,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_title: "Lebenslauf",
     cv_download_de: "PDF herunterladen (DE)",
     cv_download_en: "Download PDF (EN)",
-    cv_summary_title: "Kurzprofil / Summary",
-    cv_summary_text: "IT-Infrastruktur- und Platform Engineer mit Fokus auf stabile, sichere und automatisierte Systeme. Erfahrung in Linux-Administration, Netzwerk-Sicherheit und Enterprise Architecture. IPMA Level D zertifiziert.",
-    cv_skills_title: "Key Skills",
+    cv_summary_title: "Kurzprofil",
+    cv_summary_text: "IT-Infrastruktur- und Plattform Engineer mit Fokus auf stabile, sichere und automatisierte Systeme. Erfahrung in Linux-Administration, Netzwerk-Sicherheit und Enterprise Architecture. IPMA Level D zertifiziert.",
+    cv_skills_title: "Kernkompetenzen",
     cv_skills_list: "Linux (Debian/Ubuntu), Proxmox, Docker, Python, Bash, Networking (VLAN/VPN), Firewalls (UFW), Monitoring (PRTG/Zabbix), Enterprise Architecture (ArchiMate/BPMN), Next.js",
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
@@ -425,6 +426,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_contact: "Contact",
     search: "Search",
     legal_location: "Vienna, Austria",
+    back_to_top: "Back to top",
 
     // Home - Hero
     hero_badge: "IT Operations & Security",
@@ -440,6 +442,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // CTAs
     home_cta_primary: "Download CV",
     home_cta_secondary: "View Projects",
+    home_view_cv: "View full resume",
 
     // Security Page
     nav_security: "Security",
@@ -501,14 +504,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_stack_seg_title: "Network Segmentation",
     sec_stack_seg_desc: "Principle: Reduce attack surface. \nImpl: VLANs isolate IoT/Guest traffic from critical infrastructure.",
     sec_stack_fw_title: "Firewall Strategy",
-    sec_stack_fw_desc: "Principle: Zero trust defaults. \nImpl: Strict deny-by-default OPNsense rules; explicit allow-lists only.",
+    sec_stack_fw_desc: "Principle: Zero trust defaults. \nImpl: Strict deny-by-default (UFW active; OPNsense/PfSense in roadmap).",
     sec_stack_vpn_title: "Secure Access",
     sec_stack_vpn_desc: "Principle: No exposed ports. \nImpl: WireGuard VPN for encrypted, authenticated remote entry.",
     sec_stack_mon_title: "Observability",
     sec_stack_mon_desc: "Principle: Know your network. \nImpl: Centralized logging & real-time alerts via Uptime Kuma.",
 
     sec_outcomes_title: "Measurable Outcomes",
-    sec_outcome_1: "Eliminated 99% of ad/tracker traffic via Pi-hole DNS sinkholing.",
+    sec_outcome_1: "Observed up to ~99% reduction in ad/tracker traffic (lab environment) via DNS sinkholing.",
     sec_outcome_2: "Zero direct external access: all services behind reverse proxy & VPN.",
     sec_view_project: "View Project: Home Security Lab",
 
@@ -814,7 +817,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // CV Page
     nav_cv: "CV",
-    cv_title: "Resume / CV",
+    cv_title: "Resume",
     cv_download_de: "PDF herunterladen (DE)",
     cv_download_en: "Download PDF (EN)",
     cv_summary_title: "Summary",

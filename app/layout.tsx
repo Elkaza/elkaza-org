@@ -11,7 +11,7 @@ const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], 
 
 export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
-  title: "Elkaza | Digital Transformation & Research",
+  title: "Mohamed Elkaza | Digital Transformation & Research",
   description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
   icons: {
     icon: [

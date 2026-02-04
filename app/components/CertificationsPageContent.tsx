@@ -58,7 +58,7 @@ export default function CertificationsPageContent() {
                 </div>
 
                 {/* Filters */}
-                <div className="flex flex-wrap gap-2 mb-10">
+                <div className="flex flex-wrap gap-3 mb-10">
                     {filters.map((f) => {
                         const isActive = selectedCategory === f.value;
                         return (

@@ -55,7 +55,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     <section className="bg-card border border-subtle rounded-xl p-6 md:p-8 space-y-4">
                         <h2 className="text-xl font-semibold flex items-center gap-2 text-red-600 dark:text-red-400">
                             <Target className="w-5 h-5" />
-                            Problem
+                            {t("proj_label_problem")}
                         </h2>
                         <p className="text-main leading-relaxed">
                             {project.problem[locale]}
@@ -66,7 +66,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     <section className="bg-card border border-subtle rounded-xl p-6 md:p-8 space-y-4">
                         <h2 className="text-xl font-semibold flex items-center gap-2 text-blue-600 dark:text-blue-400">
                             <Wrench className="w-5 h-5" />
-                            Action
+                            {t("proj_label_action")}
                         </h2>
                         <p className="text-main leading-relaxed">
                             {project.action[locale]}
@@ -77,7 +77,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     <section className="bg-card border border-subtle rounded-xl p-6 md:p-8 space-y-4">
                         <h2 className="text-xl font-semibold flex items-center gap-2 text-green-600 dark:text-green-400">
                             <CheckCircle className="w-5 h-5" />
-                            Result
+                            {t("proj_label_result")}
                         </h2>
                         <p className="text-main leading-relaxed">
                             {project.result[locale]}
@@ -89,7 +89,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 <section className="space-y-4">
                     <h2 className="text-xl font-semibold flex items-center gap-2">
                         <Layers className="w-5 h-5" />
-                        Tech Stack
+                        {t("proj_label_tech")}
                     </h2>
                     <div className="flex flex-wrap gap-2">
                         {project.tech.map(tech => (
@@ -103,7 +103,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 {/* Links */}
                 {project.links.length > 0 && (
                     <section className="pt-8 border-t border-subtle">
-                        <h2 className="sr-only">Links</h2>
+                        <h2 className="sr-only">{t("proj_label_links")}</h2>
                         <div className="flex flex-wrap gap-4">
                             {project.links.map(link => (
                                 <a
@@ -124,7 +124,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 {/* Related Project */}
                 {project.relatedProject && (
                     <section className="pt-8 border-t border-subtle">
-                        <h2 className="text-xl font-semibold mb-4">Related Project</h2>
+                        <h2 className="text-xl font-semibold mb-4">{t("proj_label_related")}</h2>
                         <Link
                             href={`/projects/${project.relatedProject.slug}`}
                             className="group block p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-all"

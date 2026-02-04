@@ -116,11 +116,6 @@ export default function AboutPageContent() {
                         <h2 className="text-2xl font-semibold">{t("experience_title")}</h2>
                         <div className="prose dark:prose-invert text-muted">
                             <p>{t("about_exp_summary")}</p>
-                            <ul className="list-disc pl-5 space-y-2 mt-4">
-                                <li>{t("about_exp_highlight1")}</li>
-                                <li>{t("about_exp_highlight2")}</li>
-                                <li>{t("about_exp_highlight3")}</li>
-                            </ul>
                         </div>
                         <div className="pt-2">
                             <Link href="/cv" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">

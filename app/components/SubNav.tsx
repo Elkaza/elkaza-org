@@ -16,7 +16,7 @@ const links = [
   { href: "/projects", label: "Projects" },
   { href: "/cv", label: "CV" },
   { href: "/security", label: "Security" },
-  { href: "/contact", label: "Contact" },
+  // Contact link handled dynamically in render
 ];
 
 export default function SubNav() {
@@ -46,24 +46,34 @@ export default function SubNav() {
 
         {/* Center tabs */}
         <div className="hidden md:flex gap-6 text-sm">
-          {links.map((l) => {
-            const active = pathname === l.href;
-            return (
-              <Link
-                key={l.href}
-                href={l.href}
-                aria-current={active ? "page" : undefined}
-                className={
-                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
-                  (active
-                    ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
-                    : "text-muted border-transparent")
-                }
-              >
-                {t(`nav_${l.label.toLowerCase()}`)}
-              </Link>
-            );
-          })}
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              aria-current={pathname === l.href ? "page" : undefined}
+              className={
+                "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
+                (pathname === l.href
+                  ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
+                  : "text-muted border-transparent")
+              }
+            >
+              {t(`nav_${l.label.toLowerCase()}`)}
+            </Link>
+          ))}
+          {/* Contact Link with locale check */}
+          <Link
+            href={t("nav_contact") === "Kontakt" ? "/kontakt" : "/contact"}
+            aria-current={pathname === "/contact" || pathname === "/kontakt" ? "page" : undefined}
+            className={
+              "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
+              (pathname === "/contact" || pathname === "/kontakt"
+                ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
+                : "text-muted border-transparent")
+            }
+          >
+            {t("nav_contact")}
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">

@@ -29,6 +29,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/kontakt',
+        destination: '/contact',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
