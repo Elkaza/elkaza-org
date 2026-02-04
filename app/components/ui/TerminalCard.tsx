@@ -58,9 +58,9 @@ export default function TerminalCard({ title, blocks, showCopy = true, className
                     <div key={i} className="mb-4 last:mb-0">
                         <div className="flex items-start gap-2 text-slate-100">
                             <span className="text-slate-400 select-none shrink-0">{block.prompt || "<USER>@<HOST>:~$"}</span>
-                            <code className="flex-1 whitespace-pre-wrap break-all text-slate-300">
-                                {block.cmd}
-                            </code>
+                            <pre className="flex-1 whitespace-pre-wrap break-all text-slate-300 font-mono bg-transparent p-0 m-0 overflow-visible">
+                                <code>{block.cmd}</code>
+                            </pre>
                         </div>
                         {block.output && (
                             <div className="mt-1 text-slate-400 whitespace-pre-wrap pl-2 border-l-2 border-slate-800 ml-1">

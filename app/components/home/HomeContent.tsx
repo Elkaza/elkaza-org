@@ -99,6 +99,30 @@ export default function HomeContent() {
         </div>
       </section>
 
+      {/* 2b. Experience Snapshot */}
+      <section className="w-full space-y-4">
+        <h2 className="text-2xl font-semibold tracking-tight">{t("experience_title")}</h2>
+        <div className="bg-card border border-subtle rounded-xl p-6">
+          <p className="text-muted mb-4">{t("about_exp_summary")}</p>
+          <ul className="space-y-2 mb-6">
+            <li className="flex items-start gap-3">
+              <span className="mt-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
+              <span className="text-main text-sm">{t("about_exp_highlight1")}</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full flex-shrink-0" />
+              <span className="text-main text-sm">{t("about_exp_highlight2")}</span>
+            </li>
+          </ul>
+          <Link
+            href="/cv"
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm"
+          >
+            {t("home_view_cv")} →
+          </Link>
+        </div>
+      </section>
+
       <section className="w-full space-y-6">
         <h2 className="text-2xl font-semibold tracking-tight">{t("current_title")}</h2>
         <ul className="space-y-3 list-disc list-outside ml-4 text-muted">

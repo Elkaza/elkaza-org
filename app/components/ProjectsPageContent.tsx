@@ -22,16 +22,29 @@ export default function ProjectsPageContent() {
 
                 {/* Content column */}
                 <div className="lg:col-span-9">
+                    {/* Current Focus Highlight */}
+                    <div className="mb-12 bg-subtle/40 p-6 rounded-xl border border-subtle">
+                        <div className="flex items-center gap-2 mb-3">
+                            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                            <h2 className="text-lg font-semibold text-main">{t("proj_focus_h2")}</h2>
+                        </div>
+                        <p className="text-main mb-4">{t("proj_focus_desc")}</p>
+                        <ul className="list-disc ml-6 space-y-1 text-main text-sm">
+                            <li>{t("proj_focus_b1")}</li>
+                            <li>{t("proj_focus_b2")}</li>
+                            <li>{t("proj_focus_b3")}</li>
+                        </ul>
+                    </div>
+
                     {/* Timeline */}
                     <div>
-                        <h2 className="text-xl font-semibold mb-2">{t("proj_timeline_h2")}</h2>
-                        <p className="text-main mb-6">{t("proj_timeline_desc")}</p>
+                        <h2 className="text-xl font-semibold mb-6">{t("proj_timeline_h2")}</h2>
 
                         <div className="relative border-l border-blue-300 dark:border-blue-700 ml-6 pl-6 pb-12">
 
                             {/* 2026 Current/Planned */}
                             <div className="relative mb-10">
-                                <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-blue-500 rounded-full" />
+                                <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-blue-500 rounded-full ring-4 ring-page" />
                                 <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">2026</h3>
                                 <p className="text-main mb-2">{t("proj_2026_desc")}</p>
                                 <ul className="list-disc ml-6 space-y-1 text-main text-sm">
@@ -99,17 +112,6 @@ export default function ProjectsPageContent() {
                             )}
 
                         </div>
-                    </div>
-
-                    {/* Current focus */}
-                    <div className="mt-16">
-                        <h2 className="text-xl font-semibold mb-2">{t("proj_focus_h2")}</h2>
-                        <p className="text-main mb-4">{t("proj_focus_desc")}</p>
-                        <ul className="list-disc ml-6 space-y-1 text-main">
-                            <li>{t("proj_focus_b1")}</li>
-                            <li>{t("proj_focus_b2")}</li>
-                            <li>{t("proj_focus_b3")}</li>
-                        </ul>
                     </div>
 
                 </div>

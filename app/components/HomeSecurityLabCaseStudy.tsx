@@ -241,9 +241,9 @@ export default function HomeSecurityLabCaseStudy() {
                         {c.architectureTitle}
                     </h2>
                     <p className="text-muted text-sm">{c.architectureIntro}</p>
-                    <div className="bg-slate-100 dark:bg-slate-800 rounded-lg p-4 font-mono text-sm space-y-1">
+                    <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm space-y-1">
                         {c.architecture.map((line, i) => (
-                            <div key={i} className="text-main">{line}</div>
+                            <div key={i} className="text-slate-300">{line}</div>
                         ))}
                     </div>
                 </section>
