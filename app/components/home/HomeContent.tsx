@@ -107,39 +107,13 @@ export default function HomeContent() {
           <li>{t("current_item3")}</li>
           <li>{t("current_item4")}</li>
         </ul>
-      </section>
-
-      {/* 4. Selected Experience Section */}
-      <section className="w-full space-y-8">
-        <h2 className="text-2xl font-semibold tracking-tight">{t("experience_title")}</h2>
-        <div className="space-y-8">
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">
-              {t("exp1_title")}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">{t("exp1_desc")}</p>
-          </div>
-
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">
-              {t("exp2_title")}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">{t("exp2_desc")}</p>
-          </div>
-
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">
-              {t("exp3_title")}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">{t("exp3_desc")}</p>
-          </div>
-
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">
-              {t("exp4_title")}
-            </h3>
-            <p className="text-sm text-muted leading-relaxed">{t("exp4_desc")}</p>
-          </div>
+        <div className="pt-4">
+          <Link
+            href="/cv"
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline"
+          >
+            {t("home_view_cv")} →
+          </Link>
         </div>
       </section>
 

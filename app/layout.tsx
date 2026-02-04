@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Mohamed El-Kaza",
+              name: "Mohamed Elkaza",
               url: "https://elkaza.org",
               sameAs: [
                 "https://www.linkedin.com/in/elkaza",

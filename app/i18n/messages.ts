@@ -35,9 +35,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Security Page
     nav_security: "Security",
-    security_title: "Security & Networking",
+    security_title: "Sicherheit & Netzwerke",
     security_focus: "Aufbau sicherer Netzwerke und Self-Hosted-Infrastruktur. Praxis mit Firewalls, Segmentierung und Linux-Härtung.",
-    security_lab_title: "Home Lab Highlights",
+    security_lab_title: "Home Lab Einblicke",
     security_lab_list: "Netzwerk-Segmentierung, Firewalls (UFW), VPN (WireGuard), DNS-Filterung (Pi-hole), Logging & Monitoring",
     security_tools_title: "Aktiver Stack",
     security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
@@ -137,9 +137,31 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     tech_cat4: "Architektur & Methoden",
     tech_list4: "ArchiMate · UML · BPMN · ITIL · Basis-TOGAF · IPMA-basiertes Projektmanagement",
 
+    // Security Stack
+    security_stack_title: "Security Stack",
+    sec_stack_seg_title: "Netzwerk-Segmentierung",
+    sec_stack_seg_desc: "Prinzip: Angriffsfläche minimieren. \nImpl: VLANs trennen IoT/Gäste von kritischer Infrastruktur.",
+    sec_stack_fw_title: "Firewall-Strategie",
+    sec_stack_fw_desc: "Prinzip: Zero Trust Defaults. \nImpl: Strikte Deny-by-Default Regeln in OPNsense.",
+    sec_stack_vpn_title: "Sicherer Fernzugriff",
+    sec_stack_vpn_desc: "Prinzip: Keine offenen Ports. \nImpl: WireGuard VPN für verschlüsselten, authentifizierten Zugang.",
+    sec_stack_mon_title: "Observability",
+    sec_stack_mon_desc: "Prinzip: Netzwerk-Transparenz. \nImpl: Zentrales Logging & Echtzeit-Alerts via Uptime Kuma.",
+
+    sec_outcomes_title: "Messbare Ergebnisse",
+    sec_outcome_1: "Reduktion von Ad/Tracker-Traffic um 99% durch DNS-Sinkholing.",
+    sec_outcome_2: "Kein direkter externer Zugriff: Alle Dienste hinter Reverse Proxy & VPN.",
+    sec_view_project: "Zum Projekt: Home Security Lab",
+
+    // Snapshot Captions
+    term_ufw_caption: "UFW Status zeigt Deny-by-Default Policy.",
+    term_pihole_caption: "Pi-hole Status: DNS-Service und Blocking aktiv.",
+    term_wg_caption: "WireGuard Client Konfiguration (Keys zensiert).",
     // Home - Contact
     contact_text: "Wenn Sie an digitaler Transformation oder IoT-Initiativen arbeiten oder Unterstützung bei der Strukturierung komplexer Systeme benötigen, freue ich mich auf ein Gespräch.",
     btn_contact_me: "Kontaktieren Sie mich",
+    home_cta_cv: "Lebenslauf herunterladen",
+    home_view_cv: "Mehr im Lebenslauf ansehen",
 
     // About
     about_tagline: "Technologie, Daten und Menschen zusammenbringen. Fokus auf Lösungen, die funktionieren.",
@@ -149,6 +171,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_p1: "Ob Netzwerk-Segmentierung, Linux-Server oder Monitoring: Ich bringe technisches Know-how mit klarer Dokumentation zusammen. Außerhalb der Arbeit erkunde ich Wien am liebsten mit dem Rad.",
     // Value Statement
     about_value_statement: "Ich unterstütze Teams dabei, stabile Infrastruktur zu betreiben und Systeme zu bauen, die von Grund auf sicher sind.",
+    about_exp_summary: "Ein kurzer Überblick über meinen Werdegang und Fokus:",
+    about_exp_highlight1: "Praktische Erfahrung in System Engineering und Netzwerkbetrieb (ISP & Enterprise).",
+    about_exp_highlight2: "Hintergrund in Prozess- und Architekturmanagement (EAM, BPMN).",
+    about_exp_highlight3: "Fokus auf Security-by-Design und Automatisierung.",
+    about_view_cv: "Zum vollständigen Lebenslauf",
     // New: Core Strengths
     about_strengths_title: "Kernstärken",
     about_strength_1: "Linux-Systemadministration (Debian, Ubuntu, Proxmox)",
@@ -469,7 +496,26 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_lab_safe: "No sensitive configs published.",
 
 
-    // Home - What I do
+    // Security Stack
+    security_stack_title: "Security Stack",
+    sec_stack_seg_title: "Network Segmentation",
+    sec_stack_seg_desc: "Principle: Reduce attack surface. \nImpl: VLANs isolate IoT/Guest traffic from critical infrastructure.",
+    sec_stack_fw_title: "Firewall Strategy",
+    sec_stack_fw_desc: "Principle: Zero trust defaults. \nImpl: Strict deny-by-default OPNsense rules; explicit allow-lists only.",
+    sec_stack_vpn_title: "Secure Access",
+    sec_stack_vpn_desc: "Principle: No exposed ports. \nImpl: WireGuard VPN for encrypted, authenticated remote entry.",
+    sec_stack_mon_title: "Observability",
+    sec_stack_mon_desc: "Principle: Know your network. \nImpl: Centralized logging & real-time alerts via Uptime Kuma.",
+
+    sec_outcomes_title: "Measurable Outcomes",
+    sec_outcome_1: "Eliminated 99% of ad/tracker traffic via Pi-hole DNS sinkholing.",
+    sec_outcome_2: "Zero direct external access: all services behind reverse proxy & VPN.",
+    sec_view_project: "View Project: Home Security Lab",
+
+    // Snapshot Captions
+    term_ufw_caption: "UFW status showing deny-by-default policy.",
+    term_pihole_caption: "Pi-hole verifying DNS service and blocking active.",
+    term_wg_caption: "WireGuard client configuration (keys redacted).",
     what_do_title: "What I do",
     what_do_subtitle: "I work at the intersection of technology, business, and people, turning ideas into digital solutions.",
     what_do_item1_title: "Digital Transformation & Enterprise Architecture",
@@ -702,6 +748,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_academic_desc: "Contact for collaborations, research, and general enquiries about digital transformation, enterprise architecture, and IoT.",
     contact_consult_h2: "Consulting & Digital Services",
     contact_consult_desc: "EA, IT strategy, and secure digital transformation consulting.",
+    about_exp_summary: "Short overview of my background and focus:",
+    about_exp_highlight1: "Hands-on experience in System Engineering and Network Operations (ISP & Enterprise).",
+    about_exp_highlight2: "Background in Process and Architecture Management (EAM, BPMN).",
+    about_exp_highlight3: "Focus on Security-by-Design and Automation.",
+    about_view_cv: "View full resume",
     about_hobbies: "Outside work: cycling around Vienna • reading • experimenting with my home lab.",
     contact_social_h3: "Connect on professional networks",
 

@@ -58,7 +58,7 @@ export default function CvPageContent() {
                 <div className="flex flex-wrap gap-2">
                     {t("cv_skills_list").split(", ").map((skill, i) => (
                         <span key={i} className="px-3 py-1 bg-subtle rounded-full text-sm font-medium border border-subtle">
-                            {skill}
+                            {skill.trim()}
                         </span>
                     ))}
                 </div>

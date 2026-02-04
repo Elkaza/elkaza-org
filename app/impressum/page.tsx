@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ImpressumPageContent from "../components/ImpressumPageContent";
 
 export const metadata: Metadata = {
-    title: 'Impressum | Mohamed El-Kaza',
+    title: 'Impressum | Mohamed Elkaza',
     description: 'Legal Notice / Impressum.',
 };
 

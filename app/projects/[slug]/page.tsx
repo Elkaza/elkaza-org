@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     if (!project) {
         return {
-            title: 'Project Not Found | Mohamed El-Kaza',
+            title: 'Project Not Found | Mohamed Elkaza',
         };
     }
 
     return {
-        title: `${project.title.en} | Mohamed El-Kaza`,
+        title: `${project.title.en} | Mohamed Elkaza`,
         description: project.summary.en,
     };
 }

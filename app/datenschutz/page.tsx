@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import DatenschutzPageContent from "../components/DatenschutzPageContent";
 
 export const metadata: Metadata = {
-    title: 'Datenschutz | Mohamed El-Kaza',
+    title: 'Datenschutz | Mohamed Elkaza',
     description: 'Privacy Policy / Datenschutzerklärung.',
 };
 

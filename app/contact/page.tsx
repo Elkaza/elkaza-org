@@ -2,7 +2,7 @@
 import ContactPageContent from '../components/ContactPageContent';
 
 export const metadata: Metadata = {
-  title: 'Contact | Mohamed El-Kaza',
+  title: 'Contact | Mohamed Elkaza',
   description: 'Get in touch for cybersecurity, network engineering, or project management opportunities.',
 };
 

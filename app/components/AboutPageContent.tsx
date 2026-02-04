@@ -111,41 +111,21 @@ export default function AboutPageContent() {
                         </div>
                     </div>
 
-                    {/* Selected Experience Section */}
-                    <div className="space-y-8 mb-12">
+                    {/* Selected Experience Section - Simplified for About Page */}
+                    <div className="space-y-6 mb-12">
                         <h2 className="text-2xl font-semibold">{t("experience_title")}</h2>
-                        <div className="space-y-8">
-                            <div className="space-y-2">
-                                <h3 className="font-medium text-lg text-main">
-                                    {t("exp1_title_full")}
-                                </h3>
-                                <p className="text-muted leading-relaxed">{t("exp1_desc_full")}</p>
-                                <p className="text-sm text-impact font-medium">{t("exp1_impact")}</p>
-                            </div>
-
-                            <div className="space-y-2">
-                                <h3 className="font-medium text-lg text-main">
-                                    {t("exp2_title_full")}
-                                </h3>
-                                <p className="text-muted leading-relaxed">{t("exp2_desc_full")}</p>
-                                <p className="text-sm text-impact font-medium">{t("exp2_impact")}</p>
-                            </div>
-
-                            <div className="space-y-2">
-                                <h3 className="font-medium text-lg text-main">
-                                    {t("exp3_title_full")}
-                                </h3>
-                                <p className="text-muted leading-relaxed">{t("exp3_desc_full")}</p>
-                                <p className="text-sm text-impact font-medium">{t("exp3_impact")}</p>
-                            </div>
-
-                            <div className="space-y-2">
-                                <h3 className="font-medium text-lg text-main">
-                                    {t("exp4_title_full")}
-                                </h3>
-                                <p className="text-muted leading-relaxed">{t("exp4_desc_full")}</p>
-                                <p className="text-sm text-impact font-medium">{t("exp4_impact")}</p>
-                            </div>
+                        <div className="prose dark:prose-invert text-muted">
+                            <p>{t("about_exp_summary")}</p>
+                            <ul className="list-disc pl-5 space-y-2 mt-4">
+                                <li>{t("about_exp_highlight1")}</li>
+                                <li>{t("about_exp_highlight2")}</li>
+                                <li>{t("about_exp_highlight3")}</li>
+                            </ul>
+                        </div>
+                        <div className="pt-2">
+                            <Link href="/cv" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                                {t("about_view_cv")} →
+                            </Link>
                         </div>
                     </div>
 

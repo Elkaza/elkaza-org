@@ -2,7 +2,7 @@
 import TeachingPageContent from "../components/TeachingPageContent";
 
 export const metadata: Metadata = {
-  title: 'Teaching | Mohamed El-Kaza',
+  title: 'Teaching | Mohamed Elkaza',
   description: 'Courses, workshops, and knowledge sharing in Enterprise Architecture, PM, and IoT.',
 };
 

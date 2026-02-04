@@ -3,6 +3,7 @@ import React from "react";
 import { Shield, Server, Network, Layers, Monitor, Lock, Terminal } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import TerminalCard from "./ui/TerminalCard";
+import Link from "next/link";
 
 export default function SecurityPageContent() {
     const { t } = useLocale();
@@ -40,46 +41,46 @@ export default function SecurityPageContent() {
                     </div>
                 </div>
 
-                {/* Tools */}
+                {/* Security Stack Section (New) */}
                 <div className="space-y-6">
                     <h2 className="text-2xl font-semibold flex items-center gap-2">
                         <Network className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                        {t("security_tools_stack_title")}
+                        {t("security_stack_title")}
                     </h2>
-
-                    <div className="space-y-4">
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted uppercase tracking-wider mb-3">{t("security_tools_title")}</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {t("security_tools_core").split(",").map((tool, i) => (
-                                    <span key={i} className="badge badge-primary">
-                                        {tool.trim()}
-                                    </span>
-                                ))}
-                            </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-card border border-subtle rounded-xl p-6">
+                            <h3 className="font-semibold text-main mb-2">{t("sec_stack_seg_title")}</h3>
+                            <p className="text-sm text-muted whitespace-pre-line">{t("sec_stack_seg_desc")}</p>
                         </div>
-
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted uppercase tracking-wider mb-3">{t("security_tools_exploring_title")}</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {t("security_tools_exploring").split(",").map((tool, i) => (
-                                    <span key={i} className="badge badge-accent">
-                                        {tool.trim()}
-                                    </span>
-                                ))}
-                            </div>
+                        <div className="bg-card border border-subtle rounded-xl p-6">
+                            <h3 className="font-semibold text-main mb-2">{t("sec_stack_fw_title")}</h3>
+                            <p className="text-sm text-muted whitespace-pre-line">{t("sec_stack_fw_desc")}</p>
                         </div>
-
-                        <div>
-                            <h3 className="text-sm font-semibold text-muted uppercase tracking-wider mb-3">{t("security_tools_next_title")}</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {t("security_tools_next").split(",").map((tool, i) => (
-                                    <span key={i} className="badge badge-planned">
-                                        {tool.trim()}
-                                    </span>
-                                ))}
-                            </div>
+                        <div className="bg-card border border-subtle rounded-xl p-6">
+                            <h3 className="font-semibold text-main mb-2">{t("sec_stack_vpn_title")}</h3>
+                            <p className="text-sm text-muted whitespace-pre-line">{t("sec_stack_vpn_desc")}</p>
                         </div>
+                        <div className="bg-card border border-subtle rounded-xl p-6">
+                            <h3 className="font-semibold text-main mb-2">{t("sec_stack_mon_title")}</h3>
+                            <p className="text-sm text-muted whitespace-pre-line">{t("sec_stack_mon_desc")}</p>
+                        </div>
+                    </div>
+                    {/* Outcome / Link */}
+                    <div className="bg-subtle/30 rounded-xl p-6 border border-subtle">
+                        <h3 className="font-semibold text-main mb-2">{t("sec_outcomes_title")}</h3>
+                        <ul className="space-y-2 mb-4">
+                            <li className="flex items-start gap-2 text-sm text-muted">
+                                <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                                {t("sec_outcome_1")}
+                            </li>
+                            <li className="flex items-start gap-2 text-sm text-muted">
+                                <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                                {t("sec_outcome_2")}
+                            </li>
+                        </ul>
+                        <Link href="/projects/home-security-lab" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
+                            {t("sec_view_project")} {">"}
+                        </Link>
                     </div>
                 </div>
 
@@ -145,19 +146,27 @@ export default function SecurityPageContent() {
                     </div>
 
                     <div className="grid gap-6 lg:grid-cols-2">
-                        <TerminalCard
-                            title={t("term_ufw_title")}
-                            blocks={[{ cmd: t("term_ufw_cmd"), output: t("term_ufw_out") }]}
-                        />
-                        <TerminalCard
-                            title={t("term_pihole_title")}
-                            blocks={[{ cmd: t("term_pihole_cmd"), output: t("term_pihole_out") }]}
-                        />
-                        <TerminalCard
-                            title={t("term_wg_title")}
-                            blocks={[{ cmd: t("term_wg_cmd"), output: t("term_wg_out") }]}
-                            className="lg:col-span-2"
-                        />
+                        <div className="space-y-2">
+                            <TerminalCard
+                                title={t("term_ufw_title")}
+                                blocks={[{ cmd: t("term_ufw_cmd"), output: t("term_ufw_out") }]}
+                            />
+                            <p className="text-sm text-center text-muted italic">{t("term_ufw_caption")}</p>
+                        </div>
+                        <div className="space-y-2">
+                            <TerminalCard
+                                title={t("term_pihole_title")}
+                                blocks={[{ cmd: t("term_pihole_cmd"), output: t("term_pihole_out") }]}
+                            />
+                            <p className="text-sm text-center text-muted italic">{t("term_pihole_caption")}</p>
+                        </div>
+                        <div className="space-y-2 lg:col-span-2">
+                            <TerminalCard
+                                title={t("term_wg_title")}
+                                blocks={[{ cmd: t("term_wg_cmd"), output: t("term_wg_out") }]}
+                            />
+                            <p className="text-sm text-center text-muted italic">{t("term_wg_caption")}</p>
+                        </div>
                     </div>
                 </section>
 
