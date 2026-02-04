@@ -19,9 +19,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     legal_location: "Wien, Österreich",
 
     // Home - Hero
+    hero_badge: "IT Operations & Security",
     home_hero_headline: "IT-Infrastruktur & Platform Engineer",
     home_hero_subline: "Linux · Networking · Automatisierung",
     home_hero_desc: "Ich baue stabile, wartbare Systeme. Von Netzwerk-Segmentierung bis Self-Hosting: aus technischer Komplexität entsteht zuverlässiger Betrieb.",
+    hero_cta_cv: "CV herunterladen",
     // Proof in 3 Bullets
     home_proof_title: "Kernstärken",
     home_proof_impact: "Strukturierte Automatisierung, klare Dokumentation",
@@ -102,7 +104,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     current_title: "Aktuell",
     current_item1: "IPMA® Level D (cPMA) – seit 10/2025",
     current_item2: "M.Sc. Wirtschaftsinformatik, TU Wien - Schwerpunkt Digitale Transformation und Enterprise Engineering.",
-    current_item3: "B.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
+    current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "Einsatz meiner Kenntnisse in Enterprise Architecture, IoT und digitaler Transformation in Forschungs-, Industrie- und Innovationsprojekten.",
     exp1_title: "Application Engineer - HiCo-ICS (2023)",
     exp1_desc: "Entwicklung und Debugging von Features für eine XML/XSLT-basierte PDF-Publishing-Suite. Erstellung von User Stories zur Definition und Optimierung der Softwarefunktionalität, wodurch die Kundenzufriedenheit durch verbesserte Dokumentation direkt gesteigert wurde.",
@@ -364,6 +366,19 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Footer
     footer_impressum: "Impressum",
     footer_datenschutz: "Datenschutz",
+
+    // CV Page
+    nav_cv: "Lebenslauf",
+    cv_title: "Lebenslauf",
+    cv_download_de: "PDF herunterladen (DE)",
+    cv_download_en: "Download PDF (EN)",
+    cv_summary_title: "Kurzprofil / Summary",
+    cv_summary_text: "IT-Infrastruktur- und Platform Engineer mit Fokus auf stabile, sichere und automatisierte Systeme. Erfahrung in Linux-Administration, Netzwerk-Sicherheit und Enterprise Architecture. IPMA Level D zertifiziert.",
+    cv_skills_title: "Key Skills",
+    cv_skills_list: "Linux (Debian/Ubuntu), Proxmox, Docker, Python, Bash, Networking (VLAN/VPN), Firewalls (UFW), Monitoring (PRTG/Zabbix), Enterprise Architecture (ArchiMate/BPMN), Next.js",
+    cv_exp_title: "Berufserfahrung",
+    cv_edu_title: "Ausbildung & Zertifizierungen",
+    cv_note_full: "Vollständiger Lebenslauf als PDF-Download verfügbar.",
   },
   en: {
     // Brand + Nav
@@ -383,9 +398,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     legal_location: "Vienna, Austria",
 
     // Home - Hero
+    hero_badge: "IT Operations & Security",
     home_hero_headline: "IT Infrastructure & Platform Engineer",
     home_hero_subline: "Linux · Networking · Automation",
     home_hero_desc: "I build stable, maintainable systems. From network segmentation to self-hosting, I turn technical complexity into reliable operations.",
+    hero_cta_cv: "Download CV",
     // Proof in 3 Bullets
     home_proof_title: "Key Strengths",
     home_proof_impact: "Structured automation, clear documentation",
@@ -466,7 +483,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     current_title: "Currently",
     current_item1: "IPMA® Level D (cPMA) – since 10/2025",
     current_item2: "M.Sc. Business Informatics, TU Wien.",
-    current_item3: "B.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
+    current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "Applying my skills in enterprise architecture, IoT, and digital transformation across academic, industry, and innovation projects.",
 
     // Home - Selected Experience (short, reverse chronological)
@@ -741,6 +758,19 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Footer
     footer_impressum: "Imprint",
     footer_datenschutz: "Privacy",
+
+    // CV Page
+    nav_cv: "CV",
+    cv_title: "Resume / CV",
+    cv_download_de: "PDF herunterladen (DE)",
+    cv_download_en: "Download PDF (EN)",
+    cv_summary_title: "Summary",
+    cv_summary_text: "IT Infrastructure & Platform Engineer focused on building stable, secure, and automated systems. Experienced in Linux administration, network security, and Enterprise Architecture. IPMA Level D certified.",
+    cv_skills_title: "Key Skills",
+    cv_skills_list: "Linux (Debian/Ubuntu), Proxmox, Docker, Python, Bash, Networking (VLAN/VPN), Firewalls (UFW), Monitoring (PRTG/Zabbix), Enterprise Architecture (ArchiMate/BPMN), Next.js",
+    cv_exp_title: "Experience",
+    cv_edu_title: "Education & Certifications",
+    cv_note_full: "Full CV available as PDF download.",
   },
   ar: {
     // Brand + Nav

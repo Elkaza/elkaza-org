@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Mail, Terminal } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { Download } from "lucide-react";
 
@@ -17,7 +17,8 @@ export default function HomeContent() {
         <div className="space-y-4">
           {/* Terminal-style focus indicator */}
           <div className="space-y-1">
-            <span className="font-mono text-2xl text-blue-600 dark:text-blue-400 font-bold" aria-hidden="true">
+            <Terminal className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-2" />
+            <span className="font-mono text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-bold block" aria-hidden="true">
               {t("hero_badge")}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-main">

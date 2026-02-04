@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/security",
     "/teaching",
     "/contact",
+    "/cv",
     "/certifications",
     "/zertifikate",
     "/impressum",
