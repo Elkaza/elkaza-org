@@ -379,6 +379,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
     cv_note_full: "Vollständiger Lebenslauf als PDF-Download verfügbar.",
+    cv_last_updated: "Zuletzt aktualisiert: Februar 2026",
   },
   en: {
     // Brand + Nav
@@ -771,6 +772,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_exp_title: "Experience",
     cv_edu_title: "Education & Certifications",
     cv_note_full: "Full CV available as PDF download.",
+    cv_last_updated: "Last updated: February 2026",
   },
   ar: {
     // Brand + Nav

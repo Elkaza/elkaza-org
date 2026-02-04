@@ -20,6 +20,9 @@ export default function CvPageContent() {
                     <p className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-medium">
                         {t("home_hero_headline")}
                     </p>
+                    <p className="text-sm text-muted mt-2">
+                        {t("cv_last_updated")}
+                    </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 text-muted text-sm">

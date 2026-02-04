@@ -1,9 +1,10 @@
 ﻿import "./globals.css";
 import { Inter, Merriweather } from "next/font/google";
-import SubNav from "./components/SubNav";
-import LocaleProvider from "./LocaleProvider";
-import SiteFooter from "./components/SiteFooter";
 import { ThemeProvider } from "./components/ThemeProvider";
+import LocaleProvider from "@/app/LocaleProvider";
+import BackToTop from "@/app/components/BackToTop";
+import SiteFooter from "./components/SiteFooter";
+import SubNav from "./components/SubNav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], variable: "--font-serif" });
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </header>
             <main id="main">{children}</main>
             <SiteFooter />
+            <BackToTop />
           </LocaleProvider>
         </ThemeProvider>
       </body>
