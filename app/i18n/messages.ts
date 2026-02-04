@@ -116,6 +116,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp4_desc: "Verwaltung und Optimierung der Netzwerkinfrastruktur (Cisco, MikroTik, Windows Server) zur Gewährleistung hoher Systemzuverlässigkeit und Verfügbarkeit. Unterstützung der erfolgreichen ERP-Systemimplementierung für das Bildungsministerium zur Steigerung der betrieblichen Effizienz.",
 
     // About - Selected Experience (detailed, reverse chronological)
+    experience_title: "Ausgewählte Erfahrung",
     exp1_title_full: "Application Engineer - HiCo-ICS (2023)",
     exp1_desc_full: "Entwicklung und Debugging von Features für eine XML/XSLT-basierte PDF-Publishing-Suite. Erstellung von User Stories zur Definition und Optimierung der Softwarefunktionalität, wodurch die Kundenzufriedenheit durch verbesserte Dokumentation direkt gesteigert wurde.",
     exp2_title_full: "Junior IT Consultant - Raiffeisen Bank International (2022)",
@@ -128,13 +129,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Home - Technologies & Methods
     tech_title: "Technologien & Methoden",
     tech_cat1: "Sprachen & Scripting",
-    tech_list1: "Python, Bash, PowerShell, JavaScript, HTML/CSS",
+    tech_list1: "Python · Bash · PowerShell · JavaScript · HTML/CSS",
     tech_cat2: "Tools & Plattformen",
-    tech_list2: "ServiceNow, ADOIT/ADONIS, Power BI, Git/GitHub, Jira, Confluence",
+    tech_list2: "ServiceNow · ADOIT/ADONIS · Power BI · Git/GitHub · Jira · Confluence",
     tech_cat3: "Netzwerke & Infrastruktur",
     tech_list3: "IT-Betrieb & Netz: AD/DNS/DHCP · Routing/Switching · VLAN/VPN · Monitoring/Backup (PRTG, Veeam)",
     tech_cat4: "Architektur & Methoden",
-    tech_list4: "ArchiMate, UML, BPMN, ITIL, Basis-TOGAF, IPMA-basiertes Projektmanagement",
+    tech_list4: "ArchiMate · UML · BPMN · ITIL · Basis-TOGAF · IPMA-basiertes Projektmanagement",
 
     // Home - Contact
     contact_text: "Wenn Sie an digitaler Transformation oder IoT-Initiativen arbeiten oder Unterstützung bei der Strukturierung komplexer Systeme benötigen, freue ich mich auf ein Gespräch.",
@@ -197,7 +198,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Research
     research_tagline: "Brücke zwischen wissenschaftlicher Tiefe und angewandter Innovation.",
     thesis_h2: "Masterarbeit - TU Wien",
-    thesis_desc: "Systematische digitale Transformation mit Change-Management; verbindet EAM, ADKAR/Kotter und GEA zu einem Kohaerenz-Metamodell.",
+    thesis_desc: "Systematische digitale Transformation mit Change-Management; verbindet EAM, ADKAR/Kotter und GEA zu einem Kohärenz-Metamodell.",
     download_thesis: "Masterarbeit herunterladen (PDF)",
     card_ea_title: "Enterprise Architecture",
     card_ea_desc: "ArchiMate, TOGAF und GEA für Agilität und Kohärenz.",
@@ -210,7 +211,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Projects
     projects_tagline: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
     proj_timeline_h2: "Projektübersicht",
-    proj_timeline_desc: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
+    proj_timeline_desc: "Alle Projekte zielen auf Skalierbarkeit, Sicherheit und echte Anwendbarkeit ab. Hier ist ein kurzes Logbuch meiner aktuellen Arbeit.",
     proj_2025_desc: "Praktische Integration von Embedded, Self-Hosted Cloud und digitalen Ökosystemen.",
 
 
@@ -619,17 +620,17 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     skill_lang_title: "Languages",
     skill_lang_item1: "Spoken: German, English, Arabic",
-    skill_lang_item2: "Technical: TypeScript / JavaScript, Python, Bash, PowerShell",
+    skill_lang_item2: "Technical: TypeScript / JavaScript · Python · Bash · PowerShell",
     comp_ea_title: "Enterprise Architecture",
-    comp_ea_list: "ArchiMate, ADOIT, Sparx EA, BPMN 2.0",
+    comp_ea_list: "ArchiMate · ADOIT · Sparx EA · BPMN 2.0",
     comp_sw_title: "Software & Systems",
-    comp_sw_list: "Python, Java, TypeScript, Git, ServiceNow, XML/XSLT",
+    comp_sw_list: "Python · Java · TypeScript · Git · ServiceNow · XML/XSLT",
     comp_pm_title: "Project Management",
-    comp_pm_list: "IPMA Level D, Agile, ITIL, ADKAR, Change Management",
+    comp_pm_list: "IPMA Level D · Agile · ITIL · ADKAR · Change Management",
     comp_net_title: "Networking & Security",
-    comp_net_list: "Cisco, MikroTik, VPN, ISO 27001, OWASP Top 10",
+    comp_net_list: "Cisco · MikroTik · VPN · ISO 27001 · OWASP Top 10",
     comp_cloud_title: "Cloud & Infrastructure",
-    comp_cloud_list: "AWS, Azure, VirtualBox, VMware",
+    comp_cloud_list: "AWS · Azure · VirtualBox · VMware",
     comp_lang_title: "Languages",
     comp_lang_list: "Arabic (native), English (C1), German (B2)",
 
@@ -648,7 +649,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
     proj_timeline_h2: "Project Timeline",
-    proj_timeline_desc: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
+    proj_timeline_desc: "All projects aim for scalability, security, and real-world applicability. Here is a brief log of my recent work.",
     proj_2025_desc: "Practical integration between embedded systems, self-hosted cloud, and digital ecosystems.",
 
 

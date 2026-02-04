@@ -11,7 +11,7 @@ const content = {
         overview: "A self-hosted infrastructure project focused on network security fundamentals: DNS filtering, firewall hardening, and segmentation planning. Built on repurposed enterprise hardware running Proxmox virtualization.",
         contextTitle: "Context & Problem",
         context: [
-            "Default ISP-provided router with limited security features",
+            "Default ISP-provided router with limited security features (in my home lab baseline)",
             "IoT devices sharing the same network as personal devices",
             "No DNS-level ad/malware filtering",
             "Need for secure remote access without exposing ports"
@@ -360,24 +360,9 @@ To                         Action      From
                 {/* Tech Stack */}
                 <section className="space-y-4">
                     <h2 className="text-xl font-semibold">{c.techTitle}</h2>
-                    <div className="flex flex-wrap gap-2">
-                        {techStack.map(tech => (
-                            <span
-                                key={tech.name}
-                                className={`badge ${tech.status === 'implemented' ? 'badge-primary' :
-                                        tech.status === 'planned' ? 'badge-planned' :
-                                            'badge-neutral'
-                                    }`}
-                            >
-                                {tech.name}
-                                {tech.status !== 'implemented' && (
-                                    <span className="ml-1 text-xs opacity-70">
-                                        ({tech.status === 'planned' ? 'planned' : 'exploring'})
-                                    </span>
-                                )}
-                            </span>
-                        ))}
-                    </div>
+                    <p className="text-main font-mono text-sm">
+                        Proxmox VE · Debian · Pi-hole · UFW · Nginx Proxy Manager · Uptime Kuma · WireGuard (planned) · Wazuh (exploring)
+                    </p>
                 </section>
 
             </article>

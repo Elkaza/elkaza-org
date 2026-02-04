@@ -4,6 +4,8 @@ import { projects } from '@/app/lib/projects';
 import ProjectDetailPageContent from '@/app/components/ProjectDetailPageContent';
 import HomeSecurityLabCaseStudy from '@/app/components/HomeSecurityLabCaseStudy';
 
+import FreeRTOSCaseStudy from '@/app/components/FreeRTOSCaseStudy';
+
 type Props = {
     params: Promise<{ slug: string }>;
 };
@@ -35,6 +37,11 @@ export default async function ProjectDetailPage({ params }: Props) {
     // Use custom case study for home-security-lab
     if (slug === 'home-security-lab') {
         return <HomeSecurityLabCaseStudy />;
+    }
+
+    // Use custom case study for freertos-sensor
+    if (slug === 'freertos-sensor') {
+        return <FreeRTOSCaseStudy />;
     }
 
     return <ProjectDetailPageContent slug={slug} />;
