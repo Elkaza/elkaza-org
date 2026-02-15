@@ -1,3 +1,6 @@
+/* Google Fonts - Inter for modern, professional typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @import "tailwindcss";
 
 @theme {
@@ -7,6 +10,9 @@
   --color-secondary: var(--text-secondary);
   --color-muted: var(--text-muted);
   --color-subtle: var(--border-subtle);
+
+  /* Typography - Modern font stack */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 
 /* ---- Color variables for light & dark themes ---- */
@@ -23,6 +29,20 @@
   /* slate-500 */
   --border-subtle: #e2e8f0;
   /* slate-200 */
+
+  /* Vibrant Primary Colors - CachyOS inspired */
+  --color-primary-vivid: #3b82f6;
+  /* blue-500 */
+  --color-primary-hover: #2563eb;
+  /* blue-600 */
+  --color-primary-light: #60a5fa;
+  /* blue-400 */
+
+  /* CTA Colors */
+  --color-cta-bg: #3b82f6;
+  --color-cta-text: #ffffff;
+  --color-cta-hover: #2563eb;
+  --color-cta-shadow: rgba(59, 130, 246, 0.3);
 
   /* Badge System - Light Mode */
   /* Neutral (default tech tags) */
@@ -74,6 +94,20 @@
   /* slate-400 */
   --border-subtle: #1e293b;
   /* slate-800 */
+
+  /* Vibrant Primary Colors - Dark Mode */
+  --color-primary-vivid: #60a5fa;
+  /* blue-400 - brighter in dark */
+  --color-primary-hover: #3b82f6;
+  /* blue-500 */
+  --color-primary-light: #93c5fd;
+  /* blue-300 */
+
+  /* CTA Colors - Dark Mode */
+  --color-cta-bg: #3b82f6;
+  --color-cta-text: #ffffff;
+  --color-cta-hover: #60a5fa;
+  --color-cta-shadow: rgba(96, 165, 250, 0.3);
 
   /* Badge System - Dark Mode */
   /* Neutral */
@@ -160,6 +194,170 @@
   font-family: var(--font-serif), ui-serif, Georgia, "Times New Roman", serif;
 }
 
+/* ---- Enhanced Typography System ---- */
+/* Base font settings */
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  /* 17px for better readability */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading hierarchy with responsive sizing */
 h1 {
-  letter-spacing: 0.2px;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  /* Tighter for large headings */
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 0.875rem;
+}
+
+h3 {
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.625rem;
+}
+
+/* ---- Modern Button System ---- */
+.btn-primary-vivid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cta-bg);
+  color: var(--color-cta-text);
+  font-weight: 600;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn-primary-vivid:hover {
+  background: var(--color-cta-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--color-cta-shadow);
+}
+
+.btn-primary-vivid:active {
+  transform: translateY(0);
+}
+
+.btn-secondary-modern {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-subtle);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.btn-secondary-modern:hover {
+  border-color: var(--color-primary-vivid);
+  color: var(--color-primary-vivid);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.btn-secondary-modern:active {
+  transform: scale(0.98);
+}
+
+/* Large CTA variant */
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* ---- Enhanced Card System ---- */
+.card-modern {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  transition: all 0.2s ease;
+}
+
+.card-modern:hover {
+  border-color: var(--color-primary-vivid);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+.card-modern-static {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  padding: 2rem;
+}
+
+/* ---- Spacing Utilities ---- */
+.section-spacing {
+  padding-top: 5rem;
+  /* 80px */
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 7rem;
+    /* 112px */
+    padding-bottom: 7rem;
+  }
+}
+
+.section-spacing-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing-sm {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+/* ---- Enhanced Link Styles ---- */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-vivid);
+}
+
+/* Focus states for accessibility */
+.btn-primary-vivid:focus-visible,
+.btn-secondary-modern:focus-visible {
+  outline: 2px solid var(--color-primary-vivid);
+  outline-offset: 2px;
 }

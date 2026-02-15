@@ -264,6 +264,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_cur_web_title: "Persönliche Website & Digitale Identität - elkaza.org",
     proj_cur_web_desc: "Konzeption und Umsetzung meiner dreisprachigen persönlichen Website (elkaza.org) als zentraler Hub für CV, Projekte, Forschung und Lehre. Erstellt mit Next.js (App Router), TypeScript, Tailwind CSS und i18n (DE/EN/AR), Deployments via Vercel und GitHub-basierten CI/CD-Pipelines.",
 
+    // Project Detail Page Labels
+    proj_label_problem: "Herausforderung",
+    proj_label_action: "Vorgehen",
+    proj_label_result: "Ergebnis",
+    proj_label_tech: "Technologien",
+    proj_label_links: "Links",
+    proj_label_related: "Verwandtes Projekt",
+
     // Teaching
     teach_tagline: "Kurse und Wissensvermittlung",
     teach_c1_title: "Enterprise Architecture & Modeling",
@@ -723,6 +731,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_cur_web_title: "Personal Website & Digital Identity - elkaza.org",
     proj_cur_web_desc: "Designing and implementing my trilingual personal website (elkaza.org) as a central hub for CV, projects, research, and training. Built with Next.js (App Router), TypeScript, Tailwind CSS, and i18n (DE/EN/AR), deployments via Vercel and GitHub-based CI/CD pipelines.",
 
+    // Project Detail Page Labels
+    proj_label_problem: "Challenge",
+    proj_label_action: "Approach",
+    proj_label_result: "Outcome",
+    proj_label_tech: "Technologies",
+    proj_label_links: "Links",
+    proj_label_related: "Related Project",
+
     // Teaching
     teach_tagline: "Courses and knowledge sharing",
     teach_c1_title: "Enterprise Architecture & Modeling",
@@ -924,6 +940,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_cur_infra_desc: "\u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u062A\u0633\u062C\u064A\u0644 \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062C\u0627\u0647\u0632\u064A\u0629.",
     proj_cur_notes_title: "\u0645\u0633\u0627\u0639\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A EA + AI",
     proj_cur_notes_desc: "\u0633\u064A\u0631 \u0639\u0645\u0644 LLM \u0635\u063A\u064A\u0631 \u0644\u062A\u0644\u062E\u064A\u0635 \u0627\u0644\u0623\u0628\u062D\u0627\u062B \u0648\u0625\u0646\u062A\u0627\u062C \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0645\u0639\u0645\u0627\u0631\u064A\u0629.",
+
+    // Project Detail Page Labels
+    proj_label_problem: "\u0627\u0644\u062A\u062D\u062F\u064A", // التحدي
+    proj_label_action: "\u0627\u0644\u0646\u0647\u062C", // النهج
+    proj_label_result: "\u0627\u0644\u0646\u062A\u064A\u062C\u0629", // النتيجة
+    proj_label_tech: "\u0627\u0644\u062A\u0642\u0646\u064A\u0627\u062A", // التقنيات
+    proj_label_links: "\u0631\u0648\u0627\u0628\u0637", // روابط
+    proj_label_related: "\u0645\u0634\u0631\u0648\u0639 \u0630\u0648 \u0635\u0644\u0629", // مشروع ذو صلة
 
     // Teaching
     teach_tagline: "\u062F\u0648\u0631\u0627\u062A \u0648\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0639\u0631\u0641\u0629",
