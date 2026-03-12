@@ -6,6 +6,12 @@ import HomeSecurityLabCaseStudy from '@/app/components/HomeSecurityLabCaseStudy'
 
 import FreeRTOSCaseStudy from '@/app/components/FreeRTOSCaseStudy';
 
+export async function generateStaticParams() {
+    return projects.map((project) => ({
+        slug: project.slug,
+    }));
+}
+
 type Props = {
     params: Promise<{ slug: string }>;
 };

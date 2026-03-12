@@ -83,6 +83,78 @@ export const projects: Project[] = [
         tags: ["IoT", "Embedded", "C++"],
     },
     {
+        slug: "ble-edge-gateway",
+        title: {
+            en: "BLE-to-MQTT Edge Gateway — BLE Component",
+            de: "BLE-zu-MQTT Edge Gateway — BLE-Komponente",
+            ar: "بوابة BLE إلى MQTT — مكوّن BLE",
+        },
+        summary: {
+            en: "Containerized BLE gateway on Rock4 SE that receives sensor data from an ESP32 via Bluetooth Low Energy.",
+            de: "Containerisierte BLE-Gateway auf Rock4 SE, die Sensordaten von einem ESP32 über Bluetooth Low Energy empfängt.",
+            ar: "بوابة BLE في حاوية على Rock4 SE تستقبل بيانات المستشعر من ESP32 عبر Bluetooth Low Energy.",
+        },
+        problem: {
+            en: "Bridging BLE sensor data into a standard IoT backend requires reliable D-Bus integration, containerized isolation, and robust connection retry logic — none of which are trivial on embedded Linux.",
+            de: "Die Überbrückung von BLE-Sensordaten in ein Standard-IoT-Backend erfordert zuverlässige D-Bus-Integration, containerisierte Isolation und robuste Verbindungs-Retry-Logik — nichts davon ist trivial auf Embedded Linux.",
+            ar: "ربط بيانات مستشعر BLE بنظام IoT خلفي يتطلب تكامل D-Bus موثوق، عزل بالحاويات، ومنطق إعادة محاولة اتصال — وكل ذلك ليس بسيطاً على Linux المدمج.",
+        },
+        action: {
+            en: "Built a Podman container with BlueZ and D-Bus access to the host Bluetooth stack. Developed a Python gateway that connects to an ESP32 BLE sensor (Nordic UART Service), parses DHT22 temperature/humidity data, and outputs timestamped readings. Automated with build and start scripts.",
+            de: "Erstellung eines Podman-Containers mit BlueZ und D-Bus-Zugriff auf den Host-Bluetooth-Stack. Entwicklung einer Python-Gateway-Anwendung, die sich mit einem ESP32-BLE-Sensor (Nordic UART Service) verbindet, DHT22-Temperatur-/Feuchtedaten parst und zeitgestempelte Messwerte ausgibt. Automatisiert mit Build- und Start-Skripten.",
+            ar: "بناء حاوية Podman مع BlueZ ووصول D-Bus إلى مكدس Bluetooth المضيف. تطوير بوابة Python تتصل بمستشعر ESP32 BLE (Nordic UART Service)، تحلل بيانات درجة الحرارة والرطوبة من DHT22، وتعرض القراءات مع طوابع زمنية.",
+        },
+        result: {
+            en: "Working containerized BLE gateway that reliably connects, parses, and displays ESP32 DHT22 sensor data with UTC timestamps. Foundation for the full MQTT pipeline in Assignment 2.",
+            de: "Funktionierende containerisierte BLE-Gateway, die ESP32-DHT22-Sensordaten zuverlässig empfängt, parst und mit UTC-Zeitstempeln anzeigt. Grundlage für die vollständige MQTT-Pipeline in Aufgabe 2.",
+            ar: "بوابة BLE في حاوية تتصل وتحلل وتعرض بيانات مستشعر ESP32 DHT22 بطوابع UTC بشكل موثوق. أساس لخط أنابيب MQTT الكامل في المهمة 2.",
+        },
+        tech: ["Python", "Podman", "BlueZ", "D-Bus", "BLE"],
+        links: [{ label: "GitHub", url: "https://github.com/Elkaza/iot-edge-gateway-ble-mqtt" }],
+        year: "2026",
+        tags: ["IoT", "Embedded", "Containerization"],
+        relatedProject: {
+            name: "BLE-to-MQTT Gateway with mTLS",
+            slug: "rpi-ble-mqtt-gateway",
+        },
+    },
+    {
+        slug: "rpi-ble-mqtt-gateway",
+        title: {
+            en: "BLE-to-MQTT Gateway with mTLS Security",
+            de: "BLE-zu-MQTT Gateway mit mTLS-Sicherheit",
+            ar: "بوابة BLE إلى MQTT مع أمان mTLS",
+        },
+        summary: {
+            en: "Production-ready BLE-to-MQTT pipeline on Raspberry Pi 5 with mutual TLS and Podman Compose orchestration.",
+            de: "Produktionsreife BLE-zu-MQTT-Pipeline auf Raspberry Pi 5 mit gegenseitigem TLS und Podman-Compose-Orchestrierung.",
+            ar: "خط أنابيب BLE إلى MQTT جاهز للإنتاج على Raspberry Pi 5 مع TLS متبادل وتنسيق Podman Compose.",
+        },
+        problem: {
+            en: "The HW1 BLE gateway lacked MQTT integration, encryption, and multi-service orchestration needed for a production-like IoT data pipeline.",
+            de: "Der BLE-Gateway aus Aufgabe 1 fehlte die MQTT-Integration, Verschlüsselung und Multi-Service-Orchestrierung für eine produktionsnahe IoT-Datenpipeline.",
+            ar: "بوابة BLE من المهمة 1 تفتقر إلى تكامل MQTT والتشفير وتنسيق الخدمات المتعددة اللازمة لخط أنابيب بيانات IoT يشبه الإنتاج.",
+        },
+        action: {
+            en: "Extended the BLE gateway into a three-service architecture orchestrated with Podman Compose: BLE Gateway, Mosquitto MQTT Broker, and MQTT Client. Secured all communication with mutual TLS (TLS 1.3, X.509 certificates). Implemented robust error handling, automatic reconnection, and comprehensive ISO 8601 logging.",
+            de: "Erweiterung der BLE-Gateway zu einer Drei-Service-Architektur mit Podman Compose: BLE Gateway, Mosquitto MQTT Broker und MQTT Client. Absicherung der gesamten Kommunikation mit gegenseitigem TLS (TLS 1.3, X.509-Zertifikate). Implementierung von robustem Fehlerhandling, automatischer Wiederverbindung und umfassendem ISO-8601-Logging.",
+            ar: "توسيع بوابة BLE إلى بنية ثلاث خدمات منسقة بـ Podman Compose: بوابة BLE، وسيط Mosquitto MQTT، وعميل MQTT. تأمين جميع الاتصالات بـ TLS متبادل (TLS 1.3، شهادات X.509). تنفيذ معالجة أخطاء قوية وإعادة اتصال تلقائي وتسجيل شامل بتنسيق ISO 8601.",
+        },
+        result: {
+            en: "End-to-end encrypted IoT data pipeline: ESP32 → BLE → MQTT → Client, with verified mTLS authentication and fully containerized deployment on Raspberry Pi 5.",
+            de: "Ende-zu-Ende verschlüsselte IoT-Datenpipeline: ESP32 → BLE → MQTT → Client, mit verifizierter mTLS-Authentifizierung und vollständig containerisiertem Deployment auf Raspberry Pi 5.",
+            ar: "خط أنابيب بيانات IoT مشفر من طرف إلى طرف: ESP32 → BLE → MQTT → Client، مع مصادقة mTLS موثقة ونشر في حاويات بالكامل على Raspberry Pi 5.",
+        },
+        tech: ["Python", "Podman Compose", "Mosquitto MQTT", "mTLS/TLS 1.3", "BLE"],
+        links: [{ label: "GitHub", url: "https://github.com/Elkaza/rpi-ble-mqtt-edge-gateway" }],
+        year: "2026",
+        tags: ["IoT", "Security", "Containerization"],
+        relatedProject: {
+            name: "BLE Edge Gateway (HW1)",
+            slug: "ble-edge-gateway",
+        },
+    },
+    {
         slug: "elkaza-org",
         title: {
             en: "Personal Website & Digital Identity (Vercel/GitHub)",

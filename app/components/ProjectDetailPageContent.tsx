@@ -135,7 +135,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                         {project.relatedProject.name}
                                     </h3>
                                     <p className="text-sm text-muted mt-1">
-                                        See how this project relates to the bigger picture.
+                                        {t("proj_related_desc")}
                                     </p>
                                 </div>
                                 <ArrowRight className="w-5 h-5 text-muted group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />

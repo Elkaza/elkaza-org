@@ -242,27 +242,12 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_timeline_desc: "Alle Projekte zielen auf Skalierbarkeit, Sicherheit und echte Anwendbarkeit ab. Hier ist ein kurzes Logbuch meiner aktuellen Arbeit.",
     proj_2025_desc: "Praktische Integration von Embedded, Self-Hosted Cloud und digitalen Ökosystemen.",
 
-
-    proj_item_web_title: "Persönliche Website & Digitale Identität – elkaza.org",
-    proj_item_web_desc: "Aufbau einer zweisprachigen Portfolio-Website mit Next.js, Tailwind CSS und GitHub-basiertem CI/CD, die als Hub für Lebenslauf, Projekte und Lehrmaterial dient.",
-    proj_item_freertos_title: "FreeRTOS IoT Sensorknoten (C++)",
-    proj_item_freertos_desc: "Entwicklung eines ESP32-S3 FreeRTOS Sensorknotens mit separaten Tasks für Heartbeat, Tasten, serielle Schnittstelle und einen DHT22-Temperatur-/Feuchtesensor. Verwendung von Queues, Timern und Interrupts für eine saubere Kommunikation zwischen den Tasks sowie Bereitstellung der Sensordaten über serielle Schnittstelle und BLE-Benachrichtigungen. Debugging von Timing- und Protokollproblemen mit integriertem JTAG-Debugger und Logik-Analyzer.",
-    proj_item_infra_title: "Self-Hosted Cloud Infrastruktur",
-    proj_item_infra_desc: "Betreuung von Reverse Proxy, Zertifikaten, Logging und Uptime-Checks für die elkaza.org Infrastruktur.",
     proj_focus_h2: "Aktueller Fokus",
     proj_focus_desc: "Aufbau praxisorientierter IoT-Systeme und stabiler Backend-Infrastruktur, die Embedded-Entwicklung, selbst gehostete Cloud-Dienste und Enterprise-Architecture-Konzepte verbinden.",
     proj_focus_b1: "ESP32-S3 FreeRTOS Sensorknoten mit DHT22-Temperatur-/Feuchtesensor und BLE-Telemetrie",
-    proj_focus_b2: "Self-hosted: reverse proxy, TLS, monitoring, Cloudflare Tunnel",
-    proj_focus_b3: "Leichte KI-Assistenten für Forschungsnotizen und Architekturideen",
-    proj_current_h2: "Aktuelle Projekte",
-    proj_cur_freertos_title: "FreeRTOS Sensorknoten",
-    proj_cur_freertos_desc: "ESP32-S3 liest Umweltdaten und publiziert via MQTT (Backoff + Buffer).",
-    proj_cur_infra_title: "Self-Hosted Infra",
-    proj_cur_infra_desc: "Cloudflare Tunnel, TLS, Logging und Uptime für elkaza.org.",
-    proj_cur_notes_title: "EA + KI Notizen-Assistent",
-    proj_cur_notes_desc: "Kleiner LLM-Workflow für Zusammenfassungen und Architektur-Notizen.",
-    proj_cur_web_title: "Persönliche Website & Digitale Identität - elkaza.org",
-    proj_cur_web_desc: "Konzeption und Umsetzung meiner dreisprachigen persönlichen Website (elkaza.org) als zentraler Hub für CV, Projekte, Forschung und Lehre. Erstellt mit Next.js (App Router), TypeScript, Tailwind CSS und i18n (DE/EN/AR), Deployments via Vercel und GitHub-basierten CI/CD-Pipelines.",
+    proj_focus_b2: "BLE-zu-MQTT Edge Gateway mit mTLS-Sicherheit und Podman-Compose-Orchestrierung",
+    proj_focus_b3: "Self-hosted: reverse proxy, TLS, monitoring, Cloudflare Tunnel",
+    proj_focus_b4: "Leichte KI-Assistenten für Forschungsnotizen und Architekturideen",
 
     // Project Detail Page Labels
     proj_label_problem: "Herausforderung",
@@ -271,6 +256,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_label_tech: "Technologien",
     proj_label_links: "Links",
     proj_label_related: "Verwandtes Projekt",
+    proj_related_desc: "Erfahren Sie, wie dieses Projekt ins Gesamtbild passt.",
 
     // Teaching
     teach_tagline: "Kurse und Wissensvermittlung",
@@ -334,9 +320,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_excel_issuer: "Raiffeisen Bank International",
     cert_excel_provider: "Trainingsanbieter: CyberU",
     cert_excel_date: "Ausgestellt: 13.09.2022",
-    proj_2026_desc: "Infrastruktur-Härtung (in Umsetzung)",
-    proj_2026_b1: "Sicherer Fernzugriff (WireGuard) · Netzwerk-Isolation (VLANs) · Security-Monitoring (Wazuh/Zeek Evaluierung)",
-    proj_2026_b2: "Multi-Site VPS-Hosting (geplant): Hosting weiterer statischer Seiten via Apache VHosts und demselben rsync-basierten Deployment-Workflow.",
+    proj_2026_desc: "IoT-Systementwicklung und Infrastruktur-Härtung",
+    proj_2026_b1: "BLE-zu-MQTT Edge Gateway",
+    proj_2026_b2: "Sicherer Fernzugriff (WireGuard) · Netzwerk-Isolation (VLANs) · Security-Monitoring (Wazuh/Zeek Evaluierung)",
 
     // Contact
     contact_tagline: "Kontakt für Forschung, Beratung und Partnerschaften.",
@@ -416,7 +402,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
     cv_note_full: "Vollständiger Lebenslauf als PDF-Download verfügbar.",
-    cv_last_updated: "Zuletzt aktualisiert: Februar 2026",
+    cv_last_updated: "Zuletzt aktualisiert: März 2026",
   },
   en: {
     // Brand + Nav
@@ -668,9 +654,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_excel_issuer: "Raiffeisen Bank International",
     cert_excel_provider: "Training Provider: CyberU",
     cert_excel_date: "Issued: 13 Sep 2022",
-    proj_2026_desc: "Infrastructure hardening (in progress)",
-    proj_2026_b1: "Secure remote access (WireGuard) · Network isolation (VLANs) · Security monitoring (Wazuh/Zeek evaluation)",
-    proj_2026_b2: "Multi-site VPS hosting (planned): hosting additional static sites via Apache vhosts and the same rsync-based deployment workflow.",
+    proj_2026_desc: "IoT systems development and infrastructure hardening",
+    proj_2026_b1: "BLE-to-MQTT Edge Gateway",
+    proj_2026_b2: "Secure remote access (WireGuard) · Network isolation (VLANs) · Security monitoring (Wazuh/Zeek evaluation)",
     skill_cloud_item1: "Familiar with AWS and Azure platforms",
     skill_cloud_item2: "Running a self-hosted Linux + Docker home lab (elkaza.org stack)",
     skill_cloud_item3: "Setting up simple CI/CD and monitoring for personal services",
@@ -709,27 +695,12 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_timeline_desc: "All projects aim for scalability, security, and real-world applicability. Here is a brief log of my recent work.",
     proj_2025_desc: "Practical integration between embedded systems, self-hosted cloud, and digital ecosystems.",
 
-
-    proj_item_web_title: "Personal Website & Digital Identity – elkaza.org",
-    proj_item_web_desc: "Building a portfolio site with Next.js App Router, optimized for SEO/accessibility. Deployments via Vercel with GitHub Actions for CI/CD.",
-    proj_item_freertos_title: "FreeRTOS IoT Sensor Node (C++)",
-    proj_item_freertos_desc: "Built an ESP32-S3 FreeRTOS node with separate tasks for heartbeat, buttons, serial I/O, and a DHT22 temperature/humidity sensor. Used queues, timers, and interrupts for clean task communication, and exposed sensor data via serial and BLE notifications. Debugged timing and protocol issues with an integrated JTAG debugger and logic analyser.",
-    proj_item_infra_title: "Self-Hosted Cloud Infrastructure",
-    proj_item_infra_desc: "Maintaining reverse proxy, certificates, logging, and uptime checks for the elkaza.org infrastructure.",
     proj_focus_h2: "Current Focus",
     proj_focus_desc: "Building practical IoT and backend infrastructure that combines embedded work, self-hosted cloud, and enterprise architecture concepts.",
     proj_focus_b1: "ESP32-S3 FreeRTOS sensor node with DHT22 temperature/humidity and BLE telemetry",
-    proj_focus_b2: "Self-hosted: reverse proxy, TLS, monitoring",
-    proj_focus_b3: "Lightweight AI assistants for research notes and architecture ideas",
-    proj_current_h2: "Current Projects",
-    proj_cur_freertos_title: "FreeRTOS Sensor Node",
-    proj_cur_freertos_desc: "Building an ESP32-S3 node reading environmental data and publishing via MQTT (backoff + buffer).",
-    proj_cur_infra_title: "Self-Hosted Infra",
-    proj_cur_infra_desc: "Maintaining reverse proxy, TLS, logging, and uptime checks for elkaza.org.",
-    proj_cur_notes_title: "EA + AI Notes Assistant",
-    proj_cur_notes_desc: "Small LLM workflow to summarize research and produce architecture notes.",
-    proj_cur_web_title: "Personal Website & Digital Identity - elkaza.org",
-    proj_cur_web_desc: "Designing and implementing my trilingual personal website (elkaza.org) as a central hub for CV, projects, research, and training. Built with Next.js (App Router), TypeScript, Tailwind CSS, and i18n (DE/EN/AR), deployments via Vercel and GitHub-based CI/CD pipelines.",
+    proj_focus_b2: "BLE-to-MQTT Edge Gateway with mTLS security and Podman Compose orchestration",
+    proj_focus_b3: "Self-hosted: reverse proxy, TLS, monitoring",
+    proj_focus_b4: "Lightweight AI assistants for research notes and architecture ideas",
 
     // Project Detail Page Labels
     proj_label_problem: "Challenge",
@@ -738,6 +709,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_label_tech: "Technologies",
     proj_label_links: "Links",
     proj_label_related: "Related Project",
+    proj_related_desc: "See how this project relates to the bigger picture.",
 
     // Teaching
     teach_tagline: "Courses and knowledge sharing",
@@ -906,7 +878,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Research
     research_tagline: "\u062C\u0633\u0631 \u0628\u064A\u0646 \u0627\u0644\u0628\u062D\u062B \u0627\u0644\u0639\u0644\u0645\u064A \u0648\u0627\u0644\u062A\u0637\u0628\u064A\u0642",
     thesis_h2: "\u0623\u0637\u0631\u0648\u062D\u0629 \u0627\u0644\u0645\u0627\u062C\u0633\u062A\u064A\u0631 - TU Wien",
-    thesis_desc: "\u062A\u062D\u0648\u0644 \u0631\u0642\u0645\u064A \u0645\u0646\u0647\u062C\u064A \u0645\u0639 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u062A\u063A\u064A\u064A\u0631؛ \u064A\u0631\u0628\u0637 EAM \u0648 ADKAR/Kotter \u0648 GEA \u0641\u064A \u0646\u0645\u0648\u0630\u062C \u062A\u0648\u0627\u0641\u0642.",
+    thesis_desc: "\u062A\u062D\u0648\u0644 \u0631\u0642\u0645\u064A \u0645\u0646\u0647\u062C\u064A \u0645\u0639 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u062A\u063A\u064A\u064A\u0631\u061B \u064A\u0631\u0628\u0637 EAM \u0648 ADKAR/Kotter \u0648 GEA \u0641\u064A \u0646\u0645\u0648\u0630\u062C \u062A\u0648\u0627\u0641\u0642.",
     download_thesis: "\u062A\u062D\u0645\u064A\u0644 \u0627\u0644\u0623\u0637\u0631\u0648\u062D\u0629 (PDF)",
     card_ea_title: "\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A",
     card_ea_desc: "ArchiMate \u0648 TOGAF \u0648 GEA \u0644\u0644\u0631\u0634\u0627\u0642\u0629 \u0648\u0627\u0644\u062A\u0648\u0627\u0641\u0642.",
@@ -919,27 +891,17 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Projects
     projects_tagline: "\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062A\u064A \u0623\u0639\u0645\u0644 \u0639\u0644\u064A\u0647\u0627 \u062D\u0627\u0644\u064A\u0627\u064B",
     proj_timeline_h2: "\u0627\u0644\u062E\u0637 \u0627\u0644\u0632\u0645\u0646\u064A \u0644\u0644\u0645\u0634\u0627\u0631\u064A\u0639",
-    proj_timeline_desc: "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062C\u0627\u0631\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u064A\u0629 \u0641\u064A \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A.",
+    proj_timeline_desc: "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0629 \u0627\u0644\u062C\u0627\u0631\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u064A\u0629 \u0641\u064A \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A.",
     proj_2025_desc: "\u062A\u0643\u0627\u0645\u0644 \u0639\u0645\u0644\u064A \u0628\u064A\u0646 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0627\u0644\u0645\u0636\u0645\u0646\u0629 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629 \u0648\u0627\u0644\u0646\u0638\u0645 \u0627\u0644\u0631\u0642\u0645\u064A\u0629.",
-    proj_2026_desc: "\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644: \u0623\u0646\u0638\u0645\u0629 \u0645\u062F\u0645\u062C\u0629 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0648\u0623\u0637\u0631 \u0623\u0645\u0627\u0646 \u0648\u0623\u062A\u0645\u062A\u0629 EA.",
-    proj_item_web_title: "\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0634\u062E\u0635\u064A \u0648\u0627\u0644\u0647\u0648\u064A\u0629 \u0627\u0644\u0631\u0642\u0645\u064A\u0629 – elkaza.org",
-    proj_item_web_desc: "\u0628\u0646\u0627\u0621 \u0645\u0648\u0642\u0639 \u0645\u062D\u0641\u0638\u0629 \u062B\u0646\u0627\u0626\u064A \u0627\u0644\u0644\u063A\u0629 \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 Next.js \u0648 Tailwind CSS \u0648 CI/CD \u0627\u0644\u0642\u0627\u0626\u0645 \u0639\u0644\u0649 GitHub\u060C \u064A\u0633\u062A\u062E\u062F\u0645 \u0643\u0645\u0631\u0643\u0632 \u0644\u0644\u0633\u064A\u0631\u0629 \u0627\u0644\u0630\u0627\u062A\u064A\u0629 \u0648\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0648\u0627\u0644\u0645\u0648\u0627\u062F \u0627\u0644\u062A\u0639\u0644\u064A\u0645\u064A\u0629.",
-    proj_item_freertos_title: "\u0639\u0642\u062F\u0629 \u0627\u0633\u062A\u0634\u0639\u0627\u0631 FreeRTOS (C++)",
-    proj_item_freertos_desc: "ESP32-S3 \u062A\u062C\u0645\u0639 \u0628\u064A\u0627\u0646\u0627\u062A \u0628\u064A\u0626\u064A\u0629 \u0648\u062A\u0646\u0634\u0631\u0647\u0627 \u0639\u0628\u0631 MQTT \u0645\u0639 \u0627\u0644\u062A\u062E\u0632\u064A\u0646 \u0627\u0644\u0645\u0624\u0642\u062A.",
-    proj_item_infra_title: "\u0628\u0646\u064A\u0629 \u0633\u062D\u0627\u0628\u064A\u0629 \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629",
-    proj_item_infra_desc: "\u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C \u0634\u0647\u0627\u062F\u0627\u062A\u060C \u062A\u0633\u062C\u064A\u0644\u060C \u0648\u0645\u0631\u0627\u0642\u0628\u0629 \u0627\u0644\u062C\u0627\u0647\u0632\u064A\u0629.",
+    proj_2026_desc: "\u062A\u0637\u0648\u064A\u0631 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u062A\u0642\u0648\u064A\u0629 \u0627\u0644\u0628\u0646\u064A\u0629 \u0627\u0644\u062A\u062D\u062A\u064A\u0629",
+    proj_2026_b1: "\u0628\u0648\u0627\u0628\u0629 BLE \u0625\u0644\u0649 MQTT",
+    proj_2026_b2: "\u0627\u0644\u0648\u0635\u0648\u0644 \u0639\u0646 \u0628\u0639\u062F \u0622\u0645\u0646 (WireGuard) · \u0639\u0632\u0644 \u0627\u0644\u0634\u0628\u0643\u0629 (VLANs) · \u0645\u0631\u0627\u0642\u0628\u0629 \u0627\u0644\u0623\u0645\u0627\u0646",
     proj_focus_h2: "\u0627\u0644\u062A\u0631\u0643\u064A\u0632 \u0627\u0644\u062D\u0627\u0644\u064A",
-    proj_focus_desc: "\u0628\u0646\u0627\u0621 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u0628\u0646\u064A\u0629 \u062E\u0644\u0641\u064A\u0629 \u0645\u0648\u062B\u0648\u0642\u0629؛ \u0648\u0625\u0633\u062A\u0634\u0627\u0631\u0627\u062A EA \u0648\u0623\u0633\u0627\u0633\u0627\u062A \u0633\u062D\u0627\u0628\u0629 \u0622\u0645\u0646\u0629.",
+    proj_focus_desc: "\u0628\u0646\u0627\u0621 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u0628\u0646\u064A\u0629 \u062E\u0644\u0641\u064A\u0629 \u0645\u0648\u062B\u0648\u0642\u0629\u061B \u0648\u0625\u0633\u062A\u0634\u0627\u0631\u0627\u062A EA \u0648\u0623\u0633\u0627\u0633\u0627\u062A \u0633\u062D\u0627\u0628\u0629 \u0622\u0645\u0646\u0629.",
     proj_focus_b1: "\u0642\u064A\u0627\u0633 \u062A\u0644\u064A\u0645\u062A\u0631\u064A \u0645\u0648\u062B\u0648\u0642 \u0644\u0640 ESP32/FreeRTOS",
-    proj_focus_b2: "\u062E\u062F\u0645\u0627\u062A \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629: \u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u0645\u0631\u0627\u0642\u0628\u0629",
-    proj_focus_b3: "\u0645\u0633\u0627\u0639\u062F\u0627\u062A \u0630\u0643\u064A\u0629 \u062E\u0641\u064A\u0641\u0629 \u0644\u0644\u0628\u062D\u062B \u0648\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
-    proj_current_h2: "\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062D\u0627\u0644\u064A\u0629",
-    proj_cur_freertos_title: "\u0639\u0642\u062F\u0629 FreeRTOS",
-    proj_cur_freertos_desc: "ESP32-S3 \u062A\u0642\u0631\u0623 \u0628\u064A\u0627\u0646\u0627\u062A \u0628\u064A\u0626\u064A\u0629 \u0648\u062A\u0646\u0634\u0631\u0647\u0627 \u0639\u0628\u0631 MQTT (\u0645\u0639 \u0627\u0644\u062A\u062E\u0632\u064A\u0646 \u0627\u0644\u0645\u0624\u0642\u062A).",
-    proj_cur_infra_title: "\u0628\u0646\u064A\u0629 \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629",
-    proj_cur_infra_desc: "\u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u062A\u0633\u062C\u064A\u0644 \u0648\u0645\u062A\u0627\u0628\u0639\u0629 \u0627\u0644\u062C\u0627\u0647\u0632\u064A\u0629.",
-    proj_cur_notes_title: "\u0645\u0633\u0627\u0639\u062F \u0645\u0644\u0627\u062D\u0638\u0627\u062A EA + AI",
-    proj_cur_notes_desc: "\u0633\u064A\u0631 \u0639\u0645\u0644 LLM \u0635\u063A\u064A\u0631 \u0644\u062A\u0644\u062E\u064A\u0635 \u0627\u0644\u0623\u0628\u062D\u0627\u062B \u0648\u0625\u0646\u062A\u0627\u062C \u0645\u0644\u0627\u062D\u0638\u0627\u062A \u0645\u0639\u0645\u0627\u0631\u064A\u0629.",
+    proj_focus_b2: "\u0628\u0648\u0627\u0628\u0629 BLE \u0625\u0644\u0649 MQTT \u0645\u0639 \u0623\u0645\u0627\u0646 mTLS \u0648\u062A\u0646\u0633\u064A\u0642 Podman Compose",
+    proj_focus_b3: "\u062E\u062F\u0645\u0627\u062A \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629: \u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u0645\u0631\u0627\u0642\u0628\u0629",
+    proj_focus_b4: "\u0645\u0633\u0627\u0639\u062F\u0627\u062A \u0630\u0643\u064A\u0629 \u062E\u0641\u064A\u0641\u0629 \u0644\u0644\u0628\u062D\u062B \u0648\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
 
     // Project Detail Page Labels
     proj_label_problem: "\u0627\u0644\u062A\u062D\u062F\u064A", // التحدي
@@ -948,6 +910,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     proj_label_tech: "\u0627\u0644\u062A\u0642\u0646\u064A\u0627\u062A", // التقنيات
     proj_label_links: "\u0631\u0648\u0627\u0628\u0637", // روابط
     proj_label_related: "\u0645\u0634\u0631\u0648\u0639 \u0630\u0648 \u0635\u0644\u0629", // مشروع ذو صلة
+    proj_related_desc: "\u0627\u0643\u062A\u0634\u0641 \u0643\u064A\u0641 \u064A\u0631\u062A\u0628\u0637 \u0647\u0630\u0627 \u0627\u0644\u0645\u0634\u0631\u0648\u0639 \u0628\u0627\u0644\u0635\u0648\u0631\u0629 \u0627\u0644\u0623\u0643\u0628\u0631.", // اكتشف كيف يرتبط هذا المشروع بالصورة الأكبر
 
     // Teaching
     teach_tagline: "\u062F\u0648\u0631\u0627\u062A \u0648\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0639\u0631\u0641\u0629",

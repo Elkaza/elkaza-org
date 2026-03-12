@@ -7,6 +7,7 @@ import { projects } from "../lib/projects";
 export default function ProjectsPageContent() {
     const { t, locale } = useLocale();
 
+    const projects2026 = projects.filter(p => p.year === "2026");
     const projects2025 = projects.filter(p => p.year === "2025");
     const projects2024 = projects.filter(p => p.year === "2024");
 
@@ -32,6 +33,7 @@ export default function ProjectsPageContent() {
                             <li>{t("proj_focus_b1")}</li>
                             <li>{t("proj_focus_b2")}</li>
                             <li>{t("proj_focus_b3")}</li>
+                            <li>{t("proj_focus_b4")}</li>
                         </ul>
                     </div>
 
@@ -50,6 +52,30 @@ export default function ProjectsPageContent() {
                                     <li>{t("proj_2026_b1")}</li>
                                     {t("proj_2026_b2") && <li>{t("proj_2026_b2")}</li>}
                                 </ul>
+
+                                {projects2026.length > 0 && (
+                                    <div className="space-y-4 mt-4">
+                                        {projects2026.map((project) => (
+                                            <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <div className="flex items-center">
+                                                        {project.tags.includes("IoT") ? <Cpu className="w-5 h-5 text-blue-500 mr-2" /> : <Server className="w-5 h-5 text-blue-500 mr-2" />}
+                                                        <h4 className="font-semibold">{project.title[locale]}</h4>
+                                                    </div>
+                                                    <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                                                        Details <ArrowRight className="w-3 h-3 ml-1" />
+                                                    </Link>
+                                                </div>
+                                                <p className="text-sm text-main mb-3">{project.summary[locale]}</p>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {project.tech.slice(0, 3).map(tech => (
+                                                        <span key={tech} className="badge badge-neutral">{tech}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                             {/* 2025 */}
