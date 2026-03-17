@@ -155,7 +155,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_view_project: "Zum Projekt: Home Security Lab",
 
     // Snapshot Captions
-    term_ufw_caption: "UFW Status zeigt Deny-by-Default Policy.",
+    term_ufw_caption: "UFW Status zeigt Deny-by-default Policy.",
     term_pihole_caption: "Pi-hole Status: DNS-Service und Blocking aktiv.",
     term_wg_caption: "WireGuard Client Konfiguration (Keys zensiert).",
     // Home - Contact
@@ -279,60 +279,20 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_cta_desc: "Gemeinsame Projekte, Workshops und Innovations-Labs in Transformation, EA und Sicherheit.",
     teach_cta_btn: "Kontakt aufnehmen",
 
-    // Certifications
-    cert_nav_back: "← Zurück zu Über mich",
-    cert_title: "Zertifikate",
-    cert_view_all: "Alle ansehen →",
-    cert_list_title: "Alle Zertifizierungen",
-    cert_list_subtitle: "Ausgewählte Zertifizierungen und Weiterbildungen (Nachweis auf Anfrage verfügbar).",
-    cert_avail_req: "Nachweis auf Anfrage verfügbar",
-    // Filters
-    cert_filter_all: "Alle",
-    cert_filter_pm: "Projektmanagement",
-    cert_filter_ba: "Business Analysis",
-    cert_filter_excel: "Excel/VBA",
-
-    // Types
-    cert_type_prof: "Zertifizierung",
-    cert_type_uni: "Universitätskurs",
-    cert_type_training: "Weiterbildung",
-
-    // Data keys
-    // Item 1: IPMA (Top)
-    cert_ipma_title: "IPMA Level D (cPMA)",
-    cert_ipma_issuer: "pma, Projekt Management Austria (IPMA)",
-    cert_ipma_date: "seit Okt 2025",
-
-    // Item 2: Uni Graz
-    cert_graz_title: "Modern Management, Project Management",
-    cert_graz_issuer: "UNI for LIFE (University of Graz)",
-    cert_graz_date_completed: "abgeschlossen 17.10.2025",
-    cert_graz_date_issued: "ausgestellt 03.11.2025",
-    cert_graz_grade: "Mit Auszeichnung bestanden",
-
-    // Item 3: LinkedIn
-    cert_li_title: "Career Essentials in Business Analysis",
-    cert_li_issuer: "LinkedIn Learning (Microsoft + LinkedIn)",
-    cert_li_date: "abgeschlossen 30.03.2023",
-
-    // Item 4: Excel
-    cert_excel_title: "Excel 365 VBA (Expert)",
-    cert_excel_issuer: "Raiffeisen Bank International",
-    cert_excel_provider: "Trainingsanbieter: CyberU",
-    cert_excel_date: "Ausgestellt: 13.09.2022",
-    proj_2026_desc: "IoT-Systementwicklung und Infrastruktur-Härtung",
-    proj_2026_b1: "BLE-zu-MQTT Edge Gateway",
-    proj_2026_b2: "Sicherer Fernzugriff (WireGuard) · Netzwerk-Isolation (VLANs) · Security-Monitoring (Wazuh/Zeek Evaluierung)",
-
     // Contact
-    contact_tagline: "Kontakt für Forschung, Beratung und Partnerschaften.",
-    contact_closing: "Melden Sie sich gern, wenn Sie Forschungsprojekte, Entwicklungsprojekte oder Kooperationen besprechen möchten.",
-    contact_academic_h2: "Akademische Kontakte & Forschung",
-    contact_academic_desc: "Kontakt für Kooperationen, Forschung und allgemeine Anfragen zu Digitaler Transformation, Enterprise Architektur und IoT.",
-    contact_consult_h2: "Consulting & Digitale Services",
-    contact_consult_desc: "Beratung zu EA, IT-Strategie und sicherer Transformation.",
-    about_hobbies: "Außerhalb der Arbeit: Radfahren rund um Wien • Lesen • Experimente mit meinem Home-Lab.",
-    contact_social_h3: "Vernetze Dich",
+    contact_tagline: "Get in touch for research, consulting, and partnerships",
+    contact_closing: "Feel free to reach out if you’d like to discuss research ideas, projects, or collaborations.",
+    contact_academic_h2: "Academic & Research",
+    contact_academic_desc: "Contact for collaborations, research, and general enquiries about digital transformation, enterprise architecture, and IoT.",
+    contact_consult_h2: "Consulting & Digital Services",
+    contact_consult_desc: "EA, IT strategy, and secure digital transformation consulting.",
+    about_exp_summary: "Short overview of my background and focus:",
+    about_exp_highlight1: "Hands-on experience in System Engineering and Network Operations (ISP & Enterprise).",
+    about_exp_highlight2: "Background in Process and Architecture Management (EAM, BPMN).",
+    about_exp_highlight3: "Focus on Security-by-Design and Automation.",
+    about_view_cv: "View full resume",
+    about_hobbies: "Outside work: cycling around Vienna • reading • experimenting with my home lab.",
+    contact_social_h3: "Connect on professional networks",
 
     // Contact Form
     contact_form_name: "Name",
@@ -515,7 +475,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     term_wg_caption: "WireGuard client configuration (keys redacted).",
     what_do_title: "What I do",
     what_do_subtitle: "I work at the intersection of technology, business, and people, turning ideas into digital solutions.",
-    what_do_item1_title: "Digital Transformation & Enterprise Architecture",
+    what_do_item1_title: "Digitale Transformation & Enterprise Architecture",
     what_do_item1_desc: "Translating business strategy into actionable digital roadmaps using ArchiMate, BPMN, and modern EA practices.",
     what_do_item2_title: "IT Service Management & Automation",
     what_do_item2_desc: "Keeping business-facing IT stable: incident/change/release/problem, clear interfaces and documentation. Light automation (bash/PowerShell), monitoring & backup (PRTG, Veeam).",
@@ -542,7 +502,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp4_title: "Network Engineer - University of Benghazi (2013-2018)",
     exp4_desc: "Managed and optimized network infrastructure (Cisco, MikroTik, Windows Server) to ensure high system reliability and uptime. Supported the successful ERP system implementation for the Ministry of Education, boosting operational efficiency.",
 
-    // About - Selected Experience (detailed, reverse chronological)
+    // Home - Selected Experience (detailed, reverse chronological)
     exp1_title_full: "Application Engineer - HiCo-ICS (2023)",
     exp1_desc_full: "Developed and debugged features for an XML/XSLT-based PDF publishing suite. Authored user stories to define and optimize software functionality, directly enhancing customer satisfaction through improved documentation.",
     exp2_title_full: "Junior IT Consultant - Raiffeisen Bank International (2022)",
@@ -690,6 +650,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     card_sec_desc: "ISO 27001, NIST, OWASP integrated into EA governance.",
     research_cta: "Contact for research collaboration",
 
+    // Projects
     projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
     proj_timeline_h2: "Project Timeline",
     proj_timeline_desc: "All projects aim for scalability, security, and real-world applicability. Here is a brief log of my recent work.",
@@ -716,7 +677,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_c1_title: "Enterprise Architecture & Modeling",
     teach_c1_desc: "Modern modeling (ArchiMate, UML, BPMN) with business-IT alignment using ADOIT and Sparx Systems.",
     teach_c1_link: "Learn more about ADOIT",
-    teach_c2_title: "Digital Transformation & Change Management",
+    teach_c2_title: "Digitale Transformation & Change Management",
     teach_c2_desc: "Frameworks like ADKAR and Kotter with practical examples.",
     teach_c2_link: "View related research",
     teach_c3_title: "Project Management (IPMA Level D)",
@@ -725,7 +686,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_c4_title: "Innovation & Emerging Technologies",
     teach_c4_desc: "Integrating AI (LLMs) and IoT into enterprise systems.",
     teach_c4_link: "Learn more about Gemini AI",
-    teach_c5_title: "Information Security Fundamentals",
+    teach_c5_title: "Grundlagen Informationssicherheit",
     teach_c5_desc: "Standards, network defense, and risk management (ISO 27001, OWASP).",
     teach_c5_link: "Learn about ISO 27001",
     teach_cta_h2: "Collaborate on Education & Research",
@@ -762,7 +723,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_form_error: "An error occurred. Please try again later.",
 
     // Contact Page New Keys
-    contact_title: "Contact",
+    contact_title: "Kontakt",
     contact_desc: "Let's build something secure and scalable.",
     contact_email_h3: "Get in touch",
     contact_personal_inquiries: "Personal / Project Inquiries",
@@ -773,20 +734,20 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_download_cv: "Download CV",
 
     // Legal Pages - Impressum
-    legal_impressum_title: "Imprint",
-    legal_responsible_title: "Responsible",
-    legal_contact_title: "Contact",
-    legal_purpose_title: "Purpose of the Website",
-    legal_purpose_desc: "This private, non-commercial website serves to present my professional portfolio and background.",
-    legal_disclaimer_title: "Disclaimer",
-    legal_disclaimer_desc: "Despite careful review, I assume no liability for the content of external links. The operators of linked pages are solely responsible for their content.",
+    legal_impressum_title: "Impressum",
+    legal_responsible_title: "Verantwortlich",
+    legal_contact_title: "Kontakt",
+    legal_purpose_title: "Zweck der Website",
+    legal_purpose_desc: "Diese private, nicht-kommerzielle Website dient der Präsentation meines professionellen Portfolios und Hintergrunds.",
+    legal_disclaimer_title: "Haftungsausschluss",
+    legal_disclaimer_desc: "Trotz sorgfältiger Prüfung übernehme ich keine Haftung für die Inhalte externer Links. Für den Inhalt verlinkter Seiten sind ausschließlich deren Betreiber verantwortlich.",
 
     // Legal Pages - Privacy Policy
-    legal_privacy_title: "Privacy Policy",
-    privacy_overview_title: "Overview",
-    privacy_overview_desc: "This website only collects data that you voluntarily submit through the contact form. No tracking or analytics services are used.",
-    privacy_contact_form_title: "Contact Form",
-    privacy_contact_form_desc: "When you use the contact form, the following data is transmitted:",
+    legal_privacy_title: "Datenschutzerklärung",
+    privacy_overview_title: "Überblick",
+    privacy_overview_desc: "Diese Website erfasst nur die Daten, die Sie freiwillig über das Kontaktformular übermitteln. Es werden keine Tracking- oder Analysedienste verwendet.",
+    privacy_contact_form_title: "Kontaktformular",
+    privacy_contact_form_desc: "Wenn Sie das Kontaktformular nutzen, werden folgende Daten übermittelt:",
     privacy_data_name: "Name",
     privacy_data_email: "Email address",
     privacy_data_message: "Message content",
@@ -796,15 +757,15 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     privacy_retention_desc: "Your data is stored only as long as necessary to respond to your inquiry and is then deleted.",
     privacy_rights_title: "Your Rights",
     privacy_rights_desc: "You have the right to access, rectify, and delete your personal data in accordance with GDPR.",
-    privacy_contact_title: "Contact for Privacy Inquiries",
+    privacy_contact_title: "Kontakt für Datenschutzfragen",
     privacy_contact_desc: "For privacy-related questions, contact me at:",
 
     // Footer
-    footer_impressum: "Imprint",
-    footer_datenschutz: "Privacy",
+    footer_impressum: "Impressum",
+    footer_datenschutz: "Datenschutz",
 
     // CV Page
-    nav_cv: "CV",
+    nav_cv: "Lebenslauf",
     cv_title: "Resume",
     cv_download_de: "PDF herunterladen (DE)",
     cv_download_en: "Download PDF (EN)",
@@ -839,16 +800,16 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     hero_title_1: "\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A.",
     hero_title_2: "\u062E\u0628\u0631\u0629 \u062A\u0642\u0646\u064A\u0629 \u062A\u0634\u0643\u0644 \u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644.",
     hero_lead: "\u0627\u0633\u062A\u0643\u0634\u0627\u0641 \u062A\u0642\u0627\u0637\u0639 \u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A.",
-    hero_tagline: "\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0645\u062F\u0641\u0648\u0639 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A",
-    hero_mission: "\u0631\u0628\u0637 \u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A - \u0645\u0633\u0627\u0639\u062F\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u062A\u062D\u0648\u0644 \u0628\u062B\u0642\u0629.",
+    hero_tagline: "\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A",
+    hero_mission: "\u0631\u0628\u0637 \u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0645\u062F\u0641\u0648\u0639 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A - \u0645\u0633\u0627\u0639\u062F\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0639\u0644\u0649 \u0627\u0644\u062A\u062D\u0648\u0644 \u0628\u062B\u0642\u0629.",
     cta_title: "\u062C\u0627\u0647\u0632 \u0644\u0644\u062A\u062D\u0648\u0644\u061F",
-    cta_description: "\u062A\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627 \u0644\u0645\u0646\u0627\u0642\u0634\u0629 \u0631\u062D\u0644\u0629 \u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0627\u0644\u062E\u0627\u0635\u0629 \u0628\u0643.",
+    cta_description: "\u062A\u0648\u0627\u0635\u0644 \u0645\u0639\u0646\u0627 \u0644\u0645\u0646\u0627\u0642\u0634\u0629 \u0631\u062D\u0644\u0629 \u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639.",
     site_description: "\u0631\u0628\u0637 \u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0645\u062F\u0641\u0648\u0639 \u0628\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A.",
     nav_resources: "\u0627\u0644\u0645\u0648\u0627\u0631\u062F",
     btn_learn: "\u0627\u0639\u0631\u0641 \u0627\u0644\u0645\u0632\u064A\u062F",
     btn_contact: "\u062A\u0648\u0627\u0635\u0644 \u0645\u0639\u064A",
     card_research_title: "\u0627\u0644\u0623\u0628\u062D\u0627\u062B",
-    card_research_desc: "\u0623\u0639\u0645\u0627\u0644 \u0623\u0643\u0627\u062F\u064A\u0645\u064A\u0629 \u062D\u0648\u0644 \u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A.",
+    card_research_desc: "\u0623\u0639\u0645\u0627\u0644 \u0623\u0643\u0627\u062F\u064A\u0645\u064A\u0629 \u062D\u0648\u0644 \u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639.",
     card_projects_title: "\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639",
     card_projects_desc: "\u0623\u0646\u0638\u0645\u0629 \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0628\u0646\u064A\u0629 \u0633\u062D\u0627\u0628\u064A\u0629 \u0648\u062A\u062C\u0627\u0631\u0628 \u062A\u0642\u0646\u064A\u0629.",
     card_teaching_title: "\u0627\u0644\u062A\u0639\u0644\u064A\u0645",
@@ -856,7 +817,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "\u0643\u062A\u0627\u0628\u0629 \u0645\u062B\u0644 \u0647\u0630\u0647 \u0627\u0644\u0635\u0641\u062D\u0629 \u0644\u064A\u0633\u062A \u0628\u0633\u064A\u0637\u0629",
-    about_lead: "\u0645\u062E\u062A\u0635 \u0646\u0638\u0645 \u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0648\u0645\u0647\u062A\u0645 \u0628\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0627\u0644\u0631\u0628\u0637 \u0628\u064A\u0646 \u0627\u0644\u062A\u0642\u0646\u064A\u0629 \u0648\u0627\u0644\u0625\u062F\u0627\u0631\u0629 \u0648\u0627\u0644\u0627\u0633\u062A\u062F\u0627\u0645\u0629.",
+    about_lead: "\u0645\u062E\u062A\u0635 \u0646\u0638\u0645 \u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0648\u0645\u0647\u062A\u0645 \u0628\u0627\u0644\u062A\u062D\u0648\u0644 \u0627\u0644\u0631\u0642\u0645\u064A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639.",
     about_profile_h2: "\u0627\u0644\u0645\u0644\u0641 \u0627\u0644\u0645\u0647\u0646\u064A",
     about_p1: "\u062E\u0628\u0631\u0629 \u0641\u064A \u0627\u0633\u062A\u0634\u0627\u0631\u0627\u062A \u0627\u0644\u062A\u0642\u0646\u064A\u0629 \u0648\u062A\u0637\u0648\u064A\u0631 \u0627\u0644\u0628\u0631\u0645\u062C\u064A\u0627\u062A \u0648\u0647\u0646\u062F\u0633\u0629 \u0627\u0644\u0645\u0624\u0633\u0633\u0627\u062A \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639.",
     about_p2: "\u0645\u0645\u0627\u0631\u0633\u0629 \u0644\u0640 ADOIT \u0648 ArchiMate \u0648 Sparx Systems \u0648\u0631\u0628\u0637 \u0628\u064A\u0646 \u0627\u0644\u062A\u0642\u0646\u064A\u0629 \u0648\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u062A\u063A\u064A\u064A\u0631.",
@@ -891,16 +852,19 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Projects
     projects_tagline: "\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062A\u064A \u0623\u0639\u0645\u0644 \u0639\u0644\u064A\u0647\u0627 \u062D\u0627\u0644\u064A\u0627\u064B",
     proj_timeline_h2: "\u0627\u0644\u062E\u0637 \u0627\u0644\u0632\u0645\u0646\u064A \u0644\u0644\u0645\u0634\u0627\u0631\u064A\u0639",
-    proj_timeline_desc: "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0629 \u0627\u0644\u062C\u0627\u0631\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u064A\u0629 \u0641\u064A \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A.",
+    proj_timeline_desc: "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0629 \u0627\u0644\u062C\u0627\u0631\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u064A\u0629 \u0641\u064A \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A\u0629.",
     proj_2025_desc: "\u062A\u0643\u0627\u0645\u0644 \u0639\u0645\u0644\u064A \u0628\u064A\u0646 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0627\u0644\u0645\u0636\u0645\u0646\u0629 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629 \u0648\u0627\u0644\u0646\u0638\u0645 \u0627\u0644\u0631\u0642\u0645\u064A\u0629.",
     proj_2026_desc: "\u062A\u0637\u0648\u064A\u0631 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u062A\u0642\u0648\u064A\u0629 \u0627\u0644\u0628\u0646\u064A\u0629 \u0627\u0644\u062A\u062D\u062A\u064A\u0629",
     proj_2026_b1: "\u0628\u0648\u0627\u0628\u0629 BLE \u0625\u0644\u0649 MQTT",
     proj_2026_b2: "\u0627\u0644\u0648\u0635\u0648\u0644 \u0639\u0646 \u0628\u0639\u062F \u0622\u0645\u0646 (WireGuard) · \u0639\u0632\u0644 \u0627\u0644\u0634\u0628\u0643\u0629 (VLANs) · \u0645\u0631\u0627\u0642\u0628\u0629 \u0627\u0644\u0623\u0645\u0627\u0646",
+    proj_2026_b3: "IoT-Sensordatenpipeline (BLE → MQTT → Node-RED → InfluxDB)",
+    proj_2026_b3_desc: "Eine IoT-Datenpipeline, die Umweltsensordaten über BLE sammelt und sie durch MQTT und Node-RED verarbeitet. Die Daten werden in InfluxDB gespeichert und visualisiert.",
+    proj_2026_b3_tech: "Raspberry Pi 5, ESP32, BLE, MQTT, Node-RED, InfluxDB, Linux",
     proj_focus_h2: "\u0627\u0644\u062A\u0631\u0643\u064A\u0632 \u0627\u0644\u062D\u0627\u0644\u064A",
     proj_focus_desc: "\u0628\u0646\u0627\u0621 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u0628\u0646\u064A\u0629 \u062E\u0644\u0641\u064A\u0629 \u0645\u0648\u062B\u0648\u0642\u0629\u061B \u0648\u0625\u0633\u062A\u0634\u0627\u0631\u0627\u062A EA \u0648\u0623\u0633\u0627\u0633\u0627\u062A \u0633\u062D\u0627\u0628\u0629 \u0622\u0645\u0646\u0629.",
     proj_focus_b1: "\u0642\u064A\u0627\u0633 \u062A\u0644\u064A\u0645\u062A\u0631\u064A \u0645\u0648\u062B\u0648\u0642 \u0644\u0640 ESP32/FreeRTOS",
-    proj_focus_b2: "\u0628\u0648\u0627\u0628\u0629 BLE \u0625\u0644\u0649 MQTT \u0645\u0639 \u0623\u0645\u0627\u0646 mTLS \u0648\u062A\u0646\u0633\u064A\u0642 Podman Compose",
-    proj_focus_b3: "\u062E\u062F\u0645\u0627\u062A \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629: \u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u0645\u0631\u0627\u0642\u0628\u0629",
+    proj_focus_b2: "\u0628\u0648\u0627\u0628\u0629 BLE \u0625\u0644\u0649 MQTT \u0645\u0639 \u0623\u0645\u062B\u0644\u0629 \u0639\u0645\u0644\u064A\u0629.",
+    proj_focus_b3: "\u062E\u062F\u0645\u0627\u062A \u0630\u0643\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629: \u0639\u0643\u0633 \u0648\u0643\u064A\u0644\u060C TLS\u060C \u0645\u0631\u0627\u0642\u0628\u0629",
     proj_focus_b4: "\u0645\u0633\u0627\u0639\u062F\u0627\u062A \u0630\u0643\u064A\u0629 \u062E\u0641\u064A\u0641\u0629 \u0644\u0644\u0628\u062D\u062B \u0648\u0627\u0644\u0645\u0644\u0627\u062D\u0638\u0627\u062A",
 
     // Project Detail Page Labels

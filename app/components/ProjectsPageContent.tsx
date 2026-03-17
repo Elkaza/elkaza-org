@@ -7,7 +7,7 @@ import { projects } from "../lib/projects";
 export default function ProjectsPageContent() {
     const { t, locale } = useLocale();
 
-    const projects2026 = projects.filter(p => p.year === "2026");
+    const projects2026 = projects.filter(p => p.year === "2026"); // Updated to include the new IoT Sensor Data Pipeline project
     const projects2025 = projects.filter(p => p.year === "2025");
     const projects2024 = projects.filter(p => p.year === "2024");
 
@@ -50,7 +50,8 @@ export default function ProjectsPageContent() {
                                 <p className="text-main mb-2">{t("proj_2026_desc")}</p>
                                 <ul className="list-disc ml-6 space-y-1 text-main text-sm">
                                     <li>{t("proj_2026_b1")}</li>
-                                    {t("proj_2026_b2") && <li>{t("proj_2026_b2")}</li>}
+                                    <li>{t("proj_2026_b2")}</li>
+                                    <li>{t("proj_2026_b3")}</li>
                                 </ul>
 
                                 {projects2026.length > 0 && (

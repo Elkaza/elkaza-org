@@ -258,4 +258,38 @@ export const projects: Project[] = [
         year: "2024",
         tags: ["DevOps", "Infrastructure", "Linux"],
     },
+    {
+        slug: "iot-sensor-data-pipeline",
+        title: {
+            en: "IoT Sensor Data Pipeline (BLE → MQTT → Node-RED → InfluxDB)",
+            de: "IoT-Datenpipeline (BLE → MQTT → Node-RED → InfluxDB)",
+            ar: "نظام خط أنابيب بيانات إنترنت الأشياء (BLE → MQTT → Node-RED → InfluxDB)",
+        },
+        summary: {
+            en: "An IoT edge data pipeline that collects environmental sensor data via Bluetooth Low Energy (BLE) and processes it through an MQTT messaging system. Node-RED performs data processing and stores the measurements in InfluxDB for time-series analysis and visualization.",
+            de: "Eine IoT-Datenpipeline, die Umweltsensordaten über Bluetooth Low Energy (BLE) sammelt und sie durch ein MQTT-Nachrichtensystem verarbeitet. Node-RED führt die Datenverarbeitung durch und speichert die Messungen in InfluxDB zur Zeitreihenanalyse und Visualisierung.",
+            ar: "نظام خط أنابيب بيانات إنترنت الأشياء يجمع بيانات المستشعرات البيئية عبر BLE ويعالجها من خلال نظام رسائل MQTT. يقوم Node-RED بمعالجة البيانات وتخزين القياسات في InfluxDB لتحليل السلاسل الزمنية وعرضها.",
+        },
+        problem: {
+            en: "Efficiently integrating BLE sensor data into a scalable IoT backend for real-time analysis and visualization.",
+            de: "Effiziente Integration von BLE-Sensordaten in ein skalierbares IoT-Backend für Echtzeitanalyse und Visualisierung.",
+            ar: "دمج بيانات مستشعر BLE بكفاءة في نظام خلفي لإنترنت الأشياء قابل للتوسع لتحليل وعرض البيانات في الوقت الحقيقي.",
+        },
+        action: {
+            en: "Designed and implemented an IoT edge pipeline using ESP32 for BLE data collection, Raspberry Pi as an edge gateway, and Node-RED for processing. Data is stored in InfluxDB for visualization.",
+            de: "Entwicklung und Implementierung einer IoT-Edge-Pipeline mit ESP32 für BLE-Datenerfassung, Raspberry Pi als Edge-Gateway und Node-RED für die Verarbeitung. Daten werden in InfluxDB zur Visualisierung gespeichert.",
+            ar: "تصميم وتنفيذ خط أنابيب إنترنت الأشياء باستخدام ESP32 لجمع بيانات BLE، وRaspberry Pi كبوابة طرفية، وNode-RED للمعالجة. يتم تخزين البيانات في InfluxDB للعرض.",
+        },
+        result: {
+            en: "Achieved a reliable and scalable IoT data pipeline with real-time visualization capabilities.",
+            de: "Erreichte eine zuverlässige und skalierbare IoT-Datenpipeline mit Echtzeit-Visualisierungsfunktionen.",
+            ar: "تحقيق نظام خط أنابيب بيانات إنترنت الأشياء موثوق وقابل للتوسع مع قدرات عرض في الوقت الحقيقي.",
+        },
+        tech: ["Raspberry Pi 5", "ESP32", "Bluetooth Low Energy (BLE)", "MQTT", "Node-RED", "InfluxDB", "Linux"],
+        links: [
+            { label: "Repository", url: "https://github.com/Elkaza/iot-ble-mqtt-influxdb" }
+        ],
+        year: "2026",
+        tags: ["IoT", "Edge Computing", "Data Pipeline"]
+    }
 ];
