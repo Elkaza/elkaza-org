@@ -3,6 +3,7 @@ import { Cpu, Server, ArrowRight } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
 import { projects } from "../lib/projects";
+import IotEdgePlatformArchitecture from "./IotEdgePlatformArchitecture";
 
 export default function ProjectsPageContent() {
     const { t, locale } = useLocale();
@@ -36,6 +37,9 @@ export default function ProjectsPageContent() {
                             <li>{t("proj_focus_b4")}</li>
                         </ul>
                     </div>
+
+                    {/* IoT Edge Platform Architecture */}
+                    <IotEdgePlatformArchitecture />
 
                     {/* Timeline */}
                     <div>
@@ -137,45 +141,6 @@ export default function ProjectsPageContent() {
                                 </div>
                             )}
 
-                        </div>
-                    </div>
-
-                    {/* IoT Edge Platform Architecture */}
-                    <div className="mb-12 bg-subtle/40 p-6 rounded-xl border border-subtle">
-                        <h2 className="text-xl font-semibold mb-4">IoT Edge Platform Architecture</h2>
-                        <p className="text-main mb-4">
-                            The following projects together demonstrate a complete IoT edge platform:
-                        </p>
-                        <ul className="list-disc ml-6 space-y-1 text-main text-sm">
-                            <li>
-                                <strong>ESP32 Sensor Node</strong> → <strong>BLE Edge Gateway</strong> → <strong>MQTT Messaging System</strong> → <strong>Node-RED Processing</strong> → <strong>InfluxDB Time-Series Database</strong> → <strong>Monitoring / Visualization</strong>
-                            </li>
-                        </ul>
-                        <div className="mt-6">
-                            <h3 className="text-lg font-semibold">Architecture Diagram</h3>
-                            <div className="flex justify-center items-center mt-4">
-                                <img src="/images/iot-architecture-diagram.png" alt="IoT Edge Platform Architecture" className="rounded-lg shadow-md" />
-                            </div>
-                        </div>
-                        <div className="mt-6">
-                            <h3 className="text-lg font-semibold">Projects</h3>
-                            <ul className="list-disc ml-6 space-y-2">
-                                <li>
-                                    <Link href="https://github.com/Elkaza/ble-edge-gateway" className="text-blue-600 hover:underline">
-                                        BLE Sensor Gateway
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="https://github.com/Elkaza/raspberry-pi-mqtt-gateway" className="text-blue-600 hover:underline">
-                                        Raspberry Pi MQTT Gateway
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="https://github.com/Elkaza/iot-ble-mqtt-influxdb" className="text-blue-600 hover:underline">
-                                        IoT Sensor Data Pipeline (MQTT → Node-RED → InfluxDB)
-                                    </Link>
-                                </li>
-                            </ul>
                         </div>
                     </div>
 

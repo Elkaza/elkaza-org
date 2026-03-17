@@ -49,6 +49,17 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     </div>
                 </header>
 
+                {/* Architecture/Feature Image */}
+                {project.image && (
+                    <div className="rounded-xl overflow-hidden border border-subtle shadow-sm">
+                        <img 
+                            src={project.image} 
+                            alt={project.title[locale]}
+                            className="w-full h-auto object-cover"
+                        />
+                    </div>
+                )}
+
                 {/* Case Study Content */}
                 <div className="grid gap-8">
                     {/* Problem */}
@@ -113,8 +124,17 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center px-4 py-2 bg-main text-page rounded-md font-medium hover:opacity-90 transition-opacity"
                                 >
-                                    {link.label === "GitHub" ? <Github className="w-4 h-4 mr-2" /> : <ExternalLink className="w-4 h-4 mr-2" />}
-                                    {link.label}
+                                    {link.label === "GitHub" || link.url.includes("github.com") ? (
+                                        <>
+                                            <Github className="w-4 h-4 mr-2" />
+                                            View Source Code on GitHub
+                                        </>
+                                    ) : (
+                                        <>
+                                            <ExternalLink className="w-4 h-4 mr-2" />
+                                            {link.label}
+                                        </>
+                                    )}
                                 </a>
                             ))}
                         </div>

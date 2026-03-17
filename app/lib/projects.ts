@@ -11,10 +11,12 @@ export interface Project {
     links: { label: string; url: string }[];
     year: string;
     tags: string[];
+    image?: string;
     relatedProject?: {
         name: string;
         slug: string;
     };
+    iotPlatformPart?: boolean;
 }
 
 export const projects: Project[] = [
@@ -113,6 +115,8 @@ export const projects: Project[] = [
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/iot-edge-gateway-ble-mqtt" }],
         year: "2026",
         tags: ["IoT", "Embedded", "Containerization"],
+        image: "/images/iot-ble-gateway.png",
+        iotPlatformPart: true,
         relatedProject: {
             name: "BLE-to-MQTT Gateway with mTLS",
             slug: "rpi-ble-mqtt-gateway",
@@ -149,6 +153,8 @@ export const projects: Project[] = [
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/rpi-ble-mqtt-edge-gateway" }],
         year: "2026",
         tags: ["IoT", "Security", "Containerization"],
+        image: "/images/iot-mqtt-gateway.png",
+        iotPlatformPart: true,
         relatedProject: {
             name: "BLE Edge Gateway (HW1)",
             slug: "ble-edge-gateway",
@@ -287,9 +293,11 @@ export const projects: Project[] = [
         },
         tech: ["Raspberry Pi 5", "ESP32", "Bluetooth Low Energy (BLE)", "MQTT", "Node-RED", "InfluxDB", "Linux"],
         links: [
-            { label: "Repository", url: "https://github.com/Elkaza/iot-ble-mqtt-influxdb" }
+            { label: "GitHub", url: "https://github.com/Elkaza/iot-ble-mqtt-influxdb" }
         ],
         year: "2026",
-        tags: ["IoT", "Edge Computing", "Data Pipeline"]
+        tags: ["IoT", "Edge Computing", "Data Pipeline"],
+        image: "/images/iot-sensor-data-pipeline.png",
+        iotPlatformPart: true
     }
 ];
