@@ -8,7 +8,7 @@ import IotEdgePlatformArchitecture from "./IotEdgePlatformArchitecture";
 export default function ProjectsPageContent() {
     const { t, locale } = useLocale();
 
-    const projects2026 = projects.filter(p => p.year === "2026"); // Updated to include the new IoT Sensor Data Pipeline project
+    const projects2026 = projects.filter(p => p.year === "2026");
     const projects2025 = projects.filter(p => p.year === "2025");
     const projects2024 = projects.filter(p => p.year === "2024");
 
@@ -29,13 +29,50 @@ export default function ProjectsPageContent() {
                             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                             <h2 className="text-lg font-semibold text-main">{t("proj_focus_h2")}</h2>
                         </div>
-                        <p className="text-main mb-4">{t("proj_focus_desc")}</p>
-                        <ul className="list-disc ml-6 space-y-1 text-main text-sm">
-                            <li>{t("proj_focus_b1")}</li>
-                            <li>{t("proj_focus_b2")}</li>
-                            <li>{t("proj_focus_b3")}</li>
-                            <li>{t("proj_focus_b4")}</li>
-                        </ul>
+                        <p className="text-main mb-6">{t("proj_focus_desc")}</p>
+                        
+                        <div className="space-y-6">
+                            {/* Focus Item 1 */}
+                            <div>
+                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b1")}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="badge badge-neutral">ESP32</span>
+                                    <span className="badge badge-neutral">FreeRTOS</span>
+                                    <span className="badge badge-neutral">BLE</span>
+                                    <span className="badge badge-neutral">DHT22</span>
+                                </div>
+                            </div>
+                            
+                            {/* Focus Item 2 */}
+                            <div>
+                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b2")}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="badge badge-neutral">Raspberry Pi</span>
+                                    <span className="badge badge-neutral">Mosquitto</span>
+                                    <span className="badge badge-neutral">mTLS</span>
+                                    <span className="badge badge-neutral">Podman</span>
+                                </div>
+                            </div>
+                            
+                            {/* Focus Item 3 */}
+                            <div>
+                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b3")}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="badge badge-neutral">Nginx</span>
+                                    <span className="badge badge-neutral">Certbot</span>
+                                    <span className="badge badge-neutral">Linux</span>
+                                </div>
+                            </div>
+
+                            {/* Focus Item 4 */}
+                            <div>
+                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b4")}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    <span className="badge badge-neutral">LLMs</span>
+                                    <span className="badge badge-neutral">RAG</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* IoT Edge Platform Architecture */}
@@ -47,21 +84,15 @@ export default function ProjectsPageContent() {
 
                         <div className="relative border-l border-blue-300 dark:border-blue-700 ml-6 pl-6 pb-12">
 
-                            {/* 2026 Current/Planned */}
-                            <div className="relative mb-10">
-                                <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-blue-500 rounded-full ring-4 ring-page" />
-                                <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">2026</h3>
-                                <p className="text-main mb-2">{t("proj_2026_desc")}</p>
-                                <ul className="list-disc ml-6 space-y-1 text-main text-sm">
-                                    <li>{t("proj_2026_b1")}</li>
-                                    <li>{t("proj_2026_b2")}</li>
-                                    <li>{t("proj_2026_b3")}</li>
-                                </ul>
-
-                                {projects2026.length > 0 && (
+                            {/* 2026 */}
+                            {projects2026.length > 0 && (
+                                <div className="relative mb-10">
+                                    <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+                                    <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">2026</h3>
+                                    
                                     <div className="space-y-4 mt-4">
                                         {projects2026.map((project) => (
-                                            <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
+                                            <div key={project.slug} className="p-4 bg-card border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
                                                 <div className="flex items-center justify-between mb-2">
                                                     <div className="flex items-center">
                                                         {project.tags.includes("IoT") ? <Cpu className="w-5 h-5 text-blue-500 mr-2" /> : <Server className="w-5 h-5 text-blue-500 mr-2" />}
@@ -80,8 +111,8 @@ export default function ProjectsPageContent() {
                                             </div>
                                         ))}
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                            )}
 
                             {/* 2025 */}
                             <div className="relative mb-10">
@@ -112,27 +143,27 @@ export default function ProjectsPageContent() {
                                 </div>
                             </div>
 
-                            {/* 2024 */}
+                            {/* 2024 - Responsive Grid Layout */}
                             {projects2024.length > 0 && (
                                 <div className="relative mb-4">
                                     <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-gray-400 rounded-full" />
                                     <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-400">2024</h3>
-                                    <div className="space-y-4 mt-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                                         {projects2024.map((project) => (
-                                            <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
+                                            <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors flex flex-col h-full">
                                                 <div className="flex items-center justify-between mb-2">
                                                     <div className="flex items-center">
-                                                        <Server className="w-5 h-5 text-gray-500 mr-2" />
-                                                        <h4 className="font-semibold">{project.title[locale]}</h4>
+                                                        <Server className="w-5 h-5 text-gray-500 mr-2 flex-shrink-0" />
+                                                        <h4 className="font-semibold text-sm line-clamp-1">{project.title[locale]}</h4>
                                                     </div>
-                                                    <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center">
+                                                    <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center ml-2 flex-shrink-0">
                                                         Details <ArrowRight className="w-3 h-3 ml-1" />
                                                     </Link>
                                                 </div>
-                                                <p className="text-sm text-main mb-3">{project.summary[locale]}</p>
-                                                <div className="flex flex-wrap gap-2">
+                                                <p className="text-xs text-main mb-3 flex-grow">{project.summary[locale]}</p>
+                                                <div className="flex flex-wrap gap-1.5 mt-auto">
                                                     {project.tech.slice(0, 3).map(tech => (
-                                                        <span key={tech} className="badge badge-neutral">{tech}</span>
+                                                        <span key={tech} className="badge badge-neutral text-[10px] px-1.5 py-0.5">{tech}</span>
                                                     ))}
                                                 </div>
                                             </div>

@@ -11,7 +11,7 @@ export interface Project {
     links: { label: string; url: string }[];
     year: string;
     tags: string[];
-    image?: string;
+    images?: string[];
     relatedProject?: {
         name: string;
         slug: string;
@@ -87,9 +87,9 @@ export const projects: Project[] = [
     {
         slug: "ble-edge-gateway",
         title: {
-            en: "BLE-to-MQTT Edge Gateway — BLE Component",
-            de: "BLE-zu-MQTT Edge Gateway — BLE-Komponente",
-            ar: "بوابة BLE إلى MQTT — مكوّن BLE",
+            en: "BLE Sensor Gateway (Edge Layer)",
+            de: "BLE Sensor Gateway (Edge Layer)",
+            ar: "بوابة مستشعر BLE (طبقة الحافة)",
         },
         summary: {
             en: "Containerized BLE gateway on Rock4 SE that receives sensor data from an ESP32 via Bluetooth Low Energy.",
@@ -107,27 +107,26 @@ export const projects: Project[] = [
             ar: "بناء حاوية Podman مع BlueZ ووصول D-Bus إلى مكدس Bluetooth المضيف. تطوير بوابة Python تتصل بمستشعر ESP32 BLE (Nordic UART Service)، تحلل بيانات درجة الحرارة والرطوبة من DHT22، وتعرض القراءات مع طوابع زمنية.",
         },
         result: {
-            en: "Working containerized BLE gateway that reliably connects, parses, and displays ESP32 DHT22 sensor data with UTC timestamps. Foundation for the full MQTT pipeline in Assignment 2.",
-            de: "Funktionierende containerisierte BLE-Gateway, die ESP32-DHT22-Sensordaten zuverlässig empfängt, parst und mit UTC-Zeitstempeln anzeigt. Grundlage für die vollständige MQTT-Pipeline in Aufgabe 2.",
-            ar: "بوابة BLE في حاوية تتصل وتحلل وتعرض بيانات مستشعر ESP32 DHT22 بطوابع UTC بشكل موثوق. أساس لخط أنابيب MQTT الكامل في المهمة 2.",
+            en: "Working containerized BLE gateway that reliably connects, parses, and displays ESP32 DHT22 sensor data with UTC timestamps. Foundation for the secure MQTT gateway.",
+            de: "Funktionierende containerisierte BLE-Gateway, die ESP32-DHT22-Sensordaten zuverlässig empfängt, parst und mit UTC-Zeitstempeln anzeigt. Grundlage für das Secure MQTT Gateway.",
+            ar: "بوابة BLE في حاوية تتصل وتحلل وتعرض بيانات مستشعر ESP32 DHT22 بطوابع UTC بشكل موثوق. أساس لبوابة MQTT الآمنة.",
         },
         tech: ["Python", "Podman", "BlueZ", "D-Bus", "BLE"],
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/iot-edge-gateway-ble-mqtt" }],
         year: "2026",
         tags: ["IoT", "Embedded", "Containerization"],
-        image: "/images/iot-ble-gateway.png",
         iotPlatformPart: true,
         relatedProject: {
-            name: "BLE-to-MQTT Gateway with mTLS",
+            name: "Secure MQTT Gateway (mTLS)",
             slug: "rpi-ble-mqtt-gateway",
         },
     },
     {
         slug: "rpi-ble-mqtt-gateway",
         title: {
-            en: "BLE-to-MQTT Gateway with mTLS Security",
-            de: "BLE-zu-MQTT Gateway mit mTLS-Sicherheit",
-            ar: "بوابة BLE إلى MQTT مع أمان mTLS",
+            en: "Secure MQTT Gateway (mTLS)",
+            de: "Secure MQTT Gateway (mTLS)",
+            ar: "بوابة MQTT الآمنة (mTLS)",
         },
         summary: {
             en: "Production-ready BLE-to-MQTT pipeline on Raspberry Pi 5 with mutual TLS and Podman Compose orchestration.",
@@ -135,9 +134,9 @@ export const projects: Project[] = [
             ar: "خط أنابيب BLE إلى MQTT جاهز للإنتاج على Raspberry Pi 5 مع TLS متبادل وتنسيق Podman Compose.",
         },
         problem: {
-            en: "The HW1 BLE gateway lacked MQTT integration, encryption, and multi-service orchestration needed for a production-like IoT data pipeline.",
-            de: "Der BLE-Gateway aus Aufgabe 1 fehlte die MQTT-Integration, Verschlüsselung und Multi-Service-Orchestrierung für eine produktionsnahe IoT-Datenpipeline.",
-            ar: "بوابة BLE من المهمة 1 تفتقر إلى تكامل MQTT والتشفير وتنسيق الخدمات المتعددة اللازمة لخط أنابيب بيانات IoT يشبه الإنتاج.",
+            en: "The BLE Sensor Gateway lacked MQTT integration, encryption, and multi-service orchestration needed for a production-like IoT data pipeline.",
+            de: "Dem BLE Sensor Gateway fehlte die MQTT-Integration, Verschlüsselung und Multi-Service-Orchestrierung für eine produktionsnahe IoT-Datenpipeline.",
+            ar: "بوابة مستشعر BLE تفتقر إلى تكامل MQTT والتشفير وتنسيق الخدمات المتعددة اللازمة لخط أنابيب بيانات IoT يشبه الإنتاج.",
         },
         action: {
             en: "Extended the BLE gateway into a three-service architecture orchestrated with Podman Compose: BLE Gateway, Mosquitto MQTT Broker, and MQTT Client. Secured all communication with mutual TLS (TLS 1.3, X.509 certificates). Implemented robust error handling, automatic reconnection, and comprehensive ISO 8601 logging.",
@@ -153,11 +152,10 @@ export const projects: Project[] = [
         links: [{ label: "GitHub", url: "https://github.com/Elkaza/rpi-ble-mqtt-edge-gateway" }],
         year: "2026",
         tags: ["IoT", "Security", "Containerization"],
-        image: "/images/iot-mqtt-gateway.png",
         iotPlatformPart: true,
         relatedProject: {
-            name: "BLE Edge Gateway (HW1)",
-            slug: "ble-edge-gateway",
+            name: "IoT Sensor Data Pipeline",
+            slug: "iot-sensor-data-pipeline",
         },
     },
     {
@@ -297,7 +295,16 @@ export const projects: Project[] = [
         ],
         year: "2026",
         tags: ["IoT", "Edge Computing", "Data Pipeline"],
-        image: "/images/iot-sensor-data-pipeline.png",
-        iotPlatformPart: true
+        images: [
+            "/images/architecture.png",
+            "/images/nodered-flow.png",
+            "/images/sensor-data.png",
+            "/images/influxdb-data.png"
+        ],
+        iotPlatformPart: true,
+        relatedProject: {
+            name: "Secure MQTT Gateway (mTLS)",
+            slug: "rpi-ble-mqtt-gateway",
+        }
     }
 ];

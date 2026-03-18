@@ -239,7 +239,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Projects
     projects_tagline: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
-    proj_timeline_h2: "Projektübersicht",
+    proj_timeline_h2: "Frühere Projekte",
     proj_timeline_desc: "Alle Projekte zielen auf Skalierbarkeit, Sicherheit und echte Anwendbarkeit ab. Hier ist ein kurzes Logbuch meiner aktuellen Arbeit.",
     proj_2025_desc: "Praktische Integration von Embedded, Self-Hosted Cloud und digitalen Ökosystemen.",
     proj_2026_desc: "IoT-Systementwicklung und Infrastruktur-Härtung",
@@ -654,7 +654,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Projects
     projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
-    proj_timeline_h2: "Project Timeline",
+    proj_timeline_h2: "Previous Projects",
     proj_timeline_desc: "All projects aim for scalability, security, and real-world applicability. Here is a brief log of my recent work.",
     proj_2025_desc: "Practical integration between embedded systems, self-hosted cloud, and digital ecosystems.",
 
@@ -853,7 +853,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Projects
     projects_tagline: "\u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062A\u064A \u0623\u0639\u0645\u0644 \u0639\u0644\u064A\u0647\u0627 \u062D\u0627\u0644\u064A\u0627\u064B",
-    proj_timeline_h2: "\u0627\u0644\u062E\u0637 \u0627\u0644\u0632\u0645\u0646\u064A \u0644\u0644\u0645\u0634\u0627\u0631\u064A\u0639",
+    proj_timeline_h2: "المشاريع السابقة",
     proj_timeline_desc: "\u0646\u0638\u0631\u0629 \u0639\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0629 \u0627\u0644\u062C\u0627\u0631\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u064A\u0629 \u0641\u064A \u0625\u0646\u062A\u0631\u0646\u062A \u0627\u0644\u0623\u0634\u064A\u0627\u0621 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0648\u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0627\u0644\u0631\u0642\u0645\u064A\u0629.",
     proj_2025_desc: "\u062A\u0643\u0627\u0645\u0644 \u0639\u0645\u0644\u064A \u0628\u064A\u0646 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0627\u0644\u0645\u0636\u0645\u0646\u0629 \u0648\u0627\u0644\u0633\u062D\u0627\u0628\u0629 \u0630\u0627\u062A\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u0636\u0627\u0641\u0629 \u0648\u0627\u0644\u0646\u0638\u0645 \u0627\u0644\u0631\u0642\u0645\u064A\u0629.",
     proj_2026_desc: "\u062A\u0637\u0648\u064A\u0631 \u0623\u0646\u0638\u0645\u0629 IoT \u0648\u062A\u0642\u0648\u064A\u0629 \u0627\u0644\u0628\u0646\u064A\u0629 \u0627\u0644\u062A\u062D\u062A\u064A\u0629",

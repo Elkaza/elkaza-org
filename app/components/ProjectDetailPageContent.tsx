@@ -49,14 +49,18 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     </div>
                 </header>
 
-                {/* Architecture/Feature Image */}
-                {project.image && (
-                    <div className="rounded-xl overflow-hidden border border-subtle shadow-sm">
-                        <img 
-                            src={project.image} 
-                            alt={project.title[locale]}
-                            className="w-full h-auto object-cover"
-                        />
+                {/* Architecture/Feature Images */}
+                {project.images && project.images.length > 0 && (
+                    <div className="space-y-6">
+                        {project.images.map((img, idx) => (
+                            <div key={idx} className="rounded-xl overflow-hidden border border-subtle shadow-sm">
+                                <img 
+                                    src={img} 
+                                    alt={`${project.title[locale]} - Image ${idx + 1}`}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </div>
+                        ))}
                     </div>
                 )}
 
