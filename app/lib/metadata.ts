@@ -13,15 +13,11 @@ export function generatePersonSchema() {
             "https://github.com/Elkaza",
             "https://linkedin.com/in/elkaza",
         ],
-        jobTitle: "Digital Transformation & Enterprise Architecture Specialist",
-        worksFor: {
-            "@type": "EducationalOrganization",
-            name: "TU Wien",
-        },
-        alumniOf: [
+        jobTitle: "IT Infrastructure & Systems Engineer",
+        affiliation: [
             {
                 "@type": "EducationalOrganization",
-                name: "Technische Universität Wien",
+                name: "Technische Universitaet Wien",
             },
             {
                 "@type": "EducationalOrganization",
@@ -29,13 +25,16 @@ export function generatePersonSchema() {
             },
         ],
         knowsAbout: [
-            "Enterprise Architecture",
-            "Digital Transformation",
-            "IoT",
+            "IT Operations",
+            "System Administration",
+            "Network Engineering",
+            "Windows Server",
+            "Linux",
+            "Automation",
+            "ITSM",
             "Project Management",
-            "IPMA",
-            "ArchiMate",
             "ServiceNow",
+            "IoT",
         ],
     };
 }
@@ -44,10 +43,10 @@ export function generateWebSiteSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Elkaza | Digital Transformation & Research",
+        name: "Elkaza | IT Infrastructure, Systems & Projects",
         url: "https://elkaza.org",
         description:
-            "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
+            "Portfolio covering IT operations, infrastructure, networking, automation, self-hosted platforms, and ongoing IoT systems work.",
         author: {
             "@type": "Person",
             name: "Mohamed Elkaza",

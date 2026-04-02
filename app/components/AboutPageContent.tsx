@@ -119,7 +119,7 @@ export default function AboutPageContent() {
                         </div>
                         <div className="pt-2">
                             <Link href="/cv" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">
-                                {t("about_view_cv")} →
+                                {t("about_view_cv")} {"->"}
                             </Link>
                         </div>
                     </div>
@@ -152,9 +152,9 @@ export default function AboutPageContent() {
                             <div>
                                 <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("thesis_h2") ?? "Master's Thesis"}</h2>
                                 <p className="text-main leading-relaxed mb-4">{t("thesis_desc") ?? ""}</p>
-                                <Link href="/documents/thesis.pdf" className="text-blue-700 dark:text-blue-400 font-medium hover:underline inline-flex items-center">
-                                    {t("download_thesis") ?? "Download Thesis (PDF)"}
-                                </Link>
+                                <p className="text-sm text-muted">
+                                    {t("thesis_note") ?? ""}
+                                </p>
                             </div>
                         </div>
                     </div>

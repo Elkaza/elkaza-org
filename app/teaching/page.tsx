@@ -1,9 +1,9 @@
-﻿import { Metadata } from 'next';
+import { Metadata } from 'next';
 import TeachingPageContent from "../components/TeachingPageContent";
 
 export const metadata: Metadata = {
-  title: 'Teaching | Mohamed Elkaza',
-  description: 'Courses, workshops, and knowledge sharing in Enterprise Architecture, PM, and IoT.',
+  title: 'Learning Focus | Mohamed Elkaza',
+  description: 'Current academic and technical learning focus across business informatics, project management, infrastructure, security, and IoT.',
 };
 
 export default function TeachingPage() {

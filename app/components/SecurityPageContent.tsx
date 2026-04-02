@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Shield, Server, Network, Layers, Monitor, Lock, Terminal } from "lucide-react";
+import { Shield, Server, Network, Layers, Monitor, Lock, Terminal, CheckCircle2 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import TerminalCard from "./ui/TerminalCard";
 import Link from "next/link";
@@ -12,7 +12,6 @@ export default function SecurityPageContent() {
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
             <section className="max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
 
-                {/* Header */}
                 <div className="space-y-4">
                     <div className="w-20 h-1.5 bg-blue-600 mb-6" />
                     <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight text-main">
@@ -23,7 +22,6 @@ export default function SecurityPageContent() {
                     </p>
                 </div>
 
-                {/* Home Lab Highlights */}
                 <div className="space-y-6">
                     <h2 className="text-2xl font-semibold flex items-center gap-2">
                         <Server className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -41,7 +39,6 @@ export default function SecurityPageContent() {
                     </div>
                 </div>
 
-                {/* Security Stack Section (New) */}
                 <div className="space-y-6">
                     <h2 className="text-2xl font-semibold flex items-center gap-2">
                         <Network className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -65,16 +62,15 @@ export default function SecurityPageContent() {
                             <p className="text-sm text-muted whitespace-pre-line">{t("sec_stack_mon_desc")}</p>
                         </div>
                     </div>
-                    {/* Outcome / Link */}
                     <div className="bg-subtle/30 rounded-xl p-6 border border-subtle">
                         <h3 className="font-semibold text-main mb-2">{t("sec_outcomes_title")}</h3>
                         <ul className="space-y-2 mb-4">
                             <li className="flex items-start gap-2 text-sm text-muted">
-                                <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
                                 {t("sec_outcome_1")}
                             </li>
                             <li className="flex items-start gap-2 text-sm text-muted">
-                                <span className="text-green-600 dark:text-green-400 mt-1">✓</span>
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
                                 {t("sec_outcome_2")}
                             </li>
                         </ul>
@@ -85,7 +81,6 @@ export default function SecurityPageContent() {
                     </div>
                 </div>
 
-                {/* Case Studies */}
                 <div className="space-y-8">
                     <h2 className="text-2xl font-semibold flex items-center gap-2">
                         <Layers className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -93,7 +88,6 @@ export default function SecurityPageContent() {
                     </h2>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        {/* Case 1: IoT Isolation */}
                         <div className="bg-card border border-subtle rounded-xl p-6 space-y-4">
                             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
                                 <Lock className="w-5 h-5" />
@@ -106,7 +100,6 @@ export default function SecurityPageContent() {
                             </div>
                         </div>
 
-                        {/* Case 2: Remote Access */}
                         <div className="bg-card border border-subtle rounded-xl p-6 space-y-4">
                             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
                                 <Monitor className="w-5 h-5" />
@@ -119,7 +112,6 @@ export default function SecurityPageContent() {
                             </div>
                         </div>
 
-                        {/* Case 3: Home Security Lab */}
                         <div className="bg-card border border-subtle rounded-xl p-6 space-y-4 col-span-1 md:col-span-2">
                             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
                                 <Shield className="w-5 h-5" />
@@ -134,7 +126,6 @@ export default function SecurityPageContent() {
                     </div>
                 </div>
 
-                {/* Proof of Work (New Terminal Section) */}
                 <section className="space-y-6" role="region" aria-label="Redacted terminal output examples">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-2xl font-semibold flex items-center gap-2">

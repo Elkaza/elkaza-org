@@ -1,4 +1,4 @@
-﻿import "./globals.css";
+import "./globals.css";
 import { Inter, Merriweather } from "next/font/google";
 import { ThemeProvider } from "./components/ThemeProvider";
 import LocaleProvider from "@/app/LocaleProvider";
@@ -11,8 +11,8 @@ const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], 
 
 export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
-  title: "Mohamed Elkaza | Digital Transformation & Research",
-  description: "Bridging enterprise architecture, digital innovation, and AI-driven transformation.",
+  title: "Mohamed Elkaza | IT Infrastructure, Systems & Projects",
+  description: "Portfolio of Mohamed Elkaza covering IT operations, infrastructure, networking, automation, self-hosted platforms, and ongoing IoT systems work.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -44,13 +44,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.linkedin.com/in/elkaza",
                 "https://github.com/Elkaza"
               ],
-              jobTitle: "IT Infrastructure & Platform Engineer",
+              jobTitle: "IT Infrastructure & Systems Engineer",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Vienna",
                 addressCountry: "Austria"
               },
-              knowsAbout: ["Cybersecurity", "Network Engineering", "Project Management", "IoT", "Digital Transformation"]
+              knowsAbout: [
+                "IT Operations",
+                "System Administration",
+                "Network Engineering",
+                "Windows Server",
+                "Linux",
+                "Automation",
+                "ITSM",
+                "Project Management",
+                "IoT Systems"
+              ]
             }),
           }}
         />

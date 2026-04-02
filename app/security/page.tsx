@@ -3,7 +3,7 @@ import SecurityPageContent from '../components/SecurityPageContent';
 
 export const metadata: Metadata = {
     title: 'Security & Networking | Mohamed Elkaza',
-    description: 'Cybersecurity portfolio showcasing home lab experiments, network segmentation, and secure infrastructure projects.',
+    description: 'Hands-on security, networking, and homelab infrastructure work: segmentation, VPN, DNS filtering, Linux hardening, and secure services.',
 };
 
 export default function SecurityPage() {

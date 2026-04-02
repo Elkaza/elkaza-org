@@ -4,21 +4,23 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 
 const DATA = [
-  { title: "About", href: "/about", tags: ["profile", "ea"], year: 2025 },
-  { title: "Research", href: "/research", tags: ["ea", "ai", "security"], year: 2025 },
-  { title: "Projects", href: "/projects", tags: ["iot", "cloud", "ai"], year: 2025 },
-  { title: "Contact", href: "/contact", tags: ["links"], year: 2025 },
+  { title: "About", href: "/about", tags: ["profile", "infrastructure"], year: 2026 },
+  { title: "Academic Work", href: "/research", tags: ["academic", "thesis"], year: 2026 },
+  { title: "Projects", href: "/projects", tags: ["systems", "infrastructure", "iot"], year: 2026 },
+  { title: "Learning Focus", href: "/teaching", tags: ["learning", "studies"], year: 2026 },
+  { title: "Contact", href: "/contact", tags: ["jobs", "links"], year: 2026 },
 ];
 
-const YEARS = [2025, 2024, 2023, 2022, 2021, 2020];
+const YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020];
 const TAGS = [
-  "ai",
-  "ea",
-  "security",
+  "academic",
+  "infrastructure",
   "iot",
-  "cloud",
-  "education",
+  "jobs",
+  "learning",
   "profile",
+  "systems",
+  "thesis",
 ];
 
 export default function ArchivesPage() {
@@ -38,14 +40,12 @@ export default function ArchivesPage() {
   return (
     <main className="min-h-screen bg-page text-main transition-colors duration-300">
       <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-        {/* Left rail */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
           <div className="w-20 h-1.5 bg-blue-600 mb-3" />
-          <h1 className="text-3xl font-bold">Search the Archives</h1>
-          <p className="mt-3 text-muted">Explore pages and sections across Elkaza.org.</p>
+          <h1 className="text-3xl font-bold">Search the Site</h1>
+          <p className="mt-3 text-muted">Explore portfolio pages, profile sections, and supporting content across Elkaza.org.</p>
         </aside>
 
-        {/* Content */}
         <div className="lg:col-span-9">
           <div className="flex items-center gap-2 mb-6">
             <div className="relative flex-1">
@@ -53,7 +53,7 @@ export default function ArchivesPage() {
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                placeholder="Explore all pages and sections…"
+                placeholder="Explore all pages and sections..."
                 className="w-full pl-10 pr-3 py-2 rounded-md border border-subtle bg-card text-main placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
             </div>
@@ -98,7 +98,7 @@ export default function ArchivesPage() {
                   {r.title}
                 </Link>
                 <div className="text-sm text-muted">
-                  {r.year} · {r.tags.join(", ")}
+                  {r.year} | {r.tags.join(", ")}
                 </div>
               </div>
             ))}
@@ -111,4 +111,3 @@ export default function ArchivesPage() {
     </main>
   );
 }
-

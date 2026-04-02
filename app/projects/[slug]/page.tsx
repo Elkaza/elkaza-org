@@ -2,9 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { projects } from '@/app/lib/projects';
 import ProjectDetailPageContent from '@/app/components/ProjectDetailPageContent';
-import HomeSecurityLabCaseStudy from '@/app/components/HomeSecurityLabCaseStudy';
-
-import FreeRTOSCaseStudy from '@/app/components/FreeRTOSCaseStudy';
 
 export async function generateStaticParams() {
     return projects.map((project) => ({
@@ -28,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `${project.title.en} | Mohamed Elkaza`,
-        description: project.summary.en,
+        description: project.oneLiner.en,
     };
 }
 
@@ -38,16 +35,6 @@ export default async function ProjectDetailPage({ params }: Props) {
 
     if (!project) {
         notFound();
-    }
-
-    // Use custom case study for home-security-lab
-    if (slug === 'home-security-lab') {
-        return <HomeSecurityLabCaseStudy />;
-    }
-
-    // Use custom case study for freertos-sensor
-    if (slug === 'freertos-sensor') {
-        return <FreeRTOSCaseStudy />;
     }
 
     return <ProjectDetailPageContent slug={slug} />;

@@ -114,7 +114,7 @@ export default function HomeContent() {
             href="/cv"
             className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline"
           >
-            {t("home_view_cv")} →
+            {t("home_view_cv")} {"->"}
           </Link>
         </div>
       </section>

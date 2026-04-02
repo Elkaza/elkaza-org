@@ -1,182 +1,227 @@
 "use client";
-import { Cpu, Server, ArrowRight } from "lucide-react";
-import { useLocale } from "../LocaleProvider";
+
 import Link from "next/link";
-import { projects } from "../lib/projects";
-import IotEdgePlatformArchitecture from "./IotEdgePlatformArchitecture";
+import { ArrowRight } from "lucide-react";
+import { useLocale } from "../LocaleProvider";
+import { projects, type Project, type ProjectCategory } from "../lib/projects";
+import type { Locale } from "../i18n/messages";
+
+type Copy = {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    highlights: string[];
+    listEyebrow: string;
+    listTitle: string;
+    listIntro: string;
+    detailsCta: string;
+    categoryLabels: Record<ProjectCategory, string>;
+};
+
+const COPY: Record<string, Copy> = {
+    en: {
+        eyebrow: "Engineering Portfolio",
+        title: "Infrastructure, systems, security, and ongoing IoT work",
+        intro: "This portfolio combines operational IT, infrastructure, networking, automation, self-hosted platforms, and current IoT and edge work. The projects are presented as case studies to show how I approach system design, troubleshooting, security, and delivery across different contexts.",
+        highlights: [
+            "Operations: support-minded system work, troubleshooting, virtualization, monitoring",
+            "Infrastructure: Linux services, networking, DNS, reverse proxy, segmentation",
+            "Ongoing specialization: IoT nodes, edge gateways, telemetry, secure connectivity",
+        ],
+        listEyebrow: "Latest First",
+        listTitle: "Recent project work",
+        listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
+        detailsCta: "View case study",
+        categoryLabels: {
+            "security-infrastructure": "Infrastructure & Security",
+            "featured-aiot": "Current IoT & Edge",
+            "platform-component": "Platform Component",
+            "delivery-platform": "Delivery & Web",
+        },
+    },
+    de: {
+        eyebrow: "Engineering-Portfolio",
+        title: "Infrastruktur, Systeme, Security und laufende IoT-Arbeit",
+        intro: "Das Portfolio verbindet operativen IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung, Self-hosted Plattformen und aktuelle IoT- und Edge-Arbeit. Die Projekte sind als Fallstudien aufgebaut, um meinen Umgang mit Systemdesign, Troubleshooting, Security und Delivery in unterschiedlichen Kontexten zu zeigen.",
+        highlights: [
+            "Operations: Support-nahes Systemarbeiten, Troubleshooting, Virtualisierung, Monitoring",
+            "Infrastruktur: Linux-Services, Netzwerke, DNS, Reverse Proxy, Segmentierung",
+            "Laufende Spezialisierung: IoT-Knoten, Edge-Gateways, Telemetrie, sichere Konnektivitaet",
+        ],
+        listEyebrow: "Neueste zuerst",
+        listTitle: "Aktuelle Projektarbeit",
+        listIntro: "Die Projekte sind von neuer nach aelter sortiert, damit die aktuellste Arbeit zuerst sichtbar ist.",
+        detailsCta: "Fallstudie ansehen",
+        categoryLabels: {
+            "security-infrastructure": "Infrastruktur & Security",
+            "featured-aiot": "Aktuelles IoT & Edge",
+            "platform-component": "Plattformbaustein",
+            "delivery-platform": "Delivery & Web",
+        },
+    },
+    ar: {
+        eyebrow: "Engineering Portfolio",
+        title: "Infrastructure, systems, security, and ongoing IoT work",
+        intro: "This portfolio combines operational IT, infrastructure, networking, automation, self-hosted platforms, and current IoT and edge work. The projects are presented as case studies to show how I approach system design, troubleshooting, security, and delivery across different contexts.",
+        highlights: [
+            "Operations: support-minded system work, troubleshooting, virtualization, monitoring",
+            "Infrastructure: Linux services, networking, DNS, reverse proxy, segmentation",
+            "Ongoing specialization: IoT nodes, edge gateways, telemetry, secure connectivity",
+        ],
+        listEyebrow: "Latest First",
+        listTitle: "Recent project work",
+        listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
+        detailsCta: "View case study",
+        categoryLabels: {
+            "security-infrastructure": "Infrastructure & Security",
+            "featured-aiot": "Current IoT & Edge",
+            "platform-component": "Platform Component",
+            "delivery-platform": "Delivery & Web",
+        },
+    },
+};
+
+const CATEGORY_PRIORITY: Record<ProjectCategory, number> = {
+    "security-infrastructure": 0,
+    "featured-aiot": 1,
+    "platform-component": 2,
+    "delivery-platform": 3,
+};
 
 export default function ProjectsPageContent() {
-    const { t, locale } = useLocale();
+    const { locale, t } = useLocale();
+    const copy = COPY[locale] ?? COPY.en;
 
-    const projects2026 = projects.filter(p => p.year === "2026");
-    const projects2025 = projects.filter(p => p.year === "2025");
-    const projects2024 = projects.filter(p => p.year === "2024");
+    const originalOrder = new Map(projects.map((project, index) => [project.slug, index]));
+    const sortedProjects = [...projects].sort((left, right) => {
+        const yearDiff = Number(right.year) - Number(left.year);
+        if (yearDiff !== 0) {
+            return yearDiff;
+        }
+
+        const categoryDiff = CATEGORY_PRIORITY[left.category] - CATEGORY_PRIORITY[right.category];
+        if (categoryDiff !== 0) {
+            return categoryDiff;
+        }
+
+        return (originalOrder.get(left.slug) ?? 0) - (originalOrder.get(right.slug) ?? 0);
+    });
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
             <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-                {/* Left rail title */}
                 <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
                     <div className="w-20 h-1.5 bg-blue-600 mb-3" />
                     <h1 className="text-3xl font-bold">{t("nav_projects")}</h1>
                 </aside>
 
-                {/* Content column */}
-                <div className="lg:col-span-9">
-                    {/* Current Focus Highlight */}
-                    <div className="mb-12 bg-subtle/40 p-6 rounded-xl border border-subtle">
-                        <div className="flex items-center gap-2 mb-3">
-                            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                            <h2 className="text-lg font-semibold text-main">{t("proj_focus_h2")}</h2>
+                <div className="lg:col-span-9 space-y-14">
+                    <section className="rounded-2xl border border-subtle bg-card p-8 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+                            {copy.eyebrow}
+                        </p>
+                        <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight max-w-3xl">
+                            {copy.title}
+                        </h2>
+                        <p className="mt-4 max-w-3xl text-muted leading-relaxed">
+                            {copy.intro}
+                        </p>
+                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                            {copy.highlights.map((item) => (
+                                <div key={item} className="rounded-xl border border-subtle bg-page/60 p-4 text-sm text-main">
+                                    {item}
+                                </div>
+                            ))}
                         </div>
-                        <p className="text-main mb-6">{t("proj_focus_desc")}</p>
-                        
-                        <div className="space-y-6">
-                            {/* Focus Item 1 */}
-                            <div>
-                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b1")}</p>
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="badge badge-neutral">ESP32</span>
-                                    <span className="badge badge-neutral">FreeRTOS</span>
-                                    <span className="badge badge-neutral">BLE</span>
-                                    <span className="badge badge-neutral">DHT22</span>
-                                </div>
-                            </div>
-                            
-                            {/* Focus Item 2 */}
-                            <div>
-                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b2")}</p>
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="badge badge-neutral">Raspberry Pi</span>
-                                    <span className="badge badge-neutral">Mosquitto</span>
-                                    <span className="badge badge-neutral">mTLS</span>
-                                    <span className="badge badge-neutral">Podman</span>
-                                </div>
-                            </div>
-                            
-                            {/* Focus Item 3 */}
-                            <div>
-                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b3")}</p>
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="badge badge-neutral">Nginx</span>
-                                    <span className="badge badge-neutral">Certbot</span>
-                                    <span className="badge badge-neutral">Linux</span>
-                                </div>
-                            </div>
+                    </section>
 
-                            {/* Focus Item 4 */}
-                            <div>
-                                <p className="text-main text-sm font-medium mb-2">{t("proj_focus_b4")}</p>
-                                <div className="flex flex-wrap gap-2">
-                                    <span className="badge badge-neutral">LLMs</span>
-                                    <span className="badge badge-neutral">RAG</span>
-                                </div>
-                            </div>
+                    <section className="space-y-6">
+                        <div className="space-y-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+                                {copy.listEyebrow}
+                            </p>
+                            <h2 className="text-2xl font-semibold tracking-tight">{copy.listTitle}</h2>
+                            <p className="text-muted max-w-3xl">{copy.listIntro}</p>
                         </div>
-                    </div>
 
-                    {/* IoT Edge Platform Architecture */}
-                    <IotEdgePlatformArchitecture />
-
-                    {/* Timeline */}
-                    <div>
-                        <h2 className="text-xl font-semibold mb-6">{t("proj_timeline_h2")}</h2>
-
-                        <div className="relative border-l border-blue-300 dark:border-blue-700 ml-6 pl-6 pb-12">
-
-                            {/* 2026 */}
-                            {projects2026.length > 0 && (
-                                <div className="relative mb-10">
-                                    <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
-                                    <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400">2026</h3>
-                                    
-                                    <div className="space-y-4 mt-4">
-                                        {projects2026.map((project) => (
-                                            <div key={project.slug} className="p-4 bg-card border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
-                                                <div className="flex items-center justify-between mb-2">
-                                                    <div className="flex items-center">
-                                                        {project.tags.includes("IoT") ? <Cpu className="w-5 h-5 text-blue-500 mr-2" /> : <Server className="w-5 h-5 text-blue-500 mr-2" />}
-                                                        <h4 className="font-semibold">{project.title[locale]}</h4>
-                                                    </div>
-                                                    <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                                                        Details <ArrowRight className="w-3 h-3 ml-1" />
-                                                    </Link>
-                                                </div>
-                                                <p className="text-sm text-main mb-3">{project.summary[locale]}</p>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {project.tech.slice(0, 3).map(tech => (
-                                                        <span key={tech} className="badge badge-neutral">{tech}</span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* 2025 */}
-                            <div className="relative mb-10">
-                                <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-gray-400 rounded-full" />
-                                <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-400">2025</h3>
-                                <p className="text-main mb-4">{t("proj_2025_desc")}</p>
-
-                                <div className="space-y-4">
-                                    {projects2025.map((project) => (
-                                        <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
-                                            <div className="flex items-center justify-between mb-2">
-                                                <div className="flex items-center">
-                                                    {project.tags.includes("IoT") ? <Cpu className="w-5 h-5 text-blue-500 mr-2" /> : <Server className="w-5 h-5 text-blue-500 mr-2" />}
-                                                    <h4 className="font-semibold">{project.title[locale]}</h4>
-                                                </div>
-                                                <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center">
-                                                    Details <ArrowRight className="w-3 h-3 ml-1" />
-                                                </Link>
-                                            </div>
-                                            <p className="text-sm text-main mb-3">{project.summary[locale]}</p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {project.tech.slice(0, 3).map(tech => (
-                                                    <span key={tech} className="badge badge-neutral">{tech}</span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* 2024 - Responsive Grid Layout */}
-                            {projects2024.length > 0 && (
-                                <div className="relative mb-4">
-                                    <div className="absolute -left-3 top-1 w-2.5 h-2.5 bg-gray-400 rounded-full" />
-                                    <h3 className="text-lg font-semibold text-gray-600 dark:text-gray-400">2024</h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                                        {projects2024.map((project) => (
-                                            <div key={project.slug} className="p-4 border border-subtle rounded-lg hover:border-blue-400 dark:hover:border-blue-600 transition-colors flex flex-col h-full">
-                                                <div className="flex items-center justify-between mb-2">
-                                                    <div className="flex items-center">
-                                                        <Server className="w-5 h-5 text-gray-500 mr-2 flex-shrink-0" />
-                                                        <h4 className="font-semibold text-sm line-clamp-1">{project.title[locale]}</h4>
-                                                    </div>
-                                                    <Link href={`/projects/${project.slug}`} className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center ml-2 flex-shrink-0">
-                                                        Details <ArrowRight className="w-3 h-3 ml-1" />
-                                                    </Link>
-                                                </div>
-                                                <p className="text-xs text-main mb-3 flex-grow">{project.summary[locale]}</p>
-                                                <div className="flex flex-wrap gap-1.5 mt-auto">
-                                                    {project.tech.slice(0, 3).map(tech => (
-                                                        <span key={tech} className="badge badge-neutral text-[10px] px-1.5 py-0.5">{tech}</span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
+                        <div className="grid gap-6 lg:grid-cols-2">
+                            {sortedProjects.map((project, index) => (
+                                <ProjectCard
+                                    key={project.slug}
+                                    locale={locale}
+                                    project={project}
+                                    ctaLabel={copy.detailsCta}
+                                    categoryLabel={copy.categoryLabels[project.category]}
+                                    featured={index === 0}
+                                />
+                            ))}
                         </div>
-                    </div>
-
+                    </section>
                 </div>
             </section>
         </main>
+    );
+}
+
+function ProjectCard({
+    locale,
+    project,
+    ctaLabel,
+    categoryLabel,
+    featured,
+}: {
+    locale: Locale;
+    project: Project;
+    ctaLabel: string;
+    categoryLabel: string;
+    featured: boolean;
+}) {
+    const title = project.title[locale];
+    const oneLiner = project.oneLiner[locale];
+
+    return (
+        <article
+            className={[
+                "group rounded-2xl border border-subtle bg-card p-6 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600",
+                featured ? "lg:col-span-2 md:p-7" : "",
+            ].join(" ")}
+        >
+            <div className="flex items-start justify-between gap-4">
+                <div className="space-y-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-muted">
+                        <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-[0.14em] text-main">
+                            {categoryLabel}
+                        </span>
+                        <span>{project.year}</span>
+                    </div>
+                    <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{title}</h3>
+                </div>
+                <Link
+                    href={`/projects/${project.slug}`}
+                    className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400"
+                >
+                    {ctaLabel}
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+            </div>
+
+            <p className="mt-4 text-main leading-relaxed">{oneLiner}</p>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                    <span key={tag} className="badge badge-neutral">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+                {project.tech.slice(0, featured ? 6 : 4).map((tech) => (
+                    <span key={tech} className="rounded-md border border-subtle px-2.5 py-1 text-xs text-muted">
+                        {tech}
+                    </span>
+                ))}
+            </div>
+        </article>
     );
 }

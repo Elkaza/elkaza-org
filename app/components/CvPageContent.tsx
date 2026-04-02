@@ -5,7 +5,7 @@ import { useLocale } from "../LocaleProvider";
 import { Download, MapPin, Mail } from "lucide-react";
 
 export default function CvPageContent() {
-    const { t, locale } = useLocale();
+    const { t } = useLocale();
 
     const expKeys = ["exp1", "exp2", "exp3", "exp4"];
 
@@ -101,7 +101,7 @@ export default function CvPageContent() {
                 <p className="font-medium text-main">{t("cv_note_full")}</p>
                 <div className="flex flex-wrap gap-4">
                     <a
-                        href="/cv/Mohamed_Elkaza_CV_DE.pdf"
+                        href="/cv/Elkaza_Mohamed_CV_DE.pdf"
                         download
                         className="inline-flex items-center px-5 py-3 bg-card border border-subtle hover:border-blue-500 rounded-md shadow-sm transition-all group"
                     >
@@ -110,7 +110,7 @@ export default function CvPageContent() {
                     </a>
 
                     <a
-                        href="/cv/Mohamed_Elkaza_CV_EN.pdf"
+                        href="/cv/Elkaza_Mohamed_CV_EN.pdf"
                         download
                         className="inline-flex items-center px-5 py-3 bg-card border border-subtle hover:border-blue-500 rounded-md shadow-sm transition-all group"
                     >
