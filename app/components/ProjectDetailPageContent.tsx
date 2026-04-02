@@ -19,6 +19,7 @@ import {
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
 import { projects } from "@/app/lib/projects";
+import { getProjectTagLabel } from "@/app/lib/projectDisplay";
 import type { Locale } from "@/app/i18n/messages";
 
 type DetailCopy = {
@@ -72,8 +73,8 @@ const COPY: Record<string, DetailCopy> = {
         category: {
             "featured-aiot": "Aktuelles IoT- und Edge-Projekt",
             "platform-component": "Plattformbaustein",
-            "security-infrastructure": "Security und Infrastruktur",
-            "delivery-platform": "Delivery-Plattform",
+            "security-infrastructure": "Sicherheit und Infrastruktur",
+            "delivery-platform": "Bereitstellung und Web",
         },
         overview: "Ueberblick",
         problem: "Problem",
@@ -82,7 +83,7 @@ const COPY: Record<string, DetailCopy> = {
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
-        security: "Security",
+        security: "Sicherheit",
         reliability: "Zuverlaessigkeit",
         features: "Wesentliche Merkmale",
         results: "Ergebnisse und Wirkung",
@@ -167,7 +168,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
                             <span key={tag} className="badge badge-neutral">
-                                {tag}
+                                {getProjectTagLabel(tag, locale)}
                             </span>
                         ))}
                     </div>

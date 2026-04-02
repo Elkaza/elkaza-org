@@ -21,9 +21,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Hero
     hero_badge: "IT Operations | Infrastructure | Automation",
-    home_hero_headline: "IT Infrastructure, Systems & Software Engineer",
-    home_hero_subline: "IT-Betrieb | Infrastruktur | Software-nahe Automatisierung | IoT im Ausbau",
+    home_hero_headline: "IT Infrastructure, Systems & Integration Engineer",
+    home_hero_subline: "IT-Betrieb | Infrastruktur | Integration & Automatisierung | IoT im Ausbau",
     home_hero_desc: "Ich arbeite im operativen IT-Betrieb mit Erfahrung in Windows-basierten Client-/Server-Umgebungen, Support, Netzwerken, software-naher Automatisierung und technischer Integration. Ergaenzend bringe ich Application-Engineering-Erfahrung, strukturierte Daten- und Prozessanalyse sowie laufende Vertiefung in IoT, Security und vernetzten Systemen mit.",
+    home_enterprise_title: "Enterprise-Erfahrung",
+    home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, Automatisierung, Application Engineering und operativer IT-Betrieb",
     hero_cta_cv: "CV herunterladen",
     // Proof in 3 Bullets
     home_proof_title: "Was ich mitbringe",
@@ -167,9 +169,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "IT-Betrieb, Infrastruktur, Netzwerke und Automatisierung mit wachsender Spezialisierung auf IoT und Security.",
-    about_lead: "IT Infrastructure & Systems Engineer (Operations | Support | Networking)",
+    about_lead: "IT Infrastructure & Systems Integration Engineer (Operations | Support | Networking)",
     about_profile_h2: "Profil",
-    about_profile_intro: "Ich bin Mohamed, IT Infrastructure & Systems Engineer in Wien mit Erfahrung im operativen IT-Betrieb, Support und in der Betreuung von Windows-basierten Client-/Server-Umgebungen.",
+    about_profile_intro: "Ich bin Mohamed, IT Infrastructure & Systems Integration Engineer in Wien mit Erfahrung im operativen IT-Betrieb, Support und in der Betreuung von Windows-basierten Client-/Server-Umgebungen.",
     about_p1: "Mein Schwerpunkt liegt auf stabilem Tagesbetrieb, strukturiertem Troubleshooting, Netzwerken, sauberer Dokumentation und klaren Übergaben an Support und Betrieb. Parallel erweitere ich mein Profil durch das Masterstudium in Internet of Things und Intelligent Systems sowie durch eigene Projekte im Bereich vernetzte Systeme, Security und Edge.",
     // Value Statement
     about_value_statement: "Ich kombiniere Zuverlaessigkeit im Tagesbetrieb mit technischem Interesse an Automatisierung, Integration, Analyse und neuen Systemarchitekturen.",
@@ -387,9 +389,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Hero
     hero_badge: "IT Operations | Infrastructure | Automation",
-    home_hero_headline: "IT Infrastructure, Systems & Software Engineer",
-    home_hero_subline: "Operations | Infrastructure | Software-oriented automation | IoT in Progress",
+    home_hero_headline: "IT Infrastructure, Systems & Integration Engineer",
+    home_hero_subline: "Operations | Infrastructure | Integration & Automation | IoT in Progress",
     home_hero_desc: "I work in operational IT with experience across Windows-based client/server environments, support, networking, software-oriented automation, and technical integration. I also bring application engineering exposure, structured data and process analysis, and ongoing development in IoT, security, and connected systems through my master's studies and personal projects.",
+    home_enterprise_title: "Enterprise Experience",
+    home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, automation, application engineering, and operational IT",
     hero_cta_cv: "Download CV",
     // Proof in 3 Bullets
     home_proof_title: "What I Bring",
@@ -533,9 +537,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // About
     about_tagline: "IT operations, infrastructure, networking, and automation with a growing specialization in IoT and security.",
-    about_lead: "IT Infrastructure & Systems Engineer (Operations | Support | Networking)",
+    about_lead: "IT Infrastructure & Systems Integration Engineer (Operations | Support | Networking)",
     about_profile_h2: "Professional Profile",
-    about_profile_intro: "I am Mohamed, an IT Infrastructure & Systems Engineer based in Vienna with experience in operational IT, support, and Windows-based client/server environments.",
+    about_profile_intro: "I am Mohamed, an IT Infrastructure & Systems Integration Engineer based in Vienna with experience in operational IT, support, and Windows-based client/server environments.",
     about_p1: "My core strength is reliable day-to-day IT work: structured troubleshooting, networking, documentation, and clean handovers into support and operations. In parallel, I am expanding my profile through the master's program in Internet of Things and Intelligent Systems and through personal projects in connected systems, security, and edge computing.",
     // New: Value Statement
     about_value_statement: "I combine reliability in day-to-day operations with a strong interest in automation, integration, analysis, and newer system architectures.",

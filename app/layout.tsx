@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.linkedin.com/in/elkaza",
                 "https://github.com/Elkaza"
               ],
-              jobTitle: "IT Infrastructure & Systems Engineer",
+              jobTitle: "IT Infrastructure & Systems Integration Engineer",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Vienna",

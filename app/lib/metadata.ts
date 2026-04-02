@@ -13,7 +13,7 @@ export function generatePersonSchema() {
             "https://github.com/Elkaza",
             "https://linkedin.com/in/elkaza",
         ],
-        jobTitle: "IT Infrastructure & Systems Engineer",
+        jobTitle: "IT Infrastructure & Systems Integration Engineer",
         affiliation: [
             {
                 "@type": "EducationalOrganization",

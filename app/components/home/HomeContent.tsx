@@ -33,6 +33,15 @@ export default function HomeContent() {
           </p>
         </div>
 
+        <div className="w-full rounded-xl border border-subtle bg-page/60 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+            {t("home_enterprise_title")}
+          </p>
+          <p className="mt-2 text-sm md:text-base text-main leading-relaxed">
+            {t("home_enterprise_text")}
+          </p>
+        </div>
+
         {/* Proof in 3 Bullets */}
         <div className="bg-card border border-subtle rounded-xl p-6 space-y-4">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">

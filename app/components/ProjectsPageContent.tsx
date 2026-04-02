@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { projects, type Project, type ProjectCategory } from "../lib/projects";
+import { getProjectTagLabel } from "../lib/projectDisplay";
 import type { Locale } from "../i18n/messages";
 
 type Copy = {
@@ -15,6 +16,7 @@ type Copy = {
     listTitle: string;
     listIntro: string;
     detailsCta: string;
+    resultLabel: string;
     categoryLabels: Record<ProjectCategory, string>;
 };
 
@@ -32,6 +34,7 @@ const COPY: Record<string, Copy> = {
         listTitle: "Recent project work",
         listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
         detailsCta: "View case study",
+        resultLabel: "Outcome",
         categoryLabels: {
             "security-infrastructure": "Infrastructure & Security",
             "featured-aiot": "Current IoT & Edge",
@@ -40,11 +43,11 @@ const COPY: Record<string, Copy> = {
         },
     },
     de: {
-        eyebrow: "Engineering-Portfolio",
-        title: "Infrastruktur, Systeme, Security und laufende IoT-Arbeit",
-        intro: "Das Portfolio verbindet operativen IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung, Self-hosted Plattformen und aktuelle IoT- und Edge-Arbeit. Die Projekte sind als Fallstudien aufgebaut, um meinen Umgang mit Systemdesign, Troubleshooting, Security und Delivery in unterschiedlichen Kontexten zu zeigen.",
+        eyebrow: "Portfolio",
+        title: "Infrastruktur, Systeme, Sicherheit und laufende IoT-Arbeit",
+        intro: "Das Portfolio verbindet operativen IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung, Self-hosted-Plattformen und aktuelle IoT- und Edge-Arbeit. Die Projekte sind als Fallstudien aufgebaut, um meinen Umgang mit Systemdesign, Troubleshooting, Sicherheit und Delivery in unterschiedlichen Kontexten zu zeigen.",
         highlights: [
-            "Operations: Support-nahes Systemarbeiten, Troubleshooting, Virtualisierung, Monitoring",
+            "Betrieb: Support-nahes Systemarbeiten, Troubleshooting, Virtualisierung, Monitoring",
             "Infrastruktur: Linux-Services, Netzwerke, DNS, Reverse Proxy, Segmentierung",
             "Laufende Spezialisierung: IoT-Knoten, Edge-Gateways, Telemetrie, sichere Konnektivitaet",
         ],
@@ -52,11 +55,12 @@ const COPY: Record<string, Copy> = {
         listTitle: "Aktuelle Projektarbeit",
         listIntro: "Die Projekte sind von neuer nach aelter sortiert, damit die aktuellste Arbeit zuerst sichtbar ist.",
         detailsCta: "Fallstudie ansehen",
+        resultLabel: "Ergebnis",
         categoryLabels: {
-            "security-infrastructure": "Infrastruktur & Security",
+            "security-infrastructure": "Infrastruktur & Sicherheit",
             "featured-aiot": "Aktuelles IoT & Edge",
             "platform-component": "Plattformbaustein",
-            "delivery-platform": "Delivery & Web",
+            "delivery-platform": "Bereitstellung & Web",
         },
     },
     ar: {
@@ -72,6 +76,7 @@ const COPY: Record<string, Copy> = {
         listTitle: "Recent project work",
         listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
         detailsCta: "View case study",
+        resultLabel: "Outcome",
         categoryLabels: {
             "security-infrastructure": "Infrastructure & Security",
             "featured-aiot": "Current IoT & Edge",
@@ -145,16 +150,17 @@ export default function ProjectsPageContent() {
                         </div>
 
                         <div className="grid gap-6 lg:grid-cols-2">
-                            {sortedProjects.map((project, index) => (
-                                <ProjectCard
-                                    key={project.slug}
-                                    locale={locale}
-                                    project={project}
-                                    ctaLabel={copy.detailsCta}
-                                    categoryLabel={copy.categoryLabels[project.category]}
-                                    featured={index === 0}
-                                />
-                            ))}
+                                    {sortedProjects.map((project, index) => (
+                                        <ProjectCard
+                                            key={project.slug}
+                                            locale={locale}
+                                            project={project}
+                                            ctaLabel={copy.detailsCta}
+                                            resultLabel={copy.resultLabel}
+                                            categoryLabel={copy.categoryLabels[project.category]}
+                                            featured={index === 0}
+                                        />
+                                    ))}
                         </div>
                     </section>
                 </div>
@@ -167,17 +173,20 @@ function ProjectCard({
     locale,
     project,
     ctaLabel,
+    resultLabel,
     categoryLabel,
     featured,
 }: {
     locale: Locale;
     project: Project;
     ctaLabel: string;
+    resultLabel: string;
     categoryLabel: string;
     featured: boolean;
 }) {
     const title = project.title[locale];
     const oneLiner = project.oneLiner[locale];
+    const primaryResult = project.results[locale][0];
 
     return (
         <article
@@ -207,10 +216,14 @@ function ProjectCard({
 
             <p className="mt-4 text-main leading-relaxed">{oneLiner}</p>
 
+            <p className="mt-3 text-sm text-muted leading-relaxed">
+                <span className="font-medium text-main">{resultLabel}:</span> {primaryResult}
+            </p>
+
             <div className="mt-5 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                     <span key={tag} className="badge badge-neutral">
-                        {tag}
+                        {getProjectTagLabel(tag, locale)}
                     </span>
                 ))}
             </div>
