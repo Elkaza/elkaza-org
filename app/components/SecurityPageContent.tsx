@@ -75,9 +75,14 @@ export default function SecurityPageContent() {
                             </li>
                         </ul>
                         <p className="text-xs text-muted italic mb-4">{t("sec_metric_note")}</p>
-                        <Link href="/projects/home-security-lab" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
-                            {t("sec_view_project")} {">"}
-                        </Link>
+                        <div className="flex flex-col gap-2">
+                            <Link href="/projects/vienna-fortress" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
+                                {t("sec_view_project")} {">"}
+                            </Link>
+                            <Link href="/projects/home-security-lab" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
+                                {t("sec_view_foundation")} {">"}
+                            </Link>
+                        </div>
                     </div>
                 </div>
 

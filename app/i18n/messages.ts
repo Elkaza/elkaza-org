@@ -38,10 +38,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Security Page
     nav_security: "Security",
-    security_title: "Security, Netzwerke & Betrieb",
-    security_focus: "Praxisnahe Security- und Netzwerkarbeit als Ergaenzung zu meinem Infrastrukturprofil: Zero-Trust-Zugriff, DNS-Privatsphaere, Linux-Haertung und kontrollierte Remote-Konnektivitaet.",
-    security_lab_title: "Home Lab Einblicke",
-    security_lab_list: "ED25519 SSH Hardening, Tailscale Overlay + Exit Node, Pi-hole + Unbound, UFW Interface-Isolation, Monitoring",
+    security_title: "Security, Observability & Plattformbetrieb",
+    security_focus: "Praxisnahe Security- und Betriebsarbeit als Ergaenzung zu meinem Infrastrukturprofil: private Zugriffswege, DNS-Privatsphaere, mehrschichtige Abwehr, Service-Observability und kontrollierte Self-Hosted-Plattformen.",
+    security_lab_title: "Aktuelle Security- und Operations-Plattform",
+    security_lab_list: "Pi-hole DNS Filtering, CrowdSec Intrusion Response, Tailscale Private Overlay, UFW Interface-Isolation, Netdata, Uptime Kuma, Dozzle, Watchtower",
     security_tools_title: "Aktiver Stack",
     security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
     security_tools_exploring_title: "In Vorbereitung",
@@ -54,14 +54,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_label_problem: "Herausforderung",
     case_label_action: "Vorgehen",
     case_label_result: "Ergebnis",
-    case_iot_title: "IoT-Isolation",
-    case_iot_problem: "Unsichere IoT-Geräte im Hauptnetzwerk",
-    case_iot_action: "L2-Isolation via Gast-SSID. VLAN-Segmentierung für nächste Phase entworfen.",
-    case_iot_result: "IoT-Verkehr vom Hauptnetz getrennt.",
-    case_remote_title: "Sicherer Fernzugriff",
-    case_remote_problem: "Zugriff auf Heimnetz von unterwegs nötig",
-    case_remote_action: "Tailscale-Overlay mit Exit Node, privater Erreichbarkeit und gemeinsamen SSH-Aliasen statt offener Management-Ports",
-    case_remote_result: "Fernzugriff und sicherer Home-Egress laufen ueber private Overlay-Adressen statt direkter Exponierung.",
+    case_iot_title: "Mehrschichtige DNS-Filterung & IPS",
+    case_iot_problem: "Interne Dienste und Clients brauchten Basisschutz gegen unerwuenschte Domains und auffaellige Zugriffsmuster.",
+    case_iot_action: "Pi-hole fuer DNS-Filterung mit CrowdSec fuer verhaltensbasierte Erkennung und Gegenmassnahmen kombiniert und Service-Zugriffe ueber kontrollierte Einstiegspunkte gebuendelt.",
+    case_iot_result: "Unerwuenschte Domains und auffaelliger Traffic werden frueher im Request-Pfad abgefangen und reduzieren die Exponierung der eigentlichen Services.",
+    case_remote_title: "Privater Administrationspfad",
+    case_remote_problem: "Verteilte Dienste und Dashboards mussten remote administrierbar sein, ohne Management-Flaechen breit freizugeben.",
+    case_remote_action: "Tailscale-Overlay, gemeinsame SSH-Aliasse und kontrollierte Reverse-Proxy-Einstiegspunkte statt direkter oeffentlicher Management-Zugaenge genutzt.",
+    case_remote_result: "Administration bleibt auf privaten Pfaden, waehrend Nutzer-Dienste strukturierter und mit geringerer Fehlkonfiguration exponiert werden.",
     security_disclaimer: "Keine sensiblen Konfigurationen veröffentlicht.",
 
     // Terminal Snapshots
@@ -85,10 +85,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     term_wg_out: "<TAILNET>\n<HOST_A>    linux    active; direct <PRIVATE_RELAY>\n<HOST_B>    windows  active; tx <REDACTED> rx <REDACTED>\n<PHONE>     ios      active; exit node available",
 
     // Home Security Lab Case
-    case_lab_title: "Hybrid-Cloud Mesh Lab",
-    case_lab_problem: "Ein einfaches Homelab bot zu wenig gehaertete Administration, DNS-Souveraenitaet und kontrollierten Remote-Transit.",
-    case_lab_action: "ED25519-Schluessel, deaktivierte Passwort-Logins, Pi-hole + Unbound, UFW mit Interface-Regeln und Tailscale Exit Node auf Debian-Core umgesetzt.",
-    case_lab_result: "Die Umgebung arbeitet mit privatem DNS, gehaertetem SSH-Zugriff und kontrollierter Overlay-Konnektivitaet ueber Home-, Cloud- und mobile Systeme hinweg.",
+    case_lab_title: "The Vienna Fortress",
+    case_lab_problem: "Ein werkzeugorientiertes Homelab wurde mit wachsendem Stack schwerer zu ueberwachen, abzusichern und im Alltag wartbar zu halten.",
+    case_lab_action: "Eine Proxmox- und Docker-Plattform um Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage aufgebaut und zusaetzlich eine Proxmox-API-Integration fuer ein React-Dashboard debuggt.",
+    case_lab_result: "Eine produktionsnaehere interne Plattform mit geschichteter Sicherheit, zentraler Sichtbarkeit und geringerem Wartungsaufwand geschaffen.",
     case_lab_safe: "Keine sensiblen Konfigurationen veröffentlicht.",
 
 
@@ -144,18 +144,19 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Security Stack
     security_stack_title: "Security Stack",
     sec_stack_seg_title: "Netzwerk-Segmentierung",
-    sec_stack_seg_desc: "Prinzip: Angriffsflaeche minimieren. \nImpl: Vertrauenswuerdiger Overlay-Traffic bleibt auf privaten Pfaden; andere Interfaces werden restriktiver behandelt.",
+    sec_stack_seg_desc: "Prinzip: Angriffsflaeche minimieren. \nImpl: Private Overlay-Pfade, workloadnahe Trennung auf Proxmox und kontrollierte Service-Einstiegspunkte statt ungebuendelter Direkt-Exponierung.",
     sec_stack_fw_title: "Firewall-Strategie",
-    sec_stack_fw_desc: "Prinzip: Zero Trust Defaults. \nImpl: Strikte Deny-by-Default-Regeln mit interface-basierter UFW-Policy fuer tailscale0, LAN und WAN.",
+    sec_stack_fw_desc: "Prinzip: Mehrschichtige Abwehr. \nImpl: Interface-basierte UFW-Regeln, Pi-hole fuer DNS-Filterung, CrowdSec fuer reaktive Blockierung und Nginx Proxy Manager fuer gebuendelte Service-Exponierung.",
     sec_stack_vpn_title: "Sicherer Fernzugriff",
-    sec_stack_vpn_desc: "Prinzip: Keine offenen Management-Ports. \nImpl: Tailscale-Overlay auf WireGuard-Basis plus Exit Node fuer verschluesselten Zugang und sicheren Transit auf Reisen.",
+    sec_stack_vpn_desc: "Prinzip: Keine offenen Management-Ports. \nImpl: Tailscale-Overlay auf WireGuard-Basis fuer private Administration, konsistente SSH-Pfade und kontrollierten Remote-Zugriff auf interne Plattformen.",
     sec_stack_mon_title: "Observability",
-    sec_stack_mon_desc: "Prinzip: Betriebszustand sichtbar halten. \nImpl: Leichtgewichtiges Monitoring mit btop und kontrollierte Service-Sichtbarkeit fuer Kernsysteme.",
+    sec_stack_mon_desc: "Prinzip: Betriebszustand sichtbar halten. \nImpl: Netdata fuer Echtzeit-Metriken, Uptime Kuma fuer Service-Checks, Dozzle fuer Live-Logs und Watchtower fuer den routinemaessigen Container-Update-Lifecycle.",
 
     sec_outcomes_title: "Operative Ergebnisse",
-    sec_outcome_1: "Passwortbasierte SSH-Administration wurde entfernt; der Zugriff erfolgt schluesselbasiert ueber gehaertete Pfade.",
-    sec_outcome_2: "Kein direkter externer Management-Zugriff: Administration und Travel-Egress laufen ueber private Overlay-Wege und kontrollierte Einstiegspunkte.",
-    sec_view_project: "Zum Projekt: Gehaertetes Hybrid-Cloud-Privatnetzwerk",
+    sec_outcome_1: "Die Umgebung kombiniert private Zugriffswege, DNS-Filterung, kontrollierte Service-Exponierung und CrowdSec-basierte Reaktion statt sich auf einen einzelnen Schutzmechanismus zu verlassen.",
+    sec_outcome_2: "Metriken, Uptime, Logs und der Container-Update-Zyklus sind sichtbar und strukturierter betreibbar, was den Wartungsaufwand fuer die Self-Hosted-Plattform senkt.",
+    sec_view_project: "Zum Projekt: The Vienna Fortress",
+    sec_view_foundation: "Zur Grundlage: Gehaertetes Hybrid-Cloud-Privatnetzwerk",
 
     // Snapshot Captions
     term_ufw_caption: "UFW zeigt Deny-by-default plus restriktive Behandlung nicht vertrauenswuerdiger Interfaces.",
@@ -407,10 +408,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Security Page
     nav_security: "Security",
-    security_title: "Security, Networking & Operations",
-    security_focus: "Hands-on security and network practice that complements my infrastructure profile: zero-trust access, DNS privacy, Linux hardening, and controlled remote connectivity.",
-    security_lab_title: "Home Lab Highlights",
-    security_lab_list: "ED25519 SSH hardening, Tailscale overlay + exit node, Pi-hole + Unbound, UFW interface isolation, monitoring",
+    security_title: "Security, Observability & Platform Operations",
+    security_focus: "Hands-on security and operations work that complements my infrastructure profile: private access paths, DNS privacy, layered defense, service observability, and controlled self-hosted platforms.",
+    security_lab_title: "Current Security and Operations Platform",
+    security_lab_list: "Pi-hole DNS filtering, CrowdSec intrusion response, Tailscale private overlay, UFW interface isolation, Netdata, Uptime Kuma, Dozzle, Watchtower",
     security_tools_title: "Active Stack",
     security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
     security_tools_exploring_title: "In Progress",
@@ -423,14 +424,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_label_problem: "Challenge",
     case_label_action: "Approach",
     case_label_result: "Outcome",
-    case_iot_title: "IoT Isolation",
-    case_iot_problem: "Insecure IoT devices on main network",
-    case_iot_action: "L2 isolation via Guest SSID. VLAN segmentation designed for next phase.",
-    case_iot_result: "IoT traffic separated from main LAN.",
-    case_remote_title: "Secure Remote Access",
-    case_remote_problem: "Need home network access while traveling",
-    case_remote_action: "Tailscale overlay with exit-node capability, private reachability, and shared SSH aliases instead of open management ports",
-    case_remote_result: "Remote access and secure home egress run over private overlay addresses instead of direct exposure.",
+    case_iot_title: "Layered DNS Filtering and IPS",
+    case_iot_problem: "Internal services and clients needed baseline protection against unwanted domains and suspicious traffic patterns.",
+    case_iot_action: "Combined Pi-hole for DNS filtering with CrowdSec for behavior-based detection and remediation, then funneled service access through controlled entry points.",
+    case_iot_result: "Unwanted domains and suspicious traffic are filtered earlier in the request path, reducing exposure before incidents reach application services.",
+    case_remote_title: "Private Administration Path",
+    case_remote_problem: "Distributed services and dashboards needed remote administration without broadly exposing management interfaces.",
+    case_remote_action: "Used a Tailscale overlay, shared SSH aliases, and controlled reverse-proxy entry points instead of direct public management access.",
+    case_remote_result: "Administration stays on private paths while user-facing services remain easier to operate and harder to expose accidentally.",
     security_disclaimer: "No sensitive configs published.",
 
     // Terminal Snapshots
@@ -454,28 +455,29 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     term_wg_out: "<TAILNET>\n<HOST_A>    linux    active; direct <PRIVATE_RELAY>\n<HOST_B>    windows  active; tx <REDACTED> rx <REDACTED>\n<PHONE>     ios      active; exit node available",
 
     // Home Security Lab Case
-    case_lab_title: "Hybrid-Cloud Mesh Lab",
-    case_lab_problem: "A basic home lab did not provide hardened administration, DNS sovereignty, or controlled remote transit.",
-    case_lab_action: "Implemented ED25519 keys, disabled password logins, deployed Pi-hole + Unbound, applied interface-aware UFW rules, and enabled a Tailscale exit node on debian-core.",
-    case_lab_result: "The environment now runs with private DNS, hardened SSH access, and controlled overlay connectivity across home, cloud, and roaming systems.",
+    case_lab_title: "The Vienna Fortress",
+    case_lab_problem: "A tool-by-tool home lab became harder to monitor, secure, and maintain as the service stack grew.",
+    case_lab_action: "Built a Proxmox and Docker platform around Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage, and debugged a Proxmox API integration for a React-based dashboard.",
+    case_lab_result: "Created a more production-minded internal platform with layered security, centralized visibility, and lower maintenance overhead.",
     case_lab_safe: "No sensitive configs published.",
 
 
     // Security Stack
     security_stack_title: "Security Stack",
     sec_stack_seg_title: "Network Segmentation",
-    sec_stack_seg_desc: "Principle: Reduce attack surface. \nImpl: Trusted overlay traffic stays on private paths while other interfaces are treated more restrictively.",
+    sec_stack_seg_desc: "Principle: Reduce attack surface. \nImpl: Private overlay paths, workload-level separation on Proxmox, and controlled service entry points instead of unmanaged direct exposure.",
     sec_stack_fw_title: "Firewall Strategy",
-    sec_stack_fw_desc: "Principle: Zero trust defaults. \nImpl: Strict deny-by-default with interface-aware UFW rules for tailscale0, LAN, and WAN.",
+    sec_stack_fw_desc: "Principle: Layered defense. \nImpl: Interface-aware UFW rules, Pi-hole for DNS filtering, CrowdSec for reactive blocking, and Nginx Proxy Manager for centralized service exposure.",
     sec_stack_vpn_title: "Secure Access",
-    sec_stack_vpn_desc: "Principle: No open management ports. \nImpl: Tailscale overlay on top of WireGuard plus an exit node for encrypted access and secure transit while traveling.",
+    sec_stack_vpn_desc: "Principle: No open management ports. \nImpl: Tailscale on top of WireGuard for private administration paths, consistent SSH access, and controlled remote access to internal platforms.",
     sec_stack_mon_title: "Observability",
-    sec_stack_mon_desc: "Principle: Keep the operating state visible. \nImpl: Lightweight monitoring with btop and controlled visibility for core services.",
+    sec_stack_mon_desc: "Principle: Keep the operating state visible. \nImpl: Netdata for real-time metrics, Uptime Kuma for service checks, Dozzle for live logs, and Watchtower for routine container update automation.",
 
     sec_outcomes_title: "Operational Outcomes",
-    sec_outcome_1: "Password-based SSH administration was removed; access is now key-based over hardened paths.",
-    sec_outcome_2: "Zero direct external management access: administration and travel egress run through private overlay paths and controlled entry points.",
-    sec_view_project: "View Project: Hardened Hybrid-Cloud Private Network",
+    sec_outcome_1: "The environment now combines private access paths, DNS filtering, controlled service exposure, and CrowdSec-based response instead of relying on a single security control.",
+    sec_outcome_2: "Metrics, uptime, logs, and the container update lifecycle are now visible and easier to operate, reducing routine maintenance overhead across the self-hosted platform.",
+    sec_view_project: "View Project: The Vienna Fortress",
+    sec_view_foundation: "View Foundation: Hardened Hybrid-Cloud Private Network",
 
     // Snapshot Captions
     term_ufw_caption: "UFW shows deny-by-default behavior plus restrictive treatment of untrusted interfaces.",
