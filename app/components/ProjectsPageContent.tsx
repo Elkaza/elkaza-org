@@ -195,24 +195,23 @@ function ProjectCard({
                 featured ? "lg:col-span-2 md:p-7" : "",
             ].join(" ")}
         >
-            <div className="flex items-start justify-between gap-4">
-                <div className="space-y-3">
-                    <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-muted">
-                        <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-[0.14em] text-main">
-                            {categoryLabel}
-                        </span>
-                        <span>{project.year}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold tracking-tight md:text-2xl">{title}</h3>
+            <div className="flex flex-wrap items-start justify-between gap-3">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-muted">
+                    <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-[0.14em] text-main">
+                        {categoryLabel}
+                    </span>
+                    <span>{project.year}</span>
                 </div>
                 <Link
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400"
+                    className="inline-flex shrink-0 items-center whitespace-nowrap text-sm font-medium text-blue-600 dark:text-blue-400"
                 >
                     {ctaLabel}
                     <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
             </div>
+
+            <h3 className="mt-4 text-xl font-semibold tracking-tight md:text-2xl">{title}</h3>
 
             <p className="mt-4 text-main leading-relaxed">{oneLiner}</p>
 
