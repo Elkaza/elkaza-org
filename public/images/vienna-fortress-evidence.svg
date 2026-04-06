@@ -1,0 +1,51 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="28" fill="#0F172A"/>
+  <rect x="48" y="48" width="1504" height="804" rx="24" fill="#111827" stroke="#23314D" stroke-width="2"/>
+  <text x="88" y="112" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">OPERATIONS EVIDENCE</text>
+  <text x="88" y="164" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="800">Monitoring and Security Snapshot</text>
+  <text x="88" y="204" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="22">Sanitized service health, metrics, and response indicators from the Vienna Fortress stack</text>
+
+  <rect x="88" y="270" width="444" height="500" rx="22" fill="#172033" stroke="#334155" stroke-width="2"/>
+  <text x="124" y="326" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Netdata</text>
+  <text x="124" y="362" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="18">Real-time host telemetry</text>
+  <rect x="124" y="402" width="170" height="118" rx="18" fill="#1E293B"/>
+  <rect x="326" y="402" width="170" height="118" rx="18" fill="#1E293B"/>
+  <rect x="124" y="548" width="170" height="118" rx="18" fill="#1E293B"/>
+  <rect x="326" y="548" width="170" height="118" rx="18" fill="#1E293B"/>
+  <text x="152" y="450" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="18">CPU</text>
+  <text x="152" y="492" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">25%</text>
+  <text x="354" y="450" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="18">RAM Free</text>
+  <text x="354" y="492" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">836 MiB</text>
+  <text x="152" y="596" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="18">Disk Free</text>
+  <text x="152" y="638" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">22.4 GB</text>
+  <text x="354" y="596" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="18">Health</text>
+  <text x="354" y="638" fill="#34D399" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="800">Healthy</text>
+
+  <rect x="578" y="270" width="444" height="500" rx="22" fill="#172033" stroke="#334155" stroke-width="2"/>
+  <text x="614" y="326" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Uptime Kuma</text>
+  <text x="614" y="362" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="18">Service health checks</text>
+  <rect x="614" y="402" width="372" height="64" rx="14" fill="#1E293B"/>
+  <rect x="614" y="486" width="372" height="64" rx="14" fill="#1E293B"/>
+  <rect x="614" y="570" width="372" height="64" rx="14" fill="#1E293B"/>
+  <rect x="614" y="654" width="372" height="64" rx="14" fill="#1E293B"/>
+  <circle cx="646" cy="434" r="10" fill="#34D399"/>
+  <circle cx="646" cy="518" r="10" fill="#34D399"/>
+  <circle cx="646" cy="602" r="10" fill="#34D399"/>
+  <circle cx="646" cy="686" r="10" fill="#34D399"/>
+  <text x="676" y="440" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">Pi-hole</text>
+  <text x="676" y="524" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">Nginx Proxy Manager</text>
+  <text x="676" y="608" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">CrowdSec</text>
+  <text x="676" y="692" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">Homepage</text>
+
+  <rect x="1068" y="270" width="444" height="500" rx="22" fill="#172033" stroke="#334155" stroke-width="2"/>
+  <text x="1104" y="326" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">CrowdSec and Logs</text>
+  <text x="1104" y="362" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="18">Response signals and live container output</text>
+  <rect x="1104" y="400" width="372" height="112" rx="18" fill="#1E293B"/>
+  <text x="1132" y="446" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="18">Blocked decisions</text>
+  <text x="1132" y="490" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="800">12</text>
+  <rect x="1104" y="540" width="372" height="178" rx="18" fill="#0B1220" stroke="#22304A" stroke-width="2"/>
+  <text x="1132" y="582" fill="#34D399" font-family="JetBrains Mono, Consolas, monospace" font-size="18">[watchtower] updated nginx-proxy-manager</text>
+  <text x="1132" y="618" fill="#93C5FD" font-family="JetBrains Mono, Consolas, monospace" font-size="18">[dozzle] streaming sanitized container logs</text>
+  <text x="1132" y="654" fill="#FCA5A5" font-family="JetBrains Mono, Consolas, monospace" font-size="18">[crowdsec] scenario triggered: ssh-bf</text>
+  <text x="1132" y="690" fill="#E5E7EB" font-family="JetBrains Mono, Consolas, monospace" font-size="18">[proxy] request path routed through safe entrypoint</text>
+</svg>

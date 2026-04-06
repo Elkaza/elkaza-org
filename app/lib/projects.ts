@@ -439,6 +439,11 @@ export const projects: Project[] = [
         tech: ["Debian 12", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
         tags: ["Security", "Infrastructure", "Operations", "Platform"],
         links: [],
+        images: [
+            "/images/vienna-fortress-architecture.svg",
+            "/images/vienna-fortress-dashboard.svg",
+            "/images/vienna-fortress-evidence.svg",
+        ],
         relatedProjectSlug: "home-security-lab",
     },
     {
