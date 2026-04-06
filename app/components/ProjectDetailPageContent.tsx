@@ -175,18 +175,29 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 </header>
 
                 {project.images && project.images.length > 0 && (
-                    <section className="grid gap-4 md:grid-cols-2">
-                        {project.images.map((image, index) => (
-                            <div key={image} className="overflow-hidden rounded-xl border border-subtle bg-card shadow-sm">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src={image}
-                                    alt={`${project.title.en} image ${index + 1}`}
-                                    className="h-full w-full object-cover"
-                                />
-                            </div>
-                        ))}
-                    </section>
+                    project.images.length === 1 ? (
+                        <section className="rounded-xl border border-subtle bg-card p-2 md:p-3 shadow-sm">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={project.images[0]}
+                                alt={`${project.title.en} dashboard screenshot`}
+                                className="w-full h-auto rounded-lg"
+                            />
+                        </section>
+                    ) : (
+                        <section className="grid gap-4 md:grid-cols-2">
+                            {project.images.map((image, index) => (
+                                <div key={image} className="overflow-hidden rounded-xl border border-subtle bg-card p-2 shadow-sm">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={image}
+                                        alt={`${project.title.en} image ${index + 1}`}
+                                        className="w-full h-auto rounded-lg"
+                                    />
+                                </div>
+                            ))}
+                        </section>
+                    )
                 )}
 
                 <div className="grid gap-6 lg:grid-cols-2">
