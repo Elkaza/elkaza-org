@@ -359,6 +359,89 @@ export const projects: Project[] = [
         relatedProjectSlug: "ble-edge-gateway",
     },
     {
+        slug: "vienna-fortress",
+        category: "security-infrastructure",
+        year: "2026",
+        title: loc(
+            "The Vienna Fortress",
+            "The Vienna Fortress"
+        ),
+        oneLiner: loc(
+            "Built a hardened Proxmox and Docker operations platform that combines layered security, real-time observability, reverse proxying, and automated container lifecycle management.",
+            "Eine gehaertete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
+        ),
+        overview: loc(
+            "The Vienna Fortress turns a basic home lab into a more production-minded internal platform. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
+            "The Vienna Fortress entwickelt ein einfaches Homelab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane fuer Self-Hosted-Services."
+        ),
+        problem: loc(
+            "Deploying individual tools is easy; building a secure and operable platform is harder. The environment needed layered protection, live health visibility, reliable log access, and a clean way to surface Proxmox state inside a frontend dashboard without brittle ad hoc scripts.",
+            "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlaesslichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
+        ),
+        solution: loc(
+            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, and internal service discovery. I also debugged the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services fuer Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Uebersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards debuggt, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlaesslich dargestellt werden."
+        ),
+        architecture: {
+            node: loc(
+                "Admins and users consume services through Homepage and reverse-proxied entry points, while the dashboard layer surfaces service and virtualization state in one place.",
+                "Admins und Nutzer greifen ueber Homepage und reverse-proxied Einstiegspunkte auf Services zu, waehrend die Dashboard-Schicht Service- und Virtualisierungszustand an einer Stelle sichtbar macht."
+            ),
+            edge: loc(
+                "A Proxmox 9.1 host runs Debian 12 workloads and Docker services including Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage.",
+                "Ein Proxmox-9.1-Host betreibt Debian-12-Workloads und Docker-Services wie Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage."
+            ),
+            cloud: loc(
+                "The design is local-first and does not depend on a public cloud. It can later be extended with secure remote access or replicated services without redesigning the service plane.",
+                "Das Design ist local-first und benoetigt keine Public Cloud. Es kann spaeter mit sicherem Fernzugriff oder replizierten Services erweitert werden, ohne die Service-Ebene neu entwerfen zu muessen."
+            ),
+        },
+        security: loc(
+            "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec adds IPS-style detection and remediation, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
+            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole uebernimmt DNS-Filterung, CrowdSec ergaenzt IPS-aehnliche Erkennung und Gegenmassnahmen, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
+        ),
+        reliability: loc(
+            "Netdata, Uptime Kuma, and Dozzle provide metrics, health checks, and log visibility, while Watchtower automates the container update lifecycle and reduces manual drift across long-running services.",
+            "Netdata, Uptime Kuma und Dozzle liefern Metriken, Health Checks und Log-Sichtbarkeit, waehrend Watchtower den Container-Update-Lifecycle automatisiert und manuellen Drift ueber langlebige Services hinweg reduziert."
+        ),
+        keyFeatures: locList(
+            [
+                "Layered security with Pi-hole DNS filtering and CrowdSec-based intrusion response",
+                "Reverse-proxied service access through Nginx Proxy Manager",
+                "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
+                "Debugged and stabilized a React-based Proxmox API integration for dashboard visibility",
+                "Watchtower-driven container update workflow for routine maintenance",
+            ],
+            [
+                "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung und CrowdSec-basierter Intrusion Response",
+                "Reverse-proxied Service-Zugriff ueber Nginx Proxy Manager",
+                "Netdata, Uptime Kuma und Dozzle fuer Metriken, Uptime-Checks und Live-Container-Logs",
+                "Eine React-basierte Proxmox-API-Integration fuer Dashboard-Sichtbarkeit debuggt und stabilisiert",
+                "Ein Watchtower-gesteuerter Container-Update-Workflow fuer die Regelwartung",
+            ]
+        ),
+        results: locList(
+            [
+                "Turned a generic home lab into a hardened internal platform with clearer operational boundaries",
+                "Added real-time visibility across service health, metrics, and logs",
+                "Resolved a cross-layer integration issue between frontend code and the Proxmox API",
+                "Reduced routine maintenance effort through automated container updates",
+                "Created a scalable baseline for adding future internal tools without reworking the control plane",
+            ],
+            [
+                "Ein generisches Homelab in eine gehaertete interne Plattform mit klareren Betriebsgrenzen ueberfuehrt",
+                "Echtzeit-Sicht auf Service-Zustand, Metriken und Logs geschaffen",
+                "Ein schichtuebergreifendes Integrationsproblem zwischen Frontend-Code und der Proxmox-API geloest",
+                "Den Wartungsaufwand durch automatisierte Container-Updates reduziert",
+                "Eine skalierbare Basis fuer weitere interne Tools geschaffen, ohne die Control Plane neu aufbauen zu muessen",
+            ]
+        ),
+        tech: ["Debian 12", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
+        tags: ["Security", "Infrastructure", "Operations", "Platform"],
+        links: [],
+        relatedProjectSlug: "home-security-lab",
+    },
+    {
         slug: "home-security-lab",
         category: "security-infrastructure",
         year: "2026",
@@ -437,7 +520,7 @@ export const projects: Project[] = [
         tech: ["Tailscale", "WireGuard", "OpenSSH", "ED25519", "Proxmox", "Debian 13", "Pi-hole", "Unbound", "UFW", "sysctl", "btop"],
         tags: ["Security", "Networking", "Hybrid Cloud", "Zero Trust"],
         links: [],
-        relatedProjectSlug: "self-hosted-cloud",
+        relatedProjectSlug: "vienna-fortress",
     },
     {
         slug: "self-hosted-cloud",
@@ -514,7 +597,7 @@ export const projects: Project[] = [
         tech: ["Docker", "Linux", "Nginx Proxy Manager", "Pi-hole", "Uptime Kuma", "Cloudflare Tunnel"],
         tags: ["Infrastructure", "Security", "Operations"],
         links: [],
-        relatedProjectSlug: "home-security-lab",
+        relatedProjectSlug: "vienna-fortress",
     },
     {
         slug: "elkaza-org",
