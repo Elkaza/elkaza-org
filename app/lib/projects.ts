@@ -441,7 +441,7 @@ export const projects: Project[] = [
         links: [],
         images: [
             "/images/vienna-fortress-architecture.svg",
-            "/images/vienna-fortress-dashboard.svg",
+            "/images/vienna-fortress-dashboard.png",
             "/images/vienna-fortress-evidence.svg",
         ],
         relatedProjectSlug: "home-security-lab",
