@@ -11,8 +11,8 @@ const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], 
 
 export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
-  title: "Mohamed Elkaza | IT Infrastructure, Systems & Projects",
-  description: "Portfolio of Mohamed Elkaza covering IT operations, infrastructure, networking, automation, self-hosted platforms, and ongoing IoT systems work.",
+  title: "Mohamed Elkaza | IT Infrastructure, Platform & Automation Engineer",
+  description: "Portfolio of Mohamed Elkaza covering IT infrastructure, platform operations, automation, hybrid cloud, zero-trust networking, secure self-hosted systems, and IoT systems work.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.linkedin.com/in/elkaza",
                 "https://github.com/Elkaza"
               ],
-              jobTitle: "IT Infrastructure & Systems Integration Engineer",
+              jobTitle: "IT Infrastructure, Platform & Automation Engineer",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Vienna",
@@ -56,6 +56,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "Network Engineering",
                 "Windows Server",
                 "Linux",
+                "Hybrid Cloud",
+                "Zero-Trust Networking",
+                "Tailscale",
+                "Docker",
+                "Nginx Proxy Manager",
+                "CI/CD",
                 "Automation",
                 "ITSM",
                 "Project Management",
