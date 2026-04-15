@@ -2,26 +2,25 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, Terminal } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
-import { Download } from "lucide-react";
 
 export default function HomeContent() {
   const { t } = useLocale();
+  const platformItems = [1, 2, 3, 4];
+  const proofItems = ["impact", "scope", "strength"];
 
   return (
-    <main className="flex flex-col items-start justify-start w-full max-w-3xl mx-auto px-6 py-12 md:py-20 space-y-24 text-main">
+    <main className="flex flex-col items-start justify-start w-full max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-20 text-main">
 
       {/* 1. Hero Section - New Focused Positioning */}
       <section className="w-full space-y-8">
-        <div className="space-y-4">
-          {/* Terminal-style focus indicator */}
-          <div className="space-y-1">
-            <Terminal className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-2" />
-            <span className="font-mono text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-bold block" aria-hidden="true">
+        <div className="space-y-4 max-w-4xl">
+          <div className="space-y-3">
+            <span className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400 block">
               {t("hero_badge")}
             </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-main">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-normal text-main">
               {t("home_hero_headline")}
             </h1>
           </div>
@@ -33,34 +32,35 @@ export default function HomeContent() {
           </p>
         </div>
 
-        <div className="w-full rounded-xl border border-subtle bg-page/60 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
-            {t("home_enterprise_title")}
+        <div className="w-full rounded-lg border border-subtle bg-card p-5 shadow-sm">
+          <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+            {t("home_platform_title")}
           </p>
           <p className="mt-2 text-sm md:text-base text-main leading-relaxed">
-            {t("home_enterprise_text")}
+            {t("home_platform_text")}
           </p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {platformItems.map((item) => (
+              <span key={item} className="rounded-md border border-subtle bg-page/70 px-3 py-2 text-sm font-medium text-main">
+                {t(`home_platform_item${item}`)}
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* Proof in 3 Bullets */}
-        <div className="bg-card border border-subtle rounded-xl p-6 space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-muted">
+        {/* Proof in 3 compact cards */}
+        <div className="space-y-4">
+          <h2 className="text-sm font-semibold uppercase tracking-normal text-muted">
             {t("home_proof_title")}
           </h2>
-          <ul className="space-y-3">
-            <li className="flex items-start gap-3">
-              <span className="mt-1.5 w-2 h-2 dot-impact rounded-full flex-shrink-0" />
-              <span className="text-main">{t("home_proof_impact")}</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1.5 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
-              <span className="text-main">{t("home_proof_scope")}</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1.5 w-2 h-2 bg-slate-500 rounded-full flex-shrink-0" />
-              <span className="text-main">{t("home_proof_strength")}</span>
-            </li>
-          </ul>
+          <div className="grid gap-3 md:grid-cols-3">
+            {proofItems.map((item) => (
+              <div key={item} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+                <span className="mb-3 block h-1.5 w-10 rounded-full bg-blue-500" />
+                <p className="text-sm leading-relaxed text-main">{t(`home_proof_${item}`)}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Primary CTAs */}
@@ -84,24 +84,24 @@ export default function HomeContent() {
       {/* 2. What I do Section */}
       <section className="w-full space-y-8">
         <div className="space-y-2">
-          <h2 className="text-2xl font-semibold tracking-tight">{t("what_do_title")}</h2>
+          <h2 className="text-2xl font-semibold tracking-normal">{t("what_do_title")}</h2>
           <p className="text-muted">{t("what_do_subtitle")}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-3 p-5 border border-subtle rounded-xl bg-card h-full">
+          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
             <h3 className="font-medium text-main text-lg">{t("what_do_item1_title")}</h3>
             <p className="text-sm text-muted leading-relaxed">{t("what_do_item1_desc")}</p>
           </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-xl bg-card h-full">
+          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
             <h3 className="font-medium text-main text-lg">{t("what_do_item2_title")}</h3>
             <p className="text-sm text-muted leading-relaxed">{t("what_do_item2_desc")}</p>
           </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-xl bg-card h-full">
+          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
             <h3 className="font-medium text-main text-lg">{t("what_do_item3_title")}</h3>
             <p className="text-sm text-muted leading-relaxed">{t("what_do_item3_desc")}</p>
           </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-xl bg-card h-full">
+          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
             <h3 className="font-medium text-main text-lg">{t("what_do_item4_title")}</h3>
             <p className="text-sm text-muted leading-relaxed">{t("what_do_item4_desc")}</p>
           </div>
@@ -111,7 +111,7 @@ export default function HomeContent() {
 
 
       <section className="w-full space-y-6">
-        <h2 className="text-2xl font-semibold tracking-tight">{t("current_title")}</h2>
+        <h2 className="text-2xl font-semibold tracking-normal">{t("current_title")}</h2>
         <ul className="space-y-3 list-disc list-outside ml-4 text-muted">
           <li>{t("current_item1")}</li>
           <li>{t("current_item2")}</li>
@@ -130,7 +130,7 @@ export default function HomeContent() {
 
       {/* 6. Technologies & Methods Section */}
       <section className="w-full space-y-8">
-        <h2 className="text-2xl font-semibold tracking-tight">{t("tech_title")}</h2>
+        <h2 className="text-2xl font-semibold tracking-normal">{t("tech_title")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-sm">
           <div className="space-y-1">
             <h3 className="font-medium text-main">{t("tech_cat1")}</h3>

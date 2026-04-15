@@ -20,28 +20,34 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     back_to_top: "Nach oben",
 
     // Home - Hero
-    hero_badge: "IT Operations | Infrastructure | Automation",
-    home_hero_headline: "IT Infrastructure, Systems & Integration Engineer",
-    home_hero_subline: "IT-Betrieb | Infrastruktur | Integration & Automatisierung | IoT im Ausbau",
-    home_hero_desc: "Ich arbeite im operativen IT-Betrieb mit Erfahrung in Windows-basierten Client-/Server-Umgebungen, Support, Netzwerken, software-naher Automatisierung und technischer Integration. Ergaenzend bringe ich Application-Engineering-Erfahrung, strukturierte Daten- und Prozessanalyse sowie laufende Vertiefung in IoT, Security und vernetzten Systemen mit.",
+    hero_badge: "Infrastructure | Platform Operations | Automation",
+    home_hero_headline: "IT Infrastructure, Platform & Automation Engineer",
+    home_hero_subline: "Sichere Self-Hosted-Infrastruktur, CI/CD und Plattformbetrieb",
+    home_hero_desc: "Ich baue und betreibe stabile IT- und Web-Plattformen mit Linux-/Windows-Systemen, Netzwerken, Automatisierung und sicherer Self-Hosted-Infrastruktur. Aktuelle Projektarbeit verbindet Hybrid Cloud, GitHub Actions, Tailscale, Docker, Nginx Proxy Manager und Backup-Automation.",
     home_enterprise_title: "Enterprise-Erfahrung",
     home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, Automatisierung, Application Engineering und operativer IT-Betrieb",
+    home_platform_title: "Aktueller Plattform-Nachweis",
+    home_platform_text: "Elkaza.at wird als Hybrid-Cloud-Delivery-Plattform betrieben: Cloud-Builds auf vps1, private Runtime auf debian-core, sicher verbunden ueber Tailscale.",
+    home_platform_item1: "GitHub Actions CI/CD",
+    home_platform_item2: "Tailscale Zero Trust",
+    home_platform_item3: "Docker + Nginx Proxy Manager",
+    home_platform_item4: "7-Tage-Backup-Rotation",
     hero_cta_cv: "CV herunterladen",
     // Proof in 3 Bullets
-    home_proof_title: "Was ich mitbringe",
-    home_proof_impact: "Strukturierter IT-Betrieb, Support und Troubleshooting",
-    home_proof_scope: "Windows-/Linux-nahe Systeme, Netzwerke, ITSM, software-nahe Automatisierung",
-    home_proof_strength: "IoT und Security als laufender Ausbau meines Profils",
+    home_proof_title: "Arbeitsweise",
+    home_proof_impact: "Strukturierter Betrieb: Troubleshooting, Dokumentation, Monitoring und klare Uebergaben.",
+    home_proof_scope: "Automatisierung mit Bash, PowerShell, Python, GitHub Actions und reproduzierbaren Release-Schritten.",
+    home_proof_strength: "Security-orientierter Plattformbetrieb mit privaten Zugriffspfaden, reduzierter Exponierung und Backups.",
     // CTAs
     home_cta_primary: "CV herunterladen",
     home_cta_secondary: "Projekte ansehen",
 
     // Security Page
     nav_security: "Security",
-    security_title: "Security, Observability & Plattformbetrieb",
-    security_focus: "Praxisnahe Security- und Betriebsarbeit als Ergaenzung zu meinem Infrastrukturprofil: private Zugriffswege, DNS-Privatsphaere, mehrschichtige Abwehr, Service-Observability und kontrollierte Self-Hosted-Plattformen.",
-    security_lab_title: "Aktuelle Security- und Operations-Plattform",
-    security_lab_list: "Pi-hole DNS Filtering, CrowdSec Intrusion Response, Tailscale Private Overlay, UFW Interface-Isolation, Netdata, Uptime Kuma, Dozzle, Watchtower",
+    security_title: "Security & Plattformbetrieb",
+    security_focus: "Praxisnahe Security-Arbeit im Self-Hosted-Umfeld: private Zugriffswege, DNS-Filterung, reaktive Abwehr, serviceorientierte Observability und kontrollierte Exponierung von Webdiensten.",
+    security_lab_title: "Aktuelle Security- und Operations-Bausteine",
+    security_lab_list: "Tailscale Private Overlay, UFW Interface-Isolation, Pi-hole DNS Filtering, CrowdSec Intrusion Response, Nginx Proxy Manager, Netdata, Uptime Kuma, Dozzle, Watchtower",
     security_tools_title: "Aktiver Stack",
     security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
     security_tools_exploring_title: "In Vorbereitung",
@@ -64,25 +70,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_remote_result: "Administration bleibt auf privaten Pfaden, waehrend Nutzer-Dienste strukturierter und mit geringerer Fehlkonfiguration exponiert werden.",
     security_disclaimer: "Keine sensiblen Konfigurationen veröffentlicht.",
 
-    // Terminal Snapshots
-    security_pow_title: "Lab-Snapshots",
-    security_pow_note: "Bereinigt (Zugangsdaten entfernt)",
-    sec_metric_note: "Sanitisierte Projektbeispiele; interne Hostnamen, Adressen und andere sensible Details wurden entfernt.",
-
-    // Terminal 1: UFW
-    term_ufw_title: "Firewall: Deny-by-default",
-    term_ufw_cmd: "<USER>@<HOST>:~$ sudo ufw status verbose",
-    term_ufw_out: "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing)\n\nTo                         Action      From\n--                         ------      ----\n<tailscale0>               ALLOW IN    <TAILNET>\n<SSH_PORT>/tcp             LIMIT IN    <TRUSTED_RANGE>\n<DNS_PORT>/udp             ALLOW IN    <TRUSTED_RANGE>\n# non-overlay ingress remains restricted by default",
-
-    // Terminal 2: Pi-hole
-    term_pihole_title: "DNS: Ad-Blocking aktiv",
-    term_pihole_cmd: "<USER>@<HOST>:~$ pihole status",
-    term_pihole_out: "  [✓] FTL is listening on port 53\n  [✓] Pi-hole blocking is enabled\n  [✓] DNS service is running",
-
-    // Terminal 3: WireGuard
-    term_wg_title: "Mesh VPN: Tailscale-Status",
-    term_wg_cmd: "<USER>@<HOST>:~$ tailscale status",
-    term_wg_out: "<TAILNET>\n<HOST_A>    linux    active; direct <PRIVATE_RELAY>\n<HOST_B>    windows  active; tx <REDACTED> rx <REDACTED>\n<PHONE>     ios      active; exit node available",
+    // Public security note
+    sec_metric_note: "Oeffentliche Zusammenfassung; interne Hostnamen, Adressen, Secrets und Konfigurationsdetails werden nicht veroeffentlicht.",
 
     // Home Security Lab Case
     case_lab_title: "The Vienna Fortress",
@@ -94,22 +83,22 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - What I do
     what_do_title: "Was ich mache",
-    what_do_subtitle: "Mein Profil verbindet operativen IT-Betrieb mit Infrastruktur, Support, software-naher Automatisierung und Analyse. IoT und vernetzte Systeme baue ich parallel als Spezialisierung auf.",
+    what_do_subtitle: "Mein Profil verbindet operativen IT-Betrieb mit Plattformbetrieb, sicherer Self-Hosted-Infrastruktur, Automatisierung und technischer Analyse.",
     what_do_item1_title: "IT Operations & Support",
     what_do_item1_desc: "Betreuung stabiler Systemumgebungen, Ticketbearbeitung, strukturierte Fehleranalyse und nachvollziehbare Übergaben für Betrieb und Support.",
-    what_do_item2_title: "Infrastruktur & Netzwerke",
-    what_do_item2_desc: "Arbeit mit Windows-basierten Client-/Server-Umgebungen, Linux-Grundlagen, Virtualisierung sowie soliden Netzwerkgrundlagen wie TCP/IP, DNS, DHCP, VPN und Segmentierung.",
-    what_do_item3_title: "Automatisierung, Software & Analyse",
-    what_do_item3_desc: "Unterstuetzung und Optimierung von IT-Service-Prozessen mit ServiceNow, XML/XSLT, Python, PowerShell, Bash, technischer Dokumentation sowie strukturierter Daten- und Prozessanalyse.",
-    what_do_item4_title: "IoT, Security & vernetzte Systeme",
-    what_do_item4_desc: "Laufender Ausbau meines Profils durch Studium und Projekte in IoT-Architekturen, Edge-Systemen, sicherer Konnektivität und Telemetrie.",
+    what_do_item2_title: "Plattformen & Netzwerke",
+    what_do_item2_desc: "Linux-/Windows-Systeme, Proxmox, Docker, Reverse Proxy, DNS, VPN, VLAN und kontrollierte Service-Exponierung.",
+    what_do_item3_title: "Automatisierung & Delivery",
+    what_do_item3_desc: "GitHub Actions, Shell-Skripte, rsync-Releases, Python, PowerShell, technische Dokumentation und wiederholbare Deployment-Ablaeufe.",
+    what_do_item4_title: "Security, IoT & Observability",
+    what_do_item4_desc: "Private Zugriffswege, DNS-Filterung, Monitoring, Telemetrie und laufende Vertiefung in IoT- und Edge-Architekturen.",
 
     // Home - Currently
     current_title: "Aktuell",
-    current_item1: "IPMA® Level D (cPMA) – seit 10/2025",
+    current_item1: "Elkaza.at: Hybrid-Cloud-Deployment mit GitHub Actions, Tailscale, Docker und 7-Tage-Backups.",
     current_item2: "M.Sc. Wirtschaftsinformatik, TU Wien - Schwerpunkt Digitale Transformation und Enterprise Engineering.",
     current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
-    current_item4: "Vertiefung von IoT, Netzwerken und Security durch das Masterstudium an der FH Technikum Wien und praktische Projektarbeit.",
+    current_item4: "IPMA® Level D (cPMA) – seit 10/2025; strukturierte Delivery-Arbeit fuer technische Vorhaben.",
     exp1_title: "Application Engineer - HiCo-ICS (2023)",
     exp1_desc: "Application Engineering für eine XML/XSLT-basierte Publishing-Suite mit Fokus auf Feature-Debugging, User Stories und klare technische Dokumentation. Gestärkt hat mich vor allem die Verbindung von Implementierung, Anforderungen und Kundenkontext.",
     exp2_title: "Junior IT Consultant - Raiffeisen Bank International (2022)",
@@ -133,11 +122,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Home - Technologies & Methods
     tech_title: "Technologien & Schwerpunkte",
     tech_cat1: "Operations & Infrastruktur",
-    tech_list1: "Windows Server | Linux | Virtualisierung | Monitoring | Troubleshooting",
+    tech_list1: "Linux | Windows Server | Proxmox | Docker | Nginx Proxy Manager | Monitoring",
     tech_cat2: "Netzwerke & Security",
-    tech_list2: "TCP/IP | DNS/DHCP | VPN/VLAN | Wireshark | Nmap | UFW",
+    tech_list2: "Tailscale | VPN/VLAN | DNS/DHCP | UFW | Pi-hole | CrowdSec",
     tech_cat3: "Automatisierung & Delivery",
-    tech_list3: "ServiceNow | PowerShell | Bash | Python | Git/GitHub | Dokumentation",
+    tech_list3: "GitHub Actions | Bash | PowerShell | Python | rsync | Backup Automation",
     tech_cat4: "Laufende IoT- & Edge-Arbeit",
     tech_list4: "Arduino | ESP32 | Raspberry Pi | BLE | MQTT | Node-RED | InfluxDB",
 
@@ -158,10 +147,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_view_project: "Zum Projekt: The Vienna Fortress",
     sec_view_foundation: "Zur Grundlage: Gehaertetes Hybrid-Cloud-Privatnetzwerk",
 
-    // Snapshot Captions
-    term_ufw_caption: "UFW zeigt Deny-by-default plus restriktive Behandlung nicht vertrauenswuerdiger Interfaces.",
-    term_pihole_caption: "Pi-hole Status: DNS-Service und Blocking aktiv.",
-    term_wg_caption: "Sanitisierter Tailscale-Status mit privaten Overlay-Nodes und Exit-Node-Faehigkeit.",
     // Home - Contact
     contact_text: "Wenn Sie in IT-Betrieb, Infrastruktur, Support, Netzwerken oder Automatisierung arbeiten und jemanden suchen, der Technik strukturiert und zuverlässig umsetzt, freue ich mich auf ein Gespräch.",
     btn_contact_me: "Kontaktieren Sie mich",
@@ -421,18 +406,24 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     back_to_top: "Back to top",
 
     // Home - Hero
-    hero_badge: "IT Operations | Infrastructure | Automation",
-    home_hero_headline: "IT Infrastructure, Systems & Integration Engineer",
-    home_hero_subline: "Operations | Infrastructure | Integration & Automation | IoT in Progress",
-    home_hero_desc: "I work in operational IT with experience across Windows-based client/server environments, support, networking, software-oriented automation, and technical integration. I also bring application engineering exposure, structured data and process analysis, and ongoing development in IoT, security, and connected systems through my master's studies and personal projects.",
+    hero_badge: "Infrastructure | Platform Operations | Automation",
+    home_hero_headline: "IT Infrastructure, Platform & Automation Engineer",
+    home_hero_subline: "Secure self-hosted infrastructure, CI/CD, and platform operations",
+    home_hero_desc: "I build and operate stable IT and web platforms with Linux/Windows systems, networking, automation, and secure self-hosted infrastructure. Current project work connects hybrid cloud, GitHub Actions, Tailscale, Docker, Nginx Proxy Manager, and backup automation.",
     home_enterprise_title: "Enterprise Experience",
     home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, automation, application engineering, and operational IT",
+    home_platform_title: "Current Platform Proof",
+    home_platform_text: "Elkaza.at is operated as a hybrid cloud delivery platform: cloud builds on vps1, private runtime on debian-core, securely connected through Tailscale.",
+    home_platform_item1: "GitHub Actions CI/CD",
+    home_platform_item2: "Tailscale Zero Trust",
+    home_platform_item3: "Docker + Nginx Proxy Manager",
+    home_platform_item4: "7-day backup rotation",
     hero_cta_cv: "Download CV",
     // Proof in 3 Bullets
-    home_proof_title: "What I Bring",
-    home_proof_impact: "Structured IT operations, support, and troubleshooting",
-    home_proof_scope: "Windows/Linux-adjacent systems, networking, ITSM, software-oriented automation",
-    home_proof_strength: "IoT and security as an additional growing specialization",
+    home_proof_title: "How I Work",
+    home_proof_impact: "Structured operations: troubleshooting, documentation, monitoring, and clean handovers.",
+    home_proof_scope: "Automation with Bash, PowerShell, Python, GitHub Actions, and reproducible release steps.",
+    home_proof_strength: "Security-minded platform operations with private access paths, reduced exposure, and backups.",
     // CTAs
     home_cta_primary: "Download CV",
     home_cta_secondary: "View Projects",
@@ -440,10 +431,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Security Page
     nav_security: "Security",
-    security_title: "Security, Observability & Platform Operations",
-    security_focus: "Hands-on security and operations work that complements my infrastructure profile: private access paths, DNS privacy, layered defense, service observability, and controlled self-hosted platforms.",
-    security_lab_title: "Current Security and Operations Platform",
-    security_lab_list: "Pi-hole DNS filtering, CrowdSec intrusion response, Tailscale private overlay, UFW interface isolation, Netdata, Uptime Kuma, Dozzle, Watchtower",
+    security_title: "Security & Platform Operations",
+    security_focus: "Hands-on security work in self-hosted environments: private access paths, DNS filtering, reactive defense, service-oriented observability, and controlled exposure of web services.",
+    security_lab_title: "Current Security and Operations Building Blocks",
+    security_lab_list: "Tailscale private overlay, UFW interface isolation, Pi-hole DNS filtering, CrowdSec intrusion response, Nginx Proxy Manager, Netdata, Uptime Kuma, Dozzle, Watchtower",
     security_tools_title: "Active Stack",
     security_tools_core: "Proxmox VE, Debian, Pi-hole, UFW, Nginx (HSTS, CSP)",
     security_tools_exploring_title: "In Progress",
@@ -466,25 +457,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_remote_result: "Administration stays on private paths while user-facing services remain easier to operate and harder to expose accidentally.",
     security_disclaimer: "No sensitive configs published.",
 
-    // Terminal Snapshots
-    security_pow_title: "Lab Snapshots",
-    security_pow_note: "Sanitized (credentials removed)",
-    sec_metric_note: "Sanitized project examples; internal hostnames, addresses, and other sensitive details were removed.",
-
-    // Terminal 1: UFW
-    term_ufw_title: "Firewall: Deny-by-default",
-    term_ufw_cmd: "<USER>@<HOST>:~$ sudo ufw status verbose",
-    term_ufw_out: "Status: active\nLogging: on (low)\nDefault: deny (incoming), allow (outgoing)\n\nTo                         Action      From\n--                         ------      ----\n<tailscale0>               ALLOW IN    <TAILNET>\n<SSH_PORT>/tcp             LIMIT IN    <TRUSTED_RANGE>\n<DNS_PORT>/udp             ALLOW IN    <TRUSTED_RANGE>\n# non-overlay ingress remains restricted by default",
-
-    // Terminal 2: Pi-hole
-    term_pihole_title: "DNS: Ad-blocking active",
-    term_pihole_cmd: "<USER>@<HOST>:~$ pihole status",
-    term_pihole_out: "  [✓] FTL is listening on port 53\n  [✓] Pi-hole blocking is enabled\n  [✓] DNS service is running",
-
-    // Terminal 3: WireGuard
-    term_wg_title: "Mesh VPN: Tailscale status",
-    term_wg_cmd: "<USER>@<HOST>:~$ tailscale status",
-    term_wg_out: "<TAILNET>\n<HOST_A>    linux    active; direct <PRIVATE_RELAY>\n<HOST_B>    windows  active; tx <REDACTED> rx <REDACTED>\n<PHONE>     ios      active; exit node available",
+    // Public security note
+    sec_metric_note: "Public summary only; internal hostnames, addresses, secrets, and configuration details are not published.",
 
     // Home Security Lab Case
     case_lab_title: "The Vienna Fortress",
@@ -511,27 +485,23 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_view_project: "View Project: The Vienna Fortress",
     sec_view_foundation: "View Foundation: Hardened Hybrid-Cloud Private Network",
 
-    // Snapshot Captions
-    term_ufw_caption: "UFW shows deny-by-default behavior plus restrictive treatment of untrusted interfaces.",
-    term_pihole_caption: "Pi-hole verifying DNS service and blocking active.",
-    term_wg_caption: "Sanitized Tailscale status showing private overlay nodes and exit-node capability.",
     what_do_title: "What I do",
-    what_do_subtitle: "My core profile combines operational IT with infrastructure, support, software-oriented automation, and analysis. IoT and connected systems are a parallel specialization I am building.",
+    what_do_subtitle: "My profile combines operational IT with platform operations, secure self-hosted infrastructure, automation, and technical analysis.",
     what_do_item1_title: "IT Operations & Support",
     what_do_item1_desc: "Supporting stable environments, handling tickets, investigating issues methodically, and creating clear handovers for operations and support teams.",
-    what_do_item2_title: "Infrastructure & Networking",
-    what_do_item2_desc: "Working with Windows-based client/server environments, Linux basics, virtualization, and networking fundamentals such as TCP/IP, DNS, DHCP, VPN, and segmentation.",
-    what_do_item3_title: "Automation, Software & Analysis",
-    what_do_item3_desc: "Improving IT service processes with ServiceNow, XML/XSLT, Python, PowerShell, Bash, technical documentation, and structured data/process analysis.",
-    what_do_item4_title: "IoT, Security & Connected Systems",
-    what_do_item4_desc: "Extending my profile through ongoing study and projects in IoT architectures, edge systems, secure connectivity, and telemetry.",
+    what_do_item2_title: "Platforms & Networking",
+    what_do_item2_desc: "Linux/Windows systems, Proxmox, Docker, reverse proxying, DNS, VPN, VLAN, and controlled service exposure.",
+    what_do_item3_title: "Automation & Delivery",
+    what_do_item3_desc: "GitHub Actions, shell scripts, rsync releases, Python, PowerShell, technical documentation, and repeatable deployment flows.",
+    what_do_item4_title: "Security, IoT & Observability",
+    what_do_item4_desc: "Private access paths, DNS filtering, monitoring, telemetry, and ongoing depth in IoT and edge architectures.",
 
     // Home - Currently
     current_title: "Currently",
-    current_item1: "IPMA® Level D (cPMA) – since 10/2025",
+    current_item1: "Elkaza.at: hybrid cloud deployment with GitHub Actions, Tailscale, Docker, and 7-day backups.",
     current_item2: "M.Sc. Business Informatics, TU Wien.",
     current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
-    current_item4: "Deepening IoT, networking, and security through the FH Technikum Wien master's program and practical project work.",
+    current_item4: "IPMA® Level D (cPMA) since 10/2025; structured delivery practice for technical initiatives.",
 
     // Home - Selected Experience (short, reverse chronological)
     experience_title: "Selected Experience",
@@ -557,11 +527,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Home - Technologies & Methods
     tech_title: "Technologies & Focus Areas",
     tech_cat1: "Operations & Infrastructure",
-    tech_list1: "Windows Server | Linux | Virtualization | Monitoring | Troubleshooting",
+    tech_list1: "Linux | Windows Server | Proxmox | Docker | Nginx Proxy Manager | Monitoring",
     tech_cat2: "Networking & Security",
-    tech_list2: "TCP/IP | DNS/DHCP | VPN/VLAN | Wireshark | Nmap | UFW",
+    tech_list2: "Tailscale | VPN/VLAN | DNS/DHCP | UFW | Pi-hole | CrowdSec",
     tech_cat3: "Automation & Delivery",
-    tech_list3: "ServiceNow | PowerShell | Bash | Python | Git/GitHub | Documentation",
+    tech_list3: "GitHub Actions | Bash | PowerShell | Python | rsync | Backup Automation",
     tech_cat4: "Current IoT & Edge Work",
     tech_list4: "Arduino | ESP32 | Raspberry Pi | BLE | MQTT | Node-RED | InfluxDB",
 
