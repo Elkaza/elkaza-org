@@ -687,75 +687,81 @@ export const projects: Project[] = [
         category: "delivery-platform",
         year: "2025",
         title: loc(
-            "Self-Hosted Static Delivery Platform",
-            "Self-Hosted Static-Delivery-Plattform"
+            "Hybrid Cloud Delivery Platform",
+            "Hybrid-Cloud-Delivery-Plattform"
         ),
         oneLiner: loc(
-            "Deployed a static site delivery workflow on an Ubuntu VPS with Apache, HTTPS automation, and repeatable release steps.",
-            "Bereitgestellt einen statischen Site-Delivery-Workflow auf einem Ubuntu-VPS mit Apache, HTTPS-Automatisierung und wiederholbaren Release-Schritten."
+            "Elkaza operates a hybrid cloud deployment platform for Elkaza.at with GitHub Actions CI/CD, a Tailscale Zero-Trust bridge, Dockerized services, and rotating backups.",
+            "Elkaza betreibt fuer Elkaza.at eine Hybrid-Cloud-Deployment-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
         ),
         overview: loc(
-            "This project complements the managed deployment path by proving ownership of the last mile: packaging static output, transferring artifacts, configuring the server, and keeping the deployment repeatable.",
-            "Dieses Projekt ergaenzt den gemanagten Deployment-Pfad, indem es den letzten Abschnitt in eigener Verantwortung abbildet: statische Artefakte paketieren, uebertragen, den Server konfigurieren und das Deployment wiederholbar halten."
+            "Elkaza.at is operated as a professional hybrid cloud delivery environment. A cloud VPS named vps1 handles the public build and deployment control plane, while the private Debian host debian-core runs the local hosting layer. The two environments are connected through Tailscale, creating an encrypted bridge for deployment traffic without exposing the home server as a direct public target.",
+            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Der Cloud-VPS vps1 uebernimmt die oeffentliche Build- und Deployment-Steuerung, waehrend der private Debian-Host debian-core die lokale Hosting-Schicht ausfuehrt. Beide Umgebungen sind ueber Tailscale verbunden, wodurch eine verschluesselte Bridge fuer Deployment-Traffic entsteht, ohne den Home-Server direkt oeffentlich erreichbar zu machen."
         ),
         problem: loc(
-            "Managed hosting hides many operational details. To demonstrate infrastructure ownership, the site also needed a self-hosted deployment path on Linux.",
-            "Managed Hosting verdeckt viele operative Details. Um Infrastrukturverantwortung zu demonstrieren, brauchte die Site auch einen selbst gehosteten Deployment-Pfad auf Linux."
+            "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
+            "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfaehige Operations zu demonstrieren. Die Plattform brauchte staerkere Automatisierung, geringere oeffentliche Exponierung, verlaessliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
         ),
         solution: loc(
-            "I configured a static export workflow, shipped the build output to an Ubuntu VPS, and served it through Apache with HTTPS automation. The release path was documented as a repeatable operational flow rather than an improvised upload step.",
-            "Ich habe einen Static-Export-Workflow konfiguriert, das Build-Ergebnis auf einen Ubuntu-VPS uebertragen und ueber Apache mit automatisiertem HTTPS ausgeliefert. Der Release-Pfad wurde als wiederholbarer operativer Ablauf dokumentiert und nicht als improvisierter Upload."
+            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions triggers the production build, Linux shell scripts generate the Next.js output, and rsync transfers release artifacts through the private Tailscale bridge from vps1 to debian-core. Docker and Nginx Proxy Manager manage the service layer and HTTPS routing, while a 7-day rotating backup system improves recovery readiness.",
+            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync uebertraegt Release-Artefakte ueber die private Tailscale-Bridge von vps1 nach debian-core. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, waehrend ein Backup-System mit 7-Tage-Rotation die Recovery-Faehigkeit verbessert."
         ),
         architecture: {
             node: loc(
-                "Browsers consume a static site build with minimal runtime complexity.",
-                "Browser konsumieren einen statischen Site-Build mit minimaler Laufzeitkomplexitaet."
+                "Client browsers receive an optimized Next.js frontend through a controlled HTTPS entry point.",
+                "Client-Browser erhalten ein optimiertes Next.js-Frontend ueber einen kontrollierten HTTPS-Einstiegspunkt."
             ),
             edge: loc(
-                "An Ubuntu VPS with Apache serves the exported frontend as the delivery edge.",
-                "Ein Ubuntu-VPS mit Apache liefert das exportierte Frontend als Delivery-Edge aus."
+                "debian-core hosts the local runtime layer with Dockerized services and Nginx Proxy Manager for reverse proxy control.",
+                "debian-core hostet die lokale Runtime-Schicht mit Docker-Services und Nginx Proxy Manager fuer Reverse-Proxy-Kontrolle."
             ),
             cloud: loc(
-                "DNS and certificate automation complete the path from build artifact to public HTTPS delivery.",
-                "DNS- und Zertifikatsautomatisierung vervollstaendigen den Weg vom Build-Artefakt zur oeffentlichen HTTPS-Auslieferung."
+                "GitHub Actions and vps1 form the cloud-side deployment plane, building releases and tunneling artifacts securely into the private hosting environment.",
+                "GitHub Actions und vps1 bilden die cloudseitige Deployment-Ebene, bauen Releases und tunneln Artefakte sicher in die private Hosting-Umgebung."
             ),
         },
         security: loc(
-            "HTTPS automation and controlled vhost configuration provide a simpler and safer public serving model for static content.",
-            "HTTPS-Automatisierung und kontrollierte Vhost-Konfiguration schaffen ein einfacheres und sichereres oeffentliches Auslieferungsmodell fuer statische Inhalte."
+            "The architecture follows a Zero-Trust access model. Deployment traffic moves through an encrypted Tailscale tunnel instead of a broad public SSH or rsync surface, and the local hosting server is not treated as a directly exposed build target. Public ingress is limited to the reverse-proxy path needed to serve the website.",
+            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic laeuft ueber einen verschluesselten Tailscale-Tunnel statt ueber eine breite oeffentliche SSH- oder rsync-Oberflaeche, und der lokale Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Oeffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der fuer die Website-Auslieferung notwendig ist."
         ),
         reliability: loc(
-            "A repeatable build-upload-sync-release flow reduces deployment mistakes and keeps the self-hosted site maintainable over time.",
-            "Ein wiederholbarer Build-Upload-Sync-Release-Flow reduziert Deployment-Fehler und haelt die selbst gehostete Site langfristig wartbar."
+            "Automated builds, scripted rsync releases, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The result is a more available and maintainable self-hosted platform with clear operational ownership.",
+            "Automatisierte Builds, geskriptete rsync-Releases, Service-Trennung und eine 7-Tage-Backup-Rotation reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Das Ergebnis ist eine verfuegbarere und wartbarere Self-Hosted-Plattform mit klarer operativer Verantwortung."
         ),
         keyFeatures: locList(
             [
-                "Static export and server-side delivery ownership",
-                "Apache-based public serving on Ubuntu VPS",
-                "HTTPS automation with certificate renewal",
-                "Repeatable rsync-style release process",
+                "Hybrid cloud architecture combining the vps1 cloud server with the debian-core home server",
+                "GitHub Actions CI/CD for automated builds and deployments",
+                "Tailscale Zero-Trust bridge for encrypted cloud-to-home artifact transfer",
+                "Dockerized service layer managed behind Nginx Proxy Manager",
+                "Automated shell scripts for Next.js builds, rsync releases, and service refreshes",
+                "7-day rotating backup strategy for operational resilience",
             ],
             [
-                "Static Export und Verantwortung fuer die Server-Auslieferung",
-                "Apache-basierte oeffentliche Auslieferung auf Ubuntu-VPS",
-                "HTTPS-Automatisierung mit Zertifikatserneuerung",
-                "Wiederholbarer rsync-aehnlicher Release-Prozess",
+                "Hybrid-Cloud-Architektur aus dem Cloud-Server vps1 und dem Home-Server debian-core",
+                "GitHub Actions CI/CD fuer automatisierte Builds und Deployments",
+                "Tailscale Zero-Trust-Bridge fuer verschluesselte Artefakt-Uebertragung von Cloud zu Home",
+                "Dockerisierte Service-Schicht hinter Nginx Proxy Manager",
+                "Automatisierte Shell-Skripte fuer Next.js-Builds, rsync-Releases und Service-Refreshes",
+                "Backup-Strategie mit 7-Tage-Rotation fuer operative Resilienz",
             ]
         ),
         results: locList(
             [
-                "Demonstrated ownership from artifact creation to public hosting",
-                "Built a self-hosted alternative to the managed Vercel deployment path",
-                "Strengthened the infrastructure side of the public portfolio platform",
+                "Moved Elkaza.at from a manual static VPS workflow to a professional automated delivery platform",
+                "Reduced attack surface by routing deployment traffic over a private encrypted overlay network",
+                "Improved availability and recovery confidence with repeatable deployments and rotating backups",
+                "Created a client-facing infrastructure case study around automation, security, and operational maturity",
             ],
             [
-                "Verantwortung vom Artefakt bis zum oeffentlichen Hosting demonstriert",
-                "Eine selbst gehostete Alternative zum gemanagten Vercel-Deployment aufgebaut",
-                "Die Infrastrukturseite der oeffentlichen Portfolio-Plattform gestaerkt",
+                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer professionellen automatisierten Delivery-Plattform weiterentwickelt",
+                "Die Angriffsoberflaeche reduziert, indem Deployment-Traffic ueber ein privates verschluesseltes Overlay-Netz laeuft",
+                "Verfuegbarkeit und Recovery-Vertrauen durch wiederholbare Deployments und rotierende Backups verbessert",
+                "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit und operativer Reife geschaffen",
             ]
         ),
-        tech: ["Next.js Export", "Ubuntu VPS", "Apache", "Certbot", "rsync", "SSH"],
-        tags: ["Web", "Infrastructure", "Self-Hosted"],
+        tech: ["Next.js", "GitHub Actions", "Tailscale", "Docker", "Nginx Proxy Manager"],
+        tags: ["Web", "Hybrid Cloud", "Zero Trust", "Automation"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.at" },
             { label: "GitHub", url: "https://github.com/Elkaza/elkaza-web" },
