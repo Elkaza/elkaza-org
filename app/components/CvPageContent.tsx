@@ -18,7 +18,7 @@ export default function CvPageContent() {
                         Mohamed Elkaza
                     </h1>
                     <p className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-medium">
-                        {t("home_hero_headline")}
+                        {t("cv_role_title")}
                     </p>
                     <p className="text-sm text-muted mt-2">
                         {t("cv_last_updated")}
@@ -48,6 +48,26 @@ export default function CvPageContent() {
                 <p className="text-base leading-relaxed max-w-2xl">
                     {t("cv_summary_text")}
                 </p>
+            </section>
+
+            {/* Current Infrastructure Work */}
+            <section className="space-y-4">
+                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
+                    {t("cv_infra_title")}
+                </h2>
+                <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm">
+                    <p className="text-base leading-relaxed text-main">
+                        {t("cv_infra_intro")}
+                    </p>
+                    <ul className="mt-4 space-y-3">
+                        {[1, 2, 3, 4].map((item) => (
+                            <li key={item} className="flex items-start gap-3 text-sm text-muted">
+                                <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500" />
+                                <span>{t(`cv_infra_item${item}`)}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </section>
 
             {/* Skills */}
