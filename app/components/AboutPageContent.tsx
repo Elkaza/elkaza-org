@@ -67,8 +67,33 @@ const getSkills = (t: (k: string) => string): Skill[] => [
     },
 ];
 
+const getInfrastructureHighlights = (t: (k: string) => string): Skill[] => [
+    {
+        title: t("about_infra_cloud_title"),
+        icon: Cloud,
+        items: [t("about_infra_cloud_desc")],
+    },
+    {
+        title: t("about_infra_cicd_title"),
+        icon: Code,
+        items: [t("about_infra_cicd_desc")],
+    },
+    {
+        title: t("about_infra_security_title"),
+        icon: Network,
+        items: [t("about_infra_security_desc")],
+    },
+    {
+        title: t("about_infra_resilience_title"),
+        icon: ClipboardCheck,
+        items: [t("about_infra_resilience_desc")],
+    },
+];
+
 export default function AboutPageContent() {
     const { t } = useLocale();
+    const infrastructureHighlights = getInfrastructureHighlights(t);
+
     return (
         <main className="min-h-screen bg-page text-main transition-colors">
             <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
@@ -97,6 +122,27 @@ export default function AboutPageContent() {
                             <Certifications />
                         </div>
                     </div>
+
+                    {/* Current Infrastructure Focus */}
+                    <section className="mb-12 space-y-6">
+                        <div className="space-y-2">
+                            <h2 className="text-2xl font-semibold">{t("about_infra_title")}</h2>
+                            <p className="text-muted leading-relaxed max-w-3xl">
+                                {t("about_infra_intro")}
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {infrastructureHighlights.map((item) => (
+                                <div key={item.title} className="bg-card border border-subtle rounded-xl p-5 shadow-sm">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                        <h3 className="font-semibold text-main">{item.title}</h3>
+                                    </div>
+                                    <p className="text-sm text-muted leading-relaxed">{item.items[0]}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
 
                     {/* Core Strengths Section */}
                     <div className="mb-12">
