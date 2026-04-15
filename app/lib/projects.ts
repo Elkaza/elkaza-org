@@ -371,8 +371,8 @@ export const projects: Project[] = [
             "Eine gehaertete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
         ),
         overview: loc(
-            "The Vienna Fortress turns a basic home lab into a more production-minded internal platform. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
-            "The Vienna Fortress entwickelt ein einfaches Homelab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane fuer Self-Hosted-Services."
+            "The Vienna Fortress turns a basic private infrastructure lab into a more production-minded internal platform. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
+            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane fuer Self-Hosted-Services."
         ),
         problem: loc(
             "Deploying individual tools is easy; building a secure and operable platform is harder. The environment needed layered protection, live health visibility, reliable log access, and a clean way to surface Proxmox state inside a frontend dashboard without brittle ad hoc scripts.",
@@ -422,14 +422,14 @@ export const projects: Project[] = [
         ),
         results: locList(
             [
-                "Turned a generic home lab into a hardened internal platform with clearer operational boundaries",
+                "Turned a generic private lab into a hardened internal platform with clearer operational boundaries",
                 "Added real-time visibility across service health, metrics, and logs",
                 "Resolved a cross-layer integration issue between frontend code and the Proxmox API",
                 "Reduced routine maintenance effort through automated container updates",
                 "Created a scalable baseline for adding future internal tools without reworking the control plane",
             ],
             [
-                "Ein generisches Homelab in eine gehaertete interne Plattform mit klareren Betriebsgrenzen ueberfuehrt",
+                "Ein generisches privates Lab in eine gehaertete interne Plattform mit klareren Betriebsgrenzen ueberfuehrt",
                 "Echtzeit-Sicht auf Service-Zustand, Metriken und Logs geschaffen",
                 "Ein schichtuebergreifendes Integrationsproblem zwischen Frontend-Code und der Proxmox-API geloest",
                 "Den Wartungsaufwand durch automatisierte Container-Updates reduziert",
@@ -453,16 +453,16 @@ export const projects: Project[] = [
             "Gehaertetes Hybrid-Cloud-Privatnetzwerk"
         ),
         oneLiner: loc(
-            "Phase 1 completed: designed a zero-trust private network across home, cloud, and roaming endpoints with SSH hardening, DNS privacy, and secure remote transit.",
-            "Phase 1 abgeschlossen: Aufbau eines Zero-Trust-Privatnetzwerks ueber Home-, Cloud- und mobile Endpunkte mit SSH-Haertung, DNS-Privatsphaere und sicherem Remote-Transit."
+            "Phase 1 completed: designed a zero-trust private network across on-premises, cloud, and roaming endpoints with SSH hardening, DNS privacy, and secure remote transit.",
+            "Phase 1 abgeschlossen: Aufbau eines Zero-Trust-Privatnetzwerks ueber On-Premises-, Cloud- und mobile Endpunkte mit SSH-Haertung, DNS-Privatsphaere und sicherem Remote-Transit."
         ),
         overview: loc(
-            "This project shows the transition from a basic home lab to a hardened hybrid-cloud architecture. The focus is on zero-trust access, private DNS resolution, interface-aware firewalling, and an operations-friendly foundation for distributed services and later edge workloads.",
-            "Dieses Projekt zeigt den Uebergang von einem einfachen Homelab zu einer gehaerteten Hybrid-Cloud-Architektur. Im Fokus stehen Zero-Trust-Zugriff, private DNS-Aufloesung, interface-basierte Firewall-Regeln und ein betriebsfaehiger Unterbau fuer verteilte Services und spaetere Edge-Workloads."
+            "This project shows the transition from a basic private lab to a hardened hybrid-cloud architecture. The focus is on zero-trust access, private DNS resolution, interface-aware firewalling, and an operations-friendly foundation for distributed services and later edge workloads.",
+            "Dieses Projekt zeigt den Uebergang von einem einfachen privaten Lab zu einer gehaerteten Hybrid-Cloud-Architektur. Im Fokus stehen Zero-Trust-Zugriff, private DNS-Aufloesung, interface-basierte Firewall-Regeln und ein betriebsfaehiger Unterbau fuer verteilte Services und spaetere Edge-Workloads."
         ),
         problem: loc(
-            "Distributed infrastructure across home lab systems, cloud servers, and travel devices quickly becomes hard to secure. Without key-only administration, private DNS, and consistent remote access patterns, the attack surface grows and operations become brittle.",
-            "Verteilte Infrastruktur ueber Homelab-Systeme, Cloud-Server und Reisegeraete hinweg wird schnell schwer abzusichern. Ohne schluesselbasierte Administration, private DNS-Aufloesung und konsistente Fernzugriffsmuster waechst die Angriffsoberflaeche und der Betrieb wird fragil."
+            "Distributed infrastructure across private lab systems, cloud servers, and travel devices quickly becomes hard to secure. Without key-only administration, private DNS, and consistent remote access patterns, the attack surface grows and operations become brittle.",
+            "Verteilte Infrastruktur ueber private Lab-Systeme, Cloud-Server und Reisegeraete hinweg wird schnell schwer abzusichern. Ohne schluesselbasierte Administration, private DNS-Aufloesung und konsistente Fernzugriffsmuster waechst die Angriffsoberflaeche und der Betrieb wird fragil."
         ),
         solution: loc(
             "I implemented a Tailscale-based private overlay connecting roaming workstations, a VPS, and a Debian VM on Proxmox. SSH was hardened around ED25519 keys and passwordless access, Pi-hole and Unbound provide sovereign DNS, and interface-aware UFW rules plus exit-node routing make the environment safer and more usable across locations.",
@@ -493,14 +493,14 @@ export const projects: Project[] = [
         keyFeatures: locList(
             [
                 "ED25519-based SSH hardening with passwordless administration",
-                "Zero-trust Tailscale overlay across mobile workstations, cloud VPS, and home infrastructure",
+                "Zero-trust Tailscale overlay across mobile workstations, cloud VPS, and private on-premises infrastructure",
                 "Pi-hole with Unbound for full recursive DNS instead of third-party resolvers",
                 "Exit-node routing and IP forwarding for encrypted transit on untrusted networks",
                 "Interface-aware UFW policy allowing trusted overlay traffic while restricting other ingress",
             ],
             [
                 "ED25519-basiertes SSH-Hardening mit passwortloser Administration",
-                "Zero-Trust-Tailscale-Overlay ueber mobile Workstations, Cloud-VPS und Home-Infrastruktur",
+                "Zero-Trust-Tailscale-Overlay ueber mobile Workstations, Cloud-VPS und private On-Premises-Infrastruktur",
                 "Pi-hole mit Unbound fuer vollstaendige rekursive DNS-Aufloesung statt Third-Party-Resolvern",
                 "Exit-Node-Routing und IP-Forwarding fuer verschluesselten Transit in unsicheren Netzen",
                 "Interface-basierte UFW-Policy, die vertrauenswuerdigen Overlay-Traffic erlaubt und anderen Ingress einschraenkt",
@@ -509,13 +509,13 @@ export const projects: Project[] = [
         results: locList(
             [
                 "Removed password-based SSH administration from the environment",
-                "Established private, location-independent access across home, cloud, and roaming endpoints",
+                "Established private, location-independent access across on-premises, cloud, and roaming endpoints",
                 "Moved DNS resolution into a privacy-preserving local recursive path under direct control",
                 "Built a stronger security and operations foundation for future self-hosted and edge services",
             ],
             [
                 "Passwortbasierte SSH-Administration aus der Umgebung entfernt",
-                "Privaten, ortsunabhaengigen Zugriff ueber Home-, Cloud- und mobile Endpunkte hinweg geschaffen",
+                "Privaten, ortsunabhaengigen Zugriff ueber On-Premises-, Cloud- und mobile Endpunkte hinweg geschaffen",
                 "Die DNS-Aufloesung in einen privacy-orientierten lokalen rekursiven Pfad unter eigener Kontrolle verlagert",
                 "Einen staerkeren Security- und Betriebsunterbau fuer kuenftige Self-Hosted- und Edge-Services geschaffen",
             ]
@@ -691,20 +691,20 @@ export const projects: Project[] = [
             "Hybrid-Cloud-Delivery-Plattform"
         ),
         oneLiner: loc(
-            "Elkaza operates a hybrid cloud deployment platform for Elkaza.at with GitHub Actions CI/CD, a Tailscale Zero-Trust bridge, Dockerized services, and rotating backups.",
-            "Elkaza betreibt fuer Elkaza.at eine Hybrid-Cloud-Deployment-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
+            "Elkaza operates a hybrid cloud/on-premises delivery platform for Elkaza.at with GitHub Actions CI/CD, a Tailscale Zero-Trust bridge, Dockerized services, and rotating backups.",
+            "Elkaza betreibt fuer Elkaza.at eine Hybrid-Cloud-/On-Premises-Delivery-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
         ),
         overview: loc(
-            "Elkaza.at is operated as a professional hybrid cloud delivery environment. A cloud VPS named vps1 handles the public build and deployment control plane, while the private Debian host debian-core runs the local hosting layer. The two environments are connected through Tailscale, creating an encrypted bridge for deployment traffic without exposing the home server as a direct public target.",
-            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Der Cloud-VPS vps1 uebernimmt die oeffentliche Build- und Deployment-Steuerung, waehrend der private Debian-Host debian-core die lokale Hosting-Schicht ausfuehrt. Beide Umgebungen sind ueber Tailscale verbunden, wodurch eine verschluesselte Bridge fuer Deployment-Traffic entsteht, ohne den Home-Server direkt oeffentlich erreichbar zu machen."
+            "Elkaza.at is operated as a professional hybrid cloud delivery environment. A cloud VPS handles the public build and deployment control plane, while a private on-premises Debian server runs the hosting layer. The two environments are connected through Tailscale, creating an encrypted bridge for deployment traffic without exposing the private server as a direct public target.",
+            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Ein Cloud-VPS uebernimmt die oeffentliche Build- und Deployment-Steuerung, waehrend ein privater On-Premises-Debian-Server die Hosting-Schicht ausfuehrt. Beide Umgebungen sind ueber Tailscale verbunden, wodurch eine verschluesselte Bridge fuer Deployment-Traffic entsteht, ohne den privaten Server direkt oeffentlich erreichbar zu machen."
         ),
         problem: loc(
             "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
             "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfaehige Operations zu demonstrieren. Die Plattform brauchte staerkere Automatisierung, geringere oeffentliche Exponierung, verlaessliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
         ),
         solution: loc(
-            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions triggers the production build, Linux shell scripts generate the Next.js output, and rsync transfers release artifacts through the private Tailscale bridge from vps1 to debian-core. Docker and Nginx Proxy Manager manage the service layer and HTTPS routing, while a 7-day rotating backup system improves recovery readiness.",
-            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync uebertraegt Release-Artefakte ueber die private Tailscale-Bridge von vps1 nach debian-core. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, waehrend ein Backup-System mit 7-Tage-Rotation die Recovery-Faehigkeit verbessert."
+            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions triggers the production build, Linux shell scripts generate the Next.js output, and rsync transfers release artifacts through the private Tailscale bridge from the cloud deployment plane to the private Debian hosting layer. Docker and Nginx Proxy Manager manage the service layer and HTTPS routing, while a 7-day rotating backup system improves recovery readiness.",
+            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync uebertraegt Release-Artefakte ueber die private Tailscale-Bridge von der Cloud-Deployment-Ebene zur privaten Debian-Hosting-Schicht. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, waehrend ein Backup-System mit 7-Tage-Rotation die Recovery-Faehigkeit verbessert."
         ),
         architecture: {
             node: loc(
@@ -712,17 +712,17 @@ export const projects: Project[] = [
                 "Client-Browser erhalten ein optimiertes Next.js-Frontend ueber einen kontrollierten HTTPS-Einstiegspunkt."
             ),
             edge: loc(
-                "debian-core hosts the local runtime layer with Dockerized services and Nginx Proxy Manager for reverse proxy control.",
-                "debian-core hostet die lokale Runtime-Schicht mit Docker-Services und Nginx Proxy Manager fuer Reverse-Proxy-Kontrolle."
+                "A private on-premises Debian server hosts the runtime layer with Dockerized services and Nginx Proxy Manager for reverse proxy control.",
+                "Ein privater On-Premises-Debian-Server hostet die Runtime-Schicht mit Docker-Services und Nginx Proxy Manager fuer Reverse-Proxy-Kontrolle."
             ),
             cloud: loc(
-                "GitHub Actions and vps1 form the cloud-side deployment plane, building releases and tunneling artifacts securely into the private hosting environment.",
-                "GitHub Actions und vps1 bilden die cloudseitige Deployment-Ebene, bauen Releases und tunneln Artefakte sicher in die private Hosting-Umgebung."
+                "GitHub Actions and a cloud VPS form the cloud-side deployment plane, building releases and tunneling artifacts securely into the private hosting environment.",
+                "GitHub Actions und ein Cloud-VPS bilden die cloudseitige Deployment-Ebene, bauen Releases und tunneln Artefakte sicher in die private Hosting-Umgebung."
             ),
         },
         security: loc(
-            "The architecture follows a Zero-Trust access model. Deployment traffic moves through an encrypted Tailscale tunnel instead of a broad public SSH or rsync surface, and the local hosting server is not treated as a directly exposed build target. Public ingress is limited to the reverse-proxy path needed to serve the website.",
-            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic laeuft ueber einen verschluesselten Tailscale-Tunnel statt ueber eine breite oeffentliche SSH- oder rsync-Oberflaeche, und der lokale Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Oeffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der fuer die Website-Auslieferung notwendig ist."
+            "The architecture follows a Zero-Trust access model. Deployment traffic moves through an encrypted Tailscale tunnel instead of a broad public SSH or rsync surface, and the private hosting server is not treated as a directly exposed build target. Public ingress is limited to the reverse-proxy path needed to serve the website.",
+            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic laeuft ueber einen verschluesselten Tailscale-Tunnel statt ueber eine breite oeffentliche SSH- oder rsync-Oberflaeche, und der private Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Oeffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der fuer die Website-Auslieferung notwendig ist."
         ),
         reliability: loc(
             "Automated builds, scripted rsync releases, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The result is a more available and maintainable self-hosted platform with clear operational ownership.",
@@ -730,17 +730,17 @@ export const projects: Project[] = [
         ),
         keyFeatures: locList(
             [
-                "Hybrid cloud architecture combining the vps1 cloud server with the debian-core home server",
+                "Hybrid cloud/on-premises architecture combining a cloud VPS with a private Debian hosting server",
                 "GitHub Actions CI/CD for automated builds and deployments",
-                "Tailscale Zero-Trust bridge for encrypted cloud-to-home artifact transfer",
+                "Tailscale Zero-Trust bridge for encrypted cloud-to-private artifact transfer",
                 "Dockerized service layer managed behind Nginx Proxy Manager",
                 "Automated shell scripts for Next.js builds, rsync releases, and service refreshes",
                 "7-day rotating backup strategy for operational resilience",
             ],
             [
-                "Hybrid-Cloud-Architektur aus dem Cloud-Server vps1 und dem Home-Server debian-core",
+                "Hybrid-Cloud-/On-Premises-Architektur aus Cloud-VPS und privatem Debian-Hosting-Server",
                 "GitHub Actions CI/CD fuer automatisierte Builds und Deployments",
-                "Tailscale Zero-Trust-Bridge fuer verschluesselte Artefakt-Uebertragung von Cloud zu Home",
+                "Tailscale Zero-Trust-Bridge fuer verschluesselte Artefakt-Uebertragung von Cloud zur privaten Hosting-Schicht",
                 "Dockerisierte Service-Schicht hinter Nginx Proxy Manager",
                 "Automatisierte Shell-Skripte fuer Next.js-Builds, rsync-Releases und Service-Refreshes",
                 "Backup-Strategie mit 7-Tage-Rotation fuer operative Resilienz",

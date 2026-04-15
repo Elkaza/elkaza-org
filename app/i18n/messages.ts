@@ -27,7 +27,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_enterprise_title: "Enterprise-Erfahrung",
     home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, Automatisierung, Application Engineering und operativer IT-Betrieb",
     home_platform_title: "Aktueller Plattform-Nachweis",
-    home_platform_text: "Elkaza.at wird als Hybrid-Cloud-Delivery-Plattform betrieben: Cloud-Builds auf vps1, private Runtime auf debian-core, sicher verbunden ueber Tailscale.",
+    home_platform_text: "Elkaza.at wird als Hybrid-Cloud-Delivery-Plattform betrieben: Ein Cloud-VPS uebernimmt Build- und Deployment-Steuerung, waehrend ein privater On-Premises-Debian-Server die Hosting-Schicht betreibt, sicher verbunden ueber Tailscale.",
     home_platform_item1: "GitHub Actions CI/CD",
     home_platform_item2: "Tailscale Zero Trust",
     home_platform_item3: "Docker + Nginx Proxy Manager",
@@ -75,7 +75,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home Security Lab Case
     case_lab_title: "The Vienna Fortress",
-    case_lab_problem: "Ein werkzeugorientiertes Homelab wurde mit wachsendem Stack schwerer zu ueberwachen, abzusichern und im Alltag wartbar zu halten.",
+    case_lab_problem: "Ein werkzeugorientiertes privates Infrastruktur-Lab wurde mit wachsendem Stack schwerer zu ueberwachen, abzusichern und im Alltag wartbar zu halten.",
     case_lab_action: "Eine Proxmox- und Docker-Plattform um Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage aufgebaut und zusaetzlich eine Proxmox-API-Integration fuer ein React-Dashboard debuggt.",
     case_lab_result: "Eine produktionsnaehere interne Plattform mit geschichteter Sicherheit, zentraler Sichtbarkeit und geringerem Wartungsaufwand geschaffen.",
     case_lab_safe: "Keine sensiblen Konfigurationen veröffentlicht.",
@@ -95,7 +95,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Currently
     current_title: "Aktuell",
-    current_item1: "Elkaza.at: Hybrid-Cloud-Deployment mit GitHub Actions, Tailscale, Docker und 7-Tage-Backups.",
+    current_item1: "Elkaza.at: Hybrid-Cloud-/On-Premises-Delivery mit GitHub Actions, Tailscale, Docker und 7-Tage-Backups.",
     current_item2: "M.Sc. Wirtschaftsinformatik, TU Wien - Schwerpunkt Digitale Transformation und Enterprise Engineering.",
     current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "IPMA® Level D (cPMA) – seit 10/2025; strukturierte Delivery-Arbeit fuer technische Vorhaben.",
@@ -164,11 +164,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_infra_title: "Aktuelle Infrastrukturarbeit",
     about_infra_intro: "Elkaza.at dient als produktionsnahes Praxisprojekt fuer sichere, automatisierte und resiliente Web-Bereitstellung ueber eine Hybrid-Cloud-Architektur.",
     about_infra_cloud_title: "Hybrid Cloud",
-    about_infra_cloud_desc: "vps1 uebernimmt die cloudseitige Build- und Deployment-Ebene, waehrend debian-core als privater Debian-Hosting-Server die lokale Runtime betreibt.",
+    about_infra_cloud_desc: "Ein Cloud-VPS uebernimmt die Build- und Deployment-Ebene, waehrend ein privater On-Premises-Debian-Server die Hosting-Runtime betreibt.",
     about_infra_cicd_title: "CI/CD & Automatisierung",
     about_infra_cicd_desc: "GitHub Actions, Linux-Shell-Skripte und rsync machen Build, Artefakt-Transfer und Release-Schritte reproduzierbar.",
     about_infra_security_title: "Zero-Trust-Zugriff",
-    about_infra_security_desc: "Tailscale verbindet Cloud- und Home-Infrastruktur ueber eine verschluesselte private Bridge, ohne den Hosting-Server breit oeffentlich zu exponieren.",
+    about_infra_security_desc: "Tailscale verbindet Cloud- und private On-Premises-Infrastruktur ueber eine verschluesselte Bridge, ohne den Hosting-Server breit oeffentlich zu exponieren.",
     about_infra_resilience_title: "Betrieb & Recovery",
     about_infra_resilience_desc: "Docker, Nginx Proxy Manager, Monitoring-nahe Betriebsroutinen und eine 7-Tage-Backup-Rotation verbessern Wartbarkeit und Wiederherstellbarkeit.",
     about_exp_summary: "Beruflich komme ich aus IT-Betrieb, Support, Netzwerk- und Prozessumgebungen; meine aktuelle Projektarbeit vertieft Plattformbetrieb, Automatisierung, Security und IoT.",
@@ -238,7 +238,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     research_cta: "Kontakt aufnehmen",
 
     // Projects
-    projects_tagline: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, vom Homelab bis zum Embedded-Prototyp.",
+    projects_tagline: "Eine kuratierte Timeline praktischer Arbeiten aus Infrastruktur, Security und IoT, von privaten Infrastrukturplattformen bis zum Embedded-Prototyp.",
     proj_timeline_h2: "Frühere Projekte",
     proj_timeline_desc: "Alle Projekte zielen auf Skalierbarkeit, Sicherheit und echte Anwendbarkeit ab. Hier ist ein kurzes Logbuch meiner aktuellen Arbeit.",
     proj_2025_desc: "Praktische Integration von Embedded, Self-Hosted Cloud und digitalen Ökosystemen.",
@@ -292,7 +292,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_consult_h2: "Consulting & Digital Services",
     contact_consult_desc: "IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung und angrenzende Systemthemen.",
 
-    about_hobbies: "Außerhalb der Arbeit: Radfahren in Wien, Lesen und praktische Experimente im Home Lab.",
+    about_hobbies: "Außerhalb der Arbeit: Radfahren in Wien, Lesen und praktische Experimente im privaten Infrastruktur-Lab.",
     contact_social_h3: "Connect on professional networks",
 
     // Contact Form
@@ -365,7 +365,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_summary_focus4: "Security & Zero Trust",
     cv_infra_title: "Aktuelle Infrastrukturarbeit",
     cv_infra_intro: "Elkaza.at wird als Hybrid-Cloud-Delivery-Plattform betrieben, die Cloud-Build-Prozesse mit privater Self-Hosted-Infrastruktur verbindet.",
-    cv_infra_short1: "vps1 + debian-core Hybrid-Deployment",
+    cv_infra_short1: "Cloud-VPS + private Debian-Hosting-Schicht",
     cv_infra_short2: "GitHub Actions Build- und Release-Pipeline",
     cv_infra_short3: "Tailscale-Bridge fuer privaten Artefakt-Transfer",
     cv_infra_short4: "Docker/Nginx Proxy Manager mit 7-Tage-Backups",
@@ -413,7 +413,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_enterprise_title: "Enterprise Experience",
     home_enterprise_text: "Raiffeisen Bank International | HiCo-ICS | ServiceNow, automation, application engineering, and operational IT",
     home_platform_title: "Current Platform Proof",
-    home_platform_text: "Elkaza.at is operated as a hybrid cloud delivery platform: cloud builds on vps1, private runtime on debian-core, securely connected through Tailscale.",
+    home_platform_text: "Elkaza.at is operated as a hybrid cloud delivery platform: a cloud VPS handles builds and deployment control, while a private on-premises Debian server runs the hosting layer, connected securely through Tailscale.",
     home_platform_item1: "GitHub Actions CI/CD",
     home_platform_item2: "Tailscale Zero Trust",
     home_platform_item3: "Docker + Nginx Proxy Manager",
@@ -462,7 +462,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home Security Lab Case
     case_lab_title: "The Vienna Fortress",
-    case_lab_problem: "A tool-by-tool home lab became harder to monitor, secure, and maintain as the service stack grew.",
+    case_lab_problem: "A tool-by-tool private infrastructure lab became harder to monitor, secure, and maintain as the service stack grew.",
     case_lab_action: "Built a Proxmox and Docker platform around Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage, and debugged a Proxmox API integration for a React-based dashboard.",
     case_lab_result: "Created a more production-minded internal platform with layered security, centralized visibility, and lower maintenance overhead.",
     case_lab_safe: "No sensitive configs published.",
@@ -498,7 +498,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Currently
     current_title: "Currently",
-    current_item1: "Elkaza.at: hybrid cloud deployment with GitHub Actions, Tailscale, Docker, and 7-day backups.",
+    current_item1: "Elkaza.at: hybrid cloud/on-premises delivery with GitHub Actions, Tailscale, Docker, and 7-day backups.",
     current_item2: "M.Sc. Business Informatics, TU Wien.",
     current_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien.",
     current_item4: "IPMA® Level D (cPMA) since 10/2025; structured delivery practice for technical initiatives.",
@@ -550,11 +550,11 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_infra_title: "Current Infrastructure Work",
     about_infra_intro: "Elkaza.at is used as a production-like practice platform for secure, automated, and resilient web delivery across a hybrid cloud architecture.",
     about_infra_cloud_title: "Hybrid Cloud",
-    about_infra_cloud_desc: "vps1 handles the cloud-side build and deployment plane, while debian-core runs the local runtime as a private Debian hosting server.",
+    about_infra_cloud_desc: "A cloud VPS handles the build and deployment plane, while a private on-premises Debian server runs the hosting runtime.",
     about_infra_cicd_title: "CI/CD & Automation",
     about_infra_cicd_desc: "GitHub Actions, Linux shell scripts, and rsync make build, artifact transfer, and release steps reproducible.",
     about_infra_security_title: "Zero-Trust Access",
-    about_infra_security_desc: "Tailscale connects cloud and home infrastructure through an encrypted private bridge without broadly exposing the hosting server.",
+    about_infra_security_desc: "Tailscale connects cloud and private on-premises infrastructure through an encrypted bridge without broadly exposing the hosting server.",
     about_infra_resilience_title: "Operations & Recovery",
     about_infra_resilience_desc: "Docker, Nginx Proxy Manager, monitoring-oriented routines, and a 7-day backup rotation improve maintainability and recovery readiness.",
     // New: Core Strengths
@@ -675,7 +675,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     research_cta: "Get in touch",
 
     // Projects
-    projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from homelab platforms to embedded prototypes.",
+    projects_tagline: "A curated timeline of hands-on work across infrastructure, security, and IoT: from private infrastructure platforms to embedded prototypes.",
     proj_timeline_h2: "Previous Projects",
     proj_timeline_desc: "All projects aim for scalability, security, and real-world applicability. Here is a brief log of my recent work.",
     proj_2025_desc: "Practical integration between embedded systems, self-hosted cloud, and digital ecosystems.",
@@ -729,7 +729,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_exp_highlight2: "Solid foundation in networking, Windows/Linux-adjacent systems, and ITSM.",
     about_exp_highlight3: "Current development in IoT, security, and connected systems.",
     about_view_cv: "View full resume",
-    about_hobbies: "Outside work: cycling around Vienna, reading, and doing practical experiments in my home lab.",
+    about_hobbies: "Outside work: cycling around Vienna, reading, and doing practical experiments in my private infrastructure lab.",
     contact_social_h3: "Professional profiles",
 
     // Contact Form
@@ -802,7 +802,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_summary_focus4: "Security & Zero Trust",
     cv_infra_title: "Current Infrastructure Work",
     cv_infra_intro: "Elkaza.at is operated as a hybrid cloud delivery platform that connects cloud build workflows with private self-hosted infrastructure.",
-    cv_infra_short1: "vps1 + debian-core hybrid deployment",
+    cv_infra_short1: "Cloud VPS + private Debian hosting layer",
     cv_infra_short2: "GitHub Actions build and release pipeline",
     cv_infra_short3: "Tailscale bridge for private artifact transfer",
     cv_infra_short4: "Docker/Nginx Proxy Manager with 7-day backups",
