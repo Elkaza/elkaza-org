@@ -4,13 +4,24 @@ import React from "react";
 import { useLocale } from "../LocaleProvider";
 import { Download, MapPin, Mail } from "lucide-react";
 
+const skillGroups = [
+    "platform",
+    "automation",
+    "networking",
+    "operations",
+    "software",
+    "delivery",
+] as const;
+
 export default function CvPageContent() {
     const { t } = useLocale();
 
     const expKeys = ["exp1", "exp2", "exp3", "exp4"];
+    const summaryFocus = [1, 2, 3, 4];
+    const infrastructureItems = [1, 2, 3, 4];
 
     return (
-        <main className="w-full max-w-4xl mx-auto px-6 py-12 md:py-16 space-y-12 text-main">
+        <main className="w-full max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10 text-main">
             {/* Header */}
             <header className="space-y-4 border-b border-subtle pb-8">
                 <div>
@@ -45,28 +56,35 @@ export default function CvPageContent() {
                 <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
                     {t("cv_summary_title")}
                 </h2>
-                <p className="text-base leading-relaxed max-w-2xl">
-                    {t("cv_summary_text")}
-                </p>
-            </section>
-
-            {/* Current Infrastructure Work */}
-            <section className="space-y-4">
-                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
-                    {t("cv_infra_title")}
-                </h2>
-                <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm">
-                    <p className="text-base leading-relaxed text-main">
-                        {t("cv_infra_intro")}
-                    </p>
-                    <ul className="mt-4 space-y-3">
-                        {[1, 2, 3, 4].map((item) => (
-                            <li key={item} className="flex items-start gap-3 text-sm text-muted">
-                                <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500" />
-                                <span>{t(`cv_infra_item${item}`)}</span>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+                    <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                        <p className="text-base leading-relaxed text-main">
+                            {t("cv_summary_text")}
+                        </p>
+                        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                            {summaryFocus.map((item) => (
+                                <span key={item} className="rounded-md border border-subtle bg-page/60 px-3 py-2 text-sm font-medium text-main">
+                                    {t(`cv_summary_focus${item}`)}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">
+                            {t("cv_infra_title")}
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                            {t("cv_infra_intro")}
+                        </p>
+                        <ul className="mt-4 space-y-2">
+                            {infrastructureItems.map((item) => (
+                                <li key={item} className="flex items-start gap-2 text-sm text-main">
+                                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500" />
+                                    <span>{t(`cv_infra_short${item}`)}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -75,11 +93,20 @@ export default function CvPageContent() {
                 <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
                     {t("cv_skills_title")}
                 </h2>
-                <div className="flex flex-wrap gap-2 text-sm">
-                    {t("cv_skills_list").split(/,\s*/).map((skill, i) => (
-                        <span key={i} className="px-3 py-1 bg-subtle/50 border border-subtle rounded-full font-medium text-main">
-                            {skill.trim()}
-                        </span>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {skillGroups.map((group) => (
+                        <div key={group} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+                            <h3 className="text-sm font-semibold text-main">
+                                {t(`cv_skill_${group}_title`)}
+                            </h3>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                                {t(`cv_skill_${group}_items`).split(/\s*\|\s*/).map((skill) => (
+                                    <span key={skill} className="rounded-md border border-subtle bg-page/70 px-2.5 py-1 text-xs font-medium text-muted">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     ))}
                 </div>
             </section>
