@@ -23,12 +23,12 @@ type Copy = {
 const COPY: Record<string, Copy> = {
     en: {
         eyebrow: "Engineering Portfolio",
-        title: "Infrastructure, systems, security, and ongoing IoT work",
-        intro: "This portfolio combines operational IT, infrastructure, networking, automation, self-hosted platforms, and current IoT and edge work. The projects are presented as case studies to show how I approach system design, troubleshooting, security, and delivery across different contexts.",
+        title: "Infrastructure, applications, security, automation, and delivery work",
+        intro: "This portfolio shows role-relevant work across IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, project delivery, and business analysis. The projects are written as case studies to show how I approach requirements, system design, troubleshooting, security, and production-minded delivery.",
         highlights: [
-            "Operations: support-minded system work, troubleshooting, virtualization, monitoring",
-            "Infrastructure: Linux services, networking, DNS, reverse proxy, segmentation",
-            "Ongoing specialization: IoT nodes, edge gateways, telemetry, secure connectivity",
+            "Systems: Linux, Windows, Proxmox, Docker, DNS, reverse proxying, monitoring",
+            "Applications: Next.js, TypeScript, Python, Bash, PowerShell, ServiceNow-style workflows",
+            "Delivery: requirements, documentation, handovers, IPMA-oriented project execution, security-aware decisions",
         ],
         listEyebrow: "Latest First",
         listTitle: "Recent project work",
@@ -44,12 +44,12 @@ const COPY: Record<string, Copy> = {
     },
     de: {
         eyebrow: "Portfolio",
-        title: "Infrastruktur, Systeme, Sicherheit und laufende IoT-Arbeit",
-        intro: "Das Portfolio verbindet operativen IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung, Self-hosted-Plattformen und aktuelle IoT- und Edge-Arbeit. Die Projekte sind als Fallstudien aufgebaut, um meinen Umgang mit Systemdesign, Troubleshooting, Sicherheit und Delivery in unterschiedlichen Kontexten zu zeigen.",
+        title: "Infrastruktur, Anwendungen, Security, Automatisierung und Delivery",
+        intro: "Das Portfolio zeigt rollenrelevante Arbeit ueber IT Operations, Systemadministration, Application Engineering, Software-Automatisierung, cybersecurity-orientierte Infrastruktur, technische Projektumsetzung und Business Analysis hinweg. Die Projekte sind als Fallstudien aufgebaut, um meinen Umgang mit Anforderungen, Systemdesign, Troubleshooting, Sicherheit und produktionsnahem Betrieb zu zeigen.",
         highlights: [
-            "Betrieb: Support-nahes Systemarbeiten, Troubleshooting, Virtualisierung, Monitoring",
-            "Infrastruktur: Linux-Services, Netzwerke, DNS, Reverse Proxy, Segmentierung",
-            "Laufende Spezialisierung: IoT-Knoten, Edge-Gateways, Telemetrie, sichere Konnektivitaet",
+            "Systeme: Linux, Windows, Proxmox, Docker, DNS, Reverse Proxying, Monitoring",
+            "Anwendungen: Next.js, TypeScript, Python, Bash, PowerShell, ServiceNow-nahe Workflows",
+            "Delivery: Anforderungen, Dokumentation, Uebergaben, IPMA-orientierte Umsetzung, security-bewusste Entscheidungen",
         ],
         listEyebrow: "Neueste zuerst",
         listTitle: "Aktuelle Projektarbeit",
@@ -65,12 +65,12 @@ const COPY: Record<string, Copy> = {
     },
     ar: {
         eyebrow: "Engineering Portfolio",
-        title: "Infrastructure, systems, security, and ongoing IoT work",
-        intro: "This portfolio combines operational IT, infrastructure, networking, automation, self-hosted platforms, and current IoT and edge work. The projects are presented as case studies to show how I approach system design, troubleshooting, security, and delivery across different contexts.",
+        title: "Infrastructure, applications, security, automation, and delivery work",
+        intro: "This portfolio shows role-relevant work across IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, project delivery, and business analysis. The projects are written as case studies to show how I approach requirements, system design, troubleshooting, security, and production-minded delivery.",
         highlights: [
-            "Operations: support-minded system work, troubleshooting, virtualization, monitoring",
-            "Infrastructure: Linux services, networking, DNS, reverse proxy, segmentation",
-            "Ongoing specialization: IoT nodes, edge gateways, telemetry, secure connectivity",
+            "Systems: Linux, Windows, Proxmox, Docker, DNS, reverse proxying, monitoring",
+            "Applications: Next.js, TypeScript, Python, Bash, PowerShell, ServiceNow-style workflows",
+            "Delivery: requirements, documentation, handovers, IPMA-oriented project execution, security-aware decisions",
         ],
         listEyebrow: "Latest First",
         listTitle: "Recent project work",
@@ -121,11 +121,11 @@ export default function ProjectsPageContent() {
                 </aside>
 
                 <div className="lg:col-span-9 space-y-14">
-                    <section className="rounded-2xl border border-subtle bg-card p-8 shadow-sm">
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+                    <section className="border-y border-subtle py-8">
+                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
                             {copy.eyebrow}
                         </p>
-                        <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight max-w-3xl">
+                        <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-normal max-w-3xl">
                             {copy.title}
                         </h2>
                         <p className="mt-4 max-w-3xl text-muted leading-relaxed">
@@ -133,7 +133,7 @@ export default function ProjectsPageContent() {
                         </p>
                         <div className="mt-8 grid gap-4 md:grid-cols-3">
                             {copy.highlights.map((item) => (
-                                <div key={item} className="rounded-xl border border-subtle bg-page/60 p-4 text-sm text-main">
+                                <div key={item} className="border-l-2 border-blue-500 pl-4 text-sm text-main">
                                     {item}
                                 </div>
                             ))}
@@ -142,25 +142,25 @@ export default function ProjectsPageContent() {
 
                     <section className="space-y-6">
                         <div className="space-y-2">
-                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+                            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
                                 {copy.listEyebrow}
                             </p>
-                            <h2 className="text-2xl font-semibold tracking-tight">{copy.listTitle}</h2>
+                            <h2 className="text-2xl font-semibold tracking-normal">{copy.listTitle}</h2>
                             <p className="text-muted max-w-3xl">{copy.listIntro}</p>
                         </div>
 
                         <div className="grid gap-6 lg:grid-cols-2">
-                                    {sortedProjects.map((project, index) => (
-                                        <ProjectCard
-                                            key={project.slug}
-                                            locale={locale}
-                                            project={project}
-                                            ctaLabel={copy.detailsCta}
-                                            resultLabel={copy.resultLabel}
-                                            categoryLabel={copy.categoryLabels[project.category]}
-                                            featured={index === 0}
-                                        />
-                                    ))}
+                            {sortedProjects.map((project, index) => (
+                                <ProjectCard
+                                    key={project.slug}
+                                    locale={locale}
+                                    project={project}
+                                    ctaLabel={copy.detailsCta}
+                                    resultLabel={copy.resultLabel}
+                                    categoryLabel={copy.categoryLabels[project.category]}
+                                    featured={index === 0}
+                                />
+                            ))}
                         </div>
                     </section>
                 </div>
@@ -191,13 +191,13 @@ function ProjectCard({
     return (
         <article
             className={[
-                "group rounded-2xl border border-subtle bg-card p-6 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600",
+                "group rounded-lg border border-subtle bg-card p-6 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600",
                 featured ? "lg:col-span-2 md:p-7" : "",
             ].join(" ")}
         >
             <div className="flex flex-wrap items-start justify-between gap-3">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[0.16em] text-muted">
-                    <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-[0.14em] text-main">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-normal text-muted">
+                    <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-normal text-main">
                         {categoryLabel}
                     </span>
                     <span>{project.year}</span>
@@ -211,7 +211,7 @@ function ProjectCard({
                 </Link>
             </div>
 
-            <h3 className="mt-4 text-xl font-semibold tracking-tight md:text-2xl">{title}</h3>
+            <h3 className="mt-4 text-xl font-semibold tracking-normal md:text-2xl">{title}</h3>
 
             <p className="mt-4 text-main leading-relaxed">{oneLiner}</p>
 

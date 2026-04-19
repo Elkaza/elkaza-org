@@ -5,6 +5,8 @@ function nonce(size = 16) {
   return Buffer.from(bytes).toString("base64");
 }
 
+const analyticsOrigin = "https://analytics.elkaza.at";
+
 export function proxy() {
   const res = NextResponse.next();
   const n = nonce();
@@ -18,8 +20,8 @@ export function proxy() {
     "object-src 'none'",
     "img-src 'self' data: https:",
     `style-src 'self' 'unsafe-inline' 'nonce-${n}'`,
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-    "connect-src 'self' https://generativelanguage.googleapis.com",
+    `script-src 'self' ${analyticsOrigin} 'unsafe-inline' 'unsafe-eval'`,
+    `connect-src 'self' ${analyticsOrigin} https://generativelanguage.googleapis.com`,
     "form-action 'self'",
     "upgrade-insecure-requests",
   ].join("; ");

@@ -93,6 +93,7 @@ const getInfrastructureHighlights = (t: (k: string) => string): Skill[] => [
 export default function AboutPageContent() {
     const { t } = useLocale();
     const infrastructureHighlights = getInfrastructureHighlights(t);
+    const educationItems = [1, 2, 3];
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors">
@@ -108,7 +109,7 @@ export default function AboutPageContent() {
 
                     <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
                         <div>
-                            <Image src="/images/me.jpg" alt="Mohamed Elkaza" width={400} height={400} className="rounded-2xl shadow-md object-cover" />
+                            <Image src="/images/me.jpg" alt="Mohamed Elkaza" width={400} height={400} className="rounded-lg shadow-md object-cover" />
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">{t("about_profile_h2") ?? "Professional Profile"}</h2>
@@ -123,6 +124,30 @@ export default function AboutPageContent() {
                         </div>
                     </div>
 
+                    <section className="mb-12 space-y-6">
+                        <div className="space-y-2">
+                            <h2 className="text-2xl font-semibold">{t("about_education_title")}</h2>
+                            <p className="text-muted leading-relaxed max-w-3xl">
+                                {t("about_education_intro")}
+                            </p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {educationItems.map((item) => (
+                                <div key={item} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
+                                    <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                        {t(`about_education_label${item}`)}
+                                    </p>
+                                    <h3 className="mt-2 text-base font-semibold text-main">
+                                        {t(`about_education_title${item}`)}
+                                    </h3>
+                                    <p className="mt-2 text-sm text-muted leading-relaxed">
+                                        {t(`about_education_desc${item}`)}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     {/* Current Infrastructure Focus */}
                     <section className="mb-12 space-y-6">
                         <div className="space-y-2">
@@ -133,7 +158,7 @@ export default function AboutPageContent() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {infrastructureHighlights.map((item) => (
-                                <div key={item.title} className="bg-card border border-subtle rounded-xl p-5 shadow-sm">
+                                <div key={item.title} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
                                     <div className="flex items-center gap-3 mb-3">
                                         <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                         <h3 className="font-semibold text-main">{item.title}</h3>
@@ -175,7 +200,7 @@ export default function AboutPageContent() {
                         <h2 className="text-2xl font-semibold">{t("about_comp_h2") ?? "Core Skills & Tools"}</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {getSkills(t).map((skill) => (
-                                <div key={skill.title} className="p-6 bg-card rounded-xl border border-subtle shadow-sm flex flex-col h-full">
+                                <div key={skill.title} className="p-6 bg-card rounded-lg border border-subtle shadow-sm flex flex-col h-full">
                                     <skill.icon className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-4" />
                                     <h3 className="text-lg font-semibold mb-2 text-main">{skill.title}</h3>
                                     <ul className="space-y-2 flex-grow">

@@ -23,6 +23,11 @@ export interface Project {
         edge: LocalizedString;
         cloud: LocalizedString;
     };
+    architectureLabels?: {
+        node: LocalizedString;
+        edge: LocalizedString;
+        cloud: LocalizedString;
+    };
     security: LocalizedString;
     reliability: LocalizedString;
     keyFeatures: LocalizedList;
@@ -38,6 +43,118 @@ const loc = (en: string, de = en, ar = en): LocalizedString => ({ en, de, ar });
 const locList = (en: string[], de = en, ar = en): LocalizedList => ({ en, de, ar });
 
 export const projects: Project[] = [
+    {
+        slug: "enterprise-self-hosted-infrastructure",
+        category: "security-infrastructure",
+        year: "2026",
+        title: loc(
+            "Enterprise Self-Hosted Infrastructure & Privacy-First Analytics Setup",
+            "Enterprise-Self-Hosted-Infrastruktur und Privacy-First-Analytics"
+        ),
+        oneLiner: loc(
+            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, Tailscale reverse tunneling, automated deployments, observability, and disaster-ready backups.",
+            "Kernfunktionen des Webbetriebs von SaaS-Abhaengigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, Tailscale-Reverse-Tunneling, automatisierten Deployments, Observability und recovery-faehigen Backups migriert."
+        ),
+        overview: loc(
+            "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
+            "Diese Fallstudie dokumentiert den Wechsel von gemieteter Bequemlichkeit zu eigener Infrastruktur. Die Plattform haelt den oeffentlichen Ingress schlank in der Cloud, betreibt Applikations- und Analytics-Services auf privater Proxmox- und Debian-Infrastruktur und nutzt Automatisierung fuer Deployment, Monitoring und Recovery. Das Ergebnis ist nicht nur ein guenstigeres Hosting-Setup, sondern ein privacy-orientiertes Betriebsmodell, bei dem Datenpfade, Analytics, Logs und Backups unter direkter Kontrolle bleiben."
+        ),
+        problem: loc(
+            "SaaS subscriptions and third-party analytics tools create recurring cost, external data dependency, and fragile measurement when browser extensions or network filters block common tracker domains. At the same time, exposing a private server directly from a residential network would leak the home IP address and expand the public attack surface.",
+            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und bruechige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig wuerde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die oeffentliche Angriffsoberflaeche vergroessern."
+        ),
+        solution: loc(
+            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host on Debian 12, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards web traffic over a private Tailscale tunnel to the local platform. Plausible Analytics runs self-hosted with PostgreSQL and ClickHouse, and the tracking script is served from a first-party analytics subdomain so visitor metrics remain useful without relying on a third-party tracker domain. GitHub Actions automates Next.js production deployments, while a daily Bash backup job captures database and Docker volume state with a seven-day retention policy.",
+            "Ich habe eine Hybrid-Cloud-Architektur aus gehaertetem oeffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet Web-Traffic ueber einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Plausible Analytics laeuft self-hosted mit PostgreSQL und ClickHouse; das Tracking-Skript wird ueber eine First-Party-Analytics-Subdomain ausgeliefert, damit Metriken nutzbar bleiben, ohne auf eine Third-Party-Tracker-Domain angewiesen zu sein. GitHub Actions automatisiert Next.js-Production-Deployments, waehrend ein taeglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
+        ),
+        architectureLabels: {
+            node: loc("Visitor path", "Besucherpfad"),
+            edge: loc("Private platform", "Private Plattform"),
+            cloud: loc("Public ingress", "Oeffentlicher Ingress"),
+        },
+        architecture: {
+            node: loc(
+                "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics delivery inside an owner-controlled domain path instead of a generic third-party tracker host.",
+                "Besucher erreichen die Seite ueber kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigentuergesteuerten Domain-Pfad bleibt statt ueber einen generischen Third-Party-Tracker-Host zu laufen."
+            ),
+            edge: loc(
+                "A private Proxmox VE and Debian 12 platform runs Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, management, and backup automation.",
+                "Eine private Proxmox-VE- und Debian-12-Plattform betreibt Docker-Compose-Services fuer Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability, Management und Backup-Automation."
+            ),
+            cloud: loc(
+                "A low-cost public VPS provides hardened ingress, hides the residential IP address, and forwards traffic through Tailscale rather than requiring inbound ports on the local router.",
+                "Ein kostenguenstiger oeffentlicher VPS stellt gehaerteten Ingress bereit, verbirgt die private Wohnanschluss-IP und leitet Traffic ueber Tailscale weiter, statt eingehende Ports am lokalen Router zu benoetigen."
+            ),
+        },
+        security: loc(
+            "The platform reduces public exposure by separating ingress from the private runtime. Tailscale carries traffic over an encrypted overlay, UFW limits the VPS surface, Nginx Proxy Manager centralizes HTTPS routing, CrowdSec and Pi-hole add defensive layers, and the first-party Plausible setup avoids handing visitor analytics to a third-party tracking provider.",
+            "Die Plattform reduziert oeffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic ueber ein verschluesseltes Overlay, UFW begrenzt die VPS-Oberflaeche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergaenzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
+        ),
+        reliability: loc(
+            "A root cronjob runs a daily 3:00 AM dump-and-pack backup: PostgreSQL is dumped safely, ClickHouse is paused before volume extraction to prevent corruption, Docker named volumes are archived, the complete application state is compressed, and old snapshots are pruned through a seven-day rolling retention policy.",
+            "Ein Root-Cronjob startet taeglich um 03:00 Uhr ein Dump-and-Pack-Backup: PostgreSQL wird sauber gedumpt, ClickHouse vor der Volume-Extraktion pausiert, um Korruption zu vermeiden, Docker-Named-Volumes werden archiviert, der gesamte Applikationszustand wird komprimiert und alte Snapshots werden ueber eine Sieben-Tage-Retention bereinigt."
+        ),
+        keyFeatures: locList(
+            [
+                "Self-hosted Plausible Analytics with PostgreSQL and ClickHouse, served from analytics.elkaza.at as a first-party analytics path",
+                "Hardened VPS ingress shield with strict UFW policy, unattended upgrades, and no direct exposure of the residential IP",
+                "Tailscale reverse tunnel from public ingress to the private Proxmox platform without opening local router ports",
+                "GitHub Actions CI/CD for automated Next.js production deployments with minimal manual release handling",
+                "Daily Bash dump-and-pack backups covering PostgreSQL, ClickHouse, Docker named volumes, compression, and seven-day retention",
+                "Homepage-based local .lan dashboard mapping Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma, and Watchtower state",
+            ],
+            [
+                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert ueber analytics.elkaza.at als First-Party-Analytics-Pfad",
+                "Gehaerteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
+                "Tailscale-Reverse-Tunnel vom oeffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
+                "GitHub Actions CI/CD fuer automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
+                "Taegliche Bash-Dump-and-Pack-Backups fuer PostgreSQL, ClickHouse, Docker-Named-Volumes, Kompression und Sieben-Tage-Retention",
+                "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping fuer Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
+            ]
+        ),
+        results: locList(
+            [
+                "Reduced dependency on paid SaaS subscriptions and third-party analytics domains",
+                "Kept visitor analytics under owner control while preserving privacy-oriented measurement",
+                "Hid the residential IP address and removed the need for open inbound ports on the local router",
+                "Turned deployment, monitoring, updates, and backups into repeatable DevOps routines",
+                "Created a stronger portfolio proof point for owner-controlled infrastructure, secure networking, and automated operations",
+            ],
+            [
+                "Die Abhaengigkeit von kostenpflichtigen SaaS-Abonnements und Third-Party-Analytics-Domains reduziert",
+                "Besucher-Analytics unter eigener Kontrolle gehalten und gleichzeitig privacy-orientierte Messbarkeit bewahrt",
+                "Die private Wohnanschluss-IP verborgen und offene eingehende Ports am lokalen Router vermieden",
+                "Deployment, Monitoring, Updates und Backups in wiederholbare DevOps-Routinen ueberfuehrt",
+                "Einen staerkeren Portfolio-Nachweis fuer eigenkontrollierte Infrastruktur, sichere Netzwerke und automatisierten Betrieb geschaffen",
+            ]
+        ),
+        tech: [
+            "Proxmox VE",
+            "Debian 12",
+            "Docker Compose",
+            "Tailscale",
+            "Plausible Analytics",
+            "PostgreSQL",
+            "ClickHouse",
+            "Nginx Proxy Manager",
+            "CrowdSec",
+            "Pi-hole",
+            "UFW",
+            "GitHub Actions",
+            "Bash",
+            "Uptime Kuma",
+            "Netdata",
+            "Portainer",
+            "Dozzle",
+            "Watchtower",
+            "Homepage",
+        ],
+        tags: ["Self-Hosted", "Privacy", "Analytics", "DevOps", "Hybrid Cloud"],
+        links: [
+            { label: "Live Site", url: "https://www.elkaza.org" },
+        ],
+        relatedProjectSlug: "vienna-fortress",
+    },
     {
         slug: "rpi-ble-mqtt-gateway",
         category: "featured-aiot",
@@ -465,8 +582,8 @@ export const projects: Project[] = [
             "Verteilte Infrastruktur ueber private Lab-Systeme, Cloud-Server und Reisegeraete hinweg wird schnell schwer abzusichern. Ohne schluesselbasierte Administration, private DNS-Aufloesung und konsistente Fernzugriffsmuster waechst die Angriffsoberflaeche und der Betrieb wird fragil."
         ),
         solution: loc(
-            "I implemented a Tailscale-based private overlay connecting roaming workstations, a VPS, and a Debian VM on Proxmox. SSH was hardened around ED25519 keys and passwordless access, Pi-hole and Unbound provide sovereign DNS, and interface-aware UFW rules plus exit-node routing make the environment safer and more usable across locations.",
-            "Ich habe ein Tailscale-basiertes privates Overlay umgesetzt, das mobile Workstations, einen VPS und eine Debian-VM auf Proxmox verbindet. SSH wurde auf ED25519-Schluessel und passwortlose Anmeldung gehaertet, Pi-hole und Unbound liefern souveraene DNS-Aufloesung, und interface-basierte UFW-Regeln plus Exit-Node-Routing machen die Umgebung sicherer und ueber Standorte hinweg besser nutzbar."
+            "I implemented a Tailscale-based private overlay connecting roaming workstations, a VPS, and a Debian VM on Proxmox. SSH was hardened around ED25519 keys and passwordless access, Pi-hole and Unbound provide private recursive DNS, and interface-aware UFW rules plus exit-node routing make the environment safer and more usable across locations.",
+            "Ich habe ein Tailscale-basiertes privates Overlay umgesetzt, das mobile Workstations, einen VPS und eine Debian-VM auf Proxmox verbindet. SSH wurde auf ED25519-Schluessel und passwortlose Anmeldung gehaertet, Pi-hole und Unbound liefern private rekursive DNS-Aufloesung, und interface-basierte UFW-Regeln plus Exit-Node-Routing machen die Umgebung sicherer und ueber Standorte hinweg besser nutzbar."
         ),
         architecture: {
             node: loc(

@@ -9,6 +9,7 @@ export default function HomeContent() {
   const { t } = useLocale();
   const platformItems = [1, 2, 3, 4];
   const proofItems = ["impact", "scope", "strength"];
+  const roleFitItems = [1, 2, 3, 4, 5, 6];
 
   return (
     <main className="flex flex-col items-start justify-start w-full max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-20 text-main">
@@ -59,6 +60,22 @@ export default function HomeContent() {
                 <span className="mb-3 block h-1.5 w-10 rounded-full bg-blue-500" />
                 <p className="text-sm leading-relaxed text-main">{t(`home_proof_${item}`)}</p>
               </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full border-y border-subtle py-5">
+          <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+            {t("home_role_fit_title")}
+          </p>
+          <p className="mt-2 text-sm text-muted leading-relaxed">
+            {t("home_role_fit_text")}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {roleFitItems.map((item) => (
+              <span key={item} className="rounded-md border border-subtle bg-page/70 px-3 py-2 text-sm font-medium text-main">
+                {t(`home_role_fit_item${item}`)}
+              </span>
             ))}
           </div>
         </div>

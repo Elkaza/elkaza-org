@@ -13,7 +13,7 @@ export function generatePersonSchema() {
             "https://github.com/Elkaza",
             "https://linkedin.com/in/elkaza",
         ],
-        jobTitle: "IT Infrastructure & Systems Integration Engineer",
+        jobTitle: "IT Infrastructure, Application & Automation Engineer",
         affiliation: [
             {
                 "@type": "EducationalOrganization",
@@ -30,6 +30,13 @@ export function generatePersonSchema() {
             "Network Engineering",
             "Windows Server",
             "Linux",
+            "Proxmox VE",
+            "Systems Administration",
+            "Application Engineering",
+            "Technical Project Delivery",
+            "Business Analysis",
+            "Owner-Controlled Infrastructure",
+            "Privacy-First Analytics",
             "Automation",
             "ITSM",
             "Project Management",
@@ -46,7 +53,7 @@ export function generateWebSiteSchema() {
         name: "Elkaza | IT Infrastructure, Systems & Projects",
         url: "https://elkaza.org",
         description:
-            "Portfolio covering IT operations, infrastructure, networking, automation, self-hosted platforms, and ongoing IoT systems work.",
+            "Portfolio covering IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, technical delivery, business analysis, and ongoing IoT systems work.",
         author: {
             "@type": "Person",
             name: "Mohamed Elkaza",

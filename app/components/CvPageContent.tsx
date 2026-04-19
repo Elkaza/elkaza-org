@@ -19,13 +19,14 @@ export default function CvPageContent() {
     const expKeys = ["exp1", "exp2", "exp3", "exp4"];
     const summaryFocus = [1, 2, 3, 4];
     const infrastructureItems = [1, 2, 3, 4];
+    const educationItems = [1, 2, 3];
 
     return (
         <main className="w-full max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10 text-main">
             {/* Header */}
             <header className="space-y-4 border-b border-subtle pb-8">
                 <div>
-                    <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-main">
+                    <h1 className="text-3xl md:text-4xl font-bold tracking-normal text-main">
                         Mohamed Elkaza
                     </h1>
                     <p className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-medium">
@@ -53,7 +54,7 @@ export default function CvPageContent() {
 
             {/* Summary */}
             <section className="space-y-4">
-                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
+                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
                     {t("cv_summary_title")}
                 </h2>
                 <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
@@ -70,7 +71,7 @@ export default function CvPageContent() {
                         </div>
                     </div>
                     <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">
+                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
                             {t("cv_infra_title")}
                         </p>
                         <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -90,7 +91,7 @@ export default function CvPageContent() {
 
             {/* Skills */}
             <section className="space-y-4">
-                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
+                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
                     {t("cv_skills_title")}
                 </h2>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -113,7 +114,7 @@ export default function CvPageContent() {
 
             {/* Experience */}
             <section className="space-y-6">
-                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
+                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
                     {t("cv_exp_title")}
                 </h2>
                 <div className="space-y-8">
@@ -132,12 +133,13 @@ export default function CvPageContent() {
 
             {/* Education & Certifications */}
             <section className="space-y-6">
-                <h2 className="text-xl font-semibold uppercase tracking-wider text-muted">
+                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
                     {t("cv_edu_title")}
                 </h2>
                 <ul className="space-y-2 list-disc list-inside text-muted">
-                    <li>{t("current_item2")}</li>
-                    <li>{t("current_item3")}</li>
+                    {educationItems.map((item) => (
+                        <li key={item}>{t(`cv_education_item${item}`)}</li>
+                    ))}
                     <li>{t("cert_ipma_title")} ({t("cert_ipma_issuer")})</li>
                     <li>{t("cert_graz_title")}</li>
                 </ul>

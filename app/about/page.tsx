@@ -3,7 +3,7 @@ import AboutPageContent from "../components/AboutPageContent";
 
 export const metadata: Metadata = {
   title: 'About | Mohamed Elkaza',
-  description: 'Professional profile across IT infrastructure, platform operations, automation, hybrid cloud, zero-trust networking, and secure self-hosted systems.',
+  description: 'Professional profile across IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, technical delivery, and business analysis.',
 };
 
 export default function AboutPage() {

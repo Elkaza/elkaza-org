@@ -48,7 +48,7 @@ const COPY: Record<string, DetailCopy> = {
         category: {
             "featured-aiot": "Current IoT and Edge Project",
             "platform-component": "Platform Component",
-            "security-infrastructure": "Security and Infrastructure",
+            "security-infrastructure": "Infrastructure and Security",
             "delivery-platform": "Delivery Platform",
         },
         overview: "Overview",
@@ -73,7 +73,7 @@ const COPY: Record<string, DetailCopy> = {
         category: {
             "featured-aiot": "Aktuelles IoT- und Edge-Projekt",
             "platform-component": "Plattformbaustein",
-            "security-infrastructure": "Sicherheit und Infrastruktur",
+            "security-infrastructure": "Infrastruktur und Sicherheit",
             "delivery-platform": "Bereitstellung und Web",
         },
         overview: "Ueberblick",
@@ -98,7 +98,7 @@ const COPY: Record<string, DetailCopy> = {
         category: {
             "featured-aiot": "Current IoT and Edge Project",
             "platform-component": "Platform Component",
-            "security-infrastructure": "Security and Infrastructure",
+            "security-infrastructure": "Infrastructure and Security",
             "delivery-platform": "Delivery Platform",
         },
         overview: "Overview",
@@ -157,7 +157,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     </div>
 
                     <div className="space-y-3">
-                        <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+                        <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-normal">
                             {localized(project.title)}
                         </h1>
                         <p className="max-w-3xl text-lg md:text-xl text-muted leading-relaxed">
@@ -176,7 +176,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
 
                 {project.images && project.images.length > 0 && (
                     project.images.length === 1 ? (
-                        <section className="rounded-xl border border-subtle bg-card p-2 md:p-3 shadow-sm">
+                        <section className="rounded-lg border border-subtle bg-card p-2 md:p-3 shadow-sm">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={project.images[0]}
@@ -187,7 +187,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     ) : (
                         <section className="grid gap-4 md:grid-cols-2">
                             {project.images.map((image, index) => (
-                                <div key={image} className="overflow-hidden rounded-xl border border-subtle bg-card p-2 shadow-sm">
+                                <div key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2 shadow-sm">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={image}
@@ -217,12 +217,21 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 <section className="space-y-4">
                     <div className="flex items-center gap-2">
                         <Waypoints className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <h2 className="text-2xl font-semibold tracking-tight">{copy.architecture}</h2>
+                        <h2 className="text-2xl font-semibold tracking-normal">{copy.architecture}</h2>
                     </div>
                     <div className="grid gap-4 md:grid-cols-3">
-                        <ArchitectureCard title={copy.node} body={localized(project.architecture.node)} />
-                        <ArchitectureCard title={copy.edge} body={localized(project.architecture.edge)} />
-                        <ArchitectureCard title={copy.cloud} body={localized(project.architecture.cloud)} />
+                        <ArchitectureCard
+                            title={project.architectureLabels ? localized(project.architectureLabels.node) : copy.node}
+                            body={localized(project.architecture.node)}
+                        />
+                        <ArchitectureCard
+                            title={project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge}
+                            body={localized(project.architecture.edge)}
+                        />
+                        <ArchitectureCard
+                            title={project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud}
+                            body={localized(project.architecture.cloud)}
+                        />
                     </div>
                 </section>
 
@@ -244,7 +253,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 <section className="space-y-4">
                     <div className="flex items-center gap-2">
                         <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        <h2 className="text-2xl font-semibold tracking-tight">{copy.tech}</h2>
+                        <h2 className="text-2xl font-semibold tracking-normal">{copy.tech}</h2>
                     </div>
                     <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech) => (
@@ -257,7 +266,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
 
                 {project.links.length > 0 && (
                     <section className="space-y-4 pt-2">
-                        <h2 className="text-2xl font-semibold tracking-tight">{copy.artifacts}</h2>
+                        <h2 className="text-2xl font-semibold tracking-normal">{copy.artifacts}</h2>
                         <div className="flex flex-wrap gap-3">
                             {project.links.map((link) => {
                                 const isGitHub = link.url.includes("github.com");
@@ -281,11 +290,11 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
 
                 {relatedProject && (
                     <section className="border-t border-subtle pt-8">
-                        <h2 className="text-2xl font-semibold tracking-tight">{copy.related}</h2>
+                        <h2 className="text-2xl font-semibold tracking-normal">{copy.related}</h2>
                         <p className="mt-2 text-muted max-w-2xl">{copy.relatedDescription}</p>
                         <Link
                             href={`/projects/${relatedProject.slug}`}
-                            className="group mt-5 block rounded-xl border border-subtle bg-card p-5 transition-colors hover:border-blue-400 dark:hover:border-blue-600"
+                            className="group mt-5 block rounded-lg border border-subtle bg-card p-5 transition-colors hover:border-blue-400 dark:hover:border-blue-600"
                         >
                             <div className="flex items-center justify-between gap-4">
                                 <div>
@@ -314,10 +323,10 @@ function DetailCard({
     children: ReactNode;
 }) {
     return (
-        <section className="rounded-2xl border border-subtle bg-card p-6 shadow-sm">
+        <section className="rounded-lg border border-subtle bg-card p-6 shadow-sm">
             <div className="mb-4 flex items-center gap-2">
                 <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+                <h2 className="text-xl font-semibold tracking-normal">{title}</h2>
             </div>
             {children}
         </section>
@@ -326,8 +335,8 @@ function DetailCard({
 
 function ArchitectureCard({ title, body }: { title: string; body: string }) {
     return (
-        <div className="rounded-2xl border border-subtle bg-card p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-blue-400">
+        <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
                 {title}
             </p>
             <p className="mt-3 text-main leading-relaxed">{body}</p>
@@ -337,10 +346,10 @@ function ArchitectureCard({ title, body }: { title: string; body: string }) {
 
 function ListCard({ title, items }: { title: string; items: string[] }) {
     return (
-        <section className="rounded-2xl border border-subtle bg-card p-6 shadow-sm">
+        <section className="rounded-lg border border-subtle bg-card p-6 shadow-sm">
             <div className="mb-4 flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+                <h2 className="text-xl font-semibold tracking-normal">{title}</h2>
             </div>
             <ul className="space-y-3">
                 {items.map((item) => (

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Mohamed Elkaza | IT Infrastructure, Platform & Automation Engineer",
-  description: "IT infrastructure, platform operations, automation, hybrid cloud, zero-trust networking, and secure self-hosted systems by Mohamed Elkaza.",
+  title: "Mohamed Elkaza | IT Infrastructure, Application & Automation Engineer",
+  description: "IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, technical delivery, and business analysis by Mohamed Elkaza.",
 };
 
 import HomeContent from "./components/home/HomeContent";

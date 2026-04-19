@@ -1,86 +1,35 @@
-# Analytics Setup Guide
+# Analytics Setup
 
-This guide explains how to add analytics tracking to the Elkaza website while respecting user privacy.
+The site uses a privacy-first, self-hosted Plausible Analytics setup in production.
 
-## Recommended Analytics Solutions
+## Current Implementation
 
-### 1. **Plausible Analytics** (Recommended)
-Privacy-focused, GDPR-compliant, no cookies required.
+Production builds load the Plausible script from the owner-controlled analytics host:
 
-```bash
-# Add to .env.local
+```tsx
+NEXT_PUBLIC_PLAUSIBLE_SCRIPT_SRC=https://analytics.elkaza.at/js/script.js
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=elkaza.org
 ```
 
-Add to `app/layout.tsx` in the `<head>`:
-```tsx
-{process.env.NODE_ENV === 'production' && (
-  <script
-    defer
-    data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
-    src="https://plausible.io/js/script.js"
-  />
-)}
-```
-
-### 2. **Google Analytics 4**
-Widely used, comprehensive features.
+The loader is defined in `app/layout.tsx` and can be disabled with:
 
 ```bash
-npm install @next/third-parties
+NEXT_PUBLIC_ENABLE_PLAUSIBLE=false
 ```
+
+## Privacy Position
+
+- Plausible is self-hosted rather than supplied by a third-party advertising tracker.
+- The setup is cookie-free and intended for aggregate page-view measurement.
+- The tracking script is served through an owner-controlled analytics endpoint.
+- The privacy policy documents this analytics use transparently.
+
+## Security Notes
+
+The Content Security Policy allows the analytics script and event endpoint at:
 
 ```bash
-# Add to .env.local
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+https://analytics.elkaza.at
 ```
 
-Add to `app/layout.tsx`:
-```tsx
-import { GoogleAnalytics } from '@next/third-parties/google'
-
-// In the component
-{process.env.NEXT_PUBLIC_GA_ID && (
-  <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-)}
-```
-
-### 3. **Simple Analytics**
-Another privacy-focused option, EU-hosted.
-
-Similar setup to Plausible with their script tag.
-
-## Privacy Considerations
-
-- ✅ **No cookies required**: Plausible and Simple Analytics don't use cookies
-- ✅ **GDPR compliant**: All recommended solutions are GDPR-compliant
-- ✅ **Opt-out friendly**: Easy to implement opt-out mechanisms
-- ✅ **Transparent**: Consider adding analytics info to your privacy policy
-
-## Testing Analytics
-
-After setup, test by:
-1. Opening your site in an incognito/private window
-2. Navigating between pages
-3. Checking your analytics dashboard for events
-
-## Environment Variables
-
-Add to `.env.local` (never commit this file):
-```bash
-# Analytics
-NEXT_PUBLIC_GA_ID=your-ga-id-here
-# OR
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN=elkaza.org
-```
-
-Add placeholder to `.env.example`:
-```bash
-# Analytics (optional)
-# NEXT_PUBLIC_GA_ID=
-# NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
-```
-
-## Implementation Status
-
-⏸️ Analytics implementation is **optional** and not included by default to respect user privacy. Enable when ready for production deployment.
+If the analytics host changes, update both `next.config.ts` and `proxy.ts`.

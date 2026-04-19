@@ -10,6 +10,10 @@ const TAG_LABELS_DE: Record<string, string> = {
     Platform: "Plattform",
     "Time Series": "Zeitreihen",
     Containerization: "Containerisierung",
+    "Self-Hosted": "Self-Hosted",
+    Privacy: "Datenschutz",
+    Analytics: "Analytics",
+    DevOps: "DevOps",
 };
 
 export function getProjectTagLabel(tag: string, locale: Locale) {

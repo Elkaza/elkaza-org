@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== 'production';
+const analyticsOrigin = 'https://analytics.elkaza.at';
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -15,7 +16,7 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Security-Policy',
             // Unsafe-eval is required for Next.js hot reloading in dev, but removed in prod for security.
-            value: `default-src 'self'; script-src 'self' ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self';`
+            value: `default-src 'self'; script-src 'self' ${analyticsOrigin} ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline'; connect-src 'self' ${analyticsOrigin}; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self';`
           },
           {
             key: 'X-Content-Type-Options',
