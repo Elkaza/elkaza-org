@@ -3,6 +3,7 @@
 import React from "react";
 import { useLocale } from "../LocaleProvider";
 import { Download, MapPin, Mail } from "lucide-react";
+import Link from "next/link";
 
 const skillGroups = [
     "platform",
@@ -11,6 +12,13 @@ const skillGroups = [
     "operations",
     "software",
     "delivery",
+] as const;
+
+const recentProjects = [
+    { key: "edgeguardian", href: "/projects/edgeguardian-edge-ai-safety-bubble" },
+    { key: "tinyml", href: "/projects/tinyml-vibration-anomaly-detection" },
+    { key: "tourism", href: "/projects/austria-tourism-dashboard" },
+    { key: "regression", href: "/projects/random-walk-gravity-regression" },
 ] as const;
 
 export default function CvPageContent() {
@@ -86,6 +94,34 @@ export default function CvPageContent() {
                             ))}
                         </ul>
                     </div>
+                </div>
+            </section>
+
+            {/* Recent Projects */}
+            <section className="space-y-4">
+                <div>
+                    <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
+                        {t("cv_recent_projects_title")}
+                    </h2>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                        {t("cv_recent_projects_desc")}
+                    </p>
+                </div>
+                <div className="grid gap-3 md:grid-cols-2">
+                    {recentProjects.map((project) => (
+                        <Link
+                            key={project.key}
+                            href={project.href}
+                            className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600"
+                        >
+                            <h3 className="text-sm font-semibold text-main">
+                                {t(`cv_recent_${project.key}_title`)}
+                            </h3>
+                            <p className="mt-2 text-sm text-muted leading-relaxed">
+                                {t(`cv_recent_${project.key}_desc`)}
+                            </p>
+                        </Link>
+                    ))}
                 </div>
             </section>
 
