@@ -50,7 +50,6 @@ export default function CvPageContent() {
                         <MapPin className="w-4 h-4" />
                         <span>{t("legal_location")}</span>
                     </div>
-                    {/* Email is not strictly in messages, but we can use a placeholder or generic link */}
                     <div className="flex items-center gap-2">
                         <Mail className="w-4 h-4" />
                         <a href="mailto:contact@elkaza.org" className="hover:text-blue-600 transition-colors">

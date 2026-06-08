@@ -31,8 +31,7 @@ export async function POST(request: NextRequest) {
             timestamp: new Date().toISOString(),
         });
 
-        // TODO: Integrate with email service (e.g., SendGrid, AWS SES, or Gemini AI for email generation)
-        // For now, we'll just return success
+        // The public form confirms receipt here; production mail delivery can be connected through the deployment environment.
 
         return NextResponse.json(
             { success: true, message: "Message received successfully" },

@@ -13,7 +13,7 @@ export function generatePersonSchema() {
             "https://github.com/Elkaza",
             "https://linkedin.com/in/elkaza",
         ],
-        jobTitle: "IT Infrastructure, Application & Automation Engineer",
+        jobTitle: "Business Informatics and IoT Master Student | Data Automation, Edge AI and Infrastructure",
         affiliation: [
             {
                 "@type": "EducationalOrganization",
@@ -26,6 +26,18 @@ export function generatePersonSchema() {
         ],
         knowsAbout: [
             "IT Operations",
+            "Business Informatics",
+            "Data Automation",
+            "Python",
+            "SQL",
+            "Reporting",
+            "Dashboards",
+            "APIs",
+            "Industry 4.0",
+            "Edge AI",
+            "TinyML",
+            "AIoT",
+            "Monitoring",
             "System Administration",
             "Network Engineering",
             "Windows Server",
@@ -50,10 +62,10 @@ export function generateWebSiteSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Elkaza | IT Infrastructure, Systems & Projects",
+        name: "Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
         url: "https://elkaza.org",
         description:
-            "Portfolio covering IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, technical delivery, business analysis, and ongoing IoT systems work.",
+            "Portfolio covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, business informatics, and technical delivery.",
         author: {
             "@type": "Person",
             name: "Mohamed Elkaza",

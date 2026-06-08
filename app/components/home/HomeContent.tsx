@@ -10,6 +10,7 @@ export default function HomeContent() {
   const platformItems = [1, 2, 3, 4];
   const proofItems = ["impact", "scope", "strength"];
   const roleFitItems = [1, 2, 3, 4, 5, 6];
+  const openToItems = [1, 2, 3, 4, 5, 6];
 
   return (
     <main className="flex flex-col items-start justify-start w-full max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-20 text-main">
@@ -95,6 +96,12 @@ export default function HomeContent() {
           >
             {t("btn_contact_me")}
           </Link>
+          <Link
+            href="/research"
+            className="inline-flex items-center px-5 py-2.5 border border-subtle bg-card text-main rounded-md font-medium hover:bg-subtle transition-colors shadow-sm"
+          >
+            {t("home_cta_research")}
+          </Link>
         </div>
       </section>
 
@@ -122,6 +129,10 @@ export default function HomeContent() {
             <h3 className="font-medium text-main text-lg">{t("what_do_item4_title")}</h3>
             <p className="text-sm text-muted leading-relaxed">{t("what_do_item4_desc")}</p>
           </div>
+          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full md:col-span-2">
+            <h3 className="font-medium text-main text-lg">{t("what_do_item5_title")}</h3>
+            <p className="text-sm text-muted leading-relaxed">{t("what_do_item5_desc")}</p>
+          </div>
         </div>
       </section>
 
@@ -142,6 +153,20 @@ export default function HomeContent() {
           >
             {t("home_view_cv")} {"->"}
           </Link>
+        </div>
+      </section>
+
+      <section className="w-full space-y-5 border-y border-subtle py-8">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold tracking-normal">{t("open_to_title")}</h2>
+          <p className="text-muted max-w-3xl">{t("open_to_desc")}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {openToItems.map((item) => (
+            <span key={item} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main">
+              {t(`open_to_item${item}`)}
+            </span>
+          ))}
         </div>
       </section>
 

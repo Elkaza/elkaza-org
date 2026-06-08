@@ -73,7 +73,7 @@ export default function SecurityPageContent() {
                                 {t("sec_outcome_2")}
                             </li>
                         </ul>
-                        <p className="text-xs text-muted italic mb-4">{t("sec_metric_note")}</p>
+                        <p className="text-xs text-muted italic mb-4">{t("sec_public_note")}</p>
                         <div className="flex flex-col gap-2">
                             <Link href="/projects/enterprise-self-hosted-infrastructure" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
                                 {t("sec_view_project")} {">"}

@@ -15,8 +15,29 @@ const enablePlausible = process.env.NEXT_PUBLIC_ENABLE_PLAUSIBLE !== "false";
 
 export const metadata = {
   metadataBase: new URL("https://elkaza.org"),
-  title: "Mohamed Elkaza | IT Infrastructure, Application & Automation Engineer",
-  description: "Portfolio of Mohamed Elkaza covering IT operations, systems administration, application engineering, software automation, cybersecurity-minded infrastructure, technical delivery, business analysis, and IoT systems work.",
+  title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
+  description: "Portfolio of Mohamed Elkaza covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, business informatics, and technical delivery.",
+  openGraph: {
+    title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
+    description: "Portfolio covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, and technical delivery.",
+    url: "https://elkaza.org",
+    siteName: "Mohamed Elkaza Portfolio",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Mohamed Elkaza portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
+    description: "Portfolio covering data automation, IoT, edge AI, application engineering, infrastructure, monitoring, and technical delivery.",
+    images: ["/opengraph-image"],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -48,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.linkedin.com/in/elkaza",
                 "https://github.com/Elkaza"
               ],
-              jobTitle: "IT Infrastructure, Application & Automation Engineer",
+              jobTitle: "Business Informatics and IoT Master Student | Data Automation, Edge AI and Infrastructure",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Vienna",
@@ -56,6 +77,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
               knowsAbout: [
                 "IT Operations",
+                "Business Informatics",
+                "Data Automation",
+                "Python",
+                "SQL",
+                "Reporting",
+                "Dashboards",
+                "APIs",
+                "Industry 4.0",
+                "Edge AI",
+                "TinyML",
+                "AIoT",
+                "Monitoring",
                 "System Administration",
                 "Network Engineering",
                 "Windows Server",
