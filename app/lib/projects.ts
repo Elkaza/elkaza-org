@@ -44,6 +44,356 @@ const locList = (en: string[], de = en, ar = en): LocalizedList => ({ en, de, ar
 
 export const projects: Project[] = [
     {
+        slug: "edgeguardian-edge-ai-safety-bubble",
+        category: "featured-aiot",
+        year: "2026",
+        title: loc(
+            "EdgeGuardian: Edge AI Safety Bubble for Machine Monitoring",
+            "EdgeGuardian: Edge-AI-Sicherheitszone fuer Maschinenueberwachung"
+        ),
+        oneLiner: loc(
+            "Built a Raspberry Pi 5 and Hailo-8L edge AI prototype that fuses camera-based person detection with Hokuyo LiDAR distance sensing to classify SAFE, WARNING, and ALERT states locally.",
+            "Entwickelt einen Raspberry-Pi-5- und Hailo-8L-Edge-AI-Prototyp, der kamerabasierte Personenerkennung mit Hokuyo-LiDAR-Distanzmessung kombiniert und lokal SAFE-, WARNING- und ALERT-Zustaende entscheidet."
+        ),
+        overview: loc(
+            "EdgeGuardian turns a desk into a representative machine danger zone and creates a local AI safety bubble around it. The system combines Hailo-accelerated YOLO person detection, LiDAR distance confirmation, Raspberry Pi sensor fusion, ESP32 serial actuation, a browser dashboard, Telegram alert handling, and CSV evidence logs.",
+            "EdgeGuardian nutzt einen Schreibtisch als repraesentative Maschinen-Gefahrenzone und erzeugt darum eine lokale AI-Sicherheitszone. Das System kombiniert Hailo-beschleunigte YOLO-Personenerkennung, LiDAR-Distanzbestaetigung, Raspberry-Pi-Sensorfusion, ESP32-Serial-Aktuatorik, Browser-Dashboard, Telegram-Alerting und CSV-Evidenzlogs."
+        ),
+        problem: loc(
+            "Machine areas become dangerous when a person enters the operating zone of moving parts. A cloud-only camera pipeline would add latency, privacy concerns, and network dependency, while camera-only detection cannot reliably confirm physical distance.",
+            "Maschinenbereiche werden gefaehrlich, wenn Personen in den Arbeitsbereich beweglicher Teile gelangen. Eine reine Cloud-Kamera-Pipeline wuerde Latenz, Datenschutzrisiken und Netzabhaengigkeit erzeugen; reine Kameraerkennung bestaetigt zudem keine physische Distanz."
+        ),
+        solution: loc(
+            "I implemented the decision loop on a Raspberry Pi 5. The camera pipeline detects the person class with YOLO on the Hailo-8L accelerator, the Hokuyo LiDAR provides measured distance, and the fusion script applies confidence thresholds, stale-data checks, and hysteresis before sending state commands to the ESP32 and updating the dashboard.",
+            "Ich habe die Entscheidungslogik auf einem Raspberry Pi 5 umgesetzt. Die Kamera-Pipeline erkennt die Klasse Person mit YOLO auf dem Hailo-8L-Beschleuniger, der Hokuyo-LiDAR liefert die gemessene Distanz, und das Fusionsskript nutzt Confidence-Schwellen, Stale-Data-Pruefung und Hysterese, bevor ESP32-Kommandos und Dashboard-Updates erzeugt werden."
+        ),
+        architectureLabels: {
+            node: loc("Sensing and actuation", "Sensorik und Aktuatorik"),
+            edge: loc("Edge fusion", "Edge-Fusion"),
+            cloud: loc("Evidence outputs", "Evidenz-Ausgaben"),
+        },
+        architecture: {
+            node: loc(
+                "Raspberry Pi camera / AI camera, Hokuyo URG-04LX-UG01 LiDAR, and ESP32-S3 serial endpoint provide visual detection input, physical distance confirmation, and actuator proof.",
+                "Raspberry-Pi-Kamera / AI Camera, Hokuyo URG-04LX-UG01 LiDAR und ESP32-S3-Serial-Endpunkt liefern visuelle Erkennung, physische Distanzbestaetigung und Aktuatornachweis."
+            ),
+            edge: loc(
+                "The Raspberry Pi 5 runs the fusion loop, parses Hailo detection output, reads LiDAR distance, applies SAFE/WARNING/ALERT thresholds, and logs every decision.",
+                "Der Raspberry Pi 5 fuehrt die Fusion aus, verarbeitet Hailo-Erkennungsdaten, liest LiDAR-Distanzen, wendet SAFE/WARNING/ALERT-Schwellen an und protokolliert jede Entscheidung."
+            ),
+            cloud: loc(
+                "The system stays local for safety decisions while exposing evidence through a browser dashboard, optional Telegram module, terminal output, and final CSV logs.",
+                "Die Sicherheitsentscheidung bleibt lokal; Evidenz wird ueber Browser-Dashboard, optionales Telegram-Modul, Terminalausgabe und finale CSV-Logs sichtbar gemacht."
+            ),
+        },
+        security: loc(
+            "The design keeps camera inference and safety decisions on the local edge device rather than sending video to a cloud service. Configuration examples avoid private Telegram secrets, and the dashboard reads logs without streaming camera frames.",
+            "Das Design haelt Kamera-Inferenz und Sicherheitsentscheidungen lokal auf dem Edge-Geraet, statt Videodaten an einen Cloud-Dienst zu senden. Beispielkonfigurationen vermeiden private Telegram-Secrets, und das Dashboard liest Logs ohne Kamera-Streaming."
+        ),
+        reliability: loc(
+            "Confidence filtering, LiDAR stale-data protection, 3-frame ALERT hysteresis, 5-frame SAFE recovery, Telegram cooldown, and CSV event logs make the prototype more stable and explainable during a live demonstration.",
+            "Confidence-Filter, LiDAR-Stale-Data-Schutz, 3-Frame-ALERT-Hysterese, 5-Frame-SAFE-Recovery, Telegram-Cooldown und CSV-Event-Logs machen den Prototyp stabiler und in der Live-Demo nachvollziehbar."
+        ),
+        keyFeatures: locList(
+            [
+                "Hailo-8L accelerated YOLO person detection on Raspberry Pi 5",
+                "Hokuyo LiDAR distance confirmation for camera-LiDAR sensor fusion",
+                "SAFE/WARNING/ALERT state machine with hysteresis and stale-data checks",
+                "ESP32-S3 serial command proof for actuator integration",
+                "Dark browser dashboard reading live CSV logs with last update age and event table",
+                "Final evidence package with Hailo, LiDAR, fusion, dashboard, ESP32, and Telegram logs",
+            ],
+            [
+                "Hailo-8L-beschleunigte YOLO-Personenerkennung auf Raspberry Pi 5",
+                "Hokuyo-LiDAR-Distanzbestaetigung fuer Kamera-LiDAR-Sensorfusion",
+                "SAFE/WARNING/ALERT-State-Machine mit Hysterese und Stale-Data-Pruefung",
+                "ESP32-S3-Serial-Kommandos als Aktuatornachweis",
+                "Dark-Mode-Browser-Dashboard mit Live-CSV-Logs, Update-Alter und Event-Tabelle",
+                "Finales Evidenzpaket mit Hailo-, LiDAR-, Fusion-, Dashboard-, ESP32- und Telegram-Logs",
+            ]
+        ),
+        results: locList(
+            [
+                "Demonstrated end-to-end local edge AI safety monitoring with camera, LiDAR, embedded actuation, dashboard, and logs",
+                "Demo evidence captured SAFE -> WARNING -> ALERT -> SAFE transitions at about 30 FPS",
+                "Real-mode evidence logged continuous Raspberry Pi decisions from hardware inputs",
+                "Made system behavior explainable through dashboard reason cards and reproducible CSV evidence",
+            ],
+            [
+                "End-to-End lokale Edge-AI-Sicherheitsueberwachung mit Kamera, LiDAR, Embedded-Aktuatorik, Dashboard und Logs demonstriert",
+                "Demo-Evidenz mit SAFE -> WARNING -> ALERT -> SAFE-Uebergaengen bei etwa 30 FPS erfasst",
+                "Real-Mode-Evidenz mit kontinuierlichen Raspberry-Pi-Entscheidungen aus Hardware-Inputs protokolliert",
+                "Systemverhalten ueber Dashboard-Reason-Cards und reproduzierbare CSV-Evidenz nachvollziehbar gemacht",
+            ]
+        ),
+        tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "Python", "Flask"],
+        tags: ["Edge AI", "AIoT", "Sensor Fusion", "Raspberry Pi", "Embedded"],
+        links: [
+            { label: "GitHub", url: "https://github.com/Elkaza/edgeguardian-edge-ai-safety-bubble" },
+        ],
+        relatedProjectSlug: "tinyml-vibration-anomaly-detection",
+    },
+    {
+        slug: "tinyml-vibration-anomaly-detection",
+        category: "featured-aiot",
+        year: "2026",
+        title: loc(
+            "TinyML Vibration Anomaly Detection on Arduino Nano 33 BLE Sense Rev2",
+            "TinyML-Vibrationsanomalie-Erkennung auf Arduino Nano 33 BLE Sense Rev2"
+        ),
+        oneLiner: loc(
+            "Deployed a lightweight softmax classifier on an Arduino Nano 33 BLE Sense Rev2 to detect NORMAL, ANOMALY, and ALERT vibration states from onboard IMU data in real time.",
+            "Deployt einen leichtgewichtigen Softmax-Klassifikator auf einem Arduino Nano 33 BLE Sense Rev2, um NORMAL-, ANOMALY- und ALERT-Vibrationszustaende aus Onboard-IMU-Daten in Echtzeit zu erkennen."
+        ),
+        overview: loc(
+            "This TinyML project demonstrates the full node-device pipeline: synthetic IMU data generation, 20-feature vibration extraction, offline Python training, C++ header export, and continuous inference on the Arduino Nano 33 BLE Sense Rev2.",
+            "Dieses TinyML-Projekt zeigt die komplette Node-Device-Pipeline: synthetische IMU-Datengenerierung, Extraktion von 20 Vibrationsfeatures, Offline-Training in Python, C++-Header-Export und kontinuierliche Inferenz auf dem Arduino Nano 33 BLE Sense Rev2."
+        ),
+        problem: loc(
+            "Small fans and motors can develop abnormal vibration before failure. A node device should detect this locally with low memory use, no cloud dependency, and a clear live output for the operator.",
+            "Kleine Luefter und Motoren koennen vor einem Ausfall auffaellige Vibrationen entwickeln. Ein Node-Device soll dies lokal, speicherschonend, ohne Cloud-Abhaengigkeit und mit klarer Live-Ausgabe erkennen."
+        ),
+        solution: loc(
+            "I generated balanced synthetic vibration windows, extracted 20 statistical features from 2-second IMU windows, trained a two-class softmax model, exported means, standard deviations, weights, and biases into model_parameters.h, and implemented the same processing path in Arduino C++.",
+            "Ich habe balancierte synthetische Vibrationsfenster erzeugt, 20 statistische Features aus 2-Sekunden-IMU-Fenstern extrahiert, ein zweiklassiges Softmax-Modell trainiert, Mittelwerte, Standardabweichungen, Gewichte und Biases nach model_parameters.h exportiert und denselben Verarbeitungspfad in Arduino-C++ umgesetzt."
+        ),
+        architectureLabels: {
+            node: loc("Node device", "Node-Device"),
+            edge: loc("Training workstation", "Training-Umgebung"),
+            cloud: loc("Outputs", "Ausgaben"),
+        },
+        architecture: {
+            node: loc(
+                "The Arduino Nano 33 BLE Sense Rev2 reads onboard accelerometer data at 100 Hz, stores 2-second rolling windows, extracts features, runs inference, prints Serial Monitor evidence, and lights the LED on ALERT.",
+                "Der Arduino Nano 33 BLE Sense Rev2 liest Beschleunigungsdaten mit 100 Hz, speichert 2-Sekunden-Rolling-Windows, extrahiert Features, fuehrt Inferenz aus, druckt Serial-Monitor-Evidenz und schaltet bei ALERT die LED."
+            ),
+            edge: loc(
+                "Python generates the dataset, trains the model offline, validates performance, and exports the model parameters into a small C++ header.",
+                "Python generiert den Datensatz, trainiert das Modell offline, validiert die Performance und exportiert die Modellparameter in einen kleinen C++-Header."
+            ),
+            cloud: loc(
+                "No cloud is required during inference; the laptop is only used for programming, compiling, and viewing the Serial Monitor during the demo.",
+                "Waehrend der Inferenz ist keine Cloud erforderlich; der Laptop dient nur zum Programmieren, Kompilieren und Anzeigen des Serial Monitors in der Demo."
+            ),
+        },
+        security: loc(
+            "The device processes motion locally and does not transmit sensor data. The design keeps the demo self-contained and avoids credentials, network dependency, or external services.",
+            "Das Geraet verarbeitet Bewegungsdaten lokal und uebertraegt keine Sensordaten. Das Design bleibt in der Demo eigenstaendig und vermeidet Credentials, Netzabhaengigkeit und externe Services."
+        ),
+        reliability: loc(
+            "The sketch uses overlapping windows, normalized features, an anomaly probability threshold of 0.60, and a 3-window ALERT persistence rule so a single accidental bump does not immediately become a final alert.",
+            "Der Sketch nutzt ueberlappende Fenster, normalisierte Features, eine Anomalie-Schwelle von 0.60 und eine 3-Fenster-ALERT-Persistenz, damit ein einzelner Stoerimpuls nicht sofort einen finalen Alarm ausloest."
+        ),
+        keyFeatures: locList(
+            [
+                "100 Hz IMU sampling with 2-second windows and 50% overlap",
+                "20 lightweight vibration features from X/Y/Z axes and combined magnitude",
+                "Two-class softmax classifier exported directly to C++ without a large inference runtime",
+                "Serial Monitor output for time, state, probabilities, persistence counter, and latency",
+                "Built-in LED alert after 3 consecutive anomaly windows",
+                "Compact model footprint suitable for microcontroller deployment",
+            ],
+            [
+                "100-Hz-IMU-Sampling mit 2-Sekunden-Fenstern und 50% Ueberlappung",
+                "20 leichtgewichtige Vibrationsfeatures aus X/Y/Z-Achsen und kombinierter Magnitude",
+                "Zweiklassiger Softmax-Klassifikator direkt als C++ exportiert, ohne grosse Inferenz-Runtime",
+                "Serial-Monitor-Ausgabe fuer Zeit, Zustand, Wahrscheinlichkeiten, Persistenzzaehler und Latenz",
+                "Onboard-LED-Alarm nach 3 aufeinanderfolgenden Anomaliefenstern",
+                "Kompakter Modell-Footprint fuer Microcontroller-Deployment",
+            ]
+        ),
+        results: locList(
+            [
+                "Reached 98.61% offline test accuracy on the synthetic balanced dataset",
+                "Measured about 1 ms inference latency in the Arduino Serial Monitor",
+                "Compiled at 12% flash usage and 19% RAM usage on the Nano 33 BLE Sense Rev2",
+                "Live demo showed stable board as NORMAL, tap/shake as ANOMALY, sustained movement as ALERT, and recovery to NORMAL",
+            ],
+            [
+                "98.61% Offline-Testgenauigkeit auf dem synthetischen balancierten Datensatz erreicht",
+                "Etwa 1 ms Inferenzlatenz im Arduino Serial Monitor gemessen",
+                "Kompiliert mit 12% Flash- und 19% RAM-Nutzung auf dem Nano 33 BLE Sense Rev2",
+                "Live-Demo zeigte stabiles Board als NORMAL, Tippen/Schuetteln als ANOMALY, anhaltende Bewegung als ALERT und Rueckkehr zu NORMAL",
+            ]
+        ),
+        tech: ["Arduino Nano 33 BLE Sense Rev2", "C++", "Python", "TinyML", "IMU", "Softmax"],
+        tags: ["TinyML", "Embedded", "Arduino", "Signal Processing", "AIoT"],
+        links: [
+            { label: "GitHub", url: "https://github.com/Elkaza/tinyml-vibration-anomaly-detection" },
+        ],
+        relatedProjectSlug: "edgeguardian-edge-ai-safety-bubble",
+    },
+    {
+        slug: "austria-tourism-dashboard",
+        category: "delivery-platform",
+        year: "2026",
+        title: loc(
+            "Austria Tourism Dashboard: Seasonal Overnight-Stay Analysis",
+            "Oesterreich-Tourismus-Dashboard: Saisonale Naechtigungsanalyse"
+        ),
+        oneLiner: loc(
+            "Built a one-page Python/HTML dashboard that combines Austrian overnight-stay tables, compares seasonal tourism patterns, and turns national tourism data into an evidence-based story.",
+            "Erstellt ein einseitiges Python/HTML-Dashboard, das oesterreichische Naechtigungstabellen kombiniert, saisonale Tourismusmuster vergleicht und nationale Tourismusdaten in eine datenbasierte Story ueberfuehrt."
+        ),
+        overview: loc(
+            "The dashboard was created for a data analysis assignment using Austrian accommodation statistics by country of origin and federal state. It combines semicolon-separated source tables, calculates seasonal metrics, and presents the results through an interactive static dashboard and short submission report.",
+            "Das Dashboard entstand fuer eine Data-Analysis-Aufgabe mit oesterreichischen Beherbergungsstatistiken nach Herkunftsland und Bundesland. Es kombiniert semikolon-getrennte Quelltabellen, berechnet saisonale Kennzahlen und praesentiert die Ergebnisse in einem interaktiven statischen Dashboard und Kurzbericht."
+        ),
+        problem: loc(
+            "Raw tourism CSV tables are difficult to inspect directly and do not tell a clear story about seasonal importance, origin countries, or regional hotspots. The task required a concise dashboard that promotes one tourism season using appropriate visuals and analysis.",
+            "Rohe Tourismus-CSV-Tabellen sind schwer direkt auswertbar und erzaehlen keine klare Story ueber saisonale Bedeutung, Herkunftslaender oder regionale Schwerpunkte. Gefordert war ein kompaktes Dashboard, das eine Tourismussaison mit geeigneten Visualisierungen und Analyse bewirbt."
+        ),
+        solution: loc(
+            "I built a barebones but performant Python pipeline that loads and combines the provided CSV files, derives seasonal aggregates, prepares summary metrics, exports dashboard-ready data, and renders a polished one-page HTML report with charts, widgets, and explanatory text.",
+            "Ich habe eine schlanke und performante Python-Pipeline gebaut, die die bereitgestellten CSV-Dateien laedt und kombiniert, saisonale Aggregate ableitet, Summary-Metriken vorbereitet, dashboardfaehige Daten exportiert und einen sauberen einseitigen HTML-Report mit Charts, Widgets und Erklaertext rendert."
+        ),
+        architectureLabels: {
+            node: loc("Data sources", "Datenquellen"),
+            edge: loc("Processing", "Verarbeitung"),
+            cloud: loc("Presentation", "Praesentation"),
+        },
+        architecture: {
+            node: loc(
+                "Semicolon-separated CSV tables from Austrian accommodation statistics provide overnight stays by country of origin and federal states.",
+                "Semikolon-getrennte CSV-Tabellen der oesterreichischen Beherbergungsstatistik liefern Naechtigungen nach Herkunftsland und Bundeslaendern."
+            ),
+            edge: loc(
+                "Python combines the files, cleans fields, computes seasonal totals, ranks countries and regions, and exports summary metrics.",
+                "Python kombiniert die Dateien, bereinigt Felder, berechnet Saison-Summen, rankt Herkunftslaender und Regionen und exportiert Summary-Metriken."
+            ),
+            cloud: loc(
+                "The final artifact is a static HTML dashboard and report that can be opened locally or hosted as a lightweight web page.",
+                "Das finale Artefakt ist ein statisches HTML-Dashboard samt Bericht, das lokal geoeffnet oder als leichtgewichtige Webseite gehostet werden kann."
+            ),
+        },
+        security: loc(
+            "The dashboard uses public statistical data and static generated artifacts, so it avoids database credentials, live APIs, and user data collection.",
+            "Das Dashboard nutzt oeffentliche Statistikdaten und statisch generierte Artefakte; dadurch entfallen Datenbank-Credentials, Live-APIs und Nutzerdatenerfassung."
+        ),
+        reliability: loc(
+            "The pipeline writes combined CSV files, summary JSON, dashboard HTML, widget exports, and a submission report so the analysis can be reproduced and inspected from multiple artifacts.",
+            "Die Pipeline schreibt kombinierte CSV-Dateien, Summary-JSON, Dashboard-HTML, Widget-Exports und einen Submission-Report, sodass die Analyse reproduzierbar und aus mehreren Artefakten pruefbar ist."
+        ),
+        keyFeatures: locList(
+            [
+                "Combines multiple semicolon-separated tourism tables into one analysis dataset",
+                "Ranks important origin countries and Austrian federal states",
+                "Uses multiple visual types and text widgets for storytelling",
+                "Generates dashboard HTML, submission report, metrics JSON, and image exports",
+                "Runs with lightweight Python and static web output rather than a heavy BI stack",
+            ],
+            [
+                "Kombiniert mehrere semikolon-getrennte Tourismustabellen zu einem Analysedatensatz",
+                "Rankt wichtige Herkunftslaender und oesterreichische Bundeslaender",
+                "Nutzt mehrere Visualisierungstypen und Text-Widgets fuer Storytelling",
+                "Generiert Dashboard-HTML, Submission-Report, Metrics-JSON und Bild-Exports",
+                "Laeuft mit leichtgewichtigem Python und statischem Web-Output statt schwerem BI-Stack",
+            ]
+        ),
+        results: locList(
+            [
+                "Delivered a complete one-page tourism dashboard and written report for the assignment",
+                "Received feedback highlighting a beautiful report, strong performance, and extra points",
+                "Created a reusable static-dashboard workflow for public data storytelling",
+            ],
+            [
+                "Vollstaendiges einseitiges Tourismus-Dashboard und schriftlichen Report fuer die Aufgabe geliefert",
+                "Feedback fuer einen sehr schoenen Report, starke Performance und Zusatzpunkte erhalten",
+                "Wiederverwendbaren Static-Dashboard-Workflow fuer Public-Data-Storytelling aufgebaut",
+            ]
+        ),
+        tech: ["Python", "HTML", "CSS", "Data Analysis", "CSV", "Static Dashboard"],
+        tags: ["Data Analysis", "Dashboard", "Python", "Storytelling"],
+        links: [
+            { label: "GitHub", url: "https://github.com/Elkaza/austria-tourism-dashboard" },
+        ],
+    },
+    {
+        slug: "random-walk-gravity-regression",
+        category: "platform-component",
+        year: "2026",
+        title: loc(
+            "Random Walk Gravity Regression Case Study",
+            "Random-Walk-Gravity-Regression-Fallstudie"
+        ),
+        oneLiner: loc(
+            "Built and validated a regression pipeline that predicts the gravity constant behind a 2D random-walk simulation and exports a competition-style validation file.",
+            "Entwickelt und validiert eine Regressionspipeline, die die Gravitationskonstante einer 2D-Random-Walk-Simulation vorhersagt und eine wettbewerbsartige Validierungsdatei exportiert."
+        ),
+        overview: loc(
+            "This data analysis case study focuses on supervised regression for simulation-derived data. The workflow reads the training dataset, engineers features, compares multiple regression models, selects the best performer, and writes predictions for the unlabeled validation set in the required submission format.",
+            "Diese Data-Analysis-Fallstudie behandelt ueberwachtes Regressionslernen auf simulationsbasierten Daten. Der Workflow liest den Trainingsdatensatz, erstellt Features, vergleicht mehrere Regressionsmodelle, waehlt das beste Modell aus und schreibt Vorhersagen fuer das ungelabelte Validierungsset im geforderten Abgabeformat."
+        ),
+        problem: loc(
+            "The validation set contains features but no labels, so the model must learn the relationship between random-walk behavior and the hidden gravity constant from the labeled training data while meeting strict file-format requirements.",
+            "Das Validierungsset enthaelt Features, aber keine Labels. Das Modell muss daher aus den gelabelten Trainingsdaten den Zusammenhang zwischen Random-Walk-Verhalten und versteckter Gravitationskonstante lernen und gleichzeitig strikte Dateiformat-Anforderungen erfuellen."
+        ),
+        solution: loc(
+            "I created a reproducible notebook and helper Python module, used train/test validation, compared at least four regression approaches, selected a HistGradientBoostingRegressor, and generated the final io25m025_validate.txt file with run_id and gravity predictions.",
+            "Ich habe ein reproduzierbares Notebook und ein Helper-Python-Modul erstellt, Train/Test-Validierung genutzt, mindestens vier Regressionsansaetze verglichen, einen HistGradientBoostingRegressor ausgewaehlt und die finale io25m025_validate.txt-Datei mit run_id- und gravity-Vorhersagen erzeugt."
+        ),
+        architectureLabels: {
+            node: loc("Dataset", "Datensatz"),
+            edge: loc("Modeling", "Modellierung"),
+            cloud: loc("Submission", "Abgabe"),
+        },
+        architecture: {
+            node: loc(
+                "The training CSV provides labeled simulation features; the validation CSV provides the same feature structure without gravity labels.",
+                "Das Trainings-CSV liefert gelabelte Simulationsfeatures; das Validierungs-CSV liefert dieselbe Feature-Struktur ohne Gravity-Labels."
+            ),
+            edge: loc(
+                "The Python pipeline prepares features, splits training and test data, evaluates several regressors, and keeps reusable code in a helper module.",
+                "Die Python-Pipeline bereitet Features vor, teilt Trainings- und Testdaten, bewertet mehrere Regressoren und haelt wiederverwendbaren Code in einem Helper-Modul."
+            ),
+            cloud: loc(
+                "The final artifact is a plain-text validation file with exactly the required header and prediction rows, plus notebook and HTML report evidence.",
+                "Das finale Artefakt ist eine Plain-Text-Validierungsdatei mit exakt gefordertem Header und Vorhersagezeilen, ergaenzt durch Notebook- und HTML-Report-Evidenz."
+            ),
+        },
+        security: loc(
+            "The project uses local CSV files only and keeps the validation workflow deterministic and inspectable; no external service or credential is required.",
+            "Das Projekt nutzt ausschliesslich lokale CSV-Dateien und haelt den Validierungsworkflow deterministisch und pruefbar; externe Services oder Credentials sind nicht erforderlich."
+        ),
+        reliability: loc(
+            "The submission file was checked for row count, header format, duplicate run IDs, missing values, validation-order consistency, and prediction range before packaging.",
+            "Die Abgabedatei wurde vor dem Packaging auf Zeilenanzahl, Header-Format, doppelte run_ids, fehlende Werte, Validierungsreihenfolge und Vorhersagebereich geprueft."
+        ),
+        keyFeatures: locList(
+            [
+                "Feature preparation and reusable helper module for regression experiments",
+                "Comparison of multiple regression models with train/test evaluation",
+                "Final prediction export using the required student-ID naming convention",
+                "Notebook and HTML report documenting the pipeline and model choice",
+                "Validation checks for header, row count, missing values, duplicates, and run_id alignment",
+            ],
+            [
+                "Feature-Aufbereitung und wiederverwendbares Helper-Modul fuer Regressionsexperimente",
+                "Vergleich mehrerer Regressionsmodelle mit Train/Test-Evaluation",
+                "Finaler Prediction-Export mit geforderter Student-ID-Namenskonvention",
+                "Notebook und HTML-Report dokumentieren Pipeline und Modellauswahl",
+                "Validierungschecks fuer Header, Zeilenanzahl, fehlende Werte, Duplikate und run_id-Ausrichtung",
+            ]
+        ),
+        results: locList(
+            [
+                "Best held-out model reached about 1.19% normalized MAE and R2 of 0.9914",
+                "Generated a valid io25m025_validate.txt file for the unlabeled validation set",
+                "Packaged code, notebook, HTML report, PDF instruction, and prediction file for submission",
+            ],
+            [
+                "Bestes Hold-out-Modell erreichte etwa 1.19% normalisierte MAE und R2 von 0.9914",
+                "Gueltige io25m025_validate.txt-Datei fuer das ungelabelte Validierungsset generiert",
+                "Code, Notebook, HTML-Report, PDF-Instruktion und Prediction-Datei fuer die Abgabe paketiert",
+            ]
+        ),
+        tech: ["Python", "scikit-learn", "Pandas", "Jupyter", "Regression", "Feature Engineering"],
+        tags: ["Machine Learning", "Regression", "Python", "Data Analysis"],
+        links: [
+            { label: "GitHub", url: "https://github.com/Elkaza/random-walk-gravity-regression" },
+        ],
+    },
+    {
         slug: "enterprise-self-hosted-infrastructure",
         category: "security-infrastructure",
         year: "2026",
