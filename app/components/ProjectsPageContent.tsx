@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { projects, type Project, type ProjectCategory } from "../lib/projects";
-import { getProjectTagLabel } from "../lib/projectDisplay";
+import { getProjectStatusLabel, getProjectTagLabel } from "../lib/projectDisplay";
 import type { Locale } from "../i18n/messages";
 
 type Copy = {
@@ -17,6 +17,7 @@ type Copy = {
     listIntro: string;
     detailsCta: string;
     resultLabel: string;
+    statusLabel: string;
     categoryLabels: Record<ProjectCategory, string>;
 };
 
@@ -35,6 +36,7 @@ const COPY: Record<string, Copy> = {
         listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
         detailsCta: "View case study",
         resultLabel: "Outcome",
+        statusLabel: "Status",
         categoryLabels: {
             "security-infrastructure": "Infrastructure / DevOps",
             "featured-aiot": "IoT / Edge AI",
@@ -56,6 +58,7 @@ const COPY: Record<string, Copy> = {
         listIntro: "Die Projekte sind von neuer nach älter sortiert, damit die aktuellste Arbeit zuerst sichtbar ist.",
         detailsCta: "Fallstudie ansehen",
         resultLabel: "Ergebnis",
+        statusLabel: "Status",
         categoryLabels: {
             "security-infrastructure": "Infrastruktur / DevOps",
             "featured-aiot": "IoT / Edge AI",
@@ -77,6 +80,7 @@ const COPY: Record<string, Copy> = {
         listIntro: "Projects are ordered from newer to older so the most relevant current work appears first.",
         detailsCta: "View case study",
         resultLabel: "Outcome",
+        statusLabel: "Status",
         categoryLabels: {
             "security-infrastructure": "Infrastructure & Security",
             "featured-aiot": "Current IoT & Edge",
@@ -157,6 +161,7 @@ export default function ProjectsPageContent() {
                                     project={project}
                                     ctaLabel={copy.detailsCta}
                                     resultLabel={copy.resultLabel}
+                                    statusLabel={copy.statusLabel}
                                     categoryLabel={copy.categoryLabels[project.category]}
                                     featured={index === 0}
                                 />
@@ -174,6 +179,7 @@ function ProjectCard({
     project,
     ctaLabel,
     resultLabel,
+    statusLabel,
     categoryLabel,
     featured,
 }: {
@@ -181,6 +187,7 @@ function ProjectCard({
     project: Project;
     ctaLabel: string;
     resultLabel: string;
+    statusLabel: string;
     categoryLabel: string;
     featured: boolean;
 }) {
@@ -199,6 +206,9 @@ function ProjectCard({
                 <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-normal text-muted">
                     <span className="rounded-full border border-subtle px-3 py-1 text-[11px] tracking-normal text-main">
                         {categoryLabel}
+                    </span>
+                    <span className="rounded-full border border-green-500/40 bg-green-500/10 px-3 py-1 text-[11px] tracking-normal text-green-700 dark:text-green-300">
+                        {statusLabel}: {getProjectStatusLabel(project.status, locale)}
                     </span>
                     <span>{project.year}</span>
                 </div>

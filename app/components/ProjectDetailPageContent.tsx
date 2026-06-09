@@ -19,7 +19,7 @@ import {
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
 import { projects } from "@/app/lib/projects";
-import { getProjectTagLabel } from "@/app/lib/projectDisplay";
+import { getProjectStatusLabel, getProjectTagLabel } from "@/app/lib/projectDisplay";
 import type { Locale } from "@/app/i18n/messages";
 
 type DetailCopy = {
@@ -37,6 +37,7 @@ type DetailCopy = {
     results: string;
     tech: string;
     artifacts: string;
+    status: string;
     related: string;
     relatedDescription: string;
     githubLabel: string;
@@ -53,17 +54,18 @@ const COPY: Record<string, DetailCopy> = {
         },
         overview: "Overview",
         problem: "Problem",
-        solution: "Solution",
+        solution: "Goal and Implementation",
         architecture: "Architecture",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
         security: "Security",
         reliability: "Reliability",
-        features: "Key Features",
-        results: "Results and Impact",
+        features: "Implementation Highlights",
+        results: "Results / Evidence",
         tech: "Tech Stack",
         artifacts: "Artifacts",
+        status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
         githubLabel: "View source on GitHub",
@@ -76,23 +78,24 @@ const COPY: Record<string, DetailCopy> = {
             "security-infrastructure": "Infrastruktur und Sicherheit",
             "delivery-platform": "Bereitstellung und Web",
         },
-        overview: "Ueberblick",
+        overview: "Überblick",
         problem: "Problem",
-        solution: "Loesung",
+        solution: "Ziel und Umsetzung",
         architecture: "Architektur",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
         security: "Sicherheit",
-        reliability: "Zuverlaessigkeit",
-        features: "Wesentliche Merkmale",
-        results: "Ergebnisse und Wirkung",
+        reliability: "Zuverlässigkeit",
+        features: "Implementation-Highlights",
+        results: "Ergebnisse / Evidenz",
         tech: "Tech-Stack",
         artifacts: "Artefakte",
+        status: "Status",
         related: "Verwandtes Projekt",
-        relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die groessere Portfolio-Story passt.",
+        relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die größere Portfolio-Story passt.",
         githubLabel: "Quellcode auf GitHub ansehen",
-        externalLabel: "Link oeffnen",
+        externalLabel: "Link öffnen",
     },
     ar: {
         category: {
@@ -114,6 +117,7 @@ const COPY: Record<string, DetailCopy> = {
         results: "Results and Impact",
         tech: "Tech Stack",
         artifacts: "Artifacts",
+        status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
         githubLabel: "View source on GitHub",
@@ -152,6 +156,9 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
                         <span className="rounded-full border border-subtle px-3 py-1">
                             {copy.category[project.category]}
+                        </span>
+                        <span className="rounded-full border border-green-500/40 bg-green-500/10 px-3 py-1 text-green-700 dark:text-green-300">
+                            {copy.status}: {getProjectStatusLabel(project.status, locale)}
                         </span>
                         <span>{project.year}</span>
                     </div>

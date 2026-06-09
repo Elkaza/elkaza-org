@@ -32,7 +32,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_platform_item2: "Edge-AI-Sicherheitsmonitoring",
     home_platform_item3: "TinyML auf Arduino",
     home_platform_item4: "Python-Datenanalyse & ML",
-    hero_cta_cv: "CV herunterladen",
+    hero_cta_cv: "CV auf Anfrage",
     home_cta_research: "Thesis- / Kooperationsthemen",
     // Proof in 3 Bullets
     home_proof_title: "Arbeitsweise",
@@ -48,7 +48,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_role_fit_item5: "IT Project Management",
     home_role_fit_item6: "Business Analysis",
     // CTAs
-    home_cta_primary: "CV herunterladen",
+    home_cta_primary: "CV auf Anfrage",
     home_cta_secondary: "Projekte ansehen",
 
     // Security Page
@@ -74,7 +74,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_iot_action: "Pi-hole für DNS-Filterung mit CrowdSec für verhaltensbasierte Erkennung und Gegenmaßnahmen kombiniert und Service-Zugriffe über kontrollierte Einstiegspunkte gebündelt.",
     case_iot_result: "Unerwünschte Domains und auffälliger Traffic werden früher im Request-Pfad abgefangen und reduzieren die Exponierung der eigentlichen Services.",
     case_remote_title: "Privater Administrationspfad",
-    case_remote_problem: "Verteilte Dienste und Dashboards mussten remote administrierbar sein, ohne Management-Flaechen breit freizugeben.",
+    case_remote_problem: "Verteilte Dienste und Dashboards mussten remote administrierbar sein, ohne Management-Flächen breit freizugeben.",
     case_remote_action: "Tailscale-Overlay, gemeinsame SSH-Aliasse und kontrollierte Reverse-Proxy-Einstiegspunkte statt direkter öffentlicher Management-Zugänge genutzt.",
     case_remote_result: "Administration bleibt auf privaten Pfaden, während Nutzer-Dienste strukturierter und mit geringerer Fehlkonfiguration exponiert werden.",
     security_disclaimer: "Keine sensiblen Konfigurationen veröffentlicht.",
@@ -84,8 +84,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home Security Lab Case
     case_lab_title: "The Vienna Fortress",
-    case_lab_problem: "Ein werkzeugorientiertes privates Infrastruktur-Lab wurde mit wachsendem Stack schwerer zu ueberwachen, abzusichern und im Alltag wartbar zu halten.",
-    case_lab_action: "Eine Proxmox- und Docker-Plattform um Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage aufgebaut und zusaetzlich eine Proxmox-API-Integration fuer ein React-Dashboard debuggt.",
+    case_lab_problem: "Ein werkzeugorientiertes privates Infrastruktur-Lab wurde mit wachsendem Stack schwerer zu überwachen, abzusichern und im Alltag wartbar zu halten.",
+    case_lab_action: "Eine Proxmox- und Docker-Plattform um Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage aufgebaut und zusätzlich eine Proxmox-API-Integration für ein React-Dashboard debuggt.",
     case_lab_result: "Eine produktionsnaehere interne Plattform mit geschichteter Sicherheit, zentraler Sichtbarkeit und geringerem Wartungsaufwand geschaffen.",
     case_lab_safe: "Keine sensiblen Konfigurationen veröffentlicht.",
 
@@ -124,8 +124,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp2_desc: "Automatisierung von IT-Asset- und ServiceNow-Workflows mit Python und VBA. Die Rolle hat mein Verständnis für prozessorientierte Delivery, Datenqualität und Enterprise-Stakeholder-Kommunikation geschärft.",
     exp3_title: "Product Management Intern - BOC Group (2021-2022)",
     exp3_desc: "Mitarbeit an Enterprise-Architecture-Werkzeugen mit Fokus auf Datenanalyse, Prototyping und strukturierte Modellierung. Diese Arbeit hat mein Systemdenken und die Übersetzung von Anforderungen in technische Artefakte geprägt.",
-    exp4_title: "Network Engineer - University of Benghazi (2013-2018)",
-    exp4_desc: "Betrieb und Optimierung von Netzwerk- und Serverinfrastruktur mit Fokus auf Verfügbarkeit, Troubleshooting und Integration. Das ist die Grundlage meines heutigen Verständnisses für sichere Konnektivität und robuste Systeme.",
+    exp4_title: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (12/2013-11/2016)",
+    exp4_desc: "Betrieb, Rollouts und Support von Netzwerk- und Systemumgebungen mit Fokus auf Verfügbarkeit, Troubleshooting, Netzwerkzugänge und robuste technische Abläufe.",
 
     // About - Selected Experience (detailed, reverse chronological)
     experience_title: "Ausgewählte Erfahrung",
@@ -135,8 +135,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp2_desc_full: "Automatisierung von IT-Asset- und ServiceNow-Workflows mit Python und VBA. Die Rolle hat mein Verständnis für prozessorientierte Delivery, Datenqualität und Enterprise-Stakeholder-Kommunikation geschärft.",
     exp3_title_full: "Product Management Intern - BOC Group (2021-2022)",
     exp3_desc_full: "Mitarbeit an Enterprise-Architecture-Werkzeugen mit Fokus auf Datenanalyse, Prototyping und strukturierte Modellierung. Diese Arbeit hat mein Systemdenken und die Übersetzung von Anforderungen in technische Artefakte geprägt.",
-    exp4_title_full: "Network Engineer - University of Benghazi (2013-2018)",
-    exp4_desc_full: "Betrieb und Optimierung von Netzwerk- und Serverinfrastruktur mit Fokus auf Verfügbarkeit, Troubleshooting und Integration. Das ist die Grundlage meines heutigen Verständnisses für sichere Konnektivität und robuste Systeme.",
+    exp4_title_full: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (12/2013-11/2016)",
+    exp4_desc_full: "Betrieb, Rollouts und Support von Netzwerk- und Systemumgebungen mit Fokus auf Verfügbarkeit, Troubleshooting, Netzwerkzugänge und robuste technische Abläufe.",
 
     // Home - Technologies & Methods
     tech_title: "Technologien & Schwerpunkte",
@@ -154,22 +154,22 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     sec_stack_seg_title: "Netzwerk-Segmentierung",
     sec_stack_seg_desc: "Prinzip: Angriffsflaeche minimieren. \nImpl: Private Overlay-Pfade, workloadnahe Trennung auf Proxmox und kontrollierte Service-Einstiegspunkte statt ungebuendelter Direkt-Exponierung.",
     sec_stack_fw_title: "Firewall-Strategie",
-    sec_stack_fw_desc: "Prinzip: Mehrschichtige Abwehr. \nImpl: Interface-basierte UFW-Regeln, Pi-hole fuer DNS-Filterung, CrowdSec fuer reaktive Blockierung und Nginx Proxy Manager fuer gebuendelte Service-Exponierung.",
+    sec_stack_fw_desc: "Prinzip: Mehrschichtige Abwehr. \nImpl: Interface-basierte UFW-Regeln, Pi-hole für DNS-Filterung, CrowdSec für reaktive Blockierung und Nginx Proxy Manager für gebuendelte Service-Exponierung.",
     sec_stack_vpn_title: "Sicherer Fernzugriff",
-    sec_stack_vpn_desc: "Prinzip: Keine offenen Management-Ports. \nImpl: Tailscale-Overlay auf WireGuard-Basis fuer private Administration, konsistente SSH-Pfade und kontrollierten Remote-Zugriff auf interne Plattformen.",
+    sec_stack_vpn_desc: "Prinzip: Keine offenen Management-Ports. \nImpl: Tailscale-Overlay auf WireGuard-Basis für private Administration, konsistente SSH-Pfade und kontrollierten Remote-Zugriff auf interne Plattformen.",
     sec_stack_mon_title: "Observability",
-    sec_stack_mon_desc: "Prinzip: Betriebszustand sichtbar halten. \nImpl: Netdata fuer Echtzeit-Metriken, Uptime Kuma fuer Service-Checks, Dozzle fuer Live-Logs und Watchtower fuer den routinemaessigen Container-Update-Lifecycle.",
+    sec_stack_mon_desc: "Prinzip: Betriebszustand sichtbar halten. \nImpl: Netdata für Echtzeit-Metriken, Uptime Kuma für Service-Checks, Dozzle für Live-Logs und Watchtower für den routinemaessigen Container-Update-Lifecycle.",
 
     sec_outcomes_title: "Operative Ergebnisse",
     sec_outcome_1: "Die Umgebung kombiniert privaten Tailscale-Ingress, DNS-Filterung, kontrollierte Service-Exponierung und CrowdSec-basierte Reaktion statt sich auf einen einzelnen Schutzmechanismus zu verlassen.",
-    sec_outcome_2: "Metriken, Uptime, Logs, Analytics und der Container-Update-Zyklus sind sichtbar und strukturierter betreibbar, was den Wartungsaufwand fuer die Self-Hosted-Plattform senkt.",
+    sec_outcome_2: "Metriken, Uptime, Logs, Analytics und der Container-Update-Zyklus sind sichtbar und strukturierter betreibbar, was den Wartungsaufwand für die Self-Hosted-Plattform senkt.",
     sec_view_project: "Zur Fallstudie: Self-Hosted Infrastructure",
     sec_view_foundation: "Zur Operations-Schicht: The Vienna Fortress",
 
     // Home - Contact
     contact_text: "Wenn Sie in IT-Betrieb, Infrastruktur, Support, Netzwerken oder Automatisierung arbeiten und jemanden suchen, der Technik strukturiert und zuverlässig umsetzt, freue ich mich auf ein Gespräch.",
     btn_contact_me: "Kontaktieren Sie mich",
-    home_cta_cv: "Lebenslauf herunterladen",
+    home_cta_cv: "Lebenslauf auf Anfrage",
     home_view_cv: "Mehr im Lebenslauf ansehen",
 
     // About
@@ -177,14 +177,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_lead: "IT Infrastructure, Application & Automation Engineer",
     about_profile_h2: "Profil",
     about_profile_intro: "Ich bin Mohamed, IT Infrastructure, Application & Automation Engineer in Wien. Mein Profil verbindet ein Bachelor-Fundament in Computernetzwerken und Telekommunikation mit operativer Netzwerk-/Systemerfahrung, Wirtschaftsinformatik an der TU Wien und laufender Vertiefung in IoT & Intelligent Systems an der FH Technikum Wien.",
-    about_p1: "Mein Schwerpunkt liegt auf stabilen, wartbaren Systemen und sauberer Umsetzung: Systemadministration, Troubleshooting, Application Support, Software-Automatisierung, Anforderungen, Dokumentation und klare Uebergaben. Dadurch passt mein Profil nicht nur zu einem einzelnen Jobtitel, sondern zu technisch geprägten Rollen an der Schnittstelle von Betrieb, Anwendungen, Security, Projektumsetzung und Analyse.",
+    about_p1: "Mein Schwerpunkt liegt auf stabilen, wartbaren Systemen und sauberer Umsetzung: Systemadministration, Troubleshooting, Application Support, Software-Automatisierung, Anforderungen, Dokumentation und klare Übergaben. Dadurch passt mein Profil nicht nur zu einem einzelnen Jobtitel, sondern zu technisch geprägten Rollen an der Schnittstelle von Betrieb, Anwendungen, Security, Projektumsetzung und Analyse.",
     // Value Statement
-    about_value_statement: "Ich kombiniere Zuverlaessigkeit im Tagesbetrieb mit technischer Delivery: Anforderungen verstehen, Systeme stabil betreiben, Automatisierung bauen, Risiken reduzieren und Ergebnisse nachvollziehbar dokumentieren.",
+    about_value_statement: "Ich kombiniere Zuverlässigkeit im Tagesbetrieb mit technischer Delivery: Anforderungen verstehen, Systeme stabil betreiben, Automatisierung bauen, Risiken reduzieren und Ergebnisse nachvollziehbar dokumentieren.",
     about_education_title: "Akademische Grundlage",
-    about_education_intro: "Die Ausbildung erklaert die Breite des Profils: Netzwerke und Telekommunikation als technische Basis, Wirtschaftsinformatik fuer Prozesse und Organisation, IoT fuer vernetzte Systeme und moderne Infrastruktur.",
+    about_education_intro: "Die Ausbildung erklärt die Breite des Profils: Netzwerke und Telekommunikation als technische Basis, Wirtschaftsinformatik für Prozesse und Organisation, IoT für vernetzte Systeme und moderne Infrastruktur.",
     about_education_label1: "Bachelor",
     about_education_title1: "Computernetzwerke & Telekommunikation",
-    about_education_desc1: "Technische Grundlage in Netzwerken, Konnektivitaet, Serverumgebungen und Telekommunikationssystemen.",
+    about_education_desc1: "Technische Grundlage in Netzwerken, Konnektivität, Serverumgebungen und Telekommunikationssystemen.",
     about_education_label2: "M.Sc. fast abgeschlossen",
     about_education_title2: "Wirtschaftsinformatik - TU Wien",
     about_education_desc2: "Business Informatics mit Schwerpunkt auf digitaler Transformation, Enterprise Engineering, Prozessdenken und Business Analysis.",
@@ -192,9 +192,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_education_title3: "IoT & Intelligent Systems - FH Technikum Wien",
     about_education_desc3: "Vertiefung in vernetzten Systemen, Edge-Architekturen, Sensorik, Telemetrie und intelligenten Infrastrukturen.",
     about_infra_title: "Aktuelle Infrastrukturarbeit",
-    about_infra_intro: "Die aktuelle Infrastrukturarbeit nutzt Elkaza.org und Elkaza.at als produktionsnahe Praxisumgebung fuer private Web-Infrastruktur, privacy-first Analytics und automatisierte Recovery ueber eine Hybrid-Cloud-Architektur.",
+    about_infra_intro: "Die aktuelle Infrastrukturarbeit nutzt Elkaza.org und Elkaza.at als produktionsnahe Praxisumgebung für private Web-Infrastruktur, privacy-first Analytics und automatisierte Recovery über eine Hybrid-Cloud-Architektur.",
     about_infra_cloud_title: "Hybrid Cloud & Ingress",
-    about_infra_cloud_desc: "Ein gehaerteter Cloud-VPS nimmt oeffentlichen Traffic entgegen und leitet ihn ueber Tailscale an die private Proxmox-/Debian-Runtime weiter.",
+    about_infra_cloud_desc: "Ein gehärteter Cloud-VPS nimmt öffentlichen Traffic entgegen und leitet ihn über Tailscale an die private Proxmox-/Debian-Runtime weiter.",
     about_infra_cicd_title: "CI/CD & Automatisierung",
     about_infra_cicd_desc: "GitHub Actions, Linux-Shell-Skripte und Docker Compose machen Build, Deployment, Service-Refresh und Backup-Schritte reproduzierbar.",
     about_infra_security_title: "Privacy & Datenkontrolle",
@@ -213,7 +213,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_strength_2: "Hybrid-Cloud- und Self-Hosted-Plattformbetrieb mit Linux, Proxmox, Debian und Docker Compose",
     about_strength_3: "Application Engineering und Software-Automatisierung mit TypeScript/Next.js, Python, Bash und PowerShell",
     about_strength_4: "Cybersecurity-orientierte Infrastruktur: Tailscale, DNS-Filterung, UFW, CrowdSec und Reverse Proxy",
-    about_strength_5: "Projektmanagement, IPMA Level D, technische Delivery, Dokumentation und saubere Uebergaben",
+    about_strength_5: "Projektmanagement, IPMA Level D, technische Delivery, Dokumentation und saubere Übergaben",
     about_strength_6: "Business Analysis, Anforderungen, Prozess-/Workflow-Analyse und Stakeholder-Kommunikation",
     about_strength_7: "Monitoring, Daten-/Prozessanalyse, IoT, Security und Edge als laufender technischer Ausbau",
     about_comp_h2: "Kernkompetenzen",
@@ -236,7 +236,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     skill_pm_title: "Project Delivery & Business Analysis",
     skill_pm_item1: "IPMA Level D zertifiziert; strukturierte Umsetzung technischer Vorhaben",
-    skill_pm_item2: "Erfahrung mit Stakeholdern, Uebergaben, Anforderungsklaerung und serviceorientierter Kommunikation",
+    skill_pm_item2: "Erfahrung mit Stakeholdern, Übergaben, Anforderungsklärung und serviceorientierter Kommunikation",
     skill_pm_item3: "Praxis mit prozessorientierter Arbeitsweise, Backlogs, User Stories, ITSM und Business-Analysis-Grundlagen",
 
     skill_net_title: "Netzwerke & Infrastruktur",
@@ -247,7 +247,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_cloud_title: "Hybrid Cloud & Plattformbetrieb",
     skill_cloud_item1: "Proxmox, Docker/Podman, Linux-Services, Nginx Proxy Manager, Reverse Proxy und Monitoring",
     skill_cloud_item2: "GitHub Actions CI/CD, Tailscale, Docker Compose, Shell-Skripte, Plausible Analytics und Backup-Rotation",
-    skill_cloud_item3: "Laufende Vertiefung in IoT-Architekturen, Edge-Gateways, MQTT und sicherer Konnektivitaet",
+    skill_cloud_item3: "Laufende Vertiefung in IoT-Architekturen, Edge-Gateways, MQTT und sicherer Konnektivität",
 
     skill_lang_title: "Sprachen",
     skill_lang_item1: "Spoken: German, English, Arabic",
@@ -256,7 +256,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Research
     research_tagline: "Akademische Arbeit und mögliche Kooperationsrichtungen.",
     thesis_h2: "Masterarbeit - TU Wien",
-    thesis_desc: "Masterarbeit zu digitaler Transformation und Change Management im Kontext von Enterprise Architecture und organisationalem Wandel.",
+    thesis_desc: "Meine TU-Wien-Masterarbeit untersucht die Integration unterschiedlicher Methoden, Frameworks und Governance-Perspektiven im Kontext digitaler Transformation und Enterprise Architecture. Der Fokus liegt auf Kohärenz, methodischer Abstimmung und praktischer Anwendbarkeit in organisationalen Veränderungsprozessen.",
     download_thesis: "Volltext auf Anfrage",
     thesis_note: "Die Themen sind als Interessen formuliert und können an konkrete Unternehmens- oder Forschungskontexte angepasst werden.",
     research_intro_title: "Fokus für Thesis, Praktikum oder Kooperation",
@@ -314,7 +314,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_c2_desc: "Vertiefung in IPMA-orientiertem Projektmanagement, Change Management und strukturierter Umsetzung technischer Vorhaben.",
     teach_c2_link: "Zu CV & Zertifikaten",
     teach_c3_title: "Infrastruktur, Netzwerke & Security",
-    teach_c3_desc: "Weiterentwicklung praktischer Faehigkeiten in Linux, Virtualisierung, Netzwerksegmentierung, VPN, Monitoring und Systemhaertung.",
+    teach_c3_desc: "Weiterentwicklung praktischer Fähigkeiten in Linux, Virtualisierung, Netzwerksegmentierung, VPN, Monitoring und Systemhärtung.",
     teach_c3_link: "Zu den Projekten",
     teach_c4_title: "IoT & vernetzte Systeme",
     teach_c4_desc: "Laufender Ausbau durch das FH-Technikum-Studium und Projekte mit BLE, MQTT, Edge-Gateways und Telemetrie.",
@@ -323,19 +323,19 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     teach_c5_desc: "Standards, Netzwerkschutz und Risikomanagement (ISO 27001, OWASP).",
     teach_c5_link: "Mehr zu ISO 27001",
     teach_cta_h2: "Wie sich das im Portfolio zeigt",
-    teach_cta_desc: "Diese Themen staerken mein berufliches Profil in IT-Betrieb, Infrastruktur und Systemdesign und fliessen direkt in Projekte und den CV ein.",
+    teach_cta_desc: "Diese Themen stärken mein berufliches Profil in IT-Betrieb, Infrastruktur und Systemdesign und fließen direkt in Projekte und den CV ein.",
     teach_cta_btn: "Projekte ansehen",
 
     // Contact
     contact_tagline: "Kontakt für berufliche Chancen, Projekte und Austausch",
-    contact_closing: "Ich freue mich ueber Nachrichten zu Jobs, Projekten oder fachlichem Austausch.",
+    contact_closing: "Ich freue mich über Nachrichten zu Jobs, Projekten oder fachlichem Austausch.",
     contact_academic_h2: "Academic & Research",
     contact_academic_desc: "Kontakt für Fragen zu Studium, Projekten und beruflichem Hintergrund.",
     contact_consult_h2: "Consulting & Digital Services",
     contact_consult_desc: "IT-Betrieb, Infrastruktur, Netzwerke, Automatisierung und angrenzende Systemthemen.",
 
     about_hobbies: "Außerhalb der Arbeit: Radfahren in Wien, Lesen und praktische Experimente im privaten Infrastruktur-Lab.",
-    contact_social_h3: "Kontaktkanaele",
+    contact_social_h3: "Kontaktkanäle",
 
     // Contact Form
     contact_form_name: "Name",
@@ -353,14 +353,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Contact Page New Keys
     contact_title: "Kontakt",
-    contact_desc: "Offen für Positionen, Praktika, Kooperationen und Gespräche rund um Datenautomatisierung, IoT, Infrastruktur, Support, Netzwerke und technische Systemrollen.",
+    contact_desc: "Offen für Positionen, Praktika, Masterarbeitskooperationen und Gespräche rund um IT-Betrieb, Application Engineering, Datenautomatisierung, IoT, Edge AI, Infrastruktur, Netzwerke, Monitoring, technische Dokumentation und digitale Transformation.",
     contact_email_h3: "Kontakt aufnehmen",
     contact_personal_inquiries: "Jobs & Anfragen",
     contact_academic_research: "Akademisches & Forschung",
     contact_recruiting: "Recruiting",
     contact_code: "Code",
     contact_resume: "Lebenslauf",
-    contact_download_cv: "CV herunterladen",
+    contact_download_cv: "Auf Anfrage",
 
     // Legal Pages - Impressum
     legal_impressum_title: "Impressum",
@@ -376,7 +376,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     privacy_overview_title: "Überblick",
     privacy_overview_desc: "Diese Website verarbeitet Kontaktformular-Daten und verwendet selbst gehostete, cookie-freie Plausible Analytics, um aggregierte Seitenaufrufe zu verstehen. Es werden keine Werbeprofile erstellt und keine Analytics-Daten an Third-Party-Tracking-Anbieter verkauft.",
     privacy_analytics_title: "Privacy-orientierte Analytics",
-    privacy_analytics_desc: "Plausible Analytics wird selbst gehostet und ueber einen First-Party-Pfad betrieben. Erfasst werden reduzierte Nutzungsdaten wie Seitenaufrufe, Referrer und Geraeteinformationen in aggregierter Form; keine Cookies, keine persoenlichen Werbeprofile und kein Cross-Site-Tracking.",
+    privacy_analytics_desc: "Plausible Analytics wird selbst gehostet und über einen First-Party-Pfad betrieben. Erfasst werden reduzierte Nutzungsdaten wie Seitenaufrufe, Referrer und Geräteinformationen in aggregierter Form; keine Cookies, keine persönlichen Werbeprofile und kein Cross-Site-Tracking.",
     privacy_contact_form_title: "Kontaktformular",
     privacy_contact_form_desc: "Wenn Sie das Kontaktformular nutzen, werden folgende Daten übermittelt:",
     privacy_data_name: "Name",
@@ -398,8 +398,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // CV Page
     nav_cv: "Lebenslauf",
     cv_title: "Lebenslauf",
-    cv_download_de: "PDF herunterladen (DE)",
-    cv_download_en: "Download PDF (EN)",
+    cv_download_de: "CV auf Anfrage",
+    cv_download_en: "CV auf Anfrage",
     cv_role_title: "Business Informatics & IoT | Data Automation, Edge AI & Infrastructure",
     cv_summary_title: "Kurzprofil",
     cv_summary_text: "Business-Informatics- und IoT-Profil mit praktischer Erfahrung in Datenautomatisierung, Python, SQL, Excel/VBA, APIs, Reporting, Datenqualität, Prozessautomatisierung, technischer Dokumentation, Application Engineering, Linux, Docker, Monitoring, Networking Basics, ServiceNow und Jira. Aktuelle Projekte vertiefen Edge AI, TinyML, AIoT, Dashboards und reproduzierbare Machine-Learning-Workflows.",
@@ -423,9 +423,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_recent_tourism_desc: "Python/HTML-Dashboard für saisonale Nächtigungsanalyse, Storytelling und statische Visualisierungen.",
     cv_recent_regression_title: "Random Walk Gravity Regression",
     cv_recent_regression_desc: "scikit-learn-Regressionspipeline mit Modellvergleich, Report und Validierungsdatei im geforderten Format.",
-    cv_education_item1: "Bachelor: Computernetzwerke und Telekommunikation",
-    cv_education_item2: "M.Sc. Wirtschaftsinformatik, TU Wien - fast abgeschlossen; digitale Transformation, Enterprise Engineering, Business Analysis",
-    cv_education_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien - 2. Semester; IoT, Edge, Telemetrie, intelligente Systeme",
+    cv_education_item1: "09/2025-09/2027: MSc Internet of Things & Intelligent Systems, FH Technikum Wien - IoT-Systeme, intelligente Systeme, Networking, Embedded/Edge-Anwendungen",
+    cv_education_item2: "10/2018-06/2026: MSc Wirtschaftsinformatik, TU Wien - digitale Transformation, Enterprise Engineering, Business Analysis",
+    cv_education_item3: "2008-2013: BSc Information Technology, Universität Benghazi - Fokus Netzwerktechnik und Telekommunikation",
     cv_skills_title: "Kernkompetenzen",
     cv_skill_platform_title: "Systeme & Plattformen",
     cv_skill_platform_items: "Hybrid Cloud | Proxmox | Docker Compose | Nginx Proxy Manager | Linux (Debian/Ubuntu) | Windows Server",
@@ -441,7 +441,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_skill_delivery_items: "Anforderungen | Stakeholder-Kommunikation | Prozessanalyse | Dokumentation | ArchiMate/UML/BPMN | ITIL | Scrum | IPMA Level D",
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
-    cv_note_full: "Vollständiger Lebenslauf als PDF-Download verfügbar.",
+    cv_note_full: "Vollständiger Lebenslauf mit persönlichen Kontaktdaten ist auf Anfrage verfügbar.",
     cv_last_updated: "Zuletzt aktualisiert: Juni 2026",
   },
   en: {
@@ -475,7 +475,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_platform_item2: "Edge AI safety monitoring",
     home_platform_item3: "TinyML on Arduino",
     home_platform_item4: "Python data & ML",
-    hero_cta_cv: "Download CV",
+    hero_cta_cv: "CV on request",
     home_cta_research: "Thesis / Cooperation Interests",
     // Proof in 3 Bullets
     home_proof_title: "How I Work",
@@ -491,7 +491,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     home_role_fit_item5: "IT Project Management",
     home_role_fit_item6: "Business Analysis",
     // CTAs
-    home_cta_primary: "Download CV",
+    home_cta_primary: "CV on request",
     home_cta_secondary: "View Projects",
     home_view_cv: "View full resume",
 
@@ -587,8 +587,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp2_desc: "Automated IT asset and ServiceNow workflows with Python and VBA. The role sharpened my understanding of process-oriented delivery, data quality, and enterprise stakeholder coordination.",
     exp3_title: "Product Management Intern - BOC Group (2021-2022)",
     exp3_desc: "Worked on enterprise architecture tooling with emphasis on data analysis, prototyping, and structured modeling. This strengthened my systems thinking and the translation of requirements into technical artifacts.",
-    exp4_title: "Network Engineer - University of Benghazi (2013-2018)",
-    exp4_desc: "Operated and optimized network and server infrastructure with focus on availability, troubleshooting, and integration. This is the foundation for how I approach secure connectivity and robust systems today.",
+    exp4_title: "Network and Systems Technician - University of Benghazi, Libya (12/2013-11/2016)",
+    exp4_desc: "Operated, supported, and rolled out network and systems environments with focus on availability, troubleshooting, network access, and robust technical operations.",
 
     // Home - Selected Experience (detailed, reverse chronological)
     exp1_title_full: "Application Engineer - HiCo-ICS (2023)",
@@ -597,8 +597,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp2_desc_full: "Automated IT asset and ServiceNow workflows with Python and VBA. The role sharpened my understanding of process-oriented delivery, data quality, and enterprise stakeholder coordination.",
     exp3_title_full: "Product Management Intern - BOC Group (2021-2022)",
     exp3_desc_full: "Worked on enterprise architecture tooling with emphasis on data analysis, prototyping, and structured modeling. This strengthened my systems thinking and the translation of requirements into technical artifacts.",
-    exp4_title_full: "Network Engineer - University of Benghazi (2013-2018)",
-    exp4_desc_full: "Operated and optimized network and server infrastructure with focus on availability, troubleshooting, and integration. This is the foundation for how I approach secure connectivity and robust systems today.",
+    exp4_title_full: "Network and Systems Technician - University of Benghazi, Libya (12/2013-11/2016)",
+    exp4_desc_full: "Operated, supported, and rolled out network and systems environments with focus on availability, troubleshooting, network access, and robust technical operations.",
 
     // Home - Technologies & Methods
     tech_title: "Technologies & Focus Areas",
@@ -750,7 +750,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Research
     research_tagline: "Academic work and possible cooperation directions.",
     thesis_h2: "Master’s Thesis - TU Wien",
-    thesis_desc: "Master's thesis on digital transformation and change management in the context of enterprise architecture and organizational change.",
+    thesis_desc: "My TU Wien master's thesis examines the integration of different methods, frameworks, and governance perspectives in the context of digital transformation and enterprise architecture, with focus on coherence, methodological alignment, and practical applicability in organizational change processes.",
     download_thesis: "Full text on request",
     thesis_note: "Topics are framed as interests and can be adapted to a concrete company, research group, or supervised thesis context.",
     research_intro_title: "Focus for thesis, internship, or cooperation",
@@ -847,14 +847,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Contact Page New Keys
     contact_title: "Contact",
-    contact_desc: "Open to roles and conversations around IT operations, infrastructure, support, networking, automation, and related systems work.",
+    contact_desc: "Open to roles, internships, master's thesis cooperation, and conversations around IT operations, application engineering, data automation, IoT, edge AI, infrastructure, networking, monitoring, technical documentation, and digital transformation.",
     contact_email_h3: "Get in touch",
     contact_personal_inquiries: "Jobs & inquiries",
     contact_academic_research: "Academic / Research",
     contact_recruiting: "Recruiting",
     contact_code: "Code",
     contact_resume: "Resume",
-    contact_download_cv: "Download CV",
+    contact_download_cv: "On request",
 
     // Legal Pages - Impressum
     legal_impressum_title: "Impressum",
@@ -892,8 +892,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // CV Page
     nav_cv: "Resume",
     cv_title: "Resume",
-    cv_download_de: "Download PDF (DE)",
-    cv_download_en: "Download PDF (EN)",
+    cv_download_de: "CV on request",
+    cv_download_en: "CV on request",
     cv_role_title: "Business Informatics & IoT | Data Automation, Edge AI & Infrastructure",
     cv_summary_title: "Summary",
     cv_summary_text: "Business Informatics and IoT profile with practical experience in data automation, Python, SQL, Excel/VBA, APIs, reporting, data quality, process automation, technical documentation, application engineering, Linux, Docker, monitoring, networking basics, ServiceNow and Jira. Current projects deepen edge AI, TinyML, AIoT, dashboards and reproducible machine-learning workflows.",
@@ -917,9 +917,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_recent_tourism_desc: "Python/HTML dashboard for seasonal overnight-stay analysis, storytelling, and static visualizations.",
     cv_recent_regression_title: "Random Walk Gravity Regression",
     cv_recent_regression_desc: "scikit-learn regression pipeline with model comparison, report, and validation-file export.",
-    cv_education_item1: "Bachelor: Computer Networks and Telecommunications",
-    cv_education_item2: "M.Sc. Business Informatics, TU Wien - almost completed; digital transformation, enterprise engineering, business analysis",
-    cv_education_item3: "M.Sc. Internet of Things & Intelligent Systems, FH Technikum Wien - second semester; IoT, edge, telemetry, intelligent systems",
+    cv_education_item1: "09/2025-09/2027: MSc Internet of Things & Intelligent Systems, FH Technikum Wien - IoT systems, intelligent systems, networking, embedded/edge applications",
+    cv_education_item2: "10/2018-06/2026: MSc Business Informatics, TU Wien - digital transformation, enterprise engineering, business analysis",
+    cv_education_item3: "2008-2013: BSc Information Technology, University of Benghazi - focus on networking and telecommunications",
     cv_skills_title: "Key Skills",
     cv_skill_platform_title: "Systems & Platforms",
     cv_skill_platform_items: "Hybrid Cloud | Proxmox | Docker Compose | Nginx Proxy Manager | Linux (Debian/Ubuntu) | Windows Server",
@@ -935,7 +935,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_skill_delivery_items: "Requirements | Stakeholder Communication | Process Analysis | Documentation | ArchiMate/UML/BPMN | ITIL | Scrum | IPMA Level D",
     cv_exp_title: "Experience",
     cv_edu_title: "Education & Certifications",
-    cv_note_full: "Full CV available as PDF download.",
+    cv_note_full: "Full CV with personal contact details is available on request.",
     cv_last_updated: "Last updated: June 2026",
   },
   ar: {

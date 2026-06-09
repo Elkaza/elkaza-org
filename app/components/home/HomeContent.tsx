@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Download, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 
 export default function HomeContent() {
@@ -213,17 +213,13 @@ export default function HomeContent() {
 }
 
 function CvLink({ t }: { t: (key: string) => string }) {
-  const { locale } = useLocale();
-  const cvPath = locale === "de" ? "/cv/Elkaza_Mohamed_CV_DE.pdf" : "/cv/Elkaza_Mohamed_CV_EN.pdf";
-
   return (
-    <a
-      href={cvPath}
-      download
+    <Link
+      href="/contact"
       className="inline-flex items-center px-5 py-2.5 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-md font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors shadow-sm"
     >
-      <Download className="mr-2 h-4 w-4" />
+      <Mail className="mr-2 h-4 w-4" />
       {t("hero_cta_cv")}
-    </a>
+    </Link>
   );
 }

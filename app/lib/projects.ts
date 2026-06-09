@@ -1,4 +1,4 @@
-import { Locale } from "../i18n/messages";
+﻿import { Locale } from "../i18n/messages";
 
 type LocalizedString = Record<Locale, string>;
 type LocalizedList = Record<Locale, string[]>;
@@ -9,9 +9,12 @@ export type ProjectCategory =
     | "security-infrastructure"
     | "delivery-platform";
 
+export type ProjectStatus = "implemented" | "in-progress" | "planned";
+
 export interface Project {
     slug: string;
     category: ProjectCategory;
+    status: ProjectStatus;
     year: string;
     title: LocalizedString;
     oneLiner: LocalizedString;
@@ -46,26 +49,27 @@ export const projects: Project[] = [
     {
         slug: "edgeguardian-edge-ai-safety-bubble",
         category: "featured-aiot",
+        status: "implemented",
         year: "2026",
         title: loc(
             "EdgeGuardian: Edge AI Safety Bubble for Machine Monitoring",
-            "EdgeGuardian: Edge-AI-Sicherheitszone fuer Maschinenueberwachung"
+            "EdgeGuardian: Edge-AI-Sicherheitszone für Maschinenüberwachung"
         ),
         oneLiner: loc(
             "Built a Raspberry Pi 5 and Hailo-8L edge AI prototype that fuses camera-based person detection with Hokuyo LiDAR distance sensing to classify SAFE, WARNING, and ALERT states locally.",
-            "Entwickelt einen Raspberry-Pi-5- und Hailo-8L-Edge-AI-Prototyp, der kamerabasierte Personenerkennung mit Hokuyo-LiDAR-Distanzmessung kombiniert und lokal SAFE-, WARNING- und ALERT-Zustaende entscheidet."
+            "Entwickelt einen Raspberry-Pi-5- und Hailo-8L-Edge-AI-Prototyp, der kamerabasierte Personenerkennung mit Hokuyo-LiDAR-Distanzmessung kombiniert und lokal SAFE-, WARNING- und ALERT-Zustände entscheidet."
         ),
         overview: loc(
             "EdgeGuardian turns a desk into a representative machine danger zone and creates a local AI safety bubble around it. The system combines Hailo-accelerated YOLO person detection, LiDAR distance confirmation, Raspberry Pi sensor fusion, ESP32 serial actuation, a browser dashboard, Telegram alert handling, and CSV evidence logs.",
-            "EdgeGuardian nutzt einen Schreibtisch als repraesentative Maschinen-Gefahrenzone und erzeugt darum eine lokale AI-Sicherheitszone. Das System kombiniert Hailo-beschleunigte YOLO-Personenerkennung, LiDAR-Distanzbestaetigung, Raspberry-Pi-Sensorfusion, ESP32-Serial-Aktuatorik, Browser-Dashboard, Telegram-Alerting und CSV-Evidenzlogs."
+            "EdgeGuardian nutzt einen Schreibtisch als repräsentative Maschinen-Gefahrenzone und erzeugt darum eine lokale AI-Sicherheitszone. Das System kombiniert Hailo-beschleunigte YOLO-Personenerkennung, LiDAR-Distanzbestätigung, Raspberry-Pi-Sensorfusion, ESP32-Serial-Aktuatorik, Browser-Dashboard, Telegram-Alerting und CSV-Evidenzlogs."
         ),
         problem: loc(
             "Machine areas become dangerous when a person enters the operating zone of moving parts. A cloud-only camera pipeline would add latency, privacy concerns, and network dependency, while camera-only detection cannot reliably confirm physical distance.",
-            "Maschinenbereiche werden gefaehrlich, wenn Personen in den Arbeitsbereich beweglicher Teile gelangen. Eine reine Cloud-Kamera-Pipeline wuerde Latenz, Datenschutzrisiken und Netzabhaengigkeit erzeugen; reine Kameraerkennung bestaetigt zudem keine physische Distanz."
+            "Maschinenbereiche werden gefährlich, wenn Personen in den Arbeitsbereich beweglicher Teile gelangen. Eine reine Cloud-Kamera-Pipeline würde Latenz, Datenschutzrisiken und Netzabhängigkeit erzeugen; reine Kameraerkennung bestätigt zudem keine physische Distanz."
         ),
         solution: loc(
             "I implemented the decision loop on a Raspberry Pi 5. The camera pipeline detects the person class with YOLO on the Hailo-8L accelerator, the Hokuyo LiDAR provides measured distance, and the fusion script applies confidence thresholds, stale-data checks, and hysteresis before sending state commands to the ESP32 and updating the dashboard.",
-            "Ich habe die Entscheidungslogik auf einem Raspberry Pi 5 umgesetzt. Die Kamera-Pipeline erkennt die Klasse Person mit YOLO auf dem Hailo-8L-Beschleuniger, der Hokuyo-LiDAR liefert die gemessene Distanz, und das Fusionsskript nutzt Confidence-Schwellen, Stale-Data-Pruefung und Hysterese, bevor ESP32-Kommandos und Dashboard-Updates erzeugt werden."
+            "Ich habe die Entscheidungslogik auf einem Raspberry Pi 5 umgesetzt. Die Kamera-Pipeline erkennt die Klasse Person mit YOLO auf dem Hailo-8L-Beschleuniger, der Hokuyo-LiDAR liefert die gemessene Distanz, und das Fusionsskript nutzt Confidence-Schwellen, Stale-Data-Prüfung und Hysterese, bevor ESP32-Kommandos und Dashboard-Updates erzeugt werden."
         ),
         architectureLabels: {
             node: loc("Sensing and actuation", "Sensorik und Aktuatorik"),
@@ -75,20 +79,20 @@ export const projects: Project[] = [
         architecture: {
             node: loc(
                 "Raspberry Pi camera / AI camera, Hokuyo URG-04LX-UG01 LiDAR, and ESP32-S3 serial endpoint provide visual detection input, physical distance confirmation, and actuator proof.",
-                "Raspberry-Pi-Kamera / AI Camera, Hokuyo URG-04LX-UG01 LiDAR und ESP32-S3-Serial-Endpunkt liefern visuelle Erkennung, physische Distanzbestaetigung und Aktuatornachweis."
+                "Raspberry-Pi-Kamera / AI Camera, Hokuyo URG-04LX-UG01 LiDAR und ESP32-S3-Serial-Endpunkt liefern visuelle Erkennung, physische Distanzbestätigung und Aktuatornachweis."
             ),
             edge: loc(
                 "The Raspberry Pi 5 runs the fusion loop, parses Hailo detection output, reads LiDAR distance, applies SAFE/WARNING/ALERT thresholds, and logs every decision.",
-                "Der Raspberry Pi 5 fuehrt die Fusion aus, verarbeitet Hailo-Erkennungsdaten, liest LiDAR-Distanzen, wendet SAFE/WARNING/ALERT-Schwellen an und protokolliert jede Entscheidung."
+                "Der Raspberry Pi 5 führt die Fusion aus, verarbeitet Hailo-Erkennungsdaten, liest LiDAR-Distanzen, wendet SAFE/WARNING/ALERT-Schwellen an und protokolliert jede Entscheidung."
             ),
             cloud: loc(
                 "The system stays local for safety decisions while exposing evidence through a browser dashboard, optional Telegram module, terminal output, and final CSV logs.",
-                "Die Sicherheitsentscheidung bleibt lokal; Evidenz wird ueber Browser-Dashboard, optionales Telegram-Modul, Terminalausgabe und finale CSV-Logs sichtbar gemacht."
+                "Die Sicherheitsentscheidung bleibt lokal; Evidenz wird über Browser-Dashboard, optionales Telegram-Modul, Terminalausgabe und finale CSV-Logs sichtbar gemacht."
             ),
         },
         security: loc(
             "The design keeps camera inference and safety decisions on the local edge device rather than sending video to a cloud service. Configuration examples avoid private Telegram secrets, and the dashboard reads logs without streaming camera frames.",
-            "Das Design haelt Kamera-Inferenz und Sicherheitsentscheidungen lokal auf dem Edge-Geraet, statt Videodaten an einen Cloud-Dienst zu senden. Beispielkonfigurationen vermeiden private Telegram-Secrets, und das Dashboard liest Logs ohne Kamera-Streaming."
+            "Das Design hält Kamera-Inferenz und Sicherheitsentscheidungen lokal auf dem Edge-Gerät, statt Videodaten an einen Cloud-Dienst zu senden. Beispielkonfigurationen vermeiden private Telegram-Secrets, und das Dashboard liest Logs ohne Kamera-Streaming."
         ),
         reliability: loc(
             "Confidence filtering, LiDAR stale-data protection, 3-frame ALERT hysteresis, 5-frame SAFE recovery, Telegram cooldown, and CSV event logs make the prototype more stable and explainable during a live demonstration.",
@@ -105,8 +109,8 @@ export const projects: Project[] = [
             ],
             [
                 "Hailo-8L-beschleunigte YOLO-Personenerkennung auf Raspberry Pi 5",
-                "Hokuyo-LiDAR-Distanzbestaetigung fuer Kamera-LiDAR-Sensorfusion",
-                "SAFE/WARNING/ALERT-State-Machine mit Hysterese und Stale-Data-Pruefung",
+                "Hokuyo-LiDAR-Distanzbestätigung für Kamera-LiDAR-Sensorfusion",
+                "SAFE/WARNING/ALERT-State-Machine mit Hysterese und Stale-Data-Prüfung",
                 "ESP32-S3-Serial-Kommandos als Aktuatornachweis",
                 "Dark-Mode-Browser-Dashboard mit Live-CSV-Logs, Update-Alter und Event-Tabelle",
                 "Finales Evidenzpaket mit Hailo-, LiDAR-, Fusion-, Dashboard-, ESP32- und Telegram-Logs",
@@ -120,10 +124,10 @@ export const projects: Project[] = [
                 "Made system behavior explainable through dashboard reason cards and reproducible CSV evidence",
             ],
             [
-                "End-to-End lokale Edge-AI-Sicherheitsueberwachung mit Kamera, LiDAR, Embedded-Aktuatorik, Dashboard und Logs demonstriert",
-                "Demo-Evidenz mit SAFE -> WARNING -> ALERT -> SAFE-Uebergaengen bei etwa 30 FPS erfasst",
+                "End-to-End lokale Edge-AI-Sicherheitsüberwachung mit Kamera, LiDAR, Embedded-Aktuatorik, Dashboard und Logs demonstriert",
+                "Demo-Evidenz mit SAFE -> WARNING -> ALERT -> SAFE-Übergängen bei etwa 30 FPS erfasst",
                 "Real-Mode-Evidenz mit kontinuierlichen Raspberry-Pi-Entscheidungen aus Hardware-Inputs protokolliert",
-                "Systemverhalten ueber Dashboard-Reason-Cards und reproduzierbare CSV-Evidenz nachvollziehbar gemacht",
+                "Systemverhalten über Dashboard-Reason-Cards und reproduzierbare CSV-Evidenz nachvollziehbar gemacht",
             ]
         ),
         tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "Python", "Flask"],
@@ -136,6 +140,7 @@ export const projects: Project[] = [
     {
         slug: "tinyml-vibration-anomaly-detection",
         category: "featured-aiot",
+        status: "implemented",
         year: "2026",
         title: loc(
             "TinyML Vibration Anomaly Detection on Arduino Nano 33 BLE Sense Rev2",
@@ -151,7 +156,7 @@ export const projects: Project[] = [
         ),
         problem: loc(
             "Small fans and motors can develop abnormal vibration before failure. A node device should detect this locally with low memory use, no cloud dependency, and a clear live output for the operator.",
-            "Kleine Luefter und Motoren koennen vor einem Ausfall auffaellige Vibrationen entwickeln. Ein Node-Device soll dies lokal, speicherschonend, ohne Cloud-Abhaengigkeit und mit klarer Live-Ausgabe erkennen."
+            "Kleine Luefter und Motoren koennen vor einem Ausfall auffaellige Vibrationen entwickeln. Ein Node-Device soll dies lokal, speicherschonend, ohne Cloud-Abhängigkeit und mit klarer Live-Ausgabe erkennen."
         ),
         solution: loc(
             "I generated balanced synthetic vibration windows, extracted 20 statistical features from 2-second IMU windows, trained a two-class softmax model, exported means, standard deviations, weights, and biases into model_parameters.h, and implemented the same processing path in Arduino C++.",
@@ -165,7 +170,7 @@ export const projects: Project[] = [
         architecture: {
             node: loc(
                 "The Arduino Nano 33 BLE Sense Rev2 reads onboard accelerometer data at 100 Hz, stores 2-second rolling windows, extracts features, runs inference, prints Serial Monitor evidence, and lights the LED on ALERT.",
-                "Der Arduino Nano 33 BLE Sense Rev2 liest Beschleunigungsdaten mit 100 Hz, speichert 2-Sekunden-Rolling-Windows, extrahiert Features, fuehrt Inferenz aus, druckt Serial-Monitor-Evidenz und schaltet bei ALERT die LED."
+                "Der Arduino Nano 33 BLE Sense Rev2 liest Beschleunigungsdaten mit 100 Hz, speichert 2-Sekunden-Rolling-Windows, extrahiert Features, führt Inferenz aus, druckt Serial-Monitor-Evidenz und schaltet bei ALERT die LED."
             ),
             edge: loc(
                 "Python generates the dataset, trains the model offline, validates performance, and exports the model parameters into a small C++ header.",
@@ -178,11 +183,11 @@ export const projects: Project[] = [
         },
         security: loc(
             "The device processes motion locally and does not transmit sensor data. The design keeps the demo self-contained and avoids credentials, network dependency, or external services.",
-            "Das Geraet verarbeitet Bewegungsdaten lokal und uebertraegt keine Sensordaten. Das Design bleibt in der Demo eigenstaendig und vermeidet Credentials, Netzabhaengigkeit und externe Services."
+            "Das Gerät verarbeitet Bewegungsdaten lokal und übertraegt keine Sensordaten. Das Design bleibt in der Demo eigenstaendig und vermeidet Credentials, Netzabhängigkeit und externe Services."
         ),
         reliability: loc(
             "The sketch uses overlapping windows, normalized features, an anomaly probability threshold of 0.60, and a 3-window ALERT persistence rule so a single accidental bump does not immediately become a final alert.",
-            "Der Sketch nutzt ueberlappende Fenster, normalisierte Features, eine Anomalie-Schwelle von 0.60 und eine 3-Fenster-ALERT-Persistenz, damit ein einzelner Stoerimpuls nicht sofort einen finalen Alarm ausloest."
+            "Der Sketch nutzt überlappende Fenster, normalisierte Features, eine Anomalie-Schwelle von 0.60 und eine 3-Fenster-ALERT-Persistenz, damit ein einzelner Störimpuls nicht sofort einen finalen Alarm auslöst."
         ),
         keyFeatures: locList(
             [
@@ -194,12 +199,12 @@ export const projects: Project[] = [
                 "Compact model footprint suitable for microcontroller deployment",
             ],
             [
-                "100-Hz-IMU-Sampling mit 2-Sekunden-Fenstern und 50% Ueberlappung",
+                "100-Hz-IMU-Sampling mit 2-Sekunden-Fenstern und 50% Überlappung",
                 "20 leichtgewichtige Vibrationsfeatures aus X/Y/Z-Achsen und kombinierter Magnitude",
-                "Zweiklassiger Softmax-Klassifikator direkt als C++ exportiert, ohne grosse Inferenz-Runtime",
-                "Serial-Monitor-Ausgabe fuer Zeit, Zustand, Wahrscheinlichkeiten, Persistenzzaehler und Latenz",
+                "Zweiklassiger Softmax-Klassifikator direkt als C++ exportiert, ohne große Inferenz-Runtime",
+                "Serial-Monitor-Ausgabe für Zeit, Zustand, Wahrscheinlichkeiten, Persistenzzaehler und Latenz",
                 "Onboard-LED-Alarm nach 3 aufeinanderfolgenden Anomaliefenstern",
-                "Kompakter Modell-Footprint fuer Microcontroller-Deployment",
+                "Kompakter Modell-Footprint für Microcontroller-Deployment",
             ]
         ),
         results: locList(
@@ -213,7 +218,7 @@ export const projects: Project[] = [
                 "98.61% Offline-Testgenauigkeit auf dem synthetischen balancierten Datensatz erreicht",
                 "Etwa 1 ms Inferenzlatenz im Arduino Serial Monitor gemessen",
                 "Kompiliert mit 12% Flash- und 19% RAM-Nutzung auf dem Nano 33 BLE Sense Rev2",
-                "Live-Demo zeigte stabiles Board als NORMAL, Tippen/Schuetteln als ANOMALY, anhaltende Bewegung als ALERT und Rueckkehr zu NORMAL",
+                "Live-Demo zeigte stabiles Board als NORMAL, Tippen/Schütteln als ANOMALY, anhaltende Bewegung als ALERT und Rückkehr zu NORMAL",
             ]
         ),
         tech: ["Arduino Nano 33 BLE Sense Rev2", "C++", "Python", "TinyML", "IMU", "Softmax"],
@@ -226,36 +231,37 @@ export const projects: Project[] = [
     {
         slug: "austria-tourism-dashboard",
         category: "delivery-platform",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Austria Tourism Dashboard: Seasonal Overnight-Stay Analysis",
-            "Oesterreich-Tourismus-Dashboard: Saisonale Naechtigungsanalyse"
+            "Österreich-Tourismus-Dashboard: Saisonale Nächtiggungsanalyse"
         ),
         oneLiner: loc(
             "Built a one-page Python/HTML dashboard that combines Austrian overnight-stay tables, compares seasonal tourism patterns, and turns national tourism data into an evidence-based story.",
-            "Erstellt ein einseitiges Python/HTML-Dashboard, das oesterreichische Naechtigungstabellen kombiniert, saisonale Tourismusmuster vergleicht und nationale Tourismusdaten in eine datenbasierte Story ueberfuehrt."
+            "Erstellt ein einseitiges Python/HTML-Dashboard, das oesterreichische Nächtiggungstabellen kombiniert, saisonale Tourismusmuster vergleicht und nationale Tourismusdaten in eine datenbasierte Story überführt."
         ),
         overview: loc(
             "The dashboard was created for a data analysis assignment using Austrian accommodation statistics by country of origin and federal state. It combines semicolon-separated source tables, calculates seasonal metrics, and presents the results through an interactive static dashboard and short submission report.",
-            "Das Dashboard entstand fuer eine Data-Analysis-Aufgabe mit oesterreichischen Beherbergungsstatistiken nach Herkunftsland und Bundesland. Es kombiniert semikolon-getrennte Quelltabellen, berechnet saisonale Kennzahlen und praesentiert die Ergebnisse in einem interaktiven statischen Dashboard und Kurzbericht."
+            "Das Dashboard entstand für eine Data-Analysis-Aufgabe mit oesterreichischen Beherbergungsstatistiken nach Herkunftsland und Bundesland. Es kombiniert semikolon-getrennte Quelltabellen, berechnet saisonale Kennzahlen und präsentiert die Ergebnisse in einem interaktiven statischen Dashboard und Kurzbericht."
         ),
         problem: loc(
             "Raw tourism CSV tables are difficult to inspect directly and do not tell a clear story about seasonal importance, origin countries, or regional hotspots. The task required a concise dashboard that promotes one tourism season using appropriate visuals and analysis.",
-            "Rohe Tourismus-CSV-Tabellen sind schwer direkt auswertbar und erzaehlen keine klare Story ueber saisonale Bedeutung, Herkunftslaender oder regionale Schwerpunkte. Gefordert war ein kompaktes Dashboard, das eine Tourismussaison mit geeigneten Visualisierungen und Analyse bewirbt."
+            "Rohe Tourismus-CSV-Tabellen sind schwer direkt auswertbar und erzaehlen keine klare Story über saisonale Bedeutung, Herkunftslaender oder regionale Schwerpunkte. Gefordert war ein kompaktes Dashboard, das eine Tourismussaison mit geeigneten Visualisierungen und Analyse bewirbt."
         ),
         solution: loc(
             "I built a barebones but performant Python pipeline that loads and combines the provided CSV files, derives seasonal aggregates, prepares summary metrics, exports dashboard-ready data, and renders a polished one-page HTML report with charts, widgets, and explanatory text.",
-            "Ich habe eine schlanke und performante Python-Pipeline gebaut, die die bereitgestellten CSV-Dateien laedt und kombiniert, saisonale Aggregate ableitet, Summary-Metriken vorbereitet, dashboardfaehige Daten exportiert und einen sauberen einseitigen HTML-Report mit Charts, Widgets und Erklaertext rendert."
+            "Ich habe eine schlanke und performante Python-Pipeline gebaut, die die bereitgestellten CSV-Dateien laedt und kombiniert, saisonale Aggregate ableitet, Summary-Metriken vorbereitet, dashboardfähige Daten exportiert und einen sauberen einseitigen HTML-Report mit Charts, Widgets und Erklaertext rendert."
         ),
         architectureLabels: {
             node: loc("Data sources", "Datenquellen"),
             edge: loc("Processing", "Verarbeitung"),
-            cloud: loc("Presentation", "Praesentation"),
+            cloud: loc("Presentation", "Präsentation"),
         },
         architecture: {
             node: loc(
                 "Semicolon-separated CSV tables from Austrian accommodation statistics provide overnight stays by country of origin and federal states.",
-                "Semikolon-getrennte CSV-Tabellen der oesterreichischen Beherbergungsstatistik liefern Naechtigungen nach Herkunftsland und Bundeslaendern."
+                "Semikolon-getrennte CSV-Tabellen der oesterreichischen Beherbergungsstatistik liefern Nächtiggungen nach Herkunftsland und Bundeslaendern."
             ),
             edge: loc(
                 "Python combines the files, cleans fields, computes seasonal totals, ranks countries and regions, and exports summary metrics.",
@@ -268,7 +274,7 @@ export const projects: Project[] = [
         },
         security: loc(
             "The dashboard uses public statistical data and static generated artifacts, so it avoids database credentials, live APIs, and user data collection.",
-            "Das Dashboard nutzt oeffentliche Statistikdaten und statisch generierte Artefakte; dadurch entfallen Datenbank-Credentials, Live-APIs und Nutzerdatenerfassung."
+            "Das Dashboard nutzt öffentliche Statistikdaten und statisch generierte Artefakte; dadurch entfallen Datenbank-Credentials, Live-APIs und Nutzerdatenerfassung."
         ),
         reliability: loc(
             "The pipeline writes combined CSV files, summary JSON, dashboard HTML, widget exports, and a submission report so the analysis can be reproduced and inspected from multiple artifacts.",
@@ -285,9 +291,9 @@ export const projects: Project[] = [
             [
                 "Kombiniert mehrere semikolon-getrennte Tourismustabellen zu einem Analysedatensatz",
                 "Rankt wichtige Herkunftslaender und oesterreichische Bundeslaender",
-                "Nutzt mehrere Visualisierungstypen und Text-Widgets fuer Storytelling",
+                "Nutzt mehrere Visualisierungstypen und Text-Widgets für Storytelling",
                 "Generiert Dashboard-HTML, Submission-Report, Metrics-JSON und Bild-Exports",
-                "Laeuft mit leichtgewichtigem Python und statischem Web-Output statt schwerem BI-Stack",
+                "Läuft mit leichtgewichtigem Python und statischem Web-Output statt schwerem BI-Stack",
             ]
         ),
         results: locList(
@@ -297,9 +303,9 @@ export const projects: Project[] = [
                 "Created a reusable static-dashboard workflow for public data storytelling",
             ],
             [
-                "Vollstaendiges einseitiges Tourismus-Dashboard und schriftlichen Report fuer die Aufgabe geliefert",
-                "Feedback fuer einen sehr schoenen Report, starke Performance und Zusatzpunkte erhalten",
-                "Wiederverwendbaren Static-Dashboard-Workflow fuer Public-Data-Storytelling aufgebaut",
+                "Vollständiges einseitiges Tourismus-Dashboard und schriftlichen Report für die Aufgabe geliefert",
+                "Feedback für einen sehr schoenen Report, starke Performance und Zusatzpunkte erhalten",
+                "Wiederverwendbaren Static-Dashboard-Workflow für Public-Data-Storytelling aufgebaut",
             ]
         ),
         tech: ["Python", "HTML", "CSS", "Data Analysis", "CSV", "Static Dashboard"],
@@ -311,6 +317,7 @@ export const projects: Project[] = [
     {
         slug: "random-walk-gravity-regression",
         category: "platform-component",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Random Walk Gravity Regression Case Study",
@@ -322,15 +329,15 @@ export const projects: Project[] = [
         ),
         overview: loc(
             "This data analysis case study focuses on supervised regression for simulation-derived data. The workflow reads the training dataset, engineers features, compares multiple regression models, selects the best performer, and writes predictions for the unlabeled validation set in the required submission format.",
-            "Diese Data-Analysis-Fallstudie behandelt ueberwachtes Regressionslernen auf simulationsbasierten Daten. Der Workflow liest den Trainingsdatensatz, erstellt Features, vergleicht mehrere Regressionsmodelle, waehlt das beste Modell aus und schreibt Vorhersagen fuer das ungelabelte Validierungsset im geforderten Abgabeformat."
+            "Diese Data-Analysis-Fallstudie behandelt überwachtes Regressionslernen auf simulationsbasierten Daten. Der Workflow liest den Trainingsdatensatz, erstellt Features, vergleicht mehrere Regressionsmodelle, wählt das beste Modell aus und schreibt Vorhersagen für das ungelabelte Validierungsset im geforderten Abgabeformat."
         ),
         problem: loc(
             "The validation set contains features but no labels, so the model must learn the relationship between random-walk behavior and the hidden gravity constant from the labeled training data while meeting strict file-format requirements.",
-            "Das Validierungsset enthaelt Features, aber keine Labels. Das Modell muss daher aus den gelabelten Trainingsdaten den Zusammenhang zwischen Random-Walk-Verhalten und versteckter Gravitationskonstante lernen und gleichzeitig strikte Dateiformat-Anforderungen erfuellen."
+            "Das Validierungsset enthält Features, aber keine Labels. Das Modell muss daher aus den gelabelten Trainingsdaten den Zusammenhang zwischen Random-Walk-Verhalten und versteckter Gravitationskonstante lernen und gleichzeitig strikte Dateiformat-Anforderungen erfuellen."
         ),
         solution: loc(
             "I created a reproducible notebook and helper Python module, used train/test validation, compared at least four regression approaches, selected a HistGradientBoostingRegressor, and generated the final io25m025_validate.txt file with run_id and gravity predictions.",
-            "Ich habe ein reproduzierbares Notebook und ein Helper-Python-Modul erstellt, Train/Test-Validierung genutzt, mindestens vier Regressionsansaetze verglichen, einen HistGradientBoostingRegressor ausgewaehlt und die finale io25m025_validate.txt-Datei mit run_id- und gravity-Vorhersagen erzeugt."
+            "Ich habe ein reproduzierbares Notebook und ein Helper-Python-Modul erstellt, Train/Test-Validierung genutzt, mindestens vier Regressionsansaetze verglichen, einen HistGradientBoostingRegressor ausgewählt und die finale io25m025_validate.txt-Datei mit run_id- und gravity-Vorhersagen erzeugt."
         ),
         architectureLabels: {
             node: loc("Dataset", "Datensatz"),
@@ -344,7 +351,7 @@ export const projects: Project[] = [
             ),
             edge: loc(
                 "The Python pipeline prepares features, splits training and test data, evaluates several regressors, and keeps reusable code in a helper module.",
-                "Die Python-Pipeline bereitet Features vor, teilt Trainings- und Testdaten, bewertet mehrere Regressoren und haelt wiederverwendbaren Code in einem Helper-Modul."
+                "Die Python-Pipeline bereitet Features vor, teilt Trainings- und Testdaten, bewertet mehrere Regressoren und hält wiederverwendbaren Code in einem Helper-Modul."
             ),
             cloud: loc(
                 "The final artifact is a plain-text validation file with exactly the required header and prediction rows, plus notebook and HTML report evidence.",
@@ -353,7 +360,7 @@ export const projects: Project[] = [
         },
         security: loc(
             "The project uses local CSV files only and keeps the validation workflow deterministic and inspectable; no external service or credential is required.",
-            "Das Projekt nutzt ausschliesslich lokale CSV-Dateien und haelt den Validierungsworkflow deterministisch und pruefbar; externe Services oder Credentials sind nicht erforderlich."
+            "Das Projekt nutzt ausschliesslich lokale CSV-Dateien und hält den Validierungsworkflow deterministisch und pruefbar; externe Services oder Credentials sind nicht erforderlich."
         ),
         reliability: loc(
             "The submission file was checked for row count, header format, duplicate run IDs, missing values, validation-order consistency, and prediction range before packaging.",
@@ -368,11 +375,11 @@ export const projects: Project[] = [
                 "Validation checks for header, row count, missing values, duplicates, and run_id alignment",
             ],
             [
-                "Feature-Aufbereitung und wiederverwendbares Helper-Modul fuer Regressionsexperimente",
+                "Feature-Aufbereitung und wiederverwendbares Helper-Modul für Regressionsexperimente",
                 "Vergleich mehrerer Regressionsmodelle mit Train/Test-Evaluation",
                 "Finaler Prediction-Export mit geforderter Student-ID-Namenskonvention",
                 "Notebook und HTML-Report dokumentieren Pipeline und Modellauswahl",
-                "Validierungschecks fuer Header, Zeilenanzahl, fehlende Werte, Duplikate und run_id-Ausrichtung",
+                "Validierungschecks für Header, Zeilenanzahl, fehlende Werte, Duplikate und run_id-Ausrichtung",
             ]
         ),
         results: locList(
@@ -383,8 +390,8 @@ export const projects: Project[] = [
             ],
             [
                 "Bestes Hold-out-Modell erreichte etwa 1.19% normalisierte MAE und R2 von 0.9914",
-                "Gueltige io25m025_validate.txt-Datei fuer das ungelabelte Validierungsset generiert",
-                "Code, Notebook, HTML-Report, PDF-Instruktion und Prediction-Datei fuer die Abgabe paketiert",
+                "Gültige io25m025_validate.txt-Datei für das ungelabelte Validierungsset generiert",
+                "Code, Notebook, HTML-Report, PDF-Instruktion und Prediction-Datei für die Abgabe paketiert",
             ]
         ),
         tech: ["Python", "scikit-learn", "Pandas", "Jupyter", "Regression", "Feature Engineering"],
@@ -396,6 +403,7 @@ export const projects: Project[] = [
     {
         slug: "enterprise-self-hosted-infrastructure",
         category: "security-infrastructure",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Enterprise Self-Hosted Infrastructure & Privacy-First Analytics Setup",
@@ -403,46 +411,46 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, Tailscale reverse tunneling, automated deployments, observability, and disaster-ready backups.",
-            "Kernfunktionen des Webbetriebs von SaaS-Abhaengigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, Tailscale-Reverse-Tunneling, automatisierten Deployments, Observability und recovery-faehigen Backups migriert."
+            "Kernfunktionen des Webbetriebs von SaaS-Abhängigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, Tailscale-Reverse-Tunneling, automatisierten Deployments, Observability und recovery-fähigen Backups migriert."
         ),
         overview: loc(
             "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
-            "Diese Fallstudie dokumentiert den Wechsel von gemieteter Bequemlichkeit zu eigener Infrastruktur. Die Plattform haelt den oeffentlichen Ingress schlank in der Cloud, betreibt Applikations- und Analytics-Services auf privater Proxmox- und Debian-Infrastruktur und nutzt Automatisierung fuer Deployment, Monitoring und Recovery. Das Ergebnis ist nicht nur ein guenstigeres Hosting-Setup, sondern ein privacy-orientiertes Betriebsmodell, bei dem Datenpfade, Analytics, Logs und Backups unter direkter Kontrolle bleiben."
+            "Diese Fallstudie dokumentiert den Wechsel von gemieteter Bequemlichkeit zu eigener Infrastruktur. Die Plattform hält den öffentlichen Ingress schlank in der Cloud, betreibt Applikations- und Analytics-Services auf privater Proxmox- und Debian-Infrastruktur und nutzt Automatisierung für Deployment, Monitoring und Recovery. Das Ergebnis ist nicht nur ein günstigeres Hosting-Setup, sondern ein privacy-orientiertes Betriebsmodell, bei dem Datenpfade, Analytics, Logs und Backups unter direkter Kontrolle bleiben."
         ),
         problem: loc(
             "SaaS subscriptions and third-party analytics tools create recurring cost, external data dependency, and fragile measurement when browser extensions or network filters block common tracker domains. At the same time, exposing a private server directly from a residential network would leak the home IP address and expand the public attack surface.",
-            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und bruechige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig wuerde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die oeffentliche Angriffsoberflaeche vergroessern."
+            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
         ),
         solution: loc(
             "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host on Debian 12, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards web traffic over a private Tailscale tunnel to the local platform. Plausible Analytics runs self-hosted with PostgreSQL and ClickHouse, and the tracking script is served from a first-party analytics subdomain so visitor metrics remain useful without relying on a third-party tracker domain. GitHub Actions automates Next.js production deployments, while a daily Bash backup job captures database and Docker volume state with a seven-day retention policy.",
-            "Ich habe eine Hybrid-Cloud-Architektur aus gehaertetem oeffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet Web-Traffic ueber einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Plausible Analytics laeuft self-hosted mit PostgreSQL und ClickHouse; das Tracking-Skript wird ueber eine First-Party-Analytics-Subdomain ausgeliefert, damit Metriken nutzbar bleiben, ohne auf eine Third-Party-Tracker-Domain angewiesen zu sein. GitHub Actions automatisiert Next.js-Production-Deployments, waehrend ein taeglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
+            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet Web-Traffic über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Plausible Analytics läuft self-hosted mit PostgreSQL und ClickHouse; das Tracking-Skript wird über eine First-Party-Analytics-Subdomain ausgeliefert, damit Metriken nutzbar bleiben, ohne auf eine Third-Party-Tracker-Domain angewiesen zu sein. GitHub Actions automatisiert Next.js-Production-Deployments, während ein täglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
         ),
         architectureLabels: {
             node: loc("Visitor path", "Besucherpfad"),
             edge: loc("Private platform", "Private Plattform"),
-            cloud: loc("Public ingress", "Oeffentlicher Ingress"),
+            cloud: loc("Public ingress", "Öffentlicher Ingress"),
         },
         architecture: {
             node: loc(
                 "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics delivery inside an owner-controlled domain path instead of a generic third-party tracker host.",
-                "Besucher erreichen die Seite ueber kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigentuergesteuerten Domain-Pfad bleibt statt ueber einen generischen Third-Party-Tracker-Host zu laufen."
+                "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigentuergesteuerten Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
             ),
             edge: loc(
                 "A private Proxmox VE and Debian 12 platform runs Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, management, and backup automation.",
-                "Eine private Proxmox-VE- und Debian-12-Plattform betreibt Docker-Compose-Services fuer Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability, Management und Backup-Automation."
+                "Eine private Proxmox-VE- und Debian-12-Plattform betreibt Docker-Compose-Services für Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability, Management und Backup-Automation."
             ),
             cloud: loc(
                 "A low-cost public VPS provides hardened ingress, hides the residential IP address, and forwards traffic through Tailscale rather than requiring inbound ports on the local router.",
-                "Ein kostenguenstiger oeffentlicher VPS stellt gehaerteten Ingress bereit, verbirgt die private Wohnanschluss-IP und leitet Traffic ueber Tailscale weiter, statt eingehende Ports am lokalen Router zu benoetigen."
+                "Ein kostengünstiger öffentlicher VPS stellt gehärteten Ingress bereit, verbirgt die private Wohnanschluss-IP und leitet Traffic über Tailscale weiter, statt eingehende Ports am lokalen Router zu benötigen."
             ),
         },
         security: loc(
             "The platform reduces public exposure by separating ingress from the private runtime. Tailscale carries traffic over an encrypted overlay, UFW limits the VPS surface, Nginx Proxy Manager centralizes HTTPS routing, CrowdSec and Pi-hole add defensive layers, and the first-party Plausible setup avoids handing visitor analytics to a third-party tracking provider.",
-            "Die Plattform reduziert oeffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic ueber ein verschluesseltes Overlay, UFW begrenzt die VPS-Oberflaeche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergaenzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
+            "Die Plattform reduziert öffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic über ein verschlüsseltes Overlay, UFW begrenzt die VPS-Oberfläche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergaenzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
         ),
         reliability: loc(
             "A root cronjob runs a daily 3:00 AM dump-and-pack backup: PostgreSQL is dumped safely, ClickHouse is paused before volume extraction to prevent corruption, Docker named volumes are archived, the complete application state is compressed, and old snapshots are pruned through a seven-day rolling retention policy.",
-            "Ein Root-Cronjob startet taeglich um 03:00 Uhr ein Dump-and-Pack-Backup: PostgreSQL wird sauber gedumpt, ClickHouse vor der Volume-Extraktion pausiert, um Korruption zu vermeiden, Docker-Named-Volumes werden archiviert, der gesamte Applikationszustand wird komprimiert und alte Snapshots werden ueber eine Sieben-Tage-Retention bereinigt."
+            "Ein Root-Cronjob startet taeglich um 03:00 Uhr ein Dump-and-Pack-Backup: PostgreSQL wird sauber gedumpt, ClickHouse vor der Volume-Extraktion pausiert, um Korruption zu vermeiden, Docker-Named-Volumes werden archiviert, der gesamte Applikationszustand wird komprimiert und alte Snapshots werden über eine Sieben-Tage-Retention bereinigt."
         ),
         keyFeatures: locList(
             [
@@ -454,12 +462,12 @@ export const projects: Project[] = [
                 "Homepage-based local .lan dashboard mapping Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma, and Watchtower state",
             ],
             [
-                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert ueber analytics.elkaza.at als First-Party-Analytics-Pfad",
-                "Gehaerteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
-                "Tailscale-Reverse-Tunnel vom oeffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
-                "GitHub Actions CI/CD fuer automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
-                "Taegliche Bash-Dump-and-Pack-Backups fuer PostgreSQL, ClickHouse, Docker-Named-Volumes, Kompression und Sieben-Tage-Retention",
-                "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping fuer Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
+                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert über analytics.elkaza.at als First-Party-Analytics-Pfad",
+                "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
+                "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
+                "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
+                "Tägliche Bash-Dump-and-Pack-Backups für PostgreSQL, ClickHouse, Docker-Named-Volumes, Kompression und Sieben-Tage-Retention",
+                "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping für Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
             ]
         ),
         results: locList(
@@ -471,11 +479,11 @@ export const projects: Project[] = [
                 "Created a stronger portfolio proof point for owner-controlled infrastructure, secure networking, and automated operations",
             ],
             [
-                "Die Abhaengigkeit von kostenpflichtigen SaaS-Abonnements und Third-Party-Analytics-Domains reduziert",
+                "Die Abhängigkeit von kostenpflichtigen SaaS-Abonnements und Third-Party-Analytics-Domains reduziert",
                 "Besucher-Analytics unter eigener Kontrolle gehalten und gleichzeitig privacy-orientierte Messbarkeit bewahrt",
                 "Die private Wohnanschluss-IP verborgen und offene eingehende Ports am lokalen Router vermieden",
-                "Deployment, Monitoring, Updates und Backups in wiederholbare DevOps-Routinen ueberfuehrt",
-                "Einen staerkeren Portfolio-Nachweis fuer eigenkontrollierte Infrastruktur, sichere Netzwerke und automatisierten Betrieb geschaffen",
+                "Deployment, Monitoring, Updates und Backups in wiederholbare DevOps-Routinen überführt",
+                "Einen stärkeren Portfolio-Nachweis für eigenkontrollierte Infrastruktur, sichere Netzwerke und automatisierten Betrieb geschaffen",
             ]
         ),
         tech: [
@@ -508,6 +516,7 @@ export const projects: Project[] = [
     {
         slug: "rpi-ble-mqtt-gateway",
         category: "featured-aiot",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Secure BLE MQTT Monitoring Platform",
@@ -515,24 +524,24 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Built a Raspberry Pi 5 monitoring platform that ingests BLE sensor data, secures transport with TLS-enabled MQTT, processes events in Node-RED, stores metrics in InfluxDB, and visualizes them in Grafana.",
-            "Entwickelt eine Raspberry-Pi-5-Monitoring-Plattform, die BLE-Sensordaten erfasst, den Transport ueber TLS-abgesichertes MQTT schuetzt, Ereignisse in Node-RED verarbeitet, Metriken in InfluxDB speichert und in Grafana visualisiert."
+            "Entwickelt eine Raspberry-Pi-5-Monitoring-Plattform, die BLE-Sensordaten erfasst, den Transport über TLS-abgesichertes MQTT schuetzt, Ereignisse in Node-RED verarbeitet, Metriken in InfluxDB speichert und in Grafana visualisiert."
         ),
         overview: loc(
             "This project combines multiple course assignments into one end-to-end system that runs locally on a Raspberry Pi 5. Instead of presenting BLE, MQTT, dashboards, and storage as isolated exercises, the stack is framed as one deployable monitoring platform with secure messaging, observability, and GitHub-safe secret handling.",
-            "Dieses Projekt fuehrt mehrere Aufgaben in ein durchgaengiges System zusammen, das lokal auf einem Raspberry Pi 5 laeuft. Statt BLE, MQTT, Dashboards und Speicherung als getrennte Uebungen zu zeigen, ist der Stack als eine deploybare Monitoring-Plattform mit sicherer Nachrichtenuebertragung, Observability und GitHub-sicherem Secret-Handling aufgebaut."
+            "Dieses Projekt führt mehrere Aufgaben in ein durchgaengiges System zusammen, das lokal auf einem Raspberry Pi 5 läuft. Statt BLE, MQTT, Dashboards und Speicherung als getrennte Uebungen zu zeigen, ist der Stack als eine deploybare Monitoring-Plattform mit sicherer Nachrichtenübertragung, Observability und GitHub-sicherem Secret-Handling aufgebaut."
         ),
         problem: loc(
             "Separate homework-style steps do not communicate real engineering depth. The system needed to be combined into one coherent platform with secure transport, secret management, processing, storage, dashboards, and a repository structure that can be published safely.",
-            "Getrennte aufgabenartige Teilschritte vermitteln keine wirkliche Engineering-Tiefe. Das System musste zu einer zusammenhaengenden Plattform mit sicherem Transport, Secret-Management, Verarbeitung, Speicherung, Dashboards und einer sicher publizierbaren Repository-Struktur zusammengefuehrt werden."
+            "Getrennte aufgabenartige Teilschritte vermitteln keine wirkliche Engineering-Tiefe. Das System musste zu einer zusammenhaengenden Plattform mit sicherem Transport, Secret-Management, Verarbeitung, Speicherung, Dashboards und einer sicher publizierbaren Repository-Struktur zusammengeführt werden."
         ),
         solution: loc(
             "I combined the BLE collector, Mosquitto broker, Node-RED flow, InfluxDB, and Grafana into a Podman Compose stack on Raspberry Pi 5. MQTT traffic is protected with X.509 certificates, Grafana and InfluxDB credentials are injected through Podman secrets, Node-RED credentials are moved out of hardcoded config, and the public repository now ships with .env.example, .gitignore, and a reusable create_secrets.sh workflow.",
-            "Ich habe BLE-Collector, Mosquitto-Broker, Node-RED-Flow, InfluxDB und Grafana zu einem Podman-Compose-Stack auf dem Raspberry Pi 5 zusammengefuehrt. Der MQTT-Verkehr ist mit X.509-Zertifikaten geschuetzt, Grafana- und InfluxDB-Zugangsdaten werden ueber Podman-Secrets injiziert, Node-RED-Credentials aus der hartkodierten Konfiguration herausgeloest und das oeffentliche Repository mit .env.example, .gitignore und einem wiederverwendbaren create_secrets.sh-Workflow ausgestattet."
+            "Ich habe BLE-Collector, Mosquitto-Broker, Node-RED-Flow, InfluxDB und Grafana zu einem Podman-Compose-Stack auf dem Raspberry Pi 5 zusammengeführt. Der MQTT-Verkehr ist mit X.509-Zertifikaten geschuetzt, Grafana- und InfluxDB-Zugangsdaten werden über Podman-Secrets injiziert, Node-RED-Credentials aus der hartkodierten Konfiguration herausgelöst und das öffentliche Repository mit .env.example, .gitignore und einem wiederverwendbaren create_secrets.sh-Workflow ausgestattet."
         ),
         architecture: {
             node: loc(
                 "BLE sensor nodes publish environmental telemetry from ESP32-class devices into the local gateway path.",
-                "BLE-Sensorknoten senden Umgebungs-Telemetrie von ESP32-basierten Geraeten in den lokalen Gateway-Pfad."
+                "BLE-Sensorknoten senden Umgebungs-Telemetrie von ESP32-basierten Geräten in den lokalen Gateway-Pfad."
             ),
             edge: loc(
                 "Raspberry Pi 5 hosts containerized BLE ingestion, Mosquitto, Node-RED, InfluxDB, and Grafana as one local monitoring stack managed with Podman Compose.",
@@ -540,12 +549,12 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "The design is local-first and does not require a public cloud; processed telemetry can later be forwarded to remote dashboards or alerting systems if needed.",
-                "Das Design ist local-first und benoetigt keine Public Cloud; verarbeitete Telemetrie kann spaeter bei Bedarf an entfernte Dashboards oder Alerting-Systeme weitergeleitet werden."
+                "Das Design ist local-first und benötigt keine Public Cloud; verarbeitete Telemetrie kann später bei Bedarf an entfernte Dashboards oder Alerting-Systeme weitergeleitet werden."
             ),
         },
         security: loc(
             "Mutual TLS with X.509 certificates protects MQTT traffic, Podman secrets isolate admin passwords and token keys, and the GitHub repository excludes local env files, generated tokens, and private certificate material.",
-            "Gegenseitiges TLS mit X.509-Zertifikaten schuetzt den MQTT-Verkehr, Podman-Secrets kapseln Admin-Passwoerter und Token-Schluessel, und das GitHub-Repository schliesst lokale Env-Dateien, generierte Tokens und privates Zertifikatsmaterial aus."
+            "Gegenseitiges TLS mit X.509-Zertifikaten schuetzt den MQTT-Verkehr, Podman-Secrets kapseln Admin-Passwoerter und Token-Schlüssel, und das GitHub-Repository schliesst lokale Env-Dateien, generierte Tokens und privates Zertifikatsmaterial aus."
         ),
         reliability: loc(
             "Decoupled services, restart policies, health checks, and a repeatable secret bootstrap script make the platform easier to redeploy after service failures, host changes, or fresh Pi setups.",
@@ -572,9 +581,9 @@ export const projects: Project[] = [
                 "Created a stronger portfolio signal for systems integration, observability, and secure deployment on Raspberry Pi",
             ],
             [
-                "Mehrere getrennte Aufgaben in eine zusammenhaengende Monitoring-Plattform ueberfuehrt",
-                "Ein oeffentliches GitHub-Repository veroeffentlicht, ohne Secrets oder privates Key-Material mitzuliefern",
-                "Ein staerkeres Portfolio-Signal fuer Systemintegration, Observability und sicheres Deployment auf dem Raspberry Pi geschaffen",
+                "Mehrere getrennte Aufgaben in eine zusammenhaengende Monitoring-Plattform überführt",
+                "Ein öffentliches GitHub-Repository veröffentlicht, ohne Secrets oder privates Key-Material mitzuliefern",
+                "Ein stärkeres Portfolio-Signal für Systemintegration, Observability und sicheres Deployment auf dem Raspberry Pi geschaffen",
             ]
         ),
         tech: ["Raspberry Pi 5", "Python", "Podman Compose", "Mosquitto MQTT", "Node-RED", "InfluxDB", "Grafana", "BLE", "TLS", "X.509"],
@@ -593,6 +602,7 @@ export const projects: Project[] = [
     {
         slug: "iot-sensor-data-pipeline",
         category: "platform-component",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Telemetry Processing and Dashboard Layer",
@@ -600,11 +610,11 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Built the Node-RED, InfluxDB, and Grafana layer that transforms MQTT telemetry into stored metrics and operator-facing dashboards.",
-            "Entwickelt die Node-RED-, InfluxDB- und Grafana-Schicht, die MQTT-Telemetrie in gespeicherte Metriken und operatornahe Dashboards ueberfuehrt."
+            "Entwickelt die Node-RED-, InfluxDB- und Grafana-Schicht, die MQTT-Telemetrie in gespeicherte Metriken und operatornahe Dashboards überführt."
         ),
         overview: loc(
             "This project is the observability and analytics layer inside the wider BLE monitoring platform. It focuses on how telemetry is normalized, stored, provisioned into dashboards, and made useful for operators instead of remaining raw MQTT payloads.",
-            "Dieses Projekt bildet die Observability- und Analytics-Schicht innerhalb der groesseren BLE-Monitoring-Plattform. Der Fokus liegt darauf, wie Telemetrie normalisiert, gespeichert, in Dashboards provisioniert und fuer Betreiber nutzbar gemacht wird, statt als rohe MQTT-Payloads liegenzubleiben."
+            "Dieses Projekt bildet die Observability- und Analytics-Schicht innerhalb der größeren BLE-Monitoring-Plattform. Der Fokus liegt darauf, wie Telemetrie normalisiert, gespeichert, in Dashboards provisioniert und für Betreiber nutzbar gemacht wird, statt als rohe MQTT-Payloads liegenzubleiben."
         ),
         problem: loc(
             "MQTT messages alone do not provide operational visibility. The platform still needs schema normalization, durable storage, dashboard provisioning, and a clean way to share access tokens between services without hardcoding secrets.",
@@ -612,12 +622,12 @@ export const projects: Project[] = [
         ),
         solution: loc(
             "I implemented a local analytics stack in which Node-RED subscribes to MQTT, reshapes telemetry into a stable measurement schema, writes it to InfluxDB, and exposes dashboards through Grafana. Token handoff between InfluxDB, Node-RED, and Grafana is handled through encrypted files and Podman secrets rather than plaintext values in the repository.",
-            "Ich habe einen lokalen Analytics-Stack umgesetzt, in dem Node-RED MQTT abonniert, Telemetrie in ein stabiles Messschema ueberfuehrt, in InfluxDB schreibt und Dashboards ueber Grafana bereitstellt. Die Token-Uebergabe zwischen InfluxDB, Node-RED und Grafana erfolgt ueber verschluesselte Dateien und Podman-Secrets statt ueber Klartextwerte im Repository."
+            "Ich habe einen lokalen Analytics-Stack umgesetzt, in dem Node-RED MQTT abonniert, Telemetrie in ein stabiles Messschema überführt, in InfluxDB schreibt und Dashboards über Grafana bereitstellt. Die Token-Übergabe zwischen InfluxDB, Node-RED und Grafana erfolgt über verschlüsselte Dateien und Podman-Secrets statt über Klartextwerte im Repository."
         ),
         architecture: {
             node: loc(
                 "Sensor events arrive from the BLE and MQTT path as the input stream for downstream processing.",
-                "Sensoreignisse kommen ueber den BLE- und MQTT-Pfad als Eingabestrom fuer die nachgelagerte Verarbeitung an."
+                "Sensoreignisse kommen über den BLE- und MQTT-Pfad als Eingabestrom für die nachgelagerte Verarbeitung an."
             ),
             edge: loc(
                 "Raspberry Pi 5 runs Node-RED, InfluxDB, and Grafana as the local analytics and dashboard layer of the monitoring platform.",
@@ -625,12 +635,12 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "The stack is designed to stay useful without external cloud dependencies, while leaving room for later alerting or remote visualization if needed.",
-                "Der Stack ist so aufgebaut, dass er auch ohne externe Cloud-Abhaengigkeiten nuetzlich bleibt und gleichzeitig Raum fuer spaeteres Alerting oder entfernte Visualisierung laesst."
+                "Der Stack ist so aufgebaut, dass er auch ohne externe Cloud-Abhängigkeiten nützlich bleibt und gleichzeitig Raum für späteres Alerting oder entfernte Visualisierung laesst."
             ),
         },
         security: loc(
             "InfluxDB tokens are generated inside the stack, encrypted before being shared through mounted volumes, and decrypted only inside the services that need them.",
-            "InfluxDB-Tokens werden innerhalb des Stacks erzeugt, vor der Weitergabe ueber gemountete Volumes verschluesselt und nur in den Services entschluesselt, die sie wirklich benoetigen."
+            "InfluxDB-Tokens werden innerhalb des Stacks erzeugt, vor der Weitergabe über gemountete Volumes verschlüsselt und nur in den Services entschlüsselt, die sie wirklich benötigen."
         ),
         reliability: loc(
             "Provisioned dashboards, local persistence, and decoupled processing make the analytics layer repeatable after rebuilds and easier to inspect during troubleshooting.",
@@ -644,10 +654,10 @@ export const projects: Project[] = [
                 "Encrypted token exchange between analytics services",
             ],
             [
-                "Node-RED-Flow fuer Normalisierung und Routing der MQTT-Telemetrie",
-                "InfluxDB-Setup und Token-Erzeugung waehrend der Container-Initialisierung",
+                "Node-RED-Flow für Normalisierung und Routing der MQTT-Telemetrie",
+                "InfluxDB-Setup und Token-Erzeugung während der Container-Initialisierung",
                 "Grafana-Datasource- und Dashboard-Provisionierung aus versionierten Dateien",
-                "Verschluesselter Token-Austausch zwischen Analytics-Services",
+                "Verschlüsselter Token-Austausch zwischen Analytics-Services",
             ]
         ),
         results: locList(
@@ -672,6 +682,7 @@ export const projects: Project[] = [
     {
         slug: "ble-edge-gateway",
         category: "platform-component",
+        status: "implemented",
         year: "2026",
         title: loc(
             "Containerized BLE Edge Gateway",
@@ -679,28 +690,28 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Built a containerized BLE gateway on embedded Linux to bridge sensor data into a reusable edge integration layer.",
-            "Entwickelt ein containerisiertes BLE-Gateway auf Embedded Linux, um Sensordaten in eine wiederverwendbare Edge-Integrationsschicht zu ueberfuehren."
+            "Entwickelt ein containerisiertes BLE-Gateway auf Embedded Linux, um Sensordaten in eine wiederverwendbare Edge-Integrationsschicht zu überfuehren."
         ),
         overview: loc(
             "This gateway project focuses on the difficult middle layer between embedded devices and backend services. The main engineering work is not the sensor itself, but the reliable Linux-side integration with BlueZ, D-Bus, and container boundaries.",
-            "Dieses Gateway-Projekt fokussiert die anspruchsvolle Mittelschicht zwischen Embedded-Geraeten und Backend-Services. Die eigentliche Ingenieursarbeit liegt nicht im Sensor selbst, sondern in der zuverlaessigen Linux-Integration mit BlueZ, D-Bus und Containergrenzen."
+            "Dieses Gateway-Projekt fokussiert die anspruchsvolle Mittelschicht zwischen Embedded-Geräten und Backend-Services. Die eigentliche Ingenieursarbeit liegt nicht im Sensor selbst, sondern in der zuverlässigen Linux-Integration mit BlueZ, D-Bus und Containergrenzen."
         ),
         problem: loc(
             "BLE payloads are awkward to operationalize on embedded Linux when host Bluetooth access, D-Bus, and container isolation all need to coexist.",
-            "BLE-Payloads lassen sich auf Embedded Linux nur schwer operationalisieren, wenn Host-Bluetooth-Zugriff, D-Bus und Container-Isolation gleichzeitig funktionieren muessen."
+            "BLE-Payloads lassen sich auf Embedded Linux nur schwer operationalisieren, wenn Host-Bluetooth-Zugriff, D-Bus und Container-Isolation gleichzeitig funktionieren müssen."
         ),
         solution: loc(
             "I built a Podman-based Python gateway that connects to an ESP32 BLE sensor, parses environmental telemetry, and emits normalized timestamped readings. The container is configured to access the host Bluetooth stack through BlueZ and D-Bus without turning the solution into a single ad hoc script.",
-            "Ich habe ein Podman-basiertes Python-Gateway gebaut, das sich mit einem ESP32-BLE-Sensor verbindet, Umweltdaten parst und normalisierte zeitgestempelte Messwerte ausgibt. Der Container greift ueber BlueZ und D-Bus auf den Host-Bluetooth-Stack zu, ohne dass die Loesung zu einem einmaligen Skript verkommt."
+            "Ich habe ein Podman-basiertes Python-Gateway gebaut, das sich mit einem ESP32-BLE-Sensor verbindet, Umweltdaten parst und normalisierte zeitgestempelte Messwerte ausgibt. Der Container greift über BlueZ und D-Bus auf den Host-Bluetooth-Stack zu, ohne dass die Lösung zu einem einmaligen Skript verkommt."
         ),
         architecture: {
             node: loc(
                 "An ESP32 BLE sensor publishes environmental readings using a lightweight custom device profile.",
-                "Ein ESP32-BLE-Sensor sendet Umweltdaten ueber ein leichtgewichtiges Geraeteprofil."
+                "Ein ESP32-BLE-Sensor sendet Umweltdaten über ein leichtgewichtiges Geräteprofil."
             ),
             edge: loc(
                 "A Rock4 SE runs a containerized Python gateway that reads BLE data through BlueZ and D-Bus on the host.",
-                "Ein Rock4 SE betreibt ein containerisiertes Python-Gateway, das BLE-Daten ueber BlueZ und D-Bus auf dem Host liest."
+                "Ein Rock4 SE betreibt ein containerisiertes Python-Gateway, das BLE-Daten über BlueZ und D-Bus auf dem Host liest."
             ),
             cloud: loc(
                 "The output is designed to feed downstream MQTT and analytics layers rather than stay trapped inside the gateway host.",
@@ -709,7 +720,7 @@ export const projects: Project[] = [
         },
         security: loc(
             "Container boundaries reduce blast radius, while Bluetooth access is limited to the specific service that needs BlueZ and D-Bus integration.",
-            "Containergrenzen reduzieren den Schadensradius, waehrend Bluetooth-Zugriff auf den Service begrenzt bleibt, der BlueZ- und D-Bus-Integration wirklich benoetigt."
+            "Containergrenzen reduzieren den Schadensradius, während Bluetooth-Zugriff auf den Service begrenzt bleibt, der BlueZ- und D-Bus-Integration wirklich benötigt."
         ),
         reliability: loc(
             "Retry handling and timestamped parsing turn the gateway into a long-running edge component rather than a brittle development script.",
@@ -724,9 +735,9 @@ export const projects: Project[] = [
             ],
             [
                 "BlueZ- und D-Bus-Integration aus einer containerisierten Umgebung",
-                "Python-Telemetrieparser fuer BLE-Umweltpayloads",
-                "Wiederholbare Build- und Start-Skripte fuer Embedded-Linux-Deployment",
-                "Normalisierte zeitgestempelte Ausgabe fuer nachgelagerte Systeme",
+                "Python-Telemetrieparser für BLE-Umweltpayloads",
+                "Wiederholbare Build- und Start-Skripte für Embedded-Linux-Deployment",
+                "Normalisierte zeitgestempelte Ausgabe für nachgelagerte Systeme",
             ]
         ),
         results: locList(
@@ -736,9 +747,9 @@ export const projects: Project[] = [
                 "Created the foundation for the secured MQTT gateway",
             ],
             [
-                "Physische BLE-Sensorik in einen wiederverwendbaren Software-Integrationspunkt ueberfuehrt",
+                "Physische BLE-Sensorik in einen wiederverwendbaren Software-Integrationspunkt überführt",
                 "Linux-seitiges Systems Engineering jenseits reiner Firmware demonstriert",
-                "Die Grundlage fuer das abgesicherte MQTT-Gateway geschaffen",
+                "Die Grundlage für das abgesicherte MQTT-Gateway geschaffen",
             ]
         ),
         tech: ["Python", "Podman", "BlueZ", "D-Bus", "BLE", "Rock4 SE"],
@@ -751,6 +762,7 @@ export const projects: Project[] = [
     {
         slug: "freertos-sensor",
         category: "platform-component",
+        status: "implemented",
         year: "2025",
         title: loc(
             "Real-Time Environmental Sensor Node",
@@ -758,37 +770,37 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Implemented a FreeRTOS-based sensor node that separates sensing, connectivity, and telemetry tasks for predictable real-time behavior.",
-            "Implementiert einen FreeRTOS-basierten Sensorknoten, der Erfassung, Konnektivitaet und Telemetrie in getrennte Tasks aufteilt, um vorhersagbares Echtzeitverhalten zu erreichen."
+            "Implementiert einen FreeRTOS-basierten Sensorknoten, der Erfassung, Konnektivität und Telemetrie in getrennte Tasks aufteilt, um vorhersagbares Echtzeitverhalten zu erreichen."
         ),
         overview: loc(
             "This project reframes a small sensor build as embedded systems engineering. The focus is not just reading a value from a sensor, but designing firmware that can scale into a larger AIoT stack without blocking loops and timing drift.",
-            "Dieses Projekt rahmt einen kleinen Sensoraufbau als Embedded-Systems-Engineering neu ein. Der Fokus liegt nicht nur auf dem Auslesen eines Sensors, sondern auf Firmware, die sich ohne blockierende Loops und Timing-Drift in einen groesseren AIoT-Stack integrieren laesst."
+            "Dieses Projekt rahmt einen kleinen Sensoraufbau als Embedded-Systems-Engineering neu ein. Der Fokus liegt nicht nur auf dem Auslesen eines Sensors, sondern auf Firmware, die sich ohne blockierende Loops und Timing-Drift in einen größeren AIoT-Stack integrieren laesst."
         ),
         problem: loc(
             "Simple Arduino-style loops become fragile once sensor timing, wireless communication, and user interaction need to happen concurrently.",
-            "Einfache Arduino-Loops werden fragil, sobald Sensor-Timing, Funkkommunikation und Benutzereingaben gleichzeitig stattfinden muessen."
+            "Einfache Arduino-Loops werden fragil, sobald Sensor-Timing, Funkkommunikation und Benutzereingaben gleichzeitig stattfinden müssen."
         ),
         solution: loc(
             "I designed a FreeRTOS architecture with dedicated tasks for sensing, connectivity, and telemetry, using queue-based communication between execution domains. This makes the node a reusable building block for future BLE, MQTT, and TinyML extensions.",
-            "Ich habe eine FreeRTOS-Architektur mit dedizierten Tasks fuer Sensorik, Konnektivitaet und Telemetrie entworfen und die Ausfuehrungsbereiche ueber Queues gekoppelt. Damit wird der Knoten zu einem wiederverwendbaren Baustein fuer spaetere BLE-, MQTT- und TinyML-Erweiterungen."
+            "Ich habe eine FreeRTOS-Architektur mit dedizierten Tasks für Sensorik, Konnektivität und Telemetrie entworfen und die Ausführungsbereiche über Queues gekoppelt. Damit wird der Knoten zu einem wiederverwendbaren Baustein für spätere BLE-, MQTT- und TinyML-Erweiterungen."
         ),
         architecture: {
             node: loc(
                 "An ESP32-S3 acquires environmental data and runs separate RTOS tasks for sensing, connectivity, and telemetry handling.",
-                "Ein ESP32-S3 erfasst Umweltdaten und betreibt getrennte RTOS-Tasks fuer Sensorik, Konnektivitaet und Telemetrie."
+                "Ein ESP32-S3 erfasst Umweltdaten und betreibt getrennte RTOS-Tasks für Sensorik, Konnektivität und Telemetrie."
             ),
             edge: loc(
                 "An edge receiver or gateway ingests telemetry so the device does not need to expose a complex external surface itself.",
-                "Ein Edge-Receiver oder Gateway nimmt die Telemetrie auf, sodass das Geraet selbst keine komplexe externe Oberflaeche anbieten muss."
+                "Ein Edge-Receiver oder Gateway nimmt die Telemetrie auf, sodass das Gerät selbst keine komplexe externe Oberfläche anbieten muss."
             ),
             cloud: loc(
                 "Normalized measurements can be forwarded to dashboards, storage, or AI pipelines after they leave the node through the gateway path.",
-                "Normalisierte Messwerte koennen nach Verlassen des Knotens ueber den Gateway-Pfad an Dashboards, Speicher oder KI-Pipelines weitergeleitet werden."
+                "Normalisierte Messwerte koennen nach Verlassen des Knotens über den Gateway-Pfad an Dashboards, Speicher oder KI-Pipelines weitergeleitet werden."
             ),
         },
         security: loc(
             "The node is designed to publish through an authenticated gateway path instead of acting like a directly exposed network service.",
-            "Der Knoten ist darauf ausgelegt, ueber einen authentifizierten Gateway-Pfad zu publizieren, statt selbst als direkt exponierter Netzwerkdienst aufzutreten."
+            "Der Knoten ist darauf ausgelegt, über einen authentifizierten Gateway-Pfad zu publizieren, statt selbst als direkt exponierter Netzwerkdienst aufzutreten."
         ),
         reliability: loc(
             "Task separation and queue-based communication keep sensor sampling stable under concurrent load and reduce the risk of timing-related faults.",
@@ -802,10 +814,10 @@ export const projects: Project[] = [
                 "Reusable embedded pattern for future TinyML and BLE extensions",
             ],
             [
-                "FreeRTOS-Task-Isolation fuer Sensorik, Konnektivitaet und Telemetrie",
-                "Queue-basierte Kommunikation zwischen Ausfuehrungsbereichen",
+                "FreeRTOS-Task-Isolation für Sensorik, Konnektivität und Telemetrie",
+                "Queue-basierte Kommunikation zwischen Ausführungsbereichen",
                 "Vorhersagbares Sampling-Verhalten unter gleichzeitiger Systemlast",
-                "Wiederverwendbares Embedded-Muster fuer spaetere TinyML- und BLE-Erweiterungen",
+                "Wiederverwendbares Embedded-Muster für spätere TinyML- und BLE-Erweiterungen",
             ]
         ),
         results: locList(
@@ -817,7 +829,7 @@ export const projects: Project[] = [
             [
                 "Den Schritt von einem blockierenden Prototypen zu einer strukturierten Embedded-Architektur gemacht",
                 "Die Timing-Konsistenz bei der Telemetrieerfassung verbessert",
-                "Eine staerkere Grundlage fuer kuenftige Sensorfusion geschaffen",
+                "Eine stärkere Grundlage für künftige Sensorfusion geschaffen",
             ]
         ),
         tech: ["ESP32-S3", "C++", "FreeRTOS", "MQTT", "BLE"],
@@ -828,6 +840,7 @@ export const projects: Project[] = [
     {
         slug: "vienna-fortress",
         category: "security-infrastructure",
+        status: "in-progress",
         year: "2026",
         title: loc(
             "The Vienna Fortress",
@@ -835,24 +848,24 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Built a hardened Proxmox and Docker operations platform that combines layered security, real-time observability, reverse proxying, and automated container lifecycle management.",
-            "Eine gehaertete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
+            "Eine gehärtete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
         ),
         overview: loc(
             "The Vienna Fortress turns a basic private infrastructure lab into a more production-minded internal platform. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
-            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane fuer Self-Hosted-Services."
+            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane für Self-Hosted-Services."
         ),
         problem: loc(
             "Deploying individual tools is easy; building a secure and operable platform is harder. The environment needed layered protection, live health visibility, reliable log access, and a clean way to surface Proxmox state inside a frontend dashboard without brittle ad hoc scripts.",
-            "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlaesslichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
+            "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
         ),
         solution: loc(
             "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, and internal service discovery. I also debugged the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services fuer Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Uebersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards debuggt, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlaesslich dargestellt werden."
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Übersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards debuggt, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
         ),
         architecture: {
             node: loc(
                 "Admins and users consume services through Homepage and reverse-proxied entry points, while the dashboard layer surfaces service and virtualization state in one place.",
-                "Admins und Nutzer greifen ueber Homepage und reverse-proxied Einstiegspunkte auf Services zu, waehrend die Dashboard-Schicht Service- und Virtualisierungszustand an einer Stelle sichtbar macht."
+                "Admins und Nutzer greifen über Homepage und reverse-proxied Einstiegspunkte auf Services zu, während die Dashboard-Schicht Service- und Virtualisierungszustand an einer Stelle sichtbar macht."
             ),
             edge: loc(
                 "A Proxmox 9.1 host runs Debian 12 workloads and Docker services including Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage.",
@@ -860,16 +873,16 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "The design is local-first and does not depend on a public cloud. It can later be extended with secure remote access or replicated services without redesigning the service plane.",
-                "Das Design ist local-first und benoetigt keine Public Cloud. Es kann spaeter mit sicherem Fernzugriff oder replizierten Services erweitert werden, ohne die Service-Ebene neu entwerfen zu muessen."
+                "Das Design ist local-first und benötigt keine Public Cloud. Es kann später mit sicherem Fernzugriff oder replizierten Services erweitert werden, ohne die Service-Ebene neu entwerfen zu müssen."
             ),
         },
         security: loc(
             "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec adds IPS-style detection and remediation, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
-            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole uebernimmt DNS-Filterung, CrowdSec ergaenzt IPS-aehnliche Erkennung und Gegenmassnahmen, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
+            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole übernimmt DNS-Filterung, CrowdSec ergaenzt IPS-aehnliche Erkennung und Gegenmassnahmen, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
         ),
         reliability: loc(
             "Netdata, Uptime Kuma, and Dozzle provide metrics, health checks, and log visibility, while Watchtower automates the container update lifecycle and reduces manual drift across long-running services.",
-            "Netdata, Uptime Kuma und Dozzle liefern Metriken, Health Checks und Log-Sichtbarkeit, waehrend Watchtower den Container-Update-Lifecycle automatisiert und manuellen Drift ueber langlebige Services hinweg reduziert."
+            "Netdata, Uptime Kuma und Dozzle liefern Metriken, Health Checks und Log-Sichtbarkeit, während Watchtower den Container-Update-Lifecycle automatisiert und manuellen Drift über langlebige Services hinweg reduziert."
         ),
         keyFeatures: locList(
             [
@@ -881,10 +894,10 @@ export const projects: Project[] = [
             ],
             [
                 "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung und CrowdSec-basierter Intrusion Response",
-                "Reverse-proxied Service-Zugriff ueber Nginx Proxy Manager",
-                "Netdata, Uptime Kuma und Dozzle fuer Metriken, Uptime-Checks und Live-Container-Logs",
-                "Eine React-basierte Proxmox-API-Integration fuer Dashboard-Sichtbarkeit debuggt und stabilisiert",
-                "Ein Watchtower-gesteuerter Container-Update-Workflow fuer die Regelwartung",
+                "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
+                "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
+                "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit debuggt und stabilisiert",
+                "Ein Watchtower-gesteuerter Container-Update-Workflow für die Regelwartung",
             ]
         ),
         results: locList(
@@ -896,11 +909,11 @@ export const projects: Project[] = [
                 "Created a scalable baseline for adding future internal tools without reworking the control plane",
             ],
             [
-                "Ein generisches privates Lab in eine gehaertete interne Plattform mit klareren Betriebsgrenzen ueberfuehrt",
+                "Ein generisches privates Lab in eine gehärtete interne Plattform mit klareren Betriebsgrenzen überführt",
                 "Echtzeit-Sicht auf Service-Zustand, Metriken und Logs geschaffen",
-                "Ein schichtuebergreifendes Integrationsproblem zwischen Frontend-Code und der Proxmox-API geloest",
+                "Ein schichtübergreifendes Integrationsproblem zwischen Frontend-Code und der Proxmox-API gelöst",
                 "Den Wartungsaufwand durch automatisierte Container-Updates reduziert",
-                "Eine skalierbare Basis fuer weitere interne Tools geschaffen, ohne die Control Plane neu aufbauen zu muessen",
+                "Eine skalierbare Basis für weitere interne Tools geschaffen, ohne die Control Plane neu aufbauen zu müssen",
             ]
         ),
         tech: ["Debian 12", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
@@ -914,48 +927,49 @@ export const projects: Project[] = [
     {
         slug: "home-security-lab",
         category: "security-infrastructure",
+        status: "in-progress",
         year: "2026",
         title: loc(
             "Hardened Hybrid-Cloud Private Network",
-            "Gehaertetes Hybrid-Cloud-Privatnetzwerk"
+            "Gehärtetes Hybrid-Cloud-Privatnetzwerk"
         ),
         oneLiner: loc(
             "Phase 1 completed: designed a zero-trust private network across on-premises, cloud, and roaming endpoints with SSH hardening, DNS privacy, and secure remote transit.",
-            "Phase 1 abgeschlossen: Aufbau eines Zero-Trust-Privatnetzwerks ueber On-Premises-, Cloud- und mobile Endpunkte mit SSH-Haertung, DNS-Privatsphaere und sicherem Remote-Transit."
+            "Phase 1 abgeschlossen: Aufbau eines Zero-Trust-Privatnetzwerks über On-Premises-, Cloud- und mobile Endpunkte mit SSH-Haertung, DNS-Privatsphaere und sicherem Remote-Transit."
         ),
         overview: loc(
             "This project shows the transition from a basic private lab to a hardened hybrid-cloud architecture. The focus is on zero-trust access, private DNS resolution, interface-aware firewalling, and an operations-friendly foundation for distributed services and later edge workloads.",
-            "Dieses Projekt zeigt den Uebergang von einem einfachen privaten Lab zu einer gehaerteten Hybrid-Cloud-Architektur. Im Fokus stehen Zero-Trust-Zugriff, private DNS-Aufloesung, interface-basierte Firewall-Regeln und ein betriebsfaehiger Unterbau fuer verteilte Services und spaetere Edge-Workloads."
+            "Dieses Projekt zeigt den Übergang von einem einfachen privaten Lab zu einer gehärteten Hybrid-Cloud-Architektur. Im Fokus stehen Zero-Trust-Zugriff, private DNS-Auflösung, interface-basierte Firewall-Regeln und ein betriebsfähiger Unterbau für verteilte Services und spätere Edge-Workloads."
         ),
         problem: loc(
             "Distributed infrastructure across private lab systems, cloud servers, and travel devices quickly becomes hard to secure. Without key-only administration, private DNS, and consistent remote access patterns, the attack surface grows and operations become brittle.",
-            "Verteilte Infrastruktur ueber private Lab-Systeme, Cloud-Server und Reisegeraete hinweg wird schnell schwer abzusichern. Ohne schluesselbasierte Administration, private DNS-Aufloesung und konsistente Fernzugriffsmuster waechst die Angriffsoberflaeche und der Betrieb wird fragil."
+            "Verteilte Infrastruktur über private Lab-Systeme, Cloud-Server und Reisegeräte hinweg wird schnell schwer abzusichern. Ohne schlüsselbasierte Administration, private DNS-Auflösung und konsistente Fernzugriffsmuster wächst die Angriffsoberfläche und der Betrieb wird fragil."
         ),
         solution: loc(
             "I implemented a Tailscale-based private overlay connecting roaming workstations, a VPS, and a Debian VM on Proxmox. SSH was hardened around ED25519 keys and passwordless access, Pi-hole and Unbound provide private recursive DNS, and interface-aware UFW rules plus exit-node routing make the environment safer and more usable across locations.",
-            "Ich habe ein Tailscale-basiertes privates Overlay umgesetzt, das mobile Workstations, einen VPS und eine Debian-VM auf Proxmox verbindet. SSH wurde auf ED25519-Schluessel und passwortlose Anmeldung gehaertet, Pi-hole und Unbound liefern private rekursive DNS-Aufloesung, und interface-basierte UFW-Regeln plus Exit-Node-Routing machen die Umgebung sicherer und ueber Standorte hinweg besser nutzbar."
+            "Ich habe ein Tailscale-basiertes privates Overlay umgesetzt, das mobile Workstations, einen VPS und eine Debian-VM auf Proxmox verbindet. SSH wurde auf ED25519-Schlüssel und passwortlose Anmeldung gehärtet, Pi-hole und Unbound liefern private rekursive DNS-Auflösung, und interface-basierte UFW-Regeln plus Exit-Node-Routing machen die Umgebung sicherer und über Standorte hinweg besser nutzbar."
         ),
         architecture: {
             node: loc(
                 "Roaming laptops and other client devices join the private overlay as authenticated nodes and use stable private addressing plus shared SSH aliases for consistent administration.",
-                "Mobile Laptops und andere Client-Geraete treten dem privaten Overlay als authentifizierte Nodes bei und nutzen stabile private Adressen plus gemeinsame SSH-Aliasse fuer konsistente Administration."
+                "Mobile Laptops und andere Client-Geräte treten dem privaten Overlay als authentifizierte Nodes bei und nutzen stabile private Adressen plus gemeinsame SSH-Aliasse für konsistente Administration."
             ),
             edge: loc(
                 "A Debian VM on a Proxmox host provides the private operations anchor: hardened SSH, Pi-hole, Unbound, exit-node capability, and the firewall rules that separate trusted overlay traffic from other interfaces.",
-                "Eine Debian-VM auf einem Proxmox-Host bildet den privaten Betriebsanker: gehaertetes SSH, Pi-hole, Unbound, Exit-Node-Funktion und Firewall-Regeln, die vertrauenswuerdigen Overlay-Traffic von anderen Interfaces trennen."
+                "Eine Debian-VM auf einem Proxmox-Host bildet den privaten Betriebsanker: gehärtetes SSH, Pi-hole, Unbound, Exit-Node-Funktion und Firewall-Regeln, die vertrauenswürdigen Overlay-Traffic von anderen Interfaces trennen."
             ),
             cloud: loc(
                 "A VPS participates in the same private overlay, extending the network into the cloud without turning the management plane into a broadly exposed public surface.",
-                "Ein VPS nimmt am selben privaten Overlay teil und erweitert das Netz in die Cloud, ohne die Management-Ebene zu einer breit exponierten oeffentlichen Flaeche zu machen."
+                "Ein VPS nimmt am selben privaten Overlay teil und erweitert das Netz in die Cloud, ohne die Management-Ebene zu einer breit exponierten öffentlichen Fläche zu machen."
             ),
         },
         security: loc(
             "The design uses key-only SSH access with ED25519, disables password-based administration paths, avoids dependency on public DNS resolvers, and minimizes direct exposure. Private recursive DNS through Unbound and interface-aware firewall rules reduce leakage and attack surface.",
-            "Das Design nutzt rein schluesselbasierten SSH-Zugriff mit ED25519, deaktiviert passwortbasierte Administrationspfade, vermeidet Abhaengigkeit von oeffentlichen DNS-Resolvern und minimiert direkte Exponierung. Private rekursive DNS-Aufloesung ueber Unbound und interface-basierte Firewall-Regeln reduzieren Datenabfluss und Angriffsoberflaeche."
+            "Das Design nutzt rein schlüsselbasierten SSH-Zugriff mit ED25519, deaktiviert passwortbasierte Administrationspfade, vermeidet Abhängigkeit von öffentlichen DNS-Resolvern und minimiert direkte Exponierung. Private rekursive DNS-Auflösung über Unbound und interface-basierte Firewall-Regeln reduzieren Datenabfluss und Angriffsoberfläche."
         ),
         reliability: loc(
             "Stable private IPs, shared SSH configuration, tuned IP forwarding for overlay traffic, and lightweight host monitoring with btop make the environment easier to operate across locations. Service separation on Proxmox keeps the control plane easier to change and maintain.",
-            "Stabile private IPs, gemeinsame SSH-Konfiguration, optimiertes IP-Forwarding fuer Overlay-Traffic und leichtgewichtiges Host-Monitoring mit btop machen die Umgebung ueber Standorte hinweg leichter betreibbar. Die Service-Trennung auf Proxmox haelt die Control Plane leichter aenderbar und wartbar."
+            "Stabile private IPs, gemeinsame SSH-Konfiguration, optimiertes IP-Forwarding für Overlay-Traffic und leichtgewichtiges Host-Monitoring mit btop machen die Umgebung über Standorte hinweg leichter betreibbar. Die Service-Trennung auf Proxmox hält die Control Plane leichter änderbar und wartbar."
         ),
         keyFeatures: locList(
             [
@@ -967,10 +981,10 @@ export const projects: Project[] = [
             ],
             [
                 "ED25519-basiertes SSH-Hardening mit passwortloser Administration",
-                "Zero-Trust-Tailscale-Overlay ueber mobile Workstations, Cloud-VPS und private On-Premises-Infrastruktur",
-                "Pi-hole mit Unbound fuer vollstaendige rekursive DNS-Aufloesung statt Third-Party-Resolvern",
-                "Exit-Node-Routing und IP-Forwarding fuer verschluesselten Transit in unsicheren Netzen",
-                "Interface-basierte UFW-Policy, die vertrauenswuerdigen Overlay-Traffic erlaubt und anderen Ingress einschraenkt",
+                "Zero-Trust-Tailscale-Overlay über mobile Workstations, Cloud-VPS und private On-Premises-Infrastruktur",
+                "Pi-hole mit Unbound für vollständige rekursive DNS-Auflösung statt Third-Party-Resolvern",
+                "Exit-Node-Routing und IP-Forwarding für verschlüsselten Transit in unsicheren Netzen",
+                "Interface-basierte UFW-Policy, die vertrauenswürdigen Overlay-Traffic erlaubt und anderen Ingress einschraenkt",
             ]
         ),
         results: locList(
@@ -982,9 +996,9 @@ export const projects: Project[] = [
             ],
             [
                 "Passwortbasierte SSH-Administration aus der Umgebung entfernt",
-                "Privaten, ortsunabhaengigen Zugriff ueber On-Premises-, Cloud- und mobile Endpunkte hinweg geschaffen",
-                "Die DNS-Aufloesung in einen privacy-orientierten lokalen rekursiven Pfad unter eigener Kontrolle verlagert",
-                "Einen staerkeren Security- und Betriebsunterbau fuer kuenftige Self-Hosted- und Edge-Services geschaffen",
+                "Privaten, ortsunabhaengigen Zugriff über On-Premises-, Cloud- und mobile Endpunkte hinweg geschaffen",
+                "Die DNS-Auflösung in einen privacy-orientierten lokalen rekursiven Pfad unter eigener Kontrolle verlagert",
+                "Einen stärkeren Security- und Betriebsunterbau für künftige Self-Hosted- und Edge-Services geschaffen",
             ]
         ),
         tech: ["Tailscale", "WireGuard", "OpenSSH", "ED25519", "Proxmox", "Debian 13", "Pi-hole", "Unbound", "UFW", "sysctl", "btop"],
@@ -995,6 +1009,7 @@ export const projects: Project[] = [
     {
         slug: "self-hosted-cloud",
         category: "security-infrastructure",
+        status: "implemented",
         year: "2024",
         title: loc(
             "Self-Hosted Services Platform",
@@ -1006,33 +1021,33 @@ export const projects: Project[] = [
         ),
         overview: loc(
             "This project focuses on operating personal infrastructure with the same mindset used for small internal platforms: isolate services, reduce exposure, monitor availability, and keep control over data paths.",
-            "Dieses Projekt fokussiert den Betrieb persoenlicher Infrastruktur mit derselben Denkweise wie bei kleinen internen Plattformen: Services isolieren, Exponierung reduzieren, Verfuegbarkeit ueberwachen und Datenpfade kontrollieren."
+            "Dieses Projekt fokussiert den Betrieb persoenlicher Infrastruktur mit derselben Denkweise wie bei kleinen internen Plattformen: Services isolieren, Exponierung reduzieren, Verfuegbarkeit überwachen und Datenpfade kontrollieren."
         ),
         problem: loc(
             "Public SaaS tools simplify operations but reduce control over data location, exposure, and operational behavior.",
-            "Oeffentliche SaaS-Tools vereinfachen zwar den Betrieb, reduzieren aber die Kontrolle ueber Datenstandort, Exponierung und Betriebsverhalten."
+            "Öffentliche SaaS-Tools vereinfachen zwar den Betrieb, reduzieren aber die Kontrolle über Datenstandort, Exponierung und Betriebsverhalten."
         ),
         solution: loc(
             "I deployed a Docker-based services stack with reverse proxying, uptime monitoring, and controlled remote access. The platform complements the security lab by turning baseline infrastructure into an operational services environment.",
-            "Ich habe einen Docker-basierten Service-Stack mit Reverse Proxy, Uptime-Monitoring und kontrolliertem Fernzugriff aufgebaut. Die Plattform ergaenzt das Security-Lab, indem sie die Basisinfrastruktur in eine operative Service-Umgebung ueberfuehrt."
+            "Ich habe einen Docker-basierten Service-Stack mit Reverse Proxy, Uptime-Monitoring und kontrolliertem Fernzugriff aufgebaut. Die Plattform ergaenzt das Security-Lab, indem sie die Basisinfrastruktur in eine operative Service-Umgebung überführt."
         ),
         architecture: {
             node: loc(
                 "Client devices consume internal services through stable named entry points instead of service-specific direct exposure.",
-                "Client-Geraete greifen ueber stabile benannte Einstiegspunkte auf interne Services zu statt ueber direkte Einzel-Exponierung."
+                "Client-Geräte greifen über stabile benannte Einstiegspunkte auf interne Services zu statt über direkte Einzel-Exponierung."
             ),
             edge: loc(
                 "A Linux host runs Dockerized services including reverse proxying, DNS control, and uptime monitoring.",
-                "Ein Linux-Host betreibt Dockerisierte Services fuer Reverse Proxy, DNS-Kontrolle und Uptime-Monitoring."
+                "Ein Linux-Host betreibt Dockerisierte Services für Reverse Proxy, DNS-Kontrolle und Uptime-Monitoring."
             ),
             cloud: loc(
                 "External reachability is brokered through tunnel-based access patterns rather than a broad set of public inbound ports.",
-                "Externe Erreichbarkeit wird ueber tunnelbasierte Zugriffsmuster vermittelt statt ueber eine breite Menge oeffentlicher Inbound-Ports."
+                "Externe Erreichbarkeit wird über tunnelbasierte Zugriffsmuster vermittelt statt über eine breite Menge öffentlicher Inbound-Ports."
             ),
         },
         security: loc(
             "TLS-secured entry points and tunnel-based remote exposure avoid unnecessary public port openings and reduce attack surface.",
-            "TLS-abgesicherte Einstiegspunkte und tunnelbasierte externe Erreichbarkeit vermeiden unnoetige oeffentliche Portfreigaben und reduzieren die Angriffsoberflaeche."
+            "TLS-abgesicherte Einstiegspunkte und tunnelbasierte externe Erreichbarkeit vermeiden unnötige öffentliche Portfreigaben und reduzieren die Angriffsoberfläche."
         ),
         reliability: loc(
             "Monitoring and service separation make it easier to detect failures and operate personal infrastructure like a small production platform.",
@@ -1046,8 +1061,8 @@ export const projects: Project[] = [
                 "Tunnel-based remote access instead of broad port forwarding",
             ],
             [
-                "Reverse Proxy fuer saubere Service-Exponierung",
-                "Uptime-Monitoring fuer interne Services",
+                "Reverse Proxy für saubere Service-Exponierung",
+                "Uptime-Monitoring für interne Services",
                 "DNS-Kontrolle und privacy-orientierte Service-Eigentuemerschaft",
                 "Tunnelbasierter Fernzugriff statt breitem Port-Forwarding",
             ]
@@ -1060,8 +1075,8 @@ export const projects: Project[] = [
             ],
             [
                 "Die Sichtbarkeit von Service-Zustand und Verfuegbarkeit verbessert",
-                "Die oeffentliche Exponierung interner Services reduziert",
-                "Eine betriebsfaehige Umgebung aufgebaut, die spaetere AIoT-Workloads unterstuetzt",
+                "Die öffentliche Exponierung interner Services reduziert",
+                "Eine betriebsfähige Umgebung aufgebaut, die spätere AIoT-Workloads unterstuetzt",
             ]
         ),
         tech: ["Docker", "Linux", "Nginx Proxy Manager", "Pi-hole", "Uptime Kuma", "Cloudflare Tunnel"],
@@ -1072,6 +1087,7 @@ export const projects: Project[] = [
     {
         slug: "elkaza-org",
         category: "delivery-platform",
+        status: "implemented",
         year: "2025",
         title: loc(
             "Engineering Portfolio Platform",
@@ -1083,33 +1099,33 @@ export const projects: Project[] = [
         ),
         overview: loc(
             "This website is treated as a product, not a static resume page. The engineering focus is on maintainability, content structure, deployment flow, and presenting technical work with enough clarity to support recruiting and professional positioning.",
-            "Diese Website wird als Produkt behandelt und nicht als statische Lebenslaufseite. Der Engineering-Fokus liegt auf Wartbarkeit, Inhaltsstruktur, Deployment-Flow und der klaren Darstellung technischer Arbeit fuer Recruiting und eine klare professionelle Positionierung."
+            "Diese Website wird als Produkt behandelt und nicht als statische Lebenslaufseite. Der Engineering-Fokus liegt auf Wartbarkeit, Inhaltsstruktur, Deployment-Flow und der klaren Darstellung technischer Arbeit für Recruiting und eine klare professionelle Positionierung."
         ),
         problem: loc(
             "A personal website needs to be fast, maintainable, and easy to update across multiple content areas without turning every change into manual rework.",
-            "Eine persoenliche Website muss schnell, wartbar und ueber mehrere Inhaltsbereiche hinweg leicht aktualisierbar sein, ohne dass jede Aenderung zu manueller Mehrarbeit wird."
+            "Eine persoenliche Website muss schnell, wartbar und über mehrere Inhaltsbereiche hinweg leicht aktualisierbar sein, ohne dass jede Aenderung zu manueller Mehrarbeit wird."
         ),
         solution: loc(
             "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, and GitHub-connected deployment. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
-            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-gekoppeltem Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform fuer Projekte, CV, Blog-Inhalte und technische Fallstudien."
+            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-gekoppeltem Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
         ),
         architecture: {
             node: loc(
                 "The browser receives a performance-oriented frontend tailored for project discovery and professional positioning.",
-                "Der Browser erhaelt ein performance-orientiertes Frontend fuer Projekterkundung und professionelle Positionierung."
+                "Der Browser erhält ein performance-orientiertes Frontend für Projekterkundung und professionelle Positionierung."
             ),
             edge: loc(
                 "Vercel handles delivery, previews, and runtime hosting for the public site experience.",
-                "Vercel uebernimmt Auslieferung, Preview-Deployments und Hosting fuer die oeffentliche Site-Erfahrung."
+                "Vercel übernimmt Auslieferung, Preview-Deployments und Hosting für die öffentliche Site-Erfahrung."
             ),
             cloud: loc(
                 "GitHub acts as the source-of-truth platform for version control and deployment-triggered updates.",
-                "GitHub fungiert als Source-of-Truth fuer Versionskontrolle und deploymentgesteuerte Aktualisierungen."
+                "GitHub fungiert als Source-of-Truth für Versionskontrolle und deploymentgesteuerte Aktualisierungen."
             ),
         },
         security: loc(
             "A managed deployment model, minimal backend surface, and controlled content workflow keep the public platform simpler and safer to operate.",
-            "Ein gemanagtes Deployment-Modell, minimale Backend-Oberflaeche und ein kontrollierter Content-Workflow halten die oeffentliche Plattform einfacher und sicherer im Betrieb."
+            "Ein gemanagtes Deployment-Modell, minimale Backend-Oberfläche und ein kontrollierter Content-Workflow halten die öffentliche Plattform einfacher und sicherer im Betrieb."
         ),
         reliability: loc(
             "Version-controlled content and preview deployments reduce publishing risk and make site changes easier to review before release.",
@@ -1123,10 +1139,10 @@ export const projects: Project[] = [
                 "SEO and accessibility-aware public presentation",
             ],
             [
-                "Mehrsprachiges Inhaltsmodell fuer Projekte, CV und Fachtexte",
-                "Wiederverwendbare Komponentenstruktur fuer wartbare Weiterentwicklung",
+                "Mehrsprachiges Inhaltsmodell für Projekte, CV und Fachtexte",
+                "Wiederverwendbare Komponentenstruktur für wartbare Weiterentwicklung",
                 "GitHub-gekoppelter Deployment-Workflow",
-                "SEO- und Accessibility-bewusste oeffentliche Praesentation",
+                "SEO- und Accessibility-bewusste öffentliche Präsentation",
             ]
         ),
         results: locList(
@@ -1136,8 +1152,8 @@ export const projects: Project[] = [
                 "Built a reusable web delivery baseline alongside the self-hosted variant",
             ],
             [
-                "Eine staerkere professionelle Plattform fuer technisches Storytelling geschaffen",
-                "Den Aufwand fuer neue Fallstudien und Portfolio-Updates reduziert",
+                "Eine stärkere professionelle Plattform für technisches Storytelling geschaffen",
+                "Den Aufwand für neue Fallstudien und Portfolio-Updates reduziert",
                 "Eine wiederverwendbare Web-Delivery-Basis parallel zur Self-Hosted-Variante aufgebaut",
             ]
         ),
@@ -1152,6 +1168,7 @@ export const projects: Project[] = [
     {
         slug: "elkaza-at",
         category: "delivery-platform",
+        status: "implemented",
         year: "2025",
         title: loc(
             "Hybrid Cloud Delivery Platform",
@@ -1159,28 +1176,28 @@ export const projects: Project[] = [
         ),
         oneLiner: loc(
             "Elkaza operates a hybrid cloud/on-premises delivery platform for Elkaza.at with GitHub Actions CI/CD, a Tailscale Zero-Trust bridge, Dockerized services, and rotating backups.",
-            "Elkaza betreibt fuer Elkaza.at eine Hybrid-Cloud-/On-Premises-Delivery-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
+            "Elkaza betreibt für Elkaza.at eine Hybrid-Cloud-/On-Premises-Delivery-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
         ),
         overview: loc(
             "Elkaza.at is operated as a professional hybrid cloud delivery environment. A cloud VPS handles the public build and deployment control plane, while a private on-premises Debian server runs the hosting layer. The two environments are connected through Tailscale, creating an encrypted bridge for deployment traffic without exposing the private server as a direct public target.",
-            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Ein Cloud-VPS uebernimmt die oeffentliche Build- und Deployment-Steuerung, waehrend ein privater On-Premises-Debian-Server die Hosting-Schicht ausfuehrt. Beide Umgebungen sind ueber Tailscale verbunden, wodurch eine verschluesselte Bridge fuer Deployment-Traffic entsteht, ohne den privaten Server direkt oeffentlich erreichbar zu machen."
+            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Ein Cloud-VPS übernimmt die öffentliche Build- und Deployment-Steuerung, während ein privater On-Premises-Debian-Server die Hosting-Schicht ausführt. Beide Umgebungen sind über Tailscale verbunden, wodurch eine verschlüsselte Bridge für Deployment-Traffic entsteht, ohne den privaten Server direkt öffentlich erreichbar zu machen."
         ),
         problem: loc(
             "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
-            "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfaehige Operations zu demonstrieren. Die Plattform brauchte staerkere Automatisierung, geringere oeffentliche Exponierung, verlaessliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
+            "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfähige Operations zu demonstrieren. Die Plattform brauchte stärkere Automatisierung, geringere öffentliche Exponierung, verlässliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
         ),
         solution: loc(
             "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions triggers the production build, Linux shell scripts generate the Next.js output, and rsync transfers release artifacts through the private Tailscale bridge from the cloud deployment plane to the private Debian hosting layer. Docker and Nginx Proxy Manager manage the service layer and HTTPS routing, while a 7-day rotating backup system improves recovery readiness.",
-            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync uebertraegt Release-Artefakte ueber die private Tailscale-Bridge von der Cloud-Deployment-Ebene zur privaten Debian-Hosting-Schicht. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, waehrend ein Backup-System mit 7-Tage-Rotation die Recovery-Faehigkeit verbessert."
+            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync übertraegt Release-Artefakte über die private Tailscale-Bridge von der Cloud-Deployment-Ebene zur privaten Debian-Hosting-Schicht. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, während ein Backup-System mit 7-Tage-Rotation die Recovery-Fähigkeit verbessert."
         ),
         architecture: {
             node: loc(
                 "Client browsers receive an optimized Next.js frontend through a controlled HTTPS entry point.",
-                "Client-Browser erhalten ein optimiertes Next.js-Frontend ueber einen kontrollierten HTTPS-Einstiegspunkt."
+                "Client-Browser erhalten ein optimiertes Next.js-Frontend über einen kontrollierten HTTPS-Einstiegspunkt."
             ),
             edge: loc(
                 "A private on-premises Debian server hosts the runtime layer with Dockerized services and Nginx Proxy Manager for reverse proxy control.",
-                "Ein privater On-Premises-Debian-Server hostet die Runtime-Schicht mit Docker-Services und Nginx Proxy Manager fuer Reverse-Proxy-Kontrolle."
+                "Ein privater On-Premises-Debian-Server hostet die Runtime-Schicht mit Docker-Services und Nginx Proxy Manager für Reverse-Proxy-Kontrolle."
             ),
             cloud: loc(
                 "GitHub Actions and a cloud VPS form the cloud-side deployment plane, building releases and tunneling artifacts securely into the private hosting environment.",
@@ -1189,7 +1206,7 @@ export const projects: Project[] = [
         },
         security: loc(
             "The architecture follows a Zero-Trust access model. Deployment traffic moves through an encrypted Tailscale tunnel instead of a broad public SSH or rsync surface, and the private hosting server is not treated as a directly exposed build target. Public ingress is limited to the reverse-proxy path needed to serve the website.",
-            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic laeuft ueber einen verschluesselten Tailscale-Tunnel statt ueber eine breite oeffentliche SSH- oder rsync-Oberflaeche, und der private Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Oeffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der fuer die Website-Auslieferung notwendig ist."
+            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic läuft über einen verschlüsselten Tailscale-Tunnel statt über eine breite öffentliche SSH- oder rsync-Oberfläche, und der private Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Öffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der für die Website-Auslieferung notwendig ist."
         ),
         reliability: loc(
             "Automated builds, scripted rsync releases, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The result is a more available and maintainable self-hosted platform with clear operational ownership.",
@@ -1206,11 +1223,11 @@ export const projects: Project[] = [
             ],
             [
                 "Hybrid-Cloud-/On-Premises-Architektur aus Cloud-VPS und privatem Debian-Hosting-Server",
-                "GitHub Actions CI/CD fuer automatisierte Builds und Deployments",
-                "Tailscale Zero-Trust-Bridge fuer verschluesselte Artefakt-Uebertragung von Cloud zur privaten Hosting-Schicht",
+                "GitHub Actions CI/CD für automatisierte Builds und Deployments",
+                "Tailscale Zero-Trust-Bridge für verschlüsselte Artefakt-Übertragung von Cloud zur privaten Hosting-Schicht",
                 "Dockerisierte Service-Schicht hinter Nginx Proxy Manager",
-                "Automatisierte Shell-Skripte fuer Next.js-Builds, rsync-Releases und Service-Refreshes",
-                "Backup-Strategie mit 7-Tage-Rotation fuer operative Resilienz",
+                "Automatisierte Shell-Skripte für Next.js-Builds, rsync-Releases und Service-Refreshes",
+                "Backup-Strategie mit 7-Tage-Rotation für operative Resilienz",
             ]
         ),
         results: locList(
@@ -1222,7 +1239,7 @@ export const projects: Project[] = [
             ],
             [
                 "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer professionellen automatisierten Delivery-Plattform weiterentwickelt",
-                "Die Angriffsoberflaeche reduziert, indem Deployment-Traffic ueber ein privates verschluesseltes Overlay-Netz laeuft",
+                "Die Angriffsoberfläche reduziert, indem Deployment-Traffic über ein privates verschlüsseltes Overlay-Netz läuft",
                 "Verfuegbarkeit und Recovery-Vertrauen durch wiederholbare Deployments und rotierende Backups verbessert",
                 "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit und operativer Reife geschaffen",
             ]

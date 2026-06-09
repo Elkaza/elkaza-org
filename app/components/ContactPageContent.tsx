@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import { Mail, Github, Linkedin, Download } from "lucide-react";
+import { Mail, Github, Linkedin } from "lucide-react";
 import ContactForm from "../components/ContactForm";
 import { useLocale } from "../LocaleProvider";
 
 export default function ContactPageContent() {
-    const { t, locale } = useLocale();
-    const cvPath = locale === "de" ? "/cv/Elkaza_Mohamed_CV_DE.pdf" : "/cv/Elkaza_Mohamed_CV_EN.pdf";
+    const { t } = useLocale();
+    const openToItems = [1, 2, 3, 4, 5, 6];
 
     return (
         <main className="flex flex-col items-center justify-start w-full max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-12 text-main transition-colors duration-300">
@@ -21,6 +21,17 @@ export default function ContactPageContent() {
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Left: Contact Info & Connect */}
                 <div className="space-y-8">
+                    <div className="bg-card border border-subtle rounded-xl p-6 shadow-sm">
+                        <h3 className="text-lg font-semibold mb-3">{t("open_to_title")}</h3>
+                        <p className="text-sm text-muted leading-relaxed">{t("open_to_desc")}</p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {openToItems.map((item) => (
+                                <span key={item} className="rounded-md border border-subtle bg-page/70 px-3 py-1.5 text-xs font-medium text-main">
+                                    {t(`open_to_item${item}`)}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* Email / Academic */}
                     <div className="bg-card border border-subtle rounded-xl p-6 shadow-sm">
@@ -71,13 +82,12 @@ export default function ContactPageContent() {
                             </a>
 
                             <a
-                                href={cvPath}
-                                download
+                                href="mailto:contact@elkaza.org?subject=CV%20request"
                                 className="flex items-center justify-between p-3 rounded-lg hover:bg-subtle transition-colors group"
                                 aria-label={t("hero_cta_cv")}
                             >
                                 <div className="flex items-center gap-3">
-                                    <Download className="w-5 h-5 text-green-600" />
+                                    <Mail className="w-5 h-5 text-green-600" />
                                     <span className="font-medium">{t("contact_resume")}</span>
                                 </div>
                                 <span className="text-sm text-muted group-hover:text-main">{t("contact_download_cv")}</span>

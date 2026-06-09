@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLocale } from "../LocaleProvider";
-import { Download, MapPin, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import Link from "next/link";
 
 const skillGroups = [
@@ -180,27 +180,17 @@ export default function CvPageContent() {
                 </ul>
             </section>
 
-            {/* Download Section */}
+            {/* Request Section */}
             <section className="pt-8 border-t border-subtle space-y-4">
                 <p className="font-medium text-main">{t("cv_note_full")}</p>
                 <div className="flex flex-wrap gap-4">
-                    <a
-                        href="/cv/Elkaza_Mohamed_CV_DE.pdf"
-                        download
+                    <Link
+                        href="/contact"
                         className="inline-flex items-center px-5 py-3 bg-card border border-subtle hover:border-blue-500 rounded-md shadow-sm transition-all group"
                     >
-                        <Download className="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-500" />
-                        <span className="font-medium">{t("cv_download_de")}</span>
-                    </a>
-
-                    <a
-                        href="/cv/Elkaza_Mohamed_CV_EN.pdf"
-                        download
-                        className="inline-flex items-center px-5 py-3 bg-card border border-subtle hover:border-blue-500 rounded-md shadow-sm transition-all group"
-                    >
-                        <Download className="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-500" />
-                        <span className="font-medium">{t("cv_download_en")}</span>
-                    </a>
+                        <Mail className="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-500" />
+                        <span className="font-medium">{t("hero_cta_cv")}</span>
+                    </Link>
                 </div>
             </section>
         </main>
