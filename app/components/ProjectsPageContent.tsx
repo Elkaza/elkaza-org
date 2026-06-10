@@ -142,6 +142,13 @@ export default function ProjectsPageContent() {
                                 </div>
                             ))}
                         </div>
+                        <div className="mt-6 flex flex-wrap gap-2">
+                            {Object.values(copy.categoryLabels).map((label) => (
+                                <span key={label} className="rounded-md border border-subtle bg-card px-3 py-1.5 text-xs font-medium text-muted">
+                                    {label}
+                                </span>
+                            ))}
+                        </div>
                     </section>
 
                     <section className="space-y-6">

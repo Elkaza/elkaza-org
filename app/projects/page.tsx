@@ -3,7 +3,7 @@ import ProjectsPageContent from '../components/ProjectsPageContent';
 
 export const metadata: Metadata = {
   title: 'Projects | Mohamed Elkaza',
-  description: 'Case studies across IT infrastructure, application engineering, software automation, cybersecurity-minded operations, technical delivery, business analysis, and current IoT and edge work.',
+  description: 'Project case studies across data automation, IoT, Edge AI, TinyML, infrastructure, monitoring, dashboards, application engineering, and business informatics delivery.',
 };
 
 export default function ProjectsPage() {

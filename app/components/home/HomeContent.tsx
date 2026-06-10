@@ -1,16 +1,67 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
+import type { Locale } from "@/app/i18n/messages";
+import { projects, type Project } from "@/app/lib/projects";
+import { getProjectStatusLabel } from "@/app/lib/projectDisplay";
+
+const FEATURED_HOME_PROJECTS = [
+  "edgeguardian-edge-ai-safety-bubble",
+  "tinyml-vibration-anomaly-detection",
+  "random-walk-gravity-regression",
+  "enterprise-self-hosted-infrastructure",
+];
+
+const HOME_PROJECT_COPY: Record<Locale, {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  status: string;
+  result: string;
+  cta: string;
+  allProjects: string;
+}> = {
+  de: {
+    eyebrow: "Ausgewählte Fallstudien",
+    title: "Aktuelle Arbeit, die Recruiter schnell einordnen können",
+    intro: "Diese Projekte zeigen praktische Umsetzung in Edge AI, TinyML, Machine Learning, Datenanalyse, Infrastruktur, Monitoring und technischer Dokumentation.",
+    status: "Status",
+    result: "Evidenz",
+    cta: "Fallstudie",
+    allProjects: "Alle Projekte ansehen",
+  },
+  en: {
+    eyebrow: "Selected Case Studies",
+    title: "Recent work recruiters can evaluate quickly",
+    intro: "These projects show practical delivery across edge AI, TinyML, machine learning, data analysis, infrastructure, monitoring, and technical documentation.",
+    status: "Status",
+    result: "Evidence",
+    cta: "Case study",
+    allProjects: "View all projects",
+  },
+  ar: {
+    eyebrow: "Selected Case Studies",
+    title: "Recent work recruiters can evaluate quickly",
+    intro: "These projects show practical delivery across edge AI, TinyML, machine learning, data analysis, infrastructure, monitoring, and technical documentation.",
+    status: "Status",
+    result: "Evidence",
+    cta: "Case study",
+    allProjects: "View all projects",
+  },
+};
 
 export default function HomeContent() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const platformItems = [1, 2, 3, 4];
   const proofItems = ["impact", "scope", "strength"];
   const roleFitItems = [1, 2, 3, 4, 5, 6];
   const openToItems = [1, 2, 3, 4, 5, 6];
+  const projectCopy = HOME_PROJECT_COPY[locale] ?? HOME_PROJECT_COPY.en;
+  const featuredProjects = FEATURED_HOME_PROJECTS
+    .map((slug) => projects.find((project) => project.slug === slug))
+    .filter((project): project is Project => Boolean(project));
 
   return (
     <main className="flex flex-col items-start justify-start w-full max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-20 text-main">
@@ -102,6 +153,55 @@ export default function HomeContent() {
           >
             {t("home_cta_research")}
           </Link>
+        </div>
+      </section>
+
+      <section className="w-full space-y-6">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="space-y-2 max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+              {projectCopy.eyebrow}
+            </p>
+            <h2 className="text-2xl font-semibold tracking-normal">{projectCopy.title}</h2>
+            <p className="text-muted leading-relaxed">{projectCopy.intro}</p>
+          </div>
+          <Link
+            href="/projects"
+            className="inline-flex items-center self-start whitespace-nowrap text-sm font-medium text-blue-600 hover:underline dark:text-blue-400 md:self-auto"
+          >
+            {projectCopy.allProjects}
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {featuredProjects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="group rounded-lg border border-subtle bg-card p-5 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600"
+            >
+              <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-normal text-muted">
+                <span>{project.year}</span>
+                <span className="rounded-full border border-green-500/40 bg-green-500/10 px-2.5 py-1 text-green-700 dark:text-green-300">
+                  {projectCopy.status}: {getProjectStatusLabel(project.status, locale)}
+                </span>
+              </div>
+              <h3 className="mt-3 text-lg font-semibold tracking-normal text-main group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                {project.title[locale]}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                {project.oneLiner[locale]}
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-main">
+                <span className="font-medium">{projectCopy.result}:</span> {project.results[locale][0]}
+              </p>
+              <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
+                {projectCopy.cta}
+                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 

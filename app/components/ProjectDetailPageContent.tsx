@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import {
     Activity,
@@ -28,6 +28,7 @@ type DetailCopy = {
     problem: string;
     solution: string;
     architecture: string;
+    architectureCaption: string;
     node: string;
     edge: string;
     cloud: string;
@@ -56,6 +57,7 @@ const COPY: Record<string, DetailCopy> = {
         problem: "Problem",
         solution: "Goal and Implementation",
         architecture: "Architecture",
+        architectureCaption: "System design flow",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
@@ -82,6 +84,7 @@ const COPY: Record<string, DetailCopy> = {
         problem: "Problem",
         solution: "Ziel und Umsetzung",
         architecture: "Architektur",
+        architectureCaption: "Systemdesign-Ablauf",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
@@ -108,6 +111,7 @@ const COPY: Record<string, DetailCopy> = {
         problem: "Problem",
         solution: "Solution",
         architecture: "Architecture",
+        architectureCaption: "System design flow",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
@@ -226,6 +230,23 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                         <Waypoints className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                         <h2 className="text-2xl font-semibold tracking-normal">{copy.architecture}</h2>
                     </div>
+                    <ArchitectureFlow
+                        caption={copy.architectureCaption}
+                        nodes={[
+                            {
+                                title: project.architectureLabels ? localized(project.architectureLabels.node) : copy.node,
+                                body: localized(project.architecture.node),
+                            },
+                            {
+                                title: project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge,
+                                body: localized(project.architecture.edge),
+                            },
+                            {
+                                title: project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud,
+                                body: localized(project.architecture.cloud),
+                            },
+                        ]}
+                    />
                     <div className="grid gap-4 md:grid-cols-3">
                         <ArchitectureCard
                             title={project.architectureLabels ? localized(project.architectureLabels.node) : copy.node}
@@ -317,6 +338,44 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 )}
             </article>
         </main>
+    );
+}
+
+function ArchitectureFlow({
+    caption,
+    nodes,
+}: {
+    caption: string;
+    nodes: { title: string; body: string }[];
+}) {
+    return (
+        <figure className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+            <div
+                className="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]"
+                role="img"
+                aria-label={caption}
+            >
+                {nodes.map((node, index) => (
+                    <Fragment key={node.title}>
+                        <div className="rounded-md border border-subtle bg-page/70 p-4">
+                            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                {node.title}
+                            </p>
+                            <p className="mt-2 text-sm leading-relaxed text-muted">
+                                {node.body}
+                            </p>
+                        </div>
+                        {index < nodes.length - 1 && (
+                            <div className="flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+                                <ArrowRight className="hidden h-5 w-5 md:block" />
+                                <span className="h-6 border-l border-subtle md:hidden" />
+                            </div>
+                        )}
+                    </Fragment>
+                ))}
+            </div>
+            <figcaption className="mt-3 text-xs text-muted">{caption}</figcaption>
+        </figure>
     );
 }
 

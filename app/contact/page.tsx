@@ -3,7 +3,7 @@ import ContactPageContent from '../components/ContactPageContent';
 
 export const metadata: Metadata = {
   title: 'Contact | Mohamed Elkaza',
-  description: 'Get in touch about IT operations, infrastructure, networking, automation, and project opportunities.',
+  description: 'Contact Mohamed Elkaza for internships, master thesis cooperation, junior technical roles, data automation, IoT, Edge AI, infrastructure, monitoring, and application engineering opportunities.',
 };
 
 export default function ContactPage() {
