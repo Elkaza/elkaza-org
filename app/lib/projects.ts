@@ -39,6 +39,11 @@ export interface Project {
     tags: string[];
     links: { label: string; url: string }[];
     images?: string[];
+    diagrams?: {
+        title: LocalizedString;
+        caption: LocalizedString;
+        src: string;
+    }[];
     relatedProjectSlug?: string;
 }
 
@@ -134,6 +139,24 @@ export const projects: Project[] = [
         tags: ["Edge AI", "AIoT", "Sensor Fusion", "Raspberry Pi", "Embedded"],
         links: [
             { label: "GitHub", url: "https://github.com/Elkaza/edgeguardian-edge-ai-safety-bubble" },
+        ],
+        diagrams: [
+            {
+                title: loc("System Context", "Systemkontext"),
+                caption: loc(
+                    "Camera and LiDAR inputs are processed locally on the Raspberry Pi 5 with Hailo acceleration, then fused into SAFE/WARNING/ALERT outputs for dashboard visualization, ESP32 actuation, optional Telegram alerts, and CSV evidence logs.",
+                    "Kamera- und LiDAR-Inputs werden lokal auf dem Raspberry Pi 5 mit Hailo-Beschleunigung verarbeitet und zu SAFE/WARNING/ALERT-Ausgaben für Dashboard, ESP32-Aktuatorik, optionale Telegram-Alerts und CSV-Evidenzlogs fusioniert."
+                ),
+                src: "/project-diagrams/edgeguardian-system-context.png",
+            },
+            {
+                title: loc("Container / Deployment View", "Container- / Deployment-Ansicht"),
+                caption: loc(
+                    "Physical sensors feed a Raspberry Pi 5 runtime with Hailo-accelerated person detection, fusion logic, ESP32 serial actuation, dashboard visualization, optional Telegram alerts, and evidence logs.",
+                    "Physische Sensoren speisen eine Raspberry-Pi-5-Runtime mit Hailo-beschleunigter Personenerkennung, Fusionslogik, ESP32-Serial-Aktuatorik, Dashboard-Visualisierung, optionalen Telegram-Alerts und Evidenzlogs."
+                ),
+                src: "/project-diagrams/edgeguardian-container-deployment.png",
+            },
         ],
         relatedProjectSlug: "tinyml-vibration-anomaly-detection",
     },
@@ -510,6 +533,32 @@ export const projects: Project[] = [
         tags: ["Self-Hosted", "Privacy", "Analytics", "DevOps", "Hybrid Cloud"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.org" },
+        ],
+        diagrams: [
+            {
+                title: loc("System Context", "Systemkontext"),
+                caption: loc(
+                    "System context of the hybrid portfolio and privacy-first analytics platform: the public site runs on Vercel, while first-party analytics traffic is routed through VPS/Tailscale to a private self-hosted Plausible stack.",
+                    "Systemkontext der hybriden Portfolio- und Privacy-First-Analytics-Plattform: Die öffentliche Seite läuft auf Vercel, während First-Party-Analytics-Traffic über VPS/Tailscale zu einem privaten self-hosted Plausible-Stack geroutet wird."
+                ),
+                src: "/project-diagrams/enterprise-self-hosted-system-context.png",
+            },
+            {
+                title: loc("Container / Deployment View", "Container- / Deployment-Ansicht"),
+                caption: loc(
+                    "Container/deployment view of the hybrid portfolio platform: frontend deployment on Vercel, public VPS ingress, private Tailscale routing, and self-hosted Plausible/PostgreSQL containers on a Proxmox/Debian runtime.",
+                    "Container- und Deployment-Ansicht der hybriden Portfolio-Plattform: Frontend-Deployment auf Vercel, öffentlicher VPS-Ingress, privates Tailscale-Routing und self-hosted Plausible/PostgreSQL-Container auf einer Proxmox/Debian-Runtime."
+                ),
+                src: "/project-diagrams/enterprise-self-hosted-container-deployment.png",
+            },
+            {
+                title: loc("Data Flow View", "Datenfluss-Ansicht"),
+                caption: loc(
+                    "Data flow view of the privacy-first analytics platform: public visitors load the Vercel-hosted frontend, first-party analytics events are routed through VPS/Tailscale to the private Plausible/PostgreSQL stack, while CI/CD, monitoring, and backups remain separated from runtime traffic.",
+                    "Datenfluss-Ansicht der Privacy-First-Analytics-Plattform: Besucher laden das Vercel-gehostete Frontend, First-Party-Analytics-Events laufen über VPS/Tailscale zum privaten Plausible/PostgreSQL-Stack, während CI/CD, Monitoring und Backups vom Runtime-Traffic getrennt bleiben."
+                ),
+                src: "/project-diagrams/enterprise-self-hosted-data-flow.png",
+            },
         ],
         relatedProjectSlug: "vienna-fortress",
     },

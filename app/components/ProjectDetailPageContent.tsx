@@ -38,6 +38,7 @@ type DetailCopy = {
     results: string;
     tech: string;
     artifacts: string;
+    diagrams: string;
     status: string;
     related: string;
     relatedDescription: string;
@@ -67,6 +68,7 @@ const COPY: Record<string, DetailCopy> = {
         results: "Results / Evidence",
         tech: "Tech Stack",
         artifacts: "Artifacts",
+        diagrams: "Technical Diagrams",
         status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
@@ -94,6 +96,7 @@ const COPY: Record<string, DetailCopy> = {
         results: "Ergebnisse / Evidenz",
         tech: "Tech-Stack",
         artifacts: "Artefakte",
+        diagrams: "Technische Diagramme",
         status: "Status",
         related: "Verwandtes Projekt",
         relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die größere Portfolio-Story passt.",
@@ -121,6 +124,7 @@ const COPY: Record<string, DetailCopy> = {
         results: "Results and Impact",
         tech: "Tech Stack",
         artifacts: "Artifacts",
+        diagrams: "Technical Diagrams",
         status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
@@ -262,6 +266,33 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                         />
                     </div>
                 </section>
+
+                {project.diagrams && project.diagrams.length > 0 && (
+                    <section className="space-y-5">
+                        <div className="flex items-center gap-2">
+                            <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <h2 className="text-2xl font-semibold tracking-normal">{copy.diagrams}</h2>
+                        </div>
+                        <div className="space-y-5">
+                            {project.diagrams.map((diagram) => (
+                                <figure key={diagram.src} className="rounded-lg border border-subtle bg-card p-3 shadow-sm md:p-4">
+                                    <div className="overflow-x-auto">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={diagram.src}
+                                            alt={`${localized(diagram.title)} diagram for ${project.title.en}`}
+                                            className="w-full min-w-[760px] rounded-md bg-white"
+                                        />
+                                    </div>
+                                    <figcaption className="mt-3 space-y-1 px-1">
+                                        <p className="text-sm font-semibold text-main">{localized(diagram.title)}</p>
+                                        <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                                    </figcaption>
+                                </figure>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 <div className="grid gap-6 lg:grid-cols-2">
                     <DetailCard icon={Shield} title={copy.security}>
