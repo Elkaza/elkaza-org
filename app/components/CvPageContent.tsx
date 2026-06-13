@@ -278,20 +278,31 @@ export default function CvPageContent() {
         <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
           <SectionHeading icon={Users} title={t("cv_exp_title")} />
           <div className="mt-5 grid gap-4">
-            {experienceItems.map(({ key, organization }) => (
-              <div
-                key={key}
-                className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
-              >
-                <div className="flex items-start gap-3">
-                  <OrganizationLogo name={organization} size="sm" decorative={false} />
-                  <div className="min-w-0">
-                    <h3 className="font-semibold leading-snug text-main">{t(`exp${key}_title`)}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
+            {experienceItems.map(({ key, organization }) => {
+              const experienceTitle = splitExperienceTitle(t(`exp${key}_title`));
+
+              return (
+                <div
+                  key={key}
+                  className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
+                >
+                  <div className="flex items-start gap-3">
+                    <OrganizationLogo name={organization} size="sm" decorative={false} />
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <h3 className="font-semibold leading-snug text-main">{experienceTitle.title}</h3>
+                        {experienceTitle.period && (
+                          <span className="inline-flex w-fit shrink-0 items-center rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold leading-none text-muted">
+                            {experienceTitle.period}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -336,4 +347,17 @@ function SectionHeading({ icon: Icon, title }: { icon: LucideIcon; title: string
       <h2 className="text-xl font-semibold tracking-normal text-main md:text-2xl">{title}</h2>
     </div>
   );
+}
+
+function splitExperienceTitle(title: string) {
+  const match = title.match(/\s*\(([^()]+)\)\s*$/u);
+
+  if (!match || match.index === undefined) {
+    return { title, period: null };
+  }
+
+  return {
+    title: title.slice(0, match.index).trim(),
+    period: match[1],
+  };
 }

@@ -764,7 +764,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     // Certifications
     cert_nav_back: "← Back to About",
     cert_title: "Certifications",
-    cert_view_all: "View all →",
+    cert_view_all: "View all",
     cert_list_title: "All Certifications",
     cert_list_subtitle: "Selected certifications and professional training (proof available on request).",
     cert_avail_req: "Proof available on request",
