@@ -4,6 +4,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const analyticsOrigin = 'https://analytics.elkaza.at';
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   async headers() {
     return [
       {

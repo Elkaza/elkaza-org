@@ -1,20 +1,15 @@
 "use client";
 
-import { Fragment, type ReactNode } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
 import {
-    Activity,
     ArrowLeft,
     ArrowRight,
     CheckCircle,
     ExternalLink,
     Github,
     Layers,
-    Shield,
-    Target,
     Waypoints,
-    Wrench,
-    type LucideIcon,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
@@ -36,9 +31,24 @@ type DetailCopy = {
     reliability: string;
     features: string;
     results: string;
+    snapshot: string;
+    summary: string;
+    result: string;
+    technicalDecisions: string;
+    challenges: string;
+    lessons: string;
+    future: string;
     tech: string;
     artifacts: string;
     diagrams: string;
+    diagramsIntro: string;
+    diagramReviewFocus: string;
+    openDiagram: string;
+    diagramPreviewTitle: string;
+    diagramPreviewIntro: string;
+    systemOverviewDiagram: string;
+    deploymentDiagram: string;
+    dataFlowDiagram: string;
     status: string;
     related: string;
     relatedDescription: string;
@@ -66,9 +76,24 @@ const COPY: Record<string, DetailCopy> = {
         reliability: "Reliability",
         features: "Implementation Highlights",
         results: "Results / Evidence",
+        snapshot: "Case Snapshot",
+        summary: "Summary",
+        result: "Result",
+        technicalDecisions: "Technical Decisions",
+        challenges: "Challenges",
+        lessons: "Lessons Learned",
+        future: "Future Improvements",
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
+        diagramsIntro: "Architecture diagrams are included as review artifacts so the system boundary, runtime flow, and operational decisions can be assessed quickly.",
+        diagramReviewFocus: "Review focus",
+        openDiagram: "Open full diagram",
+        diagramPreviewTitle: "Architecture Views",
+        diagramPreviewIntro: "Concise system views summarize the project boundary, deployment path, and data flow without adding implementation claims.",
+        systemOverviewDiagram: "System overview diagram",
+        deploymentDiagram: "Deployment diagram",
+        dataFlowDiagram: "Data flow diagram",
         status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
@@ -94,9 +119,24 @@ const COPY: Record<string, DetailCopy> = {
         reliability: "Zuverlässigkeit",
         features: "Implementation-Highlights",
         results: "Ergebnisse / Evidenz",
+        snapshot: "Kurzüberblick",
+        summary: "Summary",
+        result: "Ergebnis",
+        technicalDecisions: "Technische Entscheidungen",
+        challenges: "Herausforderungen",
+        lessons: "Lessons Learned",
+        future: "Nächste Verbesserungen",
         tech: "Tech-Stack",
         artifacts: "Artefakte",
         diagrams: "Technische Diagramme",
+        diagramsIntro: "Die Architekturdiagramme dienen als Review-Artefakte, damit Systemgrenzen, Runtime-Flüsse und operative Entscheidungen schnell prüfbar sind.",
+        diagramReviewFocus: "Review-Fokus",
+        diagramPreviewTitle: "Architekturansichten",
+        diagramPreviewIntro: "Kompakte Systemansichten fassen Projektgrenze, Deployment-Pfad und Datenfluss zusammen, ohne zusätzliche Implementierungsannahmen zu ergänzen.",
+        systemOverviewDiagram: "Systemübersicht",
+        deploymentDiagram: "Deployment-Diagramm",
+        dataFlowDiagram: "Datenfluss-Diagramm",
+        openDiagram: "Diagramm öffnen",
         status: "Status",
         related: "Verwandtes Projekt",
         relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die größere Portfolio-Story passt.",
@@ -122,9 +162,24 @@ const COPY: Record<string, DetailCopy> = {
         reliability: "Reliability",
         features: "Key Features",
         results: "Results and Impact",
+        snapshot: "Case Snapshot",
+        summary: "Summary",
+        result: "Result",
+        technicalDecisions: "Technical Decisions",
+        challenges: "Challenges",
+        lessons: "Lessons Learned",
+        future: "Future Improvements",
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
+        diagramsIntro: "Architecture diagrams are included as review artifacts so the system boundary, runtime flow, and operational decisions can be assessed quickly.",
+        diagramReviewFocus: "Review focus",
+        openDiagram: "Open full diagram",
+        diagramPreviewTitle: "Architecture Views",
+        diagramPreviewIntro: "Concise system views summarize the project boundary, deployment path, and data flow without adding implementation claims.",
+        systemOverviewDiagram: "System overview diagram",
+        deploymentDiagram: "Deployment diagram",
+        dataFlowDiagram: "Data flow diagram",
         status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
@@ -148,6 +203,21 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         : undefined;
 
     const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale];
+    const localizedResults = localized(project.results);
+    const localizedFeatures = localized(project.keyFeatures);
+    const hasDiagrams = Boolean(project.diagrams && project.diagrams.length > 0);
+    const snapshotItems = [
+        { label: copy.summary, body: conciseText(localized(project.overview), 230) },
+        { label: copy.problem, body: conciseText(localized(project.problem), 230) },
+        { label: copy.solution, body: conciseText(localized(project.solution), 230) },
+        ...(localizedResults[0] ? [{ label: copy.result, body: localizedResults[0] }] : []),
+    ];
+    const challengeItems = [
+        conciseText(localized(project.problem), 190),
+        conciseText(localized(project.security), 190),
+        conciseText(localized(project.reliability), 190),
+    ];
+    const futureItems = getFutureItems(locale, hasDiagrams);
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300 py-12 px-6">
@@ -215,19 +285,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     )
                 )}
 
-                <div className="grid gap-6 lg:grid-cols-2">
-                    <DetailCard icon={Layers} title={copy.overview}>
-                        <p className="text-main leading-relaxed">{localized(project.overview)}</p>
-                    </DetailCard>
-
-                    <DetailCard icon={Target} title={copy.problem}>
-                        <p className="text-main leading-relaxed">{localized(project.problem)}</p>
-                    </DetailCard>
-                </div>
-
-                <DetailCard icon={Wrench} title={copy.solution}>
-                    <p className="text-main leading-relaxed">{localized(project.solution)}</p>
-                </DetailCard>
+                <CaseSnapshot title={copy.snapshot} items={snapshotItems} />
 
                 <section className="space-y-4">
                     <div className="flex items-center gap-2">
@@ -269,44 +327,84 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
 
                 {project.diagrams && project.diagrams.length > 0 && (
                     <section className="space-y-5">
-                        <div className="flex items-center gap-2">
-                            <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                            <h2 className="text-2xl font-semibold tracking-normal">{copy.diagrams}</h2>
+                        <div className="flex flex-col gap-3 border-y border-subtle py-5 md:flex-row md:items-end md:justify-between">
+                            <div className="max-w-3xl">
+                                <div className="flex items-center gap-2">
+                                    <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                                    <h2 className="text-2xl font-semibold tracking-normal">{copy.diagrams}</h2>
+                                </div>
+                                <p className="mt-2 text-sm leading-relaxed text-muted">{copy.diagramsIntro}</p>
+                            </div>
+                            <span className="rounded-md border border-subtle px-3 py-1.5 text-xs font-medium text-muted">
+                                {project.diagrams.length} {copy.diagrams}
+                            </span>
                         </div>
                         <div className="space-y-5">
-                            {project.diagrams.map((diagram) => (
-                                <figure key={diagram.src} className="rounded-lg border border-subtle bg-card p-3 shadow-sm md:p-4">
-                                    <div className="overflow-x-auto">
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                            src={diagram.src}
-                                            alt={`${localized(diagram.title)} diagram for ${project.title.en}`}
-                                            className="w-full min-w-[760px] rounded-md bg-white"
-                                        />
-                                    </div>
-                                    <figcaption className="mt-3 space-y-1 px-1">
-                                        <p className="text-sm font-semibold text-main">{localized(diagram.title)}</p>
-                                        <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
-                                    </figcaption>
-                                </figure>
-                            ))}
+                            {project.diagrams.map((diagram) => {
+                                const summary = diagram.summary ? localized(diagram.summary) : [];
+
+                                return (
+                                    <figure key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card shadow-sm">
+                                        <div className="flex flex-col gap-3 border-b border-subtle p-4 md:flex-row md:items-start md:justify-between">
+                                            <figcaption className="max-w-3xl space-y-1">
+                                                <p className="text-base font-semibold text-main">{localized(diagram.title)}</p>
+                                                <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                                            </figcaption>
+                                            <a
+                                                href={diagram.src}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                            >
+                                                <ExternalLink className="mr-2 h-4 w-4" />
+                                                {copy.openDiagram}
+                                            </a>
+                                        </div>
+                                        <div className="overflow-x-auto bg-white p-3">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={diagram.src}
+                                                alt={`${localized(diagram.title)} diagram for ${project.title.en}`}
+                                                className="w-full min-w-[860px] max-w-none rounded-md"
+                                            />
+                                        </div>
+                                        {summary.length > 0 && (
+                                            <div className="border-t border-subtle p-4">
+                                                <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                                    {copy.diagramReviewFocus}
+                                                </p>
+                                                <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                                                    {summary.map((item) => (
+                                                        <li key={item} className="border-l-2 border-blue-500 pl-3 text-sm leading-relaxed text-muted">
+                                                            {item}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </figure>
+                                );
+                            })}
                         </div>
                     </section>
                 )}
 
-                <div className="grid gap-6 lg:grid-cols-2">
-                    <DetailCard icon={Shield} title={copy.security}>
-                        <p className="text-main leading-relaxed">{localized(project.security)}</p>
-                    </DetailCard>
+                {!hasDiagrams && (
+                    <DiagramOverview
+                        copy={copy}
+                        architectureLabels={[
+                            project.architectureLabels ? localized(project.architectureLabels.node) : copy.node,
+                            project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge,
+                            project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud,
+                        ]}
+                    />
+                )}
 
-                    <DetailCard icon={Activity} title={copy.reliability}>
-                        <p className="text-main leading-relaxed">{localized(project.reliability)}</p>
-                    </DetailCard>
-                </div>
-
                 <div className="grid gap-6 lg:grid-cols-2">
-                    <ListCard title={copy.features} items={localized(project.keyFeatures)} />
-                    <ListCard title={copy.results} items={localized(project.results)} />
+                    <ListCard title={copy.technicalDecisions} items={localizedFeatures.slice(0, 5)} />
+                    <ListCard title={copy.challenges} items={challengeItems} />
+                    <ListCard title={copy.lessons} items={localizedResults.slice(0, 4)} />
+                    <ListCard title={copy.future} items={futureItems} />
                 </div>
 
                 <section className="space-y-4">
@@ -410,24 +508,101 @@ function ArchitectureFlow({
     );
 }
 
-function DetailCard({
-    icon: Icon,
+function CaseSnapshot({
     title,
-    children,
+    items,
 }: {
-    icon: LucideIcon;
     title: string;
-    children: ReactNode;
+    items: { label: string; body: string }[];
 }) {
     return (
-        <section className="rounded-lg border border-subtle bg-card p-6 shadow-sm">
-            <div className="mb-4 flex items-center gap-2">
-                <Icon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-xl font-semibold tracking-normal">{title}</h2>
+        <section className="space-y-4">
+            <div className="flex items-center gap-2">
+                <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <h2 className="text-2xl font-semibold tracking-normal">{title}</h2>
             </div>
-            {children}
+            <div className="grid gap-4 md:grid-cols-2">
+                {items.map((item) => (
+                    <article key={item.label} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                            {item.label}
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-main">{item.body}</p>
+                    </article>
+                ))}
+            </div>
         </section>
     );
+}
+
+function DiagramOverview({
+    copy,
+    architectureLabels,
+}: {
+    copy: DetailCopy;
+    architectureLabels: string[];
+}) {
+    const views = [
+        copy.systemOverviewDiagram,
+        copy.deploymentDiagram,
+        copy.dataFlowDiagram,
+    ];
+
+    return (
+        <section className="space-y-4">
+            <div className="flex flex-col gap-2 border-y border-subtle py-5">
+                <div className="flex items-center gap-2">
+                    <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    <h2 className="text-2xl font-semibold tracking-normal">{copy.diagramPreviewTitle}</h2>
+                </div>
+                <p className="max-w-3xl text-sm leading-relaxed text-muted">{copy.diagramPreviewIntro}</p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+                {views.map((view, index) => (
+                    <div key={view} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                        <div className="h-16 rounded-md border border-subtle bg-page p-3">
+                            <span className="block h-2 w-8/12 rounded-full bg-blue-500/60" />
+                            <div className="mt-4 grid grid-cols-3 gap-2">
+                                <span className="h-4 rounded bg-slate-400/25" />
+                                <span className="h-4 rounded bg-emerald-500/20" />
+                                <span className="h-4 rounded bg-slate-400/25" />
+                            </div>
+                        </div>
+                        <h3 className="mt-3 text-base font-semibold tracking-normal text-main">{view}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">
+                            {architectureLabels[index] ?? architectureLabels[0]}
+                        </p>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
+function conciseText(text: string, maxLength: number) {
+    if (text.length <= maxLength) {
+        return text;
+    }
+
+    const clipped = text.slice(0, maxLength).trimEnd();
+    const lastSpace = clipped.lastIndexOf(" ");
+
+    return `${clipped.slice(0, lastSpace > 120 ? lastSpace : maxLength).trimEnd()}...`;
+}
+
+function getFutureItems(locale: Locale, hasDiagrams: boolean) {
+    const documentationItem = locale === "de"
+        ? "Dokumentation weiter verdichten: README, Architekturentscheidungen und Screenshots synchron halten."
+        : "Keep documentation concise: align README, architecture decisions, and screenshots.";
+    const diagramItem = hasDiagrams
+        ? locale === "de"
+            ? "Diagramme bei größeren Architekturänderungen aktualisieren."
+            : "Update diagrams when the architecture changes materially."
+        : locale === "de"
+            ? "Architekturansichten mit der Implementierung synchron halten."
+            : "Keep architecture views aligned with the implementation.";
+
+    return [diagramItem, documentationItem];
 }
 
 function ArchitectureCard({ title, body }: { title: string; body: string }) {

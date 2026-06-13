@@ -1,8 +1,104 @@
 "use client";
 import React from "react";
-import { Shield, Server, Network, Layers, Monitor, Lock, CheckCircle2 } from "lucide-react";
+import {
+    Activity,
+    BarChart3,
+    CheckCircle2,
+    Database,
+    Filter,
+    Gauge,
+    Layers,
+    Lock,
+    Monitor,
+    Network,
+    RefreshCw,
+    Route,
+    Server,
+    Shield,
+    type LucideIcon,
+} from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
+
+type ToolItem = {
+    name: string;
+    roleKey: string;
+    Icon: LucideIcon;
+};
+
+type ToolGroup = {
+    titleKey: string;
+    descriptionKey: string;
+    Icon: LucideIcon;
+    tools: ToolItem[];
+};
+
+const architectureSteps = [
+    "security_arch_public_web",
+    "security_arch_vps_ingress",
+    "security_arch_tailscale",
+    "security_arch_private_runtime",
+    "security_arch_docker_services",
+];
+
+const statusChips = [
+    "security_status_private_access",
+    "security_status_reduced_exposure",
+    "security_status_first_party_analytics",
+    "security_status_monitoring",
+    "security_status_backup_ready",
+];
+
+const toolGroups: ToolGroup[] = [
+    {
+        titleKey: "security_tools_access_title",
+        descriptionKey: "security_tools_access_desc",
+        Icon: Network,
+        tools: [
+            { name: "Tailscale", roleKey: "security_tool_tailscale_role", Icon: Network },
+            { name: "UFW", roleKey: "security_tool_ufw_role", Icon: Shield },
+            { name: "Nginx Proxy Manager", roleKey: "security_tool_npm_role", Icon: Route },
+        ],
+    },
+    {
+        titleKey: "security_tools_defense_title",
+        descriptionKey: "security_tools_defense_desc",
+        Icon: Shield,
+        tools: [
+            { name: "Pi-hole", roleKey: "security_tool_pihole_role", Icon: Filter },
+            { name: "CrowdSec", roleKey: "security_tool_crowdsec_role", Icon: Shield },
+        ],
+    },
+    {
+        titleKey: "security_tools_data_title",
+        descriptionKey: "security_tools_data_desc",
+        Icon: Database,
+        tools: [
+            { name: "Plausible Analytics", roleKey: "security_tool_plausible_role", Icon: BarChart3 },
+            { name: "PostgreSQL", roleKey: "security_tool_postgres_role", Icon: Database },
+            { name: "ClickHouse", roleKey: "security_tool_clickhouse_role", Icon: Database },
+        ],
+    },
+    {
+        titleKey: "security_tools_observability_title",
+        descriptionKey: "security_tools_observability_desc",
+        Icon: Activity,
+        tools: [
+            { name: "Netdata", roleKey: "security_tool_netdata_role", Icon: Activity },
+            { name: "Uptime Kuma", roleKey: "security_tool_uptime_role", Icon: Gauge },
+            { name: "Dozzle", roleKey: "security_tool_dozzle_role", Icon: Monitor },
+        ],
+    },
+    {
+        titleKey: "security_tools_operations_title",
+        descriptionKey: "security_tools_operations_desc",
+        Icon: Server,
+        tools: [
+            { name: "Portainer", roleKey: "security_tool_portainer_role", Icon: Server },
+            { name: "Watchtower", roleKey: "security_tool_watchtower_role", Icon: RefreshCw },
+        ],
+    },
+];
 
 export default function SecurityPageContent() {
     const { t } = useLocale();
@@ -26,15 +122,11 @@ export default function SecurityPageContent() {
                         <Server className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                         {t("security_lab_title")}
                     </h2>
-                    <div className="bg-card border border-subtle rounded-lg p-6 md:p-8">
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-main">
-                            {t("security_lab_list").split(",").map((item, i) => (
-                                <li key={i} className="flex items-start gap-3">
-                                    <Shield className="w-5 h-5 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
-                                    <span>{item.trim()}</span>
-                                </li>
-                            ))}
-                        </ul>
+
+                    <div className="space-y-5">
+                        <ArchitectureSnapshot t={t} />
+                        <StatusChips t={t} />
+                        <ToolGroupGrid t={t} />
                     </div>
                 </div>
 
@@ -132,5 +224,90 @@ export default function SecurityPageContent() {
 
             </section>
         </main>
+    );
+}
+
+function ArchitectureSnapshot({ t }: { t: (key: string) => string }) {
+    return (
+        <section className="rounded-lg border border-subtle bg-card p-5 shadow-sm md:p-6" aria-labelledby="security-architecture-snapshot">
+            <div className="mb-4 flex items-center gap-2">
+                <Layers className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                <h3 id="security-architecture-snapshot" className="text-base font-semibold text-main">
+                    {t("security_arch_title")}
+                </h3>
+            </div>
+            <ol className="flex flex-col gap-2 md:flex-row md:items-center">
+                {architectureSteps.map((stepKey, index) => (
+                    <li key={stepKey} className="flex items-center gap-2 md:flex-1">
+                        <div className="flex min-h-14 flex-1 items-center rounded-md border border-subtle bg-page px-3 py-2 text-sm font-medium text-main">
+                            {t(stepKey)}
+                        </div>
+                        {index < architectureSteps.length - 1 && (
+                            <span className="flex w-6 shrink-0 items-center justify-center text-sm font-semibold text-blue-600 dark:text-blue-400" aria-hidden="true">
+                                <span className="hidden md:inline">→</span>
+                                <span className="md:hidden">↓</span>
+                            </span>
+                        )}
+                    </li>
+                ))}
+            </ol>
+        </section>
+    );
+}
+
+function StatusChips({ t }: { t: (key: string) => string }) {
+    return (
+        <div className="flex flex-wrap gap-2" aria-label={t("security_status_label")}>
+            {statusChips.map((chipKey) => (
+                <span
+                    key={chipKey}
+                    className="rounded-md border border-subtle bg-card px-3 py-1.5 text-xs font-medium text-muted shadow-sm"
+                >
+                    {t(chipKey)}
+                </span>
+            ))}
+        </div>
+    );
+}
+
+function ToolGroupGrid({ t }: { t: (key: string) => string }) {
+    return (
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {toolGroups.map((group) => (
+                <article key={group.titleKey} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                    <div className="flex items-start gap-3">
+                        <span
+                            role="img"
+                            aria-label={`${t(group.titleKey)} ${t("security_icon_label")}`}
+                            className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-blue-500/25 bg-blue-500/10 text-blue-700 dark:text-blue-300"
+                        >
+                            <group.Icon className="h-5 w-5" aria-hidden="true" />
+                        </span>
+                        <div>
+                            <h3 className="text-base font-semibold text-main">{t(group.titleKey)}</h3>
+                            <p className="mt-1 text-sm leading-relaxed text-muted">{t(group.descriptionKey)}</p>
+                        </div>
+                    </div>
+
+                    <ul className="mt-5 space-y-3">
+                        {group.tools.map((tool) => (
+                            <li key={tool.name} className="flex items-start gap-3">
+                                <span
+                                    role="img"
+                                    aria-label={`${tool.name} ${t("security_icon_label")}`}
+                                    className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-subtle bg-page text-blue-700 dark:text-blue-300"
+                                >
+                                    <tool.Icon className="h-4 w-4" aria-hidden="true" />
+                                </span>
+                                <span className="min-w-0">
+                                    <span className="block text-sm font-semibold text-main">{tool.name}</span>
+                                    <span className="block text-sm leading-relaxed text-muted">{t(tool.roleKey)}</span>
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </article>
+            ))}
+        </div>
     );
 }

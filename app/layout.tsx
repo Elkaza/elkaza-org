@@ -128,7 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <header className="sticky top-0 z-50">
               <SubNav />
             </header>
-            <main id="main">{children}</main>
+            <div id="main">{children}</div>
             <SiteFooter />
             <BackToTop />
           </LocaleProvider>

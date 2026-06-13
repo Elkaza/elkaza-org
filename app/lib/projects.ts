@@ -42,6 +42,7 @@ export interface Project {
     diagrams?: {
         title: LocalizedString;
         caption: LocalizedString;
+        summary?: LocalizedList;
         src: string;
     }[];
     relatedProjectSlug?: string;
@@ -147,6 +148,18 @@ export const projects: Project[] = [
                     "Camera and LiDAR inputs are processed locally on the Raspberry Pi 5 with Hailo acceleration, then fused into SAFE/WARNING/ALERT outputs for dashboard visualization, ESP32 actuation, optional Telegram alerts, and CSV evidence logs.",
                     "Kamera- und LiDAR-Inputs werden lokal auf dem Raspberry Pi 5 mit Hailo-Beschleunigung verarbeitet und zu SAFE/WARNING/ALERT-Ausgaben für Dashboard, ESP32-Aktuatorik, optionale Telegram-Alerts und CSV-Evidenzlogs fusioniert."
                 ),
+                summary: locList(
+                    [
+                        "Local-only inference path: camera frames and LiDAR distance stay on the Raspberry Pi runtime",
+                        "Separate evidence outputs: dashboard, CSV logs, optional Telegram, and ESP32 actuation proof",
+                        "Safety decision model is visible through SAFE/WARNING/ALERT state transitions",
+                    ],
+                    [
+                        "Lokaler Inferenzpfad: Kameraframes und LiDAR-Distanz bleiben in der Raspberry-Pi-Runtime",
+                        "Getrennte Evidenz-Ausgaben: Dashboard, CSV-Logs, optional Telegram und ESP32-Aktuatornachweis",
+                        "Die Sicherheitsentscheidung wird über SAFE/WARNING/ALERT-Zustandswechsel sichtbar",
+                    ]
+                ),
                 src: "/project-diagrams/edgeguardian-system-context.png",
             },
             {
@@ -154,6 +167,18 @@ export const projects: Project[] = [
                 caption: loc(
                     "Physical sensors feed a Raspberry Pi 5 runtime with Hailo-accelerated person detection, fusion logic, ESP32 serial actuation, dashboard visualization, optional Telegram alerts, and evidence logs.",
                     "Physische Sensoren speisen eine Raspberry-Pi-5-Runtime mit Hailo-beschleunigter Personenerkennung, Fusionslogik, ESP32-Serial-Aktuatorik, Dashboard-Visualisierung, optionalen Telegram-Alerts und Evidenzlogs."
+                ),
+                summary: locList(
+                    [
+                        "Hailo detection output and LiDAR distance converge in the fusion script",
+                        "Hysteresis, stale-data checks, and thresholds sit before actuation or alerting",
+                        "Dashboard and final evidence folder make the demo inspectable after the run",
+                    ],
+                    [
+                        "Hailo-Erkennung und LiDAR-Distanz laufen im Fusionsskript zusammen",
+                        "Hysterese, Stale-Data-Prüfung und Schwellwerte liegen vor Aktuatorik oder Alerting",
+                        "Dashboard und finaler Evidenzordner machen die Demo nachträglich prüfbar",
+                    ]
                 ),
                 src: "/project-diagrams/edgeguardian-container-deployment.png",
             },
@@ -541,6 +566,18 @@ export const projects: Project[] = [
                     "System context of the hybrid portfolio and privacy-first analytics platform: the public site runs on Vercel, while first-party analytics traffic is routed through VPS/Tailscale to a private self-hosted Plausible stack.",
                     "Systemkontext der hybriden Portfolio- und Privacy-First-Analytics-Plattform: Die öffentliche Seite läuft auf Vercel, während First-Party-Analytics-Traffic über VPS/Tailscale zu einem privaten self-hosted Plausible-Stack geroutet wird."
                 ),
+                summary: locList(
+                    [
+                        "Public website delivery stays lightweight on Vercel while analytics ownership moves private",
+                        "A VPS ingress layer avoids exposing the residential IP or local router ports",
+                        "Operational paths for CI/CD, monitoring, and platform management are separated from visitor traffic",
+                    ],
+                    [
+                        "Die öffentliche Website-Auslieferung bleibt schlank auf Vercel, während Analytics privat betrieben wird",
+                        "Eine VPS-Ingress-Schicht vermeidet die Exponierung der privaten IP und lokaler Router-Ports",
+                        "CI/CD, Monitoring und Plattformmanagement sind vom Besuchertraffic getrennt",
+                    ]
+                ),
                 src: "/project-diagrams/enterprise-self-hosted-system-context.png",
             },
             {
@@ -549,6 +586,18 @@ export const projects: Project[] = [
                     "Container/deployment view of the hybrid portfolio platform: frontend deployment on Vercel, public VPS ingress, private Tailscale routing, and self-hosted Plausible/PostgreSQL containers on a Proxmox/Debian runtime.",
                     "Container- und Deployment-Ansicht der hybriden Portfolio-Plattform: Frontend-Deployment auf Vercel, öffentlicher VPS-Ingress, privates Tailscale-Routing und self-hosted Plausible/PostgreSQL-Container auf einer Proxmox/Debian-Runtime."
                 ),
+                summary: locList(
+                    [
+                        "GitHub Actions deploys the public frontend while the private runtime owns analytics state",
+                        "Tailscale bridges the public VPS and private Proxmox/Debian runtime without direct inbound exposure",
+                        "Docker Compose groups Plausible, PostgreSQL, and backup handling into an operable service layer",
+                    ],
+                    [
+                        "GitHub Actions deployt das öffentliche Frontend, während die private Runtime den Analytics-State hält",
+                        "Tailscale verbindet öffentlichen VPS und private Proxmox/Debian-Runtime ohne direkte Inbound-Exponierung",
+                        "Docker Compose bündelt Plausible, PostgreSQL und Backups zu einer betreibbaren Service-Schicht",
+                    ]
+                ),
                 src: "/project-diagrams/enterprise-self-hosted-container-deployment.png",
             },
             {
@@ -556,6 +605,18 @@ export const projects: Project[] = [
                 caption: loc(
                     "Data flow view of the privacy-first analytics platform: public visitors load the Vercel-hosted frontend, first-party analytics events are routed through VPS/Tailscale to the private Plausible/PostgreSQL stack, while CI/CD, monitoring, and backups remain separated from runtime traffic.",
                     "Datenfluss-Ansicht der Privacy-First-Analytics-Plattform: Besucher laden das Vercel-gehostete Frontend, First-Party-Analytics-Events laufen über VPS/Tailscale zum privaten Plausible/PostgreSQL-Stack, während CI/CD, Monitoring und Backups vom Runtime-Traffic getrennt bleiben."
+                ),
+                summary: locList(
+                    [
+                        "Runtime user traffic, analytics events, CI/CD, monitoring, and backups are modeled as distinct flows",
+                        "First-party analytics requests travel through the controlled ingress path before private processing",
+                        "Backup and observability loops show recovery readiness rather than only happy-path hosting",
+                    ],
+                    [
+                        "User-Traffic, Analytics-Events, CI/CD, Monitoring und Backups sind als getrennte Flüsse modelliert",
+                        "First-Party-Analytics-Requests laufen über den kontrollierten Ingress-Pfad vor der privaten Verarbeitung",
+                        "Backup- und Observability-Schleifen zeigen Recovery-Fähigkeit statt nur Happy-Path-Hosting",
+                    ]
                 ),
                 src: "/project-diagrams/enterprise-self-hosted-data-flow.png",
             },
@@ -908,8 +969,8 @@ export const projects: Project[] = [
             "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
         ),
         solution: loc(
-            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, and internal service discovery. I also debugged the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Übersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards debuggt, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
+            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, and internal service discovery. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Übersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
         ),
         architecture: {
             node: loc(
@@ -938,14 +999,14 @@ export const projects: Project[] = [
                 "Layered security with Pi-hole DNS filtering and CrowdSec-based intrusion response",
                 "Reverse-proxied service access through Nginx Proxy Manager",
                 "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
-                "Debugged and stabilized a React-based Proxmox API integration for dashboard visibility",
+                "Stabilized a React-based Proxmox API integration for dashboard visibility",
                 "Watchtower-driven container update workflow for routine maintenance",
             ],
             [
                 "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung und CrowdSec-basierter Intrusion Response",
                 "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
                 "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
-                "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit debuggt und stabilisiert",
+                "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit stabilisiert",
                 "Ein Watchtower-gesteuerter Container-Update-Workflow für die Regelwartung",
             ]
         ),
@@ -953,7 +1014,7 @@ export const projects: Project[] = [
             [
                 "Turned a generic private lab into a hardened internal platform with clearer operational boundaries",
                 "Added real-time visibility across service health, metrics, and logs",
-                "Resolved a cross-layer integration issue between frontend code and the Proxmox API",
+                "Resolved a cross-layer integration mismatch between frontend code and the Proxmox API",
                 "Reduced routine maintenance effort through automated container updates",
                 "Created a scalable baseline for adding future internal tools without reworking the control plane",
             ],

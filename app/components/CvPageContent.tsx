@@ -1,198 +1,335 @@
 "use client";
 
-import React from "react";
-import { useLocale } from "../LocaleProvider";
-import { MapPin, Mail } from "lucide-react";
 import Link from "next/link";
+import {
+  Activity,
+  Archive,
+  BarChart3,
+  BrainCircuit,
+  ClipboardList,
+  Cloud,
+  Code2,
+  Cpu,
+  Database,
+  GitBranch,
+  Lock,
+  Mail,
+  MapPin,
+  Network,
+  Server,
+  Shield,
+  Users,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
+import { useLocale } from "../LocaleProvider";
+import type { Locale } from "../i18n/messages";
 
-const skillGroups = [
-    "platform",
-    "automation",
-    "networking",
-    "operations",
-    "software",
-    "delivery",
-] as const;
+type SummaryFocus = {
+  key: number;
+  Icon: LucideIcon;
+};
 
-const recentProjects = [
-    { key: "edgeguardian", href: "/projects/edgeguardian-edge-ai-safety-bubble" },
-    { key: "tinyml", href: "/projects/tinyml-vibration-anomaly-detection" },
-    { key: "tourism", href: "/projects/austria-tourism-dashboard" },
-    { key: "regression", href: "/projects/random-walk-gravity-regression" },
-] as const;
+type InfrastructureItem = {
+  key: number;
+  Icon: LucideIcon;
+};
+
+type RecentProject = {
+  key: "edgeguardian" | "tinyml" | "tourism" | "regression";
+  href: string;
+  category: Record<Locale, string>;
+  tags: string[];
+  Icon: LucideIcon;
+};
+
+type SkillGroup = {
+  key: "platform" | "automation" | "networking" | "operations" | "software" | "delivery";
+  Icon: LucideIcon;
+};
+
+const summaryFocus: SummaryFocus[] = [
+  { key: 1, Icon: Server },
+  { key: 2, Icon: Workflow },
+  { key: 3, Icon: Shield },
+  { key: 4, Icon: Users },
+];
+
+const infrastructureItems: InfrastructureItem[] = [
+  { key: 1, Icon: Cloud },
+  { key: 2, Icon: GitBranch },
+  { key: 3, Icon: Network },
+  { key: 4, Icon: Archive },
+];
+
+const recentProjects: RecentProject[] = [
+  {
+    key: "edgeguardian",
+    href: "/projects/edgeguardian-edge-ai-safety-bubble",
+    category: {
+      de: "Edge AI / IoT",
+      en: "Edge AI / IoT",
+      ar: "Edge AI / IoT",
+    },
+    tags: ["Raspberry Pi 5", "Hailo-8L", "LiDAR", "ESP32"],
+    Icon: Cpu,
+  },
+  {
+    key: "tinyml",
+    href: "/projects/tinyml-vibration-anomaly-detection",
+    category: {
+      de: "Embedded / TinyML",
+      en: "Embedded / TinyML",
+      ar: "Embedded / TinyML",
+    },
+    tags: ["Arduino Nano 33", "IMU", "C++", "Softmax"],
+    Icon: Activity,
+  },
+  {
+    key: "tourism",
+    href: "/projects/austria-tourism-dashboard",
+    category: {
+      de: "Data / Dashboard",
+      en: "Data / Dashboard",
+      ar: "Data / Dashboard",
+    },
+    tags: ["Python", "HTML", "CSV", "Dashboard"],
+    Icon: BarChart3,
+  },
+  {
+    key: "regression",
+    href: "/projects/random-walk-gravity-regression",
+    category: {
+      de: "Machine Learning",
+      en: "Machine Learning",
+      ar: "Machine Learning",
+    },
+    tags: ["scikit-learn", "Regression", "Validation", "Python"],
+    Icon: BrainCircuit,
+  },
+];
+
+const skillGroups: SkillGroup[] = [
+  { key: "platform", Icon: Server },
+  { key: "automation", Icon: Code2 },
+  { key: "networking", Icon: Lock },
+  { key: "operations", Icon: Activity },
+  { key: "software", Icon: Database },
+  { key: "delivery", Icon: ClipboardList },
+];
 
 export default function CvPageContent() {
-    const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const expKeys = ["1", "2", "3", "4"] as const;
+  const educationItems = [
+    t("cv_education_item1"),
+    t("cv_education_item2"),
+    t("cv_education_item3"),
+    t("cert_ipma_title"),
+    t("cert_graz_title"),
+    t("cert_li_title"),
+    t("cert_excel_title"),
+  ];
 
-    const expKeys = ["exp1", "exp2", "exp3", "exp4"];
-    const summaryFocus = [1, 2, 3, 4];
-    const infrastructureItems = [1, 2, 3, 4];
-    const educationItems = [1, 2, 3];
+  return (
+    <main className="mx-auto max-w-6xl px-5 py-10 text-main sm:px-6 md:py-16 print:max-w-none print:px-0 print:py-0">
+      <section className="rounded-xl border border-subtle bg-card p-6 shadow-sm md:p-8 print:border-0 print:p-0 print:shadow-none">
+        <div className="grid gap-5 md:grid-cols-[1.4fr_0.6fr] md:items-start">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-blue-700 dark:text-blue-300">{t("cv_title")}</p>
+              <h1 className="text-3xl font-bold tracking-normal text-main md:text-4xl">{t("brand")}</h1>
+              <p className="max-w-3xl text-base leading-7 text-secondary md:text-lg">{t("cv_role_title")}</p>
+            </div>
+            <div className="flex flex-wrap gap-2 text-sm text-muted">
+              <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                {t("legal_location")}
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="mailto:contact@elkaza.org">
+                  contact@elkaza.org
+                </a>
+              </span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm text-muted print:hidden">
+            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://elkaza.org" target="_blank" rel="noreferrer">
+              elkaza.org
+            </a>
+            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://github.com/Elkaza" target="_blank" rel="noreferrer">
+              github.com/Elkaza
+            </a>
+            <a
+              className="transition hover:text-blue-700 dark:hover:text-blue-300"
+              href="https://linkedin.com/in/moalkhalil"
+              target="_blank"
+              rel="noreferrer"
+            >
+              linkedin.com/in/moalkhalil
+            </a>
+          </div>
+        </div>
+      </section>
 
-    return (
-        <main className="w-full max-w-5xl mx-auto px-6 py-12 md:py-16 space-y-10 text-main">
-            {/* Header */}
-            <header className="space-y-4 border-b border-subtle pb-8">
-                <div>
-                    <h1 className="text-3xl md:text-4xl font-bold tracking-normal text-main">
-                        Mohamed Elkaza
-                    </h1>
-                    <p className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-medium">
-                        {t("cv_role_title")}
-                    </p>
-                    <p className="text-sm text-muted mt-2">
-                        {t("cv_last_updated")}
-                    </p>
+      <div className="mt-8 space-y-8 md:mt-10 print:mt-6 print:space-y-5">
+        <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
+            <SectionHeading icon={ClipboardList} title={t("cv_summary_title")} />
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-secondary md:text-base">{t("cv_summary_text")}</p>
+            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
+              {summaryFocus.map(({ key, Icon }) => (
+                <div key={key} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-3">
+                  <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <p className="text-sm leading-6 text-main">{t(`cv_summary_focus${key}`)}</p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 text-muted text-sm">
-                    <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        <span>{t("legal_location")}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Mail className="w-4 h-4" />
-                        <a href="mailto:contact@elkaza.org" className="hover:text-blue-600 transition-colors">
-                            contact@elkaza.org
-                        </a>
-                    </div>
+          <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
+            <SectionHeading icon={Cloud} title={t("cv_infra_title")} />
+            <p className="mt-4 text-sm leading-7 text-secondary">{t("cv_infra_intro")}</p>
+            <div className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
+              {infrastructureItems.map(({ key, Icon }) => (
+                <div key={key} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 px-3 py-2.5">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <p className="text-sm leading-6 text-main">{t(`cv_infra_short${key}`)}</p>
                 </div>
-            </header>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* Summary */}
-            <section className="space-y-4">
-                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
-                    {t("cv_summary_title")}
-                </h2>
-                <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-                    <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
-                        <p className="text-base leading-relaxed text-main">
-                            {t("cv_summary_text")}
-                        </p>
-                        <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                            {summaryFocus.map((item) => (
-                                <span key={item} className="rounded-md border border-subtle bg-page/60 px-3 py-2 text-sm font-medium text-main">
-                                    {t(`cv_summary_focus${item}`)}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
-                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
-                            {t("cv_infra_title")}
-                        </p>
-                        <p className="mt-2 text-sm leading-relaxed text-muted">
-                            {t("cv_infra_intro")}
-                        </p>
-                        <ul className="mt-4 space-y-2">
-                            {infrastructureItems.map((item) => (
-                                <li key={item} className="flex items-start gap-2 text-sm text-main">
-                                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500" />
-                                    <span>{t(`cv_infra_short${item}`)}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading icon={Network} title={t("cv_recent_projects_title")} />
+            <p className="max-w-xl text-sm leading-6 text-muted">{t("cv_recent_projects_desc")}</p>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {recentProjects.map(({ key, href, category, tags, Icon }) => (
+              <Link
+                key={key}
+                href={href}
+                className="group flex h-full flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-400 hover:bg-card hover:shadow-md dark:hover:border-blue-500 print:break-inside-avoid"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="space-y-1">
+                    <p className="text-xs font-semibold uppercase tracking-normal text-blue-700 dark:text-blue-300">{category[locale]}</p>
+                    <h3 className="text-base font-semibold text-main group-hover:text-blue-700 dark:group-hover:text-blue-300">
+                      {t(`cv_recent_${key}_title`)}
+                    </h3>
+                  </div>
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
                 </div>
-            </section>
+                <p className="mt-3 text-sm leading-6 text-secondary">{t(`cv_recent_${key}_desc`)}</p>
+                <div className="mt-auto flex flex-wrap gap-2 pt-4">
+                  {tags.map((tag) => (
+                    <span key={tag} className="rounded-md border border-subtle bg-card px-2.5 py-1 text-xs font-medium text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-            {/* Recent Projects */}
-            <section className="space-y-4">
-                <div>
-                    <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
-                        {t("cv_recent_projects_title")}
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
-                        {t("cv_recent_projects_desc")}
-                    </p>
+        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
+          <SectionHeading icon={Code2} title={t("cv_skills_title")} />
+          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {skillGroups.map(({ key, Icon }) => (
+              <div
+                key={key}
+                className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <h3 className="text-base font-semibold text-main">{t(`cv_skill_${key}_title`)}</h3>
                 </div>
-                <div className="grid gap-3 md:grid-cols-2">
-                    {recentProjects.map((project) => (
-                        <Link
-                            key={project.key}
-                            href={project.href}
-                            className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600"
-                        >
-                            <h3 className="text-sm font-semibold text-main">
-                                {t(`cv_recent_${project.key}_title`)}
-                            </h3>
-                            <p className="mt-2 text-sm text-muted leading-relaxed">
-                                {t(`cv_recent_${project.key}_desc`)}
-                            </p>
-                        </Link>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {t(`cv_skill_${key}_items`)
+                    .split("|")
+                    .map((item) => item.trim())
+                    .filter(Boolean)
+                    .map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-md border border-subtle bg-card px-2.5 py-1 text-xs font-medium text-muted"
+                      >
+                        {item}
+                      </span>
                     ))}
                 </div>
-            </section>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            {/* Skills */}
-            <section className="space-y-4">
-                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
-                    {t("cv_skills_title")}
-                </h2>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    {skillGroups.map((group) => (
-                        <div key={group} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
-                            <h3 className="text-sm font-semibold text-main">
-                                {t(`cv_skill_${group}_title`)}
-                            </h3>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                {t(`cv_skill_${group}_items`).split(/\s*\|\s*/).map((skill) => (
-                                    <span key={skill} className="rounded-md border border-subtle bg-page/70 px-2.5 py-1 text-xs font-medium text-muted">
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
+          <SectionHeading icon={Users} title={t("cv_exp_title")} />
+          <div className="mt-5 grid gap-4">
+            {expKeys.map((key) => (
+              <div
+                key={key}
+                className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3 className="font-semibold text-main">{t(`exp${key}_title`)}</h3>
                 </div>
-            </section>
+                <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            {/* Experience */}
-            <section className="space-y-6">
-                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
-                    {t("cv_exp_title")}
-                </h2>
-                <div className="space-y-8">
-                    {expKeys.map((key) => (
-                        <div key={key} className="space-y-2">
-                            <h3 className="text-lg font-bold text-main">
-                                {t(`${key}_title_full`)}
-                            </h3>
-                            <p className="text-sm text-muted leading-relaxed">
-                                {t(`${key}_desc_full`)}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </section>
+        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
+          <SectionHeading icon={ClipboardList} title={t("cv_edu_title")} />
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {educationItems.map((item) => (
+              <div key={item} className="rounded-lg border border-subtle bg-page/70 p-4 text-sm leading-6 text-muted">
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
 
-            {/* Education & Certifications */}
-            <section className="space-y-6">
-                <h2 className="text-xl font-semibold uppercase tracking-normal text-muted">
-                    {t("cv_edu_title")}
-                </h2>
-                <ul className="space-y-2 list-disc list-inside text-muted">
-                    {educationItems.map((item) => (
-                        <li key={item}>{t(`cv_education_item${item}`)}</li>
-                    ))}
-                    <li>{t("cert_ipma_title")} ({t("cert_ipma_issuer")})</li>
-                    <li>{t("cert_graz_title")}</li>
-                </ul>
-            </section>
+        <section className="rounded-xl border border-blue-200/70 bg-blue-50/70 p-5 shadow-sm dark:border-blue-900/70 dark:bg-blue-950/20 md:p-6 print:hidden">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="text-xl font-semibold text-main">{t("cv_request_title")}</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{t("cv_request_desc")}</p>
+            </div>
+            <a
+              href="mailto:contact@elkaza.org"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition hover:bg-blue-700"
+            >
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              {t("cv_request_cta")}
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}
 
-            {/* Request Section */}
-            <section className="pt-8 border-t border-subtle space-y-4">
-                <p className="font-medium text-main">{t("cv_note_full")}</p>
-                <div className="flex flex-wrap gap-4">
-                    <Link
-                        href="/contact"
-                        className="inline-flex items-center px-5 py-3 bg-card border border-subtle hover:border-blue-500 rounded-md shadow-sm transition-all group"
-                    >
-                        <Mail className="w-5 h-5 mr-3 text-blue-600 group-hover:text-blue-500" />
-                        <span className="font-medium">{t("hero_cta_cv")}</span>
-                    </Link>
-                </div>
-            </section>
-        </main>
-    );
+function SectionHeading({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-subtle bg-accent/10 text-accent">
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </span>
+      <h2 className="text-xl font-semibold tracking-normal text-main md:text-2xl">{title}</h2>
+    </div>
+  );
 }

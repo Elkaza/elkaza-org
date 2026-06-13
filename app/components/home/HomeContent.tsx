@@ -1,325 +1,576 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import {
+  ArrowRight,
+  Cpu,
+  Database,
+  ExternalLink,
+  FileText,
+  Github,
+  Mail,
+  Server,
+  SquareTerminal,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import type { Locale } from "@/app/i18n/messages";
 import { projects, type Project } from "@/app/lib/projects";
-import { getProjectStatusLabel } from "@/app/lib/projectDisplay";
 
-const FEATURED_HOME_PROJECTS = [
+type Localized<T> = Record<Locale, T>;
+
+const FEATURED_PROJECT_SLUGS = [
   "edgeguardian-edge-ai-safety-bubble",
-  "tinyml-vibration-anomaly-detection",
-  "random-walk-gravity-regression",
   "enterprise-self-hosted-infrastructure",
-];
+  "elkaza-org",
+] as const;
 
-const HOME_PROJECT_COPY: Record<Locale, {
-  eyebrow: string;
-  title: string;
-  intro: string;
-  status: string;
-  result: string;
-  cta: string;
-  allProjects: string;
+type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
+
+const TECH_CHIPS = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
+
+const HOME_COPY: Localized<{
+  heroTitle: string;
+  heroSubheadline: string;
+  heroSupportingLine: string;
+  ctas: {
+    projects: string;
+    cv: string;
+    contact: string;
+    caseStudy: string;
+    github: string;
+    live: string;
+  };
+  featuredTitle: string;
+  workTitle: string;
+  stackTitle: string;
+  finalCta: string;
 }> = {
   de: {
-    eyebrow: "Ausgewählte Fallstudien",
-    title: "Aktuelle Arbeit, die Recruiter schnell einordnen können",
-    intro: "Diese Projekte zeigen praktische Umsetzung in Edge AI, TinyML, Machine Learning, Datenanalyse, Infrastruktur, Monitoring und technischer Dokumentation.",
-    status: "Status",
-    result: "Evidenz",
-    cta: "Fallstudie",
-    allProjects: "Alle Projekte ansehen",
+    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroSubheadline:
+      "Ich baue TypeScript-Web-Apps, Python-Automatisierung, Linux/Docker-Infrastruktur und IoT-/Edge-AI-Prototypen.",
+    heroSupportingLine:
+      "Praktische Projekte in Application Delivery, self-hosted Plattformen, Daten-Workflows und vernetzten Systemen.",
+    ctas: {
+      projects: "Projekte ansehen",
+      cv: "CV ansehen",
+      contact: "Kontakt",
+      caseStudy: "Fallstudie",
+      github: "GitHub",
+      live: "Live",
+    },
+    featuredTitle: "Ausgewählte Arbeiten",
+    workTitle: "Arbeitsbereiche",
+    stackTitle: "Technischer Stack",
+    finalCta:
+      "Suchen Sie jemanden, der praktische technische Systeme baut, automatisiert und betreibt?",
   },
   en: {
-    eyebrow: "Selected Case Studies",
-    title: "Recent work recruiters can evaluate quickly",
-    intro: "These projects show practical delivery across edge AI, TinyML, machine learning, data analysis, infrastructure, monitoring, and technical documentation.",
-    status: "Status",
-    result: "Evidence",
-    cta: "Case study",
-    allProjects: "View all projects",
+    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroSubheadline:
+      "I build TypeScript web apps, Python automation, Linux/Docker infrastructure and IoT/Edge AI prototypes.",
+    heroSupportingLine:
+      "Practical projects across application delivery, self-hosted platforms, data workflows and connected systems.",
+    ctas: {
+      projects: "View Projects",
+      cv: "View CV",
+      contact: "Contact",
+      caseStudy: "Case Study",
+      github: "GitHub",
+      live: "Live",
+    },
+    featuredTitle: "Featured Work",
+    workTitle: "What I Work On",
+    stackTitle: "Technical Stack",
+    finalCta:
+      "Looking for someone who can build, automate and operate practical technical systems?",
   },
   ar: {
-    eyebrow: "Selected Case Studies",
-    title: "Recent work recruiters can evaluate quickly",
-    intro: "These projects show practical delivery across edge AI, TinyML, machine learning, data analysis, infrastructure, monitoring, and technical documentation.",
-    status: "Status",
-    result: "Evidence",
-    cta: "Case study",
-    allProjects: "View all projects",
+    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroSubheadline:
+      "I build TypeScript web apps, Python automation, Linux/Docker infrastructure and IoT/Edge AI prototypes.",
+    heroSupportingLine:
+      "Practical projects across application delivery, self-hosted platforms, data workflows and connected systems.",
+    ctas: {
+      projects: "View Projects",
+      cv: "View CV",
+      contact: "Contact",
+      caseStudy: "Case Study",
+      github: "GitHub",
+      live: "Live",
+    },
+    featuredTitle: "Featured Work",
+    workTitle: "What I Work On",
+    stackTitle: "Technical Stack",
+    finalCta:
+      "Looking for someone who can build, automate and operate practical technical systems?",
   },
 };
 
+const FEATURED_COPY: Record<
+  FeaturedSlug,
+  {
+    title: Localized<string>;
+    summary: Localized<string>;
+    tech: string[];
+    visualLabel: Localized<string>;
+  }
+> = {
+  "edgeguardian-edge-ai-safety-bubble": {
+    title: {
+      de: "EdgeGuardian",
+      en: "EdgeGuardian",
+      ar: "EdgeGuardian",
+    },
+    summary: {
+      de: "Edge-AI-Sicherheitsüberwachung mit Kamera, LiDAR und lokaler Entscheidungslogik.",
+      en: "Edge AI safety monitoring with camera, LiDAR and local decision logic.",
+      ar: "Edge AI safety monitoring with camera, LiDAR and local decision logic.",
+    },
+    tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "ESP32"],
+    visualLabel: {
+      de: "Edge AI Architektur",
+      en: "Edge AI architecture",
+      ar: "Edge AI architecture",
+    },
+  },
+  "enterprise-self-hosted-infrastructure": {
+    title: {
+      de: "Self-Hosted Infrastructure",
+      en: "Self-Hosted Infrastructure",
+      ar: "Self-Hosted Infrastructure",
+    },
+    summary: {
+      de: "Hybrid-Plattform mit privatem Betrieb, Monitoring, Backups und First-Party Analytics.",
+      en: "Hybrid platform with private operations, monitoring, backups and first-party analytics.",
+      ar: "Hybrid platform with private operations, monitoring, backups and first-party analytics.",
+    },
+    tech: ["Proxmox", "Docker", "Tailscale", "Plausible", "GitHub Actions"],
+    visualLabel: {
+      de: "Hybrid Cloud Architektur",
+      en: "Hybrid cloud architecture",
+      ar: "Hybrid cloud architecture",
+    },
+  },
+  "elkaza-org": {
+    title: {
+      de: "Portfolio Platform",
+      en: "Portfolio Platform",
+      ar: "Portfolio Platform",
+    },
+    summary: {
+      de: "Mehrsprachige Next.js-Plattform für Projekte, CV und technische Fallstudien.",
+      en: "Multilingual Next.js platform for projects, CV content and technical case studies.",
+      ar: "Multilingual Next.js platform for projects, CV content and technical case studies.",
+    },
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
+    visualLabel: {
+      de: "Web Delivery Architektur",
+      en: "Web delivery architecture",
+      ar: "Web delivery architecture",
+    },
+  },
+};
+
+const WORK_AREAS: {
+  title: Localized<string>;
+  bullets: Localized<string[]>;
+  Icon: LucideIcon;
+}[] = [
+  {
+    title: {
+      de: "Application Engineering",
+      en: "Application Engineering",
+      ar: "Application Engineering",
+    },
+    bullets: {
+      de: ["Analysiert Anforderungen und Fehlerbilder", "Dokumentiert Lösungen und technische Übergaben"],
+      en: ["Analyzes requirements and defects", "Documents fixes and technical handovers"],
+      ar: ["Analyzes requirements and defects", "Documents fixes and technical handovers"],
+    },
+    Icon: Workflow,
+  },
+  {
+    title: {
+      de: "Fullstack / Software",
+      en: "Fullstack / Software",
+      ar: "Fullstack / Software",
+    },
+    bullets: {
+      de: ["Baut Next.js/TypeScript Oberflächen", "Automatisiert Workflows mit Python und SQL"],
+      en: ["Builds Next.js/TypeScript interfaces", "Automates workflows with Python and SQL"],
+      ar: ["Builds Next.js/TypeScript interfaces", "Automates workflows with Python and SQL"],
+    },
+    Icon: SquareTerminal,
+  },
+  {
+    title: {
+      de: "Infrastructure / Platform",
+      en: "Infrastructure / Platform",
+      ar: "Infrastructure / Platform",
+    },
+    bullets: {
+      de: ["Deployt Linux/Docker Services", "Betreibt Monitoring, Backups und Zugriffswege"],
+      en: ["Deploys Linux/Docker services", "Operates monitoring, backups and access paths"],
+      ar: ["Deploys Linux/Docker services", "Operates monitoring, backups and access paths"],
+    },
+    Icon: Server,
+  },
+  {
+    title: {
+      de: "IoT / Edge AI",
+      en: "IoT / Edge AI",
+      ar: "IoT / Edge AI",
+    },
+    bullets: {
+      de: ["Testet Sensorik, Edge Inference und Aktuatorik", "Verbindet Dashboards, Logs und Embedded Geräte"],
+      en: ["Tests sensors, edge inference and actuation", "Connects dashboards, logs and embedded devices"],
+      ar: ["Tests sensors, edge inference and actuation", "Connects dashboards, logs and embedded devices"],
+    },
+    Icon: Cpu,
+  },
+  {
+    title: {
+      de: "Data Automation",
+      en: "Data Automation",
+      ar: "Data Automation",
+    },
+    bullets: {
+      de: ["Automatisiert Datenaufbereitung und Reports", "Verbessert reproduzierbare Analysepfade"],
+      en: ["Automates data preparation and reports", "Improves reproducible analysis paths"],
+      ar: ["Automates data preparation and reports", "Improves reproducible analysis paths"],
+    },
+    Icon: Database,
+  },
+];
+
+const STACK_GROUPS: Localized<{ title: string; items: string[] }[]> = {
+  de: [
+    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
+    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
+    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
+    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
+  ],
+  en: [
+    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
+    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
+    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
+    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
+  ],
+  ar: [
+    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
+    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
+    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
+    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
+  ],
+};
+
 export default function HomeContent() {
-  const { t, locale } = useLocale();
-  const platformItems = [1, 2, 3, 4];
-  const proofItems = ["impact", "scope", "strength"];
-  const roleFitItems = [1, 2, 3, 4, 5, 6];
-  const openToItems = [1, 2, 3, 4, 5, 6];
-  const projectCopy = HOME_PROJECT_COPY[locale] ?? HOME_PROJECT_COPY.en;
-  const featuredProjects = FEATURED_HOME_PROJECTS
-    .map((slug) => projects.find((project) => project.slug === slug))
-    .filter((project): project is Project => Boolean(project));
+  const { locale } = useLocale();
+  const copy = HOME_COPY[locale] ?? HOME_COPY.en;
+  const featuredProjects = FEATURED_PROJECT_SLUGS
+    .map((slug) => {
+      const project = projects.find((candidate) => candidate.slug === slug);
+      return project ? { slug, project } : null;
+    })
+    .filter((item): item is { slug: FeaturedSlug; project: Project } => item !== null);
 
   return (
-    <main className="flex flex-col items-start justify-start w-full max-w-5xl mx-auto px-6 py-12 md:py-20 space-y-20 text-main">
-
-      {/* 1. Hero Section - New Focused Positioning */}
-      <section className="w-full space-y-8">
-        <div className="space-y-4 max-w-4xl">
-          <div className="space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400 block">
-              {t("hero_badge")}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-normal text-main">
-              {t("home_hero_headline")}
-            </h1>
-          </div>
-          <p className="text-lg md:text-xl text-blue-600 dark:text-blue-400 font-medium">
-            {t("home_hero_subline")}
-          </p>
-          <p className="text-lg text-muted leading-relaxed max-w-2xl">
-            {t("home_hero_desc")}
-          </p>
-        </div>
-
-        <div className="w-full rounded-lg border border-subtle bg-card p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
-            {t("home_platform_title")}
-          </p>
-          <p className="mt-2 text-sm md:text-base text-main leading-relaxed">
-            {t("home_platform_text")}
-          </p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {platformItems.map((item) => (
-              <span key={item} className="rounded-md border border-subtle bg-page/70 px-3 py-2 text-sm font-medium text-main">
-                {t(`home_platform_item${item}`)}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Proof in 3 compact cards */}
+    <main className="mx-auto flex w-full max-w-6xl min-w-0 flex-col overflow-hidden px-5 py-10 text-main sm:px-6 md:py-14">
+      <section className="max-w-4xl space-y-7 border-b border-subtle pb-10 md:pb-12">
         <div className="space-y-4">
-          <h2 className="text-sm font-semibold uppercase tracking-normal text-muted">
-            {t("home_proof_title")}
-          </h2>
-          <div className="grid gap-3 md:grid-cols-3">
-            {proofItems.map((item) => (
-              <div key={item} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
-                <span className="mb-3 block h-1.5 w-10 rounded-full bg-blue-500" />
-                <p className="text-sm leading-relaxed text-main">{t(`home_proof_${item}`)}</p>
-              </div>
-            ))}
-          </div>
+          <h1 className="break-words text-4xl font-extrabold leading-tight tracking-normal text-main md:text-6xl">
+            {copy.heroTitle}
+          </h1>
+          <p className="max-w-3xl break-words text-lg font-medium text-blue-700 dark:text-blue-300 md:text-xl">
+            {copy.heroSubheadline}
+          </p>
+          <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
+            {copy.heroSupportingLine}
+          </p>
         </div>
 
-        <div className="w-full border-y border-subtle py-5">
-          <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
-            {t("home_role_fit_title")}
-          </p>
-          <p className="mt-2 text-sm text-muted leading-relaxed">
-            {t("home_role_fit_text")}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {roleFitItems.map((item) => (
-              <span key={item} className="rounded-md border border-subtle bg-page/70 px-3 py-2 text-sm font-medium text-main">
-                {t(`home_role_fit_item${item}`)}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {TECH_CHIPS.map((chip) => (
+            <span
+              key={chip}
+              className="rounded-md border border-subtle bg-card px-3 py-1.5 text-sm font-medium text-main shadow-sm"
+            >
+              {chip}
+            </span>
+          ))}
         </div>
 
-        {/* Primary CTAs */}
-        <div className="flex flex-wrap gap-4">
-          <CvLink t={t} />
+        <div className="flex flex-wrap gap-3">
           <Link
             href="/projects"
-            className="inline-flex items-center px-5 py-2.5 border border-subtle bg-card text-main rounded-md font-medium hover:bg-subtle transition-colors shadow-sm"
+            className="inline-flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-700"
           >
-            {t("home_cta_secondary")}
+            {copy.ctas.projects}
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+          <Link
+            href="/cv"
+            className="inline-flex items-center rounded-md border border-blue-600 px-5 py-2.5 text-sm font-semibold text-blue-700 shadow-sm transition-colors hover:bg-blue-50 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-950/30"
+          >
+            <FileText className="mr-2 h-4 w-4" />
+            {copy.ctas.cv}
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center px-5 py-2.5 text-blue-600 dark:text-blue-400 hover:underline font-medium"
+            className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
           >
-            {t("btn_contact_me")}
-          </Link>
-          <Link
-            href="/research"
-            className="inline-flex items-center px-5 py-2.5 border border-subtle bg-card text-main rounded-md font-medium hover:bg-subtle transition-colors shadow-sm"
-          >
-            {t("home_cta_research")}
+            <Mail className="mr-2 h-4 w-4" />
+            {copy.ctas.contact}
           </Link>
         </div>
       </section>
 
-      <section className="w-full space-y-6">
+      <section className="mt-16 space-y-6" aria-labelledby="featured-work">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-2 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
-              {projectCopy.eyebrow}
-            </p>
-            <h2 className="text-2xl font-semibold tracking-normal">{projectCopy.title}</h2>
-            <p className="text-muted leading-relaxed">{projectCopy.intro}</p>
+          <div className="space-y-2">
+            <h2 id="featured-work" className="text-2xl font-semibold tracking-normal text-main">
+              {copy.featuredTitle}
+            </h2>
           </div>
           <Link
             href="/projects"
-            className="inline-flex items-center self-start whitespace-nowrap text-sm font-medium text-blue-600 hover:underline dark:text-blue-400 md:self-auto"
+            className="inline-flex items-center self-start text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300 md:self-auto"
           >
-            {projectCopy.allProjects}
+            {copy.ctas.projects}
             <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="group rounded-lg border border-subtle bg-card p-5 shadow-sm transition-colors hover:border-blue-400 dark:hover:border-blue-600"
-            >
-              <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-normal text-muted">
-                <span>{project.year}</span>
-                <span className="rounded-full border border-green-500/40 bg-green-500/10 px-2.5 py-1 text-green-700 dark:text-green-300">
-                  {projectCopy.status}: {getProjectStatusLabel(project.status, locale)}
-                </span>
-              </div>
-              <h3 className="mt-3 text-lg font-semibold tracking-normal text-main group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                {project.title[locale]}
+        <div className="grid gap-5 lg:grid-cols-3">
+          {featuredProjects.map(({ slug, project }) => (
+            <FeaturedProjectCard
+              key={slug}
+              copy={copy}
+              locale={locale}
+              project={project}
+              slug={slug}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-16 space-y-6 border-y border-subtle py-10" aria-labelledby="work-on">
+        <h2 id="work-on" className="text-2xl font-semibold tracking-normal text-main">
+          {copy.workTitle}
+        </h2>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {WORK_AREAS.map(({ title, bullets, Icon }) => (
+            <article key={title.en} className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
+              <Icon className="h-5 w-5 text-blue-700 dark:text-blue-300" />
+              <h3 className="mt-4 text-base font-semibold tracking-normal text-main">
+                {title[locale]}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {project.oneLiner[locale]}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-main">
-                <span className="font-medium">{projectCopy.result}:</span> {project.results[locale][0]}
-              </p>
-              <span className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
-                {projectCopy.cta}
-                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </Link>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted">
+                {bullets[locale].map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* 2. What I do Section */}
-      <section className="w-full space-y-8">
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold tracking-normal">{t("what_do_title")}</h2>
-          <p className="text-muted">{t("what_do_subtitle")}</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
-            <h3 className="font-medium text-main text-lg">{t("what_do_item1_title")}</h3>
-            <p className="text-sm text-muted leading-relaxed">{t("what_do_item1_desc")}</p>
-          </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
-            <h3 className="font-medium text-main text-lg">{t("what_do_item2_title")}</h3>
-            <p className="text-sm text-muted leading-relaxed">{t("what_do_item2_desc")}</p>
-          </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
-            <h3 className="font-medium text-main text-lg">{t("what_do_item3_title")}</h3>
-            <p className="text-sm text-muted leading-relaxed">{t("what_do_item3_desc")}</p>
-          </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full">
-            <h3 className="font-medium text-main text-lg">{t("what_do_item4_title")}</h3>
-            <p className="text-sm text-muted leading-relaxed">{t("what_do_item4_desc")}</p>
-          </div>
-          <div className="space-y-3 p-5 border border-subtle rounded-lg bg-card h-full md:col-span-2">
-            <h3 className="font-medium text-main text-lg">{t("what_do_item5_title")}</h3>
-            <p className="text-sm text-muted leading-relaxed">{t("what_do_item5_desc")}</p>
-          </div>
-        </div>
-      </section>
-
-
-
-      <section className="w-full space-y-6">
-        <h2 className="text-2xl font-semibold tracking-normal">{t("current_title")}</h2>
-        <ul className="space-y-3 list-disc list-outside ml-4 text-muted">
-          <li>{t("current_item1")}</li>
-          <li>{t("current_item2")}</li>
-          <li>{t("current_item3")}</li>
-          <li>{t("current_item4")}</li>
-        </ul>
-        <div className="pt-4">
-          <Link
-            href="/cv"
-            className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline"
-          >
-            {t("home_view_cv")} {"->"}
-          </Link>
-        </div>
-      </section>
-
-      <section className="w-full space-y-5 border-y border-subtle py-8">
-        <div className="space-y-2">
-          <h2 className="text-2xl font-semibold tracking-normal">{t("open_to_title")}</h2>
-          <p className="text-muted max-w-3xl">{t("open_to_desc")}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {openToItems.map((item) => (
-            <span key={item} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main">
-              {t(`open_to_item${item}`)}
-            </span>
+      <section className="mt-14 space-y-6" aria-labelledby="technical-stack">
+        <h2 id="technical-stack" className="text-2xl font-semibold tracking-normal text-main">
+          {copy.stackTitle}
+        </h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {STACK_GROUPS[locale].map((group) => (
+            <article key={group.title} className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
+              <h3 className="text-sm font-semibold uppercase tracking-normal text-muted">{group.title}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-md border border-subtle bg-page px-2.5 py-1 text-sm font-medium text-main"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* 6. Technologies & Methods Section */}
-      <section className="w-full space-y-8">
-        <h2 className="text-2xl font-semibold tracking-normal">{t("tech_title")}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-sm">
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">{t("tech_cat1")}</h3>
-            <p className="text-muted">{t("tech_list1")}</p>
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">{t("tech_cat2")}</h3>
-            <p className="text-muted">{t("tech_list2")}</p>
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">{t("tech_cat3")}</h3>
-            <p className="text-muted">{t("tech_list3")}</p>
-          </div>
-          <div className="space-y-1">
-            <h3 className="font-medium text-main">{t("tech_cat4")}</h3>
-            <p className="text-muted">{t("tech_list4")}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Contact / Footer Area */}
-      <section className="w-full pt-8 border-t border-subtle">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <p className="text-muted max-w-md">
-            {t("contact_text")}
+      <section className="mt-16 rounded-lg border border-blue-200/70 bg-blue-50/70 p-6 shadow-sm dark:border-blue-900/70 dark:bg-blue-950/20 md:p-8">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-2xl text-xl font-semibold leading-snug text-main">
+            {copy.finalCta}
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-4 py-2 bg-main text-page rounded-md font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            {t("btn_contact_me")}
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-700"
+            >
+              <Mail className="mr-2 h-4 w-4" />
+              {copy.ctas.contact}
+            </Link>
+            <Link
+              href="/cv"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+            >
+              <FileText className="mr-2 h-4 w-4" />
+              {copy.ctas.cv}
+            </Link>
+            <a
+              href="https://github.com/Elkaza"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+            >
+              <Github className="mr-2 h-4 w-4" />
+              GitHub
+            </a>
+          </div>
         </div>
       </section>
     </main>
   );
 }
 
-function CvLink({ t }: { t: (key: string) => string }) {
+function FeaturedProjectCard({
+  copy,
+  locale,
+  project,
+  slug,
+}: {
+  copy: (typeof HOME_COPY)["en"];
+  locale: Locale;
+  project: Project;
+  slug: FeaturedSlug;
+}) {
+  const projectCopy = FEATURED_COPY[slug];
+  const visualSrc = project.diagrams?.[0]?.src ?? project.images?.[0];
+  const githubLink = project.links.find((link) => link.url.includes("github.com"));
+  const liveLink = project.links.find((link) => !link.url.includes("github.com"));
+
   return (
-    <Link
-      href="/contact"
-      className="inline-flex items-center px-5 py-2.5 border border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 rounded-md font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors shadow-sm"
-    >
-      <Mail className="mr-2 h-4 w-4" />
-      {t("hero_cta_cv")}
-    </Link>
+    <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
+      <ProjectVisual
+        label={projectCopy.visualLabel[locale]}
+        src={visualSrc}
+      />
+
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="break-words text-xl font-semibold tracking-normal text-main">
+          {projectCopy.title[locale]}
+        </h3>
+        <p className="mt-2 min-h-[3rem] break-words text-sm leading-relaxed text-muted">
+          {projectCopy.summary[locale]}
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          {projectCopy.tech.slice(0, 3).map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-main"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-auto flex flex-wrap gap-2 pt-6">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          >
+            {copy.ctas.caseStudy}
+            <ArrowRight className="ml-1.5 h-4 w-4" />
+          </Link>
+          {githubLink && (
+            <a
+              href={githubLink.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-3.5 py-2 text-sm font-semibold text-main transition-colors hover:bg-subtle"
+            >
+              <Github className="mr-1.5 h-4 w-4" />
+              {copy.ctas.github}
+            </a>
+          )}
+          {liveLink && (
+            <a
+              href={liveLink.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-3.5 py-2 text-sm font-semibold text-main transition-colors hover:bg-subtle"
+            >
+              <ExternalLink className="mr-1.5 h-4 w-4" />
+              {copy.ctas.live}
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectVisual({
+  label,
+  src,
+}: {
+  label: string;
+  src?: string;
+}) {
+  if (!src) {
+    return (
+      <div className="h-44 w-full min-w-0 border-b border-subtle bg-page p-4" aria-label={label}>
+        <div className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+          <div className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+          </div>
+          <div className="mt-5 grid grid-cols-[0.7fr_1fr] gap-3">
+            <div className="space-y-2">
+              <span className="block h-2 rounded-full bg-blue-500/70" />
+              <span className="block h-2 w-10/12 rounded-full bg-slate-400/40" />
+              <span className="block h-2 w-7/12 rounded-full bg-slate-400/30" />
+            </div>
+            <div className="rounded-md border border-subtle bg-page p-2">
+              <span className="block h-2 w-9/12 rounded-full bg-slate-400/40" />
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <span className="h-6 rounded bg-blue-500/20" />
+                <span className="h-6 rounded bg-emerald-500/20" />
+                <span className="h-6 rounded bg-slate-400/20" />
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2">
+            <span className="h-8 rounded-md border border-subtle bg-page" />
+            <span className="h-px w-4 bg-blue-500/60" />
+            <span className="h-8 rounded-md border border-subtle bg-page" />
+            <span className="h-px w-4 bg-blue-500/60" />
+            <span className="h-8 rounded-md border border-subtle bg-page" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative h-44 w-full min-w-0 overflow-hidden border-b border-subtle bg-white dark:bg-slate-950">
+      <Image
+        src={src}
+        alt={label}
+        fill
+        sizes="(min-width: 1024px) 33vw, 100vw"
+        className="object-contain p-3"
+      />
+    </div>
   );
 }
