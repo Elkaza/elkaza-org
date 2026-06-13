@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Award, Calendar } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { certifications, sortCertifications, CertCategory } from "@/app/lib/certifications";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
 
 export default function CertificationsPageContent() {
     const { t } = useLocale();
@@ -79,14 +80,11 @@ export default function CertificationsPageContent() {
                 {/* List */}
                 <div className="space-y-6">
                     {filteredCerts.map((cert) => {
-                        const Icon = cert.icon;
                         return (
                             <div key={cert.id} className="bg-card border border-subtle hover:border-blue-200 dark:hover:border-blue-800 rounded-xl p-6 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-all duration-200">
                                 {/* Icon Column */}
                                 <div className="shrink-0">
-                                    <div className="w-12 h-12 flex items-center justify-center bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl ring-1 ring-inset ring-blue-100 dark:ring-blue-800/50">
-                                        <Icon className="w-6 h-6" />
-                                    </div>
+                                    <OrganizationLogo name={cert.organizationName} size="lg" decorative={false} />
                                 </div>
 
                                 {/* Content Column */}

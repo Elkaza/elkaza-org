@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { certifications, sortCertifications } from "@/app/lib/certifications";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
 
 export default function Certifications() {
     const { t, locale } = useLocale();
@@ -26,13 +27,16 @@ export default function Certifications() {
 
             <div className="space-y-4 relative z-0">
                 {top3.map((cert) => (
-                    <div key={cert.id} className="pl-1">
-                        <p className="text-sm font-bold text-main leading-snug line-clamp-2">
-                            {t(cert.titleKey) || "Title Missing"}
-                        </p>
-                        <p className="text-xs text-secondary mt-0.5 line-clamp-1 font-medium">
-                            {t(cert.issuerKey)} • {t(cert.dateLabelKey)}
-                        </p>
+                    <div key={cert.id} className="flex items-start gap-3">
+                        <OrganizationLogo name={cert.organizationName} size="sm" />
+                        <div className="min-w-0">
+                            <p className="text-sm font-bold text-main leading-snug line-clamp-2">
+                                {t(cert.titleKey) || "Title Missing"}
+                            </p>
+                            <p className="text-xs text-secondary mt-0.5 line-clamp-1 font-medium">
+                                {t(cert.issuerKey)} • {t(cert.dateLabelKey)}
+                            </p>
+                        </div>
                     </div>
                 ))}
             </div>

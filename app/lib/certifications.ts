@@ -8,6 +8,7 @@ export type Certification = {
     id: string;
     titleKey: string;
     issuerKey: string;
+    organizationName: string;
     type: CertType;
     category: CertCategory;
 
@@ -34,6 +35,7 @@ export const certifications: Certification[] = [
         id: "ipma-d",
         titleKey: "cert_ipma_title",
         issuerKey: "cert_ipma_issuer",
+        organizationName: "pma / IPMA",
         type: "professional_certification",
         category: "project_management",
         dateLabelKey: "cert_ipma_date", // "since Oct 2025"
@@ -46,6 +48,7 @@ export const certifications: Certification[] = [
         id: "uni-graz",
         titleKey: "cert_graz_title",
         issuerKey: "cert_graz_issuer",
+        organizationName: "University of Graz",
         type: "university_course",
         category: "project_management",
         dateLabelKey: "cert_graz_date_completed", // "completed 17 Oct 2025" (using completed date as main label)
@@ -61,6 +64,7 @@ export const certifications: Certification[] = [
         id: "linkedin-ba",
         titleKey: "cert_li_title",
         issuerKey: "cert_li_issuer",
+        organizationName: "LinkedIn Learning",
         type: "professional_training",
         category: "business_analysis",
         dateLabelKey: "cert_li_date", // "completed 30 Mar 2023"
@@ -73,6 +77,7 @@ export const certifications: Certification[] = [
         id: "excel-vba",
         titleKey: "cert_excel_title",
         issuerKey: "cert_excel_issuer",
+        organizationName: "Raiffeisen Bank International",
         type: "professional_training",
         category: "excel_vba",
         dateLabelKey: "cert_excel_date", // "Issued: 13 Sep 2022"

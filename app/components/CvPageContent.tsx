@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
 import type { Locale } from "../i18n/messages";
 
 type SummaryFocus = {
@@ -121,16 +122,21 @@ const skillGroups: SkillGroup[] = [
 
 export default function CvPageContent() {
   const { locale, t } = useLocale();
-  const expKeys = ["1", "2", "3", "4"] as const;
+  const experienceItems = [
+    { key: "1", organization: "HiCo-ICS" },
+    { key: "2", organization: "Raiffeisen Bank International" },
+    { key: "3", organization: "BOC Group" },
+    { key: "4", organization: "University of Benghazi" },
+  ] as const;
   const educationItems = [
-    t("cv_education_item1"),
-    t("cv_education_item2"),
-    t("cv_education_item3"),
-    t("cert_ipma_title"),
-    t("cert_graz_title"),
-    t("cert_li_title"),
-    t("cert_excel_title"),
-  ];
+    { text: t("cv_education_item1"), organization: "FH Technikum Wien" },
+    { text: t("cv_education_item2"), organization: "TU Wien" },
+    { text: t("cv_education_item3"), organization: "University of Benghazi" },
+    { text: t("cert_ipma_title"), organization: "pma / IPMA" },
+    { text: t("cert_graz_title"), organization: "University of Graz" },
+    { text: t("cert_li_title"), organization: "LinkedIn Learning" },
+    { text: t("cert_excel_title"), organization: "Microsoft Excel" },
+  ] as const;
 
   return (
     <main className="mx-auto max-w-6xl px-5 py-10 text-main sm:px-6 md:py-16 print:max-w-none print:px-0 print:py-0">
@@ -272,15 +278,18 @@ export default function CvPageContent() {
         <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
           <SectionHeading icon={Users} title={t("cv_exp_title")} />
           <div className="mt-5 grid gap-4">
-            {expKeys.map((key) => (
+            {experienceItems.map(({ key, organization }) => (
               <div
                 key={key}
                 className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
               >
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-semibold text-main">{t(`exp${key}_title`)}</h3>
+                <div className="flex items-start gap-3">
+                  <OrganizationLogo name={organization} size="sm" decorative={false} />
+                  <div className="min-w-0">
+                    <h3 className="font-semibold leading-snug text-main">{t(`exp${key}_title`)}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
+                  </div>
                 </div>
-                <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
               </div>
             ))}
           </div>
@@ -290,8 +299,9 @@ export default function CvPageContent() {
           <SectionHeading icon={ClipboardList} title={t("cv_edu_title")} />
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {educationItems.map((item) => (
-              <div key={item} className="rounded-lg border border-subtle bg-page/70 p-4 text-sm leading-6 text-muted">
-                {item}
+              <div key={item.text} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm leading-6 text-muted">
+                <OrganizationLogo name={item.organization} size="sm" decorative={false} />
+                <span className="min-w-0">{item.text}</span>
               </div>
             ))}
           </div>
