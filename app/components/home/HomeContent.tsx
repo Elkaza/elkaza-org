@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
+import { TechBadge } from "@/app/components/ui/TechBadge";
 import type { Locale } from "@/app/i18n/messages";
 import { projects, type Project } from "@/app/lib/projects";
 
@@ -295,12 +296,12 @@ export default function HomeContent() {
 
         <div className="flex flex-wrap gap-2">
           {TECH_CHIPS.map((chip) => (
-            <span
+            <TechBadge
               key={chip}
-              className="rounded-md border border-subtle bg-card px-3 py-1.5 text-sm font-medium text-main shadow-sm"
-            >
-              {chip}
-            </span>
+              name={chip}
+              className="bg-card px-3 py-1.5 text-sm shadow-sm"
+              iconClassName="h-4 w-4"
+            />
           ))}
         </div>
 
@@ -392,12 +393,12 @@ export default function HomeContent() {
               <h3 className="text-sm font-semibold uppercase tracking-normal text-muted">{group.title}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <span
+                  <TechBadge
                     key={item}
-                    className="rounded-md border border-subtle bg-page px-2.5 py-1 text-sm font-medium text-main"
-                  >
-                    {item}
-                  </span>
+                    name={item}
+                    className="text-sm"
+                    iconClassName="h-4 w-4"
+                  />
                 ))}
               </div>
             </article>
@@ -474,12 +475,10 @@ function FeaturedProjectCard({
 
         <div className="mt-5 flex flex-wrap gap-2">
           {projectCopy.tech.slice(0, 3).map((tech) => (
-            <span
+            <TechBadge
               key={tech}
-              className="rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-main"
-            >
-              {tech}
-            </span>
+              name={tech}
+            />
           ))}
         </div>
 

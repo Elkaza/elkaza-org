@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { TechBadge } from "./ui/TechBadge";
 import { projects, type Project } from "../lib/projects";
 import type { Locale } from "../i18n/messages";
 
@@ -373,9 +374,7 @@ function FeaturedProjectCard({
                     <p className="sr-only">{copy.tech}</p>
                     <div className="flex flex-wrap gap-2">
                         {project.tech.slice(0, 4).map((tech) => (
-                            <span key={tech} className="rounded-md border border-subtle px-2.5 py-1 text-xs text-muted">
-                                {tech}
-                            </span>
+                            <TechBadge key={tech} name={tech} />
                         ))}
                     </div>
                 </div>
@@ -437,9 +436,7 @@ function CompactProjectCard({
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                     {project.tech.slice(0, 3).map((tech) => (
-                        <span key={tech} className="rounded-md border border-subtle px-2.5 py-1 text-xs text-muted">
-                            {tech}
-                        </span>
+                        <TechBadge key={tech} name={tech} />
                     ))}
                 </div>
                 {result && (

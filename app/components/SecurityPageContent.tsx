@@ -2,28 +2,23 @@
 import React from "react";
 import {
     Activity,
-    BarChart3,
     CheckCircle2,
     Database,
-    Filter,
-    Gauge,
     Layers,
     Lock,
     Monitor,
     Network,
-    RefreshCw,
-    Route,
     Server,
     Shield,
     type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
+import { TechLogo } from "./ui/TechBadge";
 
 type ToolItem = {
     name: string;
     roleKey: string;
-    Icon: LucideIcon;
 };
 
 type ToolGroup = {
@@ -55,9 +50,9 @@ const toolGroups: ToolGroup[] = [
         descriptionKey: "security_tools_access_desc",
         Icon: Network,
         tools: [
-            { name: "Tailscale", roleKey: "security_tool_tailscale_role", Icon: Network },
-            { name: "UFW", roleKey: "security_tool_ufw_role", Icon: Shield },
-            { name: "Nginx Proxy Manager", roleKey: "security_tool_npm_role", Icon: Route },
+            { name: "Tailscale", roleKey: "security_tool_tailscale_role" },
+            { name: "UFW", roleKey: "security_tool_ufw_role" },
+            { name: "Nginx Proxy Manager", roleKey: "security_tool_npm_role" },
         ],
     },
     {
@@ -65,8 +60,8 @@ const toolGroups: ToolGroup[] = [
         descriptionKey: "security_tools_defense_desc",
         Icon: Shield,
         tools: [
-            { name: "Pi-hole", roleKey: "security_tool_pihole_role", Icon: Filter },
-            { name: "CrowdSec", roleKey: "security_tool_crowdsec_role", Icon: Shield },
+            { name: "Pi-hole", roleKey: "security_tool_pihole_role" },
+            { name: "CrowdSec", roleKey: "security_tool_crowdsec_role" },
         ],
     },
     {
@@ -74,9 +69,9 @@ const toolGroups: ToolGroup[] = [
         descriptionKey: "security_tools_data_desc",
         Icon: Database,
         tools: [
-            { name: "Plausible Analytics", roleKey: "security_tool_plausible_role", Icon: BarChart3 },
-            { name: "PostgreSQL", roleKey: "security_tool_postgres_role", Icon: Database },
-            { name: "ClickHouse", roleKey: "security_tool_clickhouse_role", Icon: Database },
+            { name: "Plausible Analytics", roleKey: "security_tool_plausible_role" },
+            { name: "PostgreSQL", roleKey: "security_tool_postgres_role" },
+            { name: "ClickHouse", roleKey: "security_tool_clickhouse_role" },
         ],
     },
     {
@@ -84,9 +79,9 @@ const toolGroups: ToolGroup[] = [
         descriptionKey: "security_tools_observability_desc",
         Icon: Activity,
         tools: [
-            { name: "Netdata", roleKey: "security_tool_netdata_role", Icon: Activity },
-            { name: "Uptime Kuma", roleKey: "security_tool_uptime_role", Icon: Gauge },
-            { name: "Dozzle", roleKey: "security_tool_dozzle_role", Icon: Monitor },
+            { name: "Netdata", roleKey: "security_tool_netdata_role" },
+            { name: "Uptime Kuma", roleKey: "security_tool_uptime_role" },
+            { name: "Dozzle", roleKey: "security_tool_dozzle_role" },
         ],
     },
     {
@@ -94,8 +89,8 @@ const toolGroups: ToolGroup[] = [
         descriptionKey: "security_tools_operations_desc",
         Icon: Server,
         tools: [
-            { name: "Portainer", roleKey: "security_tool_portainer_role", Icon: Server },
-            { name: "Watchtower", roleKey: "security_tool_watchtower_role", Icon: RefreshCw },
+            { name: "Portainer", roleKey: "security_tool_portainer_role" },
+            { name: "Watchtower", roleKey: "security_tool_watchtower_role" },
         ],
     },
 ];
@@ -297,7 +292,7 @@ function ToolGroupGrid({ t }: { t: (key: string) => string }) {
                                     aria-label={`${tool.name} ${t("security_icon_label")}`}
                                     className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-subtle bg-page text-blue-700 dark:text-blue-300"
                                 >
-                                    <tool.Icon className="h-4 w-4" aria-hidden="true" />
+                                    <TechLogo name={tool.name} className="h-3.5 w-3.5" />
                                 </span>
                                 <span className="min-w-0">
                                     <span className="block text-sm font-semibold text-main">{tool.name}</span>

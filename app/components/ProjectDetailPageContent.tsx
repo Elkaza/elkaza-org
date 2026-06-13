@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
+import { TechBadge } from "@/app/components/ui/TechBadge";
 import { projects } from "@/app/lib/projects";
 import { getProjectStatusLabel, getProjectTagLabel } from "@/app/lib/projectDisplay";
 import type { Locale } from "@/app/i18n/messages";
@@ -414,9 +415,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     </div>
                     <div className="flex flex-wrap gap-2">
                         {project.tech.map((tech) => (
-                            <span key={tech} className="rounded-md border border-subtle px-3 py-1.5 text-sm text-muted">
-                                {tech}
-                            </span>
+                            <TechBadge key={tech} name={tech} className="px-3 py-1.5 text-sm text-muted" iconClassName="h-4 w-4" />
                         ))}
                     </div>
                 </section>

@@ -23,6 +23,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { TechBadge } from "./ui/TechBadge";
 import type { Locale } from "../i18n/messages";
 
 type SummaryFocus = {
@@ -232,9 +233,7 @@ export default function CvPageContent() {
                 <p className="mt-3 text-sm leading-6 text-secondary">{t(`cv_recent_${key}_desc`)}</p>
                 <div className="mt-auto flex flex-wrap gap-2 pt-4">
                   {tags.map((tag) => (
-                    <span key={tag} className="rounded-md border border-subtle bg-card px-2.5 py-1 text-xs font-medium text-muted">
-                      {tag}
-                    </span>
+                    <TechBadge key={tag} name={tag} className="bg-card text-muted" />
                   ))}
                 </div>
               </Link>
@@ -262,12 +261,7 @@ export default function CvPageContent() {
                     .map((item) => item.trim())
                     .filter(Boolean)
                     .map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-md border border-subtle bg-card px-2.5 py-1 text-xs font-medium text-muted"
-                      >
-                        {item}
-                      </span>
+                      <TechBadge key={item} name={item} className="bg-card text-muted" />
                     ))}
                 </div>
               </div>
