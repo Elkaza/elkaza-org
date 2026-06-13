@@ -309,12 +309,24 @@ export default function CvPageContent() {
         <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
           <SectionHeading icon={ClipboardList} title={t("cv_edu_title")} />
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {educationItems.map((item) => (
-              <div key={item.text} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm leading-6 text-muted">
-                <OrganizationLogo name={item.organization} size="sm" decorative={false} />
-                <span className="min-w-0">{item.text}</span>
-              </div>
-            ))}
+            {educationItems.map((item) => {
+              const educationTitle = splitExperienceTitle(item.text);
+              return (
+                <div key={item.text} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4">
+                  <OrganizationLogo name={item.organization} size="sm" decorative={false} />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                      <span className="text-sm leading-6 text-muted">{educationTitle.title}</span>
+                      {educationTitle.period && (
+                        <span className="inline-flex w-fit shrink-0 items-center rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold leading-none text-muted">
+                          {educationTitle.period}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
