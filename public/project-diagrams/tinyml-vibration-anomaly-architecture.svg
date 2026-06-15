@@ -1,0 +1,509 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">TinyML Vibration Anomaly Detection Architecture</title>
+  <desc id="desc">Architecture diagram for offline TinyML training, C++ model export, and local Arduino Nano 33 BLE Sense Rev2 inference.</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbfdff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="blueHead" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#0b4fb3"/>
+      <stop offset="1" stop-color="#0a64d8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-25%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f172a" flood-opacity=".12"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#0a63d8"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#6d28d9"/>
+    </marker>
+    <style>
+      .page { fill: url(#pageBg); }
+      .outer { fill: #fff; stroke: #1670f0; stroke-width: 1.8; }
+      .tab { fill: url(#blueHead); }
+      .tabText { fill: #fff; font: 800 18px Inter, Arial, sans-serif; letter-spacing: .02em; }
+      .section { fill: #064db5; font: 800 16px Inter, Arial, sans-serif; letter-spacing: .02em; }
+      .card { fill: #fff; stroke: #aac7ea; stroke-width: 1.2; filter: url(#shadow); }
+      .cardSoft { fill: #fbfdff; stroke: #bdd7f4; stroke-width: 1.2; filter: url(#shadow); }
+      .metric { fill: #f8fbff; stroke: #b8d4f2; stroke-width: 1.2; }
+      .warn { fill: #fff8ed; stroke: #f97316; stroke-width: 1.4; }
+      .greenNote { fill: #f4fff4; stroke: #22a83b; stroke-width: 1.2; }
+      .title { fill: #081b55; font: 900 36px Inter, Arial, sans-serif; }
+      .label { fill: #0f172a; font: 800 13px Inter, Arial, sans-serif; }
+      .small { fill: #0f172a; font: 600 11px Inter, Arial, sans-serif; }
+      .tiny { fill: #334155; font: 600 9.5px Inter, Arial, sans-serif; }
+      .blue { fill: #0a63d8; }
+      .purple { fill: #6d28d9; }
+      .green { fill: #35a83c; }
+      .orange { fill: #f97316; }
+      .blueStroke { stroke: #0a63d8; stroke-width: 2.6; fill: none; marker-end: url(#arrowBlue); }
+      .purpleStroke { stroke: #6d28d9; stroke-width: 2.4; stroke-dasharray: 7 8; fill: none; marker-end: url(#arrowPurple); }
+      .thinBlue { stroke: #0a63d8; stroke-width: 1.4; fill: none; }
+      .axis { stroke: #111827; stroke-width: 1.8; marker-end: url(#arrowBlue); }
+      .textCenter { text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect class="page" width="1600" height="900" rx="18"/>
+  <text x="800" y="42" class="title textCenter">TinyML Vibration Anomaly Detection on Arduino Nano 33 BLE Sense Rev2</text>
+
+  <!-- 1. System overview -->
+  <rect class="outer" x="22" y="58" width="1556" height="265" rx="8"/>
+  <path class="tab" d="M22 58h225v30a8 8 0 0 1-8 8H22z"/>
+  <text x="38" y="80" class="tabText">1. SYSTEM OVERVIEW</text>
+  <text x="420" y="102" class="section textCenter">TRAINING WORKSTATION (LAPTOP)</text>
+  <text x="1188" y="102" class="section textCenter">ARDUINO DEVICE (LOCAL INFERENCE)</text>
+  <path class="thinBlue" d="M42 110H760"/>
+  <path class="thinBlue" d="M810 110H1550"/>
+  <path d="M785 74V306" stroke="#0a63d8" stroke-width="1.7" stroke-dasharray="8 10"/>
+
+  <g transform="translate(40 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="24" class="label textCenter">Python Training</text>
+    <text x="62" y="42" class="label textCenter">Environment</text>
+    <path d="M49 62c0-12 8-18 20-18h16c10 0 17 7 17 17v8H76v8h30v17c0 10-8 17-18 17H72v-25H50c-10 0-17-7-17-17 0-10 6-17 16-17z" fill="#3776ab"/>
+    <path d="M74 44h14c8 0 14 6 14 14v8H77c-12 0-20 7-20 18v6H44v-17c0-10 8-17 18-17h12z" fill="#ffd343"/>
+    <circle cx="69" cy="55" r="2" fill="#fff"/>
+    <circle cx="86" cy="101" r="2" fill="#fff"/>
+    <rect x="38" y="112" width="50" height="30" rx="3" fill="#eaf4ff" stroke="#0f2f62" stroke-width="3"/>
+    <path d="M28 146H98" stroke="#0f2f62" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <path class="blueStroke" d="M165 207H200"/>
+
+  <g transform="translate(200 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="28" class="label textCenter">Synthetic IMU</text>
+    <text x="62" y="46" class="label textCenter">Vibration Dataset</text>
+    <path d="M15 90 C25 72 32 112 40 80 S58 101 68 79 86 114 96 84 108 92 117 76" stroke="#2375e8" stroke-width="2" fill="none"/>
+    <path d="M15 104 C28 95 34 108 45 92 S62 107 73 93 89 114 104 92" stroke="#2375e8" stroke-width="1.4" fill="none" opacity=".7"/>
+  </g>
+  <path class="blueStroke" d="M325 207H360"/>
+
+  <g transform="translate(360 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="25" class="label textCenter">20 Statistical</text>
+    <text x="62" y="43" class="label textCenter">Vibration</text>
+    <text x="62" y="61" class="label textCenter">Features</text>
+    <g transform="translate(30 82)">
+      <rect width="65" height="58" fill="#eaf4ff" stroke="#0f2f62"/>
+      <path d="M13 0v58M26 0v58M39 0v58M52 0v58M0 12h65M0 24h65M0 36h65M0 48h65" stroke="#0f2f62"/>
+      <rect x="1" y="1" width="12" height="11" fill="#60a5fa"/>
+      <rect x="26" y="13" width="12" height="11" fill="#60a5fa"/>
+      <rect x="39" y="25" width="12" height="11" fill="#60a5fa"/>
+      <rect x="13" y="37" width="12" height="11" fill="#60a5fa"/>
+    </g>
+  </g>
+  <path class="blueStroke" d="M485 207H520"/>
+
+  <g transform="translate(520 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="30" class="label textCenter">Softmax</text>
+    <text x="62" y="48" class="label textCenter">Classifier</text>
+    <g transform="translate(33 75)" stroke="#334155" stroke-width="1.2">
+      <circle cx="8" cy="10" r="5" class="blue"/>
+      <circle cx="8" cy="34" r="5" class="blue"/>
+      <circle cx="8" cy="58" r="5" class="blue"/>
+      <circle cx="45" cy="22" r="5" fill="#93c5fd"/>
+      <circle cx="45" cy="46" r="5" fill="#93c5fd"/>
+      <circle cx="82" cy="14" r="5" class="blue"/>
+      <circle cx="82" cy="54" r="5" class="blue"/>
+      <path d="M13 10 40 22M13 10 40 46M13 34 40 22M13 34 40 46M13 58 40 22M13 58 40 46M50 22 77 14M50 22 77 54M50 46 77 14M50 46 77 54"/>
+    </g>
+  </g>
+  <path class="blueStroke" d="M645 207H680"/>
+
+  <g transform="translate(680 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="32" class="label textCenter">Export</text>
+    <text x="62" y="50" class="label textCenter">model_parameters.h</text>
+    <path d="M48 72h38l18 18v52H48z" fill="#fff" stroke="#0a63d8" stroke-width="2"/>
+    <path d="M86 72v18h18" fill="none" stroke="#0a63d8" stroke-width="2"/>
+    <text x="77" y="113" class="section textCenter" font-size="18">&lt;/&gt;</text>
+  </g>
+  <path class="blueStroke" d="M805 207H840"/>
+
+  <g transform="translate(840 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="32" class="label textCenter">Arduino C++</text>
+    <text x="62" y="50" class="label textCenter">Sketch</text>
+    <path d="M46 68h39l18 18v58H46z" fill="#fff" stroke="#0a63d8" stroke-width="2"/>
+    <path d="M85 68v18h18" fill="none" stroke="#0a63d8" stroke-width="2"/>
+    <text x="72" y="111" fill="#0a63d8" font="800 20px Inter, Arial">C++</text>
+  </g>
+  <path class="blueStroke" d="M965 207H995"/>
+
+  <g transform="translate(995 128)">
+    <rect class="card" width="150" height="158" rx="10"/>
+    <text x="75" y="30" class="label textCenter">Arduino Nano 33</text>
+    <text x="75" y="48" class="label textCenter">BLE Sense Rev2</text>
+    <rect x="28" y="70" width="95" height="45" rx="7" fill="#1d5f9e" stroke="#0f2f62" stroke-width="2" transform="rotate(-12 75 92)"/>
+    <circle cx="51" cy="88" r="5" fill="#dbeafe"/>
+    <circle cx="82" cy="82" r="8" fill="#94a3b8"/>
+    <rect x="96" y="73" width="19" height="16" rx="2" fill="#f1f5f9"/>
+    <path d="M35 110h90" stroke="#93c5fd" stroke-width="2"/>
+  </g>
+  <path class="blueStroke" d="M1145 207H1175"/>
+
+  <g transform="translate(1175 128)">
+    <rect class="card" width="125" height="158" rx="10"/>
+    <text x="62" y="27" class="label textCenter">Onboard IMU</text>
+    <text x="62" y="45" class="label textCenter">Accelerometer</text>
+    <rect x="34" y="82" width="34" height="34" transform="rotate(45 51 99)" fill="#2f2f2f" stroke="#111"/>
+    <path class="axis" d="M63 100H105"/>
+    <path class="axis" d="M62 99V63"/>
+    <path class="axis" d="M61 101L37 124"/>
+    <text x="110" y="104" class="small">X</text>
+    <text x="62" y="58" class="small">Y</text>
+    <text x="31" y="132" class="small">Z</text>
+  </g>
+  <path class="blueStroke" d="M1300 207H1325"/>
+
+  <g transform="translate(1325 128)">
+    <rect class="card" width="115" height="158" rx="10"/>
+    <text x="57" y="27" class="label textCenter">Local TinyML</text>
+    <text x="57" y="45" class="label textCenter">Inference</text>
+    <text x="57" y="70" class="small textCenter">Softmax state</text>
+    <text x="57" y="86" class="small textCenter">decision</text>
+    <path d="M31 125 A27 27 0 0 1 83 125" fill="none" stroke="#22c55e" stroke-width="10"/>
+    <path d="M48 101 A27 27 0 0 1 77 108" fill="none" stroke="#facc15" stroke-width="10"/>
+    <path d="M78 108 A27 27 0 0 1 84 125" fill="none" stroke="#ef4444" stroke-width="10"/>
+    <path d="M57 124l14-28" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="57" cy="124" r="4" fill="#0f172a"/>
+  </g>
+  <path class="blueStroke" d="M1440 207H1456"/>
+
+  <g transform="translate(1456 128)">
+    <rect class="card" width="98" height="158" rx="10"/>
+    <text x="49" y="28" class="label textCenter">Serial Monitor</text>
+    <text x="49" y="46" class="label textCenter">Evidence</text>
+    <rect x="22" y="76" width="54" height="45" rx="3" fill="#f8fafc" stroke="#0f2f62" stroke-width="3"/>
+    <path d="M31 89h18M31 103h32M31 116h25" stroke="#0f2f62" stroke-width="2"/>
+    <text x="30" y="99" class="label">&gt;_</text>
+  </g>
+  <path class="blueStroke" d="M1554 207H1567"/>
+
+  <g transform="translate(1482 246)">
+    <rect class="card" width="74" height="40" rx="8"/>
+    <text x="37" y="-70" class="label textCenter">Built-in LED</text>
+    <text x="37" y="-52" class="label textCenter">Alert</text>
+    <path d="M37 -10v30" stroke="#0a63d8" stroke-width="3"/>
+    <path d="M25 10h24" stroke="#0a63d8" stroke-width="3"/>
+    <path d="M27 -12c0-15 20-15 20 0v19H27z" fill="#dbeafe" stroke="#0a63d8" stroke-width="3"/>
+  </g>
+  <g transform="translate(850 292)">
+    <circle cx="16" cy="0" r="12" class="green"/>
+    <path d="M9 -1l5 6 10-13" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="38" y="5" fill="#167a21" font="800 14px Inter, Arial">Local inference on device</text>
+    <text x="230" y="5" fill="#167a21" font="800 14px Inter, Arial">- No cloud inference</text>
+  </g>
+
+  <!-- 2. Offline pipeline -->
+  <rect class="outer" x="22" y="334" width="1556" height="205" rx="8"/>
+  <path class="tab" d="M22 334h438v30a8 8 0 0 1-8 8H22z"/>
+  <text x="38" y="356" class="tabText">2. OFFLINE TRAINING / MODEL EXPORT PIPELINE</text>
+
+  <g transform="translate(42 386)">
+    <rect class="cardSoft" width="112" height="118" rx="9"/>
+    <text x="56" y="23" class="label textCenter">Synthetic</text>
+    <text x="56" y="41" class="label textCenter">Vibration</text>
+    <text x="56" y="59" class="label textCenter">Windows</text>
+    <path d="M14 84 C26 64 33 104 42 74 S60 94 72 72 92 100 105 78" stroke="#2375e8" stroke-width="1.8" fill="none"/>
+  </g>
+  <path class="purpleStroke" d="M154 445H195"/>
+  <g transform="translate(195 386)">
+    <rect class="cardSoft" width="125" height="118" rx="9"/>
+    <text x="62" y="25" class="label textCenter">2-Second</text>
+    <text x="62" y="43" class="label textCenter">IMU Windows</text>
+    <path d="M23 75 C34 64 46 86 58 70 S78 86 102 70" stroke="#2375e8" stroke-width="2" fill="none"/>
+    <path d="M24 99H101M24 94v10M101 94v10" stroke="#0f172a"/>
+    <text x="63" y="96" class="small textCenter">2 s</text>
+  </g>
+  <path class="purpleStroke" d="M320 445H368"/>
+  <g transform="translate(368 386)">
+    <rect class="cardSoft" width="130" height="118" rx="9"/>
+    <text x="65" y="23" class="label textCenter">20 Features</text>
+    <text x="65" y="41" class="label textCenter">from X/Y/Z +</text>
+    <text x="65" y="59" class="label textCenter">Magnitude</text>
+    <rect x="28" y="83" width="8" height="26" class="blue"/>
+    <rect x="43" y="70" width="8" height="39" class="blue"/>
+    <rect x="58" y="92" width="8" height="17" class="blue"/>
+    <rect x="73" y="78" width="8" height="31" class="blue"/>
+    <rect x="88" y="66" width="8" height="43" class="blue"/>
+  </g>
+  <path class="purpleStroke" d="M498 445H545"/>
+  <g transform="translate(545 386)">
+    <rect class="cardSoft" width="130" height="118" rx="9"/>
+    <text x="65" y="25" class="label textCenter">Python Model</text>
+    <text x="65" y="43" class="label textCenter">Training</text>
+    <circle cx="45" cy="80" r="3" class="blue"/>
+    <circle cx="58" cy="67" r="3" class="blue"/>
+    <circle cx="73" cy="86" r="3" class="blue"/>
+    <circle cx="85" cy="70" r="3" class="green"/>
+    <circle cx="98" cy="91" r="3" class="green"/>
+    <circle cx="105" cy="76" r="3" class="green"/>
+    <path d="M35 100C58 88 70 60 105 56" stroke="#0a63d8" stroke-width="2" fill="none"/>
+  </g>
+  <path class="purpleStroke" d="M675 445H715"/>
+  <g transform="translate(715 386)">
+    <rect class="cardSoft" width="118" height="118" rx="9"/>
+    <text x="59" y="25" class="label textCenter">Offline</text>
+    <text x="59" y="43" class="label textCenter">Validation</text>
+    <text x="59" y="70" fill="#0f172a" font="900 22px Inter, Arial" text-anchor="middle">98.61%</text>
+    <text x="59" y="91" class="small textCenter">Offline test</text>
+    <text x="59" y="107" class="small textCenter">accuracy on</text>
+    <text x="59" y="123" class="small textCenter">synthetic balanced dataset</text>
+  </g>
+  <path class="purpleStroke" d="M833 445H872"/>
+  <g transform="translate(872 386)">
+    <rect class="cardSoft" width="144" height="118" rx="9"/>
+    <text x="72" y="22" class="label textCenter">Export Means,</text>
+    <text x="72" y="40" class="label textCenter">Std Devs,</text>
+    <text x="72" y="58" class="label textCenter">Weights, Biases</text>
+    <text x="36" y="82" class="tiny">- means</text>
+    <text x="36" y="98" class="tiny">- std_devs</text>
+    <text x="36" y="114" class="tiny">- weights</text>
+  </g>
+  <path class="purpleStroke" d="M1016 445H1055"/>
+  <g transform="translate(1055 386)">
+    <rect class="cardSoft" width="140" height="118" rx="9"/>
+    <text x="70" y="31" class="label textCenter">Export</text>
+    <text x="70" y="49" class="label textCenter">model_parameters.h</text>
+    <path d="M54 66h34l16 16v36H54z" fill="#fff" stroke="#6d28d9" stroke-width="2"/>
+    <path d="M88 66v16h16" fill="none" stroke="#6d28d9" stroke-width="2"/>
+    <text x="79" y="99" fill="#6d28d9" font="800 18px Inter, Arial" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+  <path class="purpleStroke" d="M1195 445H1245"/>
+  <g transform="translate(1245 386)">
+    <rect class="cardSoft" width="136" height="118" rx="9"/>
+    <text x="68" y="30" class="label textCenter">Arduino C++</text>
+    <text x="68" y="48" class="label textCenter">Implementation</text>
+    <path d="M52 66h34l16 16v38H52z" fill="#fff" stroke="#6d28d9" stroke-width="2"/>
+    <path d="M86 66v16h16" fill="none" stroke="#6d28d9" stroke-width="2"/>
+    <text x="68" y="102" fill="#6d28d9" font="800 18px Inter, Arial" text-anchor="middle">C++</text>
+  </g>
+  <path class="purpleStroke" d="M1381 445H1430"/>
+  <g transform="translate(1430 386)">
+    <rect class="cardSoft" width="125" height="118" rx="9"/>
+    <text x="62" y="27" class="label textCenter">Compile &amp;</text>
+    <text x="62" y="45" class="label textCenter">Upload to Board</text>
+    <path d="M62 78v-25M45 68l17-17 17 17" stroke="#6d28d9" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M35 96h54" stroke="#6d28d9" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <path d="M760 518H1080" stroke="#6d28d9" stroke-width="2" stroke-dasharray="7 8"/>
+  <text x="1090" y="522" fill="#6d28d9" font="800 13px Inter, Arial">Offline model export handoff (not used at runtime)</text>
+
+  <!-- 3. Runtime -->
+  <rect class="outer" x="22" y="548" width="1556" height="252" rx="8"/>
+  <path class="tab" d="M22 548h310v30a8 8 0 0 1-8 8H22z"/>
+  <text x="38" y="570" class="tabText">3. DEVICE RUNTIME / DATA FLOW</text>
+
+  <g transform="translate(42 588)">
+    <rect class="card" width="98" height="126" rx="9"/>
+    <text x="49" y="20" class="label textCenter">Onboard IMU</text>
+    <text x="49" y="38" class="label textCenter">Accelerometer</text>
+    <rect x="31" y="66" width="28" height="28" transform="rotate(45 45 80)" fill="#2f2f2f" stroke="#111"/>
+    <path d="M56 80H86M55 80V51M54 81L34 100" stroke="#111827" stroke-width="1.8"/>
+    <text x="88" y="83" class="tiny">X</text>
+    <text x="55" y="48" class="tiny">Y</text>
+    <text x="29" y="106" class="tiny">Z</text>
+  </g>
+  <path class="blueStroke" d="M140 650H165"/>
+  <g transform="translate(165 588)">
+    <rect class="card" width="85" height="126" rx="9"/>
+    <text x="42" y="24" class="label textCenter">100 Hz</text>
+    <text x="42" y="42" class="label textCenter">Sampling</text>
+    <path d="M22 74h10v22h14V74h14v22h14V74" stroke="#0a63d8" stroke-width="2.5" fill="none"/>
+    <text x="42" y="111" class="small textCenter">100 Hz</text>
+  </g>
+  <path class="blueStroke" d="M250 650H276"/>
+  <g transform="translate(276 588)">
+    <rect class="card" width="90" height="126" rx="9"/>
+    <text x="45" y="22" class="label textCenter">2-Second</text>
+    <text x="45" y="40" class="label textCenter">Rolling Window</text>
+    <circle cx="45" cy="78" r="24" fill="#f8fafc" stroke="#0f2f62" stroke-width="2"/>
+    <path d="M45 78V58M45 78L60 88" stroke="#0f2f62" stroke-width="2"/>
+    <text x="45" y="113" class="small textCenter">2 s</text>
+  </g>
+  <path class="blueStroke" d="M366 650H392"/>
+  <g transform="translate(392 588)">
+    <rect class="card" width="98" height="126" rx="9"/>
+    <text x="49" y="28" class="label textCenter">50% Overlap</text>
+    <rect x="30" y="62" width="37" height="26" fill="#eaf4ff" stroke="#0a63d8"/>
+    <rect x="42" y="72" width="37" height="26" fill="#eaf4ff" stroke="#0a63d8"/>
+    <text x="49" y="113" class="small textCenter">1 s shift</text>
+  </g>
+  <path class="blueStroke" d="M490 650H516"/>
+  <g transform="translate(516 588)">
+    <rect class="card" width="88" height="126" rx="9"/>
+    <text x="44" y="27" class="label textCenter">Feature</text>
+    <text x="44" y="45" class="label textCenter">Extraction</text>
+    <rect x="26" y="86" width="7" height="20" class="blue"/>
+    <rect x="39" y="73" width="7" height="33" class="blue"/>
+    <rect x="52" y="92" width="7" height="14" class="blue"/>
+    <rect x="65" y="80" width="7" height="26" class="blue"/>
+    <text x="44" y="115" class="small textCenter">20 Features</text>
+  </g>
+  <path class="blueStroke" d="M604 650H630"/>
+  <g transform="translate(630 588)">
+    <rect class="card" width="100" height="126" rx="9"/>
+    <text x="50" y="28" class="label textCenter">Normalization</text>
+    <text x="50" y="71" fill="#0f172a" font="700 21px Inter, Arial" text-anchor="middle">x' =</text>
+    <path d="M66 60h30" stroke="#111"/>
+    <text x="82" y="56" fill="#0f172a" font="700 16px Inter, Arial" text-anchor="middle">x - u</text>
+    <text x="82" y="78" fill="#0f172a" font="700 16px Inter, Arial" text-anchor="middle">s</text>
+    <text x="50" y="103" class="tiny textCenter">Using exported</text>
+    <text x="50" y="116" class="tiny textCenter">means and stds</text>
+  </g>
+  <path class="blueStroke" d="M730 650H754"/>
+  <g transform="translate(754 588)">
+    <rect class="card" width="88" height="126" rx="9"/>
+    <text x="44" y="24" class="label textCenter">Softmax</text>
+    <text x="44" y="42" class="label textCenter">Inference</text>
+    <g transform="translate(19 63)" stroke="#334155" stroke-width="1">
+      <circle cx="8" cy="10" r="4" class="blue"/>
+      <circle cx="8" cy="34" r="4" class="blue"/>
+      <circle cx="8" cy="58" r="4" class="blue"/>
+      <circle cx="36" cy="20" r="4" fill="#93c5fd"/>
+      <circle cx="36" cy="48" r="4" fill="#93c5fd"/>
+      <circle cx="66" cy="16" r="4" fill="#fff"/>
+      <circle cx="66" cy="54" r="4" fill="#fff"/>
+      <path d="M12 10 32 20M12 34 32 20M12 58 32 48M40 20 62 16M40 48 62 54"/>
+    </g>
+  </g>
+  <path class="blueStroke" d="M842 650H868"/>
+  <g transform="translate(868 588)">
+    <rect class="card" width="92" height="126" rx="9"/>
+    <text x="46" y="22" class="label textCenter">Anomaly</text>
+    <text x="46" y="40" class="label textCenter">Probability</text>
+    <text x="46" y="58" class="label textCenter">Threshold</text>
+    <path d="M19 99 A27 27 0 0 1 73 99" fill="none" stroke="#22c55e" stroke-width="9"/>
+    <path d="M36 76 A27 27 0 0 1 64 82" fill="none" stroke="#facc15" stroke-width="9"/>
+    <path d="M66 83 A27 27 0 0 1 73 99" fill="none" stroke="#ef4444" stroke-width="9"/>
+    <path d="M46 98l12-27" stroke="#0f172a" stroke-width="3"/>
+    <text x="46" y="119" fill="#0f172a" font="800 14px Inter, Arial" text-anchor="middle">0.60</text>
+  </g>
+  <path class="blueStroke" d="M960 650H984"/>
+  <g transform="translate(984 588)">
+    <rect class="card" width="98" height="126" rx="9"/>
+    <text x="49" y="23" class="label textCenter">Persistence</text>
+    <text x="49" y="41" class="label textCenter">Counter</text>
+    <rect x="23" y="67" width="52" height="25" fill="#f8fafc" stroke="#0f2f62"/>
+    <path d="M36 67v25M49 67v25M62 67v25" stroke="#0f2f62"/>
+    <text x="30" y="85" class="small textCenter">0</text>
+    <text x="43" y="85" class="small textCenter">1</text>
+    <text x="56" y="85" class="small textCenter">2</text>
+    <text x="69" y="85" class="small textCenter">3</text>
+    <text x="49" y="110" class="tiny textCenter">Consecutive anomaly</text>
+    <text x="49" y="123" class="tiny textCenter">windows</text>
+  </g>
+  <path class="blueStroke" d="M1082 650H1108"/>
+  <g transform="translate(1108 588)">
+    <rect class="card" width="88" height="126" rx="9"/>
+    <text x="44" y="52" class="label textCenter">State</text>
+    <text x="44" y="70" class="label textCenter">Decision</text>
+  </g>
+  <path class="blueStroke" d="M1196 650H1222"/>
+
+  <g transform="translate(1222 580)">
+    <rect class="card" width="335" height="146" rx="9"/>
+    <text x="168" y="20" class="section textCenter">OUTPUT STATES</text>
+    <rect x="18" y="46" width="68" height="44" rx="7" fill="#c8e6c9" stroke="#43a047"/>
+    <rect x="98" y="46" width="72" height="44" rx="7" fill="#ffcec7" stroke="#ef4444"/>
+    <rect x="182" y="46" width="70" height="44" rx="7" fill="#fb8500" stroke="#f97316"/>
+    <rect x="264" y="46" width="58" height="44" rx="7" fill="#dbeafe" stroke="#60a5fa"/>
+    <text x="52" y="73" class="label textCenter">NORMAL</text>
+    <text x="134" y="73" class="label textCenter">ANOMALY</text>
+    <text x="217" y="73" fill="#fff" font="800 13px Inter, Arial" text-anchor="middle">ALERT</text>
+    <text x="293" y="67" class="small textCenter">RECOVERY</text>
+    <text x="293" y="83" class="small textCenter">TO NORMAL</text>
+    <path d="M40 108H307" stroke="#0a63d8" stroke-width="2"/>
+    <circle cx="58" cy="108" r="5" class="blue"/>
+    <circle cx="144" cy="108" r="5" fill="#60a5fa"/>
+    <circle cx="225" cy="108" r="5" class="blue"/>
+    <circle cx="304" cy="108" r="5" class="blue"/>
+    <text x="74" y="129" class="tiny textCenter">Stable operation</text>
+    <text x="276" y="129" class="tiny textCenter">After stability</text>
+    <text x="276" y="142" class="tiny textCenter">returns to NORMAL</text>
+  </g>
+
+  <g transform="translate(42 727)">
+    <rect class="metric" width="440" height="65" rx="8"/>
+    <circle cx="33" cy="32" r="17" fill="#fff" stroke="#0f2f62" stroke-width="2"/>
+    <path d="M33 32V18M33 32L44 39" stroke="#0f2f62" stroke-width="2"/>
+    <text x="93" y="28" fill="#081b55" font="900 25px Inter, Arial">~1 ms</text>
+    <text x="96" y="47" class="small">Inference Latency</text>
+    <path d="M170 10V55" stroke="#b8d4f2"/>
+    <rect x="200" y="17" width="30" height="30" fill="#dbeafe" stroke="#0f2f62"/>
+    <text x="250" y="28" fill="#081b55" font="900 25px Inter, Arial">12%</text>
+    <text x="250" y="47" class="small">Flash Usage</text>
+    <path d="M332 10V55" stroke="#b8d4f2"/>
+    <rect x="363" y="18" width="35" height="27" fill="#dbeafe" stroke="#0f2f62"/>
+    <text x="425" y="28" fill="#081b55" font="900 25px Inter, Arial">19%</text>
+    <text x="425" y="47" class="small">RAM Usage</text>
+  </g>
+
+  <g transform="translate(613 714)">
+    <rect class="warn" width="380" height="32" rx="7"/>
+    <text x="190" y="22" fill="#f97316" font="800 16px Inter, Arial" text-anchor="middle">ALERT after 3 consecutive anomaly windows</text>
+    <path d="M28 7l13 22H15z" fill="#fbbf24" stroke="#f97316"/>
+    <text x="28" y="26" fill="#7c2d12" font="900 18px Inter, Arial" text-anchor="middle">!</text>
+  </g>
+  <g transform="translate(560 760)">
+    <circle cx="15" cy="14" r="13" class="green"/>
+    <path d="M8 13l5 6 10-14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="43" y="11" fill="#15803d" font="800 14px Inter, Arial">All processing and inference run locally on the</text>
+    <text x="43" y="29" fill="#15803d" font="800 14px Inter, Arial">Arduino Nano 33 BLE Sense Rev2 (no cloud).</text>
+  </g>
+  <g transform="translate(1192 734)">
+    <rect class="metric" width="365" height="58" rx="8"/>
+    <rect x="18" y="12" width="48" height="36" rx="3" fill="#fff" stroke="#0f2f62" stroke-width="2"/>
+    <text x="28" y="34" class="label">&gt;_</text>
+    <text x="88" y="18" class="label">Serial Monitor Evidence</text>
+    <text x="88" y="35" class="tiny">Timestamps, stats, probabilities,</text>
+    <text x="88" y="49" class="tiny">persistence counter, latency</text>
+    <path d="M252 9V50" stroke="#b8d4f2"/>
+    <path d="M300 30v20" stroke="#0a63d8" stroke-width="3"/>
+    <path d="M290 30c0-14 20-14 20 0v14h-20z" fill="#dbeafe" stroke="#0a63d8" stroke-width="3"/>
+    <text x="335" y="23" class="label textCenter">Built-in LED alert</text>
+    <text x="335" y="41" class="small textCenter">ON during ALERT</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(22 812)">
+    <rect class="outer" width="720" height="70" rx="8"/>
+    <text x="16" y="24" class="section">LEGEND</text>
+    <path class="blueStroke" d="M18 48H62"/>
+    <text x="80" y="42" class="small">Solid blue arrows</text>
+    <text x="80" y="58" class="tiny">Real-time data flow</text>
+    <path class="purpleStroke" d="M230 48H276"/>
+    <text x="295" y="42" class="small">Dashed purple arrows</text>
+    <text x="295" y="58" class="tiny">Model export pipeline</text>
+    <circle cx="433" cy="48" r="14" class="green"/>
+    <path d="M426 47l5 6 10-14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="455" y="42" class="small">Green check marks</text>
+    <text x="455" y="58" class="tiny">Key benefits</text>
+    <path d="M590 34l14 26h-28z" fill="#fbbf24" stroke="#f97316"/>
+    <text x="590" y="57" fill="#7c2d12" font="900 18px Inter, Arial" text-anchor="middle">!</text>
+    <text x="616" y="42" class="small">Amber Warning</text>
+    <text x="616" y="58" class="tiny">Alert trigger</text>
+  </g>
+
+  <g transform="translate(760 812)">
+    <rect class="outer" width="818" height="70" rx="8"/>
+    <text x="16" y="24" class="section">TECHNOLOGY STACK</text>
+    <rect x="118" y="22" width="145" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="191" y="43" class="small textCenter">Arduino Nano 33 BLE Sense Rev2</text>
+    <rect x="285" y="22" width="92" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="331" y="43" class="small textCenter">C++</text>
+    <rect x="395" y="22" width="92" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="441" y="43" class="small textCenter">Python</text>
+    <rect x="505" y="22" width="104" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="557" y="43" class="small textCenter">TinyML</text>
+    <rect x="627" y="22" width="92" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="673" y="43" class="small textCenter">IMU</text>
+    <rect x="737" y="22" width="62" height="36" rx="8" fill="#fff" stroke="#dbeafe"/>
+    <text x="768" y="43" class="small textCenter">Softmax</text>
+  </g>
+</svg>

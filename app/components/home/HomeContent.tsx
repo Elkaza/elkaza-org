@@ -46,7 +46,6 @@ const HOME_COPY: Localized<{
   };
   featuredTitle: string;
   workTitle: string;
-  stackTitle: string;
   finalCta: string;
 }> = {
   de: {
@@ -64,8 +63,7 @@ const HOME_COPY: Localized<{
       live: "Live",
     },
     featuredTitle: "Ausgewählte Arbeiten",
-    workTitle: "Arbeitsbereiche",
-    stackTitle: "Technischer Stack",
+    workTitle: "Arbeitsbereiche & Stack",
     finalCta:
       "Suchen Sie jemanden, der praktische technische Systeme baut, automatisiert und betreibt?",
   },
@@ -84,8 +82,7 @@ const HOME_COPY: Localized<{
       live: "Live",
     },
     featuredTitle: "Featured Work",
-    workTitle: "What I Work On",
-    stackTitle: "Technical Stack",
+    workTitle: "Capabilities & Stack",
     finalCta:
       "Looking for someone who can build, automate and operate practical technical systems?",
   },
@@ -104,8 +101,7 @@ const HOME_COPY: Localized<{
       live: "Live",
     },
     featuredTitle: "Featured Work",
-    workTitle: "What I Work On",
-    stackTitle: "Technical Stack",
+    workTitle: "Capabilities & Stack",
     finalCta:
       "Looking for someone who can build, automate and operate practical technical systems?",
   },
@@ -180,6 +176,7 @@ const WORK_AREAS: {
   title: Localized<string>;
   bullets: Localized<string[]>;
   Icon: LucideIcon;
+  tools: string[];
 }[] = [
   {
     title: {
@@ -193,6 +190,7 @@ const WORK_AREAS: {
       ar: ["Analyzes requirements and defects", "Documents fixes and technical handovers"],
     },
     Icon: Workflow,
+    tools: ["Jira", "Confluence", "Documentation"],
   },
   {
     title: {
@@ -206,6 +204,7 @@ const WORK_AREAS: {
       ar: ["Builds Next.js/TypeScript interfaces", "Automates workflows with Python and SQL"],
     },
     Icon: SquareTerminal,
+    tools: ["Next.js", "TypeScript", "Python"],
   },
   {
     title: {
@@ -219,6 +218,7 @@ const WORK_AREAS: {
       ar: ["Deploys Linux/Docker services", "Operates monitoring, backups and access paths"],
     },
     Icon: Server,
+    tools: ["Linux", "Docker", "GitHub Actions"],
   },
   {
     title: {
@@ -232,6 +232,7 @@ const WORK_AREAS: {
       ar: ["Tests sensors, edge inference and actuation", "Connects dashboards, logs and embedded devices"],
     },
     Icon: Cpu,
+    tools: ["Raspberry Pi", "ESP32", "MQTT"],
   },
   {
     title: {
@@ -245,29 +246,9 @@ const WORK_AREAS: {
       ar: ["Automates data preparation and reports", "Improves reproducible analysis paths"],
     },
     Icon: Database,
+    tools: ["Python", "SQL", "Dashboard"],
   },
 ];
-
-const STACK_GROUPS: Localized<{ title: string; items: string[] }[]> = {
-  de: [
-    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
-    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
-    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
-    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
-  ],
-  en: [
-    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
-    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
-    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
-    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
-  ],
-  ar: [
-    { title: "Software", items: ["TypeScript", "Next.js", "Python", "SQL"] },
-    { title: "Platform", items: ["Linux", "Docker", "GitHub Actions", "Proxmox"] },
-    { title: "IoT", items: ["Raspberry Pi", "Arduino", "ESP32", "MQTT"] },
-    { title: "Operations", items: ["Monitoring", "Backups", "Documentation", "Troubleshooting"] },
-  ],
-};
 
 export default function HomeContent() {
   const { locale } = useLocale();
@@ -283,10 +264,10 @@ export default function HomeContent() {
     <main className="mx-auto flex w-full max-w-6xl min-w-0 flex-col overflow-hidden px-5 py-10 text-main sm:px-6 md:py-14">
       <section className="max-w-4xl space-y-7 border-b border-subtle pb-10 md:pb-12">
         <div className="space-y-4">
-          <h1 className="break-words text-4xl font-extrabold leading-tight tracking-normal text-main md:text-6xl">
+          <h1 className="break-words !text-3xl font-extrabold leading-tight tracking-normal text-main sm:!text-4xl md:!text-6xl">
             {copy.heroTitle}
           </h1>
-          <p className="max-w-3xl break-words text-lg font-medium text-blue-700 dark:text-blue-300 md:text-xl">
+          <p className="max-w-3xl break-words text-base font-medium text-blue-700 dark:text-blue-300 sm:text-lg md:text-xl">
             {copy.heroSubheadline}
           </p>
           <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
@@ -333,7 +314,7 @@ export default function HomeContent() {
       <section className="mt-16 space-y-6" aria-labelledby="featured-work">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <h2 id="featured-work" className="text-2xl font-semibold tracking-normal text-main">
+            <h2 id="featured-work" className="!text-2xl font-semibold tracking-normal text-main">
               {copy.featuredTitle}
             </h2>
           </div>
@@ -360,14 +341,23 @@ export default function HomeContent() {
       </section>
 
       <section className="mt-16 space-y-6 border-y border-subtle py-10" aria-labelledby="work-on">
-        <h2 id="work-on" className="text-2xl font-semibold tracking-normal text-main">
+        <h2 id="work-on" className="!text-2xl font-semibold tracking-normal text-main">
           {copy.workTitle}
         </h2>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {WORK_AREAS.map(({ title, bullets, Icon }) => (
-            <article key={title.en} className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
-              <Icon className="h-5 w-5 text-blue-700 dark:text-blue-300" />
-              <h3 className="mt-4 text-base font-semibold tracking-normal text-main">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+          {WORK_AREAS.map(({ title, bullets, Icon, tools }, index) => (
+            <article
+              key={title.en}
+              className={`flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500 ${
+                index < 3 ? "xl:col-span-2" : "xl:col-span-3"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
+                  <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                </span>
+              </div>
+              <h3 className="mt-4 text-balance break-normal !text-lg font-semibold leading-tight tracking-normal text-main">
                 {title[locale]}
               </h3>
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted">
@@ -378,26 +368,13 @@ export default function HomeContent() {
                   </li>
                 ))}
               </ul>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-14 space-y-6" aria-labelledby="technical-stack">
-        <h2 id="technical-stack" className="text-2xl font-semibold tracking-normal text-main">
-          {copy.stackTitle}
-        </h2>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {STACK_GROUPS[locale].map((group) => (
-            <article key={group.title} className="rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
-              <h3 className="text-sm font-semibold uppercase tracking-normal text-muted">{group.title}</h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
+              <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                {tools.map((tool) => (
                   <TechBadge
-                    key={item}
-                    name={item}
-                    className="text-sm"
-                    iconClassName="h-4 w-4"
+                    key={tool}
+                    name={tool}
+                    className="bg-page px-2 py-0.5 text-[11px]"
+                    iconClassName="h-3.5 w-3.5"
                   />
                 ))}
               </div>
@@ -466,7 +443,7 @@ function FeaturedProjectCard({
       />
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="break-words text-xl font-semibold tracking-normal text-main">
+        <h3 className="break-words !text-xl font-semibold tracking-normal text-main">
           {projectCopy.title[locale]}
         </h3>
         <p className="mt-2 min-h-[3rem] break-words text-sm leading-relaxed text-muted">
@@ -562,14 +539,18 @@ function ProjectVisual({
   }
 
   return (
-    <div className="relative h-44 w-full min-w-0 overflow-hidden border-b border-subtle bg-white dark:bg-slate-950">
-      <Image
-        src={src}
-        alt={label}
-        fill
-        sizes="(min-width: 1024px) 33vw, 100vw"
-        className="object-contain p-3"
-      />
+    <div className="h-44 w-full min-w-0 border-b border-subtle bg-gradient-to-br from-slate-50 via-white to-blue-50/40 p-4">
+      <div className="relative h-full w-full overflow-hidden rounded-md border border-subtle bg-white shadow-inner shadow-slate-200/60">
+        <Image
+          src={src}
+          alt={label}
+          fill
+          priority
+          unoptimized={src.toLowerCase().endsWith(".svg")}
+          sizes="(min-width: 1024px) 33vw, 100vw"
+          className="object-contain p-2.5"
+        />
+      </div>
     </div>
   );
 }

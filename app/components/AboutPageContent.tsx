@@ -4,12 +4,17 @@ import { useLocale } from "../LocaleProvider";
 import { Layers, Code, ClipboardCheck, Network, Cloud, Languages, BookOpen, type LucideIcon } from "lucide-react";
 import Certifications from "../components/Certifications";
 import Link from "next/link";
+import { TechBadge } from "./ui/TechBadge";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
 
 interface Skill {
     title: string;
     icon: LucideIcon;
     items: string[];
+    tools?: string[];
 }
+
+const profileTools = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
 
 const getSkills = (t: (k: string) => string): Skill[] => [
     {
@@ -20,6 +25,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
             t("skill_ea_item2"),
             t("skill_ea_item3"),
         ],
+        tools: ["Linux", "Proxmox", "Docker", "Monitoring"],
     },
     {
         title: t("skill_sw_title"),
@@ -29,6 +35,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
             t("skill_sw_item2"),
             t("skill_sw_item3"),
         ],
+        tools: ["TypeScript", "Next.js", "Python", "SQL"],
     },
     {
         title: t("skill_pm_title"),
@@ -38,6 +45,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
             t("skill_pm_item2"),
             t("skill_pm_item3"),
         ],
+        tools: ["Jira", "Confluence", "ServiceNow", "Documentation"],
     },
     {
         title: t("skill_net_title"),
@@ -47,6 +55,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
             t("skill_net_item2"),
             t("skill_net_item3"),
         ],
+        tools: ["Tailscale", "Nginx Proxy Manager", "Pi-hole", "UFW"],
     },
     {
         title: t("skill_cloud_title"),
@@ -56,6 +65,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
             t("skill_cloud_item2"),
             t("skill_cloud_item3"),
         ],
+        tools: ["Vercel", "GitHub Actions", "Plausible Analytics", "Docker"],
     },
     {
         title: t("skill_lang_title"),
@@ -72,28 +82,36 @@ const getInfrastructureHighlights = (t: (k: string) => string): Skill[] => [
         title: t("about_infra_cloud_title"),
         icon: Cloud,
         items: [t("about_infra_cloud_desc")],
+        tools: ["Tailscale", "Proxmox", "Debian", "Nginx Proxy Manager"],
     },
     {
         title: t("about_infra_cicd_title"),
         icon: Code,
         items: [t("about_infra_cicd_desc")],
+        tools: ["GitHub Actions", "Docker Compose", "Bash", "rsync"],
     },
     {
         title: t("about_infra_security_title"),
         icon: Network,
         items: [t("about_infra_security_desc")],
+        tools: ["Plausible Analytics", "PostgreSQL", "ClickHouse"],
     },
     {
         title: t("about_infra_resilience_title"),
         icon: ClipboardCheck,
         items: [t("about_infra_resilience_desc")],
+        tools: ["Netdata", "Uptime Kuma", "Dozzle", "Watchtower"],
     },
 ];
 
 export default function AboutPageContent() {
     const { t } = useLocale();
     const infrastructureHighlights = getInfrastructureHighlights(t);
-    const educationItems = [1, 2, 3];
+    const educationItems = [
+        { key: 1, organization: "University of Benghazi" },
+        { key: 2, organization: "TU Wien" },
+        { key: 3, organization: "FH Technikum Wien" },
+    ];
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors">
@@ -120,6 +138,16 @@ export default function AboutPageContent() {
                             <p className="text-main leading-relaxed mb-6 font-medium text-blue-700 dark:text-blue-400">
                                 {t("about_value_statement")}
                             </p>
+                            <div className="mb-6 flex flex-wrap gap-2">
+                                {profileTools.map((tool) => (
+                                    <TechBadge
+                                        key={tool}
+                                        name={tool}
+                                        className="bg-card px-3 py-1.5 text-sm shadow-sm"
+                                        iconClassName="h-4 w-4"
+                                    />
+                                ))}
+                            </div>
                             <Certifications />
                         </div>
                     </div>
@@ -133,15 +161,18 @@ export default function AboutPageContent() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {educationItems.map((item) => (
-                                <div key={item} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
-                                    <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
-                                        {t(`about_education_label${item}`)}
-                                    </p>
-                                    <h3 className="mt-2 text-base font-semibold text-main">
-                                        {t(`about_education_title${item}`)}
+                                <div key={item.key} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <OrganizationLogo name={item.organization} size="sm" decorative={false} />
+                                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                            {t(`about_education_label${item.key}`)}
+                                        </p>
+                                    </div>
+                                    <h3 className="mt-2 !text-lg font-semibold leading-tight text-main">
+                                        {t(`about_education_title${item.key}`)}
                                     </h3>
                                     <p className="mt-2 text-sm text-muted leading-relaxed">
-                                        {t(`about_education_desc${item}`)}
+                                        {t(`about_education_desc${item.key}`)}
                                     </p>
                                 </div>
                             ))}
@@ -160,10 +191,24 @@ export default function AboutPageContent() {
                             {infrastructureHighlights.map((item) => (
                                 <div key={item.title} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
                                     <div className="flex items-center gap-3 mb-3">
-                                        <item.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                                        <h3 className="font-semibold text-main">{item.title}</h3>
+                                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
+                                            <item.icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                                        </span>
+                                        <h3 className="!text-lg font-semibold leading-tight text-main">{item.title}</h3>
                                     </div>
                                     <p className="text-sm text-muted leading-relaxed">{item.items[0]}</p>
+                                    {item.tools && (
+                                        <div className="mt-4 flex flex-wrap gap-1.5">
+                                            {item.tools.map((tool) => (
+                                                <TechBadge
+                                                    key={tool}
+                                                    name={tool}
+                                                    className="bg-page px-2 py-0.5 text-[11px]"
+                                                    iconClassName="h-3.5 w-3.5"
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
@@ -201,8 +246,10 @@ export default function AboutPageContent() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {getSkills(t).map((skill) => (
                                 <div key={skill.title} className="p-6 bg-card rounded-lg border border-subtle shadow-sm flex flex-col h-full">
-                                    <skill.icon className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-4" />
-                                    <h3 className="text-lg font-semibold mb-2 text-main">{skill.title}</h3>
+                                    <span className="mb-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
+                                        <skill.icon className="h-5 w-5" aria-hidden="true" />
+                                    </span>
+                                    <h3 className="mb-2 !text-lg font-semibold leading-tight text-main">{skill.title}</h3>
                                     <ul className="space-y-2 flex-grow">
                                         {skill.items.map((item) => (
                                             <li key={item} className="text-sm text-muted leading-relaxed flex items-start">
@@ -211,6 +258,18 @@ export default function AboutPageContent() {
                                             </li>
                                         ))}
                                     </ul>
+                                    {skill.tools && (
+                                        <div className="mt-5 flex flex-wrap gap-1.5">
+                                            {skill.tools.map((tool) => (
+                                                <TechBadge
+                                                    key={tool}
+                                                    name={tool}
+                                                    className="bg-page px-2 py-0.5 text-[11px]"
+                                                    iconClassName="h-3.5 w-3.5"
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             ))}
                         </div>

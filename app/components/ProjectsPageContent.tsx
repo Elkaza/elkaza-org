@@ -467,13 +467,20 @@ function ProjectVisual({
 
     if (src) {
         return (
-            <div className={["w-full min-w-0 overflow-hidden border-b border-subtle bg-white dark:bg-slate-950", featured ? "h-52" : "h-32"].join(" ")}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src={src}
-                    alt={`${project.title.en} visual`}
-                    className="h-full w-full object-contain p-2"
-                />
+            <div
+                className={[
+                    "w-full min-w-0 border-b border-subtle bg-gradient-to-br from-slate-50 via-white to-blue-50/40",
+                    featured ? "h-52 p-4" : "h-32 p-3",
+                ].join(" ")}
+            >
+                <div className="h-full w-full overflow-hidden rounded-md border border-subtle bg-white shadow-inner shadow-slate-200/60">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={src}
+                        alt={`${project.title.en} visual`}
+                        className="h-full w-full object-contain p-2"
+                    />
+                </div>
             </div>
         );
     }

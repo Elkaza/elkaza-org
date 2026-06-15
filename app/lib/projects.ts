@@ -274,6 +274,28 @@ export const projects: Project[] = [
         links: [
             { label: "GitHub", url: "https://github.com/Elkaza/tinyml-vibration-anomaly-detection" },
         ],
+        diagrams: [
+            {
+                title: loc("TinyML Training and Local Inference Flow", "TinyML-Training und lokaler Inferenzfluss"),
+                caption: loc(
+                    "End-to-end TinyML architecture for vibration anomaly detection: offline Python training, C++ model parameter export, Arduino deployment, local IMU sampling, softmax inference, Serial Monitor evidence, and built-in LED alerting.",
+                    "End-to-End-TinyML-Architektur für Vibrationsanomalie-Erkennung: Offline-Training in Python, C++-Parameterexport, Arduino-Deployment, lokales IMU-Sampling, Softmax-Inferenz, Serial-Monitor-Evidenz und Built-in-LED-Alerting."
+                ),
+                summary: locList(
+                    [
+                        "Separates offline training/export from the runtime path so it is clear that no cloud inference is used",
+                        "Shows the embedded runtime loop: 100 Hz sampling, 2-second windows, 50% overlap, 20 features, normalization, softmax inference, thresholding, and persistence",
+                        "Includes the project evidence: 98.61% offline accuracy, about 1 ms inference latency, 12% flash usage, and 19% RAM usage",
+                    ],
+                    [
+                        "Trennt Offline-Training/Export vom Runtime-Pfad und macht klar, dass keine Cloud-Inferenz genutzt wird",
+                        "Zeigt den Embedded-Runtime-Loop: 100-Hz-Sampling, 2-Sekunden-Fenster, 50% Überlappung, 20 Features, Normalisierung, Softmax-Inferenz, Schwellwert und Persistenz",
+                        "Enthält die Projektnachweise: 98.61% Offline-Genauigkeit, etwa 1 ms Inferenzlatenz, 12% Flash-Nutzung und 19% RAM-Nutzung",
+                    ]
+                ),
+                src: "/project-diagrams/tinyml-vibration-anomaly-architecture.svg",
+            },
+        ],
         relatedProjectSlug: "edgeguardian-edge-ai-safety-bubble",
     },
     {
@@ -1272,6 +1294,28 @@ export const projects: Project[] = [
         links: [
             { label: "Live Site", url: "https://www.elkaza.org" },
             { label: "GitHub", url: "https://github.com/Elkaza/elkaza-org" },
+        ],
+        diagrams: [
+            {
+                title: loc("System / Deployment / Content Flow", "System-, Deployment- und Content-Flow"),
+                caption: loc(
+                    "End-to-end architecture view for the portfolio platform: local content work, GitHub source control, CI validation, Vercel deployment, public routes, and optional privacy-first analytics.",
+                    "End-to-End-Architekturansicht der Portfolio-Plattform: lokale Content-Arbeit, GitHub als Source of Truth, CI-Validierung, Vercel-Deployment, öffentliche Routen und optionale privacy-first Analytics."
+                ),
+                summary: locList(
+                    [
+                        "Shows source control, structured content, CI validation, preview deployment, production delivery, and visitor access in one review artifact",
+                        "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
+                        "Makes the project easier to evaluate as an engineered publishing platform rather than a static personal website",
+                    ],
+                    [
+                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einem Review-Artefakt",
+                        "Passt zum realen Plattform-Stack: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel und Plausible Analytics",
+                        "Macht das Projekt als entwickelte Publishing-Plattform bewertbar statt nur als statische persönliche Website",
+                    ]
+                ),
+                src: "/project-diagrams/elkaza-org-platform-architecture.svg",
+            },
         ],
         relatedProjectSlug: "elkaza-at",
     },
