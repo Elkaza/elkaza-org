@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 950" role="img" aria-labelledby="title desc">
+  <title id="title">Elkaza.at self-hosted delivery architecture</title>
+  <desc id="desc">Architecture diagram showing public traffic through vps1, Tailscale routing to debian-core, Docker services, and the GitHub Actions deployment path.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#15803d" />
+    </marker>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.10" />
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 17px Arial, sans-serif; fill: #475569; }
+      .zone { fill: #ffffff; stroke-width: 2.5; filter: url(#soft-shadow); }
+      .zone-public { stroke: #60a5fa; }
+      .zone-vps { stroke: #4f46e5; }
+      .zone-overlay { stroke: #14b8a6; stroke-dasharray: 10 8; }
+      .zone-private { stroke: #16a34a; }
+      .zone-title { font: 700 20px Arial, sans-serif; fill: #0f172a; }
+      .zone-note { font: 600 12px Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; fill: #64748b; }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+      .card-blue { fill: #eff6ff; stroke: #60a5fa; }
+      .card-indigo { fill: #eef2ff; stroke: #818cf8; }
+      .card-green { fill: #f0fdf4; stroke: #4ade80; }
+      .card-amber { fill: #fffbeb; stroke: #f59e0b; }
+      .card-title { font: 700 16px Arial, sans-serif; fill: #0f172a; }
+      .card-text { font: 400 13px Arial, sans-serif; fill: #475569; }
+      .small { font: 400 12px Arial, sans-serif; fill: #64748b; }
+      .mono { font: 700 12px Consolas, monospace; fill: #1e293b; }
+      .runtime { fill: none; stroke: #2563eb; stroke-width: 4; marker-end: url(#arrow-blue); }
+      .ops { fill: none; stroke: #15803d; stroke-width: 3; stroke-dasharray: 9 7; marker-end: url(#arrow-green); }
+      .label-blue { font: 700 13px Arial, sans-serif; fill: #1d4ed8; }
+      .label-green { font: 700 13px Arial, sans-serif; fill: #15803d; }
+      .legend { font: 400 13px Arial, sans-serif; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1600" height="950" />
+  <text x="50" y="58" class="title">Elkaza.at Self-Hosted Delivery Architecture</text>
+  <text x="50" y="88" class="subtitle">Public ingress stays thin on vps1; the private debian-core runtime serves the site, analytics, observability, and backups through Docker.</text>
+
+  <rect x="40" y="125" width="270" height="610" rx="22" class="zone zone-public" />
+  <text x="66" y="166" class="zone-title">Public internet</text>
+  <text x="66" y="190" class="zone-note">Visitors and browsers</text>
+
+  <circle cx="175" cy="268" r="36" fill="#dbeafe" stroke="#2563eb" stroke-width="3" />
+  <path d="M155 258 Q175 238 195 258 M150 286 Q175 303 200 286" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" />
+  <rect x="82" y="340" width="186" height="138" rx="16" class="card card-blue" />
+  <text x="105" y="374" class="card-title">Browser request</text>
+  <text x="105" y="404" class="mono">https://elkaza.at</text>
+  <text x="105" y="428" class="mono">www.elkaza.at</text>
+  <text x="105" y="452" class="mono">analytics.elkaza.at</text>
+  <text x="88" y="525" class="small">Canonical public entry point</text>
+  <text x="88" y="546" class="small">www redirects to apex</text>
+
+  <rect x="350" y="125" width="300" height="610" rx="22" class="zone zone-vps" />
+  <text x="376" y="166" class="zone-title">vps1 public edge</text>
+  <text x="376" y="190" class="zone-note">Ingress and deploy control</text>
+
+  <rect x="385" y="235" width="230" height="120" rx="16" class="card card-indigo" />
+  <text x="410" y="270" class="card-title">Nginx stream proxy</text>
+  <text x="410" y="300" class="card-text">Forwards TCP 80 / 443</text>
+  <text x="410" y="323" class="card-text">No app runtime here</text>
+
+  <rect x="385" y="410" width="230" height="132" rx="16" class="card" />
+  <text x="410" y="445" class="card-title">Release controller</text>
+  <text x="410" y="475" class="card-text">GitHub Actions SSH target</text>
+  <text x="410" y="498" class="card-text">Runs deploy-elkaza.sh</text>
+  <text x="410" y="521" class="card-text">Builds and ships export</text>
+
+  <rect x="385" y="590" width="230" height="80" rx="16" class="card card-amber" />
+  <text x="410" y="624" class="card-title">Hardened edge</text>
+  <text x="410" y="653" class="card-text">Small public surface</text>
+
+  <rect x="690" y="125" width="230" height="610" rx="22" class="zone zone-overlay" />
+  <text x="716" y="166" class="zone-title">Tailscale overlay</text>
+  <text x="716" y="190" class="zone-note">Private transport</text>
+
+  <rect x="728" y="308" width="154" height="150" rx="20" class="card card-green" />
+  <circle cx="805" cy="360" r="34" fill="#ccfbf1" stroke="#0f766e" stroke-width="3" />
+  <path d="M790 360 H820 M805 345 V375" stroke="#0f766e" stroke-width="4" stroke-linecap="round" />
+  <text x="759" y="424" class="card-title">Encrypted</text>
+  <text x="748" y="448" class="card-text">No home-router</text>
+  <text x="770" y="469" class="card-text">port exposure</text>
+
+  <rect x="960" y="125" width="590" height="610" rx="22" class="zone zone-private" />
+  <text x="986" y="166" class="zone-title">debian-core private runtime</text>
+  <text x="986" y="190" class="zone-note">Proxmox / Debian / Docker Compose</text>
+
+  <rect x="995" y="230" width="245" height="132" rx="16" class="card card-green" />
+  <text x="1020" y="264" class="card-title">Nginx Proxy Manager</text>
+  <text x="1020" y="294" class="card-text">Terminates HTTPS</text>
+  <text x="1020" y="317" class="card-text">SAN cert for site, www, analytics</text>
+  <text x="1020" y="340" class="card-text">Canonical redirects and routing</text>
+
+  <rect x="1270" y="230" width="240" height="132" rx="16" class="card card-blue" />
+  <text x="1295" y="264" class="card-title">elkaza-web</text>
+  <text x="1295" y="294" class="card-text">Nginx static container</text>
+  <text x="1295" y="317" class="card-text">Next.js export</text>
+  <text x="1295" y="340" class="card-text">gzip, HSTS, CSP, cache headers</text>
+
+  <rect x="995" y="420" width="245" height="132" rx="16" class="card card-indigo" />
+  <text x="1020" y="454" class="card-title">Plausible analytics</text>
+  <text x="1020" y="484" class="card-text">First-party analytics endpoint</text>
+  <text x="1020" y="507" class="card-text">PostgreSQL and ClickHouse</text>
+  <text x="1020" y="530" class="card-text">Owner-controlled data path</text>
+
+  <rect x="1270" y="420" width="240" height="132" rx="16" class="card" />
+  <text x="1295" y="454" class="card-title">Ops services</text>
+  <text x="1295" y="484" class="card-text">Uptime Kuma, Netdata</text>
+  <text x="1295" y="507" class="card-text">Portainer, Dozzle, Watchtower</text>
+  <text x="1295" y="530" class="card-text">CrowdSec, Pi-hole, backups</text>
+
+  <rect x="1098" y="595" width="310" height="80" rx="16" class="card card-amber" />
+  <text x="1128" y="629" class="card-title">Daily recovery baseline</text>
+  <text x="1128" y="658" class="card-text">Database and Docker-volume backup rotation</text>
+
+  <path class="runtime" d="M310 410 H350" />
+  <text x="318" y="389" class="label-blue">HTTP/S</text>
+  <path class="runtime" d="M650 410 H690" />
+  <text x="652" y="389" class="label-blue">TCP 80 / 443</text>
+  <path class="runtime" d="M920 410 C950 410 950 296 995 296" />
+  <text x="925" y="388" class="label-blue">private route</text>
+  <path class="runtime" d="M1240 296 H1270" />
+  <path class="runtime" d="M1118 362 V420" />
+
+  <rect x="40" y="775" width="1510" height="132" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" filter="url(#soft-shadow)" />
+  <text x="66" y="815" class="zone-title">CI/CD and release flow</text>
+  <text x="66" y="840" class="zone-note">Validated deploy path</text>
+
+  <rect x="285" y="805" width="150" height="72" rx="14" class="card" />
+  <text x="319" y="835" class="card-title">GitHub</text>
+  <text x="311" y="858" class="card-text">elkaza-web</text>
+
+  <rect x="500" y="805" width="170" height="72" rx="14" class="card" />
+  <text x="528" y="835" class="card-title">Actions</text>
+  <text x="526" y="858" class="card-text">CI and deploy</text>
+
+  <rect x="735" y="805" width="175" height="72" rx="14" class="card" />
+  <text x="764" y="835" class="card-title">SSH to vps1</text>
+  <text x="758" y="858" class="card-text">run deploy script</text>
+
+  <rect x="975" y="805" width="205" height="72" rx="14" class="card" />
+  <text x="1002" y="835" class="card-title">Build and rsync</text>
+  <text x="1001" y="858" class="card-text">static export to Docker mount</text>
+
+  <rect x="1245" y="805" width="205" height="72" rx="14" class="card card-green" />
+  <text x="1272" y="835" class="card-title">Smoke checks</text>
+  <text x="1267" y="858" class="card-text">backend and local ingress</text>
+
+  <path class="ops" d="M435 841 H500" />
+  <path class="ops" d="M670 841 H735" />
+  <path class="ops" d="M910 841 H975" />
+  <path class="ops" d="M1180 841 H1245" />
+
+  <line x1="66" y1="884" x2="118" y2="884" class="runtime" marker-end="none" />
+  <text x="132" y="889" class="legend">Runtime traffic</text>
+  <line x1="270" y1="884" x2="322" y2="884" class="ops" marker-end="none" />
+  <text x="336" y="889" class="legend">Deployment, checks, monitoring, backups</text>
+</svg>

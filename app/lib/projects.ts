@@ -480,20 +480,20 @@ export const projects: Project[] = [
             "Enterprise-Self-Hosted-Infrastruktur und Privacy-First-Analytics"
         ),
         oneLiner: loc(
-            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, Tailscale reverse tunneling, automated deployments, observability, and disaster-ready backups.",
-            "Kernfunktionen des Webbetriebs von SaaS-Abhängigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, Tailscale-Reverse-Tunneling, automatisierten Deployments, Observability und recovery-fähigen Backups migriert."
+            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, self-hosted Elkaza.at delivery, Tailscale routing, automated deployments, observability, and disaster-ready backups.",
+            "Kernfunktionen des Webbetriebs von SaaS-Abhängigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, self-hosted Elkaza.at-Delivery, Tailscale-Routing, automatisierten Deployments, Observability und recovery-fähigen Backups migriert."
         ),
         overview: loc(
-            "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
-            "Diese Fallstudie dokumentiert den Wechsel von gemieteter Bequemlichkeit zu eigener Infrastruktur. Die Plattform hält den öffentlichen Ingress schlank in der Cloud, betreibt Applikations- und Analytics-Services auf privater Proxmox- und Debian-Infrastruktur und nutzt Automatisierung für Deployment, Monitoring und Recovery. Das Ergebnis ist nicht nur ein günstigeres Hosting-Setup, sondern ein privacy-orientiertes Betriebsmodell, bei dem Datenpfade, Analytics, Logs und Backups unter direkter Kontrolle bleiben."
+            "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. Elkaza.org remains the Vercel-hosted portfolio surface, while Elkaza.at is delivered through the self-hosted path. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
+            "Diese Fallstudie dokumentiert den Wechsel von gemieteter Bequemlichkeit zu eigener Infrastruktur. Die Plattform hält den öffentlichen Ingress schlank in der Cloud, betreibt Applikations- und Analytics-Services auf privater Proxmox- und Debian-Infrastruktur und nutzt Automatisierung für Deployment, Monitoring und Recovery. Elkaza.org bleibt die über Vercel ausgelieferte Portfolio-Oberfläche, während Elkaza.at über den Self-Hosted-Pfad ausgeliefert wird. Das Ergebnis ist nicht nur ein günstigeres Hosting-Setup, sondern ein privacy-orientiertes Betriebsmodell, bei dem Datenpfade, Analytics, Logs und Backups unter direkter Kontrolle bleiben."
         ),
         problem: loc(
             "SaaS subscriptions and third-party analytics tools create recurring cost, external data dependency, and fragile measurement when browser extensions or network filters block common tracker domains. At the same time, exposing a private server directly from a residential network would leak the home IP address and expand the public attack surface.",
             "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
         ),
         solution: loc(
-            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host on Debian 12, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards web traffic over a private Tailscale tunnel to the local platform. Plausible Analytics runs self-hosted with PostgreSQL and ClickHouse, and the tracking script is served from a first-party analytics subdomain so visitor metrics remain useful without relying on a third-party tracker domain. GitHub Actions automates Next.js production deployments, while a daily Bash backup job captures database and Docker volume state with a seven-day retention policy.",
-            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet Web-Traffic über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Plausible Analytics läuft self-hosted mit PostgreSQL und ClickHouse; das Tracking-Skript wird über eine First-Party-Analytics-Subdomain ausgeliefert, damit Metriken nutzbar bleiben, ohne auf eine Third-Party-Tracker-Domain angewiesen zu sein. GitHub Actions automatisiert Next.js-Production-Deployments, während ein täglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
+            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host on Debian 12, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards HTTP/S over a private Tailscale tunnel to the local platform. Nginx Proxy Manager terminates HTTPS for Elkaza.at, www.elkaza.at, and analytics.elkaza.at, routes the static web frontend and Plausible stack, and keeps the private runtime off the open internet. GitHub Actions automates Next.js production deployments, while a daily Bash backup job captures database and Docker volume state with a seven-day retention policy.",
+            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS für Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und hält die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, während ein täglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
         ),
         architectureLabels: {
             node: loc("Visitor path", "Besucherpfad"),
@@ -525,6 +525,7 @@ export const projects: Project[] = [
         keyFeatures: locList(
             [
                 "Self-hosted Plausible Analytics with PostgreSQL and ClickHouse, served from analytics.elkaza.at as a first-party analytics path",
+                "Self-hosted Elkaza.at delivery through VPS TCP ingress, Tailscale, Nginx Proxy Manager, and a private static web container",
                 "Hardened VPS ingress shield with strict UFW policy, unattended upgrades, and no direct exposure of the residential IP",
                 "Tailscale reverse tunnel from public ingress to the private Proxmox platform without opening local router ports",
                 "GitHub Actions CI/CD for automated Next.js production deployments with minimal manual release handling",
@@ -533,6 +534,7 @@ export const projects: Project[] = [
             ],
             [
                 "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert über analytics.elkaza.at als First-Party-Analytics-Pfad",
+                "Self-hosted Elkaza.at-Delivery über VPS-TCP-Ingress, Tailscale, Nginx Proxy Manager und einen privaten statischen Web-Container",
                 "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
                 "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
                 "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
@@ -983,16 +985,16 @@ export const projects: Project[] = [
             "Eine gehärtete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
         ),
         overview: loc(
-            "The Vienna Fortress turns a basic private infrastructure lab into a more production-minded internal platform. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
-            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane für Self-Hosted-Services."
+            "The Vienna Fortress turns a basic private infrastructure lab into a more production-minded internal platform and private runtime anchor for selected public services. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
+            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform und privaten Runtime-Basis für ausgewählte öffentliche Services weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane für Self-Hosted-Services."
         ),
         problem: loc(
             "Deploying individual tools is easy; building a secure and operable platform is harder. The environment needed layered protection, live health visibility, reliable log access, and a clean way to surface Proxmox state inside a frontend dashboard without brittle ad hoc scripts.",
             "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
         ),
         solution: loc(
-            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, and internal service discovery. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung und interne Service-Übersicht bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
+            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, internal service discovery, and the Elkaza.at/Plausible runtime path. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
         ),
         architecture: {
             node: loc(
@@ -1004,8 +1006,8 @@ export const projects: Project[] = [
                 "Ein Proxmox-9.1-Host betreibt Debian-12-Workloads und Docker-Services wie Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage."
             ),
             cloud: loc(
-                "The design is local-first and does not depend on a public cloud. It can later be extended with secure remote access or replicated services without redesigning the service plane.",
-                "Das Design ist local-first und benötigt keine Public Cloud. Es kann später mit sicherem Fernzugriff oder replizierten Services erweitert werden, ohne die Service-Ebene neu entwerfen zu müssen."
+                "The core platform is local-first; public exposure is added through a separate VPS and Tailscale ingress path for selected services without opening local router ports.",
+                "Die Kernplattform ist local-first; öffentliche Exponierung wird für ausgewählte Services über einen separaten VPS- und Tailscale-Ingress-Pfad ergänzt, ohne lokale Router-Ports zu öffnen."
             ),
         },
         security: loc(
@@ -1020,6 +1022,7 @@ export const projects: Project[] = [
             [
                 "Layered security with Pi-hole DNS filtering and CrowdSec-based intrusion response",
                 "Reverse-proxied service access through Nginx Proxy Manager",
+                "Private runtime foundation for Elkaza.at static delivery and first-party Plausible analytics",
                 "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
                 "Stabilized a React-based Proxmox API integration for dashboard visibility",
                 "Watchtower-driven container update workflow for routine maintenance",
@@ -1027,6 +1030,7 @@ export const projects: Project[] = [
             [
                 "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung und CrowdSec-basierter Intrusion Response",
                 "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
+                "Private Runtime-Basis für statische Elkaza.at-Auslieferung und First-Party-Plausible-Analytics",
                 "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
                 "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit stabilisiert",
                 "Ein Watchtower-gesteuerter Container-Update-Workflow für die Regelwartung",
@@ -1329,80 +1333,104 @@ export const projects: Project[] = [
             "Hybrid-Cloud-Delivery-Plattform"
         ),
         oneLiner: loc(
-            "Elkaza operates a hybrid cloud/on-premises delivery platform for Elkaza.at with GitHub Actions CI/CD, a Tailscale Zero-Trust bridge, Dockerized services, and rotating backups.",
-            "Elkaza betreibt für Elkaza.at eine Hybrid-Cloud-/On-Premises-Delivery-Plattform mit GitHub Actions CI/CD, Tailscale Zero-Trust-Bridge, Docker-Services und rotierenden Backups."
+            "Elkaza.at runs on a self-hosted hybrid delivery platform where vps1 handles public ingress and CI/CD control, while debian-core serves the hardened static frontend, analytics, observability, and backups through Docker.",
+            "Elkaza.at läuft auf einer self-hosted Hybrid-Delivery-Plattform, bei der vps1 den öffentlichen Ingress und die CI/CD-Steuerung übernimmt, während debian-core das gehärtete statische Frontend, Analytics, Observability und Backups über Docker ausliefert."
         ),
         overview: loc(
-            "Elkaza.at is operated as a professional hybrid cloud delivery environment. A cloud VPS handles the public build and deployment control plane, while a private on-premises Debian server runs the hosting layer. The two environments are connected through Tailscale, creating an encrypted bridge for deployment traffic without exposing the private server as a direct public target.",
-            "Elkaza.at wird als professionelle Hybrid-Cloud-Delivery-Umgebung betrieben. Ein Cloud-VPS übernimmt die öffentliche Build- und Deployment-Steuerung, während ein privater On-Premises-Debian-Server die Hosting-Schicht ausführt. Beide Umgebungen sind über Tailscale verbunden, wodurch eine verschlüsselte Bridge für Deployment-Traffic entsteht, ohne den privaten Server direkt öffentlich erreichbar zu machen."
+            "Elkaza.at is operated as a production-minded self-hosted delivery environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
+            "Elkaza.at wird als produktionsnahes Self-Hosted-Delivery-Environment betrieben. Öffentlicher HTTP/S-Traffic erreicht zuerst vps1, wo Nginx-Stream-Proxying die Ports 80 und 443 über Tailscale an debian-core weiterleitet. Der private Debian-/Proxmox-Host betreibt Docker Compose, Nginx Proxy Manager, einen statischen Nginx-Container für den exportierten Next.js-Frontend-Build und den Plausible-Analytics-Stack hinter demselben kontrollierten Ingress-Pfad."
         ),
         problem: loc(
             "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
             "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfähige Operations zu demonstrieren. Die Plattform brauchte stärkere Automatisierung, geringere öffentliche Exponierung, verlässliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
         ),
         solution: loc(
-            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions triggers the production build, Linux shell scripts generate the Next.js output, and rsync transfers release artifacts through the private Tailscale bridge from the cloud deployment plane to the private Debian hosting layer. Docker and Nginx Proxy Manager manage the service layer and HTTPS routing, while a 7-day rotating backup system improves recovery readiness.",
-            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions startet den Production-Build, Linux-Shell-Skripte erzeugen den Next.js-Output, und rsync übertraegt Release-Artefakte über die private Tailscale-Bridge von der Cloud-Deployment-Ebene zur privaten Debian-Hosting-Schicht. Docker und Nginx Proxy Manager steuern die Service-Schicht und das HTTPS-Routing, während ein Backup-System mit 7-Tage-Rotation die Recovery-Fähigkeit verbessert."
+            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions connects to vps1, refreshes the production checkout, runs linting, type checks, and the static Next.js build, then rsyncs the exported site over Tailscale into the debian-core Docker mount. Nginx Proxy Manager terminates the multi-domain certificate for elkaza.at, www.elkaza.at, and analytics.elkaza.at, applies the canonical www-to-apex redirect, and routes traffic to the web and analytics containers. The backend Nginx config adds compression, cache policy, HSTS, CSP, and other baseline security headers.",
+            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions verbindet sich mit vps1, aktualisiert den Production-Checkout, führt Linting, Type-Checks und den statischen Next.js-Build aus und synchronisiert den exportierten Build über Tailscale in den Docker-Mount auf debian-core. Nginx Proxy Manager terminiert das Multi-Domain-Zertifikat für elkaza.at, www.elkaza.at und analytics.elkaza.at, setzt den kanonischen www-zu-Apex-Redirect und routet Traffic zu Web- und Analytics-Containern. Die Backend-Nginx-Konfiguration ergänzt Kompression, Cache-Policy, HSTS, CSP und weitere grundlegende Security-Header."
         ),
         architecture: {
             node: loc(
-                "Client browsers receive an optimized Next.js frontend through a controlled HTTPS entry point.",
-                "Client-Browser erhalten ein optimiertes Next.js-Frontend über einen kontrollierten HTTPS-Einstiegspunkt."
+                "Client browsers receive the canonical HTTPS site from elkaza.at, with www redirected to the apex domain and analytics delivered through the first-party analytics.elkaza.at subdomain.",
+                "Client-Browser erhalten die kanonische HTTPS-Seite über elkaza.at, wobei www auf die Apex-Domain umgeleitet wird und Analytics über die First-Party-Subdomain analytics.elkaza.at ausgeliefert wird."
             ),
             edge: loc(
-                "A private on-premises Debian server hosts the runtime layer with Dockerized services and Nginx Proxy Manager for reverse proxy control.",
-                "Ein privater On-Premises-Debian-Server hostet die Runtime-Schicht mit Docker-Services und Nginx Proxy Manager für Reverse-Proxy-Kontrolle."
+                "debian-core hosts the private runtime layer with Docker Compose, Nginx Proxy Manager, the elkaza-web static Nginx container, Plausible, PostgreSQL, ClickHouse, observability, and backup services.",
+                "debian-core hostet die private Runtime-Schicht mit Docker Compose, Nginx Proxy Manager, dem statischen Nginx-Container elkaza-web, Plausible, PostgreSQL, ClickHouse, Observability und Backup-Services."
             ),
             cloud: loc(
-                "GitHub Actions and a cloud VPS form the cloud-side deployment plane, building releases and tunneling artifacts securely into the private hosting environment.",
-                "GitHub Actions und ein Cloud-VPS bilden die cloudseitige Deployment-Ebene, bauen Releases und tunneln Artefakte sicher in die private Hosting-Umgebung."
+                "vps1 stays deliberately thin: it is the public TCP ingress and deployment control point, forwarding web traffic and release artifacts to debian-core over the private Tailscale overlay.",
+                "vps1 bleibt bewusst schlank: Der Server ist öffentlicher TCP-Ingress und Deployment-Kontrollpunkt und leitet Web-Traffic sowie Release-Artefakte über das private Tailscale-Overlay an debian-core weiter."
             ),
         },
         security: loc(
-            "The architecture follows a Zero-Trust access model. Deployment traffic moves through an encrypted Tailscale tunnel instead of a broad public SSH or rsync surface, and the private hosting server is not treated as a directly exposed build target. Public ingress is limited to the reverse-proxy path needed to serve the website.",
-            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Deployment-Traffic läuft über einen verschlüsselten Tailscale-Tunnel statt über eine breite öffentliche SSH- oder rsync-Oberfläche, und der private Hosting-Server wird nicht als direkt exponiertes Build-Ziel behandelt. Öffentlicher Ingress bleibt auf den Reverse-Proxy-Pfad beschraenkt, der für die Website-Auslieferung notwendig ist."
+            "The architecture follows a Zero-Trust access model. The private hosting server is reached over Tailscale rather than exposed directly through the home router, TLS is centralized in Nginx Proxy Manager, and the web container enforces HSTS, CSP, X-Frame-Options, Referrer-Policy, and MIME-sniffing protection. Public ingress is limited to the controlled HTTP/S path needed to serve the website and analytics.",
+            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Der private Hosting-Server wird über Tailscale erreicht statt direkt über den Heimrouter exponiert, TLS ist in Nginx Proxy Manager zentralisiert, und der Web-Container erzwingt HSTS, CSP, X-Frame-Options, Referrer-Policy und Schutz gegen MIME-Sniffing. Öffentlicher Ingress bleibt auf den kontrollierten HTTP/S-Pfad für Website und Analytics beschränkt."
         ),
         reliability: loc(
-            "Automated builds, scripted rsync releases, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The result is a more available and maintainable self-hosted platform with clear operational ownership.",
-            "Automatisierte Builds, geskriptete rsync-Releases, Service-Trennung und eine 7-Tage-Backup-Rotation reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Das Ergebnis ist eine verfuegbarere und wartbarere Self-Hosted-Plattform mit klarer operativer Verantwortung."
+            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The deployment workflow now tests both the private backend path and the local ingress path so routing mistakes are caught before they become silent production drift.",
+            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und eine 7-Tage-Backup-Rotation reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft jetzt sowohl den privaten Backend-Pfad als auch den lokalen Ingress-Pfad, damit Routing-Fehler nicht unbemerkt in Production driften."
         ),
         keyFeatures: locList(
             [
-                "Hybrid cloud/on-premises architecture combining a cloud VPS with a private Debian hosting server",
-                "GitHub Actions CI/CD for automated builds and deployments",
-                "Tailscale Zero-Trust bridge for encrypted cloud-to-private artifact transfer",
-                "Dockerized service layer managed behind Nginx Proxy Manager",
-                "Automated shell scripts for Next.js builds, rsync releases, and service refreshes",
-                "7-day rotating backup strategy for operational resilience",
+                "Public vps1 TCP ingress for ports 80 and 443, forwarded over Tailscale to the private debian-core runtime",
+                "Nginx Proxy Manager termination for elkaza.at, www.elkaza.at, and analytics.elkaza.at with canonical www-to-apex redirect",
+                "Dockerized elkaza-web Nginx container serving the static Next.js export with gzip, long-lived asset caching, HSTS, and CSP",
+                "GitHub Actions deployment through vps1 with linting, type checks, static build, rsync release, and smoke checks",
+                "Self-hosted Plausible analytics with PostgreSQL and ClickHouse behind a first-party analytics subdomain",
+                "Observability and operations layer with Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole, and rotating backups",
             ],
             [
-                "Hybrid-Cloud-/On-Premises-Architektur aus Cloud-VPS und privatem Debian-Hosting-Server",
-                "GitHub Actions CI/CD für automatisierte Builds und Deployments",
-                "Tailscale Zero-Trust-Bridge für verschlüsselte Artefakt-Übertragung von Cloud zur privaten Hosting-Schicht",
-                "Dockerisierte Service-Schicht hinter Nginx Proxy Manager",
-                "Automatisierte Shell-Skripte für Next.js-Builds, rsync-Releases und Service-Refreshes",
-                "Backup-Strategie mit 7-Tage-Rotation für operative Resilienz",
+                "Öffentlicher vps1-TCP-Ingress für die Ports 80 und 443, über Tailscale an die private debian-core-Runtime weitergeleitet",
+                "Nginx-Proxy-Manager-Terminierung für elkaza.at, www.elkaza.at und analytics.elkaza.at mit kanonischem www-zu-Apex-Redirect",
+                "Dockerisierter elkaza-web-Nginx-Container, der den statischen Next.js-Export mit gzip, langlebigem Asset-Caching, HSTS und CSP ausliefert",
+                "GitHub-Actions-Deployment über vps1 mit Linting, Type-Checks, statischem Build, rsync-Release und Smoke-Checks",
+                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse hinter einer First-Party-Analytics-Subdomain",
+                "Observability- und Operations-Schicht mit Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole und rotierenden Backups",
             ]
         ),
         results: locList(
             [
-                "Moved Elkaza.at from a manual static VPS workflow to a professional automated delivery platform",
-                "Reduced attack surface by routing deployment traffic over a private encrypted overlay network",
-                "Improved availability and recovery confidence with repeatable deployments and rotating backups",
-                "Created a client-facing infrastructure case study around automation, security, and operational maturity",
+                "Moved Elkaza.at from a manual static VPS workflow to a repeatable self-hosted delivery platform",
+                "Reduced exposure by keeping the private runtime behind Tailscale instead of direct home-router ingress",
+                "Improved production behavior with canonical redirects, strict TLS coverage, compression, cache headers, HSTS, CSP, and static asset caching",
+                "Validated the delivery workflow with passing lint, typecheck, build, backend smoke checks, ingress smoke checks, and GitHub Actions deployment",
+                "Created a client-facing infrastructure case study around automation, security, performance, and operational maturity",
             ],
             [
-                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer professionellen automatisierten Delivery-Plattform weiterentwickelt",
-                "Die Angriffsoberfläche reduziert, indem Deployment-Traffic über ein privates verschlüsseltes Overlay-Netz läuft",
-                "Verfuegbarkeit und Recovery-Vertrauen durch wiederholbare Deployments und rotierende Backups verbessert",
-                "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit und operativer Reife geschaffen",
+                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer wiederholbaren Self-Hosted-Delivery-Plattform weiterentwickelt",
+                "Die Exponierung reduziert, indem die private Runtime hinter Tailscale statt hinter direktem Heimrouter-Ingress bleibt",
+                "Das Production-Verhalten durch kanonische Redirects, strikte TLS-Abdeckung, Kompression, Cache-Header, HSTS, CSP und Static-Asset-Caching verbessert",
+                "Den Delivery-Workflow mit erfolgreichen Lint-, Typecheck-, Build-, Backend-Smoke-, Ingress-Smoke- und GitHub-Actions-Deployments validiert",
+                "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit, Performance und operativer Reife geschaffen",
             ]
         ),
-        tech: ["Next.js", "GitHub Actions", "Tailscale", "Docker", "Nginx Proxy Manager"],
+        tech: ["Next.js", "TypeScript", "GitHub Actions", "Bash", "Tailscale", "Docker Compose", "Nginx", "Nginx Proxy Manager", "Plausible Analytics", "PostgreSQL", "ClickHouse"],
         tags: ["Web", "Hybrid Cloud", "Zero Trust", "Automation"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.at" },
             { label: "GitHub", url: "https://github.com/Elkaza/elkaza-web" },
+        ],
+        diagrams: [
+            {
+                title: loc("Elkaza.at Delivery Architecture", "Elkaza.at-Delivery-Architektur"),
+                caption: loc(
+                    "Current request and deployment path for Elkaza.at: public traffic reaches vps1, Nginx streams HTTP/S over Tailscale to debian-core, Nginx Proxy Manager terminates HTTPS and routes to static web and analytics containers, while GitHub Actions deploys through vps1.",
+                    "Aktueller Request- und Deployment-Pfad für Elkaza.at: Öffentlicher Traffic erreicht vps1, Nginx streamt HTTP/S über Tailscale zu debian-core, Nginx Proxy Manager terminiert HTTPS und routet zu statischen Web- und Analytics-Containern, während GitHub Actions über vps1 deployt."
+                ),
+                summary: locList(
+                    [
+                        "Separates public ingress, private runtime, and CI/CD control so each part has a clear responsibility",
+                        "Shows why the private Debian host is not directly exposed even though Elkaza.at is public",
+                        "Documents the current hardening changes: canonical redirect, SAN certificate, security headers, caching, and smoke checks",
+                    ],
+                    [
+                        "Trennt öffentlichen Ingress, private Runtime und CI/CD-Steuerung mit klarer Verantwortung je Schicht",
+                        "Zeigt, warum der private Debian-Host nicht direkt exponiert ist, obwohl Elkaza.at öffentlich erreichbar ist",
+                        "Dokumentiert die aktuellen Hardening-Änderungen: kanonischer Redirect, SAN-Zertifikat, Security-Header, Caching und Smoke-Checks",
+                    ]
+                ),
+                src: "/project-diagrams/elkaza-at-delivery-architecture.svg",
+            },
         ],
         relatedProjectSlug: "elkaza-org",
     },
