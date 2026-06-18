@@ -267,7 +267,7 @@ export default function HomeContent() {
           <h1 className="break-words !text-3xl font-extrabold leading-tight tracking-normal text-main sm:!text-4xl md:!text-6xl">
             {copy.heroTitle}
           </h1>
-          <p className="max-w-3xl break-words text-base font-medium text-blue-700 dark:text-blue-300 sm:text-lg md:text-xl">
+          <p className="max-w-3xl break-words text-base font-semibold text-secondary sm:text-lg md:text-xl">
             {copy.heroSubheadline}
           </p>
           <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
@@ -289,14 +289,14 @@ export default function HomeContent() {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/projects"
-            className="inline-flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-700"
+            className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
           >
             {copy.ctas.projects}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
           <Link
             href="/cv"
-            className="inline-flex items-center rounded-md border border-blue-600 px-5 py-2.5 text-sm font-semibold text-blue-700 shadow-sm transition-colors hover:bg-blue-50 dark:border-blue-400 dark:text-blue-300 dark:hover:bg-blue-950/30"
+            className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
           >
             <FileText className="mr-2 h-4 w-4" />
             {copy.ctas.cv}
@@ -320,7 +320,7 @@ export default function HomeContent() {
           </div>
           <Link
             href="/projects"
-            className="inline-flex items-center self-start text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300 md:self-auto"
+            className="inline-flex items-center self-start text-sm font-semibold text-blue-800 underline-offset-4 transition-colors hover:text-blue-950 hover:underline dark:text-blue-200 dark:hover:text-white md:self-auto"
           >
             {copy.ctas.projects}
             <ArrowRight className="ml-1 h-4 w-4" />
@@ -391,7 +391,7 @@ export default function HomeContent() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-colors hover:bg-blue-700"
+              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               <Mail className="mr-2 h-4 w-4" />
               {copy.ctas.contact}
@@ -462,7 +462,7 @@ function FeaturedProjectCard({
         <div className="mt-auto flex flex-wrap gap-2 pt-6">
           <Link
             href={`/projects/${project.slug}`}
-            className="inline-flex items-center rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            className="inline-flex items-center rounded-md bg-blue-700 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-card"
           >
             {copy.ctas.caseStudy}
             <ArrowRight className="ml-1.5 h-4 w-4" />
