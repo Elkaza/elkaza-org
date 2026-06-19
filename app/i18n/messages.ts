@@ -55,6 +55,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_security: "Security",
     security_title: "Security & Plattformbetrieb",
     security_focus: "Praxisnahe Security-Arbeit im Self-Hosted-Umfeld: private Zugriffswege, Reverse Tunneling, DNS-Filterung, reaktive Abwehr, first-party Analytics, serviceorientierte Observability und kontrollierte Exponierung von Webdiensten.",
+    security_diagram_title: "Security-Architekturueberblick",
+    security_diagram_desc: "Layer-Ansicht der aktuellen Plattform: Access & Network, Filtering & Defense, Web & Analytics, Observability und Operations mit klaren Public-, Management- und Data-Plane-Grenzen.",
+    security_diagram_alt: "Security and Platform Operations diagram with access, defense, analytics, observability, operations, and trust boundaries",
+    security_diagram_open: "Diagramm oeffnen",
     security_lab_title: "Aktuelle Security- und Operations-Bausteine",
     security_lab_list: "Tailscale Private Overlay, UFW Interface-Isolation, Pi-hole DNS Filtering, CrowdSec Intrusion Response, Nginx Proxy Manager, Plausible Analytics, PostgreSQL, ClickHouse, Netdata, Uptime Kuma, Portainer, Dozzle, Watchtower",
     security_arch_title: "Architektur-Snapshot",
@@ -542,6 +546,10 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_security: "Security",
     security_title: "Security & Platform Operations",
     security_focus: "Hands-on security work in self-hosted environments: private access paths, reverse tunneling, DNS filtering, reactive defense, first-party analytics, service-oriented observability, and controlled exposure of web services.",
+    security_diagram_title: "Security Architecture Overview",
+    security_diagram_desc: "Layered view of the current platform: access and network controls, filtering and defense, web analytics, observability, and operations with explicit public, management, and data-plane boundaries.",
+    security_diagram_alt: "Security and Platform Operations diagram with access, defense, analytics, observability, operations, and trust boundaries",
+    security_diagram_open: "Open full diagram",
     security_lab_title: "Current Security and Operations Building Blocks",
     security_lab_list: "Tailscale private overlay, UFW interface isolation, Pi-hole DNS filtering, CrowdSec intrusion response, Nginx Proxy Manager, Plausible Analytics, PostgreSQL, ClickHouse, Netdata, Uptime Kuma, Portainer, Dozzle, Watchtower",
     security_arch_title: "Architecture Snapshot",
@@ -1160,4 +1168,3 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     contact_form_error: "\u062D\u062F\u062B \u062E\u0637\u0623. \u064A\u0631\u062C\u0649 \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0645\u0631\u0629 \u0623\u062E\u0631\u0649 \u0644\u0627\u062D\u0642\u0627\u064B.",
   },
 };
-

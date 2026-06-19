@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 980" role="img" aria-labelledby="title desc">
+  <title id="title">Self-Hosted Services Platform</title>
+  <desc id="desc">Self-hosted services platform diagram showing client devices, controlled access layer, self-hosted Linux host, Docker runtime, reverse proxy, service containers, monitoring, DNS control, backups, and service separation.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="strokeWidth"><path d="M1 1 L9 5.5 L1 10 Z" fill="#0f63d8" /></marker>
+    <marker id="arrow-green" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="strokeWidth"><path d="M1 1 L9 5.5 L1 10 Z" fill="#15803d" /></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.12" /></filter>
+    <style>
+      .page{fill:#fff}.title{font:800 56px Arial,sans-serif;fill:#07143a}.zone{fill:#fff;stroke:#07143a;stroke-width:2}.host{fill:#f8fbff;stroke:#0f63d8;stroke-width:1.8}.card{fill:#fff;stroke:#9aaac1;stroke-width:1.5;filter:url(#shadow)}.box{fill:#f8fbff;stroke:#9aaac1;stroke-width:1.4}.label{font:800 24px Arial,sans-serif;fill:#07143a}.sub{font:800 18px Arial,sans-serif;fill:#07143a}.small{font:700 13px Arial,sans-serif;fill:#111827}.blue{fill:none;stroke:#0f63d8;stroke-width:4;marker-end:url(#arrow-blue)}.green{fill:none;stroke:#15803d;stroke-width:3;stroke-dasharray:8 7;marker-end:url(#arrow-green)}.blueDashed{fill:none;stroke:#0f63d8;stroke-width:3;stroke-dasharray:8 7}.legend{font:700 15px Arial,sans-serif;fill:#07143a}.note{font:800 22px Arial,sans-serif;fill:#07143a}.greenText{font:800 14px Arial,sans-serif;fill:#15803d}
+    </style>
+  </defs>
+  <rect class="page" width="1800" height="980" />
+  <text x="900" y="64" text-anchor="middle" class="title">Self-Hosted Services Platform</text>
+
+  <rect x="24" y="92" width="250" height="575" rx="8" class="zone" />
+  <text x="68" y="136" class="label">1. Client Devices</text>
+  <rect x="48" y="165" width="205" height="126" rx="8" class="card" /><text x="151" y="237" text-anchor="middle" class="sub">Browser</text>
+  <rect x="48" y="335" width="205" height="126" rx="8" class="card" /><text x="151" y="405" text-anchor="middle" class="sub">Mobile device</text>
+  <rect x="48" y="505" width="205" height="126" rx="8" class="card" /><text x="151" y="575" text-anchor="middle" class="sub">Admin laptop</text>
+  <text x="88" y="712" class="sub" fill="#0f63d8">Controlled exposure</text><text x="88" y="737" class="sub" fill="#0f63d8">from client to host</text>
+
+  <rect x="370" y="92" width="310" height="575" rx="8" class="zone" />
+  <text x="400" y="136" class="label">2. Controlled Access Layer</text>
+  <rect x="412" y="165" width="235" height="150" rx="8" class="card" /><text x="530" y="247" text-anchor="middle" class="label">Tunnel-based</text><text x="530" y="278" text-anchor="middle" class="label">access</text>
+  <rect x="412" y="338" width="235" height="150" rx="8" class="card" /><text x="530" y="410" text-anchor="middle" class="label">TLS</text><text x="530" y="441" text-anchor="middle" class="label">entry points</text>
+  <rect x="412" y="512" width="235" height="126" rx="8" class="card" /><text x="530" y="568" text-anchor="middle" class="label">Reverse proxy</text><text x="530" y="597" text-anchor="middle" class="sub">(routing layer)</text>
+  <text x="430" y="712" class="sub" fill="#0f63d8">Reduced exposure</text><text x="430" y="737" class="sub" fill="#0f63d8">via controlled entry</text><text x="430" y="762" class="sub" fill="#0f63d8">and routing</text>
+
+  <rect x="720" y="92" width="580" height="590" rx="8" class="host" />
+  <text x="820" y="136" class="label">3. Self-Hosted Linux Host</text>
+  <rect x="744" y="166" width="230" height="150" rx="8" class="card" /><text x="859" y="250" text-anchor="middle" class="label">Docker runtime</text><text x="859" y="279" text-anchor="middle" class="small">(container engine)</text>
+  <rect x="1014" y="166" width="240" height="150" rx="8" class="card" /><text x="1134" y="250" text-anchor="middle" class="label">Nginx Proxy Manager</text><text x="1134" y="279" text-anchor="middle" class="small">(proxy config &amp; routing)</text>
+  <rect x="738" y="465" width="100" height="138" rx="8" class="card" /><text x="788" y="548" text-anchor="middle" class="sub">Pi-hole</text><text x="788" y="576" text-anchor="middle" class="small">(DNS filtering)</text>
+  <rect x="856" y="465" width="130" height="138" rx="8" class="card" /><text x="921" y="548" text-anchor="middle" class="sub">Uptime Kuma</text><text x="921" y="576" text-anchor="middle" class="small">(uptime monitoring)</text>
+  <rect x="1012" y="380" width="270" height="290" rx="10" class="box" />
+  <text x="1147" y="410" text-anchor="middle" class="label">Service containers</text><text x="1147" y="438" text-anchor="middle" class="small">(isolated services)</text>
+  <rect x="1035" y="458" width="220" height="135" rx="8" fill="#fff" stroke="#0f63d8" stroke-width="1.7" stroke-dasharray="7 5" />
+  <rect x="1054" y="474" width="38" height="38" rx="4" fill="#2563eb" /><rect x="1113" y="474" width="38" height="38" rx="4" fill="#2563eb" /><rect x="1172" y="474" width="38" height="38" rx="4" fill="#2563eb" />
+  <rect x="1054" y="535" width="38" height="38" rx="4" fill="#2563eb" /><rect x="1113" y="535" width="38" height="38" rx="4" fill="#2563eb" /><rect x="1172" y="535" width="38" height="38" rx="4" fill="#2563eb" />
+  <rect x="1035" y="606" width="220" height="44" rx="8" fill="#eaf2ff" /><text x="1147" y="626" text-anchor="middle" class="small" fill="#0f63d8">Isolated services</text><text x="1147" y="646" text-anchor="middle" class="small" fill="#0f63d8">each in its own container</text>
+  <text x="930" y="720" class="sub" fill="#0f63d8">Controlled data paths</text><text x="930" y="745" class="sub" fill="#0f63d8">services isolated on the host</text>
+
+  <rect x="1405" y="92" width="360" height="605" rx="8" class="zone" />
+  <text x="1452" y="136" class="label">4. Operations &amp; Reliability</text>
+  <rect x="1445" y="170" width="280" height="112" rx="8" class="card" /><text x="1585" y="227" text-anchor="middle" class="label">Monitoring</text><text x="1585" y="257" text-anchor="middle" class="small">(Uptime &amp; health checks)</text>
+  <rect x="1445" y="318" width="280" height="112" rx="8" class="card" /><text x="1585" y="376" text-anchor="middle" class="label">DNS control</text><text x="1585" y="406" text-anchor="middle" class="small">(managed resolution)</text>
+  <rect x="1445" y="462" width="170" height="96" rx="8" class="card" /><text x="1530" y="512" text-anchor="middle" class="label">Backups</text><text x="1530" y="540" text-anchor="middle" class="small">(scheduled backups)</text>
+  <rect x="1652" y="462" width="80" height="96" rx="8" class="card" /><text x="1692" y="512" text-anchor="middle" class="small">Backup</text><text x="1692" y="536" text-anchor="middle" class="small">storage</text>
+  <rect x="1445" y="590" width="280" height="96" rx="8" class="card" /><text x="1585" y="635" text-anchor="middle" class="label">Service separation</text><text x="1585" y="663" text-anchor="middle" class="small">(network &amp; container boundaries)</text>
+
+  <path class="blue" d="M253 227 H412" /><path class="blue" d="M253 398 H412" /><path class="blue" d="M253 568 H412" />
+  <path class="blue" d="M530 315 V338" /><path class="blue" d="M530 488 V512" /><path class="blue" d="M647 575 H738" />
+  <path class="blueDashed" d="M974 241 H1014" /><path class="blue" d="M1134 316 V380" /><path class="blue" d="M921 465 V342 H1134 V316" />
+  <path class="green" d="M1405 225 H1254" /><text x="1312" y="196" class="greenText">Monitoring</text><text x="1312" y="216" class="greenText">checks</text>
+  <path class="green" d="M1445 374 H1254 V316" /><path class="green" d="M1445 510 H1282" /><path class="green" d="M1615 510 H1652" /><path class="green" d="M1445 638 H1282" />
+
+  <rect x="16" y="760" width="326" height="146" rx="8" class="box" />
+  <text x="52" y="798" class="legend">Legend</text>
+  <path class="blue" d="M52 830 H114" /><text x="130" y="836" class="legend">Blue arrow = user / service traffic</text>
+  <path class="green" d="M52 874 H114" /><text x="130" y="870" class="legend">Green dashed arrow =</text><text x="130" y="891" class="legend">operations / monitoring /</text><text x="130" y="912" class="legend">backups / DNS</text>
+
+  <text x="602" y="820" text-anchor="middle" class="note">Reduced exposure</text><text x="602" y="848" text-anchor="middle" class="sub">only necessary entry</text><text x="602" y="875" text-anchor="middle" class="sub">points are open</text>
+  <text x="986" y="820" text-anchor="middle" class="note">Isolated services</text><text x="986" y="848" text-anchor="middle" class="sub">each container is</text><text x="986" y="875" text-anchor="middle" class="sub">independent</text>
+  <text x="1328" y="820" text-anchor="middle" class="note">Reliability by design</text><text x="1328" y="848" text-anchor="middle" class="sub">monitoring, backups,</text><text x="1328" y="875" text-anchor="middle" class="sub">and controlled operations</text>
+  <rect x="154" y="928" width="1450" height="44" rx="9" fill="#f8fbff" stroke="#0f63d8" stroke-width="1.7" />
+  <text x="879" y="958" text-anchor="middle" class="note">Personal infrastructure operated like a small production platform: isolated services, reduced exposure, uptime monitoring, and controlled data paths.</text>
+</svg>

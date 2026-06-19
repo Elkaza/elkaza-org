@@ -4,6 +4,7 @@ import {
     Activity,
     CheckCircle2,
     Database,
+    ExternalLink,
     Layers,
     Lock,
     Monitor,
@@ -112,6 +113,8 @@ export default function SecurityPageContent() {
                     </p>
                 </div>
 
+                <SecurityArchitectureDiagram t={t} />
+
                 <div className="space-y-6">
                     <h2 className="text-2xl font-semibold flex items-center gap-2">
                         <Server className="w-6 h-6 text-blue-600 dark:text-blue-400" />
@@ -219,6 +222,47 @@ export default function SecurityPageContent() {
 
             </section>
         </main>
+    );
+}
+
+function SecurityArchitectureDiagram({ t }: { t: (key: string) => string }) {
+    const diagramSrc = "/project-diagrams/security-platform-operations-overview.svg";
+
+    return (
+        <section className="space-y-4" aria-labelledby="security-platform-diagram">
+            <div className="flex flex-col gap-3 border-y border-subtle py-5 md:flex-row md:items-end md:justify-between">
+                <div className="max-w-3xl">
+                    <div className="flex items-center gap-2">
+                        <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        <h2 id="security-platform-diagram" className="text-2xl font-semibold tracking-normal">
+                            {t("security_diagram_title")}
+                        </h2>
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                        {t("security_diagram_desc")}
+                    </p>
+                </div>
+                <a
+                    href={diagramSrc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 md:self-auto"
+                >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    {t("security_diagram_open")}
+                </a>
+            </div>
+            <figure className="overflow-hidden rounded-lg border border-subtle bg-card shadow-sm">
+                <div className="overflow-x-auto bg-white p-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={diagramSrc}
+                        alt={t("security_diagram_alt")}
+                        className="w-full min-w-[860px] max-w-none rounded-md"
+                    />
+                </div>
+            </figure>
+        </section>
     );
 }
 

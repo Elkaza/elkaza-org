@@ -1058,6 +1058,28 @@ export const projects: Project[] = [
         images: [
             "/images/vienna-fortress-dashboard.png",
         ],
+        diagrams: [
+            {
+                title: loc("Private Infrastructure and Operations Platform", "Private Infrastruktur- und Betriebsplattform"),
+                caption: loc(
+                    "The Vienna Fortress architecture shows the split between public admin/user entry, the public VPS edge, the private Tailscale transport, and the Proxmox/Debian Docker runtime where web, analytics, security, observability, operations, and backup services are separated.",
+                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen oeffentlichem Admin-/User-Einstieg, Public-VPS-Edge, privatem Tailscale-Transport und der Proxmox-/Debian-Docker-Runtime, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
+                ),
+                summary: locList(
+                    [
+                        "Public exposure is concentrated at the VPS edge instead of the home router",
+                        "Runtime traffic and operational traffic are shown as separate flows",
+                        "The private runtime groups services by responsibility: web, analytics, security, observability, operations, and backups",
+                    ],
+                    [
+                        "Oeffentliche Exponierung liegt am VPS-Edge statt am Home-Router",
+                        "Runtime-Traffic und operativer Traffic sind als getrennte Fluesse dargestellt",
+                        "Die private Runtime gruppiert Services nach Verantwortung: Web, Analytics, Security, Observability, Operations und Backups",
+                    ]
+                ),
+                src: "/project-diagrams/vienna-fortress-architecture.svg",
+            },
+        ],
         relatedProjectSlug: "home-security-lab",
     },
     {
@@ -1140,6 +1162,28 @@ export const projects: Project[] = [
         tech: ["Tailscale", "WireGuard", "OpenSSH", "ED25519", "Proxmox", "Debian 13", "Pi-hole", "Unbound", "UFW", "sysctl", "btop"],
         tags: ["Security", "Networking", "Hybrid Cloud", "Zero Trust"],
         links: [],
+        diagrams: [
+            {
+                title: loc("Hardened Hybrid-Cloud Private Network", "Gehaertetes Hybrid-Cloud-Privatnetzwerk"),
+                caption: loc(
+                    "The network diagram shows roaming devices, Tailscale private overlay, the VPS cloud node, and the home lab runtime. It emphasizes key-only SSH, private DNS, interface-aware firewalling, exit-node routing, and planned segmentation without exposing management services directly to the public Internet.",
+                    "Das Netzwerkdiagramm zeigt mobile Geraete, Tailscale Private Overlay, den VPS-Cloud-Node und die Home-Lab-Runtime. Es betont schluesselbasiertes SSH, private DNS-Aufloesung, interface-bewusste Firewall-Regeln, Exit-Node-Routing und geplante Segmentierung ohne direkte oeffentliche Exponierung der Management-Services."
+                ),
+                summary: locList(
+                    [
+                        "Management access is routed through authenticated private overlay nodes",
+                        "Pi-hole and Unbound keep DNS resolution under local control",
+                        "Planned IoT, guest, and detection layers are separated from the current verified baseline",
+                    ],
+                    [
+                        "Management-Zugriff laeuft ueber authentifizierte private Overlay-Nodes",
+                        "Pi-hole und Unbound halten DNS-Aufloesung unter eigener Kontrolle",
+                        "Geplante IoT-, Gastnetz- und Detection-Ebenen sind vom verifizierten Ist-Stand getrennt dargestellt",
+                    ]
+                ),
+                src: "/project-diagrams/home-security-lab-hybrid-network.svg",
+            },
+        ],
         relatedProjectSlug: "vienna-fortress",
     },
     {
@@ -1218,6 +1262,28 @@ export const projects: Project[] = [
         tech: ["Docker", "Linux", "Nginx Proxy Manager", "Pi-hole", "Uptime Kuma", "Cloudflare Tunnel"],
         tags: ["Infrastructure", "Security", "Operations"],
         links: [],
+        diagrams: [
+            {
+                title: loc("Self-Hosted Services Platform", "Self-Hosted-Service-Plattform"),
+                caption: loc(
+                    "The service-platform diagram presents the project as a small production-minded self-hosted environment: client devices enter through controlled access, a Linux host runs Docker services behind Nginx Proxy Manager, and reliability is handled through monitoring, DNS control, backups, and service separation.",
+                    "Das Service-Plattform-Diagramm zeigt das Projekt als kleine produktionsnahe Self-Hosted-Umgebung: Client-Geraete nutzen kontrollierte Einstiegspunkte, ein Linux-Host betreibt Docker-Services hinter Nginx Proxy Manager, und Zuverlaessigkeit entsteht durch Monitoring, DNS-Kontrolle, Backups und Service-Trennung."
+                ),
+                summary: locList(
+                    [
+                        "Only necessary entry points are represented as public-facing",
+                        "Application services are isolated into containers instead of unmanaged host processes",
+                        "Monitoring, backups, DNS control, and service separation are part of the operating model",
+                    ],
+                    [
+                        "Nur notwendige Einstiegspunkte werden als oeffentlich erreichbar dargestellt",
+                        "Anwendungsservices laufen isoliert in Containern statt als unstrukturierte Host-Prozesse",
+                        "Monitoring, Backups, DNS-Kontrolle und Service-Trennung sind Teil des Betriebsmodells",
+                    ]
+                ),
+                src: "/project-diagrams/self-hosted-cloud-services-platform.svg",
+            },
+        ],
         relatedProjectSlug: "vienna-fortress",
     },
     {
