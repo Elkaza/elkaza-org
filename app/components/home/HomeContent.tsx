@@ -49,11 +49,11 @@ const HOME_COPY: Localized<{
   finalCta: string;
 }> = {
   de: {
-    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
     heroSubheadline:
-      "Ich baue TypeScript-Web-Apps, Python-Automatisierung, Linux/Docker-Infrastruktur und IoT-/Edge-AI-Prototypen.",
+      "Ich baue betreibbare Web-, Automatisierungs- und Infrastruktur-Systeme: von Next.js und Python bis Docker, Monitoring und Edge-AI-Prototypen.",
     heroSupportingLine:
-      "Praktische Projekte in Application Delivery, self-hosted Plattformen, Daten-Workflows und vernetzten Systemen.",
+      "Mein Portfolio zeigt reale Delivery-Pfade, self-hosted Plattformen, Daten-Workflows und vernetzte Systeme mit klarer Dokumentation.",
     ctas: {
       projects: "Projekte ansehen",
       cv: "CV ansehen",
@@ -68,11 +68,11 @@ const HOME_COPY: Localized<{
       "Suchen Sie jemanden, der praktische technische Systeme baut, automatisiert und betreibt?",
   },
   en: {
-    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
     heroSubheadline:
-      "I build TypeScript web apps, Python automation, Linux/Docker infrastructure and IoT/Edge AI prototypes.",
+      "I build operable web, automation and infrastructure systems: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
     heroSupportingLine:
-      "Practical projects across application delivery, self-hosted platforms, data workflows and connected systems.",
+      "This portfolio focuses on real delivery paths, self-hosted platforms, data workflows and connected systems with clear technical documentation.",
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -87,11 +87,11 @@ const HOME_COPY: Localized<{
       "Looking for someone who can build, automate and operate practical technical systems?",
   },
   ar: {
-    heroTitle: "Software, Automation & Infrastructure Engineer",
+    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
     heroSubheadline:
-      "I build TypeScript web apps, Python automation, Linux/Docker infrastructure and IoT/Edge AI prototypes.",
+      "I build operable web, automation and infrastructure systems: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
     heroSupportingLine:
-      "Practical projects across application delivery, self-hosted platforms, data workflows and connected systems.",
+      "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
     ctas: {
       projects: "View Projects",
       cv: "View CV",

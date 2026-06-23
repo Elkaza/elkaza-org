@@ -11,9 +11,14 @@ export function generatePersonSchema() {
         url: "https://elkaza.org",
         sameAs: [
             "https://github.com/Elkaza",
-            "https://linkedin.com/in/elkaza",
+            "https://www.linkedin.com/in/elkaza",
         ],
         jobTitle: "Business Informatics and IoT Master Student | Data Automation, Edge AI and Infrastructure",
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: "Vienna",
+            addressCountry: "Austria",
+        },
         affiliation: [
             {
                 "@type": "EducationalOrganization",
@@ -83,7 +88,7 @@ export function generateOrganizationSchema() {
         logo: "https://elkaza.org/icon-512.png",
         sameAs: [
             "https://github.com/Elkaza",
-            "https://linkedin.com/in/elkaza",
+            "https://www.linkedin.com/in/elkaza",
         ],
         contactPoint: {
             "@type": "ContactPoint",

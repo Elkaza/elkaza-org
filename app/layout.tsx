@@ -6,6 +6,7 @@ import LocaleProvider from "@/app/LocaleProvider";
 import BackToTop from "@/app/components/BackToTop";
 import SiteFooter from "./components/SiteFooter";
 import SubNav from "./components/SubNav";
+import { generatePersonSchema, generateWebSiteSchema } from "@/app/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], variable: "--font-serif" });
@@ -60,59 +61,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Mohamed Elkaza",
-              url: "https://elkaza.org",
-              sameAs: [
-                "https://www.linkedin.com/in/elkaza",
-                "https://github.com/Elkaza"
-              ],
-              jobTitle: "Business Informatics and IoT Master Student | Data Automation, Edge AI and Infrastructure",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Vienna",
-                addressCountry: "Austria"
-              },
-              knowsAbout: [
-                "IT Operations",
-                "Business Informatics",
-                "Data Automation",
-                "Python",
-                "SQL",
-                "Reporting",
-                "Dashboards",
-                "APIs",
-                "Industry 4.0",
-                "Edge AI",
-                "TinyML",
-                "AIoT",
-                "Monitoring",
-                "System Administration",
-                "Network Engineering",
-                "Windows Server",
-                "Linux",
-                "Hybrid Cloud",
-                "Systems Administration",
-                "Application Engineering",
-                "Business Analysis",
-                "Technical Project Delivery",
-                "Owner-Controlled Infrastructure",
-                "Privacy-First Analytics",
-                "Zero-Trust Networking",
-                "Tailscale",
-                "Proxmox VE",
-                "Docker",
-                "Nginx Proxy Manager",
-                "Plausible Analytics",
-                "CI/CD",
-                "Automation",
-                "ITSM",
-                "Project Management",
-                "IoT Systems"
-              ]
-            }),
+            __html: JSON.stringify([
+              generatePersonSchema(),
+              generateWebSiteSchema(),
+            ]),
           }}
         />
         {process.env.NODE_ENV === "production" && enablePlausible && (

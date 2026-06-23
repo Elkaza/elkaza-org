@@ -50,10 +50,9 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
       - run: npm run build
-      - name: Lint (on push only)
-        if: ${{ github.event_name == 'push' }}
-        run: npm run lint --if-present
 
   secrets-scan:
     runs-on: ubuntu-latest

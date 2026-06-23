@@ -1,4 +1,7 @@
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 import { Calendar, Tag, ArrowLeft } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "@/app/lib/blog";
 import { notFound } from "next/navigation";
@@ -96,7 +99,6 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        {/* Markdown Content */}
         <div
           className="prose dark:prose-invert prose-sm sm:prose lg:prose-lg max-w-none
             prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8 prose-h2:mb-4
@@ -111,10 +113,14 @@ export default async function BlogPostPage({
             prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-2
             prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:underline hover:prose-a:no-underline
           "
-          dangerouslySetInnerHTML={{
-            __html: formatMarkdown(post.content),
-          }}
-        />
+        >
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeSanitize]}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </div>
 
         {/* Navigation */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -154,60 +160,4 @@ export default async function BlogPostPage({
       </div>
     </main>
   );
-}
-
-/**
- * Simple markdown to HTML converter
- */
-function formatMarkdown(markdown: string): string {
-  let html = markdown;
-
-  // Headings
-  html = html.replace(/^### (.*$)/gim, "<h3>$1</h3>");
-  html = html.replace(/^## (.*$)/gim, "<h2>$1</h2>");
-  html = html.replace(/^# (.*$)/gim, "<h1>$1</h1>");
-
-  // Bold
-  html = html.replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>");
-  html = html.replace(/__(.*?)__/gim, "<strong>$1</strong>");
-
-  // Italic
-  html = html.replace(/\*(.*?)\*/gim, "<em>$1</em>");
-  html = html.replace(/_(.*?)_/gim, "<em>$1</em>");
-
-  // Links
-  html = html.replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2">$1</a>');
-
-  // Code blocks
-  html = html.replace(/```(.*?)\n([\s\S]*?)```/gim, (_, lang, code) => {
-    return `<pre><code class="language-${lang}">${escapeHtml(code.trim())}</code></pre>`;
-  });
-
-  // Inline code
-  html = html.replace(/`(.*?)`/gim, "<code>$1</code>");
-
-  // Line breaks
-  html = html.replace(/\n\n/gim, "</p><p>");
-  html = `<p>${html}</p>`;
-
-  // Lists
-  html = html.replace(/^\* (.*$)/gim, "<li>$1</li>");
-  html = html.replace(/(<li>[\s\S]*<\/li>)/gm, "<ul>$1</ul>");
-  html = html.replace(/^\d+\. (.*$)/gim, "<li>$1</li>");
-
-  // Blockquotes
-  html = html.replace(/^> (.*$)/gim, "<blockquote>$1</blockquote>");
-
-  return html;
-}
-
-function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;",
-  };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
