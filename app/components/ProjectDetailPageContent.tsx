@@ -34,6 +34,10 @@ type DetailCopy = {
     results: string;
     snapshot: string;
     summary: string;
+    role: string;
+    scope: string;
+    constraints: string;
+    evidence: string;
     result: string;
     technicalDecisions: string;
     challenges: string;
@@ -79,6 +83,10 @@ const COPY: Record<string, DetailCopy> = {
         results: "Results / Evidence",
         snapshot: "Case Snapshot",
         summary: "Summary",
+        role: "Role",
+        scope: "Scope",
+        constraints: "Constraints",
+        evidence: "Evidence",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -122,6 +130,10 @@ const COPY: Record<string, DetailCopy> = {
         results: "Ergebnisse / Evidenz",
         snapshot: "Kurzüberblick",
         summary: "Summary",
+        role: "Rolle",
+        scope: "Umfang",
+        constraints: "Rahmenbedingungen",
+        evidence: "Evidenz",
         result: "Ergebnis",
         technicalDecisions: "Technische Entscheidungen",
         challenges: "Herausforderungen",
@@ -165,6 +177,10 @@ const COPY: Record<string, DetailCopy> = {
         results: "Results and Impact",
         snapshot: "Case Snapshot",
         summary: "Summary",
+        role: "Role",
+        scope: "Scope",
+        constraints: "Constraints",
+        evidence: "Evidence",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -208,10 +224,10 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
     const localizedFeatures = localized(project.keyFeatures);
     const hasDiagrams = Boolean(project.diagrams && project.diagrams.length > 0);
     const snapshotItems = [
-        { label: copy.summary, body: conciseText(localized(project.overview), 230) },
-        { label: copy.problem, body: conciseText(localized(project.problem), 230) },
-        { label: copy.solution, body: conciseText(localized(project.solution), 230) },
-        ...(localizedResults[0] ? [{ label: copy.result, body: localizedResults[0] }] : []),
+        { label: copy.role, body: getRoleDescription(project.category, locale) },
+        { label: copy.scope, body: conciseText(localized(project.solution), 230) },
+        { label: copy.constraints, body: conciseText(`${localized(project.security)} ${localized(project.reliability)}`, 230) },
+        ...(localizedResults[0] ? [{ label: copy.evidence, body: localizedResults[0] }] : []),
     ];
     const challengeItems = [
         conciseText(localized(project.problem), 190),
@@ -526,7 +542,7 @@ function CaseSnapshot({
                         <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
                             {item.label}
                         </p>
-                        <p className="mt-3 text-sm leading-relaxed text-main">{item.body}</p>
+                        <p className="mt-3 text-sm leading-relaxed text-muted">{item.body}</p>
                     </article>
                 ))}
             </div>
@@ -587,6 +603,31 @@ function conciseText(text: string, maxLength: number) {
     const lastSpace = clipped.lastIndexOf(" ");
 
     return `${clipped.slice(0, lastSpace > 120 ? lastSpace : maxLength).trimEnd()}...`;
+}
+
+function getRoleDescription(category: string, locale: Locale) {
+    const roles: Record<Locale, Record<string, string>> = {
+        en: {
+            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
+            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
+            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operational evidence.",
+            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
+        },
+        de: {
+            "featured-aiot": "End-to-End Engineering: Hardware-Integration, Edge-Inferenz, Sensorfusion, Dashboard-Evidenz und operative Dokumentation.",
+            "platform-component": "Produktorientierte Umsetzung: Datenmodell, Interface-Verhalten, Integrationspfad und wartbare Delivery-Artefakte.",
+            "security-infrastructure": "Infrastruktur-Verantwortung: Architektur, Hardening, Zugriffsmodell, Monitoring, Recovery-Pfad und operative Evidenz.",
+            "delivery-platform": "Plattform-Verantwortung: Frontend-Umsetzung, Deployment-Workflow, Inhaltsstruktur, CI-Validierung und Production Delivery.",
+        },
+        ar: {
+            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
+            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
+            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operational evidence.",
+            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
+        },
+    };
+
+    return roles[locale]?.[category] ?? roles.en[category] ?? roles.en["delivery-platform"];
 }
 
 function getFutureItems(locale: Locale, hasDiagrams: boolean) {

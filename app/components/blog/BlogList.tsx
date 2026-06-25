@@ -75,7 +75,7 @@ export default function BlogList({ posts }: BlogListProps) {
                                         {post.tags.map((tag) => (
                                             <Link
                                                 key={tag}
-                                                href={`/blog/tag/${tag}`}
+                                                href={`/blog/tag/${encodeURIComponent(tag)}`}
                                                 className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm hover:bg-blue-200 dark:hover:bg-blue-800 transition"
                                             >
                                                 <Tag size={14} />
@@ -89,7 +89,7 @@ export default function BlogList({ posts }: BlogListProps) {
                                     href={`/blog/${post.slug}`}
                                     className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all"
                                 >
-                                    Read more
+                                    {t("blog_read_more")}
                                     <ArrowRight size={16} />
                                 </Link>
                             </article>

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
   const router = useRouter();
-  const btn = (code: "de" | "en" | "ar", label: string) => (
+  const btn = (code: "de" | "en", label: string) => (
     <button
       key={code}
       type="button"

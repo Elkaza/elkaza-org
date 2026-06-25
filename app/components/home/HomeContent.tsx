@@ -311,7 +311,7 @@ export default function HomeContent() {
         </div>
       </section>
 
-      <section className="mt-16 space-y-6" aria-labelledby="featured-work">
+      <section className="mt-14 space-y-6" aria-labelledby="featured-work">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
             <h2 id="featured-work" className="!text-2xl font-semibold tracking-normal text-main">

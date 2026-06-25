@@ -9,6 +9,11 @@ const analyticsOrigin = "https://analytics.elkaza.at";
 
 export function proxy() {
   const res = NextResponse.next();
+
+  if (process.env.NODE_ENV !== "production") {
+    return res;
+  }
+
   const n = nonce();
   res.headers.set("x-nonce", n);
 

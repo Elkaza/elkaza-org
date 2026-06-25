@@ -1,113 +1,106 @@
-"use client";
-import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
-import Link from "next/link";
+import ArchivesSearch, { type ArchiveItem } from "./ArchivesSearch";
+import { getAllPosts } from "@/app/lib/blog";
+import { projects } from "@/app/lib/projects";
 
-const DATA = [
-  { title: "About", href: "/about", tags: ["profile", "infrastructure"], year: 2026 },
-  { title: "Academic Work", href: "/research", tags: ["academic", "thesis"], year: 2026 },
-  { title: "Projects", href: "/projects", tags: ["systems", "infrastructure", "iot"], year: 2026 },
-  { title: "Learning Focus", href: "/teaching", tags: ["learning", "studies"], year: 2026 },
-  { title: "Contact", href: "/contact", tags: ["jobs", "links"], year: 2026 },
-];
-
-const YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020];
-const TAGS = [
-  "academic",
-  "infrastructure",
-  "iot",
-  "jobs",
-  "learning",
-  "profile",
-  "systems",
-  "thesis",
+const CORE_PAGES: ArchiveItem[] = [
+  {
+    title: { de: "Über mich", en: "About" },
+    summary: {
+      de: "Profil, Ausbildung, Infrastrukturarbeit und beruflicher Hintergrund.",
+      en: "Profile, education, infrastructure work and professional background.",
+    },
+    href: "/about",
+    type: "page",
+    tags: ["profile", "education", "infrastructure"],
+    year: 2026,
+  },
+  {
+    title: { de: "CV", en: "CV" },
+    summary: {
+      de: "Kompakter Lebenslauf mit Erfahrung, Skills, Projekten und Ausbildung.",
+      en: "Compact CV with experience, skills, projects and education.",
+    },
+    href: "/cv",
+    type: "page",
+    tags: ["cv", "experience", "skills"],
+    year: 2026,
+  },
+  {
+    title: { de: "Security", en: "Security" },
+    summary: {
+      de: "Security- und Plattformbetrieb mit privatem Zugriff, Monitoring und kontrollierter Exponierung.",
+      en: "Security and platform operations with private access, monitoring and controlled exposure.",
+    },
+    href: "/security",
+    type: "page",
+    tags: ["security", "infrastructure", "monitoring"],
+    year: 2026,
+  },
+  {
+    title: { de: "Akademische Arbeit", en: "Academic Work" },
+    summary: {
+      de: "Thesis-Kontext, Forschungsinteressen und akademische Schwerpunkte.",
+      en: "Thesis context, research interests and academic focus areas.",
+    },
+    href: "/research",
+    type: "page",
+    tags: ["academic", "thesis", "research"],
+    year: 2026,
+  },
+  {
+    title: { de: "Lernfokus", en: "Learning Focus" },
+    summary: {
+      de: "Studium, Zertifizierungen und laufende fachliche Entwicklung.",
+      en: "Studies, certifications and ongoing professional development.",
+    },
+    href: "/teaching",
+    type: "page",
+    tags: ["learning", "certifications", "studies"],
+    year: 2026,
+  },
+  {
+    title: { de: "Kontakt", en: "Contact" },
+    summary: {
+      de: "Kontaktmöglichkeiten und berufliche Links.",
+      en: "Contact options and professional links.",
+    },
+    href: "/contact",
+    type: "page",
+    tags: ["contact", "links"],
+    year: 2026,
+  },
 ];
 
 export default function ArchivesPage() {
-  const [q, setQ] = useState("");
-  const [year, setYear] = useState<number | null>(null);
-  const [tag, setTag] = useState<string | null>(null);
+  const projectItems: ArchiveItem[] = projects.map((project) => ({
+    title: {
+      de: project.title.de,
+      en: project.title.en,
+    },
+    summary: {
+      de: project.oneLiner.de,
+      en: project.oneLiner.en,
+    },
+    href: `/projects/${project.slug}`,
+    type: "project",
+    tags: [...project.tags, ...project.tech],
+    year: Number(project.year) || 2026,
+  }));
 
-  const results = useMemo(() => {
-    return DATA.filter((item) => {
-      const matchQ = q ? item.title.toLowerCase().includes(q.toLowerCase()) : true;
-      const matchYear = year ? item.year === year : true;
-      const matchTag = tag ? item.tags.includes(tag) : true;
-      return matchQ && matchYear && matchTag;
-    });
-  }, [q, year, tag]);
+  const blogItems: ArchiveItem[] = getAllPosts().map((post) => ({
+    title: {
+      de: post.title,
+      en: post.title,
+    },
+    summary: {
+      de: post.description,
+      en: post.description,
+    },
+    href: `/blog/${post.slug}`,
+    type: "blog",
+    tags: post.tags,
+    year: new Date(post.date).getFullYear() || 2026,
+  }));
 
-  return (
-    <main className="min-h-screen bg-page text-main transition-colors duration-300">
-      <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-        <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
-          <div className="w-20 h-1.5 bg-blue-600 mb-3" />
-          <h1 className="text-3xl font-bold">Search the Site</h1>
-          <p className="mt-3 text-muted">Explore portfolio pages, profile sections, and supporting content across Elkaza.org.</p>
-        </aside>
-
-        <div className="lg:col-span-9">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={18} />
-              <input
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                placeholder="Explore all pages and sections..."
-                className="w-full pl-10 pr-3 py-2 rounded-md border border-subtle bg-card text-main placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-blue-500/50"
-              />
-            </div>
-          </div>
-
-          <div className="mb-4 text-xs tracking-wide text-muted">YEARS</div>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {YEARS.map((y) => (
-              <button
-                key={y}
-                onClick={() => setYear(year === y ? null : y)}
-                className={`px-3 py-1.5 rounded-md border text-sm transition-colors ${year === y
-                  ? "border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/20"
-                  : "border-subtle text-muted hover:border-blue-500/50 hover:text-main"
-                  }`}
-              >
-                {y}
-              </button>
-            ))}
-          </div>
-
-          <div className="mb-4 text-xs tracking-wide text-muted">TAGS</div>
-          <div className="flex flex-wrap gap-2 mb-8">
-            {TAGS.map((t) => (
-              <button
-                key={t}
-                onClick={() => setTag(tag === t ? null : t)}
-                className={`px-3 py-1.5 rounded-md border text-sm capitalize transition-colors ${tag === t
-                  ? "border-blue-500 text-blue-600 bg-blue-50 dark:bg-blue-900/20"
-                  : "border-subtle text-muted hover:border-blue-500/50 hover:text-main"
-                  }`}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-
-          <div className="space-y-3">
-            {results.map((r) => (
-              <div key={r.href} className="p-4 rounded-lg border border-subtle bg-card hover:border-blue-500/30 transition-colors">
-                <Link href={r.href} className="font-medium text-blue-600 hover:underline block mb-1">
-                  {r.title}
-                </Link>
-                <div className="text-sm text-muted">
-                  {r.year} | {r.tags.join(", ")}
-                </div>
-              </div>
-            ))}
-            {results.length === 0 && (
-              <div className="text-muted italic">No results. Try clearing filters.</div>
-            )}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+  return <ArchivesSearch items={[...CORE_PAGES, ...projectItems, ...blogItems]} />;
 }

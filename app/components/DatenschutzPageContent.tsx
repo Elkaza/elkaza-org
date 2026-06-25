@@ -24,6 +24,7 @@ export default function DatenschutzPageContent() {
                 <ul className="list-disc ml-6 space-y-1 text-muted">
                     <li>{t("privacy_data_name")}</li>
                     <li>{t("privacy_data_email")}</li>
+                    <li>{t("privacy_data_subject")}</li>
                     <li>{t("privacy_data_message")}</li>
                 </ul>
             </section>
