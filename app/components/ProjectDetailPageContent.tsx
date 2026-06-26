@@ -59,6 +59,7 @@ type DetailCopy = {
     relatedDescription: string;
     githubLabel: string;
     externalLabel: string;
+    stackPreview: string;
 };
 
 const COPY: Record<string, DetailCopy> = {
@@ -108,6 +109,7 @@ const COPY: Record<string, DetailCopy> = {
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
         githubLabel: "View source on GitHub",
         externalLabel: "Open link",
+        stackPreview: "Core stack",
     },
     de: {
         category: {
@@ -155,6 +157,7 @@ const COPY: Record<string, DetailCopy> = {
         relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die größere Portfolio-Story passt.",
         githubLabel: "Quellcode auf GitHub ansehen",
         externalLabel: "Link öffnen",
+        stackPreview: "Kernstack",
     },
     ar: {
         category: {
@@ -202,6 +205,7 @@ const COPY: Record<string, DetailCopy> = {
         relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
         githubLabel: "View source on GitHub",
         externalLabel: "Open link",
+        stackPreview: "Core stack",
     },
 };
 
@@ -235,10 +239,12 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         conciseText(localized(project.reliability), 190),
     ];
     const futureItems = getFutureItems(locale, hasDiagrams);
+    const githubLink = project.links.find((link) => link.url.includes("github.com"));
+    const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
 
     return (
-        <main className="min-h-screen bg-page text-main transition-colors duration-300 py-12 px-6">
-            <article className="max-w-5xl mx-auto space-y-10">
+        <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
+            <article className="mx-auto max-w-5xl space-y-8 md:space-y-10">
                 <Link
                     href="/projects"
                     className="inline-flex items-center text-muted hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -247,33 +253,74 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     {t("nav_projects")}
                 </Link>
 
-                <header className="space-y-5">
-                    <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
-                        <span className="rounded-full border border-subtle px-3 py-1">
-                            {copy.category[project.category]}
-                        </span>
-                        <span className="rounded-full border border-green-500/40 bg-green-500/10 px-3 py-1 text-green-700 dark:text-green-300">
-                            {copy.status}: {getProjectStatusLabel(project.status, locale)}
-                        </span>
-                        <span>{project.year}</span>
-                    </div>
-
-                    <div className="space-y-3">
-                        <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-normal">
-                            {localized(project.title)}
-                        </h1>
-                        <p className="max-w-3xl text-lg md:text-xl text-muted leading-relaxed">
-                            {localized(project.oneLiner)}
-                        </p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                            <span key={tag} className="badge badge-neutral">
-                                {getProjectTagLabel(tag, locale)}
+                <header className="grid gap-5 rounded-lg border border-subtle bg-card p-4 shadow-sm sm:p-5 md:grid-cols-[minmax(0,1fr)_280px] md:gap-6 md:p-7">
+                    <div className="space-y-5">
+                        <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
+                            <span className="rounded-full border border-subtle bg-page px-3 py-1">
+                                {copy.category[project.category]}
                             </span>
-                        ))}
+                            <span className="inline-flex items-center gap-2 rounded-full border border-subtle bg-page px-3 py-1 font-medium text-main">
+                                <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
+                                {copy.status}: {getProjectStatusLabel(project.status, locale)}
+                            </span>
+                            <span>{project.year}</span>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h1 className="text-3xl font-bold leading-tight tracking-normal md:text-5xl">
+                                {localized(project.title)}
+                            </h1>
+                            <p className="max-w-3xl text-lg md:text-xl text-muted leading-relaxed">
+                                {localized(project.oneLiner)}
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                                <span key={tag} className="badge badge-neutral">
+                                    {getProjectTagLabel(tag, locale)}
+                                </span>
+                            ))}
+                        </div>
                     </div>
+
+                    <aside className="min-w-0 rounded-lg border border-subtle bg-page/70 p-4">
+                        <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
+                            {copy.stackPreview}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                            {project.tech.slice(0, 5).map((tech) => (
+                                <TechBadge key={tech} name={tech} />
+                            ))}
+                        </div>
+                        {project.links.length > 0 && (
+                            <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap md:flex-col">
+                                {githubLink && (
+                                    <a
+                                        href={githubLink.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center rounded-md bg-main px-3 py-2 text-sm font-medium text-page transition-opacity hover:opacity-90"
+                                    >
+                                        <Github className="mr-2 h-4 w-4" />
+                                        GitHub
+                                    </a>
+                                )}
+                                {externalLinks.slice(0, 2).map((link) => (
+                                    <a
+                                        key={link.url}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                    >
+                                        <ExternalLink className="mr-2 h-4 w-4" />
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </div>
+                        )}
+                    </aside>
                 </header>
 
                 {project.images && project.images.length > 0 && (
@@ -283,7 +330,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                             <img
                                 src={project.images[0]}
                                 alt={`${project.title.en} dashboard screenshot`}
-                                className="w-full h-auto rounded-lg"
+                                className="h-auto w-full rounded-lg"
                             />
                         </section>
                     ) : (
@@ -382,12 +429,12 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                             <img
                                                 src={diagram.src}
                                                 alt={`${localized(diagram.title)} diagram for ${project.title.en}`}
-                                                className="w-full min-w-[860px] max-w-none rounded-md"
+                                                className="w-full min-w-[640px] max-w-none rounded-md md:min-w-[720px]"
                                             />
                                         </div>
                                         {summary.length > 0 && (
                                             <div className="border-t border-subtle p-4">
-                                                <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                                <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                                                     {copy.diagramReviewFocus}
                                                 </p>
                                                 <ul className="mt-3 grid gap-3 md:grid-cols-3">
@@ -502,7 +549,7 @@ function ArchitectureFlow({
                 {nodes.map((node, index) => (
                     <Fragment key={node.title}>
                         <div className="rounded-md border border-subtle bg-page/70 p-4">
-                            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                            <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                                 {node.title}
                             </p>
                             <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -539,7 +586,7 @@ function CaseSnapshot({
             <div className="grid gap-4 md:grid-cols-2">
                 {items.map((item) => (
                     <article key={item.label} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
-                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                        <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                             {item.label}
                         </p>
                         <p className="mt-3 text-sm leading-relaxed text-muted">{item.body}</p>
@@ -648,7 +695,7 @@ function getFutureItems(locale: Locale, hasDiagrams: boolean) {
 function ArchitectureCard({ title, body }: { title: string; body: string }) {
     return (
         <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
-            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+            <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                 {title}
             </p>
             <p className="mt-3 text-main leading-relaxed">{body}</p>

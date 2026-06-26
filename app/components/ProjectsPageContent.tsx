@@ -269,7 +269,7 @@ export default function ProjectsPageContent() {
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
-            <div className="mx-auto w-full max-w-7xl overflow-hidden px-5 py-10 sm:px-6 md:py-14">
+            <div className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-8 sm:px-6 md:py-14">
                 <section className="border-b border-subtle pb-8">
                     <h1 className="max-w-3xl break-words text-4xl font-extrabold tracking-normal md:text-5xl">
                         {copy.title}
@@ -286,11 +286,11 @@ export default function ProjectsPageContent() {
                     </div>
                 </section>
 
-                <section className="py-10">
+                <section className="py-8 md:py-10">
                     <div className="mb-6 flex items-end justify-between gap-4">
                         <h2 className="text-2xl font-semibold tracking-normal">{copy.featuredTitle}</h2>
                     </div>
-                    <div className="grid gap-5 lg:grid-cols-3">
+                    <div className="grid gap-4 md:gap-5 lg:grid-cols-3">
                         {featuredProjects.map((project) => (
                             <FeaturedProjectCard
                                 key={project.slug}
@@ -326,7 +326,7 @@ export default function ProjectsPageContent() {
                         </div>
                     </div>
 
-                    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    <div className="grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
                         {domainProjects.map((project) => (
                             <CompactProjectCard
                                 key={project.slug}
@@ -431,7 +431,7 @@ function CompactProjectCard({
             <ProjectVisual project={project} />
             <div className="flex flex-1 flex-col p-4">
                 <h3 className="break-words text-base font-semibold tracking-normal">{getShortTitle(project, locale)}</h3>
-                <p className="mt-2 min-h-[3rem] break-words text-sm leading-relaxed text-muted">
+                <p className="mt-2 break-words text-sm leading-relaxed text-muted sm:min-h-[3rem]">
                     {getCardSummary(project, locale)}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -446,7 +446,7 @@ function CompactProjectCard({
                 )}
                 <Link
                     href={`/projects/${project.slug}`}
-                    className="mt-auto inline-flex w-fit items-center rounded-md border border-subtle px-3 py-2 text-sm font-medium text-blue-600 transition-colors hover:border-blue-500 hover:bg-page dark:text-blue-400"
+                    className="mt-auto inline-flex w-fit items-center rounded-md border border-subtle px-3 py-2 text-sm font-semibold text-blue-800 transition-colors hover:border-blue-500 hover:bg-page dark:text-blue-200"
                 >
                     {copy.caseStudy}
                     <ArrowRight className="ml-1 h-4 w-4" />
@@ -470,7 +470,7 @@ function ProjectVisual({
             <div
                 className={[
                     "w-full min-w-0 border-b border-subtle bg-gradient-to-br from-slate-50 via-white to-blue-50/40",
-                    featured ? "h-52 p-4" : "h-32 p-3",
+                    featured ? "h-44 p-3 sm:h-52 sm:p-4" : "h-28 p-3 sm:h-32",
                 ].join(" ")}
             >
                 <div className="h-full w-full overflow-hidden rounded-md border border-subtle bg-white shadow-inner shadow-slate-200/60">
@@ -488,7 +488,7 @@ function ProjectVisual({
     return (
         <div className={[
             "w-full min-w-0 border-b border-subtle bg-page p-4",
-            featured ? "h-52" : "h-32",
+            featured ? "h-44 sm:h-52" : "h-28 sm:h-32",
         ].join(" ")}
             aria-label={`${project.title.en} visual`}
         >

@@ -27,7 +27,7 @@ export default function ResearchPageContent() {
 
         <div className="lg:col-span-9 space-y-8">
           <section className="border-y border-subtle py-8">
-            <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+            <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
               {t("research_intro_title")}
             </p>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-normal max-w-3xl">
@@ -44,7 +44,7 @@ export default function ResearchPageContent() {
               <div className="space-y-3">
                 <h2 className="text-2xl font-semibold text-main">{t("thesis_h2") ?? "Master's Thesis"}</h2>
                 <p className="text-main leading-relaxed">{t("thesis_desc") ?? ""}</p>
-                <p className="text-sm font-medium text-blue-700 dark:text-blue-400">
+                <p className="text-sm font-bold text-main">
                   {t("download_thesis") ?? ""}
                 </p>
                 <p className="text-sm text-muted">{t("thesis_note") ?? ""}</p>

@@ -120,6 +120,24 @@ const skillGroups: SkillGroup[] = [
   { key: "delivery", Icon: ClipboardList },
 ];
 
+const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
+  de: [
+    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und Infrastruktur" },
+    { label: "Praxisnachweis", value: "GitHub-gestützte Projekte mit Deployment, Monitoring und Dokumentation" },
+    { label: "Technische Breite", value: "Web, Python/SQL, Linux/Docker, IoT und Edge AI" },
+  ],
+  en: [
+    { label: "Focus", value: "Application engineering, automation, and infrastructure" },
+    { label: "Evidence", value: "GitHub-backed projects with deployment, monitoring, and documentation" },
+    { label: "Range", value: "Web, Python/SQL, Linux/Docker, IoT, and Edge AI" },
+  ],
+  ar: [
+    { label: "Focus", value: "Application engineering, automation, and infrastructure" },
+    { label: "Evidence", value: "GitHub-backed projects with deployment, monitoring, and documentation" },
+    { label: "Range", value: "Web, Python/SQL, Linux/Docker, IoT, and Edge AI" },
+  ],
+};
+
 export default function CvPageContent() {
   const { locale, t } = useLocale();
   const experienceItems = [
@@ -139,13 +157,13 @@ export default function CvPageContent() {
   ] as const;
 
   return (
-    <main className="mx-auto max-w-6xl px-5 py-10 text-main sm:px-6 md:py-16 print:max-w-none print:px-0 print:py-0">
-      <section className="rounded-xl border border-subtle bg-card p-6 shadow-sm md:p-8 print:border-0 print:p-0 print:shadow-none">
+    <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-16 print:max-w-none print:px-0 print:py-0">
+      <section className="rounded-xl border border-subtle bg-card p-4 shadow-sm sm:p-6 md:p-8 print:border-0 print:p-0 print:shadow-none">
         <div className="grid gap-5 md:grid-cols-[1.4fr_0.6fr] md:items-start">
           <div className="space-y-4">
             <div className="space-y-2">
-              <p className="text-sm font-semibold text-blue-700 dark:text-blue-300">{t("cv_title")}</p>
-              <h1 className="text-3xl font-bold tracking-normal text-main md:text-4xl">{t("brand")}</h1>
+              <p className="text-sm font-extrabold uppercase tracking-normal text-main">{t("cv_title")}</p>
+              <h1 className="break-words text-3xl font-bold tracking-normal text-main md:text-4xl">{t("brand")}</h1>
               <p className="max-w-3xl text-base leading-7 text-secondary md:text-lg">{t("cv_role_title")}</p>
             </div>
             <div className="flex flex-wrap gap-2 text-sm text-muted">
@@ -161,7 +179,7 @@ export default function CvPageContent() {
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm text-muted print:hidden">
+          <div className="flex min-w-0 flex-col gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm text-muted print:hidden">
             <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://elkaza.org" target="_blank" rel="noreferrer">
               elkaza.org
             </a>
@@ -177,6 +195,16 @@ export default function CvPageContent() {
               linkedin.com/in/moalkhalil
             </a>
           </div>
+        </div>
+        <div className="mt-6 grid gap-3 border-t border-subtle pt-5 md:grid-cols-3">
+          {cvHighlights[locale].map((item) => (
+            <div key={item.label} className="min-w-0">
+              <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
+                {item.label}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-muted">{item.value}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -213,7 +241,7 @@ export default function CvPageContent() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
+        <section className="rounded-xl border border-subtle bg-card p-4 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading icon={Network} title={t("cv_recent_projects_title")} />
             <p className="max-w-xl text-sm leading-6 text-muted">{t("cv_recent_projects_desc")}</p>
@@ -223,11 +251,11 @@ export default function CvPageContent() {
               <Link
                 key={key}
                 href={href}
-                className="group flex h-full flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-400 hover:bg-card hover:shadow-md dark:hover:border-blue-500 print:break-inside-avoid"
+                className="group flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-400 hover:bg-card hover:shadow-md dark:hover:border-blue-500 print:break-inside-avoid"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold uppercase tracking-normal text-blue-700 dark:text-blue-300">{category[locale]}</p>
+                    <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">{category[locale]}</p>
                     <h3 className="text-base font-semibold text-main group-hover:text-blue-700 dark:group-hover:text-blue-300">
                       {t(`cv_recent_${key}_title`)}
                     </h3>

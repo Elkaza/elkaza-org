@@ -137,7 +137,7 @@ export default function CertificationsPageContent() {
 
                                     {/* Footer / Proof */}
                                     <div className="pt-4 border-t border-subtle flex items-center justify-between">
-                                        <span className="text-xs text-blue-600 dark:text-blue-400 italic">
+                                        <span className="text-xs font-medium text-main">
                                             {t(cert.proofKey || "cert_avail_req")}
                                         </span>
                                     </div>

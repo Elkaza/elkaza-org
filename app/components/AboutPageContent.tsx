@@ -16,6 +16,51 @@ interface Skill {
 
 const profileTools = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
 
+const aboutFit = {
+    de: [
+        {
+            title: "Application Engineering",
+            body: "Rollen mit Analyse, Bugfixing, technischer Dokumentation, Datenflüssen und Schnittstellenarbeit.",
+        },
+        {
+            title: "Automation & Data",
+            body: "Workflows mit Python, SQL, Dashboards, Reports und reproduzierbaren Auswertungspfaden.",
+        },
+        {
+            title: "Infrastructure & IoT",
+            body: "Praktische Systeme mit Linux, Docker, Monitoring, sicheren Zugriffspfaden und Edge-/IoT-Prototypen.",
+        },
+    ],
+    en: [
+        {
+            title: "Application Engineering",
+            body: "Roles involving analysis, defect handling, technical documentation, data flows, and interface work.",
+        },
+        {
+            title: "Automation & Data",
+            body: "Workflows with Python, SQL, dashboards, reporting, and reproducible analysis paths.",
+        },
+        {
+            title: "Infrastructure & IoT",
+            body: "Practical systems with Linux, Docker, monitoring, secure access paths, and edge/IoT prototypes.",
+        },
+    ],
+    ar: [
+        {
+            title: "Application Engineering",
+            body: "Roles involving analysis, defect handling, technical documentation, data flows, and interface work.",
+        },
+        {
+            title: "Automation & Data",
+            body: "Workflows with Python, SQL, dashboards, reporting, and reproducible analysis paths.",
+        },
+        {
+            title: "Infrastructure & IoT",
+            body: "Practical systems with Linux, Docker, monitoring, secure access paths, and edge/IoT prototypes.",
+        },
+    ],
+};
+
 const getSkills = (t: (k: string) => string): Skill[] => [
     {
         title: t("skill_ea_title"),
@@ -105,7 +150,7 @@ const getInfrastructureHighlights = (t: (k: string) => string): Skill[] => [
 ];
 
 export default function AboutPageContent() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
     const infrastructureHighlights = getInfrastructureHighlights(t);
     const educationItems = [
         { key: 1, organization: "University of Benghazi" },
@@ -115,7 +160,7 @@ export default function AboutPageContent() {
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors">
-            <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
+            <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-12 lg:grid lg:grid-cols-12 lg:gap-10">
                 <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
                     <div className="w-20 h-1.5 bg-blue-600 mb-3" />
                     <h1 className="text-3xl font-bold">{t("nav_about")}</h1>
@@ -125,9 +170,9 @@ export default function AboutPageContent() {
                 <div className="lg:col-span-9">
 
 
-                    <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
-                        <div>
-                            <Image src="/images/me.jpg" alt="Mohamed Elkaza" width={400} height={400} className="rounded-lg shadow-md object-cover" />
+                    <div className="mb-10 grid items-center gap-6 md:mb-12 md:grid-cols-2 md:gap-8">
+                        <div className="mx-auto w-full max-w-sm md:max-w-none">
+                            <Image src="/images/me.jpg" alt="Mohamed Elkaza" width={400} height={400} className="aspect-square w-full rounded-lg object-cover shadow-md" />
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">{t("about_profile_h2") ?? "Professional Profile"}</h2>
@@ -152,6 +197,25 @@ export default function AboutPageContent() {
                         </div>
                     </div>
 
+                    <section className="mb-10 rounded-lg border border-subtle bg-card p-4 shadow-sm sm:p-5 md:mb-12 md:p-6">
+                        <div className="max-w-3xl">
+                            <p className="border-l-2 border-blue-600 pl-2 text-sm font-extrabold uppercase tracking-normal text-main">
+                                {locale === "de" ? "Gute Passung" : "Good Fit"}
+                            </p>
+                            <h2 className="mt-2 text-2xl font-semibold">
+                                {locale === "de" ? "Wo mein Profil am meisten Wert schafft" : "Where my profile creates the most value"}
+                            </h2>
+                        </div>
+                        <div className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">
+                            {aboutFit[locale].map((item) => (
+                                <article key={item.title} className="min-w-0 rounded-lg border border-subtle bg-page/70 p-4">
+                                    <h3 className="text-base font-semibold text-main">{item.title}</h3>
+                                    <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </section>
+
                     <section className="mb-12 space-y-6">
                         <div className="space-y-2">
                             <h2 className="text-2xl font-semibold">{t("about_education_title")}</h2>
@@ -159,12 +223,12 @@ export default function AboutPageContent() {
                                 {t("about_education_intro")}
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
                             {educationItems.map((item) => (
                                 <div key={item.key} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
                                     <div className="mb-4 flex items-center gap-3">
                                         <OrganizationLogo name={item.organization} size="sm" decorative={false} />
-                                        <p className="text-xs font-semibold uppercase tracking-normal text-blue-600 dark:text-blue-400">
+                                        <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                                             {t(`about_education_label${item.key}`)}
                                         </p>
                                     </div>
@@ -187,7 +251,7 @@ export default function AboutPageContent() {
                                 {t("about_infra_intro")}
                             </p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
                             {infrastructureHighlights.map((item) => (
                                 <div key={item.title} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
                                     <div className="flex items-center gap-3 mb-3">
@@ -217,7 +281,7 @@ export default function AboutPageContent() {
                     {/* Core Strengths Section */}
                     <div className="mb-12">
                         <h2 className="text-2xl font-semibold mb-6">{t("about_strengths_title")}</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                             {[1, 2, 3, 4, 5, 6, 7].map((n) => (
                                 <div key={n} className="flex items-start gap-3 p-3 bg-card border border-subtle rounded-lg">
                                     <span className="mt-1 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
@@ -243,9 +307,9 @@ export default function AboutPageContent() {
                     {/* Core Skills Section */}
                     <div className="space-y-8">
                         <h2 className="text-2xl font-semibold">{t("about_comp_h2") ?? "Core Skills & Tools"}</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
                             {getSkills(t).map((skill) => (
-                                <div key={skill.title} className="p-6 bg-card rounded-lg border border-subtle shadow-sm flex flex-col h-full">
+                                <div key={skill.title} className="flex h-full flex-col rounded-lg border border-subtle bg-card p-5 shadow-sm md:p-6">
                                     <span className="mb-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
                                         <skill.icon className="h-5 w-5" aria-hidden="true" />
                                     </span>

@@ -300,7 +300,7 @@ function StatusChips({ t }: { t: (key: string) => string }) {
             {statusChips.map((chipKey) => (
                 <span
                     key={chipKey}
-                    className="rounded-md border border-subtle bg-card px-3 py-1.5 text-xs font-medium text-muted shadow-sm"
+                    className="rounded-md border border-subtle bg-card px-3 py-1.5 text-xs font-semibold text-main shadow-sm"
                 >
                     {t(chipKey)}
                 </span>

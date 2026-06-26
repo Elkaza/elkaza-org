@@ -37,15 +37,15 @@ export default function SubNav() {
         : "bg-transparent border-b border-transparent"
         }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold heading-serif text-main">
+        <Link href="/" className="flex min-w-0 items-center gap-2 text-lg font-bold heading-serif text-main sm:text-xl">
           <Image src="/logo.png" alt="ME Logo" width={36} height={36} className="w-9 h-9" />
-          {t("brand")}
+          <span className="hidden min-w-0 truncate sm:inline">{t("brand")}</span>
         </Link>
 
         {/* Center tabs */}
-        <div className="hidden md:flex gap-6 text-sm">
+        <div className="hidden lg:flex gap-6 text-sm">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -76,7 +76,7 @@ export default function SubNav() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {/* Removed CV link from top nav as requested */}
           <Search />
           <ThemeToggle />

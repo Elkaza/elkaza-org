@@ -53,8 +53,8 @@ canvas {
   /* slate-900 */
   --text-secondary: #334155;
   /* slate-700 - high contrast secondary */
-  --text-muted: #64748b;
-  /* slate-500 */
+  --text-muted: #475569;
+  /* slate-600 */
   --border-subtle: #e2e8f0;
   /* slate-200 */
 
@@ -76,8 +76,8 @@ canvas {
   /* Neutral (default tech tags) */
   --badge-neutral-bg: #f1f5f9;
   /* slate-100 */
-  --badge-neutral-text: #475569;
-  /* slate-600 */
+  --badge-neutral-text: #334155;
+  /* slate-700 */
   --badge-neutral-border: #e2e8f0;
   /* slate-200 */
 

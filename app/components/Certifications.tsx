@@ -42,7 +42,7 @@ export default function Certifications() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-subtle relative z-0">
-                <div className="text-xs font-medium text-blue-600 dark:text-blue-400 flex items-center group-hover:underline">
+                <div className="flex items-center text-xs font-bold text-main group-hover:underline">
                     {t("cert_view_all")} <ArrowRight className="w-3 h-3 ml-1" />
                 </div>
             </div>
