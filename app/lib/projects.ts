@@ -480,8 +480,8 @@ export const projects: Project[] = [
             "Enterprise-Self-Hosted-Infrastruktur und Privacy-First-Analytics"
         ),
         oneLiner: loc(
-            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, self-hosted Elkaza.at delivery, Tailscale routing, automated deployments, observability, and disaster-ready backups.",
-            "Kernfunktionen des Webbetriebs von SaaS-Abhängigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, self-hosted Elkaza.at-Delivery, Tailscale-Routing, automatisierten Deployments, Observability und recovery-fähigen Backups migriert."
+            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, self-hosted Elkaza.at delivery, Tailscale routing, automated deployments, observability, and scheduled local recovery points.",
+            "Kernfunktionen des Webbetriebs von SaaS-Abhaengigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, self-hosted Elkaza.at-Delivery, Tailscale-Routing, automatisierten Deployments, Observability und geplanten lokalen Recovery-Punkten migriert."
         ),
         overview: loc(
             "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. Elkaza.org remains the Vercel-hosted portfolio surface, while Elkaza.at is delivered through the self-hosted path. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
@@ -492,8 +492,8 @@ export const projects: Project[] = [
             "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
         ),
         solution: loc(
-            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host on Debian 12, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards HTTP/S over a private Tailscale tunnel to the local platform. Nginx Proxy Manager terminates HTTPS for Elkaza.at, www.elkaza.at, and analytics.elkaza.at, routes the static web frontend and Plausible stack, and keeps the private runtime off the open internet. GitHub Actions automates Next.js production deployments, while a daily Bash backup job captures database and Docker volume state with a seven-day retention policy.",
-            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host auf Debian 12 und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS für Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und hält die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, während ein täglicher Bash-Backup-Job Datenbank- und Docker-Volume-Zustand mit Sieben-Tage-Retention sichert."
+            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host running a Debian 13 VM, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards HTTP/S over a private Tailscale tunnel to the local platform. Nginx Proxy Manager terminates HTTPS for Elkaza.at, www.elkaza.at, and analytics.elkaza.at, routes the static web frontend and Plausible stack, and keeps the private runtime off the open internet. GitHub Actions automates Next.js production deployments, while Proxmox creates weekly snapshot-mode VM backups with keep-last-three local retention.",
+            "Ich habe eine Hybrid-Cloud-Architektur aus gehaertetem oeffentlichem VPS, privatem Proxmox-VE-Host mit Debian-13-VM und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S ueber einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS fuer Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und haelt die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, waehrend Proxmox woechentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention erstellt."
         ),
         architectureLabels: {
             node: loc("Visitor path", "Besucherpfad"),
@@ -506,8 +506,8 @@ export const projects: Project[] = [
                 "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigentuergesteuerten Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
             ),
             edge: loc(
-                "A private Proxmox VE and Debian 12 platform runs Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, management, and backup automation.",
-                "Eine private Proxmox-VE- und Debian-12-Plattform betreibt Docker-Compose-Services für Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability, Management und Backup-Automation."
+                "A private Proxmox VE host runs a Debian 13 VM with Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, and management.",
+                "Ein privater Proxmox-VE-Host betreibt eine Debian-13-VM mit Docker-Compose-Services fuer Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability und Management."
             ),
             cloud: loc(
                 "A low-cost public VPS provides hardened ingress, hides the residential IP address, and forwards traffic through Tailscale rather than requiring inbound ports on the local router.",
@@ -519,8 +519,8 @@ export const projects: Project[] = [
             "Die Plattform reduziert öffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic über ein verschlüsseltes Overlay, UFW begrenzt die VPS-Oberfläche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergaenzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
         ),
         reliability: loc(
-            "A root cronjob runs a daily 3:00 AM dump-and-pack backup: PostgreSQL is dumped safely, ClickHouse is paused before volume extraction to prevent corruption, Docker named volumes are archived, the complete application state is compressed, and old snapshots are pruned through a seven-day rolling retention policy.",
-            "Ein Root-Cronjob startet taeglich um 03:00 Uhr ein Dump-and-Pack-Backup: PostgreSQL wird sauber gedumpt, ClickHouse vor der Volume-Extraktion pausiert, um Korruption zu vermeiden, Docker-Named-Volumes werden archiviert, der gesamte Applikationszustand wird komprimiert und alte Snapshots werden über eine Sieben-Tage-Retention bereinigt."
+            "Proxmox runs a weekly 3:00 AM snapshot-mode backup of the Debian VM with zstd compression and keep-last-three local retention. Archive integrity has been checked, but the copies remain on the same physical NVMe; an encrypted off-site copy and full isolated restore test are still required for disaster recovery.",
+            "Proxmox erstellt woechentlich um 03:00 Uhr ein Snapshot-Backup der Debian-VM mit zstd-Kompression und lokaler Keep-last-three-Retention. Die Archivintegritaet wurde geprueft, die Kopien liegen jedoch auf derselben physischen NVMe; fuer Disaster Recovery fehlen noch eine verschluesselte Offsite-Kopie und ein vollstaendiger isolierter Restore-Test."
         ),
         keyFeatures: locList(
             [
@@ -529,7 +529,7 @@ export const projects: Project[] = [
                 "Hardened VPS ingress shield with strict UFW policy, unattended upgrades, and no direct exposure of the residential IP",
                 "Tailscale reverse tunnel from public ingress to the private Proxmox platform without opening local router ports",
                 "GitHub Actions CI/CD for automated Next.js production deployments with minimal manual release handling",
-                "Daily Bash dump-and-pack backups covering PostgreSQL, ClickHouse, Docker named volumes, compression, and seven-day retention",
+                "Weekly zstd-compressed Proxmox VM snapshots with keep-last-three local retention and verified archive integrity",
                 "Homepage-based local .lan dashboard mapping Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma, and Watchtower state",
             ],
             [
@@ -538,7 +538,7 @@ export const projects: Project[] = [
                 "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
                 "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
                 "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
-                "Tägliche Bash-Dump-and-Pack-Backups für PostgreSQL, ClickHouse, Docker-Named-Volumes, Kompression und Sieben-Tage-Retention",
+                "Woechentliche zstd-komprimierte Proxmox-VM-Snapshots mit lokaler Keep-last-three-Retention und verifizierter Archivintegritaet",
                 "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping für Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
             ]
         ),
@@ -560,7 +560,7 @@ export const projects: Project[] = [
         ),
         tech: [
             "Proxmox VE",
-            "Debian 12",
+            "Debian 13",
             "Docker Compose",
             "Tailscale",
             "Plausible Analytics",
@@ -993,8 +993,8 @@ export const projects: Project[] = [
             "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
         ),
         solution: loc(
-            "I built the stack on Proxmox 9.1 and Debian 12, then deployed Dockerized services for reverse proxying, DNS filtering, intrusion response, monitoring, status checks, log viewing, update automation, internal service discovery, and the Elkaza.at/Plausible runtime path. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 12 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Intrusion Response, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
+            "I built the stack on Proxmox 9.1 and Debian 13, then deployed Dockerized services for reverse proxying, DNS filtering, security detection, monitoring, status checks, log viewing, update automation, internal service discovery, and the Elkaza.at/Plausible runtime path. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services fuer Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung, interne Service-Uebersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlaesslich dargestellt werden."
         ),
         architecture: {
             node: loc(
@@ -1002,8 +1002,8 @@ export const projects: Project[] = [
                 "Admins und Nutzer greifen über Homepage und reverse-proxied Einstiegspunkte auf Services zu, während die Dashboard-Schicht Service- und Virtualisierungszustand an einer Stelle sichtbar macht."
             ),
             edge: loc(
-                "A Proxmox 9.1 host runs Debian 12 workloads and Docker services including Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage.",
-                "Ein Proxmox-9.1-Host betreibt Debian-12-Workloads und Docker-Services wie Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage."
+                "A Proxmox 9.1 host runs a Debian 13 VM and Docker services including Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage.",
+                "Ein Proxmox-9.1-Host betreibt eine Debian-13-VM und Docker-Services wie Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage."
             ),
             cloud: loc(
                 "The core platform is local-first; public exposure is added through a separate VPS and Tailscale ingress path for selected services without opening local router ports.",
@@ -1011,8 +1011,8 @@ export const projects: Project[] = [
             ),
         },
         security: loc(
-            "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec adds IPS-style detection and remediation, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
-            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole übernimmt DNS-Filterung, CrowdSec ergaenzt IPS-aehnliche Erkennung und Gegenmassnahmen, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
+            "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec provides detection and community threat intelligence, persistent host and Docker rules control ingress, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
+            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole uebernimmt DNS-Filterung, CrowdSec liefert Erkennung und Community Threat Intelligence, persistente Host- und Docker-Regeln kontrollieren den Ingress, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
         ),
         reliability: loc(
             "Netdata, Uptime Kuma, and Dozzle provide metrics, health checks, and log visibility, while Watchtower automates the container update lifecycle and reduces manual drift across long-running services.",
@@ -1020,7 +1020,7 @@ export const projects: Project[] = [
         ),
         keyFeatures: locList(
             [
-                "Layered security with Pi-hole DNS filtering and CrowdSec-based intrusion response",
+                "Layered security with Pi-hole DNS filtering, persistent ingress rules, and CrowdSec detection",
                 "Reverse-proxied service access through Nginx Proxy Manager",
                 "Private runtime foundation for Elkaza.at static delivery and first-party Plausible analytics",
                 "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
@@ -1028,7 +1028,7 @@ export const projects: Project[] = [
                 "Watchtower-driven container update workflow for routine maintenance",
             ],
             [
-                "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung und CrowdSec-basierter Intrusion Response",
+                "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung, persistenten Ingress-Regeln und CrowdSec Detection",
                 "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
                 "Private Runtime-Basis für statische Elkaza.at-Auslieferung und First-Party-Plausible-Analytics",
                 "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
@@ -1052,7 +1052,7 @@ export const projects: Project[] = [
                 "Eine skalierbare Basis für weitere interne Tools geschaffen, ohne die Control Plane neu aufbauen zu müssen",
             ]
         ),
-        tech: ["Debian 12", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
+        tech: ["Debian 13", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
         tags: ["Security", "Infrastructure", "Operations", "Platform"],
         links: [],
         images: [
@@ -1433,8 +1433,8 @@ export const projects: Project[] = [
             "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Der private Hosting-Server wird über Tailscale erreicht statt direkt über den Heimrouter exponiert, TLS ist in Nginx Proxy Manager zentralisiert, und der Web-Container erzwingt HSTS, CSP, X-Frame-Options, Referrer-Policy und Schutz gegen MIME-Sniffing. Öffentlicher Ingress bleibt auf den kontrollierten HTTP/S-Pfad für Website und Analytics beschränkt."
         ),
         reliability: loc(
-            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and a 7-day backup rotation reduce manual deployment risk and improve recovery readiness. The deployment workflow now tests both the private backend path and the local ingress path so routing mistakes are caught before they become silent production drift.",
-            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und eine 7-Tage-Backup-Rotation reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft jetzt sowohl den privaten Backend-Pfad als auch den lokalen Ingress-Pfad, damit Routing-Fehler nicht unbemerkt in Production driften."
+            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and weekly snapshot-mode VM backups with keep-last-three local retention reduce manual deployment risk and improve recovery readiness. The deployment workflow tests both the private backend path and the local ingress path. An encrypted off-site copy and full isolated restore test remain pending.",
+            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und woechentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prueft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschluesselte Offsite-Kopie und ein vollstaendiger isolierter Restore-Test stehen noch aus."
         ),
         keyFeatures: locList(
             [
@@ -1443,7 +1443,7 @@ export const projects: Project[] = [
                 "Dockerized elkaza-web Nginx container serving the static Next.js export with gzip, long-lived asset caching, HSTS, and CSP",
                 "GitHub Actions deployment through vps1 with linting, type checks, static build, rsync release, and smoke checks",
                 "Self-hosted Plausible analytics with PostgreSQL and ClickHouse behind a first-party analytics subdomain",
-                "Observability and operations layer with Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole, and rotating backups",
+                "Observability and operations layer with Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole, and scheduled local VM backups",
             ],
             [
                 "Öffentlicher vps1-TCP-Ingress für die Ports 80 und 443, über Tailscale an die private debian-core-Runtime weitergeleitet",
@@ -1451,7 +1451,7 @@ export const projects: Project[] = [
                 "Dockerisierter elkaza-web-Nginx-Container, der den statischen Next.js-Export mit gzip, langlebigem Asset-Caching, HSTS und CSP ausliefert",
                 "GitHub-Actions-Deployment über vps1 mit Linting, Type-Checks, statischem Build, rsync-Release und Smoke-Checks",
                 "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse hinter einer First-Party-Analytics-Subdomain",
-                "Observability- und Operations-Schicht mit Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole und rotierenden Backups",
+                "Observability- und Operations-Schicht mit Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole und geplanten lokalen VM-Backups",
             ]
         ),
         results: locList(

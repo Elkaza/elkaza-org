@@ -545,7 +545,6 @@ function ProjectVisual({
           src={src}
           alt={label}
           fill
-          priority
           unoptimized={src.toLowerCase().endsWith(".svg")}
           sizes="(min-width: 1024px) 33vw, 100vw"
           className="object-contain p-2.5"

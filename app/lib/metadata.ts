@@ -75,7 +75,7 @@ export function generateWebSiteSchema() {
             "@type": "Person",
             name: "Mohamed Elkaza",
         },
-        inLanguage: ["en", "de", "ar"],
+        inLanguage: ["en", "de"],
     };
 }
 

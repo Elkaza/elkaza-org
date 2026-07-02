@@ -124,6 +124,9 @@ export default function SecurityPageContent() {
                     <div className="space-y-5">
                         <ArchitectureSnapshot t={t} />
                         <StatusChips t={t} />
+                        <p className="rounded-md border border-blue-200 bg-blue-50 px-4 py-3 text-sm leading-relaxed text-blue-950 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-100">
+                            {t("security_verification_note")}
+                        </p>
                         <ToolGroupGrid t={t} />
                     </div>
                 </div>
