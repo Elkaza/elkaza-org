@@ -172,7 +172,14 @@ export default function AboutPageContent() {
 
                     <div className="mb-10 grid items-center gap-6 md:mb-12 md:grid-cols-2 md:gap-8">
                         <div className="mx-auto w-full max-w-sm md:max-w-none">
-                            <Image src="/images/me.jpg" alt="Mohamed Elkaza" width={400} height={400} className="aspect-square w-full rounded-lg object-cover shadow-md" />
+                            <Image
+                                src="/images/me.jpg"
+                                alt="Mohamed Elkaza"
+                                width={768}
+                                height={1024}
+                                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                                className="aspect-[3/4] w-full rounded-lg object-cover shadow-md"
+                            />
                         </div>
                         <div>
                             <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">{t("about_profile_h2") ?? "Professional Profile"}</h2>
