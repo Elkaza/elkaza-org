@@ -56,7 +56,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="de" suppressHydrationWarning>
       <body className={`${inter.variable} ${serif.variable} min-h-screen bg-page text-main transition-colors duration-300`}>
         <script
           type="application/ld+json"
@@ -75,12 +75,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         )}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">Skip to content</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">Skip to content</a>
           <LocaleProvider>
             <header className="sticky top-0 z-50">
               <SubNav />
             </header>
-            <div id="main">{children}</div>
+            <div id="main-content" tabIndex={-1} className="outline-none">{children}</div>
             <SiteFooter />
             <BackToTop />
           </LocaleProvider>
