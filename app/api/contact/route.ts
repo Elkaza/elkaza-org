@@ -22,15 +22,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Log the submission (in production, you would send an email or save to database)
-        console.log("Contact form submission:", {
-            name,
-            email,
-            subject,
-            message,
-            timestamp: new Date().toISOString(),
-        });
-
         // The public form confirms receipt here; production mail delivery can be connected through the deployment environment.
 
         return NextResponse.json(
