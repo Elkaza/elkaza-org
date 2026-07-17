@@ -2,8 +2,12 @@ import type { Metadata } from 'next';
 import ProjectsPageContent from '../components/ProjectsPageContent';
 
 export const metadata: Metadata = {
-  title: 'Projects | Mohamed Elkaza',
-  description: 'Project case studies across data automation, IoT, Edge AI, TinyML, infrastructure, monitoring, dashboards, application engineering, and business informatics delivery.',
+  title: 'Engineering Case Studies | Mohamed Elkaza',
+  description: 'Implemented case studies across application engineering, automation, IoT, Edge AI, TinyML, infrastructure, monitoring, dashboards, and technical delivery.',
+  openGraph: {
+    title: 'Engineering Case Studies | Mohamed Elkaza',
+    description: 'Implemented systems with deployment, documentation, monitoring, and technical evidence.',
+  },
 };
 
 export default function ProjectsPage() {

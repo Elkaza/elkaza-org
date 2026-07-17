@@ -1,6 +1,10 @@
 export const metadata = {
-  title: "Mohamed Elkaza | Data Automation, IoT, Edge AI & Infrastructure",
-  description: "Portfolio of Mohamed Elkaza: data automation, IoT and Edge AI prototypes, application engineering, infrastructure, monitoring, dashboards, and business informatics delivery.",
+  title: "Mohamed Elkaza | Software, Automation & Infrastructure Engineer",
+  description: "Portfolio of Mohamed Elkaza: application engineering, automation, infrastructure, IoT, Edge AI, monitoring, dashboards, and reproducible technical delivery.",
+  openGraph: {
+    title: "Mohamed Elkaza | Software, Automation & Infrastructure Engineer",
+    description: "Application engineering, automation, infrastructure, IoT, Edge AI, monitoring, dashboards, and reproducible technical delivery.",
+  },
 };
 
 import HomeContent from "./components/home/HomeContent";

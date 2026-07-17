@@ -49,11 +49,11 @@ const HOME_COPY: Localized<{
   finalCta: string;
 }> = {
   de: {
-    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
+    heroTitle: "Software, Automation & Infrastructure Engineer",
     heroSubheadline:
-      "Ich baue betreibbare Web-, Automatisierungs- und Infrastruktur-Systeme: von Next.js und Python bis Docker, Monitoring und Edge-AI-Prototypen.",
+      "Ich verbinde Application Engineering, Automatisierung und betreibbare Infrastruktur: von Next.js und Python bis Docker, Monitoring und Edge-AI-Prototypen.",
     heroSupportingLine:
-      "Mein Portfolio zeigt reale Delivery-Pfade, self-hosted Plattformen, Daten-Workflows und vernetzte Systeme mit klarer Dokumentation.",
+      "Das Portfolio zeigt technische Arbeit mit nachvollziehbaren Delivery-Pfaden, klarer Dokumentation, privaten Betriebsumgebungen und reproduzierbaren Daten-Workflows.",
     ctas: {
       projects: "Projekte ansehen",
       cv: "CV ansehen",
@@ -62,17 +62,17 @@ const HOME_COPY: Localized<{
       github: "GitHub",
       live: "Live",
     },
-    featuredTitle: "Ausgewählte Arbeiten",
-    workTitle: "Arbeitsbereiche & Stack",
+    featuredTitle: "Ausgewählte Engineering-Arbeiten",
+    workTitle: "Arbeitsbereiche, Stack & Nachweise",
     finalCta:
-      "Suchen Sie jemanden, der praktische technische Systeme baut, automatisiert und betreibt?",
+      "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
   },
   en: {
-    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
+    heroTitle: "Software, Automation & Infrastructure Engineer",
     heroSubheadline:
-      "I build operable web, automation and infrastructure systems: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
+      "I connect application engineering, automation and operable infrastructure: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
     heroSupportingLine:
-      "This portfolio focuses on real delivery paths, self-hosted platforms, data workflows and connected systems with clear technical documentation.",
+      "This portfolio shows technical work with traceable delivery paths, clear documentation, private operations environments and reproducible data workflows.",
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -81,10 +81,10 @@ const HOME_COPY: Localized<{
       github: "GitHub",
       live: "Live",
     },
-    featuredTitle: "Featured Work",
-    workTitle: "Capabilities & Stack",
+    featuredTitle: "Selected Engineering Work",
+    workTitle: "Capabilities, Stack & Evidence",
     finalCta:
-      "Looking for someone who can build, automate and operate practical technical systems?",
+      "Open to roles where software, automation, infrastructure and technical documentation meet.",
   },
   ar: {
     heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",

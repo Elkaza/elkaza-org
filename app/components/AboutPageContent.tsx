@@ -170,24 +170,25 @@ export default function AboutPageContent() {
                 <div className="lg:col-span-9">
 
 
-                    <div className="mb-10 grid items-center gap-6 md:mb-12 md:grid-cols-2 md:gap-8">
-                        <div className="mx-auto w-full max-w-sm md:max-w-none">
+                    <div className="mb-10 grid items-start gap-6 md:mb-12 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-8">
+                        <div className="mx-auto w-full max-w-md md:max-w-none">
                             <Image
                                 src="/images/me.jpg"
                                 alt="Mohamed Elkaza"
                                 width={768}
                                 height={1024}
                                 sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                                className="aspect-[3/4] w-full rounded-lg object-cover shadow-md"
+                                priority
+                                className="h-auto w-full rounded-lg border border-subtle bg-card p-2 shadow-md"
                             />
                         </div>
                         <div>
-                            <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">{t("about_profile_h2") ?? "Professional Profile"}</h2>
-                            <p className="text-lg font-medium text-main mb-4 italic">
+                            <h2 className="mb-4 text-2xl font-semibold text-main">{t("about_profile_h2") ?? "Professional Profile"}</h2>
+                            <p className="mb-4 text-lg font-medium leading-8 text-main">
                                 {t("about_profile_intro")}
                             </p>
                             <p className="text-main leading-relaxed mb-4">{t("about_p1") ?? ""}</p>
-                            <p className="text-main leading-relaxed mb-6 font-medium text-blue-700 dark:text-blue-400">
+                            <p className="mb-6 border-l-2 border-blue-600 pl-3 font-semibold leading-relaxed text-main">
                                 {t("about_value_statement")}
                             </p>
                             <div className="mb-6 flex flex-wrap gap-2">
@@ -207,10 +208,10 @@ export default function AboutPageContent() {
                     <section className="mb-10 rounded-lg border border-subtle bg-card p-4 shadow-sm sm:p-5 md:mb-12 md:p-6">
                         <div className="max-w-3xl">
                             <p className="border-l-2 border-blue-600 pl-2 text-sm font-extrabold uppercase tracking-normal text-main">
-                                {locale === "de" ? "Gute Passung" : "Good Fit"}
+                                {locale === "de" ? "Rollenprofil" : "Role Profile"}
                             </p>
                             <h2 className="mt-2 text-2xl font-semibold">
-                                {locale === "de" ? "Wo mein Profil am meisten Wert schafft" : "Where my profile creates the most value"}
+                                {locale === "de" ? "Wo mein Profil am stärksten ist" : "Where my profile is strongest"}
                             </h2>
                         </div>
                         <div className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">

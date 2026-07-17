@@ -187,15 +187,15 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
 
 const COPY: Record<Locale, Copy> = {
     en: {
-        title: "Engineering Projects",
-        subtitle: "Selected case studies across fullstack development, IoT, edge AI, infrastructure, and data automation.",
-        roleChips: ["Fullstack", "Application Engineering", "IoT / Edge AI", "Platform Engineering", "Data Automation"],
-        featuredTitle: "Featured Case Studies",
-        browseTitle: "Browse by Domain",
+        title: "Engineering Case Studies",
+        subtitle: "A curated set of implemented systems across fullstack development, IoT, edge AI, infrastructure, and data automation.",
+        roleChips: ["Implemented", "Documented", "Deployed", "Observable", "GitHub-backed"],
+        featuredTitle: "Strongest Evidence",
+        browseTitle: "Browse by Engineering Domain",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
-        result: "Result",
+        result: "Evidence",
         tech: "Tech",
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
@@ -205,15 +205,15 @@ const COPY: Record<Locale, Copy> = {
         },
     },
     de: {
-        title: "Engineering Projects",
-        subtitle: "Ausgewählte Fallstudien aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
-        roleChips: ["Fullstack", "Application Engineering", "IoT / Edge AI", "Platform Engineering", "Data Automation"],
-        featuredTitle: "Featured Case Studies",
-        browseTitle: "Nach Bereich browsen",
+        title: "Engineering Case Studies",
+        subtitle: "Kuratierte umgesetzte Systeme aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
+        roleChips: ["Umgesetzt", "Dokumentiert", "Deployt", "Beobachtbar", "GitHub-gestützt"],
+        featuredTitle: "Stärkste Nachweise",
+        browseTitle: "Nach Engineering-Bereich browsen",
         caseStudy: "Fallstudie",
         github: "GitHub",
         live: "Live",
-        result: "Ergebnis",
+        result: "Nachweis",
         tech: "Tech",
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
