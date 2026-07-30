@@ -57,6 +57,14 @@ npm start
 npm run lint
 ```
 
+### Production Verification
+
+```bash
+npm run verify:production
+```
+
+This checks the live portfolio pages for expected public content and catches accidental returns of hidden sections such as the old start section or PDF download wording.
+
 ## Project Structure
 
 ```text
