@@ -77,7 +77,7 @@ const HOME_COPY: Localized<{
     heroSupportingLine: "Hier dokumentiere ich ausgewählte Projekte aus Linux-Infrastruktur, Automatisierung, IoT und Edge AI – mit Architekturdiagrammen, Quellcode und nachvollziehbaren Ergebnissen.",
     proofItems: [
       { label: "Standort", value: profile.location.de },
-      { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
+      { label: "Arbeitsmarkt", value: profile.workAuthorization.de },
       { label: "Deutsch", value: "B2" },
       { label: "Englisch", value: "C1" },
     ],
@@ -121,7 +121,7 @@ const HOME_COPY: Localized<{
     heroSupportingLine: "I connect software, automation and infrastructure so systems stay understandable, reliable and easy to hand over.",
     proofItems: [
       { label: "Location", value: profile.location.en },
-      { label: "Work access", value: "Free access in AT" },
+      { label: "Work access", value: profile.workAuthorization.en },
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
     ],
@@ -166,7 +166,7 @@ const HOME_COPY: Localized<{
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
     proofItems: [
       { label: "Location", value: profile.location.en },
-      { label: "Work access", value: "Free access in AT" },
+      { label: "Work access", value: profile.workAuthorization.en },
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
     ],

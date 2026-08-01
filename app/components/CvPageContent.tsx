@@ -168,6 +168,7 @@ export default function CvPageContent() {
               <p className="text-sm font-extrabold uppercase tracking-normal text-main">{t("cv_title")}</p>
               <h1 className="break-words text-3xl font-bold tracking-normal text-main md:text-4xl">{t("brand")}</h1>
               <p className="max-w-3xl text-base leading-7 text-secondary md:text-lg">{t("cv_role_title")}</p>
+              <p className="max-w-3xl text-sm leading-6 text-muted">{t("cv_work_authorization")}</p>
             </div>
             <div className="flex flex-wrap gap-2 text-sm text-muted">
               <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">

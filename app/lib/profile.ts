@@ -42,9 +42,9 @@ export const profile = {
     ar: "Vienna, Austria",
   },
   workAuthorization: {
-    de: "Freier Zugang zum österreichischen Arbeitsmarkt",
-    en: "Free access to the Austrian labour market",
-    ar: "Free access to the Austrian labour market",
+    de: "Uneingeschränkter Arbeitsmarktzugang in Österreich",
+    en: "Unrestricted access to the Austrian labour market",
+    ar: "Unrestricted access to the Austrian labour market",
   },
   email: "contact@elkaza.org",
   websiteUrl: "https://elkaza.org",

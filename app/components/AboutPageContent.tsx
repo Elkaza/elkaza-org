@@ -200,6 +200,9 @@ export default function AboutPageContent() {
                                 <p className="mt-5 border-l-2 border-blue-600 pl-3 font-semibold leading-relaxed text-main">
                                     {t("about_value_statement")}
                                 </p>
+                                <p className="mt-4 text-sm font-medium leading-6 text-muted">
+                                    {t("about_work_authorization")}
+                                </p>
                                 <div className="mt-6 flex flex-wrap gap-2">
                                     {profileTools.map((tool) => (
                                         <TechBadge
