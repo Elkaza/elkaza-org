@@ -5,6 +5,21 @@ import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
 import { profile } from "../lib/profile";
 
+type MenuItem = { href: string; labelKey: string } | { href: string; label: string };
+
+const primaryItems = [
+  { href: "/projects", labelKey: "nav_projects" },
+  { href: "/cv", labelKey: "nav_cv" },
+  { href: "/about", labelKey: "nav_about" },
+];
+
+const supportItems: MenuItem[] = [
+  { href: "/security", labelKey: "nav_security" },
+  { href: "/certifications", label: "Certifications" },
+  { href: "/blog", labelKey: "nav_blog" },
+  { href: "/research", labelKey: "nav_research" },
+];
+
 export default function MoreMenu() {
   const { t } = useLocale();
   const [open, setOpen] = useState(false);
@@ -67,6 +82,40 @@ export default function MoreMenu() {
           onKeyDown={handleMenuKeyDown}
           className="absolute right-0 z-[120] mt-2 w-52 rounded-lg border border-subtle bg-card p-2 shadow-xl"
         >
+          <div className="lg:hidden">
+            {primaryItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                {t(item.labelKey)}
+              </Link>
+            ))}
+            <Link
+              href={t("nav_contact") === "Kontakt" ? "/kontakt" : "/contact"}
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              {t("nav_contact")}
+            </Link>
+            <div className="my-2 border-t border-subtle" />
+          </div>
+          {supportItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              {"labelKey" in item ? t(item.labelKey) : item.label}
+            </Link>
+          ))}
+          <div className="my-2 border-t border-subtle" />
           <a
             href={profile.githubUrl}
             target="_blank"
@@ -77,15 +126,6 @@ export default function MoreMenu() {
           >
             <Github size={16} /> GitHub
           </a>
-          <Link
-            href="/contact"
-            aria-label={t("hero_cta_cv")}
-            role="menuitem"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-2 px-3 py-2 rounded text-main hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            <Mail size={16} /> {t("hero_cta_cv")}
-          </Link>
           <a
             href={profile.linkedinUrl}
             target="_blank"
@@ -95,6 +135,14 @@ export default function MoreMenu() {
             className="flex items-center gap-2 px-3 py-2 rounded text-main hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             <Linkedin size={16} /> LinkedIn
+          </a>
+          <a
+            href={`mailto:${profile.email}`}
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            <Mail size={16} /> Email
           </a>
 
         </div>

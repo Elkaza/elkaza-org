@@ -77,9 +77,10 @@ const HOME_COPY: Localized<{
     heroSupportingLine:
       "Das Portfolio zeigt technische Arbeit mit nachvollziehbaren Delivery-Pfaden, klarer Dokumentation, privaten Betriebsumgebungen und reproduzierbaren Daten-Workflows.",
     proofItems: [
-      { label: "Fokus", value: "Build + operate" },
-      { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
       { label: "Standort", value: profile.location.de },
+      { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
+      { label: "Deutsch", value: "B2" },
+      { label: "Englisch", value: "C1" },
     ],
     profilePanel: {
       label: "Arbeitsprofil",
@@ -121,9 +122,10 @@ const HOME_COPY: Localized<{
     heroSupportingLine:
       "This portfolio shows technical work with traceable delivery paths, clear documentation, private operations environments and reproducible data workflows.",
     proofItems: [
-      { label: "Focus", value: "Build + operate" },
-      { label: "Work access", value: "Free access in AT" },
       { label: "Location", value: profile.location.en },
+      { label: "Work access", value: "Free access in AT" },
+      { label: "German", value: "B2" },
+      { label: "English", value: "C1" },
     ],
     profilePanel: {
       label: "Working profile",
@@ -165,9 +167,10 @@ const HOME_COPY: Localized<{
     heroSupportingLine:
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
     proofItems: [
-      { label: "Focus", value: "Build + operate" },
-      { label: "Work access", value: "Free access in AT" },
       { label: "Location", value: profile.location.en },
+      { label: "Work access", value: "Free access in AT" },
+      { label: "German", value: "B2" },
+      { label: "English", value: "C1" },
     ],
     profilePanel: {
       label: "Working profile",
@@ -407,7 +410,7 @@ export default function HomeContent() {
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-4">
             {copy.proofItems.map((item) => (
               <div
                 key={item.label}

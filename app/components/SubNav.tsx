@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import Search from "./Search";
 import MoreMenu from "./MoreMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
@@ -10,13 +9,9 @@ import { useLocale } from "../LocaleProvider";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-
   { href: "/projects", label: "Projects" },
   { href: "/cv", label: "CV" },
-  { href: "/security", label: "Security" },
-  // Contact link handled dynamically in render
+  { href: "/about", label: "About" },
 ];
 
 export default function SubNav() {
@@ -77,8 +72,6 @@ export default function SubNav() {
         </div>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          {/* Removed CV link from top nav as requested */}
-          <Search />
           <ThemeToggle />
           <LanguageSwitcher />
           <MoreMenu />

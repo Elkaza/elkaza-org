@@ -15,6 +15,8 @@ type ProjectDomain =
     | "software-engineering"
     | "data-automation";
 
+type DomainFilter = "all" | ProjectDomain;
+
 type Copy = {
     title: string;
     subtitle: string;
@@ -29,16 +31,17 @@ type Copy = {
     tech: string;
     year: string;
     status: Record<ProjectStatus, string>;
-    domains: Record<ProjectDomain, string>;
+    domains: Record<DomainFilter, string>;
 };
 
 const FEATURED_PROJECT_SLUGS = [
-    "edgeguardian-edge-ai-safety-bubble",
     "enterprise-self-hosted-infrastructure",
-    "elkaza-org",
+    "edgeguardian-edge-ai-safety-bubble",
+    "tinyml-vibration-anomaly-detection",
 ];
 
-const DOMAIN_ORDER: ProjectDomain[] = [
+const DOMAIN_ORDER: DomainFilter[] = [
+    "all",
     "iot-edge-ai",
     "infrastructure-devops",
     "software-engineering",
@@ -78,6 +81,11 @@ const SHORT_TITLES: Record<string, Record<Locale, string>> = {
         de: "Portfolio Platform",
         ar: "Portfolio Platform",
     },
+    "tinyml-vibration-anomaly-detection": {
+        en: "TinyML Vibration Detection",
+        de: "TinyML Vibration Detection",
+        ar: "TinyML Vibration Detection",
+    },
     "rpi-ble-mqtt-gateway": {
         en: "BLE MQTT Monitoring",
         de: "BLE-MQTT-Monitoring",
@@ -105,6 +113,11 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         en: "Owner-controlled web operations with private analytics, secure ingress, automation, and backups.",
         de: "Eigenkontrollierter Webbetrieb mit privaten Analytics, sicherem Ingress, Automatisierung und Backups.",
         ar: "Owner-controlled web operations with private analytics, secure ingress, automation, and backups.",
+    },
+    "tinyml-vibration-anomaly-detection": {
+        en: "Embedded vibration classification from IMU features through model export and device-side inference.",
+        de: "Embedded-Vibrationsklassifikation von IMU-Features bis Modellexport und Inferenz auf dem Gerät.",
+        ar: "Embedded vibration classification from IMU features through model export and device-side inference.",
     },
     "elkaza-org": {
         en: "Multilingual TypeScript portfolio platform with structured content and CI-enabled publishing.",
@@ -213,6 +226,7 @@ const COPY: Record<Locale, Copy> = {
             planned: "Planned",
         },
         domains: {
+            all: "All Projects",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -242,6 +256,7 @@ const COPY: Record<Locale, Copy> = {
             planned: "Geplant",
         },
         domains: {
+            all: "Alle Projekte",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -271,6 +286,7 @@ const COPY: Record<Locale, Copy> = {
             planned: "Planned",
         },
         domains: {
+            all: "All Projects",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -282,7 +298,7 @@ const COPY: Record<Locale, Copy> = {
 export default function ProjectsPageContent() {
     const { locale } = useLocale();
     const copy = COPY[locale] ?? COPY.en;
-    const [activeDomain, setActiveDomain] = useState<ProjectDomain>("iot-edge-ai");
+    const [activeDomain, setActiveDomain] = useState<DomainFilter>("all");
 
     const originalOrder = useMemo(() => new Map(projects.map((project, index) => [project.slug, index])), []);
     const sortedProjects = useMemo(
@@ -299,10 +315,27 @@ export default function ProjectsPageContent() {
     const featuredProjects = FEATURED_PROJECT_SLUGS
         .map((slug) => projects.find((project) => project.slug === slug))
         .filter((project): project is Project => Boolean(project));
-    const featuredSlugs = new Set(FEATURED_PROJECT_SLUGS);
+    const featuredSlugs = useMemo(() => new Set<string>(FEATURED_PROJECT_SLUGS), []);
     const domainProjects = sortedProjects.filter(
-        (project) => !featuredSlugs.has(project.slug) && getProjectDomain(project) === activeDomain
+        (project) => !featuredSlugs.has(project.slug) && (activeDomain === "all" || getProjectDomain(project) === activeDomain)
     );
+    const domainCounts = useMemo(() => {
+        const counts: Record<DomainFilter, number> = {
+            all: 0,
+            "iot-edge-ai": 0,
+            "infrastructure-devops": 0,
+            "software-engineering": 0,
+            "data-automation": 0,
+        };
+
+        sortedProjects.forEach((project) => {
+            if (featuredSlugs.has(project.slug)) return;
+            counts.all += 1;
+            counts[getProjectDomain(project)] += 1;
+        });
+
+        return counts;
+    }, [featuredSlugs, sortedProjects]);
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
@@ -375,7 +408,15 @@ export default function ProjectsPageContent() {
                                             : "border-subtle bg-card text-main hover:-translate-y-0.5 hover:border-blue-400",
                                     ].join(" ")}
                                 >
-                                    {copy.domains[domain]}
+                                    <span>{copy.domains[domain]}</span>
+                                    <span
+                                        className={[
+                                            "ml-2 rounded-full px-2 py-0.5 text-xs",
+                                            activeDomain === domain ? "bg-white/20 text-white" : "bg-page text-muted",
+                                        ].join(" ")}
+                                    >
+                                        {domainCounts[domain]}
+                                    </span>
                                 </button>
                             ))}
                         </div>
@@ -432,6 +473,11 @@ function FeaturedProjectCard({
                         {project.tech.slice(0, 4).map((tech) => (
                             <TechBadge key={tech} name={tech} />
                         ))}
+                        {project.tech.length > 4 && (
+                            <span className="inline-flex items-center rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-muted">
+                                +{project.tech.length - 4} more
+                            </span>
+                        )}
                     </div>
                 </div>
 
@@ -495,6 +541,11 @@ function CompactProjectCard({
                     {project.tech.slice(0, 3).map((tech) => (
                         <TechBadge key={tech} name={tech} />
                     ))}
+                    {project.tech.length > 3 && (
+                        <span className="inline-flex items-center rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-muted">
+                            +{project.tech.length - 3} more
+                        </span>
+                    )}
                 </div>
                 {result && (
                     <p className="mt-4 break-words text-sm leading-relaxed text-main">
@@ -524,6 +575,9 @@ function ProjectMeta({
 }) {
     return (
         <div className={`mb-3 flex flex-wrap items-center gap-2 ${compact ? "text-[11px]" : "text-xs"}`}>
+            <span className="rounded-full border border-subtle bg-page px-2.5 py-1 font-semibold text-muted">
+                {copy.domains[getProjectDomain(project)]}
+            </span>
             <span className={`rounded-full border px-2.5 py-1 font-semibold ${getStatusClassName(project.status)}`}>
                 {copy.status[project.status]}
             </span>

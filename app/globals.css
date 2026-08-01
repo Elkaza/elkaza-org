@@ -1,6 +1,3 @@
-/* Google Fonts - Inter for modern, professional typography */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 @import "tailwindcss";
 
 script[data-nextjs-dev-overlay="true"],
@@ -20,7 +17,7 @@ nextjs-portal,
   --color-muted: var(--text-muted);
   --color-subtle: var(--border-subtle);
 
-  /* Typography - Modern font stack */
+  /* Typography - provided by next/font in app/layout.tsx */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
 

@@ -7,7 +7,7 @@ import { profile } from "../lib/profile";
 
 export default function ContactPageContent() {
     const { t } = useLocale();
-    const openToItems = [1, 2, 3, 4, 5, 6];
+    const openToItems = [1, 2, 3, 4];
 
     return (
         <main className="flex flex-col items-center justify-start w-full max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-12 text-main transition-colors duration-300">
@@ -80,18 +80,6 @@ export default function ContactPageContent() {
                                     <span className="font-medium">{t("contact_code")}</span>
                                 </div>
                                 <span className="text-sm text-muted group-hover:text-main">GitHub</span>
-                            </a>
-
-                            <a
-                                href={`mailto:${profile.email}?subject=CV%20request`}
-                                className="flex items-center justify-between p-3 rounded-lg hover:bg-subtle transition-colors group"
-                                aria-label={t("hero_cta_cv")}
-                            >
-                                <div className="flex items-center gap-3">
-                                    <Mail className="w-5 h-5 text-green-600" />
-                                    <span className="font-medium">{t("contact_resume")}</span>
-                                </div>
-                                <span className="text-sm text-muted group-hover:text-main">{t("contact_download_cv")}</span>
                             </a>
                         </div>
                     </div>
