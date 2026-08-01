@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useLocale } from "../LocaleProvider";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
@@ -46,8 +46,8 @@ export default function SiteFooter() {
         </div>
 
         {/* Copyright */}
-        <div className="text-xs font-medium tracking-widest uppercase text-muted">
-          &copy; {new Date().getFullYear() === 2025 ? "2025" : `2025-${new Date().getFullYear()}`} Elkaza. All rights reserved.
+        <div className="text-xs font-medium tracking-widest text-muted">
+          &copy; {new Date().getFullYear() === 2025 ? "2025" : `2025-${new Date().getFullYear()}`} Elkaza. {locale === "de" ? "Alle Rechte vorbehalten." : "All rights reserved."}
         </div>
 
       </div>

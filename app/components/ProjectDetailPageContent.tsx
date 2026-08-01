@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -143,7 +143,7 @@ const COPY: Record<string, DetailCopy> = {
         problem: "Problem",
         solution: "Ziel und Umsetzung",
         architecture: "Architektur",
-        architectureCaption: "Systemdesign-Ablauf",
+        architectureCaption: "Architekturdiagramme",
         node: "Node",
         edge: "Edge",
         cloud: "Cloud",
@@ -156,7 +156,7 @@ const COPY: Record<string, DetailCopy> = {
         role: "Rolle",
         scope: "Umfang",
         constraints: "Rahmenbedingungen",
-        evidence: "Nachweis",
+        evidence: "Ergebnis",
         result: "Ergebnis",
         technicalDecisions: "Technische Entscheidungen",
         challenges: "Herausforderungen",
@@ -166,7 +166,7 @@ const COPY: Record<string, DetailCopy> = {
         artifacts: "Artefakte",
         diagrams: "Technische Diagramme",
         diagramsIntro: "Die Architekturdiagramme zeigen Systemgrenzen, Runtime-Flüsse und operative Entscheidungen in kompakter Prüfform.",
-        diagramReviewFocus: "Review-Fokus",
+        diagramReviewFocus: "Was das Diagramm zeigt",
         diagramPreviewTitle: "Architekturansichten",
         diagramPreviewIntro: "Kompakte Systemansichten fassen Projektgrenze, Deployment-Pfad und Datenfluss zusammen, ohne zusätzliche Implementierungsannahmen zu ergänzen.",
         systemOverviewDiagram: "Systemübersicht",

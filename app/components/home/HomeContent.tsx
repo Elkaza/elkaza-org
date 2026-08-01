@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -74,7 +74,7 @@ const HOME_COPY: Localized<{
     heroKicker: "Portfolio aus Wien - Software, Automatisierung und Infrastruktur",
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
-    heroSupportingLine: "Ich verbinde Software, Automatisierung und Infrastruktur so, dass Systeme verständlich bleiben, sauber laufen und gut übergeben werden können.",
+    heroSupportingLine: "Hier dokumentiere ich ausgewählte Projekte aus Linux-Infrastruktur, Automatisierung, IoT und Edge AI – mit Architekturdiagrammen, Quellcode und nachvollziehbaren Ergebnissen.",
     proofItems: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
@@ -107,10 +107,10 @@ const HOME_COPY: Localized<{
     cardLabels: {
       problem: "Problem",
       responsibility: "Meine Rolle",
-      result: "Nachweis",
+      result: "Ergebnis",
     },
     featuredTitle: "Ausgewählte Engineering-Arbeiten",
-    workTitle: "Arbeitsbereiche, Stack & Nachweise",
+    workTitle: "Arbeitsbereiche, Stack & Ergebnisse",
     finalCta:
       "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
   },

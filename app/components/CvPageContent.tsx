@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import {
@@ -126,7 +126,7 @@ const skillGroups: SkillGroup[] = [
 const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
   de: [
     { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und belastbare Infrastruktur" },
-    { label: "Nachweis", value: "Deployed Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
+    { label: "Ergebnis", value: "Deployed Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
     { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und sauber übergeben" },
   ],
   en: [

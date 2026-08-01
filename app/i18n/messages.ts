@@ -1,4 +1,4 @@
-export type Locale = "de" | "en" | "ar";
+﻿export type Locale = "de" | "en" | "ar";
 
 export const MESSAGES: Record<Locale, Record<string, string>> = {
   de: {
@@ -291,6 +291,14 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_cloud_item1: "Proxmox, Docker/Podman, Linux-Services, Nginx Proxy Manager, Reverse Proxy und Monitoring",
     skill_cloud_item2: "GitHub Actions CI/CD, Tailscale, Docker Compose, Shell-Skripte, Plausible Analytics und Backup-Rotation",
     skill_cloud_item3: "Laufende Vertiefung in IoT-Architekturen, Edge-Gateways, MQTT und sicherer Konnektivität",
+
+    // Zertifikate
+    cert_nav_back: "← Zurück zu Über mich",
+    cert_title: "Zertifikate",
+    cert_view_all: "Alle ansehen",
+    cert_list_title: "Alle Zertifikate",
+    cert_list_subtitle: "Ausgewählte Zertifikate und berufliche Weiterbildungen (Belege auf Anfrage).",
+    cert_avail_req: "Beleg auf Anfrage",
 
     skill_lang_title: "Sprachen",
     skill_lang_item1: "Arabisch: Muttersprache | Englisch: C1 | Deutsch: B2",

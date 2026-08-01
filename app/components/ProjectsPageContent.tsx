@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -240,7 +240,7 @@ const COPY: Record<Locale, Copy> = {
         roleChips: ["Umgesetzt", "Dokumentiert", "Deployt", "Beobachtbar", "GitHub-gestützt"],
         proofStats: [
             { label: "Projekttypen", value: "Web, IoT, Infra, Data" },
-            { label: "Nachweis", value: "Code, Diagramme, Ergebnisse" },
+            { label: "Ergebnis", value: "Code, Diagramme, Ergebnisse" },
             { label: "Delivery", value: "Builds und Deployments" },
         ],
         featuredTitle: "Ausgewählte Fallstudien",
@@ -248,7 +248,7 @@ const COPY: Record<Locale, Copy> = {
         caseStudy: "Fallstudie",
         github: "GitHub",
         live: "Live",
-        result: "Nachweis",
+        result: "Ergebnis",
         tech: "Tech",
         year: "Jahr",
         status: {

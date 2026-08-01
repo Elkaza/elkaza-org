@@ -1,4 +1,4 @@
-import type { Locale } from "../i18n/messages";
+﻿import type { Locale } from "../i18n/messages";
 
 export type ProfileLanguage = {
   code: "ar" | "en" | "de";
@@ -27,7 +27,7 @@ export type ProfileCertification = {
 export const profile = {
   name: "Mohamed Elkaza",
   title: {
-    de: "IT-Infrastruktur- & Application Engineer",
+    de: "IT Infrastructure & Application Engineer",
     en: "IT Infrastructure & Application Engineer",
     ar: "IT Infrastructure & Application Engineer",
   },
