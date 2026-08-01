@@ -168,39 +168,52 @@ export default function AboutPageContent() {
                 </aside>
 
                 <div className="lg:col-span-9">
+                    <div className="mb-6 lg:hidden">
+                        <div className="mb-3 h-1.5 w-20 bg-blue-600" />
+                        <h1 className="text-3xl font-bold">{t("nav_about")}</h1>
+                        <p className="mt-2 text-muted italic">{t("about_tagline") ?? ""}</p>
+                    </div>
 
-
-                    <div className="mb-10 grid items-start gap-6 md:mb-12 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-8">
-                        <div className="mx-auto w-full max-w-md md:max-w-none">
-                            <Image
-                                src="/images/me.jpg"
-                                alt="Mohamed Elkaza"
-                                width={768}
-                                height={1024}
-                                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                                priority
-                                className="h-auto w-full rounded-lg border border-subtle bg-card p-2 shadow-md"
-                            />
-                        </div>
-                        <div>
-                            <h2 className="mb-4 text-2xl font-semibold text-main">{t("about_profile_h2") ?? "Professional Profile"}</h2>
-                            <p className="mb-4 text-lg font-medium leading-8 text-main">
-                                {t("about_profile_intro")}
-                            </p>
-                            <p className="text-main leading-relaxed mb-4">{t("about_p1") ?? ""}</p>
-                            <p className="mb-6 border-l-2 border-blue-600 pl-3 font-semibold leading-relaxed text-main">
-                                {t("about_value_statement")}
-                            </p>
-                            <div className="mb-6 flex flex-wrap gap-2">
-                                {profileTools.map((tool) => (
-                                    <TechBadge
-                                        key={tool}
-                                        name={tool}
-                                        className="bg-card px-3 py-1.5 text-sm shadow-sm"
-                                        iconClassName="h-4 w-4"
+                    <div className="mb-10 rounded-xl border border-subtle bg-card p-4 shadow-sm sm:p-5 md:mb-12 md:p-6">
+                        <div className="grid items-center gap-6 md:grid-cols-[minmax(220px,0.42fr)_minmax(0,0.58fr)] md:gap-8">
+                            <figure className="mx-auto w-full max-w-[300px]">
+                                <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-subtle bg-slate-100 shadow-inner dark:bg-slate-900">
+                                    <Image
+                                        src="/images/me.jpg"
+                                        alt="Mohamed Elkaza"
+                                        fill
+                                        sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 80vw"
+                                        priority
+                                        className="object-contain"
                                     />
-                                ))}
+                                </div>
+                            </figure>
+
+                            <div className="min-w-0">
+                                <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
+                                    {t("about_profile_h2") ?? "Professional Profile"}
+                                </p>
+                                <p className="mt-4 text-lg font-semibold leading-8 text-main">
+                                    {t("about_profile_intro")}
+                                </p>
+                                <p className="mt-4 text-main leading-relaxed">{t("about_p1") ?? ""}</p>
+                                <p className="mt-5 border-l-2 border-blue-600 pl-3 font-semibold leading-relaxed text-main">
+                                    {t("about_value_statement")}
+                                </p>
+                                <div className="mt-6 flex flex-wrap gap-2">
+                                    {profileTools.map((tool) => (
+                                        <TechBadge
+                                            key={tool}
+                                            name={tool}
+                                            className="bg-page px-3 py-1.5 text-sm shadow-sm"
+                                            iconClassName="h-4 w-4"
+                                        />
+                                    ))}
+                                </div>
                             </div>
+                        </div>
+
+                        <div className="mt-6 border-t border-subtle pt-6">
                             <Certifications />
                         </div>
                     </div>
