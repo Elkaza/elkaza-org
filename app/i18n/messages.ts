@@ -292,8 +292,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_cloud_item3: "Laufende Vertiefung in IoT-Architekturen, Edge-Gateways, MQTT und sicherer Konnektivität",
 
     skill_lang_title: "Sprachen",
-    skill_lang_item1: "Spoken: German, English, Arabic",
-    skill_lang_item2: "Technical: TypeScript / JavaScript, Python, Bash, PowerShell",
+    skill_lang_item1: "Arabisch: Muttersprache | Englisch: C1 | Deutsch: B2",
+    skill_lang_item2: "Technische Sprachen: TypeScript/JavaScript, Python, Bash, PowerShell",
 
     // Research
     research_tagline: "Akademische Arbeit und mögliche Kooperationsrichtungen.",
@@ -482,6 +482,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_skill_software_items: "Next.js | TypeScript/JavaScript | Python | XML/XSLT | Oracle SQL | Power BI | Datenanalyse",
     cv_skill_delivery_title: "Project Management & Business Analysis",
     cv_skill_delivery_items: "Anforderungen | Stakeholder-Kommunikation | Prozessanalyse | Dokumentation | ArchiMate/UML/BPMN | ITIL | Scrum | IPMA Level D",
+    cv_skill_languages_title: "Sprachen",
+    cv_skill_languages_items: "Arabisch: Muttersprache | Englisch: C1 | Deutsch: B2",
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
     cert_ipma_title: "IPMA Level D (cPMA) (2025)",
@@ -824,8 +826,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_cloud_item3: "Ongoing learning in IoT architectures, edge gateways, MQTT, and secure connectivity",
 
     skill_lang_title: "Languages",
-    skill_lang_item1: "Spoken: German, English, Arabic",
-    skill_lang_item2: "Technical: TypeScript / JavaScript · Python · Bash · PowerShell",
+    skill_lang_item1: "Arabic: native | English: C1 | German: B2",
+    skill_lang_item2: "Technical languages: TypeScript/JavaScript, Python, Bash, PowerShell",
     comp_ea_title: "Enterprise Architecture",
     comp_ea_list: "ArchiMate · ADOIT · Sparx EA · BPMN 2.0",
     comp_sw_title: "Software & Systems",
@@ -1026,6 +1028,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_skill_software_items: "Next.js | TypeScript/JavaScript | Python | XML/XSLT | Oracle SQL | Power BI | Data Analysis",
     cv_skill_delivery_title: "Project Management & Business Analysis",
     cv_skill_delivery_items: "Requirements | Stakeholder Communication | Process Analysis | Documentation | ArchiMate/UML/BPMN | ITIL | Scrum | IPMA Level D",
+    cv_skill_languages_title: "Languages",
+    cv_skill_languages_items: "Arabic: native | English: C1 | German: B2",
     cv_exp_title: "Experience",
     cv_edu_title: "Education & Certifications",
     cv_note_full: "Full CV with personal contact details is available on request.",

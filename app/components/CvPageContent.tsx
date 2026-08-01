@@ -16,6 +16,7 @@ import {
   Mail,
   MapPin,
   Network,
+  Languages,
   Server,
   Shield,
   Users,
@@ -46,7 +47,7 @@ type RecentProject = {
 };
 
 type SkillGroup = {
-  key: "platform" | "automation" | "networking" | "operations" | "software" | "delivery";
+  key: "platform" | "automation" | "networking" | "operations" | "software" | "delivery" | "languages";
   Icon: LucideIcon;
 };
 
@@ -118,6 +119,7 @@ const skillGroups: SkillGroup[] = [
   { key: "operations", Icon: Activity },
   { key: "software", Icon: Database },
   { key: "delivery", Icon: ClipboardList },
+  { key: "languages", Icon: Languages },
 ];
 
 const cvHighlights: Record<Locale, { label: string; value: string }[]> = {

@@ -9,6 +9,7 @@ import {
   ExternalLink,
   FileText,
   Github,
+  Languages,
   Mail,
   Server,
   SquareTerminal,
@@ -45,6 +46,11 @@ const HOME_COPY: Localized<{
     label: string;
     title: string;
     lines: string[];
+    languagesLabel: string;
+    languages: {
+      name: string;
+      level: string;
+    }[];
   };
   ctas: {
     projects: string;
@@ -77,6 +83,12 @@ const HOME_COPY: Localized<{
         "Web- und Daten-Workflows",
         "Linux, Docker, Monitoring und Backups",
         "IoT, Edge AI und technische Dokumentation",
+      ],
+      languagesLabel: "Arbeitssprachen",
+      languages: [
+        { name: "Arabisch", level: "Muttersprache" },
+        { name: "Englisch", level: "C1" },
+        { name: "Deutsch", level: "B2" },
       ],
     },
     ctas: {
@@ -112,6 +124,12 @@ const HOME_COPY: Localized<{
         "Linux, Docker, monitoring and backups",
         "IoT, Edge AI and technical documentation",
       ],
+      languagesLabel: "Working languages",
+      languages: [
+        { name: "Arabic", level: "Native" },
+        { name: "English", level: "C1" },
+        { name: "German", level: "B2" },
+      ],
     },
     ctas: {
       projects: "View Projects",
@@ -145,6 +163,12 @@ const HOME_COPY: Localized<{
         "Web and data workflows",
         "Linux, Docker, monitoring and backups",
         "IoT, Edge AI and technical documentation",
+      ],
+      languagesLabel: "Working languages",
+      languages: [
+        { name: "Arabic", level: "Native" },
+        { name: "English", level: "C1" },
+        { name: "German", level: "B2" },
       ],
     },
     ctas: {
@@ -531,6 +555,22 @@ function HeroProfilePanel({
               </li>
             ))}
           </ul>
+          <div className="mt-5 rounded-md border border-subtle bg-page p-3">
+            <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-normal text-main">
+              <Languages className="h-4 w-4 text-blue-700 dark:text-blue-300" aria-hidden="true" />
+              {copy.languagesLabel}
+            </div>
+            <div className="mt-3 grid gap-2">
+              {copy.languages.map((language) => (
+                <div key={language.name} className="flex items-center justify-between gap-3 text-sm">
+                  <span className="font-medium text-main">{language.name}</span>
+                  <span className="rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold text-muted">
+                    {language.level}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </aside>
