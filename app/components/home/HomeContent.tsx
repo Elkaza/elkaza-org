@@ -33,9 +33,19 @@ type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 const TECH_CHIPS = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
 
 const HOME_COPY: Localized<{
+  heroKicker: string;
   heroTitle: string;
   heroSubheadline: string;
   heroSupportingLine: string;
+  proofItems: {
+    label: string;
+    value: string;
+  }[];
+  profilePanel: {
+    label: string;
+    title: string;
+    lines: string[];
+  };
   ctas: {
     projects: string;
     cv: string;
@@ -49,11 +59,26 @@ const HOME_COPY: Localized<{
   finalCta: string;
 }> = {
   de: {
+    heroKicker: "Portfolio aus Wien - Software, Automatisierung und Infrastruktur",
     heroTitle: "Software, Automation & Infrastructure Engineer",
     heroSubheadline:
       "Ich verbinde Application Engineering, Automatisierung und betreibbare Infrastruktur: von Next.js und Python bis Docker, Monitoring und Edge-AI-Prototypen.",
     heroSupportingLine:
       "Das Portfolio zeigt technische Arbeit mit nachvollziehbaren Delivery-Pfaden, klarer Dokumentation, privaten Betriebsumgebungen und reproduzierbaren Daten-Workflows.",
+    proofItems: [
+      { label: "Fokus", value: "Build + operate" },
+      { label: "Nachweis", value: "Live Projekte" },
+      { label: "Standort", value: "Wien, AT" },
+    ],
+    profilePanel: {
+      label: "Arbeitsprofil",
+      title: "Praktische Systeme mit klarem Betriebspfad",
+      lines: [
+        "Web- und Daten-Workflows",
+        "Linux, Docker, Monitoring und Backups",
+        "IoT, Edge AI und technische Dokumentation",
+      ],
+    },
     ctas: {
       projects: "Projekte ansehen",
       cv: "CV ansehen",
@@ -68,11 +93,26 @@ const HOME_COPY: Localized<{
       "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
   },
   en: {
+    heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
     heroTitle: "Software, Automation & Infrastructure Engineer",
     heroSubheadline:
       "I connect application engineering, automation and operable infrastructure: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
     heroSupportingLine:
       "This portfolio shows technical work with traceable delivery paths, clear documentation, private operations environments and reproducible data workflows.",
+    proofItems: [
+      { label: "Focus", value: "Build + operate" },
+      { label: "Evidence", value: "Live projects" },
+      { label: "Location", value: "Vienna, AT" },
+    ],
+    profilePanel: {
+      label: "Working profile",
+      title: "Practical systems with a clear operations path",
+      lines: [
+        "Web and data workflows",
+        "Linux, Docker, monitoring and backups",
+        "IoT, Edge AI and technical documentation",
+      ],
+    },
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -87,11 +127,26 @@ const HOME_COPY: Localized<{
       "Open to roles where software, automation, infrastructure and technical documentation meet.",
   },
   ar: {
+    heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
     heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
     heroSubheadline:
       "I build operable web, automation and infrastructure systems: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
     heroSupportingLine:
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
+    proofItems: [
+      { label: "Focus", value: "Build + operate" },
+      { label: "Evidence", value: "Live projects" },
+      { label: "Location", value: "Vienna, AT" },
+    ],
+    profilePanel: {
+      label: "Working profile",
+      title: "Practical systems with a clear operations path",
+      lines: [
+        "Web and data workflows",
+        "Linux, Docker, monitoring and backups",
+        "IoT, Edge AI and technical documentation",
+      ],
+    },
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -262,53 +317,76 @@ export default function HomeContent() {
 
   return (
     <main className="mx-auto flex w-full max-w-6xl min-w-0 flex-col overflow-hidden px-5 py-10 text-main sm:px-6 md:py-14">
-      <section className="max-w-4xl space-y-7 border-b border-subtle pb-10 md:pb-12">
-        <div className="space-y-4">
-          <h1 className="break-words !text-3xl font-extrabold leading-tight tracking-normal text-main sm:!text-4xl md:!text-6xl">
-            {copy.heroTitle}
-          </h1>
-          <p className="max-w-3xl break-words text-base font-semibold text-secondary sm:text-lg md:text-xl">
-            {copy.heroSubheadline}
-          </p>
-          <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
-            {copy.heroSupportingLine}
-          </p>
+      <section className="grid gap-10 border-b border-subtle pb-10 md:pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-center">
+        <div className="space-y-7">
+          <div className="space-y-5">
+            <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
+              {copy.heroKicker}
+            </p>
+            <h1 className="max-w-4xl break-words !text-3xl font-extrabold leading-tight tracking-normal text-main sm:!text-4xl md:!text-6xl">
+              {copy.heroTitle}
+            </h1>
+            <p className="max-w-3xl break-words text-base font-semibold text-secondary sm:text-lg md:text-xl">
+              {copy.heroSubheadline}
+            </p>
+            <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
+              {copy.heroSupportingLine}
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            {copy.proofItems.map((item) => (
+              <div
+                key={item.label}
+                className="rounded-lg border border-subtle bg-card px-4 py-3 shadow-sm"
+              >
+                <p className="text-xs font-extrabold uppercase tracking-normal text-muted">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-main">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {TECH_CHIPS.map((chip) => (
+              <TechBadge
+                key={chip}
+                name={chip}
+                className="bg-card px-3 py-1.5 text-sm shadow-sm"
+                iconClassName="h-4 w-4"
+              />
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
+            >
+              {copy.ctas.projects}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link
+              href="/cv"
+              className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
+            >
+              <FileText className="mr-2 h-4 w-4" />
+              {copy.ctas.cv}
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+            >
+              <Mail className="mr-2 h-4 w-4" />
+              {copy.ctas.contact}
+            </Link>
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {TECH_CHIPS.map((chip) => (
-            <TechBadge
-              key={chip}
-              name={chip}
-              className="bg-card px-3 py-1.5 text-sm shadow-sm"
-              iconClassName="h-4 w-4"
-            />
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <Link
-            href="/projects"
-            className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
-          >
-            {copy.ctas.projects}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-          <Link
-            href="/cv"
-            className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
-          >
-            <FileText className="mr-2 h-4 w-4" />
-            {copy.ctas.cv}
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            {copy.ctas.contact}
-          </Link>
-        </div>
+        <HeroProfilePanel copy={copy.profilePanel} />
       </section>
 
       <section className="mt-14 space-y-6" aria-labelledby="featured-work">
@@ -416,6 +494,46 @@ export default function HomeContent() {
         </div>
       </section>
     </main>
+  );
+}
+
+function HeroProfilePanel({
+  copy,
+}: {
+  copy: (typeof HOME_COPY)["en"]["profilePanel"];
+}) {
+  return (
+    <aside className="min-w-0 rounded-lg border border-subtle bg-card p-4 shadow-sm lg:p-5">
+      <div className="grid gap-4 sm:grid-cols-[160px_1fr] lg:grid-cols-1">
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-lg border border-subtle bg-slate-100 dark:bg-slate-900">
+          <Image
+            src="/images/me.jpg"
+            alt="Mohamed Elkaza"
+            fill
+            priority
+            sizes="(min-width: 1024px) 320px, 220px"
+            className="object-contain"
+          />
+        </div>
+
+        <div className="flex min-w-0 flex-col justify-center">
+          <p className="text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
+            {copy.label}
+          </p>
+          <h2 className="mt-2 !text-xl font-semibold leading-tight tracking-normal text-main">
+            {copy.title}
+          </h2>
+          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
+            {copy.lines.map((line) => (
+              <li key={line} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-700 dark:bg-blue-300" />
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </aside>
   );
 }
 
