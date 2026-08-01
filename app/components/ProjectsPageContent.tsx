@@ -7,6 +7,7 @@ import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
 import { projects, type Project } from "../lib/projects";
 import type { Locale } from "../i18n/messages";
+import type { ProjectStatus } from "../lib/projects";
 
 type ProjectDomain =
     | "iot-edge-ai"
@@ -18,6 +19,7 @@ type Copy = {
     title: string;
     subtitle: string;
     roleChips: string[];
+    proofStats: { label: string; value: string }[];
     featuredTitle: string;
     browseTitle: string;
     caseStudy: string;
@@ -25,6 +27,8 @@ type Copy = {
     live: string;
     result: string;
     tech: string;
+    year: string;
+    status: Record<ProjectStatus, string>;
     domains: Record<ProjectDomain, string>;
 };
 
@@ -190,6 +194,11 @@ const COPY: Record<Locale, Copy> = {
         title: "Engineering Case Studies",
         subtitle: "A curated set of implemented systems across fullstack development, IoT, edge AI, infrastructure, and data automation.",
         roleChips: ["Implemented", "Documented", "Deployed", "Observable", "GitHub-backed"],
+        proofStats: [
+            { label: "Project types", value: "Web, IoT, Infra, Data" },
+            { label: "Evidence", value: "Code, diagrams, results" },
+            { label: "Delivery", value: "Builds and deployments" },
+        ],
         featuredTitle: "Strongest Evidence",
         browseTitle: "Browse by Engineering Domain",
         caseStudy: "Case Study",
@@ -197,6 +206,12 @@ const COPY: Record<Locale, Copy> = {
         live: "Live",
         result: "Evidence",
         tech: "Tech",
+        year: "Year",
+        status: {
+            implemented: "Implemented",
+            "in-progress": "In progress",
+            planned: "Planned",
+        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -208,6 +223,11 @@ const COPY: Record<Locale, Copy> = {
         title: "Engineering Case Studies",
         subtitle: "Kuratierte umgesetzte Systeme aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
         roleChips: ["Umgesetzt", "Dokumentiert", "Deployt", "Beobachtbar", "GitHub-gestützt"],
+        proofStats: [
+            { label: "Projekttypen", value: "Web, IoT, Infra, Data" },
+            { label: "Nachweis", value: "Code, Diagramme, Ergebnisse" },
+            { label: "Delivery", value: "Builds und Deployments" },
+        ],
         featuredTitle: "Stärkste Nachweise",
         browseTitle: "Nach Engineering-Bereich browsen",
         caseStudy: "Fallstudie",
@@ -215,6 +235,12 @@ const COPY: Record<Locale, Copy> = {
         live: "Live",
         result: "Nachweis",
         tech: "Tech",
+        year: "Jahr",
+        status: {
+            implemented: "Umgesetzt",
+            "in-progress": "In Arbeit",
+            planned: "Geplant",
+        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -226,6 +252,11 @@ const COPY: Record<Locale, Copy> = {
         title: "Engineering Projects",
         subtitle: "Selected case studies across fullstack development, IoT, edge AI, infrastructure, and data automation.",
         roleChips: ["Fullstack", "Application Engineering", "IoT / Edge AI", "Platform Engineering", "Data Automation"],
+        proofStats: [
+            { label: "Project types", value: "Web, IoT, Infra, Data" },
+            { label: "Evidence", value: "Code, diagrams, results" },
+            { label: "Delivery", value: "Builds and deployments" },
+        ],
         featuredTitle: "Featured Case Studies",
         browseTitle: "Browse by Domain",
         caseStudy: "Case Study",
@@ -233,6 +264,12 @@ const COPY: Record<Locale, Copy> = {
         live: "Live",
         result: "Result",
         tech: "Tech",
+        year: "Year",
+        status: {
+            implemented: "Implemented",
+            "in-progress": "In progress",
+            planned: "Planned",
+        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -270,18 +307,36 @@ export default function ProjectsPageContent() {
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
             <div className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-8 sm:px-6 md:py-14">
-                <section className="border-b border-subtle pb-8">
-                    <h1 className="max-w-3xl break-words text-4xl font-extrabold tracking-normal md:text-5xl">
-                        {copy.title}
-                    </h1>
-                    <p className="mt-4 max-w-2xl break-words text-lg leading-relaxed text-muted">
-                        {copy.subtitle}
-                    </p>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                        {copy.roleChips.map((chip) => (
-                            <span key={chip} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main shadow-sm">
-                                {chip}
-                            </span>
+                <section className="grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+                    <div>
+                        <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
+                            {locale === "de" ? "Projektportfolio" : "Project portfolio"}
+                        </p>
+                        <h1 className="mt-4 max-w-3xl break-words text-4xl font-extrabold tracking-normal md:text-5xl">
+                            {copy.title}
+                        </h1>
+                        <p className="mt-4 max-w-2xl break-words text-lg leading-relaxed text-muted">
+                            {copy.subtitle}
+                        </p>
+                        <div className="mt-6 flex flex-wrap gap-2">
+                            {copy.roleChips.map((chip) => (
+                                <span key={chip} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main shadow-sm">
+                                    {chip}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="grid gap-3 rounded-xl border border-subtle bg-card p-4 shadow-sm">
+                        {copy.proofStats.map((stat) => (
+                            <div key={stat.label} className="rounded-lg border border-subtle bg-page/70 px-4 py-3">
+                                <p className="text-xs font-extrabold uppercase tracking-normal text-muted">
+                                    {stat.label}
+                                </p>
+                                <p className="mt-1 text-sm font-semibold text-main">
+                                    {stat.value}
+                                </p>
+                            </div>
                         ))}
                     </div>
                 </section>
@@ -359,6 +414,7 @@ function FeaturedProjectCard({
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
             <ProjectVisual project={project} featured />
             <div className="flex flex-1 flex-col p-5">
+                <ProjectMeta copy={copy} project={project} />
                 <h3 className="break-words text-xl font-semibold tracking-normal">{getShortTitle(project, locale)}</h3>
                 <p className="mt-3 break-words text-sm leading-relaxed text-muted">
                     {FEATURED_SUMMARIES[project.slug]?.[locale] ?? compactText(project.oneLiner[locale], 145)}
@@ -430,6 +486,7 @@ function CompactProjectCard({
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
             <ProjectVisual project={project} />
             <div className="flex flex-1 flex-col p-4">
+                <ProjectMeta copy={copy} project={project} compact />
                 <h3 className="break-words text-base font-semibold tracking-normal">{getShortTitle(project, locale)}</h3>
                 <p className="mt-2 break-words text-sm leading-relaxed text-muted sm:min-h-[3rem]">
                     {getCardSummary(project, locale)}
@@ -453,6 +510,27 @@ function CompactProjectCard({
                 </Link>
             </div>
         </article>
+    );
+}
+
+function ProjectMeta({
+    copy,
+    project,
+    compact = false,
+}: {
+    copy: Copy;
+    project: Project;
+    compact?: boolean;
+}) {
+    return (
+        <div className={`mb-3 flex flex-wrap items-center gap-2 ${compact ? "text-[11px]" : "text-xs"}`}>
+            <span className={`rounded-full border px-2.5 py-1 font-semibold ${getStatusClassName(project.status)}`}>
+                {copy.status[project.status]}
+            </span>
+            <span className="rounded-full border border-subtle bg-page px-2.5 py-1 font-semibold text-muted">
+                {copy.year}: {project.year}
+            </span>
+        </div>
     );
 }
 
@@ -546,6 +624,18 @@ function getCardSummary(project: Project, locale: Locale) {
 
 function getCardResult(project: Project, locale: Locale, result: string) {
     return CARD_RESULTS[project.slug]?.[locale] ?? compactText(result, 145);
+}
+
+function getStatusClassName(status: ProjectStatus) {
+    if (status === "implemented") {
+        return "border-emerald-700/30 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-950/30 dark:text-emerald-200";
+    }
+
+    if (status === "in-progress") {
+        return "border-blue-700/30 bg-blue-50 text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200";
+    }
+
+    return "border-amber-700/30 bg-amber-50 text-amber-900 dark:border-amber-400/40 dark:bg-amber-950/30 dark:text-amber-200";
 }
 
 function compactText(text: string, maxLength: number) {
