@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import {
     ArrowLeft,
@@ -60,6 +60,24 @@ type DetailCopy = {
     githubLabel: string;
     externalLabel: string;
     stackPreview: string;
+};
+
+type FeaturedProjectSlug =
+    | "enterprise-self-hosted-infrastructure"
+    | "edgeguardian-edge-ai-safety-bubble"
+    | "tinyml-vibration-anomaly-detection";
+
+type LocalizedString = Record<Locale, string>;
+
+type FeaturedDetailConfig = {
+    outcome: LocalizedString;
+    role: LocalizedString;
+    strongestEvidenceIndex: number;
+    nextStep: LocalizedString;
+    stackGroups: {
+        label: LocalizedString;
+        tech: string[];
+    }[];
 };
 
 const COPY: Record<string, DetailCopy> = {
@@ -209,6 +227,173 @@ const COPY: Record<string, DetailCopy> = {
     },
 };
 
+const FEATURED_DETAIL_SLUGS = new Set<string>([
+    "enterprise-self-hosted-infrastructure",
+    "edgeguardian-edge-ai-safety-bubble",
+    "tinyml-vibration-anomaly-detection",
+]);
+
+const stackLabel = (en: string, de: string): LocalizedString => ({ en, de, ar: en });
+
+const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
+    en: {
+        purpose: "Purpose",
+        strongestEvidence: "Strongest evidence",
+        problemConstraints: "Problem and constraints",
+        implementation: "Implementation",
+        validationEvidence: "Validation and evidence",
+        completeStack: "Complete stack",
+        nextTechnicalStep: "Next technical step",
+        artefactKind: "Artefact",
+        plannedWork: "Planned work",
+    },
+    de: {
+        purpose: "Zweck",
+        strongestEvidence: "Stärkster Nachweis",
+        problemConstraints: "Problem und Rahmenbedingungen",
+        implementation: "Umsetzung",
+        validationEvidence: "Validierung und Evidenz",
+        completeStack: "Vollständiger Stack",
+        nextTechnicalStep: "Nächster technischer Schritt",
+        artefactKind: "Artefakt",
+        plannedWork: "Geplante Arbeit",
+    },
+    ar: {
+        purpose: "Purpose",
+        strongestEvidence: "Strongest evidence",
+        problemConstraints: "Problem and constraints",
+        implementation: "Implementation",
+        validationEvidence: "Validation and evidence",
+        completeStack: "Complete stack",
+        nextTechnicalStep: "Next technical step",
+        artefactKind: "Artefact",
+        plannedWork: "Planned work",
+    },
+};
+
+const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig> = {
+    "enterprise-self-hosted-infrastructure": {
+        outcome: {
+            en: "Live",
+            de: "Live",
+            ar: "Live",
+        },
+        role: {
+            en: "Architecture, hardening, deployment automation, monitoring, backup routine, and operational documentation.",
+            de: "Architektur, Hardening, Deployment-Automatisierung, Monitoring, Backup-Routine und Betriebsdokumentation.",
+            ar: "Architecture, hardening, deployment automation, monitoring, backup routine, and operational documentation.",
+        },
+        strongestEvidenceIndex: 2,
+        nextStep: {
+            en: "Add an encrypted off-site backup copy and complete an isolated restore test.",
+            de: "Eine verschlüsselte Offsite-Backup-Kopie ergänzen und einen isolierten Restore-Test vollständig durchführen.",
+            ar: "Add an encrypted off-site backup copy and complete an isolated restore test.",
+        },
+        stackGroups: [
+            {
+                label: stackLabel("Infrastructure", "Infrastruktur"),
+                tech: ["Proxmox VE", "Debian 13", "Docker Compose", "Tailscale", "Nginx Proxy Manager", "UFW"],
+            },
+            {
+                label: stackLabel("Application", "Applikation"),
+                tech: ["Plausible Analytics", "Homepage"],
+            },
+            {
+                label: stackLabel("Data", "Daten"),
+                tech: ["PostgreSQL", "ClickHouse"],
+            },
+            {
+                label: stackLabel("Hardware", "Hardware"),
+                tech: ["Private Proxmox host"],
+            },
+            {
+                label: stackLabel("Operations", "Betrieb"),
+                tech: ["GitHub Actions", "Bash", "CrowdSec", "Pi-hole", "Uptime Kuma", "Netdata", "Portainer", "Dozzle", "Watchtower"],
+            },
+        ],
+    },
+    "edgeguardian-edge-ai-safety-bubble": {
+        outcome: {
+            en: "Demonstrated",
+            de: "Demonstriert",
+            ar: "Demonstrated",
+        },
+        role: {
+            en: "End-to-end prototype engineering across sensing, edge inference, fusion logic, dashboard evidence, and embedded actuation proof.",
+            de: "End-to-End-Prototyping über Sensorik, Edge-Inferenz, Fusionslogik, Dashboard-Evidenz und Embedded-Aktuatornachweis.",
+            ar: "End-to-end prototype engineering across sensing, edge inference, fusion logic, dashboard evidence, and embedded actuation proof.",
+        },
+        strongestEvidenceIndex: 1,
+        nextStep: {
+            en: "Broaden validation logs across more distance and lighting scenarios before any safety-critical use.",
+            de: "Validierungslogs über mehr Distanz- und Lichtszenarien erweitern, bevor sicherheitskritische Nutzung überhaupt betrachtet wird.",
+            ar: "Broaden validation logs across more distance and lighting scenarios before any safety-critical use.",
+        },
+        stackGroups: [
+            {
+                label: stackLabel("Infrastructure", "Infrastruktur"),
+                tech: ["Raspberry Pi 5", "Local edge runtime"],
+            },
+            {
+                label: stackLabel("Application", "Applikation"),
+                tech: ["Python", "Flask", "YOLOv8n"],
+            },
+            {
+                label: stackLabel("Data", "Daten"),
+                tech: ["CSV logs", "Dashboard events"],
+            },
+            {
+                label: stackLabel("Hardware", "Hardware"),
+                tech: ["Hailo-8L", "Hokuyo LiDAR", "ESP32-S3"],
+            },
+            {
+                label: stackLabel("Operations", "Betrieb"),
+                tech: ["Telegram alerts", "Terminal output", "Evidence folder"],
+            },
+        ],
+    },
+    "tinyml-vibration-anomaly-detection": {
+        outcome: {
+            en: "Academic prototype",
+            de: "Akademischer Prototyp",
+            ar: "Academic prototype",
+        },
+        role: {
+            en: "Model pipeline and embedded implementation from feature extraction and offline training to C++ export and Arduino inference.",
+            de: "Modellpipeline und Embedded-Umsetzung von Feature-Extraktion und Offline-Training bis C++-Export und Arduino-Inferenz.",
+            ar: "Model pipeline and embedded implementation from feature extraction and offline training to C++ export and Arduino inference.",
+        },
+        strongestEvidenceIndex: 0,
+        nextStep: {
+            en: "Validate the model with real measured vibration data beyond the synthetic balanced dataset.",
+            de: "Das Modell mit real gemessenen Vibrationsdaten zusätzlich zum synthetischen balancierten Datensatz validieren.",
+            ar: "Validate the model with real measured vibration data beyond the synthetic balanced dataset.",
+        },
+        stackGroups: [
+            {
+                label: stackLabel("Infrastructure", "Infrastruktur"),
+                tech: ["Arduino runtime", "Local development laptop"],
+            },
+            {
+                label: stackLabel("Application", "Applikation"),
+                tech: ["C++", "Python", "TinyML", "Softmax"],
+            },
+            {
+                label: stackLabel("Data", "Daten"),
+                tech: ["IMU", "20 vibration features", "Synthetic dataset"],
+            },
+            {
+                label: stackLabel("Hardware", "Hardware"),
+                tech: ["Arduino Nano 33 BLE Sense Rev2", "Built-in LED"],
+            },
+            {
+                label: stackLabel("Operations", "Betrieb"),
+                tech: ["Serial Monitor", "Model export", "Latency checks"],
+            },
+        ],
+    },
+};
+
 export default function ProjectDetailPageContent({ slug }: { slug: string }) {
     const { locale, t } = useLocale();
     const copy = COPY[locale] ?? COPY.en;
@@ -241,6 +426,18 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
     const futureItems = getFutureItems(locale, hasDiagrams);
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
+
+    if (isFeaturedProjectSlug(project.slug)) {
+        return (
+            <FeaturedProjectDetailLayout
+                copy={copy}
+                config={FEATURED_DETAIL_CONFIGS[project.slug]}
+                locale={locale}
+                project={project}
+                t={t}
+            />
+        );
+    }
 
     return (
         <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
@@ -639,6 +836,318 @@ function DiagramOverview({
             </div>
         </section>
     );
+}
+
+function FeaturedProjectDetailLayout({
+    copy,
+    config,
+    locale,
+    project,
+    t,
+}: {
+    copy: DetailCopy;
+    config: FeaturedDetailConfig;
+    locale: Locale;
+    project: (typeof projects)[number];
+    t: (key: string) => string;
+}) {
+    const labels = FEATURED_LABELS[locale] ?? FEATURED_LABELS.en;
+    const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale] ?? value.en;
+    const localizedResults = localized(project.results);
+    const localizedFeatures = localized(project.keyFeatures);
+    const githubLink = project.links.find((link) => link.url.includes("github.com"));
+    const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
+    const strongestEvidence = localizedResults[config.strongestEvidenceIndex] ?? localizedResults[0];
+    const architectureNodes = [
+        {
+            title: project.architectureLabels ? localized(project.architectureLabels.node) : copy.node,
+            body: localized(project.architecture.node),
+        },
+        {
+            title: project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge,
+            body: localized(project.architecture.edge),
+        },
+        {
+            title: project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud,
+            body: localized(project.architecture.cloud),
+        },
+    ];
+
+    return (
+        <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
+            <article className="mx-auto max-w-6xl space-y-8 md:space-y-10">
+                <Link
+                    href="/projects"
+                    className="inline-flex items-center text-muted transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t("nav_projects")}
+                </Link>
+
+                <header className="grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+                    <div className="space-y-5">
+                        <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-normal">
+                            <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
+                                {copy.category[project.category]}
+                            </span>
+                            <span className="rounded-full border border-blue-700/30 bg-blue-50 px-3 py-1 text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200">
+                                {localized(config.outcome)}
+                            </span>
+                            <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
+                                {project.year}
+                            </span>
+                        </div>
+
+                        <div className="space-y-3">
+                            <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
+                                {labels.purpose}
+                            </p>
+                            <h1 className="max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal md:text-5xl">
+                                {localized(project.title)}
+                            </h1>
+                            <p className="max-w-3xl break-words text-lg leading-relaxed text-muted md:text-xl">
+                                {localized(project.oneLiner)}
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                            {project.tech.slice(0, 5).map((tech) => (
+                                <TechBadge key={tech} name={tech} />
+                            ))}
+                        </div>
+                    </div>
+
+                    <aside className="grid gap-3 rounded-lg border border-subtle bg-card p-4 shadow-sm">
+                        <FeaturedFact label={copy.role} value={localized(config.role)} />
+                        <FeaturedFact label={copy.status} value={`${getProjectStatusLabel(project.status, locale)} - ${localized(config.outcome)}`} />
+                        {strongestEvidence && (
+                            <FeaturedFact label={labels.strongestEvidence} value={strongestEvidence} />
+                        )}
+                    </aside>
+                </header>
+
+                <FeaturedSection title={labels.problemConstraints}>
+                    <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+                        <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
+                            {localized(project.problem)}
+                        </p>
+                        <div className="grid gap-4">
+                            <FeaturedFact label={copy.security} value={localized(project.security)} />
+                            <FeaturedFact label={copy.reliability} value={localized(project.reliability)} />
+                        </div>
+                    </div>
+                </FeaturedSection>
+
+                <FeaturedSection title={copy.architecture}>
+                    <ArchitectureFlow caption={copy.architectureCaption} nodes={architectureNodes} />
+                    {project.diagrams && project.diagrams.length > 0 && (
+                        <FeaturedDiagramGallery copy={copy} diagrams={project.diagrams} locale={locale} projectTitle={project.title.en} />
+                    )}
+                </FeaturedSection>
+
+                <FeaturedSection title={labels.implementation}>
+                    <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
+                        {localized(project.solution)}
+                    </p>
+                </FeaturedSection>
+
+                <FeaturedSection title={copy.technicalDecisions}>
+                    <EvidenceList items={localizedFeatures.slice(0, 5)} />
+                </FeaturedSection>
+
+                <FeaturedSection title={labels.validationEvidence}>
+                    <EvidenceList items={localizedResults} badge={localized(config.outcome)} />
+                    {project.images && project.images.length > 0 && (
+                        <div className="grid gap-4 md:grid-cols-2">
+                            {project.images.map((image, index) => (
+                                <figure key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2 shadow-sm">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={image}
+                                        alt={`${project.title.en} evidence image ${index + 1}`}
+                                        className="h-auto w-full rounded-md"
+                                    />
+                                </figure>
+                            ))}
+                        </div>
+                    )}
+                </FeaturedSection>
+
+                <FeaturedSection title={copy.results}>
+                    <EvidenceList items={localizedResults} />
+                </FeaturedSection>
+
+                <FeaturedSection title={labels.completeStack}>
+                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+                        {config.stackGroups.map((group) => (
+                            <section key={group.label.en} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+                                <h3 className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
+                                    {localized(group.label)}
+                                </h3>
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {group.tech.map((tech) => (
+                                        <TechBadge key={tech} name={tech} />
+                                    ))}
+                                </div>
+                            </section>
+                        ))}
+                    </div>
+                </FeaturedSection>
+
+                <FeaturedSection title={copy.artifacts}>
+                    <div className="flex flex-wrap gap-3">
+                        {githubLink && (
+                            <a
+                                href={githubLink.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center rounded-md bg-main px-4 py-2.5 font-medium text-page transition-opacity hover:opacity-90"
+                            >
+                                <Github className="mr-2 h-4 w-4" />
+                                {copy.githubLabel}
+                            </a>
+                        )}
+                        {externalLinks.map((link) => (
+                            <a
+                                key={link.url}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                            >
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                {link.label}
+                            </a>
+                        ))}
+                        {project.diagrams?.map((diagram) => (
+                            <a
+                                key={diagram.src}
+                                href={diagram.src}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                            >
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                {localized(diagram.title)}
+                            </a>
+                        ))}
+                    </div>
+                </FeaturedSection>
+
+                <FeaturedSection title={labels.nextTechnicalStep}>
+                    <article className="rounded-lg border border-amber-700/30 bg-amber-50 p-5 shadow-sm dark:border-amber-400/40 dark:bg-amber-950/20">
+                        <p className="text-xs font-extrabold uppercase tracking-normal text-amber-900 dark:text-amber-200">
+                            {labels.plannedWork}
+                        </p>
+                        <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
+                    </article>
+                </FeaturedSection>
+            </article>
+        </main>
+    );
+}
+
+function FeaturedFact({ label, value }: { label: string; value: string }) {
+    return (
+        <article className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+            <p className="text-xs font-extrabold uppercase tracking-normal text-muted">{label}</p>
+            <p className="mt-2 text-sm leading-relaxed text-main">{value}</p>
+        </article>
+    );
+}
+
+function FeaturedSection({ title, children }: { title: string; children: ReactNode }) {
+    return (
+        <section className="space-y-4">
+            <h2 className="border-l-2 border-blue-700 pl-3 text-2xl font-semibold tracking-normal">{title}</h2>
+            {children}
+        </section>
+    );
+}
+
+function EvidenceList({ badge, items }: { badge?: string; items: string[] }) {
+    return (
+        <ul className="grid gap-3 md:grid-cols-2">
+            {items.map((item) => (
+                <li key={item} className="rounded-lg border border-subtle bg-card p-4 text-sm leading-relaxed text-main shadow-sm">
+                    {badge && (
+                        <span className="mb-2 inline-flex rounded-full border border-blue-700/30 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200">
+                            {badge}
+                        </span>
+                    )}
+                    <span className="block">{item}</span>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+function FeaturedDiagramGallery({
+    copy,
+    diagrams,
+    locale,
+    projectTitle,
+}: {
+    copy: DetailCopy;
+    diagrams: NonNullable<(typeof projects)[number]["diagrams"]>;
+    locale: Locale;
+    projectTitle: string;
+}) {
+    const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale] ?? value.en;
+
+    return (
+        <div className="space-y-5">
+            {diagrams.map((diagram) => {
+                const summary = diagram.summary ? localized(diagram.summary) : [];
+
+                return (
+                    <figure key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card shadow-sm">
+                        <div className="flex flex-col gap-3 border-b border-subtle p-4 md:flex-row md:items-start md:justify-between">
+                            <figcaption className="max-w-3xl space-y-1">
+                                <p className="text-base font-semibold text-main">{localized(diagram.title)}</p>
+                                <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                            </figcaption>
+                            <a
+                                href={diagram.src}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                            >
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                {copy.openDiagram}
+                            </a>
+                        </div>
+                        <div className="bg-white p-3">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={diagram.src}
+                                alt={`${localized(diagram.title)} diagram for ${projectTitle}`}
+                                className="h-auto w-full rounded-md"
+                            />
+                        </div>
+                        {summary.length > 0 && (
+                            <div className="border-t border-subtle p-4">
+                                <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
+                                    {copy.diagramReviewFocus}
+                                </p>
+                                <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                                    {summary.map((item) => (
+                                        <li key={item} className="border-l-2 border-blue-500 pl-3 text-sm leading-relaxed text-muted">
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </figure>
+                );
+            })}
+        </div>
+    );
+}
+
+function isFeaturedProjectSlug(slug: string): slug is FeaturedProjectSlug {
+    return FEATURED_DETAIL_SLUGS.has(slug);
 }
 
 function conciseText(text: string, maxLength: number) {

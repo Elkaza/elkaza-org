@@ -16,7 +16,7 @@ const links = [
 
 export default function SubNav() {
   const pathname = usePathname();
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -58,7 +58,7 @@ export default function SubNav() {
           ))}
           {/* Contact Link with locale check */}
           <Link
-            href={t("nav_contact") === "Kontakt" ? "/kontakt" : "/contact"}
+            href={locale === "de" ? "/kontakt" : "/contact"}
             aria-current={pathname === "/contact" || pathname === "/kontakt" ? "page" : undefined}
             className={
               "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +

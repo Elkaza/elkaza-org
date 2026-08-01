@@ -213,7 +213,7 @@ const COPY: Record<Locale, Copy> = {
             { label: "Delivery", value: "Builds and deployments" },
         ],
         featuredTitle: "Strongest Evidence",
-        browseTitle: "Browse by Engineering Domain",
+        browseTitle: "More Projects",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
@@ -243,7 +243,7 @@ const COPY: Record<Locale, Copy> = {
             { label: "Delivery", value: "Builds und Deployments" },
         ],
         featuredTitle: "Stärkste Nachweise",
-        browseTitle: "Nach Engineering-Bereich browsen",
+        browseTitle: "Weitere Projekte",
         caseStudy: "Fallstudie",
         github: "GitHub",
         live: "Live",
@@ -273,7 +273,7 @@ const COPY: Record<Locale, Copy> = {
             { label: "Delivery", value: "Builds and deployments" },
         ],
         featuredTitle: "Featured Case Studies",
-        browseTitle: "Browse by Domain",
+        browseTitle: "More Projects",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
@@ -475,7 +475,7 @@ function FeaturedProjectCard({
                         ))}
                         {project.tech.length > 4 && (
                             <span className="inline-flex items-center rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-muted">
-                                +{project.tech.length - 4} more
+                                +{project.tech.length - 4}
                             </span>
                         )}
                     </div>
@@ -543,7 +543,7 @@ function CompactProjectCard({
                     ))}
                     {project.tech.length > 3 && (
                         <span className="inline-flex items-center rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-muted">
-                            +{project.tech.length - 3} more
+                            +{project.tech.length - 3}
                         </span>
                     )}
                 </div>

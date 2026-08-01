@@ -16,6 +16,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_projects: "Projekte",
     nav_teaching: "Lernfokus",
     nav_contact: "Kontakt",
+    nav_certifications: "Zertifikate",
     search: "Suche",
     legal_location: "Wien, Österreich",
     back_to_top: "Nach oben",
@@ -511,6 +512,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_projects: "Projects",
     nav_teaching: "Learning Focus",
     nav_contact: "Contact",
+    nav_certifications: "Certifications",
     search: "Search",
     legal_location: "Vienna, Austria",
     back_to_top: "Back to top",
@@ -1054,6 +1056,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_projects: "المشاريع",
     nav_teaching: "التعليم",
     nav_contact: "تواصل",
+    nav_certifications: "الشهادات",
     search: "بحث",
     legal_location: "فيينا، النمسا",
 

@@ -5,23 +5,21 @@ import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
 import { profile } from "../lib/profile";
 
-type MenuItem = { href: string; labelKey: string } | { href: string; label: string };
-
 const primaryItems = [
   { href: "/projects", labelKey: "nav_projects" },
   { href: "/cv", labelKey: "nav_cv" },
   { href: "/about", labelKey: "nav_about" },
 ];
 
-const supportItems: MenuItem[] = [
+const supportItems = [
   { href: "/security", labelKey: "nav_security" },
-  { href: "/certifications", label: "Certifications" },
+  { href: "/certifications", labelKey: "nav_certifications" },
   { href: "/blog", labelKey: "nav_blog" },
   { href: "/research", labelKey: "nav_research" },
 ];
 
 export default function MoreMenu() {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -95,7 +93,7 @@ export default function MoreMenu() {
               </Link>
             ))}
             <Link
-              href={t("nav_contact") === "Kontakt" ? "/kontakt" : "/contact"}
+              href={locale === "de" ? "/kontakt" : "/contact"}
               role="menuitem"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -107,12 +105,12 @@ export default function MoreMenu() {
           {supportItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href === "/certifications" && locale === "de" ? "/zertifikate" : item.href}
               role="menuitem"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
             >
-              {"labelKey" in item ? t(item.labelKey) : item.label}
+              {t(item.labelKey)}
             </Link>
           ))}
           <div className="my-2 border-t border-subtle" />
