@@ -111,6 +111,9 @@ export default function SecurityPageContent() {
                     <p className="text-lg md:text-xl text-muted leading-relaxed max-w-2xl">
                         {t("security_focus")}
                     </p>
+                    <p className="max-w-2xl rounded-md border border-subtle bg-card px-4 py-3 text-sm leading-relaxed text-muted">
+                        {t("sec_public_note")}
+                    </p>
                 </div>
 
                 <SecurityArchitectureDiagram t={t} />
@@ -166,7 +169,6 @@ export default function SecurityPageContent() {
                                 {t("sec_outcome_2")}
                             </li>
                         </ul>
-                        <p className="text-xs text-muted italic mb-4">{t("sec_public_note")}</p>
                         <div className="flex flex-col gap-2">
                             <Link href="/projects/enterprise-self-hosted-infrastructure" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
                                 {t("sec_view_project")} {">"}
