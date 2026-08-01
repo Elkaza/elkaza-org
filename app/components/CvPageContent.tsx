@@ -122,19 +122,19 @@ const skillGroups: SkillGroup[] = [
 
 const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
   de: [
-    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und Infrastruktur" },
-    { label: "Praxisnachweis", value: "GitHub-gestützte Projekte mit Deployment, Monitoring und Dokumentation" },
-    { label: "Technische Breite", value: "Web, Python/SQL, Linux/Docker, IoT und Edge AI" },
+    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und belastbare Infrastruktur" },
+    { label: "Nachweis", value: "Deployed Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
+    { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und sauber übergeben" },
   ],
   en: [
-    { label: "Focus", value: "Application engineering, automation, and infrastructure" },
-    { label: "Evidence", value: "GitHub-backed projects with deployment, monitoring, and documentation" },
-    { label: "Range", value: "Web, Python/SQL, Linux/Docker, IoT, and Edge AI" },
+    { label: "Focus", value: "Application engineering, automation, and reliable infrastructure" },
+    { label: "Evidence", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
   ar: [
     { label: "Focus", value: "Application engineering, automation, and infrastructure" },
-    { label: "Evidence", value: "GitHub-backed projects with deployment, monitoring, and documentation" },
-    { label: "Range", value: "Web, Python/SQL, Linux/Docker, IoT, and Edge AI" },
+    { label: "Evidence", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
 };
 
@@ -180,6 +180,9 @@ export default function CvPageContent() {
             </div>
           </div>
           <div className="flex min-w-0 flex-col gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm text-muted print:hidden">
+            <p className="text-xs font-extrabold uppercase tracking-normal text-main">
+              {locale === "de" ? "Online-Profil" : "Online Profile"}
+            </p>
             <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://elkaza.org" target="_blank" rel="noreferrer">
               elkaza.org
             </a>
