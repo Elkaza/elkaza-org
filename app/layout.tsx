@@ -7,6 +7,7 @@ import BackToTop from "@/app/components/BackToTop";
 import SiteFooter from "./components/SiteFooter";
 import SubNav from "./components/SubNav";
 import { generatePersonSchema, generateWebSiteSchema } from "@/app/lib/metadata";
+import { profile } from "@/app/lib/profile";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], variable: "--font-serif" });
@@ -15,13 +16,13 @@ const plausibleScriptSrc = process.env.NEXT_PUBLIC_PLAUSIBLE_SCRIPT_SRC ?? "http
 const enablePlausible = process.env.NEXT_PUBLIC_ENABLE_PLAUSIBLE !== "false";
 
 export const metadata = {
-  metadataBase: new URL("https://elkaza.org"),
-  title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
-  description: "Portfolio of Mohamed Elkaza covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, business informatics, and technical delivery.",
+  metadataBase: new URL(profile.websiteUrl),
+  title: `${profile.name} | ${profile.title.en}`,
+  description: profile.introduction.en,
   openGraph: {
-    title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
-    description: "Portfolio covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, and technical delivery.",
-    url: "https://elkaza.org",
+    title: `${profile.name} | ${profile.title.en}`,
+    description: profile.introduction.en,
+    url: profile.websiteUrl,
     siteName: "Mohamed Elkaza Portfolio",
     type: "website",
     images: [
@@ -35,8 +36,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohamed Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
-    description: "Portfolio covering data automation, IoT, edge AI, application engineering, infrastructure, monitoring, and technical delivery.",
+    title: `${profile.name} | ${profile.title.en}`,
+    description: profile.introduction.en,
     images: ["/opengraph-image"],
   },
   icons: {

@@ -2,6 +2,7 @@
 import { useLocale } from "../LocaleProvider";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { profile } from "../lib/profile";
 
 export default function SiteFooter() {
   const { t, locale } = useLocale();
@@ -33,13 +34,13 @@ export default function SiteFooter() {
 
         {/* Social Icons */}
         <div className="flex gap-6 text-muted">
-          <a href="mailto:contact@elkaza.org" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Email">
+          <a href={`mailto:${profile.email}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Email">
             <Mail size={20} />
           </a>
-          <a href="https://www.linkedin.com/in/elkaza" target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 dark:hover:text-blue-500 transition-colors" aria-label="LinkedIn">
+          <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-700 dark:hover:text-blue-500 transition-colors" aria-label="LinkedIn">
             <Linkedin size={20} />
           </a>
-          <a href="https://github.com/Elkaza" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors" aria-label="GitHub">
+          <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors" aria-label="GitHub">
             <Github size={20} />
           </a>
         </div>

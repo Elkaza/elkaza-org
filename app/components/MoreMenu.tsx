@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { MoreHorizontal, Github, Linkedin, Mail } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
+import { profile } from "../lib/profile";
 
 export default function MoreMenu() {
   const { t } = useLocale();
@@ -67,7 +68,7 @@ export default function MoreMenu() {
           className="absolute right-0 z-[120] mt-2 w-52 rounded-lg border border-subtle bg-card p-2 shadow-xl"
         >
           <a
-            href="https://github.com/Elkaza"
+            href={profile.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
             role="menuitem"
@@ -86,7 +87,7 @@ export default function MoreMenu() {
             <Mail size={16} /> {t("hero_cta_cv")}
           </Link>
           <a
-            href="https://www.linkedin.com/in/elkaza"
+            href={profile.linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
             role="menuitem"

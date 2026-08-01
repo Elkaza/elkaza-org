@@ -27,6 +27,7 @@ import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import type { Locale } from "../i18n/messages";
+import { profile } from "../lib/profile";
 
 type SummaryFocus = {
   key: number;
@@ -175,8 +176,8 @@ export default function CvPageContent() {
               </span>
               <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
                 <Mail className="h-4 w-4" aria-hidden="true" />
-                <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="mailto:contact@elkaza.org">
-                  contact@elkaza.org
+                <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={`mailto:${profile.email}`}>
+                  {profile.email}
                 </a>
               </span>
             </div>
@@ -185,15 +186,15 @@ export default function CvPageContent() {
             <p className="text-xs font-extrabold uppercase tracking-normal text-main">
               {locale === "de" ? "Online-Profil" : "Online Profile"}
             </p>
-            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://elkaza.org" target="_blank" rel="noreferrer">
+            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={profile.websiteUrl} target="_blank" rel="noreferrer">
               elkaza.org
             </a>
-            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href="https://github.com/Elkaza" target="_blank" rel="noreferrer">
+            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={profile.githubUrl} target="_blank" rel="noreferrer">
               github.com/Elkaza
             </a>
             <a
               className="transition hover:text-blue-700 dark:hover:text-blue-300"
-              href="https://linkedin.com/in/moalkhalil"
+              href={profile.linkedinUrl}
               target="_blank"
               rel="noreferrer"
             >
@@ -370,7 +371,7 @@ export default function CvPageContent() {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{t("cv_request_desc")}</p>
             </div>
             <a
-              href="mailto:contact@elkaza.org"
+              href={`mailto:${profile.email}`}
               className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition hover:bg-blue-700"
             >
               <Mail className="h-4 w-4" aria-hidden="true" />

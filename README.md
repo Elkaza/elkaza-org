@@ -4,7 +4,7 @@ Professional portfolio and project website for Mohamed Elkaza, built with Next.j
 
 ## Features
 
-- Multilingual content for German, English, and Arabic
+- Multilingual content for German and English
 - Responsive design with light and dark themes
 - Project, CV, blog, research, security, and contact pages
 - Security headers through the Next.js request proxy
@@ -102,4 +102,4 @@ Private project. All rights reserved.
 - Website: [elkaza.org](https://elkaza.org)
 - Email: contact@elkaza.org
 - GitHub: [@Elkaza](https://github.com/Elkaza)
-- LinkedIn: [linkedin.com/in/elkaza](https://linkedin.com/in/elkaza)
+- LinkedIn: [linkedin.com/in/moalkhalil](https://www.linkedin.com/in/moalkhalil)

@@ -20,13 +20,14 @@ import { useLocale } from "@/app/LocaleProvider";
 import { TechBadge } from "@/app/components/ui/TechBadge";
 import type { Locale } from "@/app/i18n/messages";
 import { projects, type Project } from "@/app/lib/projects";
+import { profile } from "@/app/lib/profile";
 
 type Localized<T> = Record<Locale, T>;
 
 const FEATURED_PROJECT_SLUGS = [
-  "edgeguardian-edge-ai-safety-bubble",
   "enterprise-self-hosted-infrastructure",
-  "elkaza-org",
+  "edgeguardian-edge-ai-safety-bubble",
+  "tinyml-vibration-anomaly-detection",
 ] as const;
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
@@ -60,21 +61,25 @@ const HOME_COPY: Localized<{
     github: string;
     live: string;
   };
+  cardLabels: {
+    problem: string;
+    responsibility: string;
+    result: string;
+  };
   featuredTitle: string;
   workTitle: string;
   finalCta: string;
 }> = {
   de: {
     heroKicker: "Portfolio aus Wien - Software, Automatisierung und Infrastruktur",
-    heroTitle: "Software, Automation & Infrastructure Engineer",
-    heroSubheadline:
-      "Ich verbinde Application Engineering, Automatisierung und betreibbare Infrastruktur: von Next.js und Python bis Docker, Monitoring und Edge-AI-Prototypen.",
+    heroTitle: profile.title.de,
+    heroSubheadline: profile.introduction.de,
     heroSupportingLine:
       "Das Portfolio zeigt technische Arbeit mit nachvollziehbaren Delivery-Pfaden, klarer Dokumentation, privaten Betriebsumgebungen und reproduzierbaren Daten-Workflows.",
     proofItems: [
       { label: "Fokus", value: "Build + operate" },
-      { label: "Nachweis", value: "Live Projekte" },
-      { label: "Standort", value: "Wien, AT" },
+      { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
+      { label: "Standort", value: profile.location.de },
     ],
     profilePanel: {
       label: "Arbeitsprofil",
@@ -99,6 +104,11 @@ const HOME_COPY: Localized<{
       github: "GitHub",
       live: "Live",
     },
+    cardLabels: {
+      problem: "Problem",
+      responsibility: "Meine Rolle",
+      result: "Nachweis",
+    },
     featuredTitle: "Ausgewählte Engineering-Arbeiten",
     workTitle: "Arbeitsbereiche, Stack & Nachweise",
     finalCta:
@@ -106,15 +116,14 @@ const HOME_COPY: Localized<{
   },
   en: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
-    heroTitle: "Software, Automation & Infrastructure Engineer",
-    heroSubheadline:
-      "I connect application engineering, automation and operable infrastructure: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
+    heroTitle: profile.title.en,
+    heroSubheadline: profile.introduction.en,
     heroSupportingLine:
       "This portfolio shows technical work with traceable delivery paths, clear documentation, private operations environments and reproducible data workflows.",
     proofItems: [
       { label: "Focus", value: "Build + operate" },
-      { label: "Evidence", value: "Live projects" },
-      { label: "Location", value: "Vienna, AT" },
+      { label: "Work access", value: "Free access in AT" },
+      { label: "Location", value: profile.location.en },
     ],
     profilePanel: {
       label: "Working profile",
@@ -138,6 +147,11 @@ const HOME_COPY: Localized<{
       caseStudy: "Case Study",
       github: "GitHub",
       live: "Live",
+    },
+    cardLabels: {
+      problem: "Problem",
+      responsibility: "My role",
+      result: "Evidence",
     },
     featuredTitle: "Selected Engineering Work",
     workTitle: "Capabilities, Stack & Evidence",
@@ -146,15 +160,14 @@ const HOME_COPY: Localized<{
   },
   ar: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
-    heroTitle: "Software, Automation & Infrastructure Engineer in Vienna",
-    heroSubheadline:
-      "I build operable web, automation and infrastructure systems: from Next.js and Python to Docker, monitoring and Edge AI prototypes.",
+    heroTitle: profile.title.en,
+    heroSubheadline: profile.introduction.en,
     heroSupportingLine:
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
     proofItems: [
       { label: "Focus", value: "Build + operate" },
-      { label: "Evidence", value: "Live projects" },
-      { label: "Location", value: "Vienna, AT" },
+      { label: "Work access", value: "Free access in AT" },
+      { label: "Location", value: profile.location.en },
     ],
     profilePanel: {
       label: "Working profile",
@@ -178,6 +191,11 @@ const HOME_COPY: Localized<{
       caseStudy: "Case Study",
       github: "GitHub",
       live: "Live",
+    },
+    cardLabels: {
+      problem: "Problem",
+      responsibility: "My role",
+      result: "Evidence",
     },
     featuredTitle: "Featured Work",
     workTitle: "Capabilities & Stack",
@@ -190,39 +208,33 @@ const FEATURED_COPY: Record<
   FeaturedSlug,
   {
     title: Localized<string>;
-    summary: Localized<string>;
+    problem: Localized<string>;
+    responsibility: Localized<string>;
+    result: Localized<string>;
     tech: string[];
     visualLabel: Localized<string>;
   }
 > = {
-  "edgeguardian-edge-ai-safety-bubble": {
-    title: {
-      de: "EdgeGuardian",
-      en: "EdgeGuardian",
-      ar: "EdgeGuardian",
-    },
-    summary: {
-      de: "Edge-AI-Sicherheitsüberwachung mit Kamera, LiDAR und lokaler Entscheidungslogik.",
-      en: "Edge AI safety monitoring with camera, LiDAR and local decision logic.",
-      ar: "Edge AI safety monitoring with camera, LiDAR and local decision logic.",
-    },
-    tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "ESP32"],
-    visualLabel: {
-      de: "Edge AI Architektur",
-      en: "Edge AI architecture",
-      ar: "Edge AI architecture",
-    },
-  },
   "enterprise-self-hosted-infrastructure": {
     title: {
       de: "Self-Hosted Infrastructure",
       en: "Self-Hosted Infrastructure",
       ar: "Self-Hosted Infrastructure",
     },
-    summary: {
-      de: "Hybrid-Plattform mit privatem Betrieb, Monitoring, Backups und First-Party Analytics.",
-      en: "Hybrid platform with private operations, monitoring, backups and first-party analytics.",
-      ar: "Hybrid platform with private operations, monitoring, backups and first-party analytics.",
+    problem: {
+      de: "Öffentliche Websites und private Services sollten laufen, ohne lokale Management-Flächen ins Internet zu stellen.",
+      en: "Public websites and private services needed to run without exposing local management surfaces to the internet.",
+      ar: "Public websites and private services needed to run without exposing local management surfaces to the internet.",
+    },
+    responsibility: {
+      de: "Hybrid-Architektur, Tailscale-Zugriff, Docker-Deployment, Monitoring und Backup-Routine aufgebaut.",
+      en: "Built the hybrid architecture, Tailscale access path, Docker deployment, monitoring, and backup routine.",
+      ar: "Built the hybrid architecture, Tailscale access path, Docker deployment, monitoring, and backup routine.",
+    },
+    result: {
+      de: "Live betrieben, mit dokumentierter Architektur, GitHub-Deployment und verifiziertem VM-Backup.",
+      en: "Running live with documented architecture, GitHub deployment, and a verified VM backup.",
+      ar: "Running live with documented architecture, GitHub deployment, and a verified VM backup.",
     },
     tech: ["Proxmox", "Docker", "Tailscale", "Plausible", "GitHub Actions"],
     visualLabel: {
@@ -231,26 +243,63 @@ const FEATURED_COPY: Record<
       ar: "Hybrid cloud architecture",
     },
   },
-  "elkaza-org": {
+  "edgeguardian-edge-ai-safety-bubble": {
     title: {
-      de: "Portfolio Platform",
-      en: "Portfolio Platform",
-      ar: "Portfolio Platform",
+      de: "EdgeGuardian",
+      en: "EdgeGuardian",
+      ar: "EdgeGuardian",
     },
-    summary: {
-      de: "Mehrsprachige Next.js-Plattform für Projekte, CV und technische Fallstudien.",
-      en: "Multilingual Next.js platform for projects, CV content and technical case studies.",
-      ar: "Multilingual Next.js platform for projects, CV content and technical case studies.",
+    problem: {
+      de: "Lokale Sicherheitszustände sollten direkt am Edge aus Sensor- und Kameradaten abgeleitet werden.",
+      en: "Local safety states needed to be inferred at the edge from sensor and camera input.",
+      ar: "Local safety states needed to be inferred at the edge from sensor and camera input.",
     },
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
+    responsibility: {
+      de: "Raspberry Pi, Hailo, Kamera, LiDAR und ESP32 zu einem prototypischen Entscheidungsfluss verbunden.",
+      en: "Connected Raspberry Pi, Hailo, camera, LiDAR, and ESP32 into a prototype decision flow.",
+      ar: "Connected Raspberry Pi, Hailo, camera, LiDAR, and ESP32 into a prototype decision flow.",
+    },
+    result: {
+      de: "Als Prototyp dokumentiert, mit Architekturdiagrammen, Code und sichtbarer SAFE/WARNING/ALERT-Logik.",
+      en: "Documented as a prototype with architecture diagrams, code, and visible SAFE/WARNING/ALERT logic.",
+      ar: "Documented as a prototype with architecture diagrams, code, and visible SAFE/WARNING/ALERT logic.",
+    },
+    tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "ESP32"],
     visualLabel: {
-      de: "Web Delivery Architektur",
-      en: "Web delivery architecture",
-      ar: "Web delivery architecture",
+      de: "Edge AI Architektur",
+      en: "Edge AI architecture",
+      ar: "Edge AI architecture",
+    },
+  },
+  "tinyml-vibration-anomaly-detection": {
+    title: {
+      de: "TinyML Vibration Detection",
+      en: "TinyML Vibration Detection",
+      ar: "TinyML Vibration Detection",
+    },
+    problem: {
+      de: "Vibrationsmuster sollten auf einem kleinen Embedded-Gerät klassifiziert werden, ohne Cloud-Inferenz.",
+      en: "Vibration patterns needed to be classified on a small embedded device without cloud inference.",
+      ar: "Vibration patterns needed to be classified on a small embedded device without cloud inference.",
+    },
+    responsibility: {
+      de: "IMU-Features, Softmax-Modell, C++-Export und Serial-Monitor-Demo umgesetzt.",
+      en: "Implemented IMU features, softmax model, C++ export, and Serial Monitor demo.",
+      ar: "Implemented IMU features, softmax model, C++ export, and Serial Monitor demo.",
+    },
+    result: {
+      de: "Akademischer Prototyp mit Quellcode, Modellvergleich und reproduzierbarer Validierung.",
+      en: "Academic prototype with source code, model comparison, and reproducible validation.",
+      ar: "Academic prototype with source code, model comparison, and reproducible validation.",
+    },
+    tech: ["Arduino Nano 33", "IMU", "C++", "Softmax", "TinyML"],
+    visualLabel: {
+      de: "TinyML Architektur",
+      en: "TinyML architecture",
+      ar: "TinyML architecture",
     },
   },
 };
-
 const WORK_AREAS: {
   title: Localized<string>;
   bullets: Localized<string[]>;
@@ -506,7 +555,7 @@ export default function HomeContent() {
               {copy.ctas.cv}
             </Link>
             <a
-              href="https://github.com/Elkaza"
+              href={profile.githubUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
@@ -604,9 +653,20 @@ function FeaturedProjectCard({
         <h3 className="break-words !text-xl font-semibold tracking-normal text-main">
           {projectCopy.title[locale]}
         </h3>
-        <p className="mt-2 min-h-[3rem] break-words text-sm leading-relaxed text-muted">
-          {projectCopy.summary[locale]}
-        </p>
+        <div className="mt-4 space-y-3 text-sm leading-relaxed">
+          {[
+            [copy.cardLabels.problem, projectCopy.problem[locale]],
+            [copy.cardLabels.responsibility, projectCopy.responsibility[locale]],
+            [copy.cardLabels.result, projectCopy.result[locale]],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-md border border-subtle bg-page/70 p-3">
+              <p className="text-[11px] font-extrabold uppercase tracking-normal text-main">
+                {label}
+              </p>
+              <p className="mt-1 text-muted">{value}</p>
+            </div>
+          ))}
+        </div>
 
         <div className="mt-5 flex flex-wrap gap-2">
           {projectCopy.tech.slice(0, 3).map((tech) => (

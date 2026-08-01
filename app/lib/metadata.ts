@@ -2,18 +2,19 @@
  * SEO Metadata Helper
  * Generates structured data and metadata for pages
  */
+import { profile } from "./profile";
 
 export function generatePersonSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Mohamed Elkaza",
-        url: "https://elkaza.org",
+        name: profile.name,
+        url: profile.websiteUrl,
         sameAs: [
-            "https://github.com/Elkaza",
-            "https://www.linkedin.com/in/elkaza",
+            profile.githubUrl,
+            profile.linkedinUrl,
         ],
-        jobTitle: "Business Informatics and IoT Master Student | Data Automation, Edge AI and Infrastructure",
+        jobTitle: profile.title.en,
         address: {
             "@type": "PostalAddress",
             addressLocality: "Vienna",
@@ -67,13 +68,12 @@ export function generateWebSiteSchema() {
     return {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Elkaza | Business Informatics, IoT, Data Automation & Edge AI",
-        url: "https://elkaza.org",
-        description:
-            "Portfolio covering data automation, IoT, edge AI, Industry 4.0, application engineering, infrastructure, monitoring, business informatics, and technical delivery.",
+        name: `${profile.name} | ${profile.title.en}`,
+        url: profile.websiteUrl,
+        description: profile.introduction.en,
         author: {
             "@type": "Person",
-            name: "Mohamed Elkaza",
+            name: profile.name,
         },
         inLanguage: ["en", "de"],
     };
@@ -84,15 +84,15 @@ export function generateOrganizationSchema() {
         "@context": "https://schema.org",
         "@type": "Organization",
         name: "Elkaza",
-        url: "https://elkaza.org",
+        url: profile.websiteUrl,
         logo: "https://elkaza.org/icon-512.png",
         sameAs: [
-            "https://github.com/Elkaza",
-            "https://www.linkedin.com/in/elkaza",
+            profile.githubUrl,
+            profile.linkedinUrl,
         ],
         contactPoint: {
             "@type": "ContactPoint",
-            email: "contact@elkaza.org",
+            email: profile.email,
             contactType: "General Inquiry",
         },
     };

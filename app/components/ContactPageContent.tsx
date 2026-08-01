@@ -3,6 +3,7 @@ import React from "react";
 import { Mail, Github, Linkedin } from "lucide-react";
 import ContactForm from "../components/ContactForm";
 import { useLocale } from "../LocaleProvider";
+import { profile } from "../lib/profile";
 
 export default function ContactPageContent() {
     const { t } = useLocale();
@@ -42,8 +43,8 @@ export default function ContactPageContent() {
                         <ul className="space-y-3 text-sm">
                             <li>
                                 <span className="block text-muted text-xs uppercase tracking-wider">{t("contact_personal_inquiries")}</span>
-                                <a href="mailto:contact@elkaza.org" className="text-blue-600 hover:underline font-medium">
-                                    contact@elkaza.org
+                                <a href={`mailto:${profile.email}`} className="text-blue-600 hover:underline font-medium">
+                                    {profile.email}
                                 </a>
                             </li>
                         </ul>
@@ -54,7 +55,7 @@ export default function ContactPageContent() {
                         <h3 className="text-lg font-semibold mb-4">{t("contact_social_h3")}</h3>
                         <div className="flex flex-col gap-3">
                             <a
-                                href="https://www.linkedin.com/in/elkaza"
+                                href={profile.linkedinUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-between p-3 rounded-lg hover:bg-subtle transition-colors group"
@@ -68,7 +69,7 @@ export default function ContactPageContent() {
                             </a>
 
                             <a
-                                href="https://github.com/Elkaza"
+                                href={profile.githubUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-between p-3 rounded-lg hover:bg-subtle transition-colors group"
@@ -82,7 +83,7 @@ export default function ContactPageContent() {
                             </a>
 
                             <a
-                                href="mailto:contact@elkaza.org?subject=CV%20request"
+                                href={`mailto:${profile.email}?subject=CV%20request`}
                                 className="flex items-center justify-between p-3 rounded-lg hover:bg-subtle transition-colors group"
                                 aria-label={t("hero_cta_cv")}
                             >
