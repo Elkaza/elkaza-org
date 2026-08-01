@@ -31,6 +31,24 @@ const checks = [
   },
 ];
 
+const metadataChecks = [
+  {
+    name: "robots.txt",
+    url: "https://elkaza.org/robots.txt",
+    mustInclude: ["User-Agent: *", "Allow: /", "Sitemap: https://elkaza.org/sitemap.xml"],
+  },
+  {
+    name: "sitemap.xml",
+    url: "https://elkaza.org/sitemap.xml",
+    mustInclude: [
+      "https://elkaza.org/",
+      "https://elkaza.org/about",
+      "https://elkaza.org/projects",
+      "https://elkaza.org/security",
+    ],
+  },
+];
+
 const failures = [];
 
 async function fetchText(url) {
@@ -61,6 +79,24 @@ for (const check of checks) {
       console.error(`FAIL elkaza.org ${check.name}`);
       if (missing.length > 0) console.error(`  missing: ${missing.join(", ")}`);
       if (forbidden.length > 0) console.error(`  forbidden: ${forbidden.join(", ")}`);
+    } else {
+      console.log(`OK   elkaza.org ${check.name}`);
+    }
+  } catch (error) {
+    failures.push({ ...check, error });
+    console.error(`FAIL elkaza.org ${check.name}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+for (const check of metadataChecks) {
+  try {
+    const text = await fetchText(check.url);
+    const missing = check.mustInclude.filter((value) => !text.includes(value));
+
+    if (missing.length > 0) {
+      failures.push({ ...check, missing });
+      console.error(`FAIL elkaza.org ${check.name}`);
+      console.error(`  missing: ${missing.join(", ")}`);
     } else {
       console.log(`OK   elkaza.org ${check.name}`);
     }
