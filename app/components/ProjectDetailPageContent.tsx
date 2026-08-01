@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, type ReactNode } from "react";
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import {
     ArrowLeft,
@@ -14,6 +14,7 @@ import {
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
 import { TechBadge } from "@/app/components/ui/TechBadge";
+import { Body, BodyLarge, CardTitle, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import { projects } from "@/app/lib/projects";
 import { getProjectStatusLabel, getProjectTagLabel } from "@/app/lib/projectDisplay";
 import type { Locale } from "@/app/i18n/messages";
@@ -496,7 +497,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     {t("nav_projects")}
                 </Link>
 
-                <header className="grid gap-5 rounded-lg border border-subtle bg-card p-4 shadow-sm sm:p-5 md:grid-cols-[minmax(0,1fr)_280px] md:gap-6 md:p-7">
+                <header className="grid gap-5 rounded-lg border border-subtle bg-card p-4 sm:p-5 md:grid-cols-[minmax(0,1fr)_280px] md:gap-6 md:p-7">
                     <div className="space-y-5">
                         <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
                             <span className="rounded-full border border-subtle bg-page px-3 py-1">
@@ -568,7 +569,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
 
                 {project.images && project.images.length > 0 && (
                     project.images.length === 1 ? (
-                        <section className="rounded-lg border border-subtle bg-card p-2 md:p-3 shadow-sm">
+                        <section className="rounded-lg border border-subtle bg-card p-2 md:p-3">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={project.images[0]}
@@ -579,7 +580,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     ) : (
                         <section className="grid gap-4 md:grid-cols-2">
                             {project.images.map((image, index) => (
-                                <div key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2 shadow-sm">
+                                <div key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={image}
@@ -651,7 +652,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                 const summary = diagram.summary ? localized(diagram.summary) : [];
 
                                 return (
-                                    <figure key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card shadow-sm">
+                                    <figure key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card">
                                         <div className="flex flex-col gap-3 border-b border-subtle p-4 md:flex-row md:items-start md:justify-between">
                                             <figcaption className="max-w-3xl space-y-1">
                                                 <p className="text-base font-semibold text-main">{localized(diagram.title)}</p>
@@ -783,7 +784,7 @@ function ArchitectureFlow({
     nodes: { title: string; body: string }[];
 }) {
     return (
-        <figure className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+        <figure className="rounded-lg border border-subtle bg-card p-5">
             <div
                 className="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]"
                 role="img"
@@ -791,18 +792,14 @@ function ArchitectureFlow({
             >
                 {nodes.map((node, index) => (
                     <Fragment key={node.title}>
-                        <div className="rounded-md border border-subtle bg-page/70 p-4">
-                            <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
-                                {node.title}
-                            </p>
-                            <p className="mt-2 text-sm leading-relaxed text-muted">
-                                {node.body}
-                            </p>
+                        <div className="rounded-md border border-cyan-500/30 bg-page p-4">
+                            <MetaLabel className="text-cyan-800 dark:text-cyan-300">{node.title}</MetaLabel>
+                            <p className="mt-2 text-sm leading-relaxed text-muted">{node.body}</p>
                         </div>
                         {index < nodes.length - 1 && (
-                            <div className="flex items-center justify-center text-blue-600 dark:text-blue-400" aria-hidden="true">
+                            <div className="flex items-center justify-center text-cyan-600 dark:text-cyan-300" aria-hidden="true">
                                 <ArrowRight className="hidden h-5 w-5 md:block" />
-                                <span className="h-6 border-l border-subtle md:hidden" />
+                                <span className="h-8 border-l border-cyan-500/40 md:hidden" />
                             </div>
                         )}
                     </Fragment>
@@ -828,7 +825,7 @@ function CaseSnapshot({
             </div>
             <div className="grid gap-4 md:grid-cols-2">
                 {items.map((item) => (
-                    <article key={item.label} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                    <article key={item.label} className="rounded-lg border border-subtle bg-card p-5">
                         <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                             {item.label}
                         </p>
@@ -864,7 +861,7 @@ function DiagramOverview({
             </div>
             <div className="grid gap-4 md:grid-cols-3">
                 {views.map((view, index) => (
-                    <div key={view} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                    <div key={view} className="rounded-lg border border-subtle bg-card p-5">
                         <div className="h-16 rounded-md border border-subtle bg-page p-3">
                             <span className="block h-2 w-8/12 rounded-full bg-blue-500/60" />
                             <div className="mt-4 grid grid-cols-3 gap-2">
@@ -905,6 +902,23 @@ function FeaturedProjectDetailLayout({
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
     const keyResult = localizedResults[config.keyResultIndex] ?? localizedResults[0];
+    const outcomeValue = localized(config.outcome);
+    const tocItems = useMemo(
+        () => [
+            { id: "overview", label: locale === "de" ? "Überblick" : "Overview" },
+            { id: "problem", label: locale === "de" ? "Problem" : "Problem" },
+            { id: "architecture", label: locale === "de" ? "Architektur" : "Architecture" },
+            { id: "technical-decisions", label: locale === "de" ? "Entscheidungen" : "Technical decisions" },
+            { id: "validation", label: locale === "de" ? "Validierung" : "Validation" },
+            { id: "results", label: locale === "de" ? "Ergebnisse" : "Results" },
+            { id: "stack", label: locale === "de" ? "Stack" : "Stack" },
+            { id: "artefacts", label: locale === "de" ? "Artefakte" : "Artefacts" },
+            { id: "next-step", label: locale === "de" ? "Nächster Schritt" : "Next step" },
+        ],
+        [locale]
+    );
+    const tocIds = useMemo(() => tocItems.map((item) => item.id), [tocItems]);
+    const activeSection = useActiveSection(tocIds);
     const architectureNodes = [
         {
             title: project.architectureLabels ? localized(project.architectureLabels.node) : copy.node,
@@ -922,7 +936,7 @@ function FeaturedProjectDetailLayout({
 
     return (
         <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
-            <article className="mx-auto max-w-6xl space-y-8 md:space-y-10">
+            <article className="mx-auto max-w-7xl space-y-8 md:space-y-10">
                 <Link
                     href="/projects"
                     className="inline-flex items-center text-muted transition-colors hover:text-blue-600 dark:hover:text-blue-400"
@@ -931,11 +945,11 @@ function FeaturedProjectDetailLayout({
                     {t("nav_projects")}
                 </Link>
 
-                <header className="grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+                <header id="overview" className="scroll-mt-28 grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
                     <div className="space-y-5">
                         <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-normal">
-                            <span className="rounded-full border border-blue-700/30 bg-blue-50 px-3 py-1 text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200">
-                                {localized(config.outcome)}
+                            <span className={`rounded-full border px-3 py-1 ${getOutcomeClassName(outcomeValue)}`}>
+                                {outcomeValue}
                             </span>
                             <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
                                 {project.year}
@@ -946,12 +960,8 @@ function FeaturedProjectDetailLayout({
                         </div>
 
                         <div className="space-y-3">
-                            <h1 className="max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal md:text-5xl">
-                                {localized(project.title)}
-                            </h1>
-                            <p className="max-w-3xl break-words text-lg leading-relaxed text-muted md:text-xl">
-                                {localized(project.oneLiner)}
-                            </p>
+                            <PageTitle className="md:text-5xl">{localized(project.title)}</PageTitle>
+                            <BodyLarge className="max-w-3xl text-muted">{localized(project.oneLiner)}</BodyLarge>
                             {config.limitation && (
                                 <p className="inline-flex rounded-md border border-amber-700/30 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950 dark:border-amber-400/40 dark:bg-amber-950/20 dark:text-amber-100">
                                     {localized(config.limitation)}
@@ -960,130 +970,126 @@ function FeaturedProjectDetailLayout({
                         </div>
                     </div>
 
-                    <aside className="grid gap-3 rounded-lg border border-subtle bg-card p-4 shadow-sm">
+                    <aside className="grid gap-3 rounded-lg border border-subtle bg-card p-4">
                         <FeaturedFact label={copy.role} value={localized(config.role)} />
-                        {keyResult && (
-                            <FeaturedFact label={labels.keyResult} value={keyResult} />
-                        )}
+                        {keyResult && <FeaturedFact label={labels.keyResult} value={keyResult} />}
                     </aside>
                 </header>
 
-                <FeaturedSection title={labels.problemConstraints}>
-                    <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-                        <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
-                            {localized(project.problem)}
-                        </p>
-                        <div className="grid gap-4">
-                            <FeaturedFact label={copy.security} value={localized(project.security)} />
-                            <FeaturedFact label={copy.reliability} value={localized(project.reliability)} />
-                        </div>
-                    </div>
-                </FeaturedSection>
+                <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
+                    <FeaturedTableOfContents activeId={activeSection} items={tocItems} />
 
-                <FeaturedSection title={labels.whatBuilt}>
-                    <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
-                        {localized(project.solution)}
-                    </p>
-                </FeaturedSection>
+                    <div className="min-w-0 space-y-10">
+                        <FeaturedSection id="problem" title={labels.problemConstraints}>
+                            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+                                <Body className="text-main">{localized(project.problem)}</Body>
+                                <div className="divide-y divide-subtle border-y border-subtle">
+                                    <InlineFact label={copy.security} value={localized(project.security)} />
+                                    <InlineFact label={copy.reliability} value={localized(project.reliability)} />
+                                </div>
+                            </div>
+                        </FeaturedSection>
 
-                <FeaturedSection title={copy.architecture}>
-                    <ArchitectureFlow caption={copy.architectureCaption} nodes={architectureNodes} />
-                    {project.diagrams && project.diagrams.length > 0 && (
-                        <FeaturedDiagramGallery copy={copy} diagrams={project.diagrams} locale={locale} projectTitle={project.title.en} />
-                    )}
-                </FeaturedSection>
+                        <FeaturedSection id="what-i-built" title={labels.whatBuilt}>
+                            <Body className="max-w-4xl text-main">{localized(project.solution)}</Body>
+                        </FeaturedSection>
 
-                <FeaturedSection title={copy.technicalDecisions}>
-                    <BulletList items={localizedFeatures.slice(0, 5)} />
-                </FeaturedSection>
+                        <FeaturedSection id="architecture" title={copy.architecture}>
+                            <ArchitectureFlow caption={copy.architectureCaption} nodes={architectureNodes} />
+                            {project.diagrams && project.diagrams.length > 0 && (
+                                <FeaturedDiagramGallery copy={copy} diagrams={project.diagrams} locale={locale} projectTitle={project.title.en} />
+                            )}
+                        </FeaturedSection>
 
-                <FeaturedSection title={labels.validation}>
-                    <BulletList items={localizedValidation} badge={localized(config.outcome)} />
-                    {project.images && project.images.length > 0 && (
-                        <div className="grid gap-4 md:grid-cols-2">
-                            {project.images.map((image, index) => (
-                                <figure key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2 shadow-sm">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={image}
-                                        alt={`${project.title.en} validation image ${index + 1}`}
-                                        className="h-auto w-full rounded-md"
-                                    />
-                                </figure>
-                            ))}
-                        </div>
-                    )}
-                </FeaturedSection>
+                        <FeaturedSection id="technical-decisions" title={copy.technicalDecisions}>
+                            <FlatList items={localizedFeatures.slice(0, 5)} />
+                        </FeaturedSection>
 
-                <FeaturedSection title={copy.results}>
-                    <BulletList items={localizedResults} />
-                </FeaturedSection>
-
-                <FeaturedSection title={labels.completeStack}>
-                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                        {config.stackGroups.map((group) => (
-                            <section key={group.label.en} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
-                                <h3 className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
-                                    {localized(group.label)}
-                                </h3>
-                                <div className="mt-4 flex flex-wrap gap-2">
-                                    {group.tech.map((tech) => (
-                                        <TechBadge key={tech} name={tech} />
+                        <FeaturedSection id="validation" title={labels.validation}>
+                            <ValidationList items={localizedValidation} />
+                            {project.images && project.images.length > 0 && (
+                                <div className="grid gap-4 md:grid-cols-2">
+                                    {project.images.map((image, index) => (
+                                        <figure key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2">
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                src={image}
+                                                alt={`${project.title.en} validation image ${index + 1}`}
+                                                className="h-auto w-full rounded-md"
+                                            />
+                                        </figure>
                                     ))}
                                 </div>
-                            </section>
-                        ))}
-                    </div>
-                </FeaturedSection>
+                            )}
+                        </FeaturedSection>
 
-                <FeaturedSection title={copy.artifacts}>
-                    <div className="flex flex-wrap gap-3">
-                        {githubLink && (
-                            <a
-                                href={githubLink.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center rounded-md bg-main px-4 py-2.5 font-medium text-page transition-opacity hover:opacity-90"
-                            >
-                                <Github className="mr-2 h-4 w-4" />
-                                {copy.githubLabel}
-                            </a>
-                        )}
-                        {externalLinks.map((link) => (
-                            <a
-                                key={link.url}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                            >
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                {link.label}
-                            </a>
-                        ))}
-                        {project.diagrams?.map((diagram) => (
-                            <a
-                                key={diagram.src}
-                                href={diagram.src}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                            >
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                {localized(diagram.title)}
-                            </a>
-                        ))}
-                    </div>
-                </FeaturedSection>
+                        <FeaturedSection id="results" title={copy.results}>
+                            <ResultGrid items={localizedResults} />
+                        </FeaturedSection>
 
-                <FeaturedSection title={labels.nextTechnicalStep}>
-                    <article className="rounded-lg border border-amber-700/30 bg-amber-50 p-5 shadow-sm dark:border-amber-400/40 dark:bg-amber-950/20">
-                        <p className="text-xs font-extrabold uppercase tracking-normal text-amber-900 dark:text-amber-200">
-                            {labels.plannedWork}
-                        </p>
-                        <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
-                    </article>
-                </FeaturedSection>
+                        <FeaturedSection id="stack" title={labels.completeStack}>
+                            <div className="divide-y divide-subtle border-y border-subtle">
+                                {config.stackGroups.map((group) => (
+                                    <section key={group.label.en} className="grid gap-3 py-4 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
+                                        <MetaLabel className="text-main">{localized(group.label)}</MetaLabel>
+                                        <div className="flex flex-wrap gap-2">
+                                            {group.tech.map((tech) => (
+                                                <TechBadge key={tech} name={tech} />
+                                            ))}
+                                        </div>
+                                    </section>
+                                ))}
+                            </div>
+                        </FeaturedSection>
+
+                        <FeaturedSection id="artefacts" title={copy.artifacts}>
+                            <div className="flex flex-wrap gap-3">
+                                {githubLink && (
+                                    <a
+                                        href={githubLink.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center rounded-md bg-blue-700 px-4 py-2.5 font-medium text-white transition-colors hover:bg-blue-800"
+                                    >
+                                        <Github className="mr-2 h-4 w-4" />
+                                        {copy.githubLabel}
+                                    </a>
+                                )}
+                                {externalLinks.map((link) => (
+                                    <a
+                                        key={link.url}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                    >
+                                        <ExternalLink className="mr-2 h-4 w-4" />
+                                        {link.label}
+                                    </a>
+                                ))}
+                                {project.diagrams?.map((diagram) => (
+                                    <a
+                                        key={diagram.src}
+                                        href={diagram.src}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                    >
+                                        <ExternalLink className="mr-2 h-4 w-4" />
+                                        {localized(diagram.title)}
+                                    </a>
+                                ))}
+                            </div>
+                        </FeaturedSection>
+
+                        <FeaturedSection id="next-step" title={labels.nextTechnicalStep}>
+                            <article className="rounded-lg border border-amber-700/30 bg-amber-50 p-5 dark:border-amber-400/40 dark:bg-amber-950/20">
+                                <MetaLabel className="text-amber-900 dark:text-amber-200">{labels.plannedWork}</MetaLabel>
+                                <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
+                            </article>
+                        </FeaturedSection>
+                    </div>
+                </div>
             </article>
         </main>
     );
@@ -1091,37 +1097,160 @@ function FeaturedProjectDetailLayout({
 
 function FeaturedFact({ label, value }: { label: string; value: string }) {
     return (
-        <article className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
-            <p className="text-xs font-extrabold uppercase tracking-normal text-muted">{label}</p>
+        <article className="rounded-lg border border-subtle bg-card p-4">
+            <MetaLabel>{label}</MetaLabel>
             <p className="mt-2 text-sm leading-relaxed text-main">{value}</p>
         </article>
     );
 }
 
-function FeaturedSection({ title, children }: { title: string; children: ReactNode }) {
+function InlineFact({ label, value }: { label: string; value: string }) {
     return (
-        <section className="space-y-4">
-            <h2 className="border-l-2 border-blue-700 pl-3 text-2xl font-semibold tracking-normal">{title}</h2>
+        <div className="py-4">
+            <MetaLabel>{label}</MetaLabel>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{value}</p>
+        </div>
+    );
+}
+
+function FeaturedSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+    return (
+        <section id={id} className="scroll-mt-28 space-y-4">
+            <SectionTitle className="border-l-2 border-blue-700 pl-3">{title}</SectionTitle>
             {children}
         </section>
     );
 }
 
-function BulletList({ badge, items }: { badge?: string; items: string[] }) {
+function FlatList({ items }: { items: string[] }) {
     return (
-        <ul className="grid gap-3 md:grid-cols-2">
+        <ul className="divide-y divide-subtle border-y border-subtle">
             {items.map((item) => (
-                <li key={item} className="rounded-lg border border-subtle bg-card p-4 text-sm leading-relaxed text-main shadow-sm">
-                    {badge && (
-                        <span className="mb-2 inline-flex rounded-full border border-blue-700/30 bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200">
-                            {badge}
-                        </span>
-                    )}
-                    <span className="block">{item}</span>
+                <li key={item} className="py-3 text-sm leading-relaxed text-main">
+                    {item}
                 </li>
             ))}
         </ul>
     );
+}
+
+function ValidationList({ items }: { items: string[] }) {
+    return (
+        <ul className="divide-y divide-subtle border-y border-subtle">
+            {items.map((item) => (
+                <li key={item} className="flex gap-3 py-3 text-sm leading-relaxed text-main">
+                    <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                    <span>{item}</span>
+                </li>
+            ))}
+        </ul>
+    );
+}
+
+function ResultGrid({ items }: { items: string[] }) {
+    return (
+        <div className="grid gap-4 md:grid-cols-2">
+            {items.map((item) => {
+                const metric = item.match(/(?:\d+[.,]?\d* ?%|ca\. ?\d+ ?ms|about ?\d+ ?ms|\d+ ?FPS|\d+ ?GB|\d+ ?GiB)/iu)?.[0];
+
+                return (
+                    <article key={item} className="border-l-2 border-emerald-500 bg-card/40 py-1 pl-4">
+                        {metric && <p className="text-2xl font-extrabold tracking-tight text-main">{metric}</p>}
+                        <p className="mt-1 text-sm leading-relaxed text-muted">{item}</p>
+                    </article>
+                );
+            })}
+        </div>
+    );
+}
+
+function getOutcomeClassName(outcome: string) {
+    const normalized = outcome.toLowerCase();
+    if (normalized.includes("live") || normalized.includes("betrieb")) {
+        return "border-emerald-700/30 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-950/30 dark:text-emerald-200";
+    }
+
+    return "border-amber-700/30 bg-amber-50 text-amber-950 dark:border-amber-400/40 dark:bg-amber-950/20 dark:text-amber-100";
+}
+
+function FeaturedTableOfContents({
+    activeId,
+    items,
+}: {
+    activeId: string;
+    items: { id: string; label: string }[];
+}) {
+    const jumpTo = (id: string) => {
+        document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
+        window.history.replaceState(null, "", `#${id}`);
+    };
+
+    return (
+        <nav className="lg:sticky lg:top-24" aria-label="Project sections">
+            <select
+                value={activeId}
+                onChange={(event) => jumpTo(event.target.value)}
+                className="w-full rounded-md border border-subtle bg-card px-3 py-2 text-sm text-main focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
+                aria-label="Project section"
+            >
+                {items.map((item) => (
+                    <option key={item.id} value={item.id}>
+                        {item.label}
+                    </option>
+                ))}
+            </select>
+            <div className="hidden border-l border-subtle pl-4 lg:block">
+                <MetaLabel className="mb-3">{activeId === "overview" ? "Sections" : "On this page"}</MetaLabel>
+                <div className="grid gap-1">
+                    {items.map((item) => (
+                        <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => jumpTo(item.id)}
+                            className={[
+                                "rounded-md px-2 py-1.5 text-left text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500",
+                                activeId === item.id
+                                    ? "bg-blue-50 font-semibold text-blue-800 dark:bg-blue-950/40 dark:text-blue-200"
+                                    : "text-muted hover:bg-card hover:text-main",
+                            ].join(" ")}
+                        >
+                            {item.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </nav>
+    );
+}
+
+function useActiveSection(sectionIds: string[]) {
+    const [activeId, setActiveId] = useState(sectionIds[0] ?? "");
+
+    useEffect(() => {
+        if (!sectionIds.length) return undefined;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+                if (visible?.target.id) {
+                    setActiveId(visible.target.id);
+                }
+            },
+            { rootMargin: "-20% 0px -65% 0px", threshold: [0.1, 0.25, 0.5] }
+        );
+
+        sectionIds.forEach((id) => {
+            const element = document.getElementById(id);
+            if (element) observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, [sectionIds]);
+
+    return activeId;
 }
 
 function FeaturedDiagramGallery({
@@ -1143,45 +1272,50 @@ function FeaturedDiagramGallery({
                 const summary = diagram.summary ? localized(diagram.summary) : [];
 
                 return (
-                    <figure key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card shadow-sm">
-                        <div className="flex flex-col gap-3 border-b border-subtle p-4 md:flex-row md:items-start md:justify-between">
-                            <figcaption className="max-w-3xl space-y-1">
-                                <p className="text-base font-semibold text-main">{localized(diagram.title)}</p>
-                                <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
-                            </figcaption>
+                    <details key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card" open>
+                        <summary className="cursor-pointer list-none border-b border-subtle p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
+                            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                                <div className="max-w-3xl space-y-1">
+                                    <CardTitle className="text-base">{localized(diagram.title)}</CardTitle>
+                                    <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                                </div>
+                                <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
+                                    {copy.openDiagram}
+                                </span>
+                            </div>
+                        </summary>
+                        <figure>
+                            <div className="bg-white p-3">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={diagram.src}
+                                    alt={`${localized(diagram.title)} diagram for ${projectTitle}`}
+                                    className="h-auto w-full rounded-md"
+                                />
+                            </div>
                             <a
                                 href={diagram.src}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex shrink-0 items-center self-start whitespace-nowrap rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                className="mx-4 mb-4 inline-flex items-center rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
                             >
                                 <ExternalLink className="mr-2 h-4 w-4" />
-                                {copy.openDiagram}
+                                {localized(diagram.title)}
                             </a>
-                        </div>
-                        <div className="bg-white p-3">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src={diagram.src}
-                                alt={`${localized(diagram.title)} diagram for ${projectTitle}`}
-                                className="h-auto w-full rounded-md"
-                            />
-                        </div>
-                        {summary.length > 0 && (
-                            <div className="border-t border-subtle p-4">
-                                <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
-                                    {copy.diagramReviewFocus}
-                                </p>
-                                <ul className="mt-3 grid gap-3 md:grid-cols-3">
-                                    {summary.map((item) => (
-                                        <li key={item} className="border-l-2 border-blue-500 pl-3 text-sm leading-relaxed text-muted">
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </figure>
+                            {summary.length > 0 && (
+                                <div className="border-t border-subtle p-4">
+                                    <MetaLabel className="text-main">{copy.diagramReviewFocus}</MetaLabel>
+                                    <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                                        {summary.map((item) => (
+                                            <li key={item} className="border-l-2 border-cyan-500 pl-3 text-sm leading-relaxed text-muted">
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </figure>
+                    </details>
                 );
             })}
         </div>
@@ -1245,7 +1379,7 @@ function getFutureItems(locale: Locale, hasDiagrams: boolean) {
 
 function ArchitectureCard({ title, body }: { title: string; body: string }) {
     return (
-        <div className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+        <div className="rounded-lg border border-subtle bg-card p-5">
             <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                 {title}
             </p>
@@ -1256,7 +1390,7 @@ function ArchitectureCard({ title, body }: { title: string; body: string }) {
 
 function ListCard({ title, items }: { title: string; items: string[] }) {
     return (
-        <section className="rounded-lg border border-subtle bg-card p-6 shadow-sm">
+        <section className="rounded-lg border border-subtle bg-card p-6">
             <div className="mb-4 flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                 <h2 className="text-xl font-semibold tracking-normal">{title}</h2>

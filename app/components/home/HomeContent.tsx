@@ -9,7 +9,6 @@ import {
   ExternalLink,
   FileText,
   Github,
-  Languages,
   Mail,
   Server,
   SquareTerminal,
@@ -18,6 +17,7 @@ import {
 } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { TechBadge } from "@/app/components/ui/TechBadge";
+import { BodyLarge, CardTitle, Eyebrow, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import type { Locale } from "@/app/i18n/messages";
 import { projects, type Project } from "@/app/lib/projects";
 import { profile } from "@/app/lib/profile";
@@ -32,7 +32,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
+const TECH_CHIPS = ["TypeScript", "Python", "Docker", "Linux", "GitHub Actions"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -74,8 +74,7 @@ const HOME_COPY: Localized<{
     heroKicker: "Portfolio aus Wien - Software, Automatisierung und Infrastruktur",
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
-    heroSupportingLine:
-      "Das Portfolio zeigt technische Arbeit mit nachvollziehbaren Delivery-Pfaden, klarer Dokumentation, privaten Betriebsumgebungen und reproduzierbaren Daten-Workflows.",
+    heroSupportingLine: "Ich verbinde Software, Automatisierung und Infrastruktur so, dass Systeme verständlich bleiben, sauber laufen und gut übergeben werden können.",
     proofItems: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: "Freier Zugang in AT" },
@@ -83,12 +82,12 @@ const HOME_COPY: Localized<{
       { label: "Englisch", value: "C1" },
     ],
     profilePanel: {
-      label: "Arbeitsprofil",
-      title: "Praktische Systeme mit klarem Betriebspfad",
+      label: "Mohamed Elkaza",
+      title: profile.location.de,
       lines: [
-        "Web- und Daten-Workflows",
-        "Linux, Docker, Monitoring und Backups",
-        "IoT, Edge AI und technische Dokumentation",
+        "Application Engineering",
+        "Automation & Data",
+        "Infrastructure & IoT",
       ],
       languagesLabel: "Arbeitssprachen",
       languages: [
@@ -119,8 +118,7 @@ const HOME_COPY: Localized<{
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
-    heroSupportingLine:
-      "This portfolio shows technical work with traceable delivery paths, clear documentation, private operations environments and reproducible data workflows.",
+    heroSupportingLine: "I connect software, automation and infrastructure so systems stay understandable, reliable and easy to hand over.",
     proofItems: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: "Free access in AT" },
@@ -128,12 +126,12 @@ const HOME_COPY: Localized<{
       { label: "English", value: "C1" },
     ],
     profilePanel: {
-      label: "Working profile",
-      title: "Practical systems with a clear operations path",
+      label: "Mohamed Elkaza",
+      title: profile.location.en,
       lines: [
-        "Web and data workflows",
-        "Linux, Docker, monitoring and backups",
-        "IoT, Edge AI and technical documentation",
+        "Application Engineering",
+        "Automation & Data",
+        "Infrastructure & IoT",
       ],
       languagesLabel: "Working languages",
       languages: [
@@ -393,36 +391,25 @@ export default function HomeContent() {
 
   return (
     <main className="mx-auto flex w-full max-w-6xl min-w-0 flex-col overflow-hidden px-5 py-10 text-main sm:px-6 md:py-14">
-      <section className="grid gap-10 border-b border-subtle pb-10 md:pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:items-center">
+      <section className="grid gap-10 border-b border-subtle pb-10 md:pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.75fr)] lg:items-center">
         <div className="space-y-7">
           <div className="space-y-5">
-            <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
-              {copy.heroKicker}
-            </p>
-            <h1 className="max-w-4xl break-words !text-3xl font-extrabold leading-tight tracking-normal text-main sm:!text-4xl md:!text-6xl">
-              {copy.heroTitle}
-            </h1>
-            <p className="max-w-3xl break-words text-base font-semibold text-secondary sm:text-lg md:text-xl">
-              {copy.heroSubheadline}
-            </p>
-            <p className="max-w-2xl break-words text-base leading-relaxed text-muted md:text-lg">
-              {copy.heroSupportingLine}
-            </p>
+            <Eyebrow>{copy.heroKicker}</Eyebrow>
+            <PageTitle>{copy.heroTitle}</PageTitle>
+            <div className="max-w-3xl space-y-2">
+              <BodyLarge className="font-semibold text-secondary">{copy.heroSubheadline}</BodyLarge>
+              <BodyLarge className="text-muted">{copy.heroSupportingLine}</BodyLarge>
+            </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-4">
-            {copy.proofItems.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-lg border border-subtle bg-card px-4 py-3 shadow-sm"
-              >
-                <p className="text-xs font-extrabold uppercase tracking-normal text-muted">
-                  {item.label}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-main">
-                  {item.value}
-                </p>
-              </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-subtle py-3 text-sm font-semibold text-secondary">
+            {copy.proofItems.map((item, index) => (
+              <span key={item.label} className="inline-flex items-center gap-2">
+                <span>{item.value}</span>
+                {index < copy.proofItems.length - 1 && (
+                  <span className="h-1 w-1 rounded-full bg-cyan-500" aria-hidden="true" />
+                )}
+              </span>
             ))}
           </div>
 
@@ -431,7 +418,7 @@ export default function HomeContent() {
               <TechBadge
                 key={chip}
                 name={chip}
-                className="bg-card px-3 py-1.5 text-sm shadow-sm"
+                className="bg-card px-3 py-1.5 text-sm"
                 iconClassName="h-4 w-4"
               />
             ))}
@@ -440,24 +427,23 @@ export default function HomeContent() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/projects"
-              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
+              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               {copy.ctas.projects}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
-              href="/cv"
-              className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
-            >
-              <FileText className="mr-2 h-4 w-4" />
-              {copy.ctas.cv}
-            </Link>
-            <Link
               href="/contact"
-              className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+              className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
             >
               <Mail className="mr-2 h-4 w-4" />
               {copy.ctas.contact}
+            </Link>
+            <Link
+              href="/cv"
+              className="inline-flex items-center px-1 py-2.5 text-sm font-semibold text-muted underline-offset-4 transition-colors hover:text-blue-700 hover:underline dark:hover:text-blue-300"
+            >
+              {copy.ctas.cv}
             </Link>
           </div>
         </div>
@@ -468,13 +454,11 @@ export default function HomeContent() {
       <section className="mt-14 space-y-6" aria-labelledby="featured-work">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="space-y-2">
-            <h2 id="featured-work" className="!text-2xl font-semibold tracking-normal text-main">
-              {copy.featuredTitle}
-            </h2>
+            <SectionTitle id="featured-work">{copy.featuredTitle}</SectionTitle>
           </div>
           <Link
             href="/projects"
-            className="inline-flex items-center self-start rounded-md border border-subtle bg-card px-3.5 py-2 text-sm font-semibold text-main shadow-sm transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200 md:self-auto"
+              className="inline-flex items-center self-start rounded-md border border-subtle bg-card px-3.5 py-2 text-sm font-semibold text-main transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200 md:self-auto"
           >
             {copy.ctas.projects}
             <ArrowRight className="ml-1 h-4 w-4" />
@@ -495,25 +479,21 @@ export default function HomeContent() {
       </section>
 
       <section className="mt-16 space-y-6 border-y border-subtle py-10" aria-labelledby="work-on">
-        <h2 id="work-on" className="!text-2xl font-semibold tracking-normal text-main">
-          {copy.workTitle}
-        </h2>
+        <SectionTitle id="work-on">{copy.workTitle}</SectionTitle>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           {WORK_AREAS.map(({ title, bullets, Icon, tools }, index) => (
             <article
               key={title.en}
-              className={`flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500 ${
+              className={`flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4 ${
                 index < 3 ? "xl:col-span-2" : "xl:col-span-3"
               }`}
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
                   <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                 </span>
               </div>
-              <h3 className="mt-4 text-balance break-normal !text-lg font-semibold leading-tight tracking-normal text-main">
-                {title[locale]}
-              </h3>
+              <CardTitle className="mt-4">{title[locale]}</CardTitle>
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted">
                 {bullets[locale].map((bullet) => (
                   <li key={bullet} className="flex gap-2">
@@ -537,7 +517,7 @@ export default function HomeContent() {
         </div>
       </section>
 
-      <section className="mt-16 rounded-lg border border-blue-200/70 bg-blue-50/70 p-6 shadow-sm dark:border-blue-900/70 dark:bg-blue-950/20 md:p-8">
+      <section className="mt-16 rounded-lg border border-blue-200/70 bg-blue-50/70 p-6 dark:border-blue-900/70 dark:bg-blue-950/20 md:p-8">
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <p className="max-w-2xl text-xl font-semibold leading-snug text-main">
             {copy.finalCta}
@@ -545,14 +525,14 @@ export default function HomeContent() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
+              className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               <Mail className="mr-2 h-4 w-4" />
               {copy.ctas.contact}
             </Link>
             <Link
               href="/cv"
-              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main transition-colors hover:bg-subtle"
             >
               <FileText className="mr-2 h-4 w-4" />
               {copy.ctas.cv}
@@ -561,7 +541,7 @@ export default function HomeContent() {
               href={profile.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main shadow-sm transition-colors hover:bg-subtle"
+              className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main transition-colors hover:bg-subtle"
             >
               <Github className="mr-2 h-4 w-4" />
               GitHub
@@ -579,7 +559,7 @@ function HeroProfilePanel({
   copy: (typeof HOME_COPY)["en"]["profilePanel"];
 }) {
   return (
-    <aside className="min-w-0 rounded-lg border border-subtle bg-card p-4 shadow-sm lg:p-5">
+    <aside className="min-w-0 rounded-lg border border-subtle bg-card p-4 lg:p-5">
       <div className="grid gap-4 sm:grid-cols-[160px_1fr] lg:grid-cols-1">
         <div className="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-lg border border-subtle bg-slate-100 dark:bg-slate-900">
           <Image
@@ -593,36 +573,16 @@ function HeroProfilePanel({
         </div>
 
         <div className="flex min-w-0 flex-col justify-center">
-          <p className="text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
-            {copy.label}
-          </p>
-          <h2 className="mt-2 !text-xl font-semibold leading-tight tracking-normal text-main">
-            {copy.title}
-          </h2>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
+          <CardTitle>{copy.label}</CardTitle>
+          <p className="mt-1 text-sm font-medium text-muted">{copy.title}</p>
+          <ul className="mt-5 divide-y divide-subtle border-y border-subtle text-sm leading-relaxed text-muted">
             {copy.lines.map((line) => (
-              <li key={line} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-700 dark:bg-blue-300" />
+              <li key={line} className="flex gap-2 py-2.5">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
                 <span>{line}</span>
               </li>
             ))}
           </ul>
-          <div className="mt-5 rounded-md border border-subtle bg-page p-3">
-            <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-normal text-main">
-              <Languages className="h-4 w-4 text-blue-700 dark:text-blue-300" aria-hidden="true" />
-              {copy.languagesLabel}
-            </div>
-            <div className="mt-3 grid gap-2">
-              {copy.languages.map((language) => (
-                <div key={language.name} className="flex items-center justify-between gap-3 text-sm">
-                  <span className="font-medium text-main">{language.name}</span>
-                  <span className="rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold text-muted">
-                    {language.level}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </aside>
@@ -653,19 +613,15 @@ function FeaturedProjectCard({
       />
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="break-words !text-xl font-semibold tracking-normal text-main">
-          {projectCopy.title[locale]}
-        </h3>
-        <div className="mt-4 space-y-3 text-sm leading-relaxed">
+        <CardTitle className="text-xl">{projectCopy.title[locale]}</CardTitle>
+        <div className="mt-4 divide-y divide-subtle border-y border-subtle text-sm leading-relaxed">
           {[
             [copy.cardLabels.problem, projectCopy.problem[locale]],
             [copy.cardLabels.responsibility, projectCopy.responsibility[locale]],
             [copy.cardLabels.result, projectCopy.result[locale]],
           ].map(([label, value]) => (
-            <div key={label} className="rounded-md border border-subtle bg-page/70 p-3">
-              <p className="text-[11px] font-extrabold uppercase tracking-normal text-main">
-                {label}
-              </p>
+            <div key={label} className="py-3">
+              <MetaLabel>{label}</MetaLabel>
               <p className="mt-1 text-muted">{value}</p>
             </div>
           ))}
@@ -726,7 +682,7 @@ function ProjectVisual({
   if (!src) {
     return (
       <div className="h-44 w-full min-w-0 border-b border-subtle bg-page p-4" aria-label={label}>
-        <div className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
+        <div className="rounded-lg border border-subtle bg-card p-4">
           <div className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
             <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />

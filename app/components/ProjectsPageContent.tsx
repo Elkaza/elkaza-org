@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
+import { BodyLarge, CardTitle, Eyebrow, MetaLabel, PageTitle, SectionTitle } from "./ui/Typography";
 import { projects, type Project } from "../lib/projects";
 import type { Locale } from "../i18n/messages";
 import type { ProjectStatus } from "../lib/projects";
@@ -212,7 +213,7 @@ const COPY: Record<Locale, Copy> = {
             { label: "Proof", value: "Code, diagrams, results" },
             { label: "Delivery", value: "Builds and deployments" },
         ],
-        featuredTitle: "Key Results",
+        featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         caseStudy: "Case Study",
         github: "GitHub",
@@ -242,7 +243,7 @@ const COPY: Record<Locale, Copy> = {
             { label: "Nachweis", value: "Code, Diagramme, Ergebnisse" },
             { label: "Delivery", value: "Builds und Deployments" },
         ],
-        featuredTitle: "Stärkste Nachweise",
+        featuredTitle: "Ausgewählte Fallstudien",
         browseTitle: "Weitere Projekte",
         caseStudy: "Fallstudie",
         github: "GitHub",
@@ -340,32 +341,24 @@ export default function ProjectsPageContent() {
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
             <div className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-8 sm:px-6 md:py-14">
-                <section className="grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+                <section className="border-b border-subtle pb-8">
                     <div>
-                        <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
-                            {locale === "de" ? "Projektportfolio" : "Project portfolio"}
-                        </p>
-                        <h1 className="mt-4 max-w-3xl break-words text-4xl font-extrabold tracking-normal md:text-5xl">
-                            {copy.title}
-                        </h1>
-                        <p className="mt-4 max-w-2xl break-words text-lg leading-relaxed text-muted">
-                            {copy.subtitle}
-                        </p>
+                        <Eyebrow>{locale === "de" ? "Projektportfolio" : "Project portfolio"}</Eyebrow>
+                        <PageTitle className="mt-4 md:text-5xl">{copy.title}</PageTitle>
+                        <BodyLarge className="mt-4 max-w-2xl text-muted">{copy.subtitle}</BodyLarge>
                         <div className="mt-6 flex flex-wrap gap-2">
                             {copy.roleChips.map((chip) => (
-                                <span key={chip} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main shadow-sm">
+                                <span key={chip} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main">
                                     {chip}
                                 </span>
                             ))}
                         </div>
                     </div>
 
-                    <div className="grid gap-3 rounded-xl border border-subtle bg-card p-4 shadow-sm">
+                    <div className="mt-8 grid gap-4 border-y border-subtle py-4 sm:grid-cols-3">
                         {copy.proofStats.map((stat) => (
-                            <div key={stat.label} className="rounded-lg border border-subtle bg-page/70 px-4 py-3">
-                                <p className="text-xs font-extrabold uppercase tracking-normal text-muted">
-                                    {stat.label}
-                                </p>
+                            <div key={stat.label} className="min-w-0 sm:border-l sm:border-subtle sm:pl-4 first:sm:border-l-0 first:sm:pl-0">
+                                <MetaLabel>{stat.label}</MetaLabel>
                                 <p className="mt-1 text-sm font-semibold text-main">
                                     {stat.value}
                                 </p>
@@ -376,7 +369,7 @@ export default function ProjectsPageContent() {
 
                 <section className="py-8 md:py-10">
                     <div className="mb-6 flex items-end justify-between gap-4">
-                        <h2 className="text-2xl font-semibold tracking-normal">{copy.featuredTitle}</h2>
+                        <SectionTitle>{copy.featuredTitle}</SectionTitle>
                     </div>
                     <div className="grid gap-4 md:gap-5 lg:grid-cols-3">
                         {featuredProjects.map((project) => (
@@ -391,9 +384,9 @@ export default function ProjectsPageContent() {
                 </section>
 
                 <section className="border-t border-subtle pt-8">
-                    <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                        <h2 className="text-2xl font-semibold tracking-normal">{copy.browseTitle}</h2>
-                        <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label={copy.browseTitle}>
+                    <div className="mb-6 flex flex-col gap-4 lg:sticky lg:top-20 lg:z-30 lg:-mx-2 lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-subtle lg:bg-page/95 lg:px-2 lg:py-3 lg:backdrop-blur">
+                        <SectionTitle>{copy.browseTitle}</SectionTitle>
+                        <div className="flex gap-2 overflow-x-auto pb-1 lg:pb-0" role="tablist" aria-label={copy.browseTitle}>
                             {DOMAIN_ORDER.map((domain) => (
                                 <button
                                     key={domain}
@@ -402,10 +395,10 @@ export default function ProjectsPageContent() {
                                     onClick={() => setActiveDomain(domain)}
                                     aria-selected={activeDomain === domain}
                                     className={[
-                                        "shrink-0 whitespace-nowrap rounded-md border px-3 py-2 text-sm font-medium shadow-sm transition-all duration-200",
+                                        "shrink-0 whitespace-nowrap rounded-md border px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
                                         activeDomain === domain
                                             ? "border-blue-600 bg-blue-600 text-white"
-                                            : "border-subtle bg-card text-main hover:-translate-y-0.5 hover:border-blue-400",
+                                            : "border-subtle bg-card text-main hover:border-blue-400",
                                     ].join(" ")}
                                 >
                                     <span>{copy.domains[domain]}</span>
@@ -456,7 +449,7 @@ function FeaturedProjectCard({
             <ProjectVisual project={project} featured />
             <div className="flex flex-1 flex-col p-5">
                 <ProjectMeta copy={copy} project={project} />
-                <h3 className="break-words text-xl font-semibold tracking-normal">{getShortTitle(project, locale)}</h3>
+                <CardTitle className="text-xl">{getShortTitle(project, locale)}</CardTitle>
                 <p className="mt-3 break-words text-sm leading-relaxed text-muted">
                     {FEATURED_SUMMARIES[project.slug]?.[locale] ?? compactText(project.oneLiner[locale], 145)}
                 </p>
@@ -533,7 +526,7 @@ function CompactProjectCard({
             <ProjectVisual project={project} />
             <div className="flex flex-1 flex-col p-4">
                 <ProjectMeta copy={copy} project={project} compact />
-                <h3 className="break-words text-base font-semibold tracking-normal">{getShortTitle(project, locale)}</h3>
+                <CardTitle className="text-base">{getShortTitle(project, locale)}</CardTitle>
                 <p className="mt-2 break-words text-sm leading-relaxed text-muted sm:min-h-[3rem]">
                     {getCardSummary(project, locale)}
                 </p>
@@ -624,7 +617,7 @@ function ProjectVisual({
         ].join(" ")}
             aria-label={`${project.title.en} visual`}
         >
-            <div className="h-full rounded-lg border border-subtle bg-card p-3 shadow-sm">
+            <div className="h-full rounded-lg border border-subtle bg-card p-3">
                 <div className="flex items-center gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-red-400" />
                     <span className="h-2 w-2 rounded-full bg-amber-400" />
