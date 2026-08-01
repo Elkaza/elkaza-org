@@ -209,15 +209,15 @@ const COPY: Record<Locale, Copy> = {
         roleChips: ["Implemented", "Documented", "Deployed", "Observable", "GitHub-backed"],
         proofStats: [
             { label: "Project types", value: "Web, IoT, Infra, Data" },
-            { label: "Evidence", value: "Code, diagrams, results" },
+            { label: "Proof", value: "Code, diagrams, results" },
             { label: "Delivery", value: "Builds and deployments" },
         ],
-        featuredTitle: "Strongest Evidence",
+        featuredTitle: "Key Results",
         browseTitle: "More Projects",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
-        result: "Evidence",
+        result: "Proof",
         tech: "Tech",
         year: "Year",
         status: {
@@ -269,7 +269,7 @@ const COPY: Record<Locale, Copy> = {
         roleChips: ["Fullstack", "Application Engineering", "IoT / Edge AI", "Platform Engineering", "Data Automation"],
         proofStats: [
             { label: "Project types", value: "Web, IoT, Infra, Data" },
-            { label: "Evidence", value: "Code, diagrams, results" },
+            { label: "Proof", value: "Code, diagrams, results" },
             { label: "Delivery", value: "Builds and deployments" },
         ],
         featuredTitle: "Featured Case Studies",

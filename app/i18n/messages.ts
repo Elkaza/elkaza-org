@@ -1,4 +1,4 @@
-﻿export type Locale = "de" | "en" | "ar";
+export type Locale = "de" | "en" | "ar";
 
 export const MESSAGES: Record<Locale, Record<string, string>> = {
   de: {
@@ -149,8 +149,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Home - Currently
     current_title: "Aktuell",
-    current_item1: "EdgeGuardian: lokale Edge-AI-Sicherheitszone mit Raspberry Pi 5, Hailo-8L, Kamera, Hokuyo LiDAR, ESP32, Dashboard und Evidenzlogs.",
-    current_item2: "TinyML Vibration Anomaly Detection: Softmax-Inferenz auf Arduino Nano 33 BLE Sense Rev2 mit IMU-Features, C++-Export und Live-Serial-Monitor-Evidenz.",
+    current_item1: "EdgeGuardian: lokale Edge-AI-Sicherheitszone mit Raspberry Pi 5, Hailo-8L, Kamera, Hokuyo LiDAR, ESP32, Dashboard und CSV-Logs.",
+    current_item2: "TinyML Vibration Anomaly Detection: Softmax-Inferenz auf Arduino Nano 33 BLE Sense Rev2 mit IMU-Features, C++-Export und Live-Serial-Monitor-Ausgabe.",
     current_item3: "Enterprise Self-Hosted Infrastructure: privacy-first Plausible Analytics, Tailscale-Ingress, GitHub Actions, Docker Compose und Dump-and-Pack-Backups.",
     current_item4: "Data & Machine Learning: statisches Österreich-Tourismus-Dashboard, KMeans-Clustering-Report und Random-Walk-Gravity-Regression mit scikit-learn.",
     open_to_title: "Offen für",
@@ -626,7 +626,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     case_lab_title: "The Vienna Fortress",
     case_lab_problem: "A tool-by-tool private infrastructure lab became harder to monitor, secure, and maintain as the service stack grew.",
     case_lab_action: "Built a Proxmox and Docker platform around Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage, and stabilized a Proxmox API integration for a React-based dashboard.",
-    case_lab_result: "Created a more production-minded internal platform with clearer operating paths, centralized visibility, and reduced exposure.",
+    case_lab_result: "Created a clearer internal platform with structured operating paths, centralized visibility, and reduced exposure.",
     case_lab_safe: "No sensitive configs published.",
 
 

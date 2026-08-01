@@ -1,4 +1,4 @@
-﻿import { Locale } from "../i18n/messages";
+import { Locale } from "../i18n/messages";
 
 type LocalizedString = Record<Locale, string>;
 type LocalizedList = Record<Locale, string[]>;
@@ -62,12 +62,12 @@ export const projects: Project[] = [
             "EdgeGuardian: Edge-AI-Sicherheitszone für Maschinenüberwachung"
         ),
         oneLiner: loc(
-            "Built a Raspberry Pi 5 and Hailo-8L edge AI prototype that fuses camera-based person detection with Hokuyo LiDAR distance sensing to classify SAFE, WARNING, and ALERT states locally.",
-            "Entwickelt einen Raspberry-Pi-5- und Hailo-8L-Edge-AI-Prototyp, der kamerabasierte Personenerkennung mit Hokuyo-LiDAR-Distanzmessung kombiniert und lokal SAFE-, WARNING- und ALERT-Zustände entscheidet."
+            "EdgeGuardian is a local monitoring prototype that combines camera-based person detection with LiDAR distance measurements and classifies the current state as SAFE, WARNING or ALERT.",
+            "EdgeGuardian ist ein lokaler Monitoring-Prototyp, der kamerabasierte Personenerkennung mit LiDAR-Distanzmessungen kombiniert und den aktuellen Zustand als SAFE, WARNING oder ALERT klassifiziert."
         ),
         overview: loc(
-            "EdgeGuardian turns a desk into a representative machine danger zone and creates a local AI safety bubble around it. The system combines Hailo-accelerated YOLO person detection, LiDAR distance confirmation, Raspberry Pi sensor fusion, ESP32 serial actuation, a browser dashboard, Telegram alert handling, and CSV evidence logs.",
-            "EdgeGuardian nutzt einen Schreibtisch als repräsentative Maschinen-Gefahrenzone und erzeugt darum eine lokale AI-Sicherheitszone. Das System kombiniert Hailo-beschleunigte YOLO-Personenerkennung, LiDAR-Distanzbestätigung, Raspberry-Pi-Sensorfusion, ESP32-Serial-Aktuatorik, Browser-Dashboard, Telegram-Alerting und CSV-Evidenzlogs."
+            "EdgeGuardian turns a desk into a representative machine danger zone and creates a local AI safety bubble around it. The system combines Hailo-accelerated YOLO person detection, LiDAR distance confirmation, Raspberry Pi sensor fusion, ESP32 serial actuation, a browser dashboard, Telegram alert handling, and CSV logs.",
+            "EdgeGuardian nutzt einen Schreibtisch als repräsentative Maschinen-Gefahrenzone und erzeugt darum eine lokale AI-Sicherheitszone. Das System kombiniert Hailo-beschleunigte YOLO-Personenerkennung, LiDAR-Distanzbestätigung, Raspberry-Pi-Sensorfusion, ESP32-Serial-Aktuatorik, Browser-Dashboard, Telegram-Alerting und CSV-Logs."
         ),
         problem: loc(
             "Machine areas become dangerous when a person enters the operating zone of moving parts. A cloud-only camera pipeline would add latency, privacy concerns, and network dependency, while camera-only detection cannot reliably confirm physical distance.",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
         architectureLabels: {
             node: loc("Sensing and actuation", "Sensorik und Aktuatorik"),
             edge: loc("Edge fusion", "Edge-Fusion"),
-            cloud: loc("Evidence outputs", "Evidenz-Ausgaben"),
+            cloud: loc("Logs and outputs", "Ausgaben und Protokolle"),
         },
         architecture: {
             node: loc(
@@ -92,8 +92,8 @@ export const projects: Project[] = [
                 "Der Raspberry Pi 5 führt die Fusion aus, verarbeitet Hailo-Erkennungsdaten, liest LiDAR-Distanzen, wendet SAFE/WARNING/ALERT-Schwellen an und protokolliert jede Entscheidung."
             ),
             cloud: loc(
-                "The system stays local for safety decisions while exposing evidence through a browser dashboard, optional Telegram module, terminal output, and final CSV logs.",
-                "Die Sicherheitsentscheidung bleibt lokal; Evidenz wird über Browser-Dashboard, optionales Telegram-Modul, Terminalausgabe und finale CSV-Logs sichtbar gemacht."
+                "The system stays local for safety decisions while showing the current state through a browser dashboard, optional Telegram module, terminal output, and final CSV logs.",
+                "Die Sicherheitsentscheidung bleibt lokal; der aktuelle Zustand wird über Browser-Dashboard, optionales Telegram-Modul, Terminalausgabe und finale CSV-Logs sichtbar gemacht."
             ),
         },
         security: loc(
@@ -111,7 +111,7 @@ export const projects: Project[] = [
                 "SAFE/WARNING/ALERT state machine with hysteresis and stale-data checks",
                 "ESP32-S3 serial command proof for actuator integration",
                 "Dark browser dashboard reading live CSV logs with last update age and event table",
-                "Final evidence package with Hailo, LiDAR, fusion, dashboard, ESP32, and Telegram logs",
+                "Final logs and outputs with Hailo, LiDAR, fusion, dashboard, ESP32, and Telegram traces",
             ],
             [
                 "Hailo-8L-beschleunigte YOLO-Personenerkennung auf Raspberry Pi 5",
@@ -119,21 +119,21 @@ export const projects: Project[] = [
                 "SAFE/WARNING/ALERT-State-Machine mit Hysterese und Stale-Data-Prüfung",
                 "ESP32-S3-Serial-Kommandos als Aktuatornachweis",
                 "Dark-Mode-Browser-Dashboard mit Live-CSV-Logs, Update-Alter und Event-Tabelle",
-                "Finales Evidenzpaket mit Hailo-, LiDAR-, Fusion-, Dashboard-, ESP32- und Telegram-Logs",
+                "Finale Ausgaben und Protokolle mit Hailo-, LiDAR-, Fusion-, Dashboard-, ESP32- und Telegram-Traces",
             ]
         ),
         results: locList(
             [
                 "Demonstrated end-to-end local edge AI safety monitoring with camera, LiDAR, embedded actuation, dashboard, and logs",
-                "Demo evidence captured SAFE -> WARNING -> ALERT -> SAFE transitions at about 30 FPS",
-                "Real-mode evidence logged continuous Raspberry Pi decisions from hardware inputs",
-                "Made system behavior explainable through dashboard reason cards and reproducible CSV evidence",
+                "Demo captured SAFE -> WARNING -> ALERT -> SAFE transitions at about 30 FPS",
+                "Real-mode logs captured continuous Raspberry Pi decisions from hardware inputs",
+                "Dashboard reason cards and CSV logs made the state transitions traceable during the demo",
             ],
             [
                 "End-to-End lokale Edge-AI-Sicherheitsüberwachung mit Kamera, LiDAR, Embedded-Aktuatorik, Dashboard und Logs demonstriert",
-                "Demo-Evidenz mit SAFE -> WARNING -> ALERT -> SAFE-Übergängen bei etwa 30 FPS erfasst",
-                "Real-Mode-Evidenz mit kontinuierlichen Raspberry-Pi-Entscheidungen aus Hardware-Inputs protokolliert",
-                "Systemverhalten über Dashboard-Reason-Cards und reproduzierbare CSV-Evidenz nachvollziehbar gemacht",
+                "Demo mit SAFE -> WARNING -> ALERT -> SAFE-Übergängen bei etwa 30 FPS erfasst",
+                "Real-Mode-Logs mit kontinuierlichen Raspberry-Pi-Entscheidungen aus Hardware-Inputs protokolliert",
+                "Dashboard-Reason-Cards und CSV-Logs machten die Zustandswechsel während der Demo nachvollziehbar",
             ]
         ),
         tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "Python", "Flask"],
@@ -145,18 +145,18 @@ export const projects: Project[] = [
             {
                 title: loc("System Context", "Systemkontext"),
                 caption: loc(
-                    "Camera and LiDAR inputs are processed locally on the Raspberry Pi 5 with Hailo acceleration, then fused into SAFE/WARNING/ALERT outputs for dashboard visualization, ESP32 actuation, optional Telegram alerts, and CSV evidence logs.",
-                    "Kamera- und LiDAR-Inputs werden lokal auf dem Raspberry Pi 5 mit Hailo-Beschleunigung verarbeitet und zu SAFE/WARNING/ALERT-Ausgaben für Dashboard, ESP32-Aktuatorik, optionale Telegram-Alerts und CSV-Evidenzlogs fusioniert."
+                    "Camera and LiDAR inputs are processed locally on the Raspberry Pi 5 with Hailo acceleration, then fused into SAFE/WARNING/ALERT outputs for dashboard visualization, ESP32 actuation, optional Telegram alerts, and CSV logs.",
+                    "Kamera- und LiDAR-Inputs werden lokal auf dem Raspberry Pi 5 mit Hailo-Beschleunigung verarbeitet und zu SAFE/WARNING/ALERT-Ausgaben für Dashboard, ESP32-Aktuatorik, optionale Telegram-Alerts und CSV-Logs fusioniert."
                 ),
                 summary: locList(
                     [
                         "Local-only inference path: camera frames and LiDAR distance stay on the Raspberry Pi runtime",
-                        "Separate evidence outputs: dashboard, CSV logs, optional Telegram, and ESP32 actuation proof",
+                        "Separate outputs: dashboard, CSV logs, optional Telegram, and ESP32 actuation proof",
                         "Safety decision model is visible through SAFE/WARNING/ALERT state transitions",
                     ],
                     [
                         "Lokaler Inferenzpfad: Kameraframes und LiDAR-Distanz bleiben in der Raspberry-Pi-Runtime",
-                        "Getrennte Evidenz-Ausgaben: Dashboard, CSV-Logs, optional Telegram und ESP32-Aktuatornachweis",
+                        "Getrennte Ausgaben und Protokolle: Dashboard, CSV-Logs, optional Telegram und ESP32-Aktuatornachweis",
                         "Die Sicherheitsentscheidung wird über SAFE/WARNING/ALERT-Zustandswechsel sichtbar",
                     ]
                 ),
@@ -165,19 +165,19 @@ export const projects: Project[] = [
             {
                 title: loc("Container / Deployment View", "Container- / Deployment-Ansicht"),
                 caption: loc(
-                    "Physical sensors feed a Raspberry Pi 5 runtime with Hailo-accelerated person detection, fusion logic, ESP32 serial actuation, dashboard visualization, optional Telegram alerts, and evidence logs.",
-                    "Physische Sensoren speisen eine Raspberry-Pi-5-Runtime mit Hailo-beschleunigter Personenerkennung, Fusionslogik, ESP32-Serial-Aktuatorik, Dashboard-Visualisierung, optionalen Telegram-Alerts und Evidenzlogs."
+                    "Physical sensors feed a Raspberry Pi 5 runtime with Hailo-accelerated person detection, fusion logic, ESP32 serial actuation, dashboard visualization, optional Telegram alerts, and logs.",
+                    "Physische Sensoren speisen eine Raspberry-Pi-5-Runtime mit Hailo-beschleunigter Personenerkennung, Fusionslogik, ESP32-Serial-Aktuatorik, Dashboard-Visualisierung, optionalen Telegram-Alerts und Logs."
                 ),
                 summary: locList(
                     [
                         "Hailo detection output and LiDAR distance converge in the fusion script",
                         "Hysteresis, stale-data checks, and thresholds sit before actuation or alerting",
-                        "Dashboard and final evidence folder make the demo inspectable after the run",
+                        "Dashboard and final test artefacts make the demo inspectable after the run",
                     ],
                     [
                         "Hailo-Erkennung und LiDAR-Distanz laufen im Fusionsskript zusammen",
                         "Hysterese, Stale-Data-Prüfung und Schwellwerte liegen vor Aktuatorik oder Alerting",
-                        "Dashboard und finaler Evidenzordner machen die Demo nachträglich prüfbar",
+                        "Dashboard und finale Testartefakte machen die Demo nachträglich prüfbar",
                     ]
                 ),
                 src: "/project-diagrams/edgeguardian-container-deployment.png",
@@ -195,8 +195,8 @@ export const projects: Project[] = [
             "TinyML-Vibrationsanomalie-Erkennung auf Arduino Nano 33 BLE Sense Rev2"
         ),
         oneLiner: loc(
-            "Deployed a lightweight softmax classifier on an Arduino Nano 33 BLE Sense Rev2 to detect NORMAL, ANOMALY, and ALERT vibration states from onboard IMU data in real time.",
-            "Deployt einen leichtgewichtigen Softmax-Klassifikator auf einem Arduino Nano 33 BLE Sense Rev2, um NORMAL-, ANOMALY- und ALERT-Vibrationszustaende aus Onboard-IMU-Daten in Echtzeit zu erkennen."
+            "A lightweight softmax model classifies local IMU windows as NORMAL or ANOMALY and triggers ALERT after three consecutive anomaly windows.",
+            "Ein leichtgewichtiges Softmax-Modell klassifiziert lokale IMU-Fenster als NORMAL oder ANOMALY und löst nach drei aufeinanderfolgenden Anomaliefenstern einen ALERT aus."
         ),
         overview: loc(
             "This TinyML project demonstrates the full node-device pipeline: synthetic IMU data generation, 20-feature vibration extraction, offline Python training, C++ header export, and continuous inference on the Arduino Nano 33 BLE Sense Rev2.",
@@ -204,7 +204,7 @@ export const projects: Project[] = [
         ),
         problem: loc(
             "Small fans and motors can develop abnormal vibration before failure. A node device should detect this locally with low memory use, no cloud dependency, and a clear live output for the operator.",
-            "Kleine Luefter und Motoren koennen vor einem Ausfall auffaellige Vibrationen entwickeln. Ein Node-Device soll dies lokal, speicherschonend, ohne Cloud-Abhängigkeit und mit klarer Live-Ausgabe erkennen."
+            "Kleine Lüfter und Motoren können vor einem Ausfall auffällige Vibrationen entwickeln. Ein Node-Device soll dies lokal, speicherschonend, ohne Cloud-Abhängigkeit und mit klarer Live-Ausgabe erkennen."
         ),
         solution: loc(
             "I generated balanced synthetic vibration windows, extracted 20 statistical features from 2-second IMU windows, trained a two-class softmax model, exported means, standard deviations, weights, and biases into model_parameters.h, and implemented the same processing path in Arduino C++.",
@@ -217,8 +217,8 @@ export const projects: Project[] = [
         },
         architecture: {
             node: loc(
-                "The Arduino Nano 33 BLE Sense Rev2 reads onboard accelerometer data at 100 Hz, stores 2-second rolling windows, extracts features, runs inference, prints Serial Monitor evidence, and lights the LED on ALERT.",
-                "Der Arduino Nano 33 BLE Sense Rev2 liest Beschleunigungsdaten mit 100 Hz, speichert 2-Sekunden-Rolling-Windows, extrahiert Features, führt Inferenz aus, druckt Serial-Monitor-Evidenz und schaltet bei ALERT die LED."
+                "The Arduino Nano 33 BLE Sense Rev2 reads onboard accelerometer data at 100 Hz, stores 2-second rolling windows, extracts features, runs inference, prints Serial Monitor output, and lights the LED on ALERT.",
+                "Der Arduino Nano 33 BLE Sense Rev2 liest Beschleunigungsdaten mit 100 Hz, speichert 2-Sekunden-Rolling-Windows, extrahiert Features, führt Inferenz aus, druckt Serial-Monitor-Ausgabe und schaltet bei ALERT die LED."
             ),
             edge: loc(
                 "Python generates the dataset, trains the model offline, validates performance, and exports the model parameters into a small C++ header.",
@@ -226,12 +226,12 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "No cloud is required during inference; the laptop is only used for programming, compiling, and viewing the Serial Monitor during the demo.",
-                "Waehrend der Inferenz ist keine Cloud erforderlich; der Laptop dient nur zum Programmieren, Kompilieren und Anzeigen des Serial Monitors in der Demo."
+                "Während der Inferenz ist keine Cloud erforderlich; der Laptop dient nur zum Programmieren, Kompilieren und Anzeigen des Serial Monitors in der Demo."
             ),
         },
         security: loc(
             "The device processes motion locally and does not transmit sensor data. The design keeps the demo self-contained and avoids credentials, network dependency, or external services.",
-            "Das Gerät verarbeitet Bewegungsdaten lokal und übertraegt keine Sensordaten. Das Design bleibt in der Demo eigenstaendig und vermeidet Credentials, Netzabhängigkeit und externe Services."
+            "Das Gerät verarbeitet Bewegungsdaten lokal und überträgt keine Sensordaten. Das Design bleibt in der Demo eigenständig und vermeidet Credentials, Netzabhängigkeit und externe Services."
         ),
         reliability: loc(
             "The sketch uses overlapping windows, normalized features, an anomaly probability threshold of 0.60, and a 3-window ALERT persistence rule so a single accidental bump does not immediately become a final alert.",
@@ -250,7 +250,7 @@ export const projects: Project[] = [
                 "100-Hz-IMU-Sampling mit 2-Sekunden-Fenstern und 50% Überlappung",
                 "20 leichtgewichtige Vibrationsfeatures aus X/Y/Z-Achsen und kombinierter Magnitude",
                 "Zweiklassiger Softmax-Klassifikator direkt als C++ exportiert, ohne große Inferenz-Runtime",
-                "Serial-Monitor-Ausgabe für Zeit, Zustand, Wahrscheinlichkeiten, Persistenzzaehler und Latenz",
+                "Serial-Monitor-Ausgabe für Zeit, Zustand, Wahrscheinlichkeiten, Persistenzzähler und Latenz",
                 "Onboard-LED-Alarm nach 3 aufeinanderfolgenden Anomaliefenstern",
                 "Kompakter Modell-Footprint für Microcontroller-Deployment",
             ]
@@ -263,9 +263,9 @@ export const projects: Project[] = [
                 "Live demo showed stable board as NORMAL, tap/shake as ANOMALY, sustained movement as ALERT, and recovery to NORMAL",
             ],
             [
-                "98.61% Offline-Testgenauigkeit auf dem synthetischen balancierten Datensatz erreicht",
-                "Etwa 1 ms Inferenzlatenz im Arduino Serial Monitor gemessen",
-                "Kompiliert mit 12% Flash- und 19% RAM-Nutzung auf dem Nano 33 BLE Sense Rev2",
+                "98,61 % Offline-Testgenauigkeit auf dem synthetischen balancierten Datensatz erreicht",
+                "ca. 1 ms Inferenzlatenz im Arduino Serial Monitor gemessen",
+                "Kompiliert mit 12 % Flash- und 19 % RAM-Nutzung auf dem Nano 33 BLE Sense Rev2",
                 "Live-Demo zeigte stabiles Board als NORMAL, Tippen/Schütteln als ANOMALY, anhaltende Bewegung als ALERT und Rückkehr zu NORMAL",
             ]
         ),
@@ -278,8 +278,8 @@ export const projects: Project[] = [
             {
                 title: loc("TinyML Training and Local Inference Flow", "TinyML-Training und lokaler Inferenzfluss"),
                 caption: loc(
-                    "End-to-end TinyML architecture for vibration anomaly detection: offline Python training, C++ model parameter export, Arduino deployment, local IMU sampling, softmax inference, Serial Monitor evidence, and built-in LED alerting.",
-                    "End-to-End-TinyML-Architektur für Vibrationsanomalie-Erkennung: Offline-Training in Python, C++-Parameterexport, Arduino-Deployment, lokales IMU-Sampling, Softmax-Inferenz, Serial-Monitor-Evidenz und Built-in-LED-Alerting."
+                    "End-to-end TinyML architecture for vibration anomaly detection: offline Python training, C++ model parameter export, Arduino deployment, local IMU sampling, softmax inference, Serial Monitor output, and built-in LED alerting.",
+                    "End-to-End-TinyML-Architektur für Vibrationsanomalie-Erkennung: Offline-Training in Python, C++-Parameterexport, Arduino-Deployment, lokales IMU-Sampling, Softmax-Inferenz, Serial-Monitor-Ausgabe und Built-in-LED-Alerting."
                 ),
                 summary: locList(
                     [
@@ -290,7 +290,7 @@ export const projects: Project[] = [
                     [
                         "Trennt Offline-Training/Export vom Runtime-Pfad und macht klar, dass keine Cloud-Inferenz genutzt wird",
                         "Zeigt den Embedded-Runtime-Loop: 100-Hz-Sampling, 2-Sekunden-Fenster, 50% Überlappung, 20 Features, Normalisierung, Softmax-Inferenz, Schwellwert und Persistenz",
-                        "Enthält die Projektnachweise: 98.61% Offline-Genauigkeit, etwa 1 ms Inferenzlatenz, 12% Flash-Nutzung und 19% RAM-Nutzung",
+                        "Enthält die Projektnachweise: 98,61 % Offline-Genauigkeit, ca. 1 ms Inferenzlatenz, 12 % Flash-Nutzung und 19 % RAM-Nutzung",
                     ]
                 ),
                 src: "/project-diagrams/tinyml-vibration-anomaly-architecture.svg",
@@ -425,7 +425,7 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "The final artifact is a plain-text validation file with exactly the required header and prediction rows, plus notebook and HTML report evidence.",
-                "Das finale Artefakt ist eine Plain-Text-Validierungsdatei mit exakt gefordertem Header und Vorhersagezeilen, ergaenzt durch Notebook- und HTML-Report-Evidenz."
+                "Das finale Artefakt ist eine Plain-Text-Validierungsdatei mit exakt gefordertem Header und Vorhersagezeilen, ergänzt durch Notebook- und HTML-Report-Nachweis."
             ),
         },
         security: loc(
@@ -476,12 +476,12 @@ export const projects: Project[] = [
         status: "implemented",
         year: "2026",
         title: loc(
-            "Enterprise Self-Hosted Infrastructure & Privacy-First Analytics Setup",
-            "Enterprise-Self-Hosted-Infrastruktur und Privacy-First-Analytics"
+            "Hybrid Self-Hosted Infrastructure & Privacy-First Analytics",
+            "Hybride Self-Hosted-Infrastruktur und datenschutzorientierte Webanalyse"
         ),
         oneLiner: loc(
             "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, self-hosted Elkaza.at delivery, Tailscale routing, automated deployments, observability, and scheduled local recovery points.",
-            "Kernfunktionen des Webbetriebs von SaaS-Abhaengigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, self-hosted Elkaza.at-Delivery, Tailscale-Routing, automatisierten Deployments, Observability und geplanten lokalen Recovery-Punkten migriert."
+            "Kernfunktionen des Webbetriebs von SaaS-Abhängigkeit und Third-Party-Trackern auf eine eigenkontrollierte Hybrid-Cloud-Plattform mit First-Party-Plausible-Analytics, self-hosted Elkaza.at-Delivery, Tailscale-Routing, automatisierten Deployments, Observability und geplanten lokalen Recovery-Punkten migriert."
         ),
         overview: loc(
             "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. Elkaza.org remains the Vercel-hosted portfolio surface, while Elkaza.at is delivered through the self-hosted path. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
@@ -489,11 +489,11 @@ export const projects: Project[] = [
         ),
         problem: loc(
             "SaaS subscriptions and third-party analytics tools create recurring cost, external data dependency, and fragile measurement when browser extensions or network filters block common tracker domains. At the same time, exposing a private server directly from a residential network would leak the home IP address and expand the public attack surface.",
-            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhaengigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
+            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhängigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
         ),
         solution: loc(
             "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host running a Debian 13 VM, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards HTTP/S over a private Tailscale tunnel to the local platform. Nginx Proxy Manager terminates HTTPS for Elkaza.at, www.elkaza.at, and analytics.elkaza.at, routes the static web frontend and Plausible stack, and keeps the private runtime off the open internet. GitHub Actions automates Next.js production deployments, while Proxmox creates weekly snapshot-mode VM backups with keep-last-three local retention.",
-            "Ich habe eine Hybrid-Cloud-Architektur aus gehaertetem oeffentlichem VPS, privatem Proxmox-VE-Host mit Debian-13-VM und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S ueber einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS fuer Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und haelt die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, waehrend Proxmox woechentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention erstellt."
+            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host mit Debian-13-VM und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS für Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und hält die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, während Proxmox wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention erstellt."
         ),
         architectureLabels: {
             node: loc("Visitor path", "Besucherpfad"),
@@ -503,11 +503,11 @@ export const projects: Project[] = [
         architecture: {
             node: loc(
                 "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics delivery inside an owner-controlled domain path instead of a generic third-party tracker host.",
-                "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigentuergesteuerten Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
+                "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigenen Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
             ),
             edge: loc(
                 "A private Proxmox VE host runs a Debian 13 VM with Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, and management.",
-                "Ein privater Proxmox-VE-Host betreibt eine Debian-13-VM mit Docker-Compose-Services fuer Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability und Management."
+                "Ein privater Proxmox-VE-Host betreibt eine Debian-13-VM mit Docker-Compose-Services für Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability und Management."
             ),
             cloud: loc(
                 "A low-cost public VPS provides hardened ingress, hides the residential IP address, and forwards traffic through Tailscale rather than requiring inbound ports on the local router.",
@@ -516,11 +516,11 @@ export const projects: Project[] = [
         },
         security: loc(
             "The platform reduces public exposure by separating ingress from the private runtime. Tailscale carries traffic over an encrypted overlay, UFW limits the VPS surface, Nginx Proxy Manager centralizes HTTPS routing, CrowdSec and Pi-hole add defensive layers, and the first-party Plausible setup avoids handing visitor analytics to a third-party tracking provider.",
-            "Die Plattform reduziert öffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic über ein verschlüsseltes Overlay, UFW begrenzt die VPS-Oberfläche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergaenzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
+            "Die Plattform reduziert öffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic über ein verschlüsseltes Overlay, UFW begrenzt die VPS-Oberfläche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergänzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
         ),
         reliability: loc(
             "Proxmox runs a weekly 3:00 AM snapshot-mode backup of the Debian VM with zstd compression and keep-last-three local retention. Archive integrity has been checked, but the copies remain on the same physical NVMe; an encrypted off-site copy and full isolated restore test are still required for disaster recovery.",
-            "Proxmox erstellt woechentlich um 03:00 Uhr ein Snapshot-Backup der Debian-VM mit zstd-Kompression und lokaler Keep-last-three-Retention. Die Archivintegritaet wurde geprueft, die Kopien liegen jedoch auf derselben physischen NVMe; fuer Disaster Recovery fehlen noch eine verschluesselte Offsite-Kopie und ein vollstaendiger isolierter Restore-Test."
+            "Proxmox erstellt wöchentlich um 03:00 Uhr ein Snapshot-Backup der Debian-VM mit zstd-Kompression und lokaler Keep-last-three-Retention. Die Archivintegrität wurde geprüft, die Kopien liegen jedoch auf derselben physischen NVMe; für Disaster Recovery fehlen noch eine verschlüsselte Offsite-Kopie und ein vollständiger isolierter Restore-Test."
         ),
         keyFeatures: locList(
             [
@@ -538,7 +538,7 @@ export const projects: Project[] = [
                 "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
                 "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
                 "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
-                "Woechentliche zstd-komprimierte Proxmox-VM-Snapshots mit lokaler Keep-last-three-Retention und verifizierter Archivintegritaet",
+                "Wöchentliche zstd-komprimierte Proxmox-VM-Snapshots mit lokaler Keep-last-three-Retention und verifizierter Archivintegrität",
                 "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping für Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
             ]
         ),
@@ -548,14 +548,14 @@ export const projects: Project[] = [
                 "Kept visitor analytics under owner control while preserving privacy-oriented measurement",
                 "Hid the residential IP address and removed the need for open inbound ports on the local router",
                 "Turned deployment, monitoring, updates, and backups into repeatable DevOps routines",
-                "Created a stronger portfolio proof point for owner-controlled infrastructure, secure networking, and automated operations",
+                "Scheduled local VM backups with keep-last-three retention and verified archive integrity",
             ],
             [
                 "Die Abhängigkeit von kostenpflichtigen SaaS-Abonnements und Third-Party-Analytics-Domains reduziert",
                 "Besucher-Analytics unter eigener Kontrolle gehalten und gleichzeitig privacy-orientierte Messbarkeit bewahrt",
                 "Die private Wohnanschluss-IP verborgen und offene eingehende Ports am lokalen Router vermieden",
                 "Deployment, Monitoring, Updates und Backups in wiederholbare DevOps-Routinen überführt",
-                "Einen stärkeren Portfolio-Nachweis für eigenkontrollierte Infrastruktur, sichere Netzwerke und automatisierten Betrieb geschaffen",
+                "Lokale VM-Backups mit Keep-last-three-Retention geplant und Archivintegrität geprüft",
             ]
         ),
         tech: [
@@ -712,7 +712,7 @@ export const projects: Project[] = [
             [
                 "Turned several separate assignments into one coherent monitoring platform",
                 "Published a public GitHub repository without shipping secrets or private key material",
-                "Created a stronger portfolio signal for systems integration, observability, and secure deployment on Raspberry Pi",
+                "Shows systems integration, observability, and secure deployment on Raspberry Pi",
             ],
             [
                 "Mehrere getrennte Aufgaben in eine zusammenhaengende Monitoring-Plattform überführt",
@@ -929,7 +929,7 @@ export const projects: Project[] = [
             ),
             cloud: loc(
                 "Normalized measurements can be forwarded to dashboards, storage, or AI pipelines after they leave the node through the gateway path.",
-                "Normalisierte Messwerte koennen nach Verlassen des Knotens über den Gateway-Pfad an Dashboards, Speicher oder KI-Pipelines weitergeleitet werden."
+                "Normalisierte Messwerte können nach Verlassen des Knotens über den Gateway-Pfad an Dashboards, Speicher oder KI-Pipelines weitergeleitet werden."
             ),
         },
         security: loc(
@@ -985,7 +985,7 @@ export const projects: Project[] = [
             "Eine gehärtete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
         ),
         overview: loc(
-            "The Vienna Fortress turns a basic private infrastructure lab into a more production-minded internal platform and private runtime anchor for selected public services. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
+            "The Vienna Fortress turns a basic private infrastructure lab into a clearer internal platform and private runtime anchor for selected public services. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
             "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnaeheren internen Plattform und privaten Runtime-Basis für ausgewählte öffentliche Services weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane für Self-Hosted-Services."
         ),
         problem: loc(
@@ -994,7 +994,7 @@ export const projects: Project[] = [
         ),
         solution: loc(
             "I built the stack on Proxmox 9.1 and Debian 13, then deployed Dockerized services for reverse proxying, DNS filtering, security detection, monitoring, status checks, log viewing, update automation, internal service discovery, and the Elkaza.at/Plausible runtime path. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services fuer Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statuspruefungen, Log-Einsicht, Update-Automatisierung, interne Service-Uebersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusaetzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlaesslich dargestellt werden."
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statusprüfungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusätzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
         ),
         architecture: {
             node: loc(
@@ -1012,7 +1012,7 @@ export const projects: Project[] = [
         },
         security: loc(
             "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec provides detection and community threat intelligence, persistent host and Docker rules control ingress, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
-            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole uebernimmt DNS-Filterung, CrowdSec liefert Erkennung und Community Threat Intelligence, persistente Host- und Docker-Regeln kontrollieren den Ingress, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
+            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole übernimmt DNS-Filterung, CrowdSec liefert Erkennung und Community Threat Intelligence, persistente Host- und Docker-Regeln kontrollieren den Ingress, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
         ),
         reliability: loc(
             "Netdata, Uptime Kuma, and Dozzle provide metrics, health checks, and log visibility, while Watchtower automates the container update lifecycle and reduces manual drift across long-running services.",
@@ -1063,7 +1063,7 @@ export const projects: Project[] = [
                 title: loc("Private Infrastructure and Operations Platform", "Private Infrastruktur- und Betriebsplattform"),
                 caption: loc(
                     "The Vienna Fortress architecture shows the split between public admin/user entry, the public VPS edge, the private Tailscale transport, and the Proxmox/Debian Docker runtime where web, analytics, security, observability, operations, and backup services are separated.",
-                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen oeffentlichem Admin-/User-Einstieg, Public-VPS-Edge, privatem Tailscale-Transport und der Proxmox-/Debian-Docker-Runtime, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
+                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen öffentlichem Admin-/User-Einstieg, Public-VPS-Edge, privatem Tailscale-Transport und der Proxmox-/Debian-Docker-Runtime, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
                 ),
                 summary: locList(
                     [
@@ -1167,7 +1167,7 @@ export const projects: Project[] = [
                 title: loc("Hardened Hybrid-Cloud Private Network", "Gehaertetes Hybrid-Cloud-Privatnetzwerk"),
                 caption: loc(
                     "The network diagram shows roaming devices, Tailscale private overlay, the VPS cloud node, and the home lab runtime. It emphasizes key-only SSH, private DNS, interface-aware firewalling, exit-node routing, and planned segmentation without exposing management services directly to the public Internet.",
-                    "Das Netzwerkdiagramm zeigt mobile Geraete, Tailscale Private Overlay, den VPS-Cloud-Node und die Home-Lab-Runtime. Es betont schluesselbasiertes SSH, private DNS-Aufloesung, interface-bewusste Firewall-Regeln, Exit-Node-Routing und geplante Segmentierung ohne direkte oeffentliche Exponierung der Management-Services."
+                    "Das Netzwerkdiagramm zeigt mobile Geräte, Tailscale Private Overlay, den VPS-Cloud-Node und die Home-Lab-Runtime. Es betont schlüsselbasiertes SSH, private DNS-Auflösung, interface-bewusste Firewall-Regeln, Exit-Node-Routing und geplante Segmentierung ohne direkte öffentliche Exponierung der Management-Services."
                 ),
                 summary: locList(
                     [
@@ -1176,8 +1176,8 @@ export const projects: Project[] = [
                         "Planned IoT, guest, and detection layers are separated from the current verified baseline",
                     ],
                     [
-                        "Management-Zugriff laeuft ueber authentifizierte private Overlay-Nodes",
-                        "Pi-hole und Unbound halten DNS-Aufloesung unter eigener Kontrolle",
+                        "Management-Zugriff läuft über authentifizierte private Overlay-Nodes",
+                        "Pi-hole und Unbound halten DNS-Auflösung unter eigener Kontrolle",
                         "Geplante IoT-, Gastnetz- und Detection-Ebenen sind vom verifizierten Ist-Stand getrennt dargestellt",
                     ]
                 ),
@@ -1266,8 +1266,8 @@ export const projects: Project[] = [
             {
                 title: loc("Self-Hosted Services Platform", "Self-Hosted-Service-Plattform"),
                 caption: loc(
-                    "The service-platform diagram presents the project as a small production-minded self-hosted environment: client devices enter through controlled access, a Linux host runs Docker services behind Nginx Proxy Manager, and reliability is handled through monitoring, DNS control, backups, and service separation.",
-                    "Das Service-Plattform-Diagramm zeigt das Projekt als kleine produktionsnahe Self-Hosted-Umgebung: Client-Geraete nutzen kontrollierte Einstiegspunkte, ein Linux-Host betreibt Docker-Services hinter Nginx Proxy Manager, und Zuverlaessigkeit entsteht durch Monitoring, DNS-Kontrolle, Backups und Service-Trennung."
+                    "The service-platform diagram presents the project as a small self-hosted operating environment: client devices enter through controlled access, a Linux host runs Docker services behind Nginx Proxy Manager, and reliability is handled through monitoring, DNS control, backups, and service separation.",
+                    "Das Service-Plattform-Diagramm zeigt das Projekt als kleine produktionsnahe Self-Hosted-Umgebung: Client-Geräte nutzen kontrollierte Einstiegspunkte, ein Linux-Host betreibt Docker-Services hinter Nginx Proxy Manager, und Zuverlaessigkeit entsteht durch Monitoring, DNS-Kontrolle, Backups und Service-Trennung."
                 ),
                 summary: locList(
                     [
@@ -1276,7 +1276,7 @@ export const projects: Project[] = [
                         "Monitoring, backups, DNS control, and service separation are part of the operating model",
                     ],
                     [
-                        "Nur notwendige Einstiegspunkte werden als oeffentlich erreichbar dargestellt",
+                        "Nur notwendige Einstiegspunkte werden als öffentlich erreichbar dargestellt",
                         "Anwendungsservices laufen isoliert in Containern statt als unstrukturierte Host-Prozesse",
                         "Monitoring, Backups, DNS-Kontrolle und Service-Trennung sind Teil des Betriebsmodells",
                     ]
@@ -1374,7 +1374,7 @@ export const projects: Project[] = [
                 ),
                 summary: locList(
                     [
-                        "Shows source control, structured content, CI validation, preview deployment, production delivery, and visitor access in one review artifact",
+                        "Shows source control, structured content, CI validation, preview deployment, production delivery, and visitor access in one inspection view",
                         "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
                         "Makes the project easier to evaluate as an engineered publishing platform rather than a static personal website",
                     ],
@@ -1403,7 +1403,7 @@ export const projects: Project[] = [
             "Elkaza.at läuft auf einer self-hosted Hybrid-Delivery-Plattform, bei der vps1 den öffentlichen Ingress und die CI/CD-Steuerung übernimmt, während debian-core das gehärtete statische Frontend, Analytics, Observability und Backups über Docker ausliefert."
         ),
         overview: loc(
-            "Elkaza.at is operated as a production-minded self-hosted delivery environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
+            "Elkaza.at is operated as a self-hosted delivery environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
             "Elkaza.at wird als produktionsnahes Self-Hosted-Delivery-Environment betrieben. Öffentlicher HTTP/S-Traffic erreicht zuerst vps1, wo Nginx-Stream-Proxying die Ports 80 und 443 über Tailscale an debian-core weiterleitet. Der private Debian-/Proxmox-Host betreibt Docker Compose, Nginx Proxy Manager, einen statischen Nginx-Container für den exportierten Next.js-Frontend-Build und den Plausible-Analytics-Stack hinter demselben kontrollierten Ingress-Pfad."
         ),
         problem: loc(
@@ -1434,7 +1434,7 @@ export const projects: Project[] = [
         ),
         reliability: loc(
             "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and weekly snapshot-mode VM backups with keep-last-three local retention reduce manual deployment risk and improve recovery readiness. The deployment workflow tests both the private backend path and the local ingress path. An encrypted off-site copy and full isolated restore test remain pending.",
-            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und woechentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prueft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschluesselte Offsite-Kopie und ein vollstaendiger isolierter Restore-Test stehen noch aus."
+            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschlüsselte Offsite-Kopie und ein vollständiger isolierter Restore-Test stehen noch aus."
         ),
         keyFeatures: locList(
             [

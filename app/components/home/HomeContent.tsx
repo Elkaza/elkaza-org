@@ -153,10 +153,10 @@ const HOME_COPY: Localized<{
     cardLabels: {
       problem: "Problem",
       responsibility: "My role",
-      result: "Evidence",
+      result: "Proof",
     },
     featuredTitle: "Selected Engineering Work",
-    workTitle: "Capabilities, Stack & Evidence",
+    workTitle: "Capabilities, Stack & Proof",
     finalCta:
       "Open to roles where software, automation, infrastructure and technical documentation meet.",
   },
@@ -198,7 +198,7 @@ const HOME_COPY: Localized<{
     cardLabels: {
       problem: "Problem",
       responsibility: "My role",
-      result: "Evidence",
+      result: "Proof",
     },
     featuredTitle: "Featured Work",
     workTitle: "Capabilities & Stack",

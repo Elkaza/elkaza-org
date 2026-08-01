@@ -72,7 +72,9 @@ type LocalizedString = Record<Locale, string>;
 type FeaturedDetailConfig = {
     outcome: LocalizedString;
     role: LocalizedString;
-    strongestEvidenceIndex: number;
+    keyResultIndex: number;
+    limitation?: LocalizedString;
+    validation: Record<Locale, string[]>;
     nextStep: LocalizedString;
     stackGroups: {
         label: LocalizedString;
@@ -99,13 +101,13 @@ const COPY: Record<string, DetailCopy> = {
         security: "Security",
         reliability: "Reliability",
         features: "Implementation Highlights",
-        results: "Results / Evidence",
+        results: "Results",
         snapshot: "Case Snapshot",
         summary: "Summary",
         role: "Role",
         scope: "Scope",
         constraints: "Constraints",
-        evidence: "Evidence",
+        evidence: "Proof",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -114,7 +116,7 @@ const COPY: Record<string, DetailCopy> = {
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
-        diagramsIntro: "Architecture diagrams are included as review artifacts so the system boundary, runtime flow, and operational decisions can be assessed quickly.",
+        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a quick review format.",
         diagramReviewFocus: "Review focus",
         openDiagram: "Open full diagram",
         diagramPreviewTitle: "Architecture Views",
@@ -124,7 +126,7 @@ const COPY: Record<string, DetailCopy> = {
         dataFlowDiagram: "Data flow diagram",
         status: "Status",
         related: "Related Project",
-        relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
+        relatedDescription: "Follow the adjacent case study to see how this project connects with the rest of the work.",
         githubLabel: "View source on GitHub",
         externalLabel: "Open link",
         stackPreview: "Core stack",
@@ -147,13 +149,13 @@ const COPY: Record<string, DetailCopy> = {
         security: "Sicherheit",
         reliability: "Zuverlässigkeit",
         features: "Implementation-Highlights",
-        results: "Ergebnisse / Evidenz",
+        results: "Ergebnisse",
         snapshot: "Kurzüberblick",
         summary: "Summary",
         role: "Rolle",
         scope: "Umfang",
         constraints: "Rahmenbedingungen",
-        evidence: "Evidenz",
+        evidence: "Nachweis",
         result: "Ergebnis",
         technicalDecisions: "Technische Entscheidungen",
         challenges: "Herausforderungen",
@@ -162,7 +164,7 @@ const COPY: Record<string, DetailCopy> = {
         tech: "Tech-Stack",
         artifacts: "Artefakte",
         diagrams: "Technische Diagramme",
-        diagramsIntro: "Die Architekturdiagramme dienen als Review-Artefakte, damit Systemgrenzen, Runtime-Flüsse und operative Entscheidungen schnell prüfbar sind.",
+        diagramsIntro: "Die Architekturdiagramme zeigen Systemgrenzen, Runtime-Flüsse und operative Entscheidungen in kompakter Prüfform.",
         diagramReviewFocus: "Review-Fokus",
         diagramPreviewTitle: "Architekturansichten",
         diagramPreviewIntro: "Kompakte Systemansichten fassen Projektgrenze, Deployment-Pfad und Datenfluss zusammen, ohne zusätzliche Implementierungsannahmen zu ergänzen.",
@@ -172,7 +174,7 @@ const COPY: Record<string, DetailCopy> = {
         openDiagram: "Diagramm öffnen",
         status: "Status",
         related: "Verwandtes Projekt",
-        relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt in die größere Portfolio-Story passt.",
+        relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt mit der restlichen Arbeit zusammenhängt.",
         githubLabel: "Quellcode auf GitHub ansehen",
         externalLabel: "Link öffnen",
         stackPreview: "Kernstack",
@@ -201,7 +203,7 @@ const COPY: Record<string, DetailCopy> = {
         role: "Role",
         scope: "Scope",
         constraints: "Constraints",
-        evidence: "Evidence",
+        evidence: "Proof",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -210,7 +212,7 @@ const COPY: Record<string, DetailCopy> = {
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
-        diagramsIntro: "Architecture diagrams are included as review artifacts so the system boundary, runtime flow, and operational decisions can be assessed quickly.",
+        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a quick review format.",
         diagramReviewFocus: "Review focus",
         openDiagram: "Open full diagram",
         diagramPreviewTitle: "Architecture Views",
@@ -220,7 +222,7 @@ const COPY: Record<string, DetailCopy> = {
         dataFlowDiagram: "Data flow diagram",
         status: "Status",
         related: "Related Project",
-        relatedDescription: "Follow the adjacent case study to see how this project fits into the wider portfolio narrative.",
+        relatedDescription: "Follow the adjacent case study to see how this project connects with the rest of the work.",
         githubLabel: "View source on GitHub",
         externalLabel: "Open link",
         stackPreview: "Core stack",
@@ -237,36 +239,36 @@ const stackLabel = (en: string, de: string): LocalizedString => ({ en, de, ar: e
 
 const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
     en: {
-        purpose: "Purpose",
-        strongestEvidence: "Strongest evidence",
+        keyResult: "Key result",
         problemConstraints: "Problem and constraints",
+        whatBuilt: "What I built",
         implementation: "Implementation",
-        validationEvidence: "Validation and evidence",
+        validation: "Validation",
         completeStack: "Complete stack",
         nextTechnicalStep: "Next technical step",
-        artefactKind: "Artefact",
+        artefactKind: "Test artefact",
         plannedWork: "Planned work",
     },
     de: {
-        purpose: "Zweck",
-        strongestEvidence: "Stärkster Nachweis",
+        keyResult: "Wichtigstes Ergebnis",
         problemConstraints: "Problem und Rahmenbedingungen",
+        whatBuilt: "Was ich gebaut habe",
         implementation: "Umsetzung",
-        validationEvidence: "Validierung und Evidenz",
+        validation: "Validierung",
         completeStack: "Vollständiger Stack",
         nextTechnicalStep: "Nächster technischer Schritt",
-        artefactKind: "Artefakt",
+        artefactKind: "Testartefakt",
         plannedWork: "Geplante Arbeit",
     },
     ar: {
-        purpose: "Purpose",
-        strongestEvidence: "Strongest evidence",
+        keyResult: "Key result",
         problemConstraints: "Problem and constraints",
+        whatBuilt: "What I built",
         implementation: "Implementation",
-        validationEvidence: "Validation and evidence",
+        validation: "Validation",
         completeStack: "Complete stack",
         nextTechnicalStep: "Next technical step",
-        artefactKind: "Artefact",
+        artefactKind: "Test artefact",
         plannedWork: "Planned work",
     },
 };
@@ -274,16 +276,33 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
 const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig> = {
     "enterprise-self-hosted-infrastructure": {
         outcome: {
-            en: "Live",
-            de: "Live",
-            ar: "Live",
+            en: "Live in operation",
+            de: "Im Betrieb",
+            ar: "Live in operation",
         },
         role: {
-            en: "Architecture, hardening, deployment automation, monitoring, backup routine, and operational documentation.",
-            de: "Architektur, Hardening, Deployment-Automatisierung, Monitoring, Backup-Routine und Betriebsdokumentation.",
-            ar: "Architecture, hardening, deployment automation, monitoring, backup routine, and operational documentation.",
+            en: "I designed and operated the hybrid architecture, including VPS hardening, Tailscale routing, container deployment, monitoring and VM backups.",
+            de: "Ich entwarf und betrieb die Hybrid-Architektur einschließlich VPS-Härtung, Tailscale-Routing, Container-Deployment, Monitoring und VM-Backups.",
+            ar: "I designed and operated the hybrid architecture, including VPS hardening, Tailscale routing, container deployment, monitoring and VM backups.",
         },
-        strongestEvidenceIndex: 2,
+        keyResultIndex: 2,
+        validation: {
+            en: [
+                "Checked public reachability for ports 80 and 443 and confirmed management services were not reachable from the public internet.",
+                "Verified SSH access through the intended keys after reloading the hardened SSH configuration.",
+                "Created and tested a zstd Proxmox VM backup archive before removing old snapshots.",
+            ],
+            de: [
+                "Öffentliche Erreichbarkeit für Ports 80 und 443 geprüft und bestätigt, dass Management-Services nicht öffentlich erreichbar waren.",
+                "SSH-Zugriff über die vorgesehenen Schlüssel nach Reload der gehärteten SSH-Konfiguration verifiziert.",
+                "Ein zstd-Proxmox-VM-Backup-Archiv erstellt und geprüft, bevor alte Snapshots entfernt wurden.",
+            ],
+            ar: [
+                "Checked public reachability for ports 80 and 443 and confirmed management services were not reachable from the public internet.",
+                "Verified SSH access through the intended keys after reloading the hardened SSH configuration.",
+                "Created and tested a zstd Proxmox VM backup archive before removing old snapshots.",
+            ],
+        },
         nextStep: {
             en: "Add an encrypted off-site backup copy and complete an isolated restore test.",
             de: "Eine verschlüsselte Offsite-Backup-Kopie ergänzen und einen isolierten Restore-Test vollständig durchführen.",
@@ -291,39 +310,57 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         },
         stackGroups: [
             {
-                label: stackLabel("Infrastructure", "Infrastruktur"),
-                tech: ["Proxmox VE", "Debian 13", "Docker Compose", "Tailscale", "Nginx Proxy Manager", "UFW"],
+                label: stackLabel("Platform", "Plattform"),
+                tech: ["Proxmox VE", "Debian 13", "Docker Compose", "Nginx Proxy Manager"],
             },
             {
-                label: stackLabel("Application", "Applikation"),
-                tech: ["Plausible Analytics", "Homepage"],
+                label: stackLabel("Networking & Security", "Netzwerk & Sicherheit"),
+                tech: ["Tailscale", "UFW", "CrowdSec", "Pi-hole"],
             },
             {
-                label: stackLabel("Data", "Daten"),
-                tech: ["PostgreSQL", "ClickHouse"],
+                label: stackLabel("Data Services", "Datendienste"),
+                tech: ["Plausible Analytics", "PostgreSQL", "ClickHouse"],
             },
             {
-                label: stackLabel("Hardware", "Hardware"),
-                tech: ["Private Proxmox host"],
-            },
-            {
-                label: stackLabel("Operations", "Betrieb"),
-                tech: ["GitHub Actions", "Bash", "CrowdSec", "Pi-hole", "Uptime Kuma", "Netdata", "Portainer", "Dozzle", "Watchtower"],
+                label: stackLabel("Automation & Operations", "Automatisierung & Betrieb"),
+                tech: ["GitHub Actions", "Bash", "Uptime Kuma", "Netdata", "Portainer", "Dozzle", "Watchtower"],
             },
         ],
     },
     "edgeguardian-edge-ai-safety-bubble": {
         outcome: {
-            en: "Demonstrated",
-            de: "Demonstriert",
-            ar: "Demonstrated",
+            en: "Demonstrated prototype",
+            de: "Demonstrierter Prototyp",
+            ar: "Demonstrated prototype",
         },
         role: {
-            en: "End-to-end prototype engineering across sensing, edge inference, fusion logic, dashboard evidence, and embedded actuation proof.",
-            de: "End-to-End-Prototyping über Sensorik, Edge-Inferenz, Fusionslogik, Dashboard-Evidenz und Embedded-Aktuatornachweis.",
-            ar: "End-to-end prototype engineering across sensing, edge inference, fusion logic, dashboard evidence, and embedded actuation proof.",
+            en: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
+            de: "Ich integrierte Kamera, Hailo-Beschleuniger, LiDAR und ESP32 und implementierte anschließend die Fusionslogik, das Dashboard und die CSV-Protokollierung.",
+            ar: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
         },
-        strongestEvidenceIndex: 1,
+        keyResultIndex: 1,
+        limitation: {
+            en: "Prototype only - not a certified safety system.",
+            de: "Nur ein Prototyp - kein zertifiziertes Sicherheitssystem.",
+            ar: "Prototype only - not a certified safety system.",
+        },
+        validation: {
+            en: [
+                "Ran the local demo path with camera detection, LiDAR distance input, ESP32 serial commands and dashboard updates.",
+                "Logged SAFE -> WARNING -> ALERT -> SAFE transitions during the demo.",
+                "Kept final CSV and terminal logs for inspection after the run.",
+            ],
+            de: [
+                "Lokalen Demo-Pfad mit Kameraerkennung, LiDAR-Distanzinput, ESP32-Serial-Kommandos und Dashboard-Updates ausgeführt.",
+                "SAFE -> WARNING -> ALERT -> SAFE-Übergänge während der Demo protokolliert.",
+                "Finale CSV- und Terminal-Logs für die Prüfung nach dem Lauf aufbewahrt.",
+            ],
+            ar: [
+                "Ran the local demo path with camera detection, LiDAR distance input, ESP32 serial commands and dashboard updates.",
+                "Logged SAFE -> WARNING -> ALERT -> SAFE transitions during the demo.",
+                "Kept final CSV and terminal logs for inspection after the run.",
+            ],
+        },
         nextStep: {
             en: "Broaden validation logs across more distance and lighting scenarios before any safety-critical use.",
             de: "Validierungslogs über mehr Distanz- und Lichtszenarien erweitern, bevor sicherheitskritische Nutzung überhaupt betrachtet wird.",
@@ -331,24 +368,20 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         },
         stackGroups: [
             {
-                label: stackLabel("Infrastructure", "Infrastruktur"),
-                tech: ["Raspberry Pi 5", "Local edge runtime"],
+                label: stackLabel("Hardware", "Hardware"),
+                tech: ["Raspberry Pi 5", "Hailo-8L", "Hokuyo LiDAR", "ESP32-S3"],
             },
             {
-                label: stackLabel("Application", "Applikation"),
+                label: stackLabel("Edge Software", "Edge-Software"),
                 tech: ["Python", "Flask", "YOLOv8n"],
             },
             {
-                label: stackLabel("Data", "Daten"),
-                tech: ["CSV logs", "Dashboard events"],
+                label: stackLabel("Sensor Fusion", "Sensorfusion"),
+                tech: ["Camera", "LiDAR", "State machine", "Hysteresis"],
             },
             {
-                label: stackLabel("Hardware", "Hardware"),
-                tech: ["Hailo-8L", "Hokuyo LiDAR", "ESP32-S3"],
-            },
-            {
-                label: stackLabel("Operations", "Betrieb"),
-                tech: ["Telegram alerts", "Terminal output", "Evidence folder"],
+                label: stackLabel("Monitoring & Outputs", "Monitoring & Ausgaben"),
+                tech: ["Dashboard", "CSV logs", "Telegram alerts", "Serial output"],
             },
         ],
     },
@@ -359,11 +392,28 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             ar: "Academic prototype",
         },
         role: {
-            en: "Model pipeline and embedded implementation from feature extraction and offline training to C++ export and Arduino inference.",
-            de: "Modellpipeline und Embedded-Umsetzung von Feature-Extraktion und Offline-Training bis C++-Export und Arduino-Inferenz.",
-            ar: "Model pipeline and embedded implementation from feature extraction and offline training to C++ export and Arduino inference.",
+            en: "I built the pipeline from synthetic-data generation and feature extraction to model training, C++ export and on-device inference.",
+            de: "Ich entwickelte die Pipeline von der synthetischen Datengenerierung und Merkmalsextraktion bis zum Modelltraining, C++-Export und zur Inferenz auf dem Arduino.",
+            ar: "I built the pipeline from synthetic-data generation and feature extraction to model training, C++ export and on-device inference.",
         },
-        strongestEvidenceIndex: 0,
+        keyResultIndex: 0,
+        validation: {
+            en: [
+                "Trained and evaluated the classifier offline on the synthetic balanced dataset.",
+                "Checked Serial Monitor output for state, probabilities, persistence counter and latency.",
+                "Compiled the sketch on Arduino Nano 33 BLE Sense Rev2 and recorded flash/RAM usage.",
+            ],
+            de: [
+                "Klassifikator offline auf dem synthetischen balancierten Datensatz trainiert und bewertet.",
+                "Serial-Monitor-Ausgabe für Zustand, Wahrscheinlichkeiten, Persistenzzähler und Latenz geprüft.",
+                "Sketch auf dem Arduino Nano 33 BLE Sense Rev2 kompiliert und Flash-/RAM-Nutzung festgehalten.",
+            ],
+            ar: [
+                "Trained and evaluated the classifier offline on the synthetic balanced dataset.",
+                "Checked Serial Monitor output for state, probabilities, persistence counter and latency.",
+                "Compiled the sketch on Arduino Nano 33 BLE Sense Rev2 and recorded flash/RAM usage.",
+            ],
+        },
         nextStep: {
             en: "Validate the model with real measured vibration data beyond the synthetic balanced dataset.",
             de: "Das Modell mit real gemessenen Vibrationsdaten zusätzlich zum synthetischen balancierten Datensatz validieren.",
@@ -371,24 +421,20 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         },
         stackGroups: [
             {
-                label: stackLabel("Infrastructure", "Infrastruktur"),
-                tech: ["Arduino runtime", "Local development laptop"],
+                label: stackLabel("Embedded Hardware", "Embedded-Hardware"),
+                tech: ["Arduino Nano 33 BLE Sense Rev2", "IMU", "Built-in LED"],
             },
             {
-                label: stackLabel("Application", "Applikation"),
-                tech: ["C++", "Python", "TinyML", "Softmax"],
+                label: stackLabel("Training Pipeline", "Training-Pipeline"),
+                tech: ["Python", "Synthetic dataset", "20 vibration features"],
             },
             {
-                label: stackLabel("Data", "Daten"),
-                tech: ["IMU", "20 vibration features", "Synthetic dataset"],
+                label: stackLabel("Runtime Model", "Runtime-Modell"),
+                tech: ["C++", "TinyML", "Softmax", "Model export"],
             },
             {
-                label: stackLabel("Hardware", "Hardware"),
-                tech: ["Arduino Nano 33 BLE Sense Rev2", "Built-in LED"],
-            },
-            {
-                label: stackLabel("Operations", "Betrieb"),
-                tech: ["Serial Monitor", "Model export", "Latency checks"],
+                label: stackLabel("Validation", "Validierung"),
+                tech: ["Serial Monitor", "Offline test set", "Flash/RAM report"],
             },
         ],
     },
@@ -855,9 +901,10 @@ function FeaturedProjectDetailLayout({
     const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale] ?? value.en;
     const localizedResults = localized(project.results);
     const localizedFeatures = localized(project.keyFeatures);
+    const localizedValidation = localized(config.validation);
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
-    const strongestEvidence = localizedResults[config.strongestEvidenceIndex] ?? localizedResults[0];
+    const keyResult = localizedResults[config.keyResultIndex] ?? localizedResults[0];
     const architectureNodes = [
         {
             title: project.architectureLabels ? localized(project.architectureLabels.node) : copy.node,
@@ -887,41 +934,36 @@ function FeaturedProjectDetailLayout({
                 <header className="grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
                     <div className="space-y-5">
                         <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-normal">
-                            <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
-                                {copy.category[project.category]}
-                            </span>
                             <span className="rounded-full border border-blue-700/30 bg-blue-50 px-3 py-1 text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200">
                                 {localized(config.outcome)}
                             </span>
                             <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
                                 {project.year}
                             </span>
+                            {project.tech.slice(0, 5).map((tech) => (
+                                <TechBadge key={tech} name={tech} />
+                            ))}
                         </div>
 
                         <div className="space-y-3">
-                            <p className="border-l-2 border-blue-700 pl-3 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
-                                {labels.purpose}
-                            </p>
                             <h1 className="max-w-4xl break-words text-3xl font-extrabold leading-tight tracking-normal md:text-5xl">
                                 {localized(project.title)}
                             </h1>
                             <p className="max-w-3xl break-words text-lg leading-relaxed text-muted md:text-xl">
                                 {localized(project.oneLiner)}
                             </p>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                            {project.tech.slice(0, 5).map((tech) => (
-                                <TechBadge key={tech} name={tech} />
-                            ))}
+                            {config.limitation && (
+                                <p className="inline-flex rounded-md border border-amber-700/30 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950 dark:border-amber-400/40 dark:bg-amber-950/20 dark:text-amber-100">
+                                    {localized(config.limitation)}
+                                </p>
+                            )}
                         </div>
                     </div>
 
                     <aside className="grid gap-3 rounded-lg border border-subtle bg-card p-4 shadow-sm">
                         <FeaturedFact label={copy.role} value={localized(config.role)} />
-                        <FeaturedFact label={copy.status} value={`${getProjectStatusLabel(project.status, locale)} - ${localized(config.outcome)}`} />
-                        {strongestEvidence && (
-                            <FeaturedFact label={labels.strongestEvidence} value={strongestEvidence} />
+                        {keyResult && (
+                            <FeaturedFact label={labels.keyResult} value={keyResult} />
                         )}
                     </aside>
                 </header>
@@ -938,6 +980,12 @@ function FeaturedProjectDetailLayout({
                     </div>
                 </FeaturedSection>
 
+                <FeaturedSection title={labels.whatBuilt}>
+                    <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
+                        {localized(project.solution)}
+                    </p>
+                </FeaturedSection>
+
                 <FeaturedSection title={copy.architecture}>
                     <ArchitectureFlow caption={copy.architectureCaption} nodes={architectureNodes} />
                     {project.diagrams && project.diagrams.length > 0 && (
@@ -945,18 +993,12 @@ function FeaturedProjectDetailLayout({
                     )}
                 </FeaturedSection>
 
-                <FeaturedSection title={labels.implementation}>
-                    <p className="rounded-lg border border-subtle bg-card p-5 leading-relaxed text-main shadow-sm">
-                        {localized(project.solution)}
-                    </p>
-                </FeaturedSection>
-
                 <FeaturedSection title={copy.technicalDecisions}>
-                    <EvidenceList items={localizedFeatures.slice(0, 5)} />
+                    <BulletList items={localizedFeatures.slice(0, 5)} />
                 </FeaturedSection>
 
-                <FeaturedSection title={labels.validationEvidence}>
-                    <EvidenceList items={localizedResults} badge={localized(config.outcome)} />
+                <FeaturedSection title={labels.validation}>
+                    <BulletList items={localizedValidation} badge={localized(config.outcome)} />
                     {project.images && project.images.length > 0 && (
                         <div className="grid gap-4 md:grid-cols-2">
                             {project.images.map((image, index) => (
@@ -964,7 +1006,7 @@ function FeaturedProjectDetailLayout({
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={image}
-                                        alt={`${project.title.en} evidence image ${index + 1}`}
+                                        alt={`${project.title.en} validation image ${index + 1}`}
                                         className="h-auto w-full rounded-md"
                                     />
                                 </figure>
@@ -974,11 +1016,11 @@ function FeaturedProjectDetailLayout({
                 </FeaturedSection>
 
                 <FeaturedSection title={copy.results}>
-                    <EvidenceList items={localizedResults} />
+                    <BulletList items={localizedResults} />
                 </FeaturedSection>
 
                 <FeaturedSection title={labels.completeStack}>
-                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                         {config.stackGroups.map((group) => (
                             <section key={group.label.en} className="rounded-lg border border-subtle bg-card p-4 shadow-sm">
                                 <h3 className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
@@ -1065,7 +1107,7 @@ function FeaturedSection({ title, children }: { title: string; children: ReactNo
     );
 }
 
-function EvidenceList({ badge, items }: { badge?: string; items: string[] }) {
+function BulletList({ badge, items }: { badge?: string; items: string[] }) {
     return (
         <ul className="grid gap-3 md:grid-cols-2">
             {items.map((item) => (
@@ -1166,19 +1208,19 @@ function getRoleDescription(category: string, locale: Locale) {
         en: {
             "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
             "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
-            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operational evidence.",
+            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operating notes.",
             "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
         },
         de: {
-            "featured-aiot": "End-to-End Engineering: Hardware-Integration, Edge-Inferenz, Sensorfusion, Dashboard-Evidenz und operative Dokumentation.",
+            "featured-aiot": "Praxisrolle: Hardware-Integration, Edge-Inferenz, Sensorfusion, Dashboard, Logs und technische Dokumentation.",
             "platform-component": "Produktorientierte Umsetzung: Datenmodell, Interface-Verhalten, Integrationspfad und wartbare Delivery-Artefakte.",
-            "security-infrastructure": "Infrastruktur-Verantwortung: Architektur, Hardening, Zugriffsmodell, Monitoring, Recovery-Pfad und operative Evidenz.",
+            "security-infrastructure": "Infrastruktur-Verantwortung: Architektur, Hardening, Zugriffsmodell, Monitoring, Recovery-Pfad und Betriebsdokumentation.",
             "delivery-platform": "Plattform-Verantwortung: Frontend-Umsetzung, Deployment-Workflow, Inhaltsstruktur, CI-Validierung und Production Delivery.",
         },
         ar: {
             "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
             "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
-            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operational evidence.",
+            "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operating notes.",
             "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
         },
     };

@@ -131,12 +131,12 @@ const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
   ],
   en: [
     { label: "Focus", value: "Application engineering, automation, and reliable infrastructure" },
-    { label: "Evidence", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Proof", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
     { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
   ar: [
     { label: "Focus", value: "Application engineering, automation, and infrastructure" },
-    { label: "Evidence", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Proof", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
     { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
 };
