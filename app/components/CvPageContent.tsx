@@ -29,6 +29,8 @@ import { OrganizationLogo } from "./ui/OrganizationLogo";
 import type { Locale } from "../i18n/messages";
 import { profile } from "../lib/profile";
 
+const profileLinkLabel = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+
 type SummaryFocus = {
   key: number;
   Icon: LucideIcon;
@@ -199,7 +201,7 @@ export default function CvPageContent() {
               target="_blank"
               rel="noreferrer"
             >
-              linkedin.com/in/moalkhalil
+              {profileLinkLabel(profile.linkedinUrl)}
             </a>
           </div>
         </div>

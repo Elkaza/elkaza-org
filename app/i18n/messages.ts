@@ -165,9 +165,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp1_desc: "Application Engineering für eine XML/XSLT-basierte Publishing-Suite: Feature-Analyse, User Stories, technische Spezifikation und Dokumentation im Kundenkontext.",
     exp2_title: "Junior IT Consultant - Raiffeisen Bank International (2022)",
     exp2_desc: "Automatisierung von IT-Asset- und ServiceNow-Workflows mit Python und VBA. Die Rolle hat mein Verständnis für prozessorientierte Delivery, Datenqualität und Enterprise-Stakeholder-Kommunikation geschärft.",
-    exp3_title: "Product Management Intern - BOC Group (2021-2022)",
+    exp3_title: "Product Management Intern - BOC Group (2021–2022)",
     exp3_desc: "Mitarbeit an Enterprise-Architecture-Werkzeugen mit Fokus auf Datenanalyse, Prototyping, strukturierte Modellierung und Übersetzung von Anforderungen in technische Artefakte.",
-    exp4_title: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (12/2013-11/2016)",
+    exp4_title: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (2013–2016)",
     exp4_desc: "Betrieb, Rollouts und Support von Netzwerk- und Systemumgebungen mit Fokus auf Verfügbarkeit, Fehleranalyse, Netzwerkzugänge und stabile Abläufe.",
 
     // About - Selected Experience (detailed, reverse chronological)
@@ -176,9 +176,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp1_desc_full: "Application Engineering für eine XML/XSLT-basierte Publishing-Suite: Feature-Analyse, User Stories, technische Spezifikation und Dokumentation im Kundenkontext.",
     exp2_title_full: "Junior IT Consultant - Raiffeisen Bank International (2022)",
     exp2_desc_full: "Automatisierung von IT-Asset- und ServiceNow-Workflows mit Python und VBA. Die Rolle hat mein Verständnis für prozessorientierte Delivery, Datenqualität und Enterprise-Stakeholder-Kommunikation geschärft.",
-    exp3_title_full: "Product Management Intern - BOC Group (2021-2022)",
+    exp3_title_full: "Product Management Intern - BOC Group (2021–2022)",
     exp3_desc_full: "Mitarbeit an Enterprise-Architecture-Werkzeugen mit Fokus auf Datenanalyse, Prototyping, strukturierte Modellierung und Übersetzung von Anforderungen in technische Artefakte.",
-    exp4_title_full: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (12/2013-11/2016)",
+    exp4_title_full: "Netzwerk- und Systemtechniker - Universität Benghazi, Libyen (2013–2016)",
     exp4_desc_full: "Betrieb, Rollouts und Support von Netzwerk- und Systemumgebungen mit Fokus auf Verfügbarkeit, Fehleranalyse, Netzwerkzugänge und stabile Abläufe.",
 
     // Home - Technologies & Methods
@@ -293,12 +293,43 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     skill_cloud_item3: "Laufende Vertiefung in IoT-Architekturen, Edge-Gateways, MQTT und sicherer Konnektivität",
 
     // Zertifikate
-    cert_nav_back: "← Zurück zu Über mich",
+    cert_nav_back: "Zurück zu Über mich",
     cert_title: "Zertifikate",
     cert_view_all: "Alle ansehen",
     cert_list_title: "Alle Zertifikate",
-    cert_list_subtitle: "Ausgewählte Zertifikate und berufliche Weiterbildungen (Belege auf Anfrage).",
-    cert_avail_req: "Beleg auf Anfrage",
+    cert_list_subtitle: "Ausgewählte Zertifikate und Weiterbildungen",
+    cert_avail_req: "Nachweis auf Anfrage verfügbar",
+    cert_empty: "Keine Zertifikate in dieser Kategorie gefunden.",
+    // Filter
+    cert_filter_all: "Alle",
+    cert_filter_pm: "Projektmanagement",
+    cert_filter_ba: "Business-Analyse",
+    cert_filter_excel: "Excel/VBA",
+
+    // Arten
+    cert_type_prof: "Berufliche Zertifizierung",
+    cert_type_uni: "Universitätskurs",
+    cert_type_training: "Berufliche Weiterbildung",
+
+    // Daten
+    cert_ipma_title: "IPMA Level D (cPMA) (2025)",
+    cert_ipma_issuer: "pma, Project Management Austria (IPMA)",
+    cert_ipma_date: "seit Oktober 2025",
+
+    cert_graz_title: "Modern Management, Project Management (2025)",
+    cert_graz_issuer: "UNI for LIFE (University of Graz)",
+    cert_graz_date_completed: "abgeschlossen am 17. Oktober 2025",
+    cert_graz_date_issued: "Ausgestellt am 03. November 2025",
+    cert_graz_grade: "Mit Auszeichnung bestanden",
+
+    cert_li_title: "Career Essentials in Business Analysis (2023)",
+    cert_li_issuer: "LinkedIn Learning (Microsoft + LinkedIn)",
+    cert_li_date: "abgeschlossen am 30. März 2023",
+
+    cert_excel_title: "Excel 365 VBA (Expert) (2022)",
+    cert_excel_issuer: "Raiffeisen Bank International",
+    cert_excel_provider: "Bildungsanbieter: CyberU",
+    cert_excel_date: "Ausgestellt am 13. September 2022",
 
     skill_lang_title: "Sprachen",
     skill_lang_item1: "Arabisch: Muttersprache | Englisch: C1 | Deutsch: B2",
@@ -497,10 +528,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_skill_languages_items: "Arabisch: Muttersprache | Englisch: C1 | Deutsch: B2",
     cv_exp_title: "Berufserfahrung",
     cv_edu_title: "Ausbildung & Zertifizierungen",
-    cert_ipma_title: "IPMA Level D (cPMA) (2025)",
-    cert_graz_title: "Modern Management, Project Management (2025)",
-    cert_li_title: "Career Essentials in Business Analysis (2023)",
-    cert_excel_title: "Excel 365 VBA (Expert) (2022)",
     cv_note_full: "Vollständiger Lebenslauf mit persönlichen Kontaktdaten ist auf Anfrage verfügbar.",
     cv_request_title: "Vollständiger CV auf Anfrage",
     cv_request_desc: "Für Bewerbungen stelle ich gern einen vollständigen Lebenslauf mit persönlichen Kontaktdaten bereit.",
@@ -691,9 +718,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp1_desc: "Application engineering for an XML/XSLT-based publishing suite: feature analysis, user stories, technical specification, and documentation in a customer context.",
     exp2_title: "Junior IT Consultant - Raiffeisen Bank International (2022)",
     exp2_desc: "Automated IT asset and ServiceNow workflows with Python and VBA. The role sharpened my understanding of process-oriented delivery, data quality, and enterprise stakeholder coordination.",
-    exp3_title: "Product Management Intern - BOC Group (2021-2022)",
+    exp3_title: "Product Management Intern - BOC Group (2021–2022)",
     exp3_desc: "Worked on enterprise architecture tooling with emphasis on data analysis, prototyping, structured modeling, and translating requirements into technical artifacts.",
-    exp4_title: "Network and Systems Technician - University of Benghazi, Libya (12/2013-11/2016)",
+    exp4_title: "Network and Systems Technician - University of Benghazi, Libya (2013–2016)",
     exp4_desc: "Operated, supported, and rolled out network and systems environments with focus on availability, troubleshooting, network access, and stable daily operations.",
 
     // Home - Selected Experience (detailed, reverse chronological)
@@ -701,9 +728,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     exp1_desc_full: "Application engineering for an XML/XSLT-based publishing suite: feature analysis, user stories, technical specification, and documentation in a customer context.",
     exp2_title_full: "Junior IT Consultant - Raiffeisen Bank International (2022)",
     exp2_desc_full: "Automated IT asset and ServiceNow workflows with Python and VBA. The role sharpened my understanding of process-oriented delivery, data quality, and enterprise stakeholder coordination.",
-    exp3_title_full: "Product Management Intern - BOC Group (2021-2022)",
+    exp3_title_full: "Product Management Intern - BOC Group (2021–2022)",
     exp3_desc_full: "Worked on enterprise architecture tooling with emphasis on data analysis, prototyping, structured modeling, and translating requirements into technical artifacts.",
-    exp4_title_full: "Network and Systems Technician - University of Benghazi, Libya (12/2013-11/2016)",
+    exp4_title_full: "Network and Systems Technician - University of Benghazi, Libya (2013–2016)",
     exp4_desc_full: "Operated, supported, and rolled out network and systems environments with focus on availability, troubleshooting, network access, and stable daily operations.",
 
     // Home - Technologies & Methods
@@ -789,12 +816,13 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
 
     // Certifications
     // Certifications
-    cert_nav_back: "← Back to About",
+    cert_nav_back: "Back to About",
     cert_title: "Certifications",
     cert_view_all: "View all",
     cert_list_title: "All Certifications",
     cert_list_subtitle: "Selected certifications and professional training (proof available on request).",
     cert_avail_req: "Proof available on request",
+    cert_empty: "No certifications found for this category.",
     // Filters
     cert_filter_all: "All",
     cert_filter_pm: "Project Management",

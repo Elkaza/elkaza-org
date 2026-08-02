@@ -81,7 +81,7 @@ export const profile = {
     {
       organization: "BOC Group",
       title: { de: "Product Management Intern", en: "Product Management Intern", ar: "Product Management Intern" },
-      period: "2021-2022",
+      period: "2021–2022",
     },
     {
       organization: "University of Benghazi",
@@ -90,7 +90,7 @@ export const profile = {
         en: "Network and Systems Technician",
         ar: "Network and Systems Technician",
       },
-      period: "12/2013-11/2016",
+      period: "2013–2016",
     },
   ] satisfies ProfileExperience[],
   education: [

@@ -147,7 +147,7 @@ export default function CertificationsPageContent() {
                     })}
 
                     {filteredCerts.length === 0 && (
-                        <p className="text-muted italic text-center py-8">No certifications found for this category.</p>
+                        <p className="text-muted italic text-center py-8">{t("cert_empty")}</p>
                     )}
                 </div>
             </div>
