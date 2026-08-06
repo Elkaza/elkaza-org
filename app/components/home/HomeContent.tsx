@@ -109,7 +109,7 @@ const HOME_COPY: Localized<{
       responsibility: "Meine Rolle",
       result: "Ergebnis",
     },
-    featuredTitle: "Ausgewählte Engineering-Arbeiten",
+    featuredTitle: "Technische Fallstudien",
     workTitle: "Arbeitsbereiche, Stack & Ergebnisse",
     finalCta:
       "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
@@ -153,7 +153,7 @@ const HOME_COPY: Localized<{
       responsibility: "My role",
       result: "Proof",
     },
-    featuredTitle: "Selected Engineering Work",
+    featuredTitle: "Engineering Case Studies",
     workTitle: "Capabilities, Stack & Proof",
     finalCta:
       "Open to roles where software, automation, infrastructure and technical documentation meet.",

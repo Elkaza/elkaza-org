@@ -192,14 +192,14 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
         ar: "Local SAFE / WARNING / ALERT monitoring with camera, LiDAR, dashboard, and logs.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Reduced dependency on paid SaaS and third-party analytics domains.",
-        de: "Abhängigkeit von kostenpflichtigen SaaS- und Third-Party-Analytics-Domains reduziert.",
-        ar: "Reduced dependency on paid SaaS and third-party analytics domains.",
+        en: "Private ingress, automated deployments, and verified backups are now part of the operating setup.",
+        de: "Privater Ingress, automatisierte Deployments und verifizierte Backups sind jetzt Teil der Betriebsumgebung.",
+        ar: "Private ingress, automated deployments, and verified backups are now part of the operating setup.",
     },
     "tinyml-vibration-anomaly-detection": {
-        en: "Shows NORMAL, ANOMALY, ALERT, and recovery states in a live demo.",
-        de: "Zeigt NORMAL, ANOMALY, ALERT und Recovery in einer Live-Demo.",
-        ar: "Shows NORMAL, ANOMALY, ALERT, and recovery states in a live demo.",
+        en: "An Arduino prototype now demonstrates NORMAL, ANOMALY, and ALERT states in a live demo.",
+        de: "Ein Arduino-Prototyp zeigt jetzt NORMAL-, ANOMALY- und ALERT-Zustände in einer Live-Demo.",
+        ar: "An Arduino prototype now demonstrates NORMAL, ANOMALY, and ALERT states in a live demo.",
     },
 };
 
@@ -235,8 +235,8 @@ const COPY: Record<Locale, Copy> = {
         },
     },
     de: {
-        title: "Engineering Case Studies",
-        subtitle: "Kuratierte umgesetzte Systeme aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
+        title: "Technische Fallstudien",
+        subtitle: "Kuratierte technische Fallstudien aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
         roleChips: ["Umgesetzt", "Dokumentiert", "Deployt", "Beobachtbar", "GitHub-gestützt"],
         proofStats: [
             { label: "Projekttypen", value: "Web, IoT, Infra, Data" },
