@@ -6,6 +6,7 @@ import LocaleProvider from "@/app/LocaleProvider";
 import BackToTop from "@/app/components/BackToTop";
 import SiteFooter from "./components/SiteFooter";
 import SubNav from "./components/SubNav";
+import { getBuildCommit } from "@/app/lib/buildInfo";
 import { generatePersonSchema, generateWebSiteSchema } from "@/app/lib/metadata";
 import { profile } from "@/app/lib/profile";
 
@@ -14,6 +15,7 @@ const serif = Merriweather({ subsets: ["latin"], weight: ["300", "400", "700"], 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN ?? "elkaza.org";
 const plausibleScriptSrc = process.env.NEXT_PUBLIC_PLAUSIBLE_SCRIPT_SRC ?? "https://analytics.elkaza.at/js/script.js";
 const enablePlausible = process.env.NEXT_PUBLIC_ENABLE_PLAUSIBLE !== "false";
+const buildCommit = getBuildCommit();
 
 export const metadata = {
   metadataBase: new URL(profile.websiteUrl),
@@ -47,6 +49,9 @@ export const metadata = {
       { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
     ],
     apple: "/apple-touch-icon.png",
+  },
+  other: {
+    "x-build-commit": buildCommit,
   },
 };
 

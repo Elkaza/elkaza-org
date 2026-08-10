@@ -127,14 +127,14 @@ const skillGroups: SkillGroup[] = [
 
 const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
   de: [
-    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und belastbare Infrastruktur" },
-    { label: "Ergebnis", value: "Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
-    { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und sauber übergeben" },
+    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und zuverlässige Infrastruktur" },
+    { label: "Projektpraxis", value: "CI/CD, Monitoring, Backups und Betriebsdokumentation" },
+    { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und nachvollziehbar dokumentieren" },
   ],
   en: [
     { label: "Focus", value: "Application engineering, automation, and reliable infrastructure" },
-    { label: "Result", value: "Projects with CI/CD, monitoring, backups, and operations notes" },
-    { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
+    { label: "Project experience", value: "CI/CD, monitoring, backups, and operations documentation" },
+    { label: "Working style", value: "Understand systems, simplify them, automate where useful, and document them clearly" },
   ],
   ar: [
     { label: "Focus", value: "Application engineering, automation, and infrastructure" },

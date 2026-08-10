@@ -4,6 +4,18 @@ import { useState, FormEvent } from "react";
 import { useLocale } from "../LocaleProvider";
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle } from "lucide-react";
 
+const CONTACT_EMAIL = "contact@elkaza.org";
+const isContactFormEnabled = process.env.NEXT_PUBLIC_CONTACT_FORM_ENABLED === "true";
+const errorMessages: Record<string, string> = {
+    invalid_email: "contact_form_invalid_email",
+    invalid_request: "contact_form_error",
+    payload_too_large: "contact_form_too_large",
+    rate_limited: "contact_form_rate_limited",
+    required: "contact_form_required",
+    server_error: "contact_form_error",
+    unavailable: "contact_form_unavailable",
+};
+
 export default function ContactForm() {
     const { t } = useLocale();
     const [formData, setFormData] = useState({
@@ -11,12 +23,15 @@ export default function ContactForm() {
         email: "",
         subject: "",
         message: "",
+        company: "",
     });
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!isContactFormEnabled || status === "loading") return;
+
         setStatus("loading");
         setErrorMessage("");
 
@@ -33,10 +48,11 @@ export default function ContactForm() {
 
             if (response.ok) {
                 setStatus("success");
-                setFormData({ name: "", email: "", subject: "", message: "" });
+                setFormData({ name: "", email: "", subject: "", message: "", company: "" });
             } else {
                 setStatus("error");
-                setErrorMessage(data.error || t("contact_form_error"));
+                const errorKey = typeof data.errorCode === "string" ? errorMessages[data.errorCode] : undefined;
+                setErrorMessage(errorKey ? t(errorKey) : t("contact_form_error"));
             }
         } catch {
             setStatus("error");
@@ -55,6 +71,18 @@ export default function ContactForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
+            {!isContactFormEnabled && (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100">
+                    <p className="font-semibold">{t("contact_form_disabled_title")}</p>
+                    <p className="mt-2 text-sm leading-relaxed">
+                        {t("contact_form_disabled_body")}{" "}
+                        <a className="font-semibold underline underline-offset-4" href={`mailto:${CONTACT_EMAIL}`}>
+                            {CONTACT_EMAIL}
+                        </a>
+                    </p>
+                </div>
+            )}
+
             {status === "success" && (
                 <div className="flex items-center gap-3 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                     <CheckCircle className="text-green-600 dark:text-green-400 flex-shrink-0" size={20} />
@@ -145,12 +173,30 @@ export default function ContactForm() {
                 />
             </div>
 
+            <div className="hidden" aria-hidden="true">
+                <label htmlFor="company">Company</label>
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                />
+            </div>
+
             <button
                 type="submit"
-                disabled={status === "loading"}
+                disabled={!isContactFormEnabled || status === "loading"}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-blue-700 text-white rounded-lg font-medium hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
-                {status === "loading" ? (
+                {!isContactFormEnabled ? (
+                    <>
+                        <Mail size={18} />
+                        {t("contact_form_disabled_button")}
+                    </>
+                ) : status === "loading" ? (
                     <>
                         <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                         {t("contact_form_sending")}

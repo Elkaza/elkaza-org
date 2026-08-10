@@ -1,45 +1,55 @@
+import { execFileSync } from "node:child_process";
+
+const productionBaseUrl = "https://elkaza.org";
+
 const checks = [
   {
     name: "homepage",
-    url: "https://elkaza.org/",
+    url: `${productionBaseUrl}/`,
     mustInclude: ["Mohamed Elkaza", "IT Infrastructure &amp; Application Engineer", "TypeScript"],
     mustNotInclude: ["Start Here"],
   },
   {
     name: "about page",
-    url: "https://elkaza.org/about",
+    url: `${productionBaseUrl}/about`,
     mustInclude: ["About | Mohamed Elkaza", "Professional profile", "Application Engineering"],
     mustNotInclude: ["Good Fit"],
   },
   {
     name: "projects page",
-    url: "https://elkaza.org/projects",
+    url: `${productionBaseUrl}/projects`,
     mustInclude: ["Engineering Case Studies", "EdgeGuardian"],
     mustNotInclude: [],
   },
   {
     name: "security page",
-    url: "https://elkaza.org/security",
+    url: `${productionBaseUrl}/security`,
     mustInclude: ["Security &amp; Platform Operations", "reduzierter Exponierung", "nachvollziehbare Erkennung"],
     mustNotInclude: [],
   },
   {
     name: "CV page",
-    url: "https://elkaza.org/cv",
+    url: `${productionBaseUrl}/cv`,
     mustInclude: ["CV | Mohamed Elkaza", "Application Engineering", "Infrastructure"],
     mustNotInclude: ["Download PDF"],
+  },
+  {
+    name: "contact page",
+    url: `${productionBaseUrl}/contact`,
+    mustInclude: ["Contact | Mohamed Elkaza", "Contact form currently inactive", "contact@elkaza.org"],
+    mustNotInclude: ["Message received successfully"],
   },
 ];
 
 const metadataChecks = [
   {
     name: "robots.txt",
-    url: "https://elkaza.org/robots.txt",
+    url: `${productionBaseUrl}/robots.txt`,
     mustInclude: ["User-Agent: *", "Allow: /", "Sitemap: https://elkaza.org/sitemap.xml"],
   },
   {
     name: "sitemap.xml",
-    url: "https://elkaza.org/sitemap.xml",
+    url: `${productionBaseUrl}/sitemap.xml`,
     mustInclude: [
       "https://elkaza.org/",
       "https://elkaza.org/about",
@@ -51,7 +61,15 @@ const metadataChecks = [
 
 const failures = [];
 
-async function fetchText(url) {
+function getExpectedCommit() {
+  if (process.env.EXPECTED_COMMIT_SHA) return process.env.EXPECTED_COMMIT_SHA;
+
+  return execFileSync("git", ["rev-parse", "HEAD"], {
+    encoding: "utf8",
+  }).trim();
+}
+
+async function fetchResponse(url) {
   const response = await fetch(url, {
     redirect: "follow",
     headers: {
@@ -64,7 +82,39 @@ async function fetchText(url) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
 
-  return response.text();
+  return response;
+}
+
+async function fetchText(url) {
+  return (await fetchResponse(url)).text();
+}
+
+async function fetchJson(url) {
+  return (await fetchResponse(url)).json();
+}
+
+const expectedCommit = getExpectedCommit();
+
+try {
+  const version = await fetchJson(`${productionBaseUrl}/api/version?verify=${Date.now()}`);
+  const deployedCommit = typeof version.commit === "string" ? version.commit : "";
+
+  if (!deployedCommit || deployedCommit === "development") {
+    failures.push({ name: "deployed revision", missing: ["commit"] });
+    console.error("FAIL elkaza.org deployed revision");
+    console.error(`  expected: ${expectedCommit}`);
+    console.error(`  deployed: ${deployedCommit || "missing"}`);
+  } else if (deployedCommit !== expectedCommit) {
+    failures.push({ name: "deployed revision", expectedCommit, deployedCommit });
+    console.error("FAIL elkaza.org deployed revision");
+    console.error(`  expected: ${expectedCommit}`);
+    console.error(`  deployed: ${deployedCommit}`);
+  } else {
+    console.log(`OK   elkaza.org deployed revision ${deployedCommit}`);
+  }
+} catch (error) {
+  failures.push({ name: "deployed revision", error });
+  console.error(`FAIL elkaza.org deployed revision: ${error instanceof Error ? error.message : String(error)}`);
 }
 
 for (const check of checks) {
