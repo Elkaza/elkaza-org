@@ -97,7 +97,7 @@
     <path d="M105 28 L135 82 H75 Z" fill="#111827"/>
     <text x="105" y="108" text-anchor="middle" class="label">Vercel Platform</text>
     <text x="24" y="144" class="small">- Preview deployments</text>
-    <text x="24" y="168" class="small">- Production delivery</text>
+    <text x="24" y="168" class="small">- Production release</text>
     <text x="24" y="192" class="small">- Global CDN + TLS</text>
   </g>
 

@@ -24,7 +24,7 @@ export type Certification = {
     ects?: number;
     gradeKey?: string;
     providerKey?: string; // Optional provider override/addition
-    proofKey?: string; // "Proof available on request" key
+    availabilityKey?: string;
     tags: string[]; // ["Project Management"]
 
     icon: LucideIcon;
@@ -40,7 +40,7 @@ export const certifications: Certification[] = [
         category: "project_management",
         dateLabelKey: "cert_ipma_date", // "since Oct 2025"
         validFrom: "2025-10-01",
-        proofKey: "cert_avail_req",
+        availabilityKey: "cert_avail_req",
         tags: ["Project Management"],
         icon: Award,
     },
@@ -56,7 +56,7 @@ export const certifications: Certification[] = [
         issuedDate: "2025-11-03",
         gradeKey: "cert_graz_grade",
         ects: 10,
-        proofKey: "cert_avail_req",
+        availabilityKey: "cert_avail_req",
         tags: ["Project Management"],
         icon: BookOpen,
     },
@@ -69,7 +69,7 @@ export const certifications: Certification[] = [
         category: "business_analysis",
         dateLabelKey: "cert_li_date", // "completed 30 Mar 2023"
         completedDate: "2023-03-30",
-        proofKey: "cert_avail_req",
+        availabilityKey: "cert_avail_req",
         tags: ["Business Analysis"],
         icon: ScrollText,
     },
@@ -83,7 +83,7 @@ export const certifications: Certification[] = [
         dateLabelKey: "cert_excel_date", // "Issued: 13 Sep 2022"
         issuedDate: "2022-09-13",
         providerKey: "cert_excel_provider",
-        proofKey: "cert_avail_req",
+        availabilityKey: "cert_avail_req",
         tags: ["Excel/VBA"],
         icon: FileSpreadsheet,
     }

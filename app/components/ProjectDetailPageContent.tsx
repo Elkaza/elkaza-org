@@ -38,7 +38,7 @@ type DetailCopy = {
     role: string;
     scope: string;
     constraints: string;
-    evidence: string;
+    resultLabel: string;
     result: string;
     technicalDecisions: string;
     challenges: string;
@@ -89,7 +89,7 @@ const COPY: Record<string, DetailCopy> = {
             "featured-aiot": "Current IoT and Edge Project",
             "platform-component": "Platform Component",
             "security-infrastructure": "Infrastructure and Security",
-            "delivery-platform": "Delivery Platform",
+            "delivery-platform": "Deployment Platform",
         },
         overview: "Overview",
         problem: "Problem",
@@ -108,7 +108,7 @@ const COPY: Record<string, DetailCopy> = {
         role: "Role",
         scope: "Scope",
         constraints: "Constraints",
-        evidence: "Proof",
+        resultLabel: "Result",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -117,8 +117,8 @@ const COPY: Record<string, DetailCopy> = {
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
-        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a quick review format.",
-        diagramReviewFocus: "Review focus",
+        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a compact review format.",
+        diagramReviewFocus: "What the diagram shows",
         openDiagram: "Open full diagram",
         diagramPreviewTitle: "Architecture Views",
         diagramPreviewIntro: "Concise system views summarize the project boundary, deployment path, and data flow without adding implementation claims.",
@@ -152,11 +152,11 @@ const COPY: Record<string, DetailCopy> = {
         features: "Implementation-Highlights",
         results: "Ergebnisse",
         snapshot: "Kurzüberblick",
-        summary: "Summary",
+        summary: "Zusammenfassung",
         role: "Rolle",
         scope: "Umfang",
         constraints: "Rahmenbedingungen",
-        evidence: "Ergebnis",
+        resultLabel: "Ergebnis",
         result: "Ergebnis",
         technicalDecisions: "Technische Entscheidungen",
         challenges: "Herausforderungen",
@@ -185,7 +185,7 @@ const COPY: Record<string, DetailCopy> = {
             "featured-aiot": "Current IoT and Edge Project",
             "platform-component": "Platform Component",
             "security-infrastructure": "Infrastructure and Security",
-            "delivery-platform": "Delivery Platform",
+            "delivery-platform": "Deployment Platform",
         },
         overview: "Overview",
         problem: "Problem",
@@ -204,7 +204,7 @@ const COPY: Record<string, DetailCopy> = {
         role: "Role",
         scope: "Scope",
         constraints: "Constraints",
-        evidence: "Proof",
+        resultLabel: "Result",
         result: "Result",
         technicalDecisions: "Technical Decisions",
         challenges: "Challenges",
@@ -213,8 +213,8 @@ const COPY: Record<string, DetailCopy> = {
         tech: "Tech Stack",
         artifacts: "Artifacts",
         diagrams: "Technical Diagrams",
-        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a quick review format.",
-        diagramReviewFocus: "Review focus",
+        diagramsIntro: "Architecture diagrams show the system boundary, runtime flow, and operational decisions in a compact review format.",
+        diagramReviewFocus: "What the diagram shows",
         openDiagram: "Open full diagram",
         diagramPreviewTitle: "Architecture Views",
         diagramPreviewIntro: "Concise system views summarize the project boundary, deployment path, and data flow without adding implementation claims.",
@@ -463,7 +463,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         { label: copy.role, body: getRoleDescription(project.category, locale) },
         { label: copy.scope, body: conciseText(localized(project.solution), 230) },
         { label: copy.constraints, body: conciseText(`${localized(project.security)} ${localized(project.reliability)}`, 230) },
-        ...(localizedResults[0] ? [{ label: copy.evidence, body: localizedResults[0] }] : []),
+        ...(localizedResults[0] ? [{ label: copy.resultLabel, body: localizedResults[0] }] : []),
     ];
     const challengeItems = [
         conciseText(localized(project.problem), 190),
@@ -977,7 +977,7 @@ function FeaturedProjectDetailLayout({
                 </header>
 
                 <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
-                    <FeaturedTableOfContents activeId={activeSection} items={tocItems} />
+                    <FeaturedTableOfContents activeId={activeSection} items={tocItems} locale={locale} />
 
                     <div className="min-w-0 space-y-10">
                         <FeaturedSection id="problem" title={labels.problemConstraints}>
@@ -1176,22 +1176,38 @@ function getOutcomeClassName(outcome: string) {
 function FeaturedTableOfContents({
     activeId,
     items,
+    locale,
 }: {
     activeId: string;
     items: { id: string; label: string }[];
+    locale: Locale;
 }) {
+    const labels =
+        locale === "de"
+            ? {
+                nav: "Projektabschnitte",
+                select: "Projektabschnitt",
+                sections: "Abschnitte",
+                onPage: "Auf dieser Seite",
+            }
+            : {
+                nav: "Project sections",
+                select: "Project section",
+                sections: "Sections",
+                onPage: "On this page",
+            };
     const jumpTo = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
         window.history.replaceState(null, "", `#${id}`);
     };
 
     return (
-        <nav className="lg:sticky lg:top-24" aria-label="Project sections">
+        <nav className="lg:sticky lg:top-24" aria-label={labels.nav}>
             <select
                 value={activeId}
                 onChange={(event) => jumpTo(event.target.value)}
                 className="w-full rounded-md border border-subtle bg-card px-3 py-2 text-sm text-main focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
-                aria-label="Project section"
+                aria-label={labels.select}
             >
                 {items.map((item) => (
                     <option key={item.id} value={item.id}>
@@ -1200,7 +1216,7 @@ function FeaturedTableOfContents({
                 ))}
             </select>
             <div className="hidden border-l border-subtle pl-4 lg:block">
-                <MetaLabel className="mb-3">{activeId === "overview" ? "Sections" : "On this page"}</MetaLabel>
+                <MetaLabel className="mb-3">{activeId === "overview" ? labels.sections : labels.onPage}</MetaLabel>
                 <div className="grid gap-1">
                     {items.map((item) => (
                         <button
@@ -1340,22 +1356,22 @@ function conciseText(text: string, maxLength: number) {
 function getRoleDescription(category: string, locale: Locale) {
     const roles: Record<Locale, Record<string, string>> = {
         en: {
-            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
-            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
+            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard output, and operational documentation.",
+            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable implementation artifacts.",
             "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operating notes.",
-            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
+            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production release path.",
         },
         de: {
             "featured-aiot": "Praxisrolle: Hardware-Integration, Edge-Inferenz, Sensorfusion, Dashboard, Logs und technische Dokumentation.",
-            "platform-component": "Produktorientierte Umsetzung: Datenmodell, Interface-Verhalten, Integrationspfad und wartbare Delivery-Artefakte.",
+            "platform-component": "Produktorientierte Umsetzung: Datenmodell, Interface-Verhalten, Integrationspfad und wartbare Umsetzungsartefakte.",
             "security-infrastructure": "Infrastruktur-Verantwortung: Architektur, Hardening, Zugriffsmodell, Monitoring, Recovery-Pfad und Betriebsdokumentation.",
-            "delivery-platform": "Plattform-Verantwortung: Frontend-Umsetzung, Deployment-Workflow, Inhaltsstruktur, CI-Validierung und Production Delivery.",
+            "delivery-platform": "Plattform-Verantwortung: Frontend-Umsetzung, Deployment-Workflow, Inhaltsstruktur, CI-Validierung und Produktionspfad.",
         },
         ar: {
-            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard evidence, and operational documentation.",
-            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable delivery artifacts.",
+            "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard output, and operational documentation.",
+            "platform-component": "Product-minded implementation: data model, interface behavior, integration path, and maintainable implementation artifacts.",
             "security-infrastructure": "Infrastructure ownership: architecture, hardening, access model, monitoring, recovery path, and operating notes.",
-            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production delivery.",
+            "delivery-platform": "Platform ownership: frontend implementation, deployment workflow, content structure, CI validation, and production release path.",
         },
     };
 

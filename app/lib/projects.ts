@@ -84,7 +84,7 @@ export const projects: Project[] = [
         },
         architecture: {
             node: loc(
-                "Raspberry Pi camera / AI camera, Hokuyo URG-04LX-UG01 LiDAR, and ESP32-S3 serial endpoint provide visual detection input, physical distance confirmation, and actuator proof.",
+                "Raspberry Pi camera / AI camera, Hokuyo URG-04LX-UG01 LiDAR, and ESP32-S3 serial endpoint provide visual detection input, physical distance confirmation, and actuator validation.",
                 "Raspberry-Pi-Kamera / AI Camera, Hokuyo URG-04LX-UG01 LiDAR und ESP32-S3-Serial-Endpunkt liefern visuelle Erkennung, physische Distanzbestätigung und Aktuatornachweis."
             ),
             edge: loc(
@@ -109,7 +109,7 @@ export const projects: Project[] = [
                 "Hailo-8L accelerated YOLO person detection on Raspberry Pi 5",
                 "Hokuyo LiDAR distance confirmation for camera-LiDAR sensor fusion",
                 "SAFE/WARNING/ALERT state machine with hysteresis and stale-data checks",
-                "ESP32-S3 serial command proof for actuator integration",
+                "ESP32-S3 serial command test for actuator integration",
                 "Dark browser dashboard reading live CSV logs with last update age and event table",
                 "Final logs and outputs with Hailo, LiDAR, fusion, dashboard, ESP32, and Telegram traces",
             ],
@@ -151,7 +151,7 @@ export const projects: Project[] = [
                 summary: locList(
                     [
                         "Local-only inference path: camera frames and LiDAR distance stay on the Raspberry Pi runtime",
-                        "Separate outputs: dashboard, CSV logs, optional Telegram, and ESP32 actuation proof",
+                        "Separate outputs: dashboard, CSV logs, optional Telegram, and ESP32 actuation test",
                         "Safety decision model is visible through SAFE/WARNING/ALERT state transitions",
                     ],
                     [
@@ -285,7 +285,7 @@ export const projects: Project[] = [
                     [
                         "Separates offline training/export from the runtime path so it is clear that no cloud inference is used",
                         "Shows the embedded runtime loop: 100 Hz sampling, 2-second windows, 50% overlap, 20 features, normalization, softmax inference, thresholding, and persistence",
-                        "Includes the project evidence: 98.61% offline accuracy, about 1 ms inference latency, 12% flash usage, and 19% RAM usage",
+                        "Includes the project result: 98.61% offline accuracy, about 1 ms inference latency, 12% flash usage, and 19% RAM usage",
                     ],
                     [
                         "Trennt Offline-Training/Export vom Runtime-Pfad und macht klar, dass keine Cloud-Inferenz genutzt wird",
@@ -308,7 +308,7 @@ export const projects: Project[] = [
             "Österreich-Tourismus-Dashboard: Saisonale Nächtigungsanalyse"
         ),
         oneLiner: loc(
-            "Built a one-page Python/HTML dashboard that combines Austrian overnight-stay tables, compares seasonal tourism patterns, and turns national tourism data into an evidence-based story.",
+            "Built a one-page Python/HTML dashboard that combines Austrian overnight-stay tables, compares seasonal tourism patterns, and turns national tourism data into a data-based story.",
             "Erstellt ein einseitiges Python/HTML-Dashboard, das österreichische Nächtigungstabellen kombiniert, saisonale Tourismusmuster vergleicht und nationale Tourismusdaten in eine datenbasierte Story überführt."
         ),
         overview: loc(
@@ -424,7 +424,7 @@ export const projects: Project[] = [
                 "Die Python-Pipeline bereitet Features vor, teilt Trainings- und Testdaten, bewertet mehrere Regressoren und hält wiederverwendbaren Code in einem Helper-Modul."
             ),
             cloud: loc(
-                "The final artifact is a plain-text validation file with exactly the required header and prediction rows, plus notebook and HTML report evidence.",
+                "The final artifact is a plain-text validation file with exactly the required header and prediction rows, plus notebook and HTML report output.",
                 "Das finale Artefakt ist eine Plain-Text-Validierungsdatei mit exakt gefordertem Header und Vorhersagezeilen, ergänzt durch Notebook- und HTML-Report-Ergebnis."
             ),
         },
@@ -454,7 +454,7 @@ export const projects: Project[] = [
         ),
         results: locList(
             [
-                "Best held-out model reached about 1.19% normalized MAE and R2 of 0.9914",
+                "Best held-out model reached about 1.19% normalized MAE and R² of 0.9914",
                 "Generated a valid io25m025_validate.txt file for the unlabeled validation set",
                 "Packaged code, notebook, HTML report, PDF instruction, and prediction file for submission",
             ],
@@ -480,7 +480,7 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur und datenschutzorientierte Webanalyse"
         ),
         oneLiner: loc(
-            "Migrated core web operations away from SaaS dependency and third-party trackers by building an owner-controlled hybrid-cloud platform with first-party Plausible analytics, self-hosted Elkaza.at delivery, Tailscale routing, automated deployments, observability, and scheduled local recovery points.",
+            "I operate a hybrid web and analytics platform with a hardened public VPS and a private Proxmox/Debian environment. Tailscale connects both systems, while Docker Compose, GitHub Actions, monitoring and VM backups support operations. Elkaza.org remains the portfolio on Vercel. Elkaza.at is delivered through the self-hosted VPS/Tailscale path. Plausible Analytics runs privately on the Proxmox/Debian side and stays connected through the first-party analytics domain.",
             "Ich betreibe eine hybride Web- und Analytics-Plattform mit einem gehärteten öffentlichen VPS und einer privaten Proxmox-/Debian-Umgebung. Tailscale verbindet beide Systeme, während Docker Compose, GitHub Actions, Monitoring und VM-Backups den Betrieb unterstützen. Elkaza.org bleibt das Portfolio auf Vercel. Elkaza.at wird über den self-hosted VPS-/Tailscale-Pfad ausgeliefert. Plausible Analytics läuft privat auf der Proxmox-/Debian-Seite und bleibt über die eigene Analytics-Domain angebunden."
         ),
         overview: loc(
@@ -502,7 +502,7 @@ export const projects: Project[] = [
         },
         architecture: {
             node: loc(
-                "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics delivery inside an owner-controlled domain path instead of a generic third-party tracker host.",
+                "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics inside the Elkaza domain path instead of a generic third-party tracker host.",
                 "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigenen Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
             ),
             edge: loc(
@@ -525,7 +525,7 @@ export const projects: Project[] = [
         keyFeatures: locList(
             [
                 "Self-hosted Plausible Analytics with PostgreSQL and ClickHouse, served from analytics.elkaza.at as a first-party analytics path",
-                "Self-hosted Elkaza.at delivery through VPS TCP ingress, Tailscale, Nginx Proxy Manager, and a private static web container",
+                "Self-hosted Elkaza.at deployment through VPS TCP ingress, Tailscale, Nginx Proxy Manager, and a private static web container",
                 "Hardened VPS ingress shield with strict UFW policy, unattended upgrades, and no direct exposure of the residential IP",
                 "Tailscale reverse tunnel from public ingress to the private Proxmox platform without opening local router ports",
                 "GitHub Actions CI/CD for automated Next.js production deployments with minimal manual release handling",
@@ -534,7 +534,7 @@ export const projects: Project[] = [
             ],
             [
                 "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert über analytics.elkaza.at als First-Party-Analytics-Pfad",
-                "Self-hosted Elkaza.at-Delivery über VPS-TCP-Ingress, Tailscale, Nginx Proxy Manager und einen privaten statischen Web-Container",
+                "Self-hosted Elkaza.at-Deployment über VPS-TCP-Ingress, Tailscale, Nginx Proxy Manager und einen privaten statischen Web-Container",
                 "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
                 "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
                 "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
@@ -592,7 +592,7 @@ export const projects: Project[] = [
                 ),
                 summary: locList(
                     [
-                        "Public website delivery stays lightweight on Vercel while analytics ownership moves private",
+                        "Public website hosting stays lightweight on Vercel while analytics ownership moves private",
                         "A VPS ingress layer avoids exposing the residential IP or local router ports",
                         "Operational paths for CI/CD, monitoring, and platform management are separated from visitor traffic",
                     ],
@@ -801,7 +801,7 @@ export const projects: Project[] = [
                 "Turned a classroom dashboard task into a reusable observability component",
             ],
             [
-                "Dem BLE-Monitoring-Stack eine betreibernahe Sichtbarkeit hinzugefügt",
+                "MQTT-Telemetrie in InfluxDB gespeichert und mit Grafana sowie Node-RED visualisiert",
                 "Dashboards und Datasources aus der Versionsverwaltung reproduzierbar gemacht",
                 "Eine Unterrichtsaufgabe zu einem wiederverwendbaren Observability-Baustein weiterentwickelt",
             ]
@@ -903,8 +903,8 @@ export const projects: Project[] = [
             "Echtzeit-Umweltsensorknoten"
         ),
         oneLiner: loc(
-            "Implemented a FreeRTOS-based sensor node that separates sensing, connectivity, and telemetry tasks for predictable real-time behavior.",
-            "Implementiert einen FreeRTOS-basierten Sensorknoten, der Erfassung, Konnektivität und Telemetrie in getrennte Tasks aufteilt, um vorhersagbares Echtzeitverhalten zu erreichen."
+            "Built a FreeRTOS-based sensor node that separates sensing, connectivity, and telemetry tasks for predictable real-time behavior.",
+            "FreeRTOS-basierten Sensorknoten aufgebaut, der Erfassung, Konnektivität und Telemetrie in getrennte Tasks aufteilt, um vorhersagbares Echtzeitverhalten zu erreichen."
         ),
         overview: loc(
             "This project reframes a small sensor build as embedded systems engineering. The focus is not just reading a value from a sensor, but designing firmware that can scale into a larger AIoT stack without blocking loops and timing drift.",
@@ -1022,7 +1022,7 @@ export const projects: Project[] = [
             [
                 "Layered security with Pi-hole DNS filtering, persistent ingress rules, and CrowdSec detection",
                 "Reverse-proxied service access through Nginx Proxy Manager",
-                "Private runtime foundation for Elkaza.at static delivery and first-party Plausible analytics",
+                "Private runtime foundation for Elkaza.at static hosting and first-party Plausible analytics",
                 "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
                 "Stabilized a React-based Proxmox API integration for dashboard visibility",
                 "Watchtower-driven container update workflow for routine maintenance",
@@ -1309,7 +1309,7 @@ export const projects: Project[] = [
         ),
         solution: loc(
             "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, and GitHub-connected deployment. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
-            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-gekoppeltem Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
+            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-Actions-Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
         ),
         architecture: {
             node: loc(
@@ -1317,7 +1317,7 @@ export const projects: Project[] = [
                 "Der Browser erhält ein performance-orientiertes Frontend für Projekterkundung und professionelle Positionierung."
             ),
             edge: loc(
-                "Vercel handles delivery, previews, and runtime hosting for the public site experience.",
+                "Vercel handles hosting, previews, and runtime operation for the public site experience.",
                 "Vercel übernimmt Auslieferung, Preview-Deployments und Hosting für die öffentliche Site-Erfahrung."
             ),
             cloud: loc(
@@ -1343,20 +1343,20 @@ export const projects: Project[] = [
             [
                 "Mehrsprachiges Inhaltsmodell für Projekte, CV und Fachtexte",
                 "Wiederverwendbare Komponentenstruktur für wartbare Weiterentwicklung",
-                "GitHub-gekoppelter Deployment-Workflow",
+                "Deployment-Workflow über GitHub Actions",
                 "SEO- und Accessibility-bewusste öffentliche Präsentation",
             ]
         ),
         results: locList(
             [
-                "Created a stronger professional platform for technical storytelling",
+                "Built a maintainable public platform for projects, CV, writing, and technical case studies",
                 "Reduced friction for publishing new case studies and portfolio updates",
-                "Built a reusable web delivery baseline alongside the self-hosted variant",
+                "Built a reusable web deployment baseline alongside the self-hosted variant",
             ],
             [
-                "Eine stärkere professionelle Plattform für technisches Storytelling geschaffen",
+                "Eine wartbare öffentliche Plattform für Projekte, CV, Fachtexte und technische Fallstudien aufgebaut",
                 "Den Aufwand für neue Fallstudien und Portfolio-Updates reduziert",
-                "Eine wiederverwendbare Web-Delivery-Basis parallel zur Self-Hosted-Variante aufgebaut",
+                "Eine wiederverwendbare Web-Publishing-Basis parallel zur Self-Hosted-Variante aufgebaut",
             ]
         ),
         tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
@@ -1374,12 +1374,12 @@ export const projects: Project[] = [
                 ),
                 summary: locList(
                     [
-                        "Shows source control, structured content, CI validation, preview deployment, production delivery, and visitor access in one inspection view",
+                        "Shows source control, structured content, CI validation, preview deployment, production release, and visitor access in one inspection view",
                         "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
                         "Makes the project easier to evaluate as an engineered publishing platform rather than a static personal website",
                     ],
                     [
-                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einem Review-Artefakt",
+                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einer kompakten Architekturansicht",
                         "Passt zum realen Plattform-Stack: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel und Plausible Analytics",
                         "Macht das Projekt als entwickelte Publishing-Plattform bewertbar statt nur als statische persönliche Website",
                     ]
@@ -1395,16 +1395,16 @@ export const projects: Project[] = [
         status: "implemented",
         year: "2025",
         title: loc(
-            "Hybrid Cloud Delivery Platform",
-            "Hybrid-Cloud-Delivery-Plattform"
+            "Hybrid Cloud Deployment Platform",
+            "Hybrid-Cloud-Deployment-Plattform"
         ),
         oneLiner: loc(
-            "Elkaza.at runs on a self-hosted hybrid delivery platform where vps1 handles public ingress and CI/CD control, while debian-core serves the hardened static frontend, analytics, observability, and backups through Docker.",
-            "Elkaza.at läuft auf einer self-hosted Hybrid-Delivery-Plattform, bei der vps1 den öffentlichen Ingress und die CI/CD-Steuerung übernimmt, während debian-core das gehärtete statische Frontend, Analytics, Observability und Backups über Docker ausliefert."
+            "Elkaza.at runs on a self-hosted hybrid deployment platform where vps1 handles public ingress and CI/CD control, while debian-core serves the hardened static frontend, analytics, observability, and backups through Docker.",
+            "Elkaza.at läuft auf einer self-hosted Hybrid-Deployment-Plattform, bei der vps1 den öffentlichen Ingress und die CI/CD-Steuerung übernimmt, während debian-core das gehärtete statische Frontend, Analytics, Observability und Backups über Docker ausliefert."
         ),
         overview: loc(
-            "Elkaza.at is operated as a self-hosted delivery environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
-            "Elkaza.at wird als produktionsnahes Self-Hosted-Delivery-Environment betrieben. Öffentlicher HTTP/S-Traffic erreicht zuerst vps1, wo Nginx-Stream-Proxying die Ports 80 und 443 über Tailscale an debian-core weiterleitet. Der private Debian-/Proxmox-Host betreibt Docker Compose, Nginx Proxy Manager, einen statischen Nginx-Container für den exportierten Next.js-Frontend-Build und den Plausible-Analytics-Stack hinter demselben kontrollierten Ingress-Pfad."
+            "Elkaza.at is operated as a self-hosted deployment environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
+            "Elkaza.at wird als produktionsnahes Self-Hosted-Deployment-Environment betrieben. Öffentlicher HTTP/S-Traffic erreicht zuerst vps1, wo Nginx-Stream-Proxying die Ports 80 und 443 über Tailscale an debian-core weiterleitet. Der private Debian-/Proxmox-Host betreibt Docker Compose, Nginx Proxy Manager, einen statischen Nginx-Container für den exportierten Next.js-Frontend-Build und den Plausible-Analytics-Stack hinter demselben kontrollierten Ingress-Pfad."
         ),
         problem: loc(
             "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
@@ -1456,17 +1456,17 @@ export const projects: Project[] = [
         ),
         results: locList(
             [
-                "Moved Elkaza.at from a manual static VPS workflow to a repeatable self-hosted delivery platform",
+                "Moved Elkaza.at from a manual static VPS workflow to a repeatable self-hosted deployment platform",
                 "Reduced exposure by keeping the private runtime behind Tailscale instead of direct home-router ingress",
                 "Improved production behavior with canonical redirects, strict TLS coverage, compression, cache headers, HSTS, CSP, and static asset caching",
-                "Validated the delivery workflow with passing lint, typecheck, build, backend smoke checks, ingress smoke checks, and GitHub Actions deployment",
+                "Validated the deployment workflow with passing lint, typecheck, build, backend smoke checks, ingress smoke checks, and GitHub Actions deployment",
                 "Created a client-facing infrastructure case study around automation, security, performance, and operational maturity",
             ],
             [
-                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer wiederholbaren Self-Hosted-Delivery-Plattform weiterentwickelt",
+                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer wiederholbaren Self-Hosted-Deployment-Plattform weiterentwickelt",
                 "Die Exponierung reduziert, indem die private Runtime hinter Tailscale statt hinter direktem Heimrouter-Ingress bleibt",
                 "Das Production-Verhalten durch kanonische Redirects, strikte TLS-Abdeckung, Kompression, Cache-Header, HSTS, CSP und Static-Asset-Caching verbessert",
-                "Den Delivery-Workflow mit erfolgreichen Lint-, Typecheck-, Build-, Backend-Smoke-, Ingress-Smoke- und GitHub-Actions-Deployments validiert",
+                "Den Deployment-Workflow mit erfolgreichen Lint-, Typecheck-, Build-, Backend-Smoke-, Ingress-Smoke- und GitHub-Actions-Deployments validiert",
                 "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit, Performance und operativer Reife geschaffen",
             ]
         ),
@@ -1478,7 +1478,7 @@ export const projects: Project[] = [
         ],
         diagrams: [
             {
-                title: loc("Elkaza.at Delivery Architecture", "Elkaza.at-Delivery-Architektur"),
+                title: loc("Elkaza.at Deployment Architecture", "Elkaza.at-Deployment-Architektur"),
                 caption: loc(
                     "Current request and deployment path for Elkaza.at: public traffic reaches vps1, Nginx streams HTTP/S over Tailscale to debian-core, Nginx Proxy Manager terminates HTTPS and routes to static web and analytics containers, while GitHub Actions deploys through vps1.",
                     "Aktueller Request- und Deployment-Pfad für Elkaza.at: Öffentlicher Traffic erreicht vps1, Nginx streamt HTTP/S über Tailscale zu debian-core, Nginx Proxy Manager terminiert HTTPS und routet zu statischen Web- und Analytics-Containern, während GitHub Actions über vps1 deployt."

@@ -50,7 +50,7 @@ type RecentProject = {
 };
 
 type SkillGroup = {
-  key: "platform" | "automation" | "networking" | "operations" | "software" | "delivery" | "languages";
+  key: "platform" | "automation" | "networking" | "operations" | "software" | "projectManagement" | "languages";
   Icon: LucideIcon;
 };
 
@@ -121,24 +121,24 @@ const skillGroups: SkillGroup[] = [
   { key: "networking", Icon: Lock },
   { key: "operations", Icon: Activity },
   { key: "software", Icon: Database },
-  { key: "delivery", Icon: ClipboardList },
+  { key: "projectManagement", Icon: ClipboardList },
   { key: "languages", Icon: Languages },
 ];
 
 const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
   de: [
     { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und belastbare Infrastruktur" },
-    { label: "Ergebnis", value: "Deployed Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
+    { label: "Ergebnis", value: "Projekte mit CI/CD, Monitoring, Backups und Betriebsdokumentation" },
     { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und sauber übergeben" },
   ],
   en: [
     { label: "Focus", value: "Application engineering, automation, and reliable infrastructure" },
-    { label: "Proof", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Result", value: "Projects with CI/CD, monitoring, backups, and operations notes" },
     { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
   ar: [
     { label: "Focus", value: "Application engineering, automation, and infrastructure" },
-    { label: "Proof", value: "Deployed projects with CI/CD, monitoring, backups, and operations notes" },
+    { label: "Result", value: "Projects with CI/CD, monitoring, backups, and operations notes" },
     { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
   ],
 };

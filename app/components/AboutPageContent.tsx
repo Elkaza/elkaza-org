@@ -122,36 +122,8 @@ const getSkills = (t: (k: string) => string): Skill[] => [
     },
 ];
 
-const getInfrastructureHighlights = (t: (k: string) => string): Skill[] => [
-    {
-        title: t("about_infra_cloud_title"),
-        icon: Cloud,
-        items: [t("about_infra_cloud_desc")],
-        tools: ["Tailscale", "Proxmox", "Debian", "Nginx Proxy Manager"],
-    },
-    {
-        title: t("about_infra_cicd_title"),
-        icon: Code,
-        items: [t("about_infra_cicd_desc")],
-        tools: ["GitHub Actions", "Docker Compose", "Bash", "rsync"],
-    },
-    {
-        title: t("about_infra_security_title"),
-        icon: Network,
-        items: [t("about_infra_security_desc")],
-        tools: ["Plausible Analytics", "PostgreSQL", "ClickHouse"],
-    },
-    {
-        title: t("about_infra_resilience_title"),
-        icon: ClipboardCheck,
-        items: [t("about_infra_resilience_desc")],
-        tools: ["Netdata", "Uptime Kuma", "Dozzle", "Watchtower"],
-    },
-];
-
 export default function AboutPageContent() {
     const { t, locale } = useLocale();
-    const infrastructureHighlights = getInfrastructureHighlights(t);
     const educationItems = [
         { key: 1, organization: "University of Benghazi" },
         { key: 2, organization: "TU Wien" },
@@ -163,7 +135,7 @@ export default function AboutPageContent() {
             <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-12 lg:grid lg:grid-cols-12 lg:gap-10">
                 <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
                     <div className="w-20 h-1.5 bg-blue-600 mb-3" />
-                    <h1 className="text-3xl font-bold">{t("nav_about")}</h1>
+                    <p className="text-3xl font-bold">{t("nav_about")}</p>
                     <p className="mt-2 text-muted italic">{t("about_tagline") ?? ""}</p>
                 </aside>
 
@@ -262,41 +234,6 @@ export default function AboutPageContent() {
                                     <p className="mt-2 text-sm text-muted leading-relaxed">
                                         {t(`about_education_desc${item.key}`)}
                                     </p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Current Infrastructure Focus */}
-                    <section className="mb-12 space-y-6">
-                        <div className="space-y-2">
-                            <h2 className="text-2xl font-semibold">{t("about_infra_title")}</h2>
-                            <p className="text-muted leading-relaxed max-w-3xl">
-                                {t("about_infra_intro")}
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
-                            {infrastructureHighlights.map((item) => (
-                                <div key={item.title} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
-                                            <item.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-                                        </span>
-                                        <h3 className="!text-lg font-semibold leading-tight text-main">{item.title}</h3>
-                                    </div>
-                                    <p className="text-sm text-muted leading-relaxed">{item.items[0]}</p>
-                                    {item.tools && (
-                                        <div className="mt-4 flex flex-wrap gap-1.5">
-                                            {item.tools.map((tool) => (
-                                                <TechBadge
-                                                    key={tool}
-                                                    name={tool}
-                                                    className="bg-page px-2 py-0.5 text-[11px]"
-                                                    iconClassName="h-3.5 w-3.5"
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
                                 </div>
                             ))}
                         </div>

@@ -56,6 +56,9 @@ export default function CertificationsPageContent() {
                     <p className="text-muted max-w-2xl text-lg">
                         {t("cert_list_subtitle")}
                     </p>
+                    <p className="mt-2 text-sm font-medium text-muted">
+                        {t("cert_avail_req")}
+                    </p>
                 </div>
 
                 {/* Filters */}
@@ -135,12 +138,6 @@ export default function CertificationsPageContent() {
                                         )}
                                     </div>
 
-                                    {/* Footer / Proof */}
-                                    <div className="pt-4 border-t border-subtle flex items-center justify-between">
-                                        <span className="text-xs font-medium text-main">
-                                            {t(cert.proofKey || "cert_avail_req")}
-                                        </span>
-                                    </div>
                                 </div>
                             </div>
                         );

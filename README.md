@@ -102,4 +102,4 @@ Private project. All rights reserved.
 - Website: [elkaza.org](https://elkaza.org)
 - Email: contact@elkaza.org
 - GitHub: [@Elkaza](https://github.com/Elkaza)
-- LinkedIn: [linkedin.com/in/moalkhalil](https://www.linkedin.com/in/moalkhalil)
+- LinkedIn: [linkedin.com/in/elkaza](https://www.linkedin.com/in/elkaza)

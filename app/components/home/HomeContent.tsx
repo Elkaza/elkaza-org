@@ -5,13 +5,11 @@ import Link from "next/link";
 import {
   ArrowRight,
   Cpu,
-  Database,
   ExternalLink,
   FileText,
   Github,
   Mail,
   Server,
-  SquareTerminal,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -39,7 +37,7 @@ const HOME_COPY: Localized<{
   heroTitle: string;
   heroSubheadline: string;
   heroSupportingLine: string;
-  proofItems: {
+  profileFacts: {
     label: string;
     value: string;
   }[];
@@ -75,7 +73,7 @@ const HOME_COPY: Localized<{
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
     heroSupportingLine: "Hier dokumentiere ich ausgewählte Projekte aus Linux-Infrastruktur, Automatisierung, IoT und Edge AI – mit Architekturdiagrammen, Quellcode und nachvollziehbaren Ergebnissen.",
-    proofItems: [
+    profileFacts: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: profile.workAuthorization.de },
       { label: "Deutsch", value: "B2" },
@@ -110,7 +108,7 @@ const HOME_COPY: Localized<{
       result: "Ergebnis",
     },
     featuredTitle: "Technische Fallstudien",
-    workTitle: "Arbeitsbereiche, Stack & Ergebnisse",
+    workTitle: "Kernkompetenzen",
     finalCta:
       "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
   },
@@ -119,7 +117,7 @@ const HOME_COPY: Localized<{
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
     heroSupportingLine: "I connect software, automation and infrastructure so systems stay understandable, reliable and easy to hand over.",
-    proofItems: [
+    profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
       { label: "German", value: "B2" },
@@ -151,10 +149,10 @@ const HOME_COPY: Localized<{
     cardLabels: {
       problem: "Problem",
       responsibility: "My role",
-      result: "Proof",
+      result: "Result",
     },
     featuredTitle: "Engineering Case Studies",
-    workTitle: "Capabilities, Stack & Proof",
+    workTitle: "Core Capabilities",
     finalCta:
       "Open to roles where software, automation, infrastructure and technical documentation meet.",
   },
@@ -164,7 +162,7 @@ const HOME_COPY: Localized<{
     heroSubheadline: profile.introduction.en,
     heroSupportingLine:
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
-    proofItems: [
+    profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
       { label: "German", value: "B2" },
@@ -196,7 +194,7 @@ const HOME_COPY: Localized<{
     cardLabels: {
       problem: "Problem",
       responsibility: "My role",
-      result: "Proof",
+      result: "Result",
     },
     featuredTitle: "Featured Work",
     workTitle: "Capabilities & Stack",
@@ -309,73 +307,45 @@ const WORK_AREAS: {
 }[] = [
   {
     title: {
-      de: "Application Engineering",
-      en: "Application Engineering",
-      ar: "Application Engineering",
+      de: "Application Engineering & Automation",
+      en: "Application Engineering & Automation",
+      ar: "Application Engineering & Automation",
     },
     bullets: {
-      de: ["Analysiert Anforderungen und Fehlerbilder", "Dokumentiert Lösungen und technische Übergaben"],
-      en: ["Analyzes requirements and defects", "Documents fixes and technical handovers"],
-      ar: ["Analyzes requirements and defects", "Documents fixes and technical handovers"],
+      de: ["Analysiert Anforderungen, Fehlerbilder und Datenflüsse", "Automatisiert Workflows mit TypeScript, Python und SQL"],
+      en: ["Analyzes requirements, defects and data flows", "Automates workflows with TypeScript, Python and SQL"],
+      ar: ["Analyzes requirements, defects and data flows", "Automates workflows with TypeScript, Python and SQL"],
     },
     Icon: Workflow,
-    tools: ["Jira", "Confluence", "Documentation"],
+    tools: ["TypeScript", "Python", "SQL"],
   },
   {
     title: {
-      de: "Fullstack / Software",
-      en: "Fullstack / Software",
-      ar: "Fullstack / Software",
+      de: "Infrastructure & Operations",
+      en: "Infrastructure & Operations",
+      ar: "Infrastructure & Operations",
     },
     bullets: {
-      de: ["Baut Next.js/TypeScript Oberflächen", "Automatisiert Workflows mit Python und SQL"],
-      en: ["Builds Next.js/TypeScript interfaces", "Automates workflows with Python and SQL"],
-      ar: ["Builds Next.js/TypeScript interfaces", "Automates workflows with Python and SQL"],
-    },
-    Icon: SquareTerminal,
-    tools: ["Next.js", "TypeScript", "Python"],
-  },
-  {
-    title: {
-      de: "Infrastructure / Platform",
-      en: "Infrastructure / Platform",
-      ar: "Infrastructure / Platform",
-    },
-    bullets: {
-      de: ["Deployt Linux/Docker Services", "Betreibt Monitoring, Backups und Zugriffswege"],
-      en: ["Deploys Linux/Docker services", "Operates monitoring, backups and access paths"],
-      ar: ["Deploys Linux/Docker services", "Operates monitoring, backups and access paths"],
+      de: ["Betreibt Linux-, Docker- und Monitoring-Umgebungen", "Strukturiert Deployments, Backups und sichere Zugriffswege"],
+      en: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
+      ar: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
     },
     Icon: Server,
-    tools: ["Linux", "Docker", "GitHub Actions"],
+    tools: ["Linux", "Docker", "Monitoring"],
   },
   {
     title: {
-      de: "IoT / Edge AI",
-      en: "IoT / Edge AI",
-      ar: "IoT / Edge AI",
+      de: "IoT, Edge & Data",
+      en: "IoT, Edge & Data",
+      ar: "IoT, Edge & Data",
     },
     bullets: {
-      de: ["Testet Sensorik, Edge Inference und Aktuatorik", "Verbindet Dashboards, Logs und Embedded Geräte"],
-      en: ["Tests sensors, edge inference and actuation", "Connects dashboards, logs and embedded devices"],
-      ar: ["Tests sensors, edge inference and actuation", "Connects dashboards, logs and embedded devices"],
+      de: ["Verbindet Sensorik, Telemetrie und Edge-Prototypen", "Macht Datenpfade über Dashboards, Logs und Reports nachvollziehbar"],
+      en: ["Connects sensors, telemetry and edge prototypes", "Makes data paths inspectable through dashboards, logs and reports"],
+      ar: ["Connects sensors, telemetry and edge prototypes", "Makes data paths inspectable through dashboards, logs and reports"],
     },
     Icon: Cpu,
-    tools: ["Raspberry Pi", "ESP32", "MQTT"],
-  },
-  {
-    title: {
-      de: "Data Automation",
-      en: "Data Automation",
-      ar: "Data Automation",
-    },
-    bullets: {
-      de: ["Automatisiert Datenaufbereitung und Reports", "Verbessert reproduzierbare Analysepfade"],
-      en: ["Automates data preparation and reports", "Improves reproducible analysis paths"],
-      ar: ["Automates data preparation and reports", "Improves reproducible analysis paths"],
-    },
-    Icon: Database,
-    tools: ["Python", "SQL", "Dashboard"],
+    tools: ["Raspberry Pi", "MQTT", "Dashboards"],
   },
 ];
 
@@ -403,10 +373,11 @@ export default function HomeContent() {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-subtle py-3 text-sm font-semibold text-secondary">
-            {copy.proofItems.map((item, index) => (
+            {copy.profileFacts.map((item, index) => (
               <span key={item.label} className="inline-flex items-center gap-2">
+                <span className="text-muted">{item.label}</span>
                 <span>{item.value}</span>
-                {index < copy.proofItems.length - 1 && (
+                {index < copy.profileFacts.length - 1 && (
                   <span className="h-1 w-1 rounded-full bg-cyan-500" aria-hidden="true" />
                 )}
               </span>
@@ -480,13 +451,11 @@ export default function HomeContent() {
 
       <section className="mt-16 space-y-6 border-y border-subtle py-10" aria-labelledby="work-on">
         <SectionTitle id="work-on">{copy.workTitle}</SectionTitle>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
-          {WORK_AREAS.map(({ title, bullets, Icon, tools }, index) => (
+        <div className="grid gap-4 md:grid-cols-3">
+          {WORK_AREAS.map(({ title, bullets, Icon, tools }) => (
             <article
               key={title.en}
-              className={`flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4 ${
-                index < 3 ? "xl:col-span-2" : "xl:col-span-3"
-              }`}
+              className="flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">

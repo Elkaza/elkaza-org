@@ -2,7 +2,7 @@ const checks = [
   {
     name: "homepage",
     url: "https://elkaza.org/",
-    mustInclude: ["Mohamed Elkaza", "Software, Automation &amp; Infrastructure Engineer", "TypeScript"],
+    mustInclude: ["Mohamed Elkaza", "IT Infrastructure &amp; Application Engineer", "TypeScript"],
     mustNotInclude: ["Start Here"],
   },
   {
@@ -20,7 +20,7 @@ const checks = [
   {
     name: "security page",
     url: "https://elkaza.org/security",
-    mustInclude: ["Security &amp; Platform Operations", "private access", "secure self-hosted services"],
+    mustInclude: ["Security &amp; Platform Operations", "private access paths", "controlled exposure"],
     mustNotInclude: [],
   },
   {

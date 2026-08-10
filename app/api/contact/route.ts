@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // The public form confirms receipt here; production mail delivery can be connected through the deployment environment.
+        // The public form confirms receipt here; production mail sending can be connected through the deployment environment.
 
         return NextResponse.json(
             { success: true, message: "Message received successfully" },

@@ -177,7 +177,7 @@
   <g transform="translate(1456 128)">
     <rect class="card" width="98" height="158" rx="10"/>
     <text x="49" y="28" class="label textCenter">Serial Monitor</text>
-    <text x="49" y="46" class="label textCenter">Evidence</text>
+    <text x="49" y="46" class="label textCenter">Result</text>
     <rect x="22" y="76" width="54" height="45" rx="3" fill="#f8fafc" stroke="#0f2f62" stroke-width="3"/>
     <path d="M31 89h18M31 103h32M31 116h25" stroke="#0f2f62" stroke-width="2"/>
     <text x="30" y="99" class="label">&gt;_</text>
@@ -460,7 +460,7 @@
     <rect class="metric" width="365" height="58" rx="8"/>
     <rect x="18" y="12" width="48" height="36" rx="3" fill="#fff" stroke="#0f2f62" stroke-width="2"/>
     <text x="28" y="34" class="label">&gt;_</text>
-    <text x="88" y="18" class="label">Serial Monitor Evidence</text>
+    <text x="88" y="18" class="label">Serial Monitor Output</text>
     <text x="88" y="35" class="tiny">Timestamps, stats, probabilities,</text>
     <text x="88" y="49" class="tiny">persistence counter, latency</text>
     <path d="M252 9V50" stroke="#b8d4f2"/>

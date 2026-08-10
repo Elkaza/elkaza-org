@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
-import { BodyLarge, CardTitle, Eyebrow, MetaLabel, PageTitle, SectionTitle } from "./ui/Typography";
+import { BodyLarge, CardTitle, Eyebrow, PageTitle, SectionTitle } from "./ui/Typography";
 import { projects, type Project } from "../lib/projects";
 import type { Locale } from "../i18n/messages";
 import type { ProjectStatus } from "../lib/projects";
@@ -21,8 +21,6 @@ type DomainFilter = "all" | ProjectDomain;
 type Copy = {
     title: string;
     subtitle: string;
-    roleChips: string[];
-    proofStats: { label: string; value: string }[];
     featuredTitle: string;
     browseTitle: string;
     caseStudy: string;
@@ -111,9 +109,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Edge AI safety monitoring with camera, LiDAR, and local decision logic.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Owner-controlled web operations with private analytics, secure ingress, automation, and backups.",
+        en: "Self-managed web operations with private analytics, secure ingress, automation, and backups.",
         de: "Eigenkontrollierter Webbetrieb mit privaten Analytics, sicherem Ingress, Automatisierung und Backups.",
-        ar: "Owner-controlled web operations with private analytics, secure ingress, automation, and backups.",
+        ar: "Self-managed web operations with private analytics, secure ingress, automation, and backups.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "Embedded vibration classification from IMU features through model export and device-side inference.",
@@ -203,22 +201,34 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
     },
 };
 
+const FEATURED_STATUS_LABELS: Record<string, Record<Locale, string>> = {
+    "enterprise-self-hosted-infrastructure": {
+        en: "Live in operation",
+        de: "Im Betrieb",
+        ar: "Live in operation",
+    },
+    "edgeguardian-edge-ai-safety-bubble": {
+        en: "Demonstrated prototype",
+        de: "Demonstrierter Prototyp",
+        ar: "Demonstrated prototype",
+    },
+    "tinyml-vibration-anomaly-detection": {
+        en: "Academic prototype",
+        de: "Akademischer Prototyp",
+        ar: "Academic prototype",
+    },
+};
+
 const COPY: Record<Locale, Copy> = {
     en: {
         title: "Engineering Case Studies",
         subtitle: "A curated set of implemented systems across fullstack development, IoT, edge AI, infrastructure, and data automation.",
-        roleChips: ["Implemented", "Documented", "Deployed", "Observable", "GitHub-backed"],
-        proofStats: [
-            { label: "Project types", value: "Web, IoT, Infra, Data" },
-            { label: "Proof", value: "Code, diagrams, results" },
-            { label: "Delivery", value: "Builds and deployments" },
-        ],
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
-        result: "Proof",
+        result: "Result",
         tech: "Tech",
         year: "Year",
         status: {
@@ -237,12 +247,6 @@ const COPY: Record<Locale, Copy> = {
     de: {
         title: "Technische Fallstudien",
         subtitle: "Kuratierte technische Fallstudien aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
-        roleChips: ["Umgesetzt", "Dokumentiert", "Deployt", "Beobachtbar", "GitHub-gestützt"],
-        proofStats: [
-            { label: "Projekttypen", value: "Web, IoT, Infra, Data" },
-            { label: "Ergebnis", value: "Code, Diagramme, Ergebnisse" },
-            { label: "Delivery", value: "Builds und Deployments" },
-        ],
         featuredTitle: "Ausgewählte Fallstudien",
         browseTitle: "Weitere Projekte",
         caseStudy: "Fallstudie",
@@ -267,12 +271,6 @@ const COPY: Record<Locale, Copy> = {
     ar: {
         title: "Engineering Projects",
         subtitle: "Selected case studies across fullstack development, IoT, edge AI, infrastructure, and data automation.",
-        roleChips: ["Fullstack", "Application Engineering", "IoT / Edge AI", "Platform Engineering", "Data Automation"],
-        proofStats: [
-            { label: "Project types", value: "Web, IoT, Infra, Data" },
-            { label: "Proof", value: "Code, diagrams, results" },
-            { label: "Delivery", value: "Builds and deployments" },
-        ],
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         caseStudy: "Case Study",
@@ -337,6 +335,11 @@ export default function ProjectsPageContent() {
 
         return counts;
     }, [featuredSlugs, sortedProjects]);
+    const technicalAreaCount = DOMAIN_ORDER.length - 1;
+    const statsLine =
+        locale === "de"
+            ? `${projects.length} Projekte · ${technicalAreaCount} technische Bereiche · ${featuredProjects.length} ausgewählte Fallstudien`
+            : `${projects.length} projects · ${technicalAreaCount} technical areas · ${featuredProjects.length} featured case studies`;
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
@@ -346,24 +349,9 @@ export default function ProjectsPageContent() {
                         <Eyebrow>{locale === "de" ? "Projektportfolio" : "Project portfolio"}</Eyebrow>
                         <PageTitle className="mt-4 md:text-5xl">{copy.title}</PageTitle>
                         <BodyLarge className="mt-4 max-w-2xl text-muted">{copy.subtitle}</BodyLarge>
-                        <div className="mt-6 flex flex-wrap gap-2">
-                            {copy.roleChips.map((chip) => (
-                                <span key={chip} className="rounded-md border border-subtle bg-card px-3 py-2 text-sm font-medium text-main">
-                                    {chip}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="mt-8 grid gap-4 border-y border-subtle py-4 sm:grid-cols-3">
-                        {copy.proofStats.map((stat) => (
-                            <div key={stat.label} className="min-w-0 sm:border-l sm:border-subtle sm:pl-4 first:sm:border-l-0 first:sm:pl-0">
-                                <MetaLabel>{stat.label}</MetaLabel>
-                                <p className="mt-1 text-sm font-semibold text-main">
-                                    {stat.value}
-                                </p>
-                            </div>
-                        ))}
+                        <p className="mt-6 border-y border-subtle py-3 text-sm font-semibold text-secondary">
+                            {statsLine}
+                        </p>
                     </div>
                 </section>
 
@@ -448,7 +436,11 @@ function FeaturedProjectCard({
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
             <ProjectVisual project={project} featured />
             <div className="flex flex-1 flex-col p-5">
-                <ProjectMeta copy={copy} project={project} />
+                <ProjectMeta
+                    copy={copy}
+                    project={project}
+                    statusLabel={getFeaturedStatusLabel(project, locale, copy.status[project.status])}
+                />
                 <CardTitle className="text-xl">{getShortTitle(project, locale)}</CardTitle>
                 <p className="mt-3 break-words text-sm leading-relaxed text-muted">
                     {FEATURED_SUMMARIES[project.slug]?.[locale] ?? compactText(project.oneLiner[locale], 145)}
@@ -561,10 +553,12 @@ function ProjectMeta({
     copy,
     project,
     compact = false,
+    statusLabel,
 }: {
     copy: Copy;
     project: Project;
     compact?: boolean;
+    statusLabel?: string;
 }) {
     return (
         <div className={`mb-3 flex flex-wrap items-center gap-2 ${compact ? "text-[11px]" : "text-xs"}`}>
@@ -572,13 +566,17 @@ function ProjectMeta({
                 {copy.domains[getProjectDomain(project)]}
             </span>
             <span className={`rounded-full border px-2.5 py-1 font-semibold ${getStatusClassName(project.status)}`}>
-                {copy.status[project.status]}
+                {statusLabel ?? copy.status[project.status]}
             </span>
             <span className="rounded-full border border-subtle bg-page px-2.5 py-1 font-semibold text-muted">
                 {copy.year}: {project.year}
             </span>
         </div>
     );
+}
+
+function getFeaturedStatusLabel(project: Project, locale: Locale, fallback: string) {
+    return FEATURED_STATUS_LABELS[project.slug]?.[locale] ?? fallback;
 }
 
 function ProjectVisual({

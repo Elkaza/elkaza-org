@@ -49,7 +49,7 @@ export const profile = {
   email: "contact@elkaza.org",
   websiteUrl: "https://elkaza.org",
   githubUrl: "https://github.com/Elkaza",
-  linkedinUrl: "https://www.linkedin.com/in/moalkhalil",
+  linkedinUrl: "https://www.linkedin.com/in/elkaza",
   languages: [
     {
       code: "ar",
@@ -110,7 +110,11 @@ export const profile = {
         en: "MSc Business Informatics",
         ar: "MSc Business Informatics",
       },
-      status: { de: "Masterarbeit / Abschlussphase", en: "thesis / finalisation phase", ar: "thesis / finalisation phase" },
+      status: {
+        de: "laufend, Masterarbeit in Arbeit",
+        en: "ongoing, master's thesis in progress",
+        ar: "ongoing, master's thesis in progress",
+      },
     },
     {
       institution: "University of Benghazi",
