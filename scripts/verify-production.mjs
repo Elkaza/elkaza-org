@@ -20,7 +20,7 @@ const checks = [
   {
     name: "security page",
     url: "https://elkaza.org/security",
-    mustInclude: ["Security &amp; Platform Operations", "private access paths", "controlled exposure"],
+    mustInclude: ["Security &amp; Platform Operations", "reduzierter Exponierung", "nachvollziehbare Erkennung"],
     mustNotInclude: [],
   },
   {
