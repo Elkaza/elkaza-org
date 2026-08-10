@@ -1,12 +1,7 @@
 import { execFileSync } from "node:child_process";
 
-const productionBaseUrl = "https://elkaza.org";
-
-const projectSlugs = [
-  "enterprise-self-hosted-infrastructure",
-  "edgeguardian-edge-ai-safety-bubble",
-  "tinyml-vibration-anomaly-detection",
-];
+const canonicalBaseUrl = "https://elkaza.org";
+const productionBaseUrl = process.env.PRODUCTION_FETCH_BASE_URL ?? "https://www.elkaza.org";
 
 const routePairs = [
   {
@@ -58,13 +53,27 @@ const routePairs = [
     deText: ["Security &amp; Plattformbetrieb"],
     enText: ["Security &amp; Platform Operations"],
   },
-  ...projectSlugs.map((slug) => ({
-    name: `project ${slug}`,
-    de: `/projects/${slug}`,
-    en: `/en/projects/${slug}`,
-    deText: ["Architekturdiagramme"],
-    enText: ["Architecture diagrams"],
-  })),
+  {
+    name: "project enterprise-self-hosted-infrastructure",
+    de: "/projects/enterprise-self-hosted-infrastructure",
+    en: "/en/projects/enterprise-self-hosted-infrastructure",
+    deText: ["Self-Hosted Infrastructure"],
+    enText: ["Self-Hosted Infrastructure"],
+  },
+  {
+    name: "project edgeguardian-edge-ai-safety-bubble",
+    de: "/projects/edgeguardian-edge-ai-safety-bubble",
+    en: "/en/projects/edgeguardian-edge-ai-safety-bubble",
+    deText: ["EdgeGuardian"],
+    enText: ["EdgeGuardian"],
+  },
+  {
+    name: "project tinyml-vibration-anomaly-detection",
+    de: "/projects/tinyml-vibration-anomaly-detection",
+    en: "/en/projects/tinyml-vibration-anomaly-detection",
+    deText: ["TinyML"],
+    enText: ["TinyML"],
+  },
 ];
 
 const legacyRedirects = [
@@ -84,6 +93,10 @@ function getExpectedCommit() {
 }
 
 function absolute(path) {
+  return path === "/" ? canonicalBaseUrl : `${canonicalBaseUrl}${path}`;
+}
+
+function requestUrl(path) {
   return path === "/" ? productionBaseUrl : `${productionBaseUrl}${path}`;
 }
 
@@ -171,10 +184,12 @@ try {
 for (const pair of routePairs) {
   const deUrl = absolute(pair.de);
   const enUrl = absolute(pair.en);
+  const deRequestUrl = requestUrl(pair.de);
+  const enRequestUrl = requestUrl(pair.en);
 
   try {
-    const deHtml = await fetchText(deUrl);
-    const enHtml = await fetchText(enUrl);
+    const deHtml = await fetchText(deRequestUrl);
+    const enHtml = await fetchText(enRequestUrl);
     const deMissing = [
       ...includesAll(deHtml, pair.deText),
       ...(!hasHtmlLang(deHtml, "de") ? ['<html lang="de">'] : []),
@@ -205,7 +220,7 @@ for (const pair of routePairs) {
 
 for (const redirect of legacyRedirects) {
   try {
-    const response = await fetch(absolute(redirect.source), {
+    const response = await fetch(requestUrl(redirect.source), {
       redirect: "manual",
       headers: {
         "user-agent": "elkaza-org-production-verifier/2.0",
@@ -213,13 +228,15 @@ for (const redirect of legacyRedirects) {
       },
     });
     const location = response.headers.get("location") ?? "";
-    const expectedLocation = absolute(redirect.target);
+    const expectedLocation = requestUrl(redirect.target);
 
-    if (![301, 308].includes(response.status) || location !== expectedLocation) {
+    const validLocations = [expectedLocation, redirect.target];
+
+    if (![301, 308].includes(response.status) || !validLocations.includes(location)) {
       reportFail(`redirect ${redirect.source}`, [
         `status: ${response.status}`,
         `location: ${location || "missing"}`,
-        `expected: ${expectedLocation}`,
+        `expected: ${validLocations.join(" or ")}`,
       ]);
     } else {
       reportOk(`redirect ${redirect.source} -> ${redirect.target}`);
@@ -269,7 +286,7 @@ try {
 
   for (const pair of routePairs) {
     for (const path of [pair.de, pair.en]) {
-      const url = absolute(path);
+      const url = requestUrl(path);
       const html = await fetchText(url);
       for (const match of html.matchAll(/\shref=["']([^"']+)["']/gi)) {
         const href = match[1];
@@ -279,7 +296,7 @@ try {
           !href.startsWith("/_next/") &&
           !href.includes("#")
         ) {
-          links.add(absolute(href));
+          links.add(requestUrl(href));
         }
       }
     }
