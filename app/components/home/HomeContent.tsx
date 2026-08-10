@@ -17,6 +17,7 @@ import { useLocale } from "@/app/LocaleProvider";
 import { TechBadge } from "@/app/components/ui/TechBadge";
 import { BodyLarge, CardTitle, Eyebrow, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import type { Locale } from "@/app/i18n/messages";
+import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import { projects, type Project } from "@/app/lib/projects";
 import { profile } from "@/app/lib/profile";
 
@@ -351,6 +352,7 @@ const WORK_AREAS: {
 
 export default function HomeContent() {
   const { locale } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
   const copy = HOME_COPY[locale] ?? HOME_COPY.en;
   const featuredProjects = FEATURED_PROJECT_SLUGS
     .map((slug) => {
@@ -397,21 +399,21 @@ export default function HomeContent() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/projects"
+              href={getLocalizedPath("/projects", activeLocale)}
               className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               {copy.ctas.projects}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
             <Link
-              href={locale === "de" ? "/kontakt" : "/contact"}
+              href={locale === "de" ? "/kontakt" : "/en/contact"}
               className="inline-flex items-center rounded-md border border-subtle bg-card px-5 py-2.5 text-sm font-semibold text-secondary transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200"
             >
               <Mail className="mr-2 h-4 w-4" />
               {copy.ctas.contact}
             </Link>
             <Link
-              href="/cv"
+              href={getLocalizedPath("/cv", activeLocale)}
               className="inline-flex items-center px-1 py-2.5 text-sm font-semibold text-muted underline-offset-4 transition-colors hover:text-blue-700 hover:underline dark:hover:text-blue-300"
             >
               {copy.ctas.cv}
@@ -428,7 +430,7 @@ export default function HomeContent() {
             <SectionTitle id="featured-work">{copy.featuredTitle}</SectionTitle>
           </div>
           <Link
-            href="/projects"
+            href={getLocalizedPath("/projects", activeLocale)}
               className="inline-flex items-center self-start rounded-md border border-subtle bg-card px-3.5 py-2 text-sm font-semibold text-main transition-colors hover:border-blue-700 hover:bg-blue-50 hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:bg-blue-950/30 dark:hover:text-blue-200 md:self-auto"
           >
             {copy.ctas.projects}
@@ -493,14 +495,14 @@ export default function HomeContent() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href={locale === "de" ? "/kontakt" : "/contact"}
+              href={locale === "de" ? "/kontakt" : "/en/contact"}
               className="inline-flex items-center rounded-md bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white shadow-blue-700/25 transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page"
             >
               <Mail className="mr-2 h-4 w-4" />
               {copy.ctas.contact}
             </Link>
             <Link
-              href="/cv"
+              href={getLocalizedPath("/cv", activeLocale)}
               className="inline-flex items-center rounded-md border border-subtle bg-page px-5 py-2.5 text-sm font-semibold text-main transition-colors hover:bg-subtle"
             >
               <FileText className="mr-2 h-4 w-4" />
@@ -573,6 +575,7 @@ function FeaturedProjectCard({
   const visualSrc = project.diagrams?.[0]?.src ?? project.images?.[0];
   const githubLink = project.links.find((link) => link.url.includes("github.com"));
   const liveLink = project.links.find((link) => !link.url.includes("github.com"));
+  const activeLocale = locale === "en" ? "en" : "de";
 
   return (
     <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
@@ -607,7 +610,7 @@ function FeaturedProjectCard({
 
         <div className="mt-auto flex flex-wrap gap-2 pt-6">
           <Link
-            href={`/projects/${project.slug}`}
+            href={getLocalizedPath(`/projects/${project.slug}`, activeLocale)}
             className="inline-flex items-center rounded-md bg-blue-700 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-card"
           >
             {copy.ctas.caseStudy}

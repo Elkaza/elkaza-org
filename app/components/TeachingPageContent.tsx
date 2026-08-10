@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Network, Users, Cpu, GraduationCap, type LucideIcon } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 type FocusCard = {
     title: string;
@@ -12,7 +13,8 @@ type FocusCard = {
 };
 
 export default function TeachingPageContent() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
     const cards: FocusCard[] = [
         {
             title: t("teach_c1_title"),
@@ -60,7 +62,7 @@ export default function TeachingPageContent() {
                                 <card.icon className="text-blue-600 mb-3 w-8 h-8" />
                                 <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{card.title}</h3>
                                 <p className="text-main mb-4">{card.description}</p>
-                                <Link href={card.href} className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
+                                <Link href={getLocalizedPath(card.href, activeLocale)} className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                                     {card.linkLabel}
                                 </Link>
                             </div>
@@ -71,7 +73,7 @@ export default function TeachingPageContent() {
                         <p className="text-main mb-6 max-w-2xl mx-auto">
                             {t("teach_cta_desc")}
                         </p>
-                        <Link href="/projects" className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition">{t("teach_cta_btn")}</Link>
+                        <Link href={getLocalizedPath("/projects", activeLocale)} className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-800 transition">{t("teach_cta_btn")}</Link>
                     </div>
                 </div>
             </section>

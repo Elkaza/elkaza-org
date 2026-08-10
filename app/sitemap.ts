@@ -1,11 +1,12 @@
 import { MetadataRoute } from "next";
 import { projects } from "./lib/projects";
+import { absoluteUrl } from "./lib/seo";
+import { getAlternatePaths, getLocalizedPath } from "./lib/localizedRoutes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://elkaza.org";
   const now = new Date();
 
-  const staticPages = [
+  const localizedStaticPages = [
     "/",
     "/about",
     "/blog",
@@ -15,10 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/security",
     "/teaching",
     "/kontakt",
-    "/contact",
     "/cv",
-    "/certifications",
     "/zertifikate",
+  ];
+
+  const germanOnlyPages = [
     "/impressum",
     "/datenschutz",
   ];
@@ -28,12 +30,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogSlugs = ["ea-and-ai", "self-hosted-infrastructure"];
   const blogPages = blogSlugs.map((s) => `/blog/${s}`);
 
-  const allPages = [...staticPages, ...projectPages, ...blogPages];
+  const localizedPages = [...localizedStaticPages, ...projectPages, ...blogPages];
+  const germanPaths = [...localizedPages, ...germanOnlyPages];
+  const englishPaths = localizedPages.map((path) => getLocalizedPath(path, "en"));
+  const allPages = [...germanPaths, ...englishPaths];
 
   return allPages.map((path) => ({
-    url: `${base}${path}`,
+    url: absoluteUrl(path),
     lastModified: now,
     changeFrequency: "monthly",
     priority: path === "/" ? 1.0 : path.startsWith("/projects/") || path.startsWith("/blog/") ? 0.6 : 0.7,
+    alternates: localizedPages.includes(getLocalizedPath(path, "de"))
+      ? {
+          languages: {
+            de: absoluteUrl(getAlternatePaths(path).de),
+            en: absoluteUrl(getAlternatePaths(path).en),
+          },
+        }
+      : undefined,
   }));
 }

@@ -5,10 +5,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { certifications, sortCertifications } from "@/app/lib/certifications";
+import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 
 export default function Certifications() {
     const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
 
     // Get sorted items and take top 3
     const sortedItems = sortCertifications(certifications);
@@ -17,7 +19,7 @@ export default function Certifications() {
     return (
         <div className="mt-8 p-6 bg-card border border-subtle rounded-xl shadow-sm group hover:border-blue-300 dark:hover:border-blue-700 transition-colors cursor-pointer relative">
             {/* Click overlap */}
-            <Link href={locale === "de" ? "/zertifikate" : "/certifications"} className="absolute inset-0 z-10" aria-label={t("cert_view_all")} />
+            <Link href={getLocalizedPath("/zertifikate", activeLocale)} className="absolute inset-0 z-10" aria-label={t("cert_view_all")} />
 
             <div className="flex items-center justify-between mb-4 relative z-0">
                 <h3 className="font-bold text-main tracking-wider uppercase text-sm">

@@ -1,13 +1,25 @@
 "use client";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "../LocaleProvider";
+import { appendSearchAndHash, getLocalizedPath, type ActiveLocale } from "../lib/localizedRoutes";
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLocale();
-  const btn = (code: "de" | "en", label: string, accessibleLabel: string) => (
+  const pathname = usePathname() ?? "/";
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { locale } = useLocale();
+
+  const navigate = (code: ActiveLocale) => {
+    const search = searchParams.size > 0 ? `?${searchParams.toString()}` : "";
+    const hash = typeof window === "undefined" ? "" : window.location.hash;
+    router.push(appendSearchAndHash(getLocalizedPath(pathname, code), search, hash));
+  };
+
+  const btn = (code: ActiveLocale, label: string, accessibleLabel: string) => (
     <button
       key={code}
       type="button"
-      onClick={() => setLocale(code)}
+      onClick={() => navigate(code)}
       className={`rounded-md border bg-card px-2 py-1 text-xs transition-colors ${locale === code
           ? "border-blue-500 font-semibold text-blue-700 dark:text-blue-300"
           : "border-subtle text-muted hover:bg-subtle hover:text-main"

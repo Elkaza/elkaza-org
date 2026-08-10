@@ -14,6 +14,7 @@ import {
     type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 import Link from "next/link";
 import { TechLogo } from "./ui/TechBadge";
 
@@ -97,7 +98,8 @@ const toolGroups: ToolGroup[] = [
 ];
 
 export default function SecurityPageContent() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
@@ -170,10 +172,10 @@ export default function SecurityPageContent() {
                             </li>
                         </ul>
                         <div className="flex flex-col gap-2">
-                            <Link href="/projects/enterprise-self-hosted-infrastructure" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
+                            <Link href={getLocalizedPath("/projects/enterprise-self-hosted-infrastructure", activeLocale)} className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
                                 {t("sec_view_project")} {">"}
                             </Link>
-                            <Link href="/projects/vienna-fortress" className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
+                            <Link href={getLocalizedPath("/projects/vienna-fortress", activeLocale)} className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm">
                                 {t("sec_view_foundation")} {">"}
                             </Link>
                         </div>

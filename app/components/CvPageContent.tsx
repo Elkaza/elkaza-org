@@ -24,6 +24,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 import { TechBadge } from "./ui/TechBadge";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import type { Locale } from "../i18n/messages";
@@ -145,6 +146,7 @@ const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
 
 export default function CvPageContent() {
   const { locale, t } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
   const experienceItems = [
     { key: "1", organization: "HiCo-ICS" },
     { key: "2", organization: "Raiffeisen Bank International" },
@@ -259,7 +261,7 @@ export default function CvPageContent() {
             {recentProjects.map(({ key, href, category, tags, Icon }) => (
               <Link
                 key={key}
-                href={href}
+                href={getLocalizedPath(href, activeLocale)}
                 className="group flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-400 hover:bg-card hover:shadow-md dark:hover:border-blue-500 print:break-inside-avoid"
               >
                 <div className="flex items-start justify-between gap-3">

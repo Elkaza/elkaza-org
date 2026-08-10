@@ -3,9 +3,11 @@ import { useLocale } from "../LocaleProvider";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { profile } from "../lib/profile";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 export default function SiteFooter() {
   const { t, locale } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
 
   return (
     <footer className="bg-page text-muted py-12 border-t border-subtle">
@@ -13,19 +15,19 @@ export default function SiteFooter() {
 
         <div className="flex gap-6 text-sm">
           <Link
-            href={locale === "de" ? "/zertifikate" : "/certifications"}
+            href={locale === "de" ? "/zertifikate" : "/en/certifications"}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline-offset-2 hover:underline"
           >
             {t("cert_title")}
           </Link>
           <Link
-            href="/impressum"
+            href={getLocalizedPath("/impressum", activeLocale)}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline-offset-2 hover:underline"
           >
             {t("footer_impressum")}
           </Link>
           <Link
-            href="/datenschutz"
+            href={getLocalizedPath("/datenschutz", activeLocale)}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors underline-offset-2 hover:underline"
           >
             {t("footer_datenschutz")}

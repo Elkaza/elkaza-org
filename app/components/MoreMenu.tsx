@@ -4,6 +4,7 @@ import { MoreHorizontal, Github, Linkedin, Mail } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import Link from "next/link";
 import { profile } from "../lib/profile";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 const primaryItems = [
   { href: "/projects", labelKey: "nav_projects" },
@@ -13,13 +14,14 @@ const primaryItems = [
 
 const supportItems = [
   { href: "/security", labelKey: "nav_security" },
-  { href: "/certifications", labelKey: "nav_certifications" },
+  { href: "/zertifikate", labelKey: "nav_certifications" },
   { href: "/blog", labelKey: "nav_blog" },
   { href: "/research", labelKey: "nav_research" },
 ];
 
 export default function MoreMenu() {
   const { locale, t } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -84,7 +86,7 @@ export default function MoreMenu() {
             {primaryItems.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={getLocalizedPath(item.href, activeLocale)}
                 role="menuitem"
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -93,7 +95,7 @@ export default function MoreMenu() {
               </Link>
             ))}
             <Link
-              href={locale === "de" ? "/kontakt" : "/contact"}
+              href={locale === "de" ? "/kontakt" : "/en/contact"}
               role="menuitem"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -105,7 +107,7 @@ export default function MoreMenu() {
           {supportItems.map((item) => (
             <Link
               key={item.href}
-              href={item.href === "/certifications" && locale === "de" ? "/zertifikate" : item.href}
+              href={getLocalizedPath(item.href, activeLocale)}
               role="menuitem"
               onClick={() => setOpen(false)}
               className="flex items-center gap-2 rounded px-3 py-2 text-main transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"

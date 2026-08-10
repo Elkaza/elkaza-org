@@ -4,10 +4,12 @@ import Link from "next/link";
 import { ArrowLeft, Award, Calendar } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
 import { certifications, sortCertifications, CertCategory } from "@/app/lib/certifications";
+import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 
 export default function CertificationsPageContent() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
     const [selectedCategory, setSelectedCategory] = useState<CertCategory | "All">("All");
 
     const filters = [
@@ -48,7 +50,7 @@ export default function CertificationsPageContent() {
             <div className="max-w-4xl mx-auto px-6 py-12">
                 {/* Header */}
                 <div className="mb-8">
-                    <Link href={"/about"} className="inline-flex items-center text-sm text-muted hover:text-blue-600 dark:hover:text-blue-400 mb-6 transition-colors font-medium">
+                    <Link href={getLocalizedPath("/about", activeLocale)} className="inline-flex items-center text-sm text-muted hover:text-blue-600 dark:hover:text-blue-400 mb-6 transition-colors font-medium">
                         <ArrowLeft className="w-4 h-4 mr-1" />
                         {t("cert_nav_back")}
                     </Link>

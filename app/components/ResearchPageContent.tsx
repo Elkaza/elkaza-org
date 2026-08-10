@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { Activity, BookOpen, Cpu, Database, Network, Shield, Workflow } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 export default function ResearchPageContent() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
   const topics = [
     { id: 1, Icon: Cpu },
     { id: 2, Icon: Database },
@@ -73,7 +75,7 @@ export default function ResearchPageContent() {
             <p className="mt-3 text-muted leading-relaxed">{t("open_to_desc")}</p>
             <div className="mt-6">
               <Link
-                href="/contact"
+                href={getLocalizedPath("/kontakt", activeLocale)}
                 className="inline-block rounded-md bg-blue-700 px-6 py-3 font-medium text-white transition hover:bg-blue-800"
               >
                 {t("research_cta") ?? t("btn_contact_me")}

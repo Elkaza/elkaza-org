@@ -31,11 +31,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
-        source: '/kontakt',
-        destination: '/contact',
+        source: '/contact',
+        destination: '/en/contact',
+        permanent: true,
+      },
+      {
+        source: '/certifications',
+        destination: '/en/certifications',
+        permanent: true,
       },
     ];
   },

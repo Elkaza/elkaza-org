@@ -2,8 +2,12 @@
 import React from "react";
 import Link from "next/link";
 import { Cpu, Bluetooth, Network, Cog, Database, Activity } from "lucide-react";
+import { useLocale } from "../LocaleProvider";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 export default function IotEdgePlatformArchitecture() {
+    const { locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
 
     return (
         <section className="mb-12 relative overflow-hidden rounded-2xl bg-gradient-to-br from-subtle/40 via-bg-page to-subtle/20 border border-blue-500/20 shadow-lg shadow-blue-500/5">
@@ -57,7 +61,7 @@ export default function IotEdgePlatformArchitecture() {
                         <div className="absolute -left-[35px] top-1 flex items-center justify-center w-6 h-6 rounded-full bg-page border-2 border-blue-400">
                             <Network className="w-3 h-3 text-blue-400" />
                         </div>
-                        <Link href="/projects/ble-edge-gateway" className="block group">
+                        <Link href={getLocalizedPath("/projects/ble-edge-gateway", activeLocale)} className="block group">
                             <div className="bg-card hover:bg-subtle/50 transition-colors rounded-xl p-5 border border-blue-200/50 dark:border-blue-900/50 group-hover:border-blue-400 dark:group-hover:border-blue-500 shadow-sm cursor-pointer relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-blue-500/5 group-hover:bg-blue-500/10 rounded-bl-full transition-colors" />
                                 <div className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">EDGE GATEWAY LAYER</div>
@@ -72,7 +76,7 @@ export default function IotEdgePlatformArchitecture() {
                         <div className="absolute -left-[35px] top-1 flex items-center justify-center w-6 h-6 rounded-full bg-page border-2 border-blue-400">
                             <Network className="w-3 h-3 text-blue-400" />
                         </div>
-                        <Link href="/projects/rpi-ble-mqtt-gateway" className="block group">
+                        <Link href={getLocalizedPath("/projects/rpi-ble-mqtt-gateway", activeLocale)} className="block group">
                             <div className="bg-card hover:bg-subtle/50 transition-colors rounded-xl p-5 border border-blue-200/50 dark:border-blue-900/50 group-hover:border-blue-400 dark:group-hover:border-blue-500 shadow-sm cursor-pointer relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-blue-500/5 group-hover:bg-blue-500/10 rounded-bl-full transition-colors" />
                                 <div className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">MESSAGING LAYER</div>
@@ -88,7 +92,7 @@ export default function IotEdgePlatformArchitecture() {
                         <div className="absolute -left-[35px] top-1 flex items-center justify-center w-6 h-6 rounded-full bg-page border-2 border-purple-500">
                             <Cog className="w-3 h-3 text-purple-500" />
                         </div>
-                        <Link href="/projects/iot-sensor-data-pipeline" className="block group">
+                        <Link href={getLocalizedPath("/projects/iot-sensor-data-pipeline", activeLocale)} className="block group">
                             <div className="bg-card hover:bg-subtle/50 transition-colors rounded-xl p-5 border border-purple-200/50 dark:border-purple-900/50 group-hover:border-purple-400 dark:group-hover:border-purple-500 shadow-sm cursor-pointer relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-purple-500/5 group-hover:bg-purple-500/10 rounded-bl-full transition-colors" />
                                 <div className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">PROCESSING LAYER</div>
@@ -104,7 +108,7 @@ export default function IotEdgePlatformArchitecture() {
                         <div className="absolute -left-[35px] top-1 flex items-center justify-center w-6 h-6 rounded-full bg-page border-2 border-purple-500">
                             <Database className="w-3 h-3 text-purple-500" />
                         </div>
-                        <Link href="/projects/iot-sensor-data-pipeline" className="block group">
+                        <Link href={getLocalizedPath("/projects/iot-sensor-data-pipeline", activeLocale)} className="block group">
                             <div className="bg-card hover:bg-subtle/50 transition-colors rounded-xl p-5 border border-purple-200/50 dark:border-purple-900/50 group-hover:border-purple-400 dark:group-hover:border-purple-500 shadow-sm cursor-pointer relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-purple-500/5 group-hover:bg-purple-500/10 rounded-bl-full transition-colors" />
                                 <div className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">STORAGE LAYER</div>
@@ -120,7 +124,7 @@ export default function IotEdgePlatformArchitecture() {
                         <div className="absolute -left-[35px] top-1 flex items-center justify-center w-6 h-6 rounded-full bg-page border-2 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]">
                             <Activity className="w-3 h-3 text-purple-500" />
                         </div>
-                        <Link href="/projects/iot-sensor-data-pipeline" className="block group">
+                        <Link href={getLocalizedPath("/projects/iot-sensor-data-pipeline", activeLocale)} className="block group">
                             <div className="bg-card hover:bg-subtle/50 transition-colors rounded-xl p-5 border border-purple-200/50 dark:border-purple-900/50 group-hover:border-purple-400 dark:group-hover:border-purple-500 shadow-sm cursor-pointer relative overflow-hidden">
                                 <div className="absolute top-0 right-0 w-16 h-16 bg-purple-500/5 group-hover:bg-purple-500/10 rounded-bl-full transition-colors" />
                                 <div className="text-[10px] font-bold text-muted uppercase tracking-widest mb-1">VISUALIZATION LAYER</div>

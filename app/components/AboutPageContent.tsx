@@ -6,6 +6,7 @@ import Certifications from "../components/Certifications";
 import Link from "next/link";
 import { TechBadge } from "./ui/TechBadge";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
+import { getLocalizedPath } from "../lib/localizedRoutes";
 
 interface Skill {
     title: string;
@@ -124,6 +125,7 @@ const getSkills = (t: (k: string) => string): Skill[] => [
 
 export default function AboutPageContent() {
     const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
     const educationItems = [
         { key: 1, organization: "University of Benghazi" },
         { key: 2, organization: "TU Wien" },
@@ -259,7 +261,7 @@ export default function AboutPageContent() {
                             <p>{t("about_exp_summary")}</p>
                         </div>
                         <div className="pt-2">
-                            <Link href="/cv" className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                            <Link href={getLocalizedPath("/cv", activeLocale)} className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">
                                 {t("about_view_cv")} {"->"}
                             </Link>
                         </div>

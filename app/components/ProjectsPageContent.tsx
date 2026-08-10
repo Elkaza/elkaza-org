@@ -7,6 +7,7 @@ import { useLocale } from "../LocaleProvider";
 import { TechBadge } from "./ui/TechBadge";
 import { BodyLarge, CardTitle, Eyebrow, PageTitle, SectionTitle } from "./ui/Typography";
 import { projects, type Project } from "../lib/projects";
+import { getLocalizedPath, type ActiveLocale } from "../lib/localizedRoutes";
 import type { Locale } from "../i18n/messages";
 import type { ProjectStatus } from "../lib/projects";
 
@@ -296,6 +297,7 @@ const COPY: Record<Locale, Copy> = {
 
 export default function ProjectsPageContent() {
     const { locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
     const copy = COPY[locale] ?? COPY.en;
     const [activeDomain, setActiveDomain] = useState<DomainFilter>("all");
 
@@ -366,6 +368,7 @@ export default function ProjectsPageContent() {
                                 locale={locale}
                                 project={project}
                                 copy={copy}
+                                activeLocale={activeLocale}
                             />
                         ))}
                     </div>
@@ -410,6 +413,7 @@ export default function ProjectsPageContent() {
                                 locale={locale}
                                 project={project}
                                 copy={copy}
+                                activeLocale={activeLocale}
                             />
                         ))}
                     </div>
@@ -423,10 +427,12 @@ function FeaturedProjectCard({
     locale,
     project,
     copy,
+    activeLocale,
 }: {
     locale: Locale;
     project: Project;
     copy: Copy;
+    activeLocale: ActiveLocale;
 }) {
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const liveLink = project.links.find((link) => !link.url.includes("github.com"));
@@ -468,7 +474,7 @@ function FeaturedProjectCard({
 
                 <div className="mt-auto flex flex-wrap gap-2 pt-6">
                     <Link
-                        href={`/projects/${project.slug}`}
+                        href={getLocalizedPath(`/projects/${project.slug}`, activeLocale)}
                         className="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
                     >
                         {copy.caseStudy}
@@ -506,10 +512,12 @@ function CompactProjectCard({
     locale,
     project,
     copy,
+    activeLocale,
 }: {
     locale: Locale;
     project: Project;
     copy: Copy;
+    activeLocale: ActiveLocale;
 }) {
     const result = project.results[locale][0];
 
@@ -538,7 +546,7 @@ function CompactProjectCard({
                     </p>
                 )}
                 <Link
-                    href={`/projects/${project.slug}`}
+                    href={getLocalizedPath(`/projects/${project.slug}`, activeLocale)}
                     className="mt-auto inline-flex w-fit items-center rounded-md border border-subtle px-3 py-2 text-sm font-semibold text-blue-800 transition-colors hover:border-blue-500 hover:bg-page dark:text-blue-200"
                 >
                     {copy.caseStudy}

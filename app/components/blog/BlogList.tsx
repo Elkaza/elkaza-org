@@ -4,13 +4,15 @@ import Link from "next/link";
 import { Calendar, Tag, ArrowRight } from "lucide-react";
 import { useLocale } from "../../LocaleProvider";
 import { BlogPost } from "../../lib/blog";
+import { getLocalizedPath } from "../../lib/localizedRoutes";
 
 interface BlogListProps {
     posts: BlogPost[];
 }
 
 export default function BlogList({ posts }: BlogListProps) {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
 
     return (
         <main className="min-h-screen bg-page">
@@ -45,7 +47,7 @@ export default function BlogList({ posts }: BlogListProps) {
                                 className="pb-8 border-b border-subtle hover:border-blue-400 dark:hover:border-blue-500 transition"
                             >
                                 <div className="flex items-start justify-between gap-4 mb-3">
-                                    <Link href={`/blog/${post.slug}`} className="flex-1">
+                                    <Link href={getLocalizedPath(`/blog/${post.slug}`, activeLocale)} className="flex-1">
                                         <h2 className="text-2xl font-bold text-main hover:text-blue-600 dark:hover:text-blue-400 transition">
                                             {post.title}
                                         </h2>
@@ -75,7 +77,7 @@ export default function BlogList({ posts }: BlogListProps) {
                                         {post.tags.map((tag) => (
                                             <Link
                                                 key={tag}
-                                                href={`/blog/tag/${encodeURIComponent(tag)}`}
+                                                href={getLocalizedPath(`/blog/tag/${encodeURIComponent(tag)}`, activeLocale)}
                                                 className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm hover:bg-blue-200 dark:hover:bg-blue-800 transition"
                                             >
                                                 <Tag size={14} />
@@ -86,7 +88,7 @@ export default function BlogList({ posts }: BlogListProps) {
                                 )}
 
                                 <Link
-                                    href={`/blog/${post.slug}`}
+                                    href={getLocalizedPath(`/blog/${post.slug}`, activeLocale)}
                                     className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all"
                                 >
                                     {t("blog_read_more")}

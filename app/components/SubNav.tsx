@@ -6,7 +6,8 @@ import MoreMenu from "./MoreMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import { useLocale } from "../LocaleProvider";
-import { useEffect, useState } from "react";
+import { getLocalizedPath } from "../lib/localizedRoutes";
+import { Suspense, useEffect, useState } from "react";
 
 const links = [
   { href: "/projects", label: "Projects" },
@@ -34,7 +35,7 @@ export default function SubNav() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
         {/* Brand */}
-        <Link href="/" className="flex min-w-0 items-center gap-2 text-lg font-bold heading-serif text-main sm:text-xl">
+        <Link href={getLocalizedPath("/", locale === "en" ? "en" : "de")} className="flex min-w-0 items-center gap-2 text-lg font-bold heading-serif text-main sm:text-xl">
           <Image src="/logo.png" alt="ME Logo" width={36} height={36} className="w-9 h-9" />
           <span className="hidden min-w-0 truncate sm:inline">{t("brand")}</span>
         </Link>
@@ -44,8 +45,8 @@ export default function SubNav() {
           {links.map((l) => (
             <Link
               key={l.href}
-              href={l.href}
-              aria-current={pathname === l.href ? "page" : undefined}
+              href={getLocalizedPath(l.href, locale === "en" ? "en" : "de")}
+              aria-current={pathname === getLocalizedPath(l.href, locale === "en" ? "en" : "de") ? "page" : undefined}
               className={
                 "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
                 (pathname === l.href
@@ -58,11 +59,11 @@ export default function SubNav() {
           ))}
           {/* Contact Link with locale check */}
           <Link
-            href={locale === "de" ? "/kontakt" : "/contact"}
-            aria-current={pathname === "/contact" || pathname === "/kontakt" ? "page" : undefined}
+            href={locale === "de" ? "/kontakt" : "/en/contact"}
+            aria-current={pathname === "/en/contact" || pathname === "/kontakt" ? "page" : undefined}
             className={
               "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
-              (pathname === "/contact" || pathname === "/kontakt"
+              (pathname === "/en/contact" || pathname === "/kontakt"
                 ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
                 : "text-muted border-transparent")
             }
@@ -73,7 +74,9 @@ export default function SubNav() {
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
-          <LanguageSwitcher />
+          <Suspense fallback={<div className="h-8 w-20" aria-hidden="true" />}>
+            <LanguageSwitcher />
+          </Suspense>
           <MoreMenu />
         </div>
       </div>

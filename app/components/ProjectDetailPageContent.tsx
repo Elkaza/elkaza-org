@@ -17,6 +17,7 @@ import { TechBadge } from "@/app/components/ui/TechBadge";
 import { Body, BodyLarge, CardTitle, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import { projects } from "@/app/lib/projects";
 import { getProjectStatusLabel, getProjectTagLabel } from "@/app/lib/projectDisplay";
+import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import type { Locale } from "@/app/i18n/messages";
 
 type DetailCopy = {
@@ -443,6 +444,7 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
 
 export default function ProjectDetailPageContent({ slug }: { slug: string }) {
     const { locale, t } = useLocale();
+    const activeLocale = locale === "en" ? "en" : "de";
     const copy = COPY[locale] ?? COPY.en;
     const project = projects.find((entry) => entry.slug === slug);
 
@@ -490,7 +492,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
             <article className="mx-auto max-w-5xl space-y-8 md:space-y-10">
                 <Link
-                    href="/projects"
+                    href={getLocalizedPath("/projects", activeLocale)}
                     className="inline-flex items-center text-muted hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4 mr-2" />
@@ -756,7 +758,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                         <h2 className="text-2xl font-semibold tracking-normal">{copy.related}</h2>
                         <p className="mt-2 text-muted max-w-2xl">{copy.relatedDescription}</p>
                         <Link
-                            href={`/projects/${relatedProject.slug}`}
+                            href={getLocalizedPath(`/projects/${relatedProject.slug}`, activeLocale)}
                             className="group mt-5 block rounded-lg border border-subtle bg-card p-5 transition-colors hover:border-blue-400 dark:hover:border-blue-600"
                         >
                             <div className="flex items-center justify-between gap-4">
@@ -938,7 +940,7 @@ function FeaturedProjectDetailLayout({
         <main className="min-h-screen bg-page px-4 py-8 text-main transition-colors duration-300 sm:px-6 md:py-12">
             <article className="mx-auto max-w-7xl space-y-8 md:space-y-10">
                 <Link
-                    href="/projects"
+                    href={getLocalizedPath("/projects", locale === "en" ? "en" : "de")}
                     className="inline-flex items-center text-muted transition-colors hover:text-blue-600 dark:hover:text-blue-400"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
