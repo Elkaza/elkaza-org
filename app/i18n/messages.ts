@@ -219,7 +219,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_tagline: "IT-Infrastruktur, Application Engineering, Automatisierung und technische Umsetzung.",
     about_lead: "IT Infrastructure, Application & Automation Engineer",
     about_profile_h2: "Profil",
-    about_profile_intro: "Ich bin Mohamed, ein technischer Generalist mit Schwerpunkt auf Application Engineering, Automatisierung und Infrastruktur in Wien. Mein Weg verbindet operative Netzwerk- und Systemerfahrung mit Wirtschaftsinformatik an der TU Wien und IoT & Intelligent Systems an der FH Technikum Wien. Aktuell vertiefe ich meine Arbeit in Infrastruktur, Automation und Edge-AI-Projekten im Rahmen eines M.Sc.-Studiums in Wirtschaftsinformatik an der TU Wien.",
+    about_profile_intro: "Ich bin Mohamed, ein technischer Generalist mit Schwerpunkt auf Application Engineering, Automatisierung und Infrastruktur in Wien. Mein Weg verbindet operative Netzwerk- und Systemerfahrung mit Wirtschaftsinformatik an der TU Wien und IoT & Intelligent Systems an der FH Technikum Wien. Parallel zu meiner Masterarbeit in Wirtschaftsinformatik an der TU Wien vertiefe ich im MSc Internet of Things & Intelligent Systems an der FH Technikum Wien Themen wie IoT, Edge-Systeme, Security und AIoT.",
     about_p1: "Ich arbeite gern an Systemen, die nicht nur in einer Demo funktionieren, sondern im Alltag verständlich, wartbar und nachvollziehbar bleiben: Anwendungen, Automatisierung, Infrastruktur, Monitoring und technische Übergaben.",
     // Value Statement
     about_value_statement: "Am stärksten bin ich an der Schnittstelle zwischen Software, Betrieb, Automatisierung und Nutzern.",
@@ -760,7 +760,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_tagline: "IT infrastructure, application engineering, automation, and technical implementation.",
     about_lead: "IT Infrastructure, Application & Automation Engineer",
     about_profile_h2: "Professional Profile",
-    about_profile_intro: "I am Mohamed, a technical generalist focused on application engineering, automation, and infrastructure in Vienna. My path combines hands-on network and systems experience with Business Informatics at TU Wien and IoT & Intelligent Systems at FH Technikum Wien. I am currently deepening this work through an M.Sc. in Business Informatics at TU Wien, with a focus on infrastructure, automation, and edge-AI projects.",
+    about_profile_intro: "I am Mohamed, a technical generalist focused on application engineering, automation, and infrastructure in Vienna. My path combines hands-on network and systems experience with Business Informatics at TU Wien and IoT & Intelligent Systems at FH Technikum Wien. Alongside my master's thesis in Business Informatics at TU Wien, I am deepening my work in IoT, edge systems, security and AIoT through the MSc in Internet of Things & Intelligent Systems at FH Technikum Wien.",
     about_p1: "I like working on systems that do more than look good in a demo: applications, automation, infrastructure, monitoring, and technical handovers that stay understandable and maintainable in daily use.",
     // New: Value Statement
     about_value_statement: "I am strongest at the intersection of software, operations, automation, and users.",

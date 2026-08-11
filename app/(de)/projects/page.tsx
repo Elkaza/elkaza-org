@@ -4,8 +4,8 @@ import { localizedMetadata } from "@/app/lib/seo";
 export const metadata = localizedMetadata({
   locale: "de",
   path: "/projects",
-  title: "Engineering Case Studies | Mohamed Elkaza",
-  description: "Implemented case studies across application engineering, automation, IoT, Edge AI, TinyML, infrastructure, monitoring, dashboards, and technical implementation.",
+  title: "Technische Fallstudien | Mohamed Elkaza",
+  description: "Umgesetzte technische Fallstudien zu Application Engineering, Automatisierung, IoT, Edge AI, TinyML, Infrastruktur, Monitoring, Dashboards und nachvollziehbarer technischer Umsetzung.",
 });
 
 export default function ProjectsPage() {
