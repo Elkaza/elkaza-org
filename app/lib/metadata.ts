@@ -85,7 +85,7 @@ export function generateOrganizationSchema() {
         "@type": "Organization",
         name: "Elkaza",
         url: profile.websiteUrl,
-        logo: "https://elkaza.org/icon-512.png",
+        logo: `${profile.websiteUrl}/icon-512.png`,
         sameAs: [
             profile.githubUrl,
             profile.linkedinUrl,

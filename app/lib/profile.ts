@@ -47,7 +47,7 @@ export const profile = {
     ar: "Unrestricted access to the Austrian labour market",
   },
   email: "contact@elkaza.org",
-  websiteUrl: "https://elkaza.org",
+  websiteUrl: "https://www.elkaza.org",
   githubUrl: "https://github.com/Elkaza",
   linkedinUrl: "https://www.linkedin.com/in/elkaza",
   languages: [

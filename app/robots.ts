@@ -1,9 +1,11 @@
 import { MetadataRoute } from "next";
 
+import { profile } from "./lib/profile";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: "*", allow: "/" }],
-    sitemap: "https://elkaza.org/sitemap.xml",
+    sitemap: `${profile.websiteUrl}/sitemap.xml`,
   };
 }
 

@@ -1,7 +1,8 @@
 import { execFileSync } from "node:child_process";
 
-const canonicalBaseUrl = "https://elkaza.org";
+const canonicalBaseUrl = "https://www.elkaza.org";
 const productionBaseUrl = process.env.PRODUCTION_FETCH_BASE_URL ?? "https://www.elkaza.org";
+const redirectBaseUrl = "https://elkaza.org";
 
 const routePairs = [
   {
@@ -81,6 +82,11 @@ const legacyRedirects = [
   { source: "/certifications", target: "/en/certifications" },
 ];
 
+const hostRedirects = [
+  { source: "/", target: "/" },
+  { source: "/projects", target: "/projects" },
+];
+
 const failures = [];
 const htmlCache = new Map();
 
@@ -98,6 +104,10 @@ function absolute(path) {
 
 function requestUrl(path) {
   return path === "/" ? productionBaseUrl : `${productionBaseUrl}${path}`;
+}
+
+function redirectUrl(path) {
+  return path === "/" ? redirectBaseUrl : `${redirectBaseUrl}${path}`;
 }
 
 function cacheBust(url) {
@@ -181,6 +191,50 @@ try {
   reportFail("deployed revision", [error instanceof Error ? error.message : String(error)]);
 }
 
+for (const redirect of hostRedirects) {
+  try {
+    const response = await fetch(redirectUrl(redirect.source), {
+      redirect: "manual",
+      headers: {
+        "user-agent": "elkaza-org-production-verifier/2.0",
+        "cache-control": "no-cache",
+      },
+    });
+    const location = response.headers.get("location") ?? "";
+    const expectedLocation = requestUrl(redirect.target);
+
+    if (response.status !== 308 || location !== expectedLocation) {
+      reportFail(`host redirect ${redirect.source}`, [
+        `status: ${response.status}`,
+        `location: ${location || "missing"}`,
+        `expected: ${expectedLocation}`,
+      ]);
+    } else {
+      reportOk(`host redirect ${redirectUrl(redirect.source)} -> ${expectedLocation}`);
+    }
+  } catch (error) {
+    reportFail(`host redirect ${redirect.source}`, [error instanceof Error ? error.message : String(error)]);
+  }
+}
+
+try {
+  const response = await fetch(productionBaseUrl, {
+    redirect: "manual",
+    headers: {
+      "user-agent": "elkaza-org-production-verifier/2.0",
+      "cache-control": "no-cache",
+    },
+  });
+
+  if (response.status !== 200) {
+    reportFail("canonical host", [`${productionBaseUrl}/ returned ${response.status}`]);
+  } else {
+    reportOk(`canonical host ${productionBaseUrl}/ -> 200`);
+  }
+} catch (error) {
+  reportFail("canonical host", [error instanceof Error ? error.message : String(error)]);
+}
+
 for (const pair of routePairs) {
   const deUrl = absolute(pair.de);
   const enUrl = absolute(pair.en);
@@ -248,7 +302,7 @@ for (const redirect of legacyRedirects) {
 
 try {
   const robots = await fetchText(`${productionBaseUrl}/robots.txt`);
-  const missing = includesAll(robots, ["User-Agent: *", "Allow: /", "Sitemap: https://elkaza.org/sitemap.xml"]);
+  const missing = includesAll(robots, ["User-Agent: *", "Allow: /", "Sitemap: https://www.elkaza.org/sitemap.xml"]);
   if (robots.includes("Disallow: /en") || missing.length) {
     reportFail("robots.txt", [
       ...(missing.length ? [`missing: ${missing.join(", ")}`] : []),
