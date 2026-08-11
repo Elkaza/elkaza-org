@@ -308,8 +308,8 @@ export const projects: Project[] = [
             "Österreich-Tourismus-Dashboard: Saisonale Nächtigungsanalyse"
         ),
         oneLiner: loc(
-            "Built a one-page Python/HTML dashboard that combines Austrian overnight-stay tables, compares seasonal tourism patterns, and turns national tourism data into a data-based story.",
-            "Erstellt ein einseitiges Python/HTML-Dashboard, das österreichische Nächtigungstabellen kombiniert, saisonale Tourismusmuster vergleicht und nationale Tourismusdaten in eine datenbasierte Story überführt."
+            "Combined the provided tourism CSV tables, calculated seasonal aggregates, and produced a one-page HTML dashboard and written analysis report.",
+            "Die bereitgestellten Tourismus-CSV-Tabellen kombiniert, saisonale Kennzahlen berechnet und ein einseitiges HTML-Dashboard sowie einen schriftlichen Analysebericht erstellt."
         ),
         overview: loc(
             "The dashboard was created for a data analysis assignment using Austrian accommodation statistics by country of origin and federal state. It combines semicolon-separated source tables, calculates seasonal metrics, and presents the results through an interactive static dashboard and short submission report.",
@@ -354,32 +354,32 @@ export const projects: Project[] = [
             [
                 "Combines multiple semicolon-separated tourism tables into one analysis dataset",
                 "Ranks important origin countries and Austrian federal states",
-                "Uses multiple visual types and text widgets for storytelling",
+                "Uses multiple chart types and text widgets to explain seasonal tourism patterns",
                 "Generates dashboard HTML, submission report, metrics JSON, and image exports",
                 "Runs with lightweight Python and static web output rather than a heavy BI stack",
             ],
             [
                 "Kombiniert mehrere semikolon-getrennte Tourismustabellen zu einem Analysedatensatz",
                 "Rankt wichtige Herkunftsländer und österreichische Bundesländer",
-                "Nutzt mehrere Visualisierungstypen und Text-Widgets für Storytelling",
+                "Nutzt mehrere Visualisierungstypen und Text-Widgets zur Erklärung saisonaler Tourismusmuster",
                 "Generiert Dashboard-HTML, Submission-Report, Metrics-JSON und Bild-Exports",
                 "Läuft mit leichtgewichtigem Python und statischem Web-Output statt schwerem BI-Stack",
             ]
         ),
         results: locList(
             [
-                "Delivered a complete one-page tourism dashboard and written report for the assignment",
-                "Received feedback highlighting a beautiful report, strong performance, and extra points",
-                "Created a reusable static-dashboard workflow for public data storytelling",
+                "Combined the provided tourism CSV tables, calculated seasonal aggregates, and produced a one-page HTML dashboard and written analysis report.",
+                "Generated dashboard HTML, metrics JSON, image exports, and a submission report from one Python workflow",
+                "Kept the output static so the result can be opened locally without a database or BI server",
             ],
             [
-                "Ein vollständiges einseitiges Tourismus-Dashboard und einen schriftlichen Bericht für die Aufgabe erstellt.",
-                "Feedback für einen sehr schönen Report, starke Performance und Zusatzpunkte erhalten",
-                "Wiederverwendbaren Static-Dashboard-Workflow für Public-Data-Storytelling aufgebaut",
+                "Die bereitgestellten Tourismus-CSV-Tabellen kombiniert, saisonale Kennzahlen berechnet und ein einseitiges HTML-Dashboard sowie einen schriftlichen Analysebericht erstellt.",
+                "Dashboard-HTML, Metrics-JSON, Bild-Exports und Submission-Report aus einem Python-Workflow generiert",
+                "Die Ausgabe statisch gehalten, sodass das Ergebnis lokal ohne Datenbank oder BI-Server geöffnet werden kann",
             ]
         ),
         tech: ["Python", "HTML", "CSS", "Data Analysis", "CSV", "Static Dashboard"],
-        tags: ["Data Analysis", "Dashboard", "Python", "Storytelling"],
+        tags: ["Data Analysis", "Dashboard", "Python", "Tourism Data"],
         links: [
             { label: "GitHub", url: "https://github.com/Elkaza/austria-tourism-dashboard" },
         ],
@@ -876,13 +876,13 @@ export const projects: Project[] = [
         ),
         results: locList(
             [
-                "Bridged physical BLE sensing into a reusable software integration point",
-                "Demonstrated Linux-side systems engineering beyond device firmware",
+                "Parsed BLE sensor payloads in Python and exposed normalized timestamped output for downstream services.",
+                "Ran BlueZ and D-Bus integration from a containerized Linux environment.",
                 "Created the foundation for the secured MQTT gateway",
             ],
             [
-                "Physische BLE-Sensorik in einen wiederverwendbaren Software-Integrationspunkt überführt",
-                "Linux-seitiges Systems Engineering jenseits reiner Firmware demonstriert",
+                "BLE-Sensor-Payloads in Python verarbeitet und normalisierte, zeitgestempelte Ausgaben für nachgelagerte Dienste bereitgestellt.",
+                "BlueZ- und D-Bus-Integration aus einer containerisierten Linux-Umgebung betrieben.",
                 "Die Grundlage für das abgesicherte MQTT-Gateway geschaffen",
             ]
         ),
@@ -956,14 +956,14 @@ export const projects: Project[] = [
         ),
         results: locList(
             [
-                "Moved beyond a blocking prototype into a structured embedded architecture",
+                "Separated sensing, connectivity and telemetry into FreeRTOS tasks with queue-based communication.",
                 "Improved timing consistency for telemetry acquisition",
-                "Created a stronger foundation for future sensor fusion work",
+                "Kept a reusable task structure for later BLE and TinyML extensions",
             ],
             [
-                "Den Schritt von einem blockierenden Prototypen zu einer strukturierten Embedded-Architektur gemacht",
+                "Sensorik, Konnektivität und Telemetrie in getrennte FreeRTOS-Tasks mit queue-basierter Kommunikation aufgeteilt.",
                 "Die Timing-Konsistenz bei der Telemetrieerfassung verbessert",
-                "Eine stärkere Grundlage für künftige Sensorfusion geschaffen",
+                "Eine wiederverwendbare Task-Struktur für spätere BLE- und TinyML-Erweiterungen beibehalten",
             ]
         ),
         tech: ["ESP32-S3", "C++", "FreeRTOS", "MQTT", "BLE"],
@@ -1300,8 +1300,8 @@ export const projects: Project[] = [
             "Entwickelt eine mehrsprachige Portfolio-Plattform mit strukturierten Inhalten, CI-gestütztem Deployment und wartbaren Publishing-Workflows."
         ),
         overview: loc(
-            "This website is treated as a product, not a static resume page. The engineering focus is on maintainability, content structure, deployment flow, and presenting technical work with enough clarity to support recruiting and professional positioning.",
-            "Diese Website wird als Produkt behandelt und nicht als statische Lebenslaufseite. Der Engineering-Fokus liegt auf Wartbarkeit, Inhaltsstruktur, Deployment-Flow und der klaren Darstellung technischer Arbeit für Recruiting und eine klare professionelle Positionierung."
+            "This portfolio is implemented as a Next.js App Router site with TypeScript, static generation, German and English routes, localized metadata, and reusable project components.",
+            "Dieses Portfolio ist als Next.js-App-Router-Site mit TypeScript, statischer Generierung, deutschen und englischen Routen, lokalisierter Metadata und wiederverwendbaren Projektkomponenten umgesetzt."
         ),
         problem: loc(
             "A personal website needs to be fast, maintainable, and easy to update across multiple content areas without turning every change into manual rework.",
@@ -1313,8 +1313,8 @@ export const projects: Project[] = [
         ),
         architecture: {
             node: loc(
-                "The browser receives a performance-oriented frontend tailored for project discovery and professional positioning.",
-                "Der Browser erhält ein performance-orientiertes Frontend für Projekterkundung und professionelle Positionierung."
+                "The browser receives statically generated German and English pages with project, CV, blog, and case-study routes.",
+                "Der Browser erhält statisch generierte deutsche und englische Seiten mit Projekt-, CV-, Blog- und Fallstudienrouten."
             ),
             edge: loc(
                 "Vercel handles hosting, previews, and runtime operation for the public site experience.",
@@ -1338,25 +1338,25 @@ export const projects: Project[] = [
                 "Multilingual content model for projects, CV, and writing",
                 "Reusable component structure for maintainable site evolution",
                 "GitHub-connected deployment workflow",
-                "SEO and accessibility-aware public presentation",
+                "Localized metadata, canonical URLs, reciprocal hreflang, and sitemap generation",
             ],
             [
                 "Mehrsprachiges Inhaltsmodell für Projekte, CV und Fachtexte",
                 "Wiederverwendbare Komponentenstruktur für wartbare Weiterentwicklung",
                 "Deployment-Workflow über GitHub Actions",
-                "SEO- und Accessibility-bewusste öffentliche Präsentation",
+                "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang und Sitemap-Generierung",
             ]
         ),
         results: locList(
             [
-                "Built a maintainable public platform for projects, CV, writing, and technical case studies",
-                "Reduced friction for publishing new case studies and portfolio updates",
-                "Built a reusable web deployment baseline alongside the self-hosted variant",
+                "Built German and English SSR routes with static generation for portfolio pages and project details",
+                "Added localized metadata, canonical URLs, reciprocal hreflang, sitemap output, and production SHA verification",
+                "Connected GitHub-based validation and Vercel deployment to the portfolio release flow",
             ],
             [
-                "Eine wartbare öffentliche Plattform für Projekte, CV, Fachtexte und technische Fallstudien aufgebaut",
-                "Den Aufwand für neue Fallstudien und Portfolio-Updates reduziert",
-                "Eine wiederverwendbare Web-Publishing-Basis parallel zur Self-Hosted-Variante aufgebaut",
+                "Deutsche und englische SSR-Routen mit statischer Generierung für Portfolio-Seiten und Projektdetails aufgebaut",
+                "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang, Sitemap-Ausgabe und Production-SHA-Verifikation ergänzt",
+                "GitHub-basierte Validierung und Vercel-Deployment mit dem Portfolio-Release-Flow verbunden",
             ]
         ),
         tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
@@ -1376,12 +1376,12 @@ export const projects: Project[] = [
                     [
                         "Shows source control, structured content, CI validation, preview deployment, production release, and visitor access in one inspection view",
                         "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
-                        "Makes the project easier to evaluate as an engineered publishing platform rather than a static personal website",
+                        "Shows the reusable project and case-study components that feed the generated routes",
                     ],
                     [
                         "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einer kompakten Architekturansicht",
                         "Passt zum realen Plattform-Stack: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel und Plausible Analytics",
-                        "Macht das Projekt als entwickelte Publishing-Plattform bewertbar statt nur als statische persönliche Website",
+                        "Zeigt die wiederverwendbaren Projekt- und Fallstudienkomponenten, die die generierten Routen speisen",
                     ]
                 ),
                 src: "/project-diagrams/elkaza-org-platform-architecture.svg",

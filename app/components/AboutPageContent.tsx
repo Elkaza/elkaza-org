@@ -241,19 +241,6 @@ export default function AboutPageContent() {
                         </div>
                     </section>
 
-                    {/* Core Strengths Section */}
-                    <div className="mb-12">
-                        <h2 className="text-2xl font-semibold mb-6">{t("about_strengths_title")}</h2>
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                                <div key={n} className="flex items-start gap-3 p-3 bg-card border border-subtle rounded-lg">
-                                    <span className="mt-1 w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
-                                    <span className="text-main text-sm">{t(`about_strength_${n}`)}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
                     {/* Selected Experience Section - Simplified for About Page */}
                     <div className="space-y-6 mb-12">
                         <h2 className="text-2xl font-semibold">{t("experience_title")}</h2>
