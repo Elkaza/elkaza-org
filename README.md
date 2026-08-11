@@ -4,11 +4,13 @@ Professional portfolio and project website for Mohamed Elkaza, built with Next.j
 
 ## Features
 
-- Multilingual content for German and English
+- German and English server-rendered routes
+- Static generation for portfolio and project pages
+- Localized SEO metadata, canonicals, hreflang links, sitemap, and robots.txt
+- Project and case-study pages for infrastructure, automation, IoT, Edge AI, and data work
 - Responsive design with light and dark themes
-- Project, CV, blog, research, security, and contact pages
 - Security headers through the Next.js request proxy
-- SEO metadata, sitemap, robots.txt, Open Graph image, and structured data
+- Production verification for deployed revision, route pairs, redirects, sitemap, robots.txt, and internal links
 
 ## Tech Stack
 
@@ -18,7 +20,6 @@ Professional portfolio and project website for Mohamed Elkaza, built with Next.j
 - Tailwind CSS 4
 - next-themes
 - Lucide React
-- Google Generative AI integration
 
 ## Getting Started
 
@@ -70,23 +71,25 @@ This checks the live portfolio pages, `robots.txt`, and `sitemap.xml` for expect
 ```text
 elkaza-org/
 |-- app/
-|   |-- components/       Reusable React components
+|   |-- (de)/             German canonical routes
+|   |-- en/               English SSR routes
+|   |-- api/              API endpoints
+|   |-- components/       Shared UI and content components
 |   |-- i18n/             Translation messages
-|   |-- about/            About page
-|   |-- projects/         Project showcase
-|   |-- blog/             Blog posts
-|   |-- research/         Research and publications
-|   |-- teaching/         Teaching and courses
-|   |-- contact/          Contact page
-|   `-- archives/         Archive page
-|-- public/               Static assets
-|-- scripts/              Utility scripts
-`-- proxy.ts              Security headers and request proxy
+|   `-- lib/              Profile, metadata, SEO, and localized-route helpers
+|-- docs/                 Supporting documentation
+|-- public/               Static project assets, images, icons, and diagrams
+|-- scripts/              Production verification and utility scripts
+`-- proxy.ts              Request handling and security headers
 ```
 
 ## Internationalization
 
-Translations are managed in `app/i18n/messages.ts`. The selected language is stored client-side and applied through `LocaleProvider`.
+- German is server-rendered on the canonical unprefixed routes.
+- English is server-rendered under `/en`.
+- The URL determines the SSR locale.
+- German and English pages expose localized metadata, self-referencing canonicals, and reciprocal hreflang links.
+- The language switcher navigates to the equivalent localized route.
 
 ## Notes
 
@@ -95,11 +98,11 @@ Translations are managed in `app/i18n/messages.ts`. The selected language is sto
 
 ## License
 
-Private project. All rights reserved.
+Source available for portfolio review. All rights reserved.
 
 ## Contact
 
-- Website: [elkaza.org](https://elkaza.org)
+- Website: [elkaza.org](https://www.elkaza.org)
 - Email: contact@elkaza.org
 - GitHub: [@Elkaza](https://github.com/Elkaza)
 - LinkedIn: [linkedin.com/in/elkaza](https://www.linkedin.com/in/elkaza)
