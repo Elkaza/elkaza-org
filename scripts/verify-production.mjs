@@ -202,12 +202,15 @@ for (const redirect of hostRedirects) {
     });
     const location = response.headers.get("location") ?? "";
     const expectedLocation = requestUrl(redirect.target);
+    const validLocations = redirect.target === "/"
+      ? [expectedLocation, `${productionBaseUrl}/`]
+      : [expectedLocation];
 
-    if (response.status !== 308 || location !== expectedLocation) {
+    if (response.status !== 308 || !validLocations.includes(location)) {
       reportFail(`host redirect ${redirect.source}`, [
         `status: ${response.status}`,
         `location: ${location || "missing"}`,
-        `expected: ${expectedLocation}`,
+        `expected: ${validLocations.join(" or ")}`,
       ]);
     } else {
       reportOk(`host redirect ${redirectUrl(redirect.source)} -> ${expectedLocation}`);
