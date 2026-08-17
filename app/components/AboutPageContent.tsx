@@ -1,314 +1,118 @@
 "use client";
+
 import Image from "next/image";
-import { useLocale } from "../LocaleProvider";
-import { Layers, Code, ClipboardCheck, Network, Cloud, Languages, BookOpen, type LucideIcon } from "lucide-react";
-import Certifications from "../components/Certifications";
 import Link from "next/link";
-import { TechBadge } from "./ui/TechBadge";
-import { OrganizationLogo } from "./ui/OrganizationLogo";
+import { AppWindow, ArrowRight, BookOpen, Languages, Mail, Server, Workflow } from "lucide-react";
+import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
+import { profile } from "../lib/profile";
+import { thesisResearch } from "../lib/research";
+import Certifications from "./Certifications";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
+import { TechBadge } from "./ui/TechBadge";
 
-interface Skill {
-    title: string;
-    icon: LucideIcon;
-    items: string[];
-    tools?: string[];
-}
+const profileTools = ["Linux", "Docker", "Python", "SQL", "GitHub Actions"];
 
-const profileTools = ["TypeScript", "Python", "Docker", "Linux", "SQL", "IoT", "GitHub Actions"];
-
-const aboutFit = {
-    de: [
-        {
-            title: "Application Engineering",
-            body: "Rollen mit Analyse, Bugfixing, technischer Dokumentation, Datenflüssen und Schnittstellenarbeit.",
-        },
-        {
-            title: "Automation & Data",
-            body: "Workflows mit Python, SQL, Dashboards, Reports und reproduzierbaren Auswertungspfaden.",
-        },
-        {
-            title: "Infrastructure & IoT",
-            body: "Praktische Systeme mit Linux, Docker, Monitoring, sicheren Zugriffspfaden und Edge-/IoT-Prototypen.",
-        },
-    ],
-    en: [
-        {
-            title: "Application Engineering",
-            body: "Roles involving analysis, defect handling, technical documentation, data flows, and interface work.",
-        },
-        {
-            title: "Automation & Data",
-            body: "Workflows with Python, SQL, dashboards, reporting, and reproducible analysis paths.",
-        },
-        {
-            title: "Infrastructure & IoT",
-            body: "Practical systems with Linux, Docker, monitoring, secure access paths, and edge/IoT prototypes.",
-        },
-    ],
-    ar: [
-        {
-            title: "Application Engineering",
-            body: "Roles involving analysis, defect handling, technical documentation, data flows, and interface work.",
-        },
-        {
-            title: "Automation & Data",
-            body: "Workflows with Python, SQL, dashboards, reporting, and reproducible analysis paths.",
-        },
-        {
-            title: "Infrastructure & IoT",
-            body: "Practical systems with Linux, Docker, monitoring, secure access paths, and edge/IoT prototypes.",
-        },
-    ],
-};
-
-const getSkills = (t: (k: string) => string): Skill[] => [
-    {
-        title: t("skill_ea_title"),
-        icon: Layers,
-        items: [
-            t("skill_ea_item1"),
-            t("skill_ea_item2"),
-            t("skill_ea_item3"),
-        ],
-        tools: ["Linux", "Proxmox", "Docker", "Monitoring"],
-    },
-    {
-        title: t("skill_sw_title"),
-        icon: Code,
-        items: [
-            t("skill_sw_item1"),
-            t("skill_sw_item2"),
-            t("skill_sw_item3"),
-        ],
-        tools: ["TypeScript", "Next.js", "Python", "SQL"],
-    },
-    {
-        title: t("skill_pm_title"),
-        icon: ClipboardCheck,
-        items: [
-            t("skill_pm_item1"),
-            t("skill_pm_item2"),
-            t("skill_pm_item3"),
-        ],
-        tools: ["Jira", "Confluence", "ServiceNow", "Documentation"],
-    },
-    {
-        title: t("skill_net_title"),
-        icon: Network,
-        items: [
-            t("skill_net_item1"),
-            t("skill_net_item2"),
-            t("skill_net_item3"),
-        ],
-        tools: ["Tailscale", "Nginx Proxy Manager", "Pi-hole", "UFW"],
-    },
-    {
-        title: t("skill_cloud_title"),
-        icon: Cloud,
-        items: [
-            t("skill_cloud_item1"),
-            t("skill_cloud_item2"),
-            t("skill_cloud_item3"),
-        ],
-        tools: ["Vercel", "GitHub Actions", "Plausible Analytics", "Docker"],
-    },
-    {
-        title: t("skill_lang_title"),
-        icon: Languages,
-        items: [
-            t("skill_lang_item1"),
-            t("skill_lang_item2"),
-        ],
-    },
-];
+const strongestAreas = {
+  de: [
+    { title: "Application Engineering", body: "Anforderungen, Fehlerbilder, Datenflüsse, Schnittstellen und technische Dokumentation strukturiert bearbeiten.", Icon: AppWindow },
+    { title: "Infrastructure & Operations", body: "Linux-, Docker-, Netzwerk- und Monitoring-Umgebungen nachvollziehbar betreiben und übergeben.", Icon: Server },
+    { title: "Automation & Data", body: "Wiederkehrende Abläufe mit Python, SQL und CI/CD vereinfachen und Ergebnisse transparent darstellen.", Icon: Workflow },
+  ],
+  en: [
+    { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
+    { title: "Infrastructure & Operations", body: "Operate and hand over Linux, Docker, networking and monitoring environments clearly.", Icon: Server },
+    { title: "Automation & Data", body: "Simplify recurring work with Python, SQL and CI/CD while keeping results transparent.", Icon: Workflow },
+  ],
+  ar: [
+    { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
+    { title: "Infrastructure & Operations", body: "Operate and hand over Linux, Docker, networking and monitoring environments clearly.", Icon: Server },
+    { title: "Automation & Data", body: "Simplify recurring work with Python, SQL and CI/CD while keeping results transparent.", Icon: Workflow },
+  ],
+} as const;
 
 export default function AboutPageContent() {
-    const { t, locale } = useLocale();
-    const activeLocale = locale === "en" ? "en" : "de";
-    const educationItems = [
-        { key: 1, organization: "University of Benghazi" },
-        { key: 2, organization: "TU Wien" },
-        { key: 3, organization: "FH Technikum Wien" },
-    ];
+  const { t, locale } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
+  const research = thesisResearch[locale];
 
-    return (
-        <main className="min-h-screen bg-page text-main transition-colors">
-            <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-                <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
-                    <div className="w-20 h-1.5 bg-blue-600 mb-3" />
-                    <p className="text-3xl font-bold">{t("nav_about")}</p>
-                    <p className="mt-2 text-muted italic">{t("about_tagline") ?? ""}</p>
-                </aside>
+  return (
+    <main className="min-h-screen bg-page text-main transition-colors">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:py-14">
+        <section className="grid items-center gap-7 rounded-xl border border-subtle bg-card p-5 shadow-sm md:grid-cols-[260px_1fr] md:p-7">
+          <figure className="mx-auto w-full max-w-[260px]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-subtle bg-slate-100 dark:bg-slate-900">
+              <Image src="/images/me.jpg" alt="Mohamed Elkaza" fill sizes="260px" priority className="object-contain" />
+            </div>
+          </figure>
+          <div>
+            <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase text-blue-800 dark:text-blue-300">{t("about_profile_h2")}</p>
+            <h1 className="mt-4 text-3xl font-bold text-main">{t("nav_about")}</h1>
+            <p className="mt-4 text-lg font-semibold leading-8 text-main">{t("about_profile_intro")}</p>
+            <p className="mt-4 leading-7 text-secondary">{t("about_p1")}</p>
+            <p className="mt-4 text-sm font-medium text-muted">{profile.workAuthorization[locale]}</p>
+            <div className="mt-5 flex flex-wrap gap-2">{profileTools.map((tool) => <TechBadge key={tool} name={tool} className="bg-page px-3 py-1.5 text-sm" />)}</div>
+          </div>
+        </section>
 
-                <div className="lg:col-span-9">
-                    <div className="mb-6 lg:hidden">
-                        <div className="mb-3 h-1.5 w-20 bg-blue-600" />
-                        <h1 className="text-3xl font-bold">{t("nav_about")}</h1>
-                        <p className="mt-2 text-muted italic">{t("about_tagline") ?? ""}</p>
-                    </div>
+        <section className="mt-10" aria-labelledby="strongest-areas">
+          <h2 id="strongest-areas" className="text-2xl font-semibold text-main">{locale === "de" ? "Drei stärkste Bereiche" : "Three strongest areas"}</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {strongestAreas[locale].map(({ title, body, Icon }) => (
+              <article key={title} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                <Icon className="h-6 w-6 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                <h3 className="mt-4 font-semibold text-main">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted">{body}</p>
+              </article>
+            ))}
+          </div>
+          <Link href={getLocalizedPath("/cv", activeLocale)} className="mt-5 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">
+            {locale === "de" ? "Berufserfahrung im CV" : "Professional experience in the CV"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
+        </section>
 
-                    <div className="mb-10 rounded-xl border border-subtle bg-card p-4 shadow-sm sm:p-5 md:mb-12 md:p-6">
-                        <div className="grid items-center gap-6 md:grid-cols-[minmax(220px,0.42fr)_minmax(0,0.58fr)] md:gap-8">
-                            <figure className="mx-auto w-full max-w-[300px]">
-                                <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-subtle bg-slate-100 shadow-inner dark:bg-slate-900">
-                                    <Image
-                                        src="/images/me.jpg"
-                                        alt="Mohamed Elkaza"
-                                        fill
-                                        sizes="(min-width: 1024px) 280px, (min-width: 768px) 33vw, 80vw"
-                                        priority
-                                        className="object-contain"
-                                    />
-                                </div>
-                            </figure>
+        <section className="mt-12 border-t border-subtle pt-10" aria-labelledby="academic-foundation">
+          <h2 id="academic-foundation" className="text-2xl font-semibold text-main">{t("about_education_title")}</h2>
+          <p className="mt-3 max-w-3xl leading-7 text-muted">{t("about_education_intro")}</p>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {profile.education.map((education) => (
+              <article key={education.institution} className="rounded-lg border border-subtle bg-card p-5 shadow-sm">
+                <OrganizationLogo name={education.institution} size="sm" decorative={false} />
+                <h3 className="mt-4 font-semibold leading-snug text-main">{education.program[locale]} · {education.institution}</h3>
+                <p className="mt-2 text-sm font-medium text-muted">{education.period[locale]}</p>
+                {education.details[locale].map((detail) => <p key={detail} className="mt-1 text-sm leading-6 text-secondary">{detail}</p>)}
+              </article>
+            ))}
+          </div>
+        </section>
 
-                            <div className="min-w-0">
-                                <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-blue-800 dark:text-blue-300">
-                                    {t("about_profile_h2") ?? "Professional Profile"}
-                                </p>
-                                <p className="mt-4 text-lg font-semibold leading-8 text-main">
-                                    {t("about_profile_intro")}
-                                </p>
-                                <p className="mt-4 text-main leading-relaxed">{t("about_p1") ?? ""}</p>
-                                <p className="mt-5 border-l-2 border-blue-600 pl-3 font-semibold leading-relaxed text-main">
-                                    {t("about_value_statement")}
-                                </p>
-                                <p className="mt-4 text-sm font-medium leading-6 text-muted">
-                                    {t("about_work_authorization")}
-                                </p>
-                                <div className="mt-6 flex flex-wrap gap-2">
-                                    {profileTools.map((tool) => (
-                                        <TechBadge
-                                            key={tool}
-                                            name={tool}
-                                            className="bg-page px-3 py-1.5 text-sm shadow-sm"
-                                            iconClassName="h-4 w-4"
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+        <section className="mt-12 rounded-xl border border-blue-200/70 bg-blue-50/60 p-6 dark:border-blue-900/70 dark:bg-blue-950/20 md:p-7" aria-labelledby="about-research">
+          <div className="flex items-start gap-4">
+            <BookOpen className="mt-1 h-7 w-7 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+            <div>
+              <p className="text-xs font-extrabold uppercase text-blue-800 dark:text-blue-300">{research.eyebrow}</p>
+              <h2 id="about-research" className="mt-2 text-2xl font-semibold leading-snug text-main">{research.thesisTitle}</h2>
+              <p className="mt-3 text-sm font-semibold text-secondary">{research.thesisLabel}</p>
+              <p className="mt-4 max-w-4xl leading-7 text-secondary">{research.question}</p>
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold text-main">{research.advisorLabel}:</span> {research.advisor}</p>
+              <Link href={getLocalizedPath("/research", activeLocale)} className="mt-5 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">{locale === "de" ? "Forschung ansehen" : "View Research"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" /></Link>
+            </div>
+          </div>
+        </section>
 
-                        <div className="mt-6 border-t border-subtle pt-6">
-                            <Certifications />
-                        </div>
-                    </div>
+        <section className="mt-12" aria-labelledby="about-certifications">
+          <h2 id="about-certifications" className="text-2xl font-semibold text-main">{locale === "de" ? "Zertifizierungen" : "Certifications"}</h2>
+          <Certifications />
+        </section>
 
-                    <section className="mb-10 rounded-lg border border-subtle bg-card p-4 shadow-sm sm:p-5 md:mb-12 md:p-6">
-                        <div className="max-w-3xl">
-                            <p className="border-l-2 border-blue-600 pl-2 text-sm font-extrabold uppercase tracking-normal text-main">
-                                {locale === "de" ? "Rollenprofil" : "Role Profile"}
-                            </p>
-                            <h2 className="mt-2 text-2xl font-semibold">
-                                {locale === "de" ? "Wo mein Profil am stärksten ist" : "Where my profile is strongest"}
-                            </h2>
-                        </div>
-                        <div className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">
-                            {aboutFit[locale].map((item) => (
-                                <article key={item.title} className="min-w-0 rounded-lg border border-subtle bg-page/70 p-4">
-                                    <h3 className="text-base font-semibold text-main">{item.title}</h3>
-                                    <p className="mt-2 text-sm leading-6 text-muted">{item.body}</p>
-                                </article>
-                            ))}
-                        </div>
-                    </section>
-
-                    <section className="mb-12 space-y-6">
-                        <div className="space-y-2">
-                            <h2 className="text-2xl font-semibold">{t("about_education_title")}</h2>
-                            <p className="text-muted leading-relaxed max-w-3xl">
-                                {t("about_education_intro")}
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
-                            {educationItems.map((item) => (
-                                <div key={item.key} className="bg-card border border-subtle rounded-lg p-5 shadow-sm">
-                                    <div className="mb-4 flex items-center gap-3">
-                                        <OrganizationLogo name={item.organization} size="sm" decorative={false} />
-                                        <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
-                                            {t(`about_education_label${item.key}`)}
-                                        </p>
-                                    </div>
-                                    <h3 className="mt-2 !text-lg font-semibold leading-tight text-main">
-                                        {t(`about_education_title${item.key}`)}
-                                    </h3>
-                                    <p className="mt-2 text-sm text-muted leading-relaxed">
-                                        {t(`about_education_desc${item.key}`)}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* Selected Experience Section - Simplified for About Page */}
-                    <div className="space-y-6 mb-12">
-                        <h2 className="text-2xl font-semibold">{t("experience_title")}</h2>
-                        <div className="prose dark:prose-invert text-muted">
-                            <p>{t("about_exp_summary")}</p>
-                        </div>
-                        <div className="pt-2">
-                            <Link href={getLocalizedPath("/cv", activeLocale)} className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline">
-                                {t("about_view_cv")} {"->"}
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* Core Skills Section */}
-                    <div className="space-y-8">
-                        <h2 className="text-2xl font-semibold">{t("about_comp_h2") ?? "Core Skills & Tools"}</h2>
-                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-                            {getSkills(t).map((skill) => (
-                                <div key={skill.title} className="flex h-full flex-col rounded-lg border border-subtle bg-card p-5 shadow-sm md:p-6">
-                                    <span className="mb-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-700 bg-blue-600 text-white shadow-sm shadow-blue-600/20 dark:border-blue-400 dark:bg-blue-500">
-                                        <skill.icon className="h-5 w-5" aria-hidden="true" />
-                                    </span>
-                                    <h3 className="mb-2 !text-lg font-semibold leading-tight text-main">{skill.title}</h3>
-                                    <ul className="space-y-2 flex-grow">
-                                        {skill.items.map((item) => (
-                                            <li key={item} className="text-sm text-muted leading-relaxed flex items-start">
-                                                <span className="mr-2 mt-1.5 w-1 h-1 bg-blue-500 rounded-full flex-shrink-0" />
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {skill.tools && (
-                                        <div className="mt-5 flex flex-wrap gap-1.5">
-                                            {skill.tools.map((tool) => (
-                                                <TechBadge
-                                                    key={tool}
-                                                    name={tool}
-                                                    className="bg-page px-2 py-0.5 text-[11px]"
-                                                    iconClassName="h-3.5 w-3.5"
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Master's Thesis Section (Moved from Research) */}
-                    <div className="mt-16 pt-8 border-t border-subtle">
-                        <div className="flex items-start gap-4">
-                            <BookOpen className="text-blue-600 dark:text-blue-400 w-8 h-8 flex-shrink-0" />
-                            <div>
-                                <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t("thesis_h2") ?? "Master's Thesis"}</h2>
-                                <p className="text-main leading-relaxed mb-4">{t("thesis_desc") ?? ""}</p>
-                                <p className="text-sm text-muted">
-                                    {t("thesis_note") ?? ""}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Hobbies Micro-section */}
-                    <div className="mt-8 pt-8 border-t border-subtle">
-                        <p className="text-sm text-muted">{t("about_hobbies")}</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
+        <section className="mt-12 flex flex-col gap-6 border-t border-subtle pt-10 md:flex-row md:items-center md:justify-between" aria-labelledby="languages-contact">
+          <div>
+            <div className="flex items-center gap-3"><Languages className="h-6 w-6 text-blue-600" aria-hidden="true" /><h2 id="languages-contact" className="text-2xl font-semibold text-main">{locale === "de" ? "Sprachen" : "Languages"}</h2></div>
+            <p className="mt-3 text-muted">{profile.languages.map((language) => `${language.name[locale]}: ${language.level[locale]}`).join(" · ")}</p>
+          </div>
+          <a href={`mailto:${profile.email}`} className="inline-flex items-center justify-center rounded-md bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800"><Mail className="mr-2 h-4 w-4" aria-hidden="true" />{profile.email}</a>
+        </section>
+      </div>
+    </main>
+  );
 }

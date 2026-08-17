@@ -11,7 +11,7 @@ export type ArchiveItem = {
   title: Pick<Record<Locale, string>, "de" | "en">;
   summary: Pick<Record<Locale, string>, "de" | "en">;
   href: string;
-  type: "page" | "project" | "blog";
+  type: "page" | "project";
   tags: string[];
   year: number;
 };
@@ -19,13 +19,12 @@ export type ArchiveItem = {
 const TYPE_LABELS: Record<ArchiveItem["type"], Record<"de" | "en", string>> = {
   page: { de: "Seiten", en: "Pages" },
   project: { de: "Projekte", en: "Projects" },
-  blog: { de: "Blog", en: "Blog" },
 };
 
 const COPY = {
   de: {
     title: "Search the Site",
-    intro: "Durchsuche Seiten, Projekte und Blogposts nach Thema, Jahr oder Technologie.",
+    intro: "Durchsuche Seiten und Projekte nach Thema, Jahr oder Technologie.",
     placeholder: "Suchen nach Docker, IoT, Python, Security...",
     allTypes: "Alle Typen",
     years: "Jahre",
@@ -35,7 +34,7 @@ const COPY = {
   },
   en: {
     title: "Search the Site",
-    intro: "Explore pages, projects and blog posts by topic, year or technology.",
+    intro: "Explore pages and projects by topic, year or technology.",
     placeholder: "Search Docker, IoT, Python, security...",
     allTypes: "All types",
     years: "Years",
@@ -116,7 +115,7 @@ export default function ArchivesSearch({ items }: { items: ArchiveItem[] }) {
             <FilterButton active={type === "all"} onClick={() => setType("all")}>
               {copy.allTypes}
             </FilterButton>
-            {(["page", "project", "blog"] as const).map((candidate) => (
+            {(["page", "project"] as const).map((candidate) => (
               <FilterButton key={candidate} active={type === candidate} onClick={() => setType(candidate)}>
                 {TYPE_LABELS[candidate][activeLocale]}
               </FilterButton>

@@ -1,5 +1,4 @@
 import ArchivesSearch, { type ArchiveItem } from "@/app/components/ArchivesSearch";
-import { getAllPosts } from "@/app/lib/blog";
 import { projects } from "@/app/lib/projects";
 import { localizedMetadata } from "@/app/lib/seo";
 
@@ -7,7 +6,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/archives",
   title: "Archiv | Mohamed Elkaza",
-  description: "Durchsuchbares Archiv mit Seiten, Projekten und Blogeinträgen von Mohamed Elkaza.",
+  description: "Durchsuchbares Archiv mit Seiten und Projekten von Mohamed Elkaza.",
 });
 
 const CORE_PAGES: ArchiveItem[] = [
@@ -95,22 +94,7 @@ export function buildArchiveItems(): ArchiveItem[] {
     year: Number(project.year) || 2026,
   }));
 
-  const blogItems: ArchiveItem[] = getAllPosts().map((post) => ({
-    title: {
-      de: post.title,
-      en: post.title,
-    },
-    summary: {
-      de: post.description,
-      en: post.description,
-    },
-    href: `/blog/${post.slug}`,
-    type: "blog",
-    tags: post.tags,
-    year: new Date(post.date).getFullYear() || 2026,
-  }));
-
-  return [...CORE_PAGES, ...projectItems, ...blogItems];
+  return [...CORE_PAGES, ...projectItems];
 }
 
 export default function ArchivesPage() {

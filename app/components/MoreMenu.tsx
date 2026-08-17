@@ -15,7 +15,6 @@ const primaryItems = [
 const supportItems = [
   { href: "/security", labelKey: "nav_security" },
   { href: "/zertifikate", labelKey: "nav_certifications" },
-  { href: "/blog", labelKey: "nav_blog" },
   { href: "/research", labelKey: "nav_research" },
 ];
 

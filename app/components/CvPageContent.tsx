@@ -1,387 +1,201 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import {
-  Activity,
-  Archive,
-  BarChart3,
-  BrainCircuit,
-  ClipboardList,
-  Cloud,
+  Award,
+  BookOpen,
+  BriefcaseBusiness,
   Code2,
-  Cpu,
-  Database,
-  GitBranch,
-  Lock,
+  FileText,
+  Languages,
   Mail,
   MapPin,
-  Network,
-  Languages,
-  Server,
-  Shield,
-  Users,
-  Workflow,
+  School,
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
-import { TechBadge } from "./ui/TechBadge";
-import { OrganizationLogo } from "./ui/OrganizationLogo";
-import type { Locale } from "../i18n/messages";
 import { profile } from "../lib/profile";
+import { thesisResearch } from "../lib/research";
+import { OrganizationLogo } from "./ui/OrganizationLogo";
+import { TechBadge } from "./ui/TechBadge";
 
-const profileLinkLabel = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
-
-type SummaryFocus = {
-  key: number;
-  Icon: LucideIcon;
-};
-
-type InfrastructureItem = {
-  key: number;
-  Icon: LucideIcon;
-};
-
-type RecentProject = {
-  key: "edgeguardian" | "tinyml" | "tourism" | "regression";
-  href: string;
-  category: Record<Locale, string>;
-  tags: string[];
-  Icon: LucideIcon;
-};
-
-type SkillGroup = {
-  key: "platform" | "automation" | "networking" | "operations" | "software" | "projectManagement" | "languages";
-  Icon: LucideIcon;
-};
-
-const summaryFocus: SummaryFocus[] = [
-  { key: 1, Icon: Server },
-  { key: 2, Icon: Workflow },
-  { key: 3, Icon: Shield },
-  { key: 4, Icon: Users },
-];
-
-const infrastructureItems: InfrastructureItem[] = [
-  { key: 1, Icon: Cloud },
-  { key: 2, Icon: GitBranch },
-  { key: 3, Icon: Network },
-  { key: 4, Icon: Archive },
-];
-
-const recentProjects: RecentProject[] = [
+const selectedProjects = [
   {
-    key: "edgeguardian",
-    href: "/projects/edgeguardian-edge-ai-safety-bubble",
-    category: {
-      de: "Edge AI / IoT",
-      en: "Edge AI / IoT",
-      ar: "Edge AI / IoT",
+    slug: "enterprise-self-hosted-infrastructure",
+    title: "Self-Hosted Infrastructure",
+    description: {
+      de: "Hybrid-Cloud-Betrieb mit privatem Ingress, Docker, Monitoring, Deployment-Automatisierung und verifizierten Backups.",
+      en: "Hybrid-cloud operations with private ingress, Docker, monitoring, deployment automation and verified backups.",
+      ar: "Hybrid-cloud operations with private ingress, Docker, monitoring, deployment automation and verified backups.",
+    },
+    tags: ["Linux", "Docker", "Tailscale", "GitHub Actions"],
+  },
+  {
+    slug: "edgeguardian-edge-ai-safety-bubble",
+    title: "EdgeGuardian",
+    description: {
+      de: "Demonstrierter Edge-AI-Prototyp mit Kamera, LiDAR, ESP32 und lokaler Entscheidungslogik.",
+      en: "Demonstrated edge-AI prototype with camera, LiDAR, ESP32 and local decision logic.",
+      ar: "Demonstrated edge-AI prototype with camera, LiDAR, ESP32 and local decision logic.",
     },
     tags: ["Raspberry Pi 5", "Hailo-8L", "LiDAR", "ESP32"],
-    Icon: Cpu,
   },
   {
-    key: "tinyml",
-    href: "/projects/tinyml-vibration-anomaly-detection",
-    category: {
-      de: "Embedded / TinyML",
-      en: "Embedded / TinyML",
-      ar: "Embedded / TinyML",
+    slug: "tinyml-vibration-anomaly-detection",
+    title: "TinyML Vibration Detection",
+    description: {
+      de: "Akademischer Arduino-Prototyp für lokale Vibrationsklassifikation mit reproduzierbarer Validierung.",
+      en: "Academic Arduino prototype for local vibration classification with reproducible validation.",
+      ar: "Academic Arduino prototype for local vibration classification with reproducible validation.",
     },
-    tags: ["Arduino Nano 33", "IMU", "C++", "Softmax"],
-    Icon: Activity,
+    tags: ["Arduino", "IMU", "C++", "TinyML"],
   },
-  {
-    key: "tourism",
-    href: "/projects/austria-tourism-dashboard",
-    category: {
-      de: "Data / Dashboard",
-      en: "Data / Dashboard",
-      ar: "Data / Dashboard",
-    },
-    tags: ["Python", "HTML", "CSV", "Dashboard"],
-    Icon: BarChart3,
-  },
-  {
-    key: "regression",
-    href: "/projects/random-walk-gravity-regression",
-    category: {
-      de: "Machine Learning",
-      en: "Machine Learning",
-      ar: "Machine Learning",
-    },
-    tags: ["scikit-learn", "Regression", "Validation", "Python"],
-    Icon: BrainCircuit,
-  },
-];
+] as const;
 
-const skillGroups: SkillGroup[] = [
-  { key: "platform", Icon: Server },
-  { key: "automation", Icon: Code2 },
-  { key: "networking", Icon: Lock },
-  { key: "operations", Icon: Activity },
-  { key: "software", Icon: Database },
-  { key: "projectManagement", Icon: ClipboardList },
-  { key: "languages", Icon: Languages },
-];
+const skillGroups = [
+  ["cv_skill_platform_title", "cv_skill_platform_items"],
+  ["cv_skill_automation_title", "cv_skill_automation_items"],
+  ["cv_skill_networking_title", "cv_skill_networking_items"],
+  ["cv_skill_operations_title", "cv_skill_operations_items"],
+  ["cv_skill_software_title", "cv_skill_software_items"],
+  ["cv_skill_projectManagement_title", "cv_skill_projectManagement_items"],
+] as const;
 
-const cvHighlights: Record<Locale, { label: string; value: string }[]> = {
-  de: [
-    { label: "Schwerpunkt", value: "Application Engineering, Automatisierung und zuverlässige Infrastruktur" },
-    { label: "Projektpraxis", value: "CI/CD, Monitoring, Backups und Betriebsdokumentation" },
-    { label: "Arbeitsweise", value: "Systeme verstehen, vereinfachen, automatisieren und nachvollziehbar dokumentieren" },
-  ],
-  en: [
-    { label: "Focus", value: "Application engineering, automation, and reliable infrastructure" },
-    { label: "Project experience", value: "CI/CD, monitoring, backups, and operations documentation" },
-    { label: "Working style", value: "Understand systems, simplify them, automate where useful, and document them clearly" },
-  ],
-  ar: [
-    { label: "Focus", value: "Application engineering, automation, and infrastructure" },
-    { label: "Result", value: "Projects with CI/CD, monitoring, backups, and operations notes" },
-    { label: "Working style", value: "Understand the system, simplify it, automate it, and hand it over clearly" },
-  ],
-};
+const certificationOrganizations = ["pma / IPMA", "University of Graz", "LinkedIn Learning", "Microsoft Excel"];
 
 export default function CvPageContent() {
   const { locale, t } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
-  const experienceItems = [
-    { key: "1", organization: "HiCo-ICS" },
-    { key: "2", organization: "Raiffeisen Bank International" },
-    { key: "3", organization: "BOC Group" },
-    { key: "4", organization: "University of Benghazi" },
-  ] as const;
-  const educationItems = [
-    { text: t("cv_education_item1"), organization: "FH Technikum Wien" },
-    { text: t("cv_education_item2"), organization: "TU Wien" },
-    { text: t("cv_education_item3"), organization: "University of Benghazi" },
-    { text: t("cert_ipma_title"), organization: "pma / IPMA" },
-    { text: t("cert_graz_title"), organization: "University of Graz" },
-    { text: t("cert_li_title"), organization: "LinkedIn Learning" },
-    { text: t("cert_excel_title"), organization: "Microsoft Excel" },
-  ] as const;
+  const research = thesisResearch[locale];
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-16 print:max-w-none print:px-0 print:py-0">
-      <section className="rounded-xl border border-subtle bg-card p-4 shadow-sm sm:p-6 md:p-8 print:border-0 print:p-0 print:shadow-none">
-        <div className="grid gap-5 md:grid-cols-[1.4fr_0.6fr] md:items-start">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <p className="text-sm font-extrabold uppercase tracking-normal text-main">{t("cv_title")}</p>
-              <h1 className="break-words text-3xl font-bold tracking-normal text-main md:text-4xl">{t("brand")}</h1>
-              <p className="max-w-3xl text-base leading-7 text-secondary md:text-lg">{t("cv_role_title")}</p>
-              <p className="max-w-3xl text-sm leading-6 text-muted">{t("cv_work_authorization")}</p>
-            </div>
-            <div className="flex flex-wrap gap-2 text-sm text-muted">
-              <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                {t("legal_location")}
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={`mailto:${profile.email}`}>
-                  {profile.email}
-                </a>
-              </span>
-            </div>
-          </div>
-          <div className="flex min-w-0 flex-col gap-3 rounded-lg border border-subtle bg-page/70 p-4 text-sm text-muted print:hidden">
-            <p className="text-xs font-extrabold uppercase tracking-normal text-main">
-              {locale === "de" ? "Online-Profil" : "Online Profile"}
-            </p>
-            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={profile.websiteUrl} target="_blank" rel="noreferrer">
-              elkaza.org
-            </a>
-            <a className="transition hover:text-blue-700 dark:hover:text-blue-300" href={profile.githubUrl} target="_blank" rel="noreferrer">
-              github.com/Elkaza
-            </a>
-            <a
-              className="transition hover:text-blue-700 dark:hover:text-blue-300"
-              href={profile.linkedinUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {profileLinkLabel(profile.linkedinUrl)}
-            </a>
-          </div>
-        </div>
-        <div className="mt-6 grid gap-3 border-t border-subtle pt-5 md:grid-cols-3">
-          {cvHighlights[locale].map((item) => (
-            <div key={item.label} className="min-w-0">
-              <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
-                {item.label}
-              </p>
-              <p className="mt-2 text-sm leading-6 text-muted">{item.value}</p>
-            </div>
-          ))}
+    <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-14 print:max-w-none print:px-0 print:py-0">
+      <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-8 print:border-0 print:p-0 print:shadow-none">
+        <p className="text-sm font-extrabold uppercase tracking-normal text-main">{t("cv_title")}</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-normal text-main md:text-4xl">{profile.name}</h1>
+        <p className="mt-2 text-lg font-semibold text-secondary">{profile.title[locale]}</p>
+        <div className="mt-5 flex flex-wrap gap-2 text-sm text-muted">
+          <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+            <MapPin className="h-4 w-4" aria-hidden="true" />
+            {profile.location[locale]}
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+            {profile.workAuthorization[locale]}
+          </span>
+          <a className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={`mailto:${profile.email}`}>
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            {profile.email}
+          </a>
+          <a className="rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={profile.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </section>
 
-      <div className="mt-8 space-y-8 md:mt-10 print:mt-6 print:space-y-5">
-        <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
-            <SectionHeading icon={ClipboardList} title={t("cv_summary_title")} />
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-secondary md:text-base">{t("cv_summary_text")}</p>
-            <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
-              {summaryFocus.map(({ key, Icon }) => (
-                <div key={key} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-3">
-                  <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <p className="text-sm leading-6 text-main">{t(`cv_summary_focus${key}`)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
+        <CvSection icon={FileText} title={t("cv_summary_title")}>
+          <p className="max-w-4xl text-sm leading-7 text-secondary md:text-base">{t("cv_summary_text")}</p>
+        </CvSection>
 
-          <div className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
-            <SectionHeading icon={Cloud} title={t("cv_infra_title")} />
-            <p className="mt-4 text-sm leading-7 text-secondary">{t("cv_infra_intro")}</p>
-            <div className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
-              {infrastructureItems.map(({ key, Icon }) => (
-                <div key={key} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 px-3 py-2.5">
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <p className="text-sm leading-6 text-main">{t(`cv_infra_short${key}`)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="rounded-xl border border-subtle bg-card p-4 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading icon={Network} title={t("cv_recent_projects_title")} />
-            <p className="max-w-xl text-sm leading-6 text-muted">{t("cv_recent_projects_desc")}</p>
-          </div>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {recentProjects.map(({ key, href, category, tags, Icon }) => (
-              <Link
-                key={key}
-                href={getLocalizedPath(href, activeLocale)}
-                className="group flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:-translate-y-0.5 hover:border-blue-400 hover:bg-card hover:shadow-md dark:hover:border-blue-500 print:break-inside-avoid"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-1">
-                    <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">{category[locale]}</p>
-                    <h3 className="text-base font-semibold text-main group-hover:text-blue-700 dark:group-hover:text-blue-300">
-                      {t(`cv_recent_${key}_title`)}
-                    </h3>
+        <CvSection icon={BriefcaseBusiness} title={t("cv_exp_title")}>
+          <div className="space-y-5">
+            {profile.employment.map((experience) => (
+              <article key={`${experience.organization.en}-${experience.period}`} className="border-t border-subtle pt-5 first:border-t-0 first:pt-0 print:break-inside-avoid">
+                <div className="flex items-start gap-3">
+                  <OrganizationLogo name={experience.organization.en} size="sm" decorative={false} />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                      <div>
+                        <h3 className="font-semibold text-main">{experience.title[locale]}</h3>
+                        <p className="mt-1 text-sm text-muted">{experience.organization[locale]} · {experience.location[locale]}</p>
+                      </div>
+                      <span className="shrink-0 text-sm font-semibold tabular-nums text-main">{experience.period}</span>
+                    </div>
+                    <ul className="mt-3 space-y-1.5 text-sm leading-6 text-secondary">
+                      {experience.bullets[locale].map((bullet) => (
+                        <li key={bullet} className="flex gap-2"><span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" aria-hidden="true" /><span>{bullet}</span></li>
+                      ))}
+                    </ul>
                   </div>
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-secondary">{t(`cv_recent_${key}_desc`)}</p>
-                <div className="mt-auto flex flex-wrap gap-2 pt-4">
-                  {tags.map((tag) => (
-                    <TechBadge key={tag} name={tag} className="bg-card text-muted" />
-                  ))}
+              </article>
+            ))}
+          </div>
+        </CvSection>
+
+        <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
+          <div className="grid gap-4 md:grid-cols-3">
+            {profile.education.map((education) => (
+              <article key={education.institution} className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
+                <div className="flex items-start gap-3">
+                  <OrganizationLogo name={education.institution} size="sm" decorative={false} />
+                  <div>
+                    <h3 className="font-semibold leading-snug text-main">{education.program[locale]} · {education.institution}</h3>
+                    <p className="mt-2 text-sm font-medium text-muted">{education.period[locale]}</p>
+                    {education.details[locale].map((detail) => <p key={detail} className="mt-1 text-sm leading-6 text-secondary">{detail}</p>)}
+                  </div>
                 </div>
+              </article>
+            ))}
+          </div>
+        </CvSection>
+
+        <CvSection icon={BookOpen} title={locale === "de" ? "Aktuelle Forschung / TU Wien Diplomarbeit" : "Current Research / TU Wien Thesis"} accent>
+          <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.thesisLabel}</p>
+          <h3 className="mt-2 max-w-4xl text-lg font-semibold leading-snug text-main">{research.thesisTitle}</h3>
+          <p className="mt-3 max-w-4xl text-sm leading-7 text-secondary">{research.question}</p>
+          <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+            <p><span className="font-semibold text-main">{research.methodsTitle}:</span> <span className="text-secondary">{research.methods.join(", ")}</span></p>
+            <p><span className="font-semibold text-main">{research.advisorLabel}:</span> <span className="text-secondary">{research.advisor}</span></p>
+          </div>
+        </CvSection>
+
+        <CvSection icon={Code2} title={locale === "de" ? "Ausgewählte Projekte" : "Selected Projects"}>
+          <div className="grid gap-4 md:grid-cols-3">
+            {selectedProjects.map((project) => (
+              <Link key={project.slug} href={getLocalizedPath(`/projects/${project.slug}`, activeLocale)} className="flex flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:border-blue-400">
+                <h3 className="font-semibold text-main">{project.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-6 text-muted">{project.description[locale]}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">{project.tags.map((tag) => <TechBadge key={tag} name={tag} className="bg-card text-muted" />)}</div>
               </Link>
             ))}
           </div>
-        </section>
+        </CvSection>
 
-        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
-          <SectionHeading icon={Code2} title={t("cv_skills_title")} />
-          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {skillGroups.map(({ key, Icon }) => (
-              <div
-                key={key}
-                className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-subtle bg-accent/10 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <h3 className="text-base font-semibold text-main">{t(`cv_skill_${key}_title`)}</h3>
+        <CvSection icon={Code2} title={t("cv_skills_title")}>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {skillGroups.map(([titleKey, itemsKey]) => (
+              <article key={titleKey} className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
+                <h3 className="font-semibold text-main">{t(titleKey)}</h3>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {t(itemsKey).split("|").map((item) => item.trim()).filter(Boolean).map((item) => <TechBadge key={item} name={item} className="bg-card text-muted" />)}
                 </div>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {t(`cv_skill_${key}_items`)
-                    .split("|")
-                    .map((item) => item.trim())
-                    .filter(Boolean)
-                    .map((item) => (
-                      <TechBadge key={item} name={item} className="bg-card text-muted" />
-                    ))}
-                </div>
-              </div>
+              </article>
             ))}
           </div>
-        </section>
+        </CvSection>
 
-        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:p-4 print:shadow-none">
-          <SectionHeading icon={Users} title={t("cv_exp_title")} />
-          <div className="mt-5 grid gap-4">
-            {experienceItems.map(({ key, organization }) => {
-              const experienceTitle = splitExperienceTitle(t(`exp${key}_title`));
-
-              return (
-                <div
-                  key={key}
-                  className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid"
-                >
-                  <div className="flex items-start gap-3">
-                    <OrganizationLogo name={organization} size="sm" decorative={false} />
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <h3 className="font-semibold leading-snug text-main">{experienceTitle.title}</h3>
-                        {experienceTitle.period && (
-                          <span className="inline-flex w-fit shrink-0 items-center rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold leading-none text-muted">
-                            {experienceTitle.period}
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-muted">{t(`exp${key}_desc`)}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        <CvSection icon={Award} title={locale === "de" ? "Zertifizierungen" : "Certifications"}>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {profile.certifications.map((certification, index) => (
+              <article key={certification.title} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
+                <OrganizationLogo name={certificationOrganizations[index]} size="sm" decorative={false} />
+                <div><h3 className="text-sm font-semibold leading-6 text-main">{certification.title}</h3><p className="mt-1 text-sm text-muted">{certification.issuer} · {certification.year}</p></div>
+              </article>
+            ))}
           </div>
-        </section>
+        </CvSection>
 
-        <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-6 print:break-inside-avoid print:p-4 print:shadow-none">
-          <SectionHeading icon={ClipboardList} title={t("cv_edu_title")} />
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {educationItems.map((item) => {
-              const educationTitle = splitExperienceTitle(item.text);
-              return (
-                <div key={item.text} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4">
-                  <OrganizationLogo name={item.organization} size="sm" decorative={false} />
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                      <span className="text-sm leading-6 text-muted">{educationTitle.title}</span>
-                      {educationTitle.period && (
-                        <span className="inline-flex w-fit shrink-0 items-center rounded-full border border-subtle bg-card px-2.5 py-1 text-xs font-semibold leading-none text-muted">
-                          {educationTitle.period}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+        <CvSection icon={Languages} title={locale === "de" ? "Sprachen" : "Languages"}>
+          <div className="flex flex-wrap gap-3">
+            {profile.languages.map((language) => <p key={language.code} className="rounded-md border border-subtle bg-page px-3 py-2 text-sm"><span className="font-semibold text-main">{language.name[locale]}</span><span className="text-muted"> · {language.level[locale]}</span></p>)}
           </div>
-        </section>
+        </CvSection>
 
         <section className="rounded-xl border border-blue-200/70 bg-blue-50/70 p-5 shadow-sm dark:border-blue-900/70 dark:bg-blue-950/20 md:p-6 print:hidden">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h2 className="text-xl font-semibold text-main">{t("cv_request_title")}</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{t("cv_request_desc")}</p>
-            </div>
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition hover:bg-blue-700"
-            >
-              <Mail className="h-4 w-4" aria-hidden="true" />
-              {t("cv_request_cta")}
-            </a>
+            <div><h2 className="text-xl font-semibold text-main">{t("cv_request_title")}</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{t("cv_request_desc")}</p></div>
+            <a href={`mailto:${profile.email}`} className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"><Mail className="h-4 w-4" aria-hidden="true" />{t("cv_request_cta")}</a>
           </div>
         </section>
       </div>
@@ -389,26 +203,11 @@ export default function CvPageContent() {
   );
 }
 
-function SectionHeading({ icon: Icon, title }: { icon: LucideIcon; title: string }) {
+function CvSection({ icon: Icon, title, children, accent = false }: { icon: LucideIcon; title: string; children: React.ReactNode; accent?: boolean }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-subtle bg-accent/10 text-accent">
-        <Icon className="h-5 w-5" aria-hidden="true" />
-      </span>
-      <h2 className="text-xl font-semibold tracking-normal text-main md:text-2xl">{title}</h2>
-    </div>
+    <section className={`rounded-xl border p-5 shadow-sm md:p-6 print:p-4 print:shadow-none ${accent ? "border-blue-200/70 bg-blue-50/50 dark:border-blue-900/70 dark:bg-blue-950/20" : "border-subtle bg-card"}`}>
+      <div className="mb-5 flex items-center gap-3"><span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-subtle bg-accent/10 text-accent"><Icon className="h-5 w-5" aria-hidden="true" /></span><h2 className="text-xl font-semibold text-main md:text-2xl">{title}</h2></div>
+      {children}
+    </section>
   );
-}
-
-function splitExperienceTitle(title: string) {
-  const match = title.match(/\s*\(([^()]+)\)\s*$/u);
-
-  if (!match || match.index === undefined) {
-    return { title, period: null };
-  }
-
-  return {
-    title: title.slice(0, match.index).trim(),
-    period: match[1],
-  };
 }

@@ -1,8 +1,8 @@
 import { execFileSync } from "node:child_process";
 
-const canonicalBaseUrl = "https://www.elkaza.org";
-const productionBaseUrl = process.env.PRODUCTION_FETCH_BASE_URL ?? "https://www.elkaza.org";
-const redirectBaseUrl = "https://elkaza.org";
+const canonicalBaseUrl = "https://elkaza.org";
+const productionBaseUrl = process.env.PRODUCTION_FETCH_BASE_URL ?? "https://elkaza.org";
+const redirectBaseUrl = "https://www.elkaza.org";
 
 const routePairs = [
   {
@@ -30,8 +30,17 @@ const routePairs = [
     name: "cv",
     de: "/cv",
     en: "/en/cv",
-    deText: ["Lebenslauf", "Uneingeschränkter Arbeitsmarktzugang in Österreich"],
-    enText: ["CV", "Unrestricted access to the Austrian labour market"],
+    deText: ["Lebenslauf", "Application Engineer", "Masterstudium Wirtschaftsinformatik", "Diplom-Ingenieur"],
+    enText: ["CV", "Application Engineer", "Master's Programme in Business Informatics", "Diplom-Ingenieur"],
+    forbiddenText: ["exp1_title", "exp1_desc", "exp2_title", "exp2_desc", "exp3_title", "exp3_desc", "exp4_title", "exp4_desc", "MSc Wirtschaftsinformatik", "MSc Business Informatics"],
+  },
+  {
+    name: "research",
+    de: "/research",
+    en: "/en/research",
+    deText: ["Enterprise Coherence Governance", "In Arbeit", "Henderik A. Proper"],
+    enText: ["Enterprise Coherence Governance", "In progress", "Henderik A. Proper"],
+    forbiddenText: ["Full text on request", "Volltext auf Anfrage"],
   },
   {
     name: "contact",
@@ -249,6 +258,7 @@ for (const pair of routePairs) {
     const enHtml = await fetchText(enRequestUrl);
     const deMissing = [
       ...includesAll(deHtml, pair.deText),
+      ...(pair.forbiddenText ?? []).filter((value) => deHtml.includes(value)).map((value) => `forbidden ${value}`),
       ...(!hasHtmlLang(deHtml, "de") ? ['<html lang="de">'] : []),
       ...(!hasCanonical(deHtml, deUrl) ? [`canonical ${deUrl}`] : []),
       ...(!hasHreflang(deHtml, "de", deUrl) ? [`hreflang de ${deUrl}`] : []),
@@ -256,6 +266,7 @@ for (const pair of routePairs) {
     ];
     const enMissing = [
       ...includesAll(enHtml, pair.enText),
+      ...(pair.forbiddenText ?? []).filter((value) => enHtml.includes(value)).map((value) => `forbidden ${value}`),
       ...(!hasHtmlLang(enHtml, "en") ? ['<html lang="en">'] : []),
       ...(!hasCanonical(enHtml, enUrl) ? [`canonical ${enUrl}`] : []),
       ...(!hasHreflang(enHtml, "de", deUrl) ? [`hreflang de ${deUrl}`] : []),
@@ -305,7 +316,7 @@ for (const redirect of legacyRedirects) {
 
 try {
   const robots = await fetchText(`${productionBaseUrl}/robots.txt`);
-  const missing = includesAll(robots, ["User-Agent: *", "Allow: /", "Sitemap: https://www.elkaza.org/sitemap.xml"]);
+  const missing = includesAll(robots, ["User-Agent: *", "Allow: /", "Sitemap: https://elkaza.org/sitemap.xml"]);
   if (robots.includes("Disallow: /en") || missing.length) {
     reportFail("robots.txt", [
       ...(missing.length ? [`missing: ${missing.join(", ")}`] : []),
@@ -321,7 +332,16 @@ try {
 try {
   const sitemap = await fetchText(`${productionBaseUrl}/sitemap.xml`);
   const requiredUrls = routePairs.flatMap((pair) => [absolute(pair.de), absolute(pair.en)]);
-  const forbiddenUrls = [absolute("/contact"), absolute("/certifications")];
+  const forbiddenUrls = [
+    absolute("/contact"),
+    absolute("/certifications"),
+    absolute("/blog"),
+    absolute("/en/blog"),
+    absolute("/blog/ea-and-ai"),
+    absolute("/en/blog/ea-and-ai"),
+    absolute("/blog/self-hosted-infrastructure"),
+    absolute("/en/blog/self-hosted-infrastructure"),
+  ];
   const missing = requiredUrls.filter((url) => !sitemap.includes(url));
   const forbidden = forbiddenUrls.filter((url) => sitemap.includes(url));
 

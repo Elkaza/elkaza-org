@@ -1,6 +1,5 @@
 ﻿"use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
@@ -17,13 +16,12 @@ type ProjectDomain =
     | "software-engineering"
     | "data-automation";
 
-type DomainFilter = "all" | ProjectDomain;
-
 type Copy = {
     title: string;
     subtitle: string;
     featuredTitle: string;
     browseTitle: string;
+    archive: string;
     caseStudy: string;
     github: string;
     live: string;
@@ -31,7 +29,7 @@ type Copy = {
     tech: string;
     year: string;
     status: Record<ProjectStatus, string>;
-    domains: Record<DomainFilter, string>;
+    domains: Record<ProjectDomain, string>;
 };
 
 const FEATURED_PROJECT_SLUGS = [
@@ -40,12 +38,11 @@ const FEATURED_PROJECT_SLUGS = [
     "tinyml-vibration-anomaly-detection",
 ];
 
-const DOMAIN_ORDER: DomainFilter[] = [
-    "all",
-    "iot-edge-ai",
-    "infrastructure-devops",
-    "software-engineering",
-    "data-automation",
+const CURATED_PROJECT_SLUGS = [
+    "rpi-ble-mqtt-gateway",
+    "austria-tourism-dashboard",
+    "random-walk-gravity-regression",
+    "elkaza-org",
 ];
 
 const PROJECT_DOMAINS: Partial<Record<string, ProjectDomain>> = {
@@ -226,6 +223,7 @@ const COPY: Record<Locale, Copy> = {
         subtitle: "A curated set of implemented systems across fullstack development, IoT, edge AI, infrastructure, and data automation.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
+        archive: "View Archive",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
@@ -238,7 +236,6 @@ const COPY: Record<Locale, Copy> = {
             planned: "Planned",
         },
         domains: {
-            all: "All Projects",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -250,6 +247,7 @@ const COPY: Record<Locale, Copy> = {
         subtitle: "Kuratierte technische Fallstudien aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
         featuredTitle: "Ausgewählte Fallstudien",
         browseTitle: "Weitere Projekte",
+        archive: "Archiv ansehen",
         caseStudy: "Fallstudie",
         github: "GitHub",
         live: "Live",
@@ -262,7 +260,6 @@ const COPY: Record<Locale, Copy> = {
             planned: "Geplant",
         },
         domains: {
-            all: "Alle Projekte",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -274,6 +271,7 @@ const COPY: Record<Locale, Copy> = {
         subtitle: "Selected case studies across fullstack development, IoT, edge AI, infrastructure, and data automation.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
+        archive: "View Archive",
         caseStudy: "Case Study",
         github: "GitHub",
         live: "Live",
@@ -286,7 +284,6 @@ const COPY: Record<Locale, Copy> = {
             planned: "Planned",
         },
         domains: {
-            all: "All Projects",
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
             "software-engineering": "Software Engineering",
@@ -299,49 +296,16 @@ export default function ProjectsPageContent() {
     const { locale } = useLocale();
     const activeLocale = locale === "en" ? "en" : "de";
     const copy = COPY[locale] ?? COPY.en;
-    const [activeDomain, setActiveDomain] = useState<DomainFilter>("all");
-
-    const originalOrder = useMemo(() => new Map(projects.map((project, index) => [project.slug, index])), []);
-    const sortedProjects = useMemo(
-        () => [...projects].sort((left, right) => {
-            const yearDiff = Number(right.year) - Number(left.year);
-            if (yearDiff !== 0) {
-                return yearDiff;
-            }
-
-            return (originalOrder.get(left.slug) ?? 0) - (originalOrder.get(right.slug) ?? 0);
-        }),
-        [originalOrder]
-    );
     const featuredProjects = FEATURED_PROJECT_SLUGS
         .map((slug) => projects.find((project) => project.slug === slug))
         .filter((project): project is Project => Boolean(project));
-    const featuredSlugs = useMemo(() => new Set<string>(FEATURED_PROJECT_SLUGS), []);
-    const domainProjects = sortedProjects.filter(
-        (project) => !featuredSlugs.has(project.slug) && (activeDomain === "all" || getProjectDomain(project) === activeDomain)
-    );
-    const domainCounts = useMemo(() => {
-        const counts: Record<DomainFilter, number> = {
-            all: 0,
-            "iot-edge-ai": 0,
-            "infrastructure-devops": 0,
-            "software-engineering": 0,
-            "data-automation": 0,
-        };
-
-        sortedProjects.forEach((project) => {
-            if (featuredSlugs.has(project.slug)) return;
-            counts.all += 1;
-            counts[getProjectDomain(project)] += 1;
-        });
-
-        return counts;
-    }, [featuredSlugs, sortedProjects]);
-    const technicalAreaCount = DOMAIN_ORDER.length - 1;
+    const curatedProjects = CURATED_PROJECT_SLUGS
+        .map((slug) => projects.find((project) => project.slug === slug))
+        .filter((project): project is Project => Boolean(project));
     const statsLine =
         locale === "de"
-            ? `${projects.length} Projekte · ${technicalAreaCount} technische Bereiche · ${featuredProjects.length} ausgewählte Fallstudien`
-            : `${projects.length} projects · ${technicalAreaCount} technical areas · ${featuredProjects.length} featured case studies`;
+            ? `${featuredProjects.length} ausgewählte Fallstudien · ${curatedProjects.length} weitere Projekte · vollständiges Archiv`
+            : `${featuredProjects.length} featured case studies · ${curatedProjects.length} additional projects · complete archive`;
 
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
@@ -375,39 +339,13 @@ export default function ProjectsPageContent() {
                 </section>
 
                 <section className="border-t border-subtle pt-8">
-                    <div className="mb-6 flex flex-col gap-4 lg:sticky lg:top-20 lg:z-30 lg:-mx-2 lg:flex-row lg:items-center lg:justify-between lg:border-b lg:border-subtle lg:bg-page/95 lg:px-2 lg:py-3 lg:backdrop-blur">
+                    <div className="mb-6 flex items-center justify-between gap-4">
                         <SectionTitle>{copy.browseTitle}</SectionTitle>
-                        <div className="flex gap-2 overflow-x-auto pb-1 lg:pb-0" role="tablist" aria-label={copy.browseTitle}>
-                            {DOMAIN_ORDER.map((domain) => (
-                                <button
-                                    key={domain}
-                                    role="tab"
-                                    type="button"
-                                    onClick={() => setActiveDomain(domain)}
-                                    aria-selected={activeDomain === domain}
-                                    className={[
-                                        "shrink-0 whitespace-nowrap rounded-md border px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
-                                        activeDomain === domain
-                                            ? "border-blue-600 bg-blue-600 text-white"
-                                            : "border-subtle bg-card text-main hover:border-blue-400",
-                                    ].join(" ")}
-                                >
-                                    <span>{copy.domains[domain]}</span>
-                                    <span
-                                        className={[
-                                            "ml-2 rounded-full px-2 py-0.5 text-xs",
-                                            activeDomain === domain ? "bg-white/20 text-white" : "bg-page text-muted",
-                                        ].join(" ")}
-                                    >
-                                        {domainCounts[domain]}
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
+                        <Link href={getLocalizedPath("/archives", activeLocale)} className="inline-flex shrink-0 items-center text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300">{copy.archive}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" /></Link>
                     </div>
 
                     <div className="grid gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
-                        {domainProjects.map((project) => (
+                        {curatedProjects.map((project) => (
                             <CompactProjectCard
                                 key={project.slug}
                                 locale={locale}
@@ -417,6 +355,7 @@ export default function ProjectsPageContent() {
                             />
                         ))}
                     </div>
+                    <Link href={getLocalizedPath("/archives", activeLocale)} className="mt-6 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">{copy.archive}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" /></Link>
                 </section>
             </div>
         </main>

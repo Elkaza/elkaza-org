@@ -16,12 +16,15 @@ export async function generateMetadata({ params }: Props) {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
 
-  return localizedMetadata({
-    locale: "de",
-    path: `/blog/tag/${encodeURIComponent(decodedTag)}`,
-    title: `${decodedTag} posts | Elkaza Blog`,
-    description: `Blog posts tagged ${decodedTag}.`,
-  });
+  return {
+    ...localizedMetadata({
+      locale: "de",
+      path: `/blog/tag/${encodeURIComponent(decodedTag)}`,
+      title: `${decodedTag} posts | Elkaza Blog`,
+      description: `Blog posts tagged ${decodedTag}.`,
+    }),
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function BlogTagPage({ params }: Props) {

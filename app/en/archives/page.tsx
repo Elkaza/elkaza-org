@@ -6,7 +6,7 @@ export const metadata = localizedMetadata({
   locale: "en",
   path: "/archives",
   title: "Archive | Mohamed Elkaza",
-  description: "Searchable archive with pages, projects, and blog entries by Mohamed Elkaza.",
+  description: "Searchable archive with pages and projects by Mohamed Elkaza.",
 });
 
 export default function EnglishArchivesPage() {

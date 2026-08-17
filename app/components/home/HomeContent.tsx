@@ -31,7 +31,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["TypeScript", "Python", "Docker", "Linux", "GitHub Actions"];
+const TECH_CHIPS = ["Linux", "Docker", "Python", "SQL", "GitHub Actions"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -66,6 +66,13 @@ const HOME_COPY: Localized<{
     result: string;
   };
   featuredTitle: string;
+  research: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    status: string;
+    cta: string;
+  };
   workTitle: string;
   finalCta: string;
 }> = {
@@ -109,6 +116,13 @@ const HOME_COPY: Localized<{
       result: "Ergebnis",
     },
     featuredTitle: "Technische Fallstudien",
+    research: {
+      eyebrow: "Aktuelle Forschung",
+      title: "Enterprise Coherence Governance",
+      description: "Diplomarbeit an der TU Wien zur Integration von Methoden und Disziplinen bei Unternehmenstransformationen. Die Arbeit verbindet systematische Literaturrecherche, Analyse österreichischer Stellenanzeigen, Experteninterviews und Design Science Research.",
+      status: "In Arbeit · TU Wien · 2026",
+      cta: "Forschung ansehen",
+    },
     workTitle: "Kernkompetenzen",
     finalCta:
       "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
@@ -153,6 +167,13 @@ const HOME_COPY: Localized<{
       result: "Result",
     },
     featuredTitle: "Engineering Case Studies",
+    research: {
+      eyebrow: "Current research",
+      title: "Enterprise Coherence Governance",
+      description: "Diploma thesis at TU Wien examining method and discipline integration during organizational transformation. The work combines a systematic literature review, Austrian job-advertisement analysis, expert interviews and Design Science Research.",
+      status: "In progress · TU Wien · 2026",
+      cta: "View Research",
+    },
     workTitle: "Core Capabilities",
     finalCta:
       "Open to roles where software, automation, infrastructure and technical documentation meet.",
@@ -198,6 +219,13 @@ const HOME_COPY: Localized<{
       result: "Result",
     },
     featuredTitle: "Featured Work",
+    research: {
+      eyebrow: "Current research",
+      title: "Enterprise Coherence Governance",
+      description: "Diploma thesis at TU Wien examining method and discipline integration during organizational transformation. The work combines a systematic literature review, Austrian job-advertisement analysis, expert interviews and Design Science Research.",
+      status: "In progress · TU Wien · 2026",
+      cta: "View Research",
+    },
     workTitle: "Capabilities & Stack",
     finalCta:
       "Looking for someone who can build, automate and operate practical technical systems?",
@@ -448,6 +476,20 @@ export default function HomeContent() {
               slug={slug}
             />
           ))}
+        </div>
+      </section>
+
+      <section className="mt-12 rounded-lg border border-subtle bg-card p-5 md:p-6" aria-labelledby="current-research">
+        <Eyebrow>{copy.research.eyebrow}</Eyebrow>
+        <div className="mt-3 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <h2 id="current-research" className="text-2xl font-semibold text-main">{copy.research.title}</h2>
+            <p className="mt-3 leading-7 text-muted">{copy.research.description}</p>
+            <p className="mt-4 text-sm font-semibold text-secondary">{copy.research.status}</p>
+          </div>
+          <Link href={getLocalizedPath("/research", activeLocale)} className="inline-flex shrink-0 items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">
+            {copy.research.cta}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 

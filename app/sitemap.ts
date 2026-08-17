@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const localizedStaticPages = [
     "/",
     "/about",
-    "/blog",
     "/archives",
     "/research",
     "/projects",
@@ -27,10 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const projectPages = projects.map((p) => `/projects/${p.slug}`);
 
-  const blogSlugs = ["ea-and-ai", "self-hosted-infrastructure"];
-  const blogPages = blogSlugs.map((s) => `/blog/${s}`);
-
-  const localizedPages = [...localizedStaticPages, ...projectPages, ...blogPages];
+  const localizedPages = [...localizedStaticPages, ...projectPages];
   const germanPaths = [...localizedPages, ...germanOnlyPages];
   const englishPaths = localizedPages.map((path) => getLocalizedPath(path, "en"));
   const allPages = [...germanPaths, ...englishPaths];
@@ -39,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: absoluteUrl(path),
     lastModified: now,
     changeFrequency: "monthly",
-    priority: path === "/" ? 1.0 : path.startsWith("/projects/") || path.startsWith("/blog/") ? 0.6 : 0.7,
+    priority: path === "/" ? 1.0 : path.startsWith("/projects/") ? 0.6 : 0.7,
     alternates: localizedPages.includes(getLocalizedPath(path, "de"))
       ? {
           languages: {

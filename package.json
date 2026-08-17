@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build",
+    "build": "next build && npm run verify:i18n-output",
     "start": "next start -p 3001",
     "lint": "eslint",
     "typecheck": "tsc --noEmit --incremental false",
     "verify:production": "node scripts/verify-production.mjs",
+    "verify:i18n-output": "node scripts/verify-i18n-output.mjs",
     "generate-favicons": "node scripts/generate-favicons.js"
   },
   "dependencies": {

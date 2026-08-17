@@ -7,15 +7,18 @@ export type ProfileLanguage = {
 };
 
 export type ProfileExperience = {
-  organization: string;
+  organization: Record<Locale, string>;
+  location: Record<Locale, string>;
   title: Record<Locale, string>;
   period: string;
+  bullets: Record<Locale, string[]>;
 };
 
 export type ProfileEducation = {
   institution: string;
   program: Record<Locale, string>;
-  status: Record<Locale, string>;
+  period: Record<Locale, string>;
+  details: Record<Locale, string[]>;
 };
 
 export type ProfileCertification = {
@@ -47,7 +50,7 @@ export const profile = {
     ar: "Unrestricted access to the Austrian labour market",
   },
   email: "contact@elkaza.org",
-  websiteUrl: "https://www.elkaza.org",
+  websiteUrl: "https://elkaza.org",
   githubUrl: "https://github.com/Elkaza",
   linkedinUrl: "https://www.linkedin.com/in/elkaza",
   languages: [
@@ -69,28 +72,96 @@ export const profile = {
   ] satisfies ProfileLanguage[],
   employment: [
     {
-      organization: "HiCo-ICS",
+      organization: { de: "HiCo-ICS", en: "HiCo-ICS", ar: "HiCo-ICS" },
+      location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Application Engineer", en: "Application Engineer", ar: "Application Engineer" },
       period: "2023",
+      bullets: {
+        de: [
+          "Anforderungen für arabische PDF-Publikationen mit einer bestehenden Softwarelösung bewertet.",
+          "Mit Produktkonzepten und technischen Standards wie S1000D und S4000P gearbeitet.",
+          "Erfahrene Application Engineers bei Kundenanfragen und technischer Nachverfolgung unterstützt.",
+        ],
+        en: [
+          "Evaluated requirements for Arabic PDF publications using an existing software solution.",
+          "Worked with product concepts and technical standards including S1000D and S4000P.",
+          "Supported experienced application engineers with customer requests and technical follow-up.",
+        ],
+        ar: [
+          "Evaluated requirements for Arabic PDF publications using an existing software solution.",
+          "Worked with product concepts and technical standards including S1000D and S4000P.",
+          "Supported experienced application engineers with customer requests and technical follow-up.",
+        ],
+      },
     },
     {
-      organization: "Raiffeisen Bank International",
+      organization: { de: "Raiffeisen Bank International AG", en: "Raiffeisen Bank International AG", ar: "Raiffeisen Bank International AG" },
+      location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Junior IT Consultant", en: "Junior IT Consultant", ar: "Junior IT Consultant" },
       period: "2022",
+      bullets: {
+        de: [
+          "Automatisierungslösungen mit Python und VBA entwickelt.",
+          "Eine ServiceNow-API-Integration sowie Aufgabenplanung mit Jira und ServiceNow unterstützt.",
+          "Mit ADO.IT und strukturierten betrieblichen IT-Informationen gearbeitet.",
+        ],
+        en: [
+          "Developed automation solutions using Python and VBA.",
+          "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
+          "Worked with ADO.IT and structured operational IT information.",
+        ],
+        ar: [
+          "Developed automation solutions using Python and VBA.",
+          "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
+          "Worked with ADO.IT and structured operational IT information.",
+        ],
+      },
     },
     {
-      organization: "BOC Group",
+      organization: { de: "BOC Group", en: "BOC Group", ar: "BOC Group" },
+      location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Product Management Intern", en: "Product Management Intern", ar: "Product Management Intern" },
       period: "2021–2022",
+      bullets: {
+        de: [
+          "Fachliche Anforderungen für Enterprise-Architecture-Software analysiert.",
+          "Stakeholder-Anforderungen in technische Konzepte und Prototypen übersetzt.",
+          "Abstimmung zwischen Product Management, Fachbereichen und technischen Teams unterstützt.",
+        ],
+        en: [
+          "Analysed business requirements for enterprise architecture software.",
+          "Translated stakeholder needs into technical concepts and prototypes.",
+          "Supported coordination between product management, business stakeholders and technical teams.",
+        ],
+        ar: [
+          "Analysed business requirements for enterprise architecture software.",
+          "Translated stakeholder needs into technical concepts and prototypes.",
+          "Supported coordination between product management, business stakeholders and technical teams.",
+        ],
+      },
     },
     {
-      organization: "University of Benghazi",
-      title: {
-        de: "Netzwerk- und Systemtechniker",
-        en: "Network and Systems Technician",
-        ar: "Network and Systems Technician",
-      },
+      organization: { de: "Universität Benghazi", en: "University of Benghazi", ar: "University of Benghazi" },
+      location: { de: "Benghazi", en: "Benghazi", ar: "Benghazi" },
+      title: { de: "Network & Infrastructure Engineer", en: "Network & Infrastructure Engineer", ar: "Network & Infrastructure Engineer" },
       period: "2013–2016",
+      bullets: {
+        de: [
+          "First-Level-IT-Support für mehr als 1.000 Anwender unterstützt.",
+          "Arbeitsplatzhardware, Software, Netzwerkzugänge und Infrastrukturprobleme betreut.",
+          "Fehlerbilder, Lösungswege und technische Abläufe dokumentiert.",
+        ],
+        en: [
+          "Provided first-level IT support for more than 1,000 users.",
+          "Supported workplace hardware, software, network access and infrastructure troubleshooting.",
+          "Documented technical issues, resolution paths and operating procedures.",
+        ],
+        ar: [
+          "Provided first-level IT support for more than 1,000 users.",
+          "Supported workplace hardware, software, network access and infrastructure troubleshooting.",
+          "Documented technical issues, resolution paths and operating procedures.",
+        ],
+      },
     },
   ] satisfies ProfileExperience[],
   education: [
@@ -101,19 +172,29 @@ export const profile = {
         en: "MSc Internet of Things & Intelligent Systems",
         ar: "MSc Internet of Things & Intelligent Systems",
       },
-      status: { de: "laufend", en: "ongoing", ar: "ongoing" },
+      period: { de: "2025–2027 (voraussichtlich)", en: "2025–2027 (expected)", ar: "2025–2027 (expected)" },
+      details: {
+        de: ["Laufend"],
+        en: ["In progress"],
+        ar: ["In progress"],
+      },
     },
     {
       institution: "TU Wien",
       program: {
-        de: "MSc Wirtschaftsinformatik",
-        en: "MSc Business Informatics",
-        ar: "MSc Business Informatics",
+        de: "Masterstudium Wirtschaftsinformatik",
+        en: "Master's Programme in Business Informatics",
+        ar: "Master's Programme in Business Informatics",
       },
-      status: {
-        de: "laufend, Masterarbeit in Arbeit",
-        en: "ongoing, master's thesis in progress",
-        ar: "ongoing, master's thesis in progress",
+      period: {
+        de: "2018–2026 (voraussichtlich)",
+        en: "2018–2026 (expected)",
+        ar: "2018–2026 (expected)",
+      },
+      details: {
+        de: ["Diplomarbeit in Arbeit", "Abschlussgrad: Diplom-Ingenieur"],
+        en: ["Diploma Thesis / Master's Thesis in progress", "Degree upon completion: Diplom-Ingenieur"],
+        ar: ["Diploma Thesis / Master's Thesis in progress", "Degree upon completion: Diplom-Ingenieur"],
       },
     },
     {
@@ -123,7 +204,8 @@ export const profile = {
         en: "BSc Information Technology",
         ar: "BSc Information Technology",
       },
-      status: { de: "abgeschlossen", en: "completed", ar: "completed" },
+      period: { de: "2008–2013", en: "2008–2013", ar: "2008–2013" },
+      details: { de: ["Abgeschlossen"], en: ["Completed"], ar: ["Completed"] },
     },
   ] satisfies ProfileEducation[],
   certifications: [

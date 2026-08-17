@@ -30,12 +30,15 @@ export async function generateMetadata({ params }: Props) {
     };
   }
 
-  return localizedMetadata({
-    locale: "en",
-    path: `/blog/${post.slug}`,
-    title: `${post.title} | Elkaza Blog`,
-    description: post.description,
-  });
+  return {
+    ...localizedMetadata({
+      locale: "en",
+      path: `/blog/${post.slug}`,
+      title: `${post.title} | Elkaza Blog`,
+      description: post.description,
+    }),
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function EnglishBlogPostPage({ params }: Props) {

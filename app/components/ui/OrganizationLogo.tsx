@@ -46,7 +46,7 @@ const organizationMarks: Record<string, OrganizationMark> = {
     kind: "linkedin",
     assetSrc: "/organization-logos/linkedin.svg",
   },
-  "microsoft excel": { label: "Microsoft Excel", initials: "X", kind: "excel" },
+  "microsoft excel": { label: "Microsoft Excel", initials: "Excel", kind: "excel", wide: true },
   "pma / ipma": { label: "pma / IPMA", initials: "IPMA", kind: "ipma" },
   "raiffeisen bank international": {
     label: "Raiffeisen Bank International",
@@ -222,7 +222,7 @@ function BrandMark({ mark, size }: { mark: OrganizationMark; size: keyof typeof 
     case "rbi":
       return <span className={`${sizeTextClasses[size]} font-black tracking-tight`}>RBI</span>;
     case "excel":
-      return <span className={`${size === "sm" ? "text-sm" : "text-base"} font-black tracking-tight`}>X</span>;
+      return <span className={`${size === "sm" ? "text-[9px]" : "text-[10px]"} font-bold tracking-tight`}>Excel</span>;
     case "boc":
       return (
         <svg aria-hidden="true" className="h-[82%] w-[82%]" viewBox="0 0 64 64">

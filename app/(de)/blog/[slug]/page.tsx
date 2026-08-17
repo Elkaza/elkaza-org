@@ -28,12 +28,15 @@ export async function generateMetadata({
     };
   }
 
-  return localizedMetadata({
-    locale: "de",
-    path: `/blog/${post.slug}`,
-    title: `${post.title} | Elkaza Blog`,
-    description: post.description,
-  });
+  return {
+    ...localizedMetadata({
+      locale: "de",
+      path: `/blog/${post.slug}`,
+      title: `${post.title} | Elkaza Blog`,
+      description: post.description,
+    }),
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function BlogPostPage({

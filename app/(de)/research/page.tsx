@@ -4,8 +4,8 @@ import { localizedMetadata } from "@/app/lib/seo";
 export const metadata = localizedMetadata({
   locale: "de",
   path: "/research",
-  title: "Research & Thesis Interests | Mohamed Elkaza",
-  description: "Research, thesis, internship, and cooperation interests across business informatics, IoT, data automation, edge AI, Industry 4.0, monitoring, and secure infrastructure.",
+  title: "Forschung | Mohamed Elkaza",
+  description: "Laufende TU-Wien-Diplomarbeit zu Methodenintegration und Enterprise Coherence Governance bei Unternehmenstransformationen in Österreich.",
 });
 
 export default function ResearchPage() {
