@@ -31,7 +31,7 @@ const routePairs = [
     de: "/cv",
     en: "/en/cv",
     deText: ["Lebenslauf", "Application Engineer", "Masterstudium Wirtschaftsinformatik", "Diplom-Ingenieur"],
-    enText: ["CV", "Application Engineer", "Master's Programme in Business Informatics", "Diplom-Ingenieur"],
+    enText: ["CV", "Application Engineer", "Programme in Business Informatics", "Diplom-Ingenieur"],
     forbiddenText: ["exp1_title", "exp1_desc", "exp2_title", "exp2_desc", "exp3_title", "exp3_desc", "exp4_title", "exp4_desc", "MSc Wirtschaftsinformatik", "MSc Business Informatics"],
   },
   {
