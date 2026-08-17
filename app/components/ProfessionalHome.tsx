@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Network, ShieldCheck, Workflow } from "lucide-react";
 import FAQ from "@/app/components/FAQ";
 import HomeHero from "@/app/components/HomeHero";
+import { CurrentResearch } from "@/app/components/ThesisResearch";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 const copy = {
@@ -116,6 +117,8 @@ export default function ProfessionalHome({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <CurrentResearch locale={locale} />
 
       <section className="bg-[var(--surface)] py-16 md:py-24">
         <div className="mx-auto max-w-[1140px] px-6">

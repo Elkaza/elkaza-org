@@ -30,6 +30,15 @@ test.describe('Homepage', () => {
     await expect(serviceLinks.first()).toBeVisible();
   });
 
+  test('presents the ongoing TU Wien thesis without completion wording', async ({ page }) => {
+    await page.goto('/');
+
+    const research = page.getByRole('region', { name: 'Rahmenwerk für Enterprise Coherence Governance' });
+    await expect(research).toContainText('Diplomarbeit · TU Wien · In Arbeit');
+    await expect(research).toContainText('Systematische Literaturrecherche');
+    await expect(research).not.toContainText(/abgeschlossen|eingereicht|verteidigt|benotet/i);
+  });
+
   test('loads CSS and styling is correct', async ({ page }) => {
     await page.goto('/');
 

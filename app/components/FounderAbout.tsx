@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
+import { ThesisEducation } from "@/app/components/ThesisResearch";
 import type { Locale } from "@/lib/siteContent";
 
 const copy = {
@@ -55,6 +56,7 @@ export default function FounderAbout({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+      <ThesisEducation locale={locale} />
       <section className="border-y border-[var(--status-border)] bg-[var(--status-bg)] py-10">
         <div className="mx-auto flex max-w-[960px] flex-col gap-5 px-6 md:flex-row md:items-center md:justify-between">
           <p className="max-w-xl font-medium text-[var(--status-text)]">{c.status}</p>
