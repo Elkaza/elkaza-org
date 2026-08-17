@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Keep Tailwind dark utilities aligned with next-themes' class-based theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 script[data-nextjs-dev-overlay="true"],
 nextjs-portal,
 [data-nextjs-toast],
