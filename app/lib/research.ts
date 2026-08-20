@@ -3,6 +3,7 @@ import type { Locale } from "../i18n/messages";
 type ResearchContent = {
   eyebrow: string;
   pageTitle: string;
+  pageIntro: string;
   thesisLabel: string;
   thesisTitle: string;
   institution: string;
@@ -11,8 +12,6 @@ type ResearchContent = {
   advisor: string;
   questionTitle: string;
   question: string;
-  areasTitle: string;
-  areas: string[];
   methodsTitle: string;
   methods: string[];
   artifactTitle: string;
@@ -23,137 +22,157 @@ type ResearchContent = {
   interests: string[];
 };
 
+type AcademicProjectContent = {
+  title: string;
+  institution: string;
+  programme: string;
+  module: string;
+  year: string;
+  status: string;
+  label: string;
+  description: string;
+};
+
 export const thesisResearch: Record<Locale, ResearchContent> = {
   de: {
-    eyebrow: "Aktuelle Forschung",
-    pageTitle: "Forschung",
+    eyebrow: "Forschung & Masterprojekt",
+    pageTitle: "Aktuelle akademische Arbeit",
+    pageIntro: "Laufende akademische Arbeiten an der TU Wien und der FH Technikum Wien.",
     thesisLabel: "Diplomarbeit · TU Wien · In Arbeit · 2026",
     thesisTitle:
       "Rahmenwerk für Enterprise Coherence Governance: Methodenintegration bei Unternehmenstransformationen in Österreich",
-    institution: "Masterstudium Wirtschaftsinformatik · TU Wien",
+    institution: "TU Wien",
     status: "In Arbeit",
     advisorLabel: "Betreuung",
     advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Forschungsproblem",
+    questionTitle: "Forschungsziel",
     question:
-      "Die Arbeit untersucht, wie Methoden und Disziplinen der Unternehmenstransformation miteinander in Beziehung gesetzt und kohärent gesteuert werden können. Im Mittelpunkt steht die Frage, wie Überschneidungen, Übergaben und Governance-Mechanismen zwischen diesen Ansätzen nachvollziehbar dargestellt werden können.",
-    areasTitle: "Untersuchte Bereiche",
-    areas: [
-      "Enterprise Architecture",
-      "IT Governance",
-      "IT Service Management",
-      "Projekt-, Programm- und Portfoliomanagement",
-      "Agile und Scaled Agile",
-      "Transformation und Change Management",
-      "Governance-relevante DevOps- und Operating-Model-Ansätze",
-    ],
+      "Untersuchung der Beziehungen zwischen Methoden und Disziplinen der Unternehmenstransformation mit dem Ziel, Anforderungen für einen Integrationsrahmen beziehungsweise ein Metamodell zur Enterprise Coherence Governance abzuleiten.",
     methodsTitle: "Forschungsmethoden",
     methods: [
       "Systematische Literaturrecherche",
-      "Inhaltsanalyse österreichischer Stellenanzeigen",
-      "Leitfadengestützte Experteninterviews",
+      "Analyse österreichischer Stellenanzeigen",
+      "Experteninterviews",
       "Design Science Research",
       "Method Engineering",
     ],
     artifactTitle: "Geplantes Artefakt",
     artifact:
-      "Ein Integrationsrahmen beziehungsweise Metamodell, das Beziehungen zwischen Disziplinen, Methoden und Frameworks, Rollen und Stakeholdern, Aktivitäten, Arbeitsergebnissen, Integrationspunkten sowie Governance- und Kohärenzmechanismen abbildet.",
+      "Geplant ist die Ableitung von Anforderungen für einen Integrationsrahmen beziehungsweise ein Metamodell zur Enterprise Coherence Governance.",
     currentStatusTitle: "Aktueller Stand",
     currentStatus:
-      "Die Arbeit, das Rahmenwerk und die Evaluation sind noch in Arbeit. Es werden keine abgeschlossenen oder validierten Ergebnisse beansprucht und kein Entwurf veröffentlicht.",
+      "Das Artefakt, die Interviews und die Evaluation sind noch in Arbeit. Es werden keine abgeschlossenen, validierten oder veröffentlichten Ergebnisse beansprucht.",
     interestsTitle: "Forschungsinteressen",
     interests: [
-      "Enterprise Architecture & Digital Transformation",
-      "IoT / Edge Systems",
+      "Enterprise Architecture & Transformation Governance",
+      "IoT / Edge AI / Secure Edge Systems",
       "Automation & Technical Operations",
     ],
   },
   en: {
-    eyebrow: "Current research",
-    pageTitle: "Research",
-    thesisLabel: "Diploma Thesis / Master's Thesis · TU Wien · In progress · 2026",
+    eyebrow: "Research & master's project",
+    pageTitle: "Current Academic Work",
+    pageIntro: "Ongoing academic work at TU Wien and FH Technikum Wien.",
+    thesisLabel: "Diploma Thesis · TU Wien · In progress · 2026",
     thesisTitle:
       "A Framework for Enterprise Coherence Governance: Method Integration During Organizational Transformation in Austria",
-    institution: "Master's Programme in Business Informatics · TU Wien",
+    institution: "TU Wien",
     status: "In progress",
     advisorLabel: "Advisor",
     advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research problem",
+    questionTitle: "Research objective",
     question:
-      "The work investigates how methods and disciplines involved in enterprise transformation can be related and governed coherently. It focuses on making overlaps, handovers and governance mechanisms between these approaches explicit and understandable.",
-    areasTitle: "Areas examined",
-    areas: [
-      "Enterprise Architecture",
-      "IT Governance",
-      "IT Service Management",
-      "Project, Program and Portfolio Management",
-      "Agile and Scaled Agile",
-      "Transformation and Change Management",
-      "Governance-relevant DevOps and operating-model approaches",
-    ],
+      "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
     methodsTitle: "Research methods",
     methods: [
       "Systematic Literature Review",
-      "Austrian job-advertisement content analysis",
-      "Semi-structured expert interviews",
+      "Austrian job-advertisement analysis",
+      "Expert interviews",
       "Design Science Research",
       "Method engineering",
     ],
     artifactTitle: "Planned artifact",
     artifact:
-      "An integration framework or metamodel representing relationships among disciplines, methods and frameworks, roles and stakeholders, activities, work products, integration points, and governance or coherence mechanisms.",
+      "The planned work is to derive requirements for an integration framework or metamodel for enterprise coherence governance.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The thesis, framework and evaluation are still in progress. No completed or validated results are claimed, and no draft is published.",
+      "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
     interestsTitle: "Research interests",
     interests: [
-      "Enterprise Architecture & Digital Transformation",
-      "IoT / Edge Systems",
+      "Enterprise Architecture & Transformation Governance",
+      "IoT / Edge AI / Secure Edge Systems",
       "Automation & Technical Operations",
     ],
   },
   ar: {
-    eyebrow: "Current research",
-    pageTitle: "Research",
-    thesisLabel: "Diploma Thesis / Master's Thesis · TU Wien · In progress · 2026",
+    eyebrow: "Research & master's project",
+    pageTitle: "Current Academic Work",
+    pageIntro: "Ongoing academic work at TU Wien and FH Technikum Wien.",
+    thesisLabel: "Diploma Thesis · TU Wien · In progress · 2026",
     thesisTitle:
       "A Framework for Enterprise Coherence Governance: Method Integration During Organizational Transformation in Austria",
-    institution: "Master's Programme in Business Informatics · TU Wien",
+    institution: "TU Wien",
     status: "In progress",
     advisorLabel: "Advisor",
     advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research problem",
+    questionTitle: "Research objective",
     question:
-      "The work investigates how methods and disciplines involved in enterprise transformation can be related and governed coherently. It focuses on making overlaps, handovers and governance mechanisms between these approaches explicit and understandable.",
-    areasTitle: "Areas examined",
-    areas: [
-      "Enterprise Architecture",
-      "IT Governance",
-      "IT Service Management",
-      "Project, Program and Portfolio Management",
-      "Agile and Scaled Agile",
-      "Transformation and Change Management",
-      "Governance-relevant DevOps and operating-model approaches",
-    ],
+      "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
     methodsTitle: "Research methods",
     methods: [
       "Systematic Literature Review",
-      "Austrian job-advertisement content analysis",
-      "Semi-structured expert interviews",
+      "Austrian job-advertisement analysis",
+      "Expert interviews",
       "Design Science Research",
       "Method engineering",
     ],
     artifactTitle: "Planned artifact",
     artifact:
-      "An integration framework or metamodel representing relationships among disciplines, methods and frameworks, roles and stakeholders, activities, work products, integration points, and governance or coherence mechanisms.",
+      "The planned work is to derive requirements for an integration framework or metamodel for enterprise coherence governance.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The thesis, framework and evaluation are still in progress. No completed or validated results are claimed, and no draft is published.",
+      "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
     interestsTitle: "Research interests",
     interests: [
-      "Enterprise Architecture & Digital Transformation",
-      "IoT / Edge Systems",
+      "Enterprise Architecture & Transformation Governance",
+      "IoT / Edge AI / Secure Edge Systems",
       "Automation & Technical Operations",
     ],
+  },
+};
+
+export const mioProject: Record<Locale, AcademicProjectContent> = {
+  de: {
+    title: "Secure Edge AI Gateway for IoT Networks",
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "2026",
+    status: "In Arbeit",
+    label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026",
+    description:
+      "Ein Secure-Edge-/IoT-Projekt, dessen konkreter Umfang derzeit mit dem Betreuer abgestimmt wird. Als mögliche Richtung wird eine leichtgewichtige Identifikation von IoT-Geräten und die Erkennung unbekannter oder unerwarteter Geräte am Gateway untersucht.",
+  },
+  en: {
+    title: "Secure Edge AI Gateway for IoT Networks",
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "2026",
+    status: "In progress",
+    label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026",
+    description:
+      "A secure edge/IoT project whose detailed scope is currently being defined with the supervisor. A possible direction being explored is lightweight identification of IoT devices and detection of unknown or unexpected devices at the gateway.",
+  },
+  ar: {
+    title: "Secure Edge AI Gateway for IoT Networks",
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "2026",
+    status: "In progress",
+    label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026",
+    description:
+      "A secure edge/IoT project whose detailed scope is currently being defined with the supervisor. A possible direction being explored is lightweight identification of IoT devices and detection of unknown or unexpected devices at the gateway.",
   },
 };

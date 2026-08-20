@@ -8,7 +8,7 @@ export type ProfileLanguage = {
 
 export type ProfileExperience = {
   organization: Record<Locale, string>;
-  location: Record<Locale, string>;
+  location?: Record<Locale, string>;
   title: Record<Locale, string>;
   period: string;
   bullets: Record<Locale, string[]>;
@@ -79,17 +79,17 @@ export const profile = {
       bullets: {
         de: [
           "Anforderungen für arabische PDF-Publikationen mit einer bestehenden Softwarelösung bewertet.",
-          "Mit Produktkonzepten und technischen Standards wie S1000D und S4000P gearbeitet.",
+          "Mit technischen Produktkonzepten und Standards wie S1000D und S4000P gearbeitet.",
           "Erfahrene Application Engineers bei Kundenanfragen und technischer Nachverfolgung unterstützt.",
         ],
         en: [
           "Evaluated requirements for Arabic PDF publications using an existing software solution.",
-          "Worked with product concepts and technical standards including S1000D and S4000P.",
+          "Worked with technical product concepts and standards including S1000D and S4000P.",
           "Supported experienced application engineers with customer requests and technical follow-up.",
         ],
         ar: [
           "Evaluated requirements for Arabic PDF publications using an existing software solution.",
-          "Worked with product concepts and technical standards including S1000D and S4000P.",
+          "Worked with technical product concepts and standards including S1000D and S4000P.",
           "Supported experienced application engineers with customer requests and technical follow-up.",
         ],
       },
@@ -129,12 +129,12 @@ export const profile = {
           "Abstimmung zwischen Product Management, Fachbereichen und technischen Teams unterstützt.",
         ],
         en: [
-          "Analysed business requirements for enterprise architecture software.",
+          "Analysed business requirements for enterprise-architecture software.",
           "Translated stakeholder needs into technical concepts and prototypes.",
           "Supported coordination between product management, business stakeholders and technical teams.",
         ],
         ar: [
-          "Analysed business requirements for enterprise architecture software.",
+          "Analysed business requirements for enterprise-architecture software.",
           "Translated stakeholder needs into technical concepts and prototypes.",
           "Supported coordination between product management, business stakeholders and technical teams.",
         ],
@@ -142,7 +142,6 @@ export const profile = {
     },
     {
       organization: { de: "Universität Benghazi", en: "University of Benghazi", ar: "University of Benghazi" },
-      location: { de: "Benghazi", en: "Benghazi", ar: "Benghazi" },
       title: { de: "Network & Infrastructure Engineer", en: "Network & Infrastructure Engineer", ar: "Network & Infrastructure Engineer" },
       period: "2013–2016",
       bullets: {
@@ -192,9 +191,9 @@ export const profile = {
         ar: "2018–2026 (expected)",
       },
       details: {
-        de: ["Diplomarbeit in Arbeit", "Abschlussgrad: Diplom-Ingenieur"],
-        en: ["Diploma Thesis / Master's Thesis in progress", "Degree upon completion: Diplom-Ingenieur"],
-        ar: ["Diploma Thesis / Master's Thesis in progress", "Degree upon completion: Diplom-Ingenieur"],
+        de: ["Diplomarbeit in Arbeit", "Abschlussgrad bei erfolgreichem Abschluss: Diplom-Ingenieur"],
+        en: ["Diploma Thesis in progress", "Degree upon successful completion: Diplom-Ingenieur"],
+        ar: ["Diploma Thesis in progress", "Degree upon successful completion: Diplom-Ingenieur"],
       },
     },
     {

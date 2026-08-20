@@ -70,7 +70,7 @@ const HOME_COPY: Localized<{
     eyebrow: string;
     title: string;
     description: string;
-    status: string;
+    items: Array<{ title: string; label: string }>;
     cta: string;
   };
   workTitle: string;
@@ -117,11 +117,14 @@ const HOME_COPY: Localized<{
     },
     featuredTitle: "Technische Fallstudien",
     research: {
-      eyebrow: "Aktuelle Forschung",
-      title: "Enterprise Coherence Governance",
-      description: "Diplomarbeit an der TU Wien zur Integration von Methoden und Disziplinen bei Unternehmenstransformationen. Die Arbeit verbindet systematische Literaturrecherche, Analyse österreichischer Stellenanzeigen, Experteninterviews und Design Science Research.",
-      status: "In Arbeit · TU Wien · 2026",
-      cta: "Forschung ansehen",
+      eyebrow: "Aktuelle akademische Arbeit",
+      title: "Forschung und Masterprojekt",
+      description: "Zwei laufende akademische Arbeiten, deren Ergebnisse und Artefakte noch nicht abgeschlossen sind.",
+      items: [
+        { title: "Enterprise Coherence Governance", label: "Diplomarbeit · TU Wien · In Arbeit · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026" },
+      ],
+      cta: "Akademische Arbeit ansehen",
     },
     workTitle: "Kernkompetenzen",
     finalCta:
@@ -168,11 +171,14 @@ const HOME_COPY: Localized<{
     },
     featuredTitle: "Engineering Case Studies",
     research: {
-      eyebrow: "Current research",
-      title: "Enterprise Coherence Governance",
-      description: "Diploma thesis at TU Wien examining method and discipline integration during organizational transformation. The work combines a systematic literature review, Austrian job-advertisement analysis, expert interviews and Design Science Research.",
-      status: "In progress · TU Wien · 2026",
-      cta: "View Research",
+      eyebrow: "Current Academic Work",
+      title: "Research and master's project",
+      description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
+      items: [
+        { title: "Enterprise Coherence Governance", label: "Diploma Thesis · TU Wien · In progress · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+      ],
+      cta: "View Academic Work",
     },
     workTitle: "Core Capabilities",
     finalCta:
@@ -220,11 +226,14 @@ const HOME_COPY: Localized<{
     },
     featuredTitle: "Featured Work",
     research: {
-      eyebrow: "Current research",
-      title: "Enterprise Coherence Governance",
-      description: "Diploma thesis at TU Wien examining method and discipline integration during organizational transformation. The work combines a systematic literature review, Austrian job-advertisement analysis, expert interviews and Design Science Research.",
-      status: "In progress · TU Wien · 2026",
-      cta: "View Research",
+      eyebrow: "Current Academic Work",
+      title: "Research and master's project",
+      description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
+      items: [
+        { title: "Enterprise Coherence Governance", label: "Diploma Thesis · TU Wien · In progress · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+      ],
+      cta: "View Academic Work",
     },
     workTitle: "Capabilities & Stack",
     finalCta:
@@ -485,7 +494,14 @@ export default function HomeContent() {
           <div className="max-w-3xl">
             <h2 id="current-research" className="text-2xl font-semibold text-main">{copy.research.title}</h2>
             <p className="mt-3 leading-7 text-muted">{copy.research.description}</p>
-            <p className="mt-4 text-sm font-semibold text-secondary">{copy.research.status}</p>
+            <ul className="mt-4 space-y-2">
+              {copy.research.items.map((item) => (
+                <li key={item.title} className="text-sm text-secondary">
+                  <span className="font-semibold text-main">{item.title}</span>
+                  <span className="block text-muted sm:ml-2 sm:inline">{item.label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <Link href={getLocalizedPath("/research", activeLocale)} className="inline-flex shrink-0 items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">
             {copy.research.cta}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />

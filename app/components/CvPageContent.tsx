@@ -16,7 +16,7 @@ import {
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
-import { thesisResearch } from "../lib/research";
+import { mioProject, thesisResearch } from "../lib/research";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import { TechBadge } from "./ui/TechBadge";
 
@@ -62,12 +62,13 @@ const skillGroups = [
   ["cv_skill_projectManagement_title", "cv_skill_projectManagement_items"],
 ] as const;
 
-const certificationOrganizations = ["pma / IPMA", "University of Graz", "LinkedIn Learning", "Microsoft Excel"];
+const certificationOrganizations = ["pma / IPMA", "University of Graz", "LinkedIn Learning", null] as const;
 
 export default function CvPageContent() {
   const { locale, t } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
   const research = thesisResearch[locale];
+  const mio = mioProject[locale];
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-14 print:max-w-none print:px-0 print:py-0">
@@ -107,7 +108,7 @@ export default function CvPageContent() {
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                       <div>
                         <h3 className="font-semibold text-main">{experience.title[locale]}</h3>
-                        <p className="mt-1 text-sm text-muted">{experience.organization[locale]} · {experience.location[locale]}</p>
+                        <p className="mt-1 text-sm text-muted">{experience.organization[locale]}{experience.location ? ` · ${experience.location[locale]}` : ""}</p>
                       </div>
                       <span className="shrink-0 text-sm font-semibold tabular-nums text-main">{experience.period}</span>
                     </div>
@@ -140,13 +141,20 @@ export default function CvPageContent() {
           </div>
         </CvSection>
 
-        <CvSection icon={BookOpen} title={locale === "de" ? "Aktuelle Forschung / TU Wien Diplomarbeit" : "Current Research / TU Wien Thesis"} accent>
-          <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.thesisLabel}</p>
-          <h3 className="mt-2 max-w-4xl text-lg font-semibold leading-snug text-main">{research.thesisTitle}</h3>
-          <p className="mt-3 max-w-4xl text-sm leading-7 text-secondary">{research.question}</p>
-          <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
-            <p><span className="font-semibold text-main">{research.methodsTitle}:</span> <span className="text-secondary">{research.methods.join(", ")}</span></p>
-            <p><span className="font-semibold text-main">{research.advisorLabel}:</span> <span className="text-secondary">{research.advisor}</span></p>
+        <CvSection icon={BookOpen} title={locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"} accent>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <article className="rounded-lg border border-blue-200/70 bg-card p-5 dark:border-blue-900/70 print:break-inside-avoid">
+              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.thesisLabel}</p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug text-main">{research.thesisTitle}</h3>
+              <p className="mt-3 text-sm leading-7 text-secondary">{research.question}</p>
+              <p className="mt-4 text-sm text-muted"><span className="font-semibold text-main">{research.advisorLabel}:</span> {research.advisor}</p>
+            </article>
+            <article className="rounded-lg border border-subtle bg-card p-5 print:break-inside-avoid">
+              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{mio.label}</p>
+              <h3 className="mt-2 text-lg font-semibold leading-snug text-main">{mio.title}</h3>
+              <p className="mt-2 text-sm text-muted">{mio.programme}</p>
+              <p className="mt-3 text-sm leading-7 text-secondary">{mio.description}</p>
+            </article>
           </div>
         </CvSection>
 
@@ -179,7 +187,7 @@ export default function CvPageContent() {
           <div className="grid gap-3 sm:grid-cols-2">
             {profile.certifications.map((certification, index) => (
               <article key={certification.title} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
-                <OrganizationLogo name={certificationOrganizations[index]} size="sm" decorative={false} />
+                {certificationOrganizations[index] && <OrganizationLogo name={certificationOrganizations[index]} size="sm" decorative={false} />}
                 <div><h3 className="text-sm font-semibold leading-6 text-main">{certification.title}</h3><p className="mt-1 text-sm text-muted">{certification.issuer} · {certification.year}</p></div>
               </article>
             ))}

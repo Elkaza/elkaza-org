@@ -6,7 +6,7 @@ import { AppWindow, ArrowRight, BookOpen, Languages, Mail, Server, Workflow } fr
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
-import { thesisResearch } from "../lib/research";
+import { mioProject, thesisResearch } from "../lib/research";
 import Certifications from "./Certifications";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import { TechBadge } from "./ui/TechBadge";
@@ -35,6 +35,7 @@ export default function AboutPageContent() {
   const { t, locale } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
   const research = thesisResearch[locale];
+  const mio = mioProject[locale];
 
   return (
     <main className="min-h-screen bg-page text-main transition-colors">
@@ -86,16 +87,22 @@ export default function AboutPageContent() {
           </div>
         </section>
 
-        <section className="mt-12 rounded-xl border border-blue-200/70 bg-blue-50/60 p-6 dark:border-blue-900/70 dark:bg-blue-950/20 md:p-7" aria-labelledby="about-research">
+        <section className="mt-12 border-t border-subtle pt-10" aria-labelledby="about-research">
           <div className="flex items-start gap-4">
             <BookOpen className="mt-1 h-7 w-7 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-            <div>
-              <p className="text-xs font-extrabold uppercase text-blue-800 dark:text-blue-300">{research.eyebrow}</p>
-              <h2 id="about-research" className="mt-2 text-2xl font-semibold leading-snug text-main">{research.thesisTitle}</h2>
-              <p className="mt-3 text-sm font-semibold text-secondary">{research.thesisLabel}</p>
-              <p className="mt-4 max-w-4xl leading-7 text-secondary">{research.question}</p>
-              <p className="mt-4 text-sm text-muted"><span className="font-semibold text-main">{research.advisorLabel}:</span> {research.advisor}</p>
-              <Link href={getLocalizedPath("/research", activeLocale)} className="mt-5 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">{locale === "de" ? "Forschung ansehen" : "View Research"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" /></Link>
+            <div className="min-w-0 flex-1">
+              <h2 id="about-research" className="text-2xl font-semibold leading-snug text-main">{locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"}</h2>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <article className="rounded-lg border border-subtle bg-card p-4">
+                  <h3 className="font-semibold text-main">Enterprise Coherence Governance</h3>
+                  <p className="mt-2 text-sm text-muted">{research.thesisLabel}</p>
+                </article>
+                <article className="rounded-lg border border-subtle bg-card p-4">
+                  <h3 className="font-semibold text-main">{mio.title}</h3>
+                  <p className="mt-2 text-sm text-muted">{mio.label}</p>
+                </article>
+              </div>
+              <Link href={getLocalizedPath("/research", activeLocale)} className="mt-5 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">{locale === "de" ? "Akademische Arbeit ansehen" : "View Academic Work"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" /></Link>
             </div>
           </div>
         </section>

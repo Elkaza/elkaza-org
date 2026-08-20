@@ -3,7 +3,6 @@ import Image from "next/image";
 type OrganizationKind =
   | "boc"
   | "cyberu"
-  | "excel"
   | "fhTechnikum"
   | "generic"
   | "hico"
@@ -46,7 +45,6 @@ const organizationMarks: Record<string, OrganizationMark> = {
     kind: "linkedin",
     assetSrc: "/organization-logos/linkedin.svg",
   },
-  "microsoft excel": { label: "Microsoft Excel", initials: "Excel", kind: "excel", wide: true },
   "pma / ipma": { label: "pma / IPMA", initials: "IPMA", kind: "ipma" },
   "raiffeisen bank international": {
     label: "Raiffeisen Bank International",
@@ -79,7 +77,6 @@ const organizationMarks: Record<string, OrganizationMark> = {
 const frameClasses: Record<OrganizationKind, string> = {
   boc: "border-[#d7dee8] bg-white text-[#183153]",
   cyberu: "border-[#d7e0ff] bg-white text-[#4259d6]",
-  excel: "border-[#217346] bg-[#217346] text-white",
   fhTechnikum: "border-[#bfd9ee] bg-white text-[#006eb6]",
   generic: "border-subtle bg-white text-main",
   hico: "border-[#bde3dc] bg-white text-[#0f766e]",
@@ -126,7 +123,6 @@ function findOrganizationMark(name: string): OrganizationMark {
   if (normalized.includes("ipma") || normalized.includes("project management austria")) return organizationMarks.ipma;
   if (normalized.includes("graz") || normalized.includes("uni for life")) return organizationMarks["university of graz"];
   if (normalized.includes("linkedin")) return organizationMarks["linkedin learning"];
-  if (normalized.includes("excel") || normalized.includes("microsoft")) return organizationMarks["microsoft excel"];
   if (normalized.includes("cyberu")) return organizationMarks.cyberu;
 
   const initials = name
@@ -221,8 +217,6 @@ function BrandMark({ mark, size }: { mark: OrganizationMark; size: keyof typeof 
       );
     case "rbi":
       return <span className={`${sizeTextClasses[size]} font-black tracking-tight`}>RBI</span>;
-    case "excel":
-      return <span className={`${size === "sm" ? "text-[9px]" : "text-[10px]"} font-bold tracking-tight`}>Excel</span>;
     case "boc":
       return (
         <svg aria-hidden="true" className="h-[82%] w-[82%]" viewBox="0 0 64 64">

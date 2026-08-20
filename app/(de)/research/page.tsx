@@ -4,8 +4,8 @@ import { localizedMetadata } from "@/app/lib/seo";
 export const metadata = localizedMetadata({
   locale: "de",
   path: "/research",
-  title: "Forschung | Mohamed Elkaza",
-  description: "Laufende TU-Wien-Diplomarbeit zu Methodenintegration und Enterprise Coherence Governance bei Unternehmenstransformationen in Österreich.",
+  title: "Aktuelle akademische Arbeit | Mohamed Elkaza",
+  description: "Laufende TU-Wien-Diplomarbeit zu Enterprise Coherence Governance und MIO-3-Masterprojekt zu Secure Edge AI an der FH Technikum Wien.",
 });
 
 export default function ResearchPage() {
