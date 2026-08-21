@@ -69,6 +69,9 @@ export default function CvPageContent() {
   const activeLocale = locale === "en" ? "en" : "de";
   const research = thesisResearch[locale];
   const mio = mioProject[locale];
+  const researchMethods = locale === "de"
+    ? "Systematische Literaturrecherche · Analyse österreichischer Stellenanzeigen · Design Science Research"
+    : "Systematic Literature Review · Austrian Job-Ad Analysis · Design Science Research";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-14 print:max-w-none print:px-0 print:py-0">
@@ -147,7 +150,10 @@ export default function CvPageContent() {
               <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.thesisLabel}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-main">{research.thesisTitle}</h3>
               <p className="mt-3 text-sm leading-7 text-secondary">{research.question}</p>
-              <p className="mt-4 text-sm text-muted"><span className="font-semibold text-main">{research.advisorLabel}:</span> {research.advisor}</p>
+              <p className="mt-4 text-sm leading-6 text-muted">{researchMethods}</p>
+              <Link href={getLocalizedPath("/research", activeLocale)} className="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300">
+                {locale === "de" ? "Forschung ansehen" : "View research"}
+              </Link>
             </article>
             <article className="rounded-lg border border-subtle bg-card p-5 print:break-inside-avoid">
               <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{mio.label}</p>

@@ -58,7 +58,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     ],
     artifactTitle: "Geplantes Artefakt",
     artifact:
-      "Geplant ist die Ableitung von Anforderungen für einen Integrationsrahmen beziehungsweise ein Metamodell zur Enterprise Coherence Governance.",
+      "Integrationsrahmen / Metamodell zur Darstellung der Beziehungen zwischen Methoden, Disziplinen, Rollen, Artefakten und Governance-Mechanismen.",
     currentStatusTitle: "Aktueller Stand",
     currentStatus:
       "Das Artefakt, die Interviews und die Evaluation sind noch in Arbeit. Es werden keine abgeschlossenen, validierten oder veröffentlichten Ergebnisse beansprucht.",
@@ -80,7 +80,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     status: "In progress",
     advisorLabel: "Advisor",
     advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research objective",
+    questionTitle: "Research Aim",
     question:
       "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
     methodsTitle: "Research methods",
@@ -93,7 +93,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     ],
     artifactTitle: "Planned artifact",
     artifact:
-      "The planned work is to derive requirements for an integration framework or metamodel for enterprise coherence governance.",
+      "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
       "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
@@ -115,7 +115,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     status: "In progress",
     advisorLabel: "Advisor",
     advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research objective",
+    questionTitle: "Research Aim",
     question:
       "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
     methodsTitle: "Research methods",
@@ -128,7 +128,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     ],
     artifactTitle: "Planned artifact",
     artifact:
-      "The planned work is to derive requirements for an integration framework or metamodel for enterprise coherence governance.",
+      "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
       "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
@@ -143,7 +143,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
 
 export const mioProject: Record<Locale, AcademicProjectContent> = {
   de: {
-    title: "Secure Edge AI Gateway for IoT Networks",
+    title: "Secure Edge AI Gateway for IoT Networks (Arbeitstitel)",
     institution: "FH Technikum Wien",
     programme: "MSc Internet of Things & Intelligent Systems",
     module: "MIO-3 Master's Project",
@@ -154,7 +154,7 @@ export const mioProject: Record<Locale, AcademicProjectContent> = {
       "Ein Secure-Edge-/IoT-Projekt, dessen konkreter Umfang derzeit mit dem Betreuer abgestimmt wird. Als mögliche Richtung wird eine leichtgewichtige Identifikation von IoT-Geräten und die Erkennung unbekannter oder unerwarteter Geräte am Gateway untersucht.",
   },
   en: {
-    title: "Secure Edge AI Gateway for IoT Networks",
+    title: "Secure Edge AI Gateway for IoT Networks (Working title)",
     institution: "FH Technikum Wien",
     programme: "MSc Internet of Things & Intelligent Systems",
     module: "MIO-3 Master's Project",
@@ -165,7 +165,7 @@ export const mioProject: Record<Locale, AcademicProjectContent> = {
       "A secure edge/IoT project whose detailed scope is currently being defined with the supervisor. A possible direction being explored is lightweight identification of IoT devices and detection of unknown or unexpected devices at the gateway.",
   },
   ar: {
-    title: "Secure Edge AI Gateway for IoT Networks",
+    title: "Secure Edge AI Gateway for IoT Networks (Working title)",
     institution: "FH Technikum Wien",
     programme: "MSc Internet of Things & Intelligent Systems",
     module: "MIO-3 Master's Project",

@@ -122,7 +122,7 @@ const HOME_COPY: Localized<{
       description: "Zwei laufende akademische Arbeiten, deren Ergebnisse und Artefakte noch nicht abgeschlossen sind.",
       items: [
         { title: "Enterprise Coherence Governance", label: "Diplomarbeit · TU Wien · In Arbeit · 2026" },
-        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks (Arbeitstitel)", label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026" },
       ],
       cta: "Akademische Arbeit ansehen",
     },
@@ -176,7 +176,7 @@ const HOME_COPY: Localized<{
       description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
       items: [
         { title: "Enterprise Coherence Governance", label: "Diploma Thesis · TU Wien · In progress · 2026" },
-        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks (Working title)", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
       ],
       cta: "View Academic Work",
     },
@@ -231,7 +231,7 @@ const HOME_COPY: Localized<{
       description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
       items: [
         { title: "Enterprise Coherence Governance", label: "Diploma Thesis · TU Wien · In progress · 2026" },
-        { title: "Secure Edge AI Gateway for IoT Networks", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+        { title: "Secure Edge AI Gateway for IoT Networks (Working title)", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
       ],
       cta: "View Academic Work",
     },

@@ -220,7 +220,7 @@ const FEATURED_STATUS_LABELS: Record<string, Record<Locale, string>> = {
 const COPY: Record<Locale, Copy> = {
     en: {
         title: "Engineering Case Studies",
-        subtitle: "A curated set of implemented systems across fullstack development, IoT, edge AI, infrastructure, and data automation.",
+        subtitle: "A curated set of implemented systems across software engineering, IoT, edge AI, infrastructure, and data automation.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         archive: "View Archive",
@@ -244,7 +244,7 @@ const COPY: Record<Locale, Copy> = {
     },
     de: {
         title: "Technische Fallstudien",
-        subtitle: "Kuratierte technische Fallstudien aus Fullstack Development, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
+        subtitle: "Kuratierte technische Fallstudien aus Software Engineering, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
         featuredTitle: "Ausgewählte Fallstudien",
         browseTitle: "Weitere Projekte",
         archive: "Archiv ansehen",
@@ -268,7 +268,7 @@ const COPY: Record<Locale, Copy> = {
     },
     ar: {
         title: "Engineering Projects",
-        subtitle: "Selected case studies across fullstack development, IoT, edge AI, infrastructure, and data automation.",
+        subtitle: "Selected case studies across software engineering, IoT, edge AI, infrastructure, and data automation.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         archive: "View Archive",

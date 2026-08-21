@@ -146,7 +146,7 @@ export const profile = {
       period: "2013–2016",
       bullets: {
         de: [
-          "First-Level-IT-Support für mehr als 1.000 Anwender unterstützt.",
+          "First-Level-IT-Support für mehr als 1.000 Anwender geleistet.",
           "Arbeitsplatzhardware, Software, Netzwerkzugänge und Infrastrukturprobleme betreut.",
           "Fehlerbilder, Lösungswege und technische Abläufe dokumentiert.",
         ],
@@ -191,9 +191,9 @@ export const profile = {
         ar: "2018–2026 (expected)",
       },
       details: {
-        de: ["Diplomarbeit in Arbeit", "Abschlussgrad bei erfolgreichem Abschluss: Diplom-Ingenieur"],
-        en: ["Diploma Thesis in progress", "Degree upon successful completion: Diplom-Ingenieur"],
-        ar: ["Diploma Thesis in progress", "Degree upon successful completion: Diplom-Ingenieur"],
+        de: ["Diplomarbeit in Arbeit", "Angestrebter Abschlussgrad: Diplom-Ingenieur"],
+        en: ["Diploma Thesis in progress", "Target degree: Diplom-Ingenieur"],
+        ar: ["Diploma Thesis in progress", "Target degree: Diplom-Ingenieur"],
       },
     },
     {
