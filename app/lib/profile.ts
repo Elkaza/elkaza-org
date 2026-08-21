@@ -191,9 +191,9 @@ export const profile = {
         ar: "2018–2026 (expected)",
       },
       details: {
-        de: ["Diplomarbeit in Arbeit", "Angestrebter Abschlussgrad: Diplom-Ingenieur"],
-        en: ["Diploma Thesis in progress", "Target degree: Diplom-Ingenieur"],
-        ar: ["Diploma Thesis in progress", "Target degree: Diplom-Ingenieur"],
+        de: ["Diplomarbeit: Themen- und Betreuungsabstimmung läuft", "Angestrebter Abschlussgrad: Diplom-Ingenieur"],
+        en: ["Diploma thesis: topic and supervision currently under clarification", "Target degree: Diplom-Ingenieur"],
+        ar: ["Diploma thesis: topic and supervision currently under clarification", "Target degree: Diplom-Ingenieur"],
       },
     },
     {

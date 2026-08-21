@@ -16,7 +16,7 @@ import {
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
-import { mioProject, thesisResearch } from "../lib/research";
+import { mioProject } from "../lib/research";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import { TechBadge } from "./ui/TechBadge";
 
@@ -67,11 +67,20 @@ const certificationOrganizations = ["pma / IPMA", "University of Graz", "LinkedI
 export default function CvPageContent() {
   const { locale, t } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
-  const research = thesisResearch[locale];
   const mio = mioProject[locale];
-  const researchMethods = locale === "de"
-    ? "Systematische Literaturrecherche · Analyse österreichischer Stellenanzeigen · Design Science Research"
-    : "Systematic Literature Review · Austrian Job-Ad Analysis · Design Science Research";
+  const cvResearch = locale === "de"
+    ? {
+        status: "Diplomarbeit: Themen- und Betreuungsabstimmung läuft",
+        label: "Vorgeschlagene Forschungsrichtung:",
+        title: "Enterprise Coherence Governance und Methodenintegration bei Unternehmenstransformationen",
+        methods: "Aktuelle explorative Forschung: Systematische Literaturrecherche · Analyse österreichischer Stellenanzeigen · Design Science Research",
+      }
+    : {
+        status: "Diploma thesis: topic and supervision currently under clarification",
+        label: "Proposed research direction:",
+        title: "Enterprise Coherence Governance and method integration during organizational transformation",
+        methods: "Current exploratory research: Systematic Literature Review · Austrian Job-Ad Analysis · Design Science Research",
+      };
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-14 print:max-w-none print:px-0 print:py-0">
@@ -147,10 +156,10 @@ export default function CvPageContent() {
         <CvSection icon={BookOpen} title={locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"} accent>
           <div className="grid gap-5 lg:grid-cols-2">
             <article className="rounded-lg border border-blue-200/70 bg-card p-5 dark:border-blue-900/70 print:break-inside-avoid">
-              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.thesisLabel}</p>
-              <h3 className="mt-2 text-lg font-semibold leading-snug text-main">{research.thesisTitle}</h3>
-              <p className="mt-3 text-sm leading-7 text-secondary">{research.question}</p>
-              <p className="mt-4 text-sm leading-6 text-muted">{researchMethods}</p>
+              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{cvResearch.status}</p>
+              <p className="mt-3 text-sm font-semibold text-main">{cvResearch.label}</p>
+              <h3 className="mt-1 text-lg font-semibold leading-snug text-main">{cvResearch.title}</h3>
+              <p className="mt-4 text-sm leading-6 text-muted">{cvResearch.methods}</p>
               <Link href={getLocalizedPath("/research", activeLocale)} className="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300">
                 {locale === "de" ? "Forschung ansehen" : "View research"}
               </Link>

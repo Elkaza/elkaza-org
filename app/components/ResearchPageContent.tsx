@@ -22,19 +22,17 @@ export default function ResearchPageContent() {
           <div className="flex items-start gap-4">
             <BookOpen className="mt-1 h-8 w-8 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.institution}</p>
+              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.directionLabel}</p>
               <h2 id="thesis-title" className="mt-3 max-w-4xl break-words text-2xl font-semibold leading-snug text-main md:text-3xl">{research.thesisTitle}</h2>
               <p className="mt-3 text-sm font-semibold text-secondary">{research.thesisLabel}</p>
               <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-                <div><dt className="font-semibold text-main">{research.advisorLabel}</dt><dd className="mt-1 text-muted">{research.advisor}</dd></div>
                 <div><dt className="font-semibold text-main">Status</dt><dd className="mt-1 text-muted">{research.status}</dd></div>
               </dl>
             </div>
           </div>
 
           <div className="mt-8 border-t border-blue-200/70 pt-7 dark:border-blue-900/70">
-            <h3 className="text-xl font-semibold text-main">{research.questionTitle}</h3>
-            <p className="mt-3 max-w-4xl leading-8 text-secondary">{research.question}</p>
+            <p className="max-w-4xl leading-8 text-secondary">{research.question}</p>
           </div>
 
           <div className="mt-7 grid gap-5 md:grid-cols-2">

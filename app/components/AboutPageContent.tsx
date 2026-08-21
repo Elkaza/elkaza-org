@@ -6,7 +6,7 @@ import { AppWindow, ArrowRight, BookOpen, Languages, Mail, Server, Workflow } fr
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
-import { mioProject, thesisResearch } from "../lib/research";
+import { mioProject } from "../lib/research";
 import Certifications from "./Certifications";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import { TechBadge } from "./ui/TechBadge";
@@ -34,7 +34,6 @@ const strongestAreas = {
 export default function AboutPageContent() {
   const { t, locale } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
-  const research = thesisResearch[locale];
   const mio = mioProject[locale];
 
   return (
@@ -94,8 +93,8 @@ export default function AboutPageContent() {
               <h2 id="about-research" className="text-2xl font-semibold leading-snug text-main">{locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"}</h2>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <article className="rounded-lg border border-subtle bg-card p-4">
-                  <h3 className="font-semibold text-main">Enterprise Coherence Governance</h3>
-                  <p className="mt-2 text-sm text-muted">{research.thesisLabel}</p>
+                  <h3 className="font-semibold text-main">{locale === "de" ? "TU Wien Diplomarbeit" : "TU Wien Diploma Thesis"}</h3>
+                  <p className="mt-2 text-sm text-muted">{locale === "de" ? "Themen- und Betreuungsabstimmung" : "Topic and supervision under clarification"}</p>
                 </article>
                 <article className="rounded-lg border border-subtle bg-card p-4">
                   <h3 className="font-semibold text-main">{mio.title}</h3>

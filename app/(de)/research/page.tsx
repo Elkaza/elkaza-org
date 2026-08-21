@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/research",
   title: "Aktuelle akademische Arbeit | Mohamed Elkaza",
-  description: "Laufende TU-Wien-Diplomarbeit zu Enterprise Coherence Governance und MIO-3-Masterprojekt zu Secure Edge AI an der FH Technikum Wien.",
+  description: "Vorgeschlagene Forschungsrichtung für eine TU-Wien-Diplomarbeit; Themen- und Betreuungsabstimmung läuft. MIO-3-Masterprojekt zu Secure Edge AI an der FH Technikum Wien.",
 });
 
 export default function ResearchPage() {

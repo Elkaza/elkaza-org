@@ -8,9 +8,7 @@ type ResearchContent = {
   thesisTitle: string;
   institution: string;
   status: string;
-  advisorLabel: string;
-  advisor: string;
-  questionTitle: string;
+  directionLabel: string;
   question: string;
   methodsTitle: string;
   methods: string[];
@@ -38,17 +36,15 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     eyebrow: "Forschung & Masterprojekt",
     pageTitle: "Aktuelle akademische Arbeit",
     pageIntro: "Laufende akademische Arbeiten an der TU Wien und der FH Technikum Wien.",
-    thesisLabel: "Diplomarbeit · TU Wien · In Arbeit · 2026",
+    thesisLabel: "Geplante Diplomarbeit · TU Wien",
     thesisTitle:
-      "Rahmenwerk für Enterprise Coherence Governance: Methodenintegration bei Unternehmenstransformationen in Österreich",
+      "Enterprise Coherence Governance und Methodenintegration bei Unternehmenstransformationen",
     institution: "TU Wien",
-    status: "In Arbeit",
-    advisorLabel: "Betreuung",
-    advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Forschungsziel",
+    status: "Themen- und Betreuungsabstimmung · 2026",
+    directionLabel: "Vorgeschlagene Forschungsrichtung",
     question:
-      "Untersuchung der Beziehungen zwischen Methoden und Disziplinen der Unternehmenstransformation mit dem Ziel, Anforderungen für einen Integrationsrahmen beziehungsweise ein Metamodell zur Enterprise Coherence Governance abzuleiten.",
-    methodsTitle: "Forschungsmethoden",
+      "Aktuell untersuche ich diese Themenrichtung als mögliche Grundlage meiner Diplomarbeit in Wirtschaftsinformatik an der TU Wien. Der genaue Themenzuschnitt und die Betreuung befinden sich derzeit in Abstimmung.",
+    methodsTitle: "Aktuelle explorative Forschungsarbeit",
     methods: [
       "Systematische Literaturrecherche",
       "Analyse österreichischer Stellenanzeigen",
@@ -56,12 +52,12 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Design Science Research",
       "Method Engineering",
     ],
-    artifactTitle: "Geplantes Artefakt",
+    artifactTitle: "Mögliches Forschungsartefakt",
     artifact:
       "Integrationsrahmen / Metamodell zur Darstellung der Beziehungen zwischen Methoden, Disziplinen, Rollen, Artefakten und Governance-Mechanismen.",
     currentStatusTitle: "Aktueller Stand",
     currentStatus:
-      "Das Artefakt, die Interviews und die Evaluation sind noch in Arbeit. Es werden keine abgeschlossenen, validierten oder veröffentlichten Ergebnisse beansprucht.",
+      "Literaturrecherche, Stellenanzeigenanalyse und konzeptionelle Arbeit werden derzeit als explorative Forschung fortgeführt. Es werden keine abgeschlossenen, validierten oder veröffentlichten Ergebnisse beansprucht.",
     interestsTitle: "Forschungsinteressen",
     interests: [
       "Enterprise Architecture & Transformation Governance",
@@ -73,17 +69,15 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     eyebrow: "Research & master's project",
     pageTitle: "Current Academic Work",
     pageIntro: "Ongoing academic work at TU Wien and FH Technikum Wien.",
-    thesisLabel: "Diploma Thesis · TU Wien · In progress · 2026",
+    thesisLabel: "Proposed Diploma Thesis · TU Wien",
     thesisTitle:
-      "A Framework for Enterprise Coherence Governance: Method Integration During Organizational Transformation in Austria",
+      "Enterprise Coherence Governance and Method Integration During Organizational Transformation",
     institution: "TU Wien",
-    status: "In progress",
-    advisorLabel: "Advisor",
-    advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research Aim",
+    status: "Topic and supervision under clarification · 2026",
+    directionLabel: "Proposed research direction",
     question:
-      "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
-    methodsTitle: "Research methods",
+      "I am currently exploring this research direction as a potential basis for my diploma thesis in Business Informatics at TU Wien. The final topic and supervision are currently being clarified.",
+    methodsTitle: "Current exploratory research",
     methods: [
       "Systematic Literature Review",
       "Austrian job-advertisement analysis",
@@ -91,12 +85,12 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Design Science Research",
       "Method engineering",
     ],
-    artifactTitle: "Planned artifact",
+    artifactTitle: "Potential research artifact",
     artifact:
       "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
+      "The literature review, job-ad analysis and conceptual work are continuing as exploratory research. No completed, validated or published results are claimed.",
     interestsTitle: "Research interests",
     interests: [
       "Enterprise Architecture & Transformation Governance",
@@ -108,17 +102,15 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     eyebrow: "Research & master's project",
     pageTitle: "Current Academic Work",
     pageIntro: "Ongoing academic work at TU Wien and FH Technikum Wien.",
-    thesisLabel: "Diploma Thesis · TU Wien · In progress · 2026",
+    thesisLabel: "Proposed Diploma Thesis · TU Wien",
     thesisTitle:
-      "A Framework for Enterprise Coherence Governance: Method Integration During Organizational Transformation in Austria",
+      "Enterprise Coherence Governance and Method Integration During Organizational Transformation",
     institution: "TU Wien",
-    status: "In progress",
-    advisorLabel: "Advisor",
-    advisor: "Univ.Prof. Dr. Henderik A. Proper",
-    questionTitle: "Research Aim",
+    status: "Topic and supervision under clarification · 2026",
+    directionLabel: "Proposed research direction",
     question:
-      "Research into relationships between methods and disciplines involved in enterprise transformation, with the aim of deriving requirements for an integration framework or metamodel for enterprise coherence governance.",
-    methodsTitle: "Research methods",
+      "I am currently exploring this research direction as a potential basis for my diploma thesis in Business Informatics at TU Wien. The final topic and supervision are currently being clarified.",
+    methodsTitle: "Current exploratory research",
     methods: [
       "Systematic Literature Review",
       "Austrian job-advertisement analysis",
@@ -126,12 +118,12 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Design Science Research",
       "Method engineering",
     ],
-    artifactTitle: "Planned artifact",
+    artifactTitle: "Potential research artifact",
     artifact:
       "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The artifact, interviews and evaluation are still in progress. No completed, validated or published results are claimed.",
+      "The literature review, job-ad analysis and conceptual work are continuing as exploratory research. No completed, validated or published results are claimed.",
     interestsTitle: "Research interests",
     interests: [
       "Enterprise Architecture & Transformation Governance",
