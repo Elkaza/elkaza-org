@@ -107,9 +107,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Edge AI safety monitoring with camera, LiDAR, and local decision logic.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Self-managed web operations with private analytics, secure ingress, automation, and backups.",
-        de: "Eigenkontrollierter Webbetrieb mit privaten Analytics, sicherem Ingress, Automatisierung und Backups.",
-        ar: "Self-managed web operations with private analytics, secure ingress, automation, and backups.",
+        en: "Hybrid Linux infrastructure with public VPS ingress, private Tailscale administration, Ansible-managed configuration, monitoring and tested recovery.",
+        de: "Hybride Linux-Infrastruktur mit öffentlichem VPS-Ingress, privater Tailscale-Administration, Ansible-verwalteter Konfiguration, Monitoring und getesteter Wiederherstellung.",
+        ar: "Hybrid Linux infrastructure with public VPS ingress, private Tailscale administration, Ansible-managed configuration, monitoring and tested recovery.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "Embedded vibration classification from IMU features through model export and device-side inference.",
@@ -188,9 +188,9 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
         ar: "Local SAFE / WARNING / ALERT monitoring with camera, LiDAR, dashboard, and logs.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Private ingress, automated deployments, and verified backups are now part of the operating setup.",
-        de: "Privater Ingress, automatisierte Deployments und verifizierte Backups sind jetzt Teil der Betriebsumgebung.",
-        ar: "Private ingress, automated deployments, and verified backups are now part of the operating setup.",
+        en: "Public and private paths are separated, configuration is repeatable, and application/data recovery has been rehearsed against an isolated target.",
+        de: "Öffentliche und private Pfade sind getrennt, Konfigurationen sind wiederholbar, und die Wiederherstellung von Anwendungen und Daten wurde gegen ein isoliertes Ziel geprobt.",
+        ar: "Public and private paths are separated, configuration is repeatable, and application/data recovery has been rehearsed against an isolated target.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "An Arduino prototype now demonstrates NORMAL, ANOMALY, and ALERT states in a live demo.",

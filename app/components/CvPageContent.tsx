@@ -25,11 +25,11 @@ const selectedProjects = [
     slug: "enterprise-self-hosted-infrastructure",
     title: "Self-Hosted Infrastructure",
     description: {
-      de: "Hybrid-Cloud-Betrieb mit privatem Ingress, Docker, Monitoring, Deployment-Automatisierung und verifizierten Backups.",
-      en: "Hybrid-cloud operations with private ingress, Docker, monitoring, deployment automation and verified backups.",
-      ar: "Hybrid-cloud operations with private ingress, Docker, monitoring, deployment automation and verified backups.",
+      de: "Betreibe eine hybride VPS-/Proxmox-/Debian-Umgebung mit authentifizierter privater Tailscale-Administration und containerisierten Diensten. Nutze Ansible für wiederholbare Host-/Servicekonfigurationen mit Validierungs- und Idempotenzprüfungen. Überwache Service- und Backup-Zustände und pflege verifizierte Anwendungs-/Datenbackups mit isolierter Restore-Probe.",
+      en: "Operate a hybrid VPS/Proxmox/Debian environment with authenticated private Tailscale administration and containerized services. Use Ansible for repeatable host/service configuration with validation and idempotence checks. Monitor service and backup health and maintain verified application/data backups with an isolated restore rehearsal.",
+      ar: "Operate a hybrid VPS/Proxmox/Debian environment with authenticated private Tailscale administration and containerized services. Use Ansible for repeatable host/service configuration with validation and idempotence checks. Monitor service and backup health and maintain verified application/data backups with an isolated restore rehearsal.",
     },
-    tags: ["Linux", "Docker", "Tailscale", "GitHub Actions"],
+    tags: ["Ansible", "Linux", "Tailscale", "Restic"],
   },
   {
     slug: "edgeguardian-edge-ai-safety-bubble",

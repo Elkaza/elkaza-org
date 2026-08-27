@@ -70,6 +70,7 @@ type FeaturedProjectSlug =
     | "tinyml-vibration-anomaly-detection";
 
 type LocalizedString = Record<Locale, string>;
+type ProjectDiagram = NonNullable<(typeof projects)[number]["diagrams"]>[number];
 
 type FeaturedDetailConfig = {
     outcome: LocalizedString;
@@ -283,49 +284,57 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             ar: "Live in operation",
         },
         role: {
-            en: "I designed and operated the hybrid architecture, including VPS hardening, Tailscale routing, container deployment, monitoring and VM backups.",
-            de: "Ich entwarf und betrieb die Hybrid-Architektur einschließlich VPS-Härtung, Tailscale-Routing, Container-Deployment, Monitoring und VM-Backups.",
-            ar: "I designed and operated the hybrid architecture, including VPS hardening, Tailscale routing, container deployment, monitoring and VM backups.",
+            en: "I designed, configured and operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
+            de: "Ich habe die Hybrid-Umgebung entworfen und konfiguriert und betreibe sie – von den öffentlichen und privaten Netzwerkgrenzen über Linux-Härtung und Ansible-Konfigurationsverwaltung bis zu containerisierten Diensten, Monitoring und Wiederherstellungsverfahren.",
+            ar: "I designed, configured and operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
         },
-        keyResultIndex: 2,
+        keyResultIndex: 0,
+        limitation: {
+            en: "The environment is intentionally small and does not provide high availability or automatic failover. The encrypted removable secondary copy requires operator action, and current recovery verification covers application/data restoration rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
+            de: "Die Umgebung ist bewusst klein gehalten und bietet weder Hochverfügbarkeit noch automatisches Failover. Die verschlüsselte Sekundärkopie auf Wechselmedien erfordert einen Eingriff durch den Betreiber; die aktuelle Wiederherstellungsprüfung deckt Anwendungs- und Datenwiederherstellung statt vollständiger Infrastrukturrekonstruktion ab. Ein Teil der Ressourcenprovisionierung liegt außerhalb der Ansible-verwalteten Konfiguration.",
+            ar: "The environment is intentionally small and does not provide high availability or automatic failover. The encrypted removable secondary copy requires operator action, and current recovery verification covers application/data restoration rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
+        },
         validation: {
             en: [
-                "Checked public reachability for ports 80 and 443 and confirmed management services were not reachable from the public internet.",
-                "Verified SSH access through the intended keys after reloading the hardened SSH configuration.",
-                "Created and tested a zstd Proxmox VM backup archive before removing old snapshots.",
+                "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
+                "Applied SSH and firewall changes with post-change configuration, connectivity, and public-exposure checks to reduce lockout risk.",
+                "Verified the 15-minute disk/backup-health check against backup presence, minimum size, checksum availability, and freshness, with Telegram notification.",
+                "Validated application/database archive members and checksums, restored selected data to an isolated target, and exercised the operator-triggered encrypted Restic copy to removable storage.",
             ],
             de: [
-                "Öffentliche Erreichbarkeit für Ports 80 und 443 geprüft und bestätigt, dass Management-Services nicht öffentlich erreichbar waren.",
-                "SSH-Zugriff über die vorgesehenen Schlüssel nach Reload der gehärteten SSH-Konfiguration verifiziert.",
-                "Ein zstd-Proxmox-VM-Backup-Archiv erstellt und geprüft, bevor alte Snapshots entfernt wurden.",
+                "Relevante Ansible-Änderungen im Check Mode ausgeführt, Diffs und Assertions geprüft und die Ausführung zur Idempotenzprüfung wiederholt.",
+                "SSH- und Firewall-Änderungen mit Post-Change-Prüfungen für Konfiguration, Konnektivität und öffentliche Exponierung angewendet, um das Lockout-Risiko zu reduzieren.",
+                "Die 15-minütige Disk-/Backup-Health-Prüfung gegen Backup-Vorhandensein, Mindestgröße, Prüfsummenverfügbarkeit und Aktualität samt Telegram-Benachrichtigung verifiziert.",
+                "Inhalte und Prüfsummen der Anwendungs-/Datenbankarchive validiert, ausgewählte Daten in einem isolierten Ziel wiederhergestellt und die manuell ausgelöste verschlüsselte Restic-Kopie auf Wechselmedien ausgeführt.",
             ],
             ar: [
-                "Checked public reachability for ports 80 and 443 and confirmed management services were not reachable from the public internet.",
-                "Verified SSH access through the intended keys after reloading the hardened SSH configuration.",
-                "Created and tested a zstd Proxmox VM backup archive before removing old snapshots.",
+                "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
+                "Applied SSH and firewall changes with post-change configuration, connectivity, and public-exposure checks to reduce lockout risk.",
+                "Verified the 15-minute disk/backup-health check against backup presence, minimum size, checksum availability, and freshness, with Telegram notification.",
+                "Validated application/database archive members and checksums, restored selected data to an isolated target, and exercised the operator-triggered encrypted Restic copy to removable storage.",
             ],
         },
         nextStep: {
-            en: "Add an encrypted off-site backup copy and complete an isolated restore test.",
-            de: "Eine verschlüsselte Offsite-Backup-Kopie ergänzen und einen isolierten Restore-Test vollständig durchführen.",
-            ar: "Add an encrypted off-site backup copy and complete an isolated restore test.",
+            en: "Broaden declarative provisioning coverage and repeat the isolated application/data restore rehearsal on a documented schedule.",
+            de: "Den Umfang deklarativer Provisionierung erweitern und die isolierte Restore-Probe für Anwendungen und Daten nach einem dokumentierten Zeitplan wiederholen.",
+            ar: "Broaden declarative provisioning coverage and repeat the isolated application/data restore rehearsal on a documented schedule.",
         },
         stackGroups: [
             {
                 label: stackLabel("Platform", "Plattform"),
-                tech: ["Proxmox VE", "Debian 13", "Docker Compose", "Nginx Proxy Manager"],
+                tech: ["Proxmox VE", "Debian", "Docker Compose", "Nginx"],
             },
             {
-                label: stackLabel("Networking & Security", "Netzwerk & Sicherheit"),
-                tech: ["Tailscale", "UFW", "CrowdSec", "Pi-hole"],
+                label: stackLabel("Configuration & Networking", "Konfiguration & Netzwerk"),
+                tech: ["Ansible", "Tailscale", "systemd"],
             },
             {
-                label: stackLabel("Data Services", "Datendienste"),
-                tech: ["Plausible Analytics", "PostgreSQL", "ClickHouse"],
+                label: stackLabel("Security", "Sicherheit"),
+                tech: ["UFW", "Fail2Ban", "CrowdSec"],
             },
             {
-                label: stackLabel("Automation & Operations", "Automatisierung & Betrieb"),
-                tech: ["GitHub Actions", "Bash", "Uptime Kuma", "Netdata", "Portainer", "Dozzle", "Watchtower"],
+                label: stackLabel("Monitoring & Recovery", "Monitoring & Wiederherstellung"),
+                tech: ["Uptime Kuma", "Restic", "Telegram"],
             },
         ],
     },
@@ -905,19 +914,34 @@ function FeaturedProjectDetailLayout({
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
     const keyResult = localizedResults[config.keyResultIndex] ?? localizedResults[0];
     const outcomeValue = localized(config.outcome);
+    const isInfrastructureCaseStudy = project.slug === "enterprise-self-hosted-infrastructure";
     const tocItems = useMemo(
-        () => [
-            { id: "overview", label: locale === "de" ? "Überblick" : "Overview" },
-            { id: "problem", label: locale === "de" ? "Problem" : "Problem" },
-            { id: "architecture", label: locale === "de" ? "Architektur" : "Architecture" },
-            { id: "technical-decisions", label: locale === "de" ? "Entscheidungen" : "Technical decisions" },
-            { id: "validation", label: locale === "de" ? "Validierung" : "Validation" },
-            { id: "results", label: locale === "de" ? "Ergebnisse" : "Results" },
-            { id: "stack", label: locale === "de" ? "Stack" : "Stack" },
-            { id: "artefacts", label: locale === "de" ? "Artefakte" : "Artefacts" },
-            { id: "next-step", label: locale === "de" ? "Nächster Schritt" : "Next step" },
-        ],
-        [locale]
+        () =>
+            isInfrastructureCaseStudy
+                ? [
+                    { id: "overview", label: locale === "de" ? "Überblick" : "Overview" },
+                    { id: "operational-problem", label: locale === "de" ? "Betriebsproblem" : "Operational problem" },
+                    { id: "architecture", label: locale === "de" ? "Architektur & Vertrauensgrenzen" : "Architecture & trust boundaries" },
+                    { id: "configuration-management", label: locale === "de" ? "Konfigurationsmanagement" : "Configuration management" },
+                    { id: "operations-recovery", label: locale === "de" ? "Betrieb & Wiederherstellung" : "Operations & recovery" },
+                    { id: "security-access", label: locale === "de" ? "Härtung & Zugriffsmodell" : "Hardening & access model" },
+                    { id: "results", label: locale === "de" ? "Verifizierte Betriebsergebnisse" : "Verified operational outcomes" },
+                    { id: "limitations", label: locale === "de" ? "Aktuelle Grenzen" : "Current limitations" },
+                    { id: "stack", label: locale === "de" ? "Technologien" : "Technology" },
+                    { id: "artefacts", label: locale === "de" ? "Artefakte" : "Artifacts" },
+                ]
+                : [
+                    { id: "overview", label: locale === "de" ? "Überblick" : "Overview" },
+                    { id: "problem", label: locale === "de" ? "Problem" : "Problem" },
+                    { id: "architecture", label: locale === "de" ? "Architektur" : "Architecture" },
+                    { id: "technical-decisions", label: locale === "de" ? "Entscheidungen" : "Technical decisions" },
+                    { id: "validation", label: locale === "de" ? "Validierung" : "Validation" },
+                    { id: "results", label: locale === "de" ? "Ergebnisse" : "Results" },
+                    { id: "stack", label: locale === "de" ? "Stack" : "Stack" },
+                    { id: "artefacts", label: locale === "de" ? "Artefakte" : "Artefacts" },
+                    { id: "next-step", label: locale === "de" ? "Nächster Schritt" : "Next step" },
+                ],
+        [isInfrastructureCaseStudy, locale]
     );
     const tocIds = useMemo(() => tocItems.map((item) => item.id), [tocItems]);
     const activeSection = useActiveSection(tocIds);
@@ -964,7 +988,7 @@ function FeaturedProjectDetailLayout({
                         <div className="space-y-3">
                             <PageTitle className="md:text-5xl">{localized(project.title)}</PageTitle>
                             <BodyLarge className="max-w-3xl text-muted">{localized(project.oneLiner)}</BodyLarge>
-                            {config.limitation && (
+                            {config.limitation && !isInfrastructureCaseStudy && (
                                 <p className="inline-flex rounded-md border border-amber-700/30 bg-amber-50 px-3 py-2 text-sm font-semibold text-amber-950 dark:border-amber-400/40 dark:bg-amber-950/20 dark:text-amber-100">
                                     {localized(config.limitation)}
                                 </p>
@@ -982,6 +1006,127 @@ function FeaturedProjectDetailLayout({
                     <FeaturedTableOfContents activeId={activeSection} items={tocItems} locale={locale} />
 
                     <div className="min-w-0 space-y-10">
+                        {isInfrastructureCaseStudy ? (
+                            <>
+                                <FeaturedSection
+                                    id="operational-problem"
+                                    title={locale === "de" ? "Betriebsproblem" : "Operational problem"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.problem)}</Body>
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="architecture"
+                                    title={locale === "de" ? "Architektur und Vertrauensgrenzen" : "Architecture and trust boundaries"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.overview)}</Body>
+                                    {project.diagrams?.[0] && (
+                                        <FeaturedDiagramFigure
+                                            copy={copy}
+                                            diagram={project.diagrams[0]}
+                                            locale={locale}
+                                            projectTitle={project.title.en}
+                                        />
+                                    )}
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="configuration-management"
+                                    title={locale === "de" ? "Konfigurationsmanagement mit Ansible" : "Configuration management with Ansible"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.solution)}</Body>
+                                    <ValidationList items={localizedValidation.slice(0, 2)} />
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="operations-recovery"
+                                    title={locale === "de" ? "Betrieb und Wiederherstellung" : "Operations and recovery"}
+                                >
+                                    <ParagraphBlock text={localized(project.reliability)} />
+                                    {project.diagrams?.[1] && (
+                                        <FeaturedDiagramFigure
+                                            copy={copy}
+                                            diagram={project.diagrams[1]}
+                                            locale={locale}
+                                            projectTitle={project.title.en}
+                                        />
+                                    )}
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="security-access"
+                                    title={locale === "de" ? "Security-Härtung und Zugriffsmodell" : "Security hardening and access model"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.security)}</Body>
+                                    {localizedFeatures[2] && (
+                                        <p className="max-w-4xl border-l-2 border-blue-500 pl-4 text-sm leading-relaxed text-muted">
+                                            {localizedFeatures[2]}
+                                        </p>
+                                    )}
+                                    {project.diagrams?.[2] && (
+                                        <FeaturedDiagramFigure
+                                            copy={copy}
+                                            diagram={project.diagrams[2]}
+                                            locale={locale}
+                                            projectTitle={project.title.en}
+                                        />
+                                    )}
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="results"
+                                    title={locale === "de" ? "Verifizierte Betriebsergebnisse" : "Verified operational outcomes"}
+                                >
+                                    <FlatList items={localizedResults.slice(1)} />
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="limitations"
+                                    title={locale === "de" ? "Aktuelle Grenzen" : "Current limitations"}
+                                >
+                                    <article className="rounded-lg border border-amber-700/30 bg-amber-50 p-5 dark:border-amber-400/40 dark:bg-amber-950/20">
+                                        {config.limitation && <p className="leading-relaxed text-main">{localized(config.limitation)}</p>}
+                                        <MetaLabel className="mt-4 text-amber-900 dark:text-amber-200">
+                                            {locale === "de" ? "Nächste Verbesserung" : "Next improvement"}
+                                        </MetaLabel>
+                                        <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
+                                    </article>
+                                </FeaturedSection>
+
+                                <FeaturedSection id="stack" title={locale === "de" ? "Technologien" : "Technology"}>
+                                    <div className="divide-y divide-subtle border-y border-subtle">
+                                        {config.stackGroups.map((group) => (
+                                            <section key={group.label.en} className="grid gap-3 py-4 md:grid-cols-[180px_minmax(0,1fr)] md:items-start">
+                                                <MetaLabel className="text-main">{localized(group.label)}</MetaLabel>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {group.tech.map((tech) => (
+                                                        <TechBadge key={tech} name={tech} />
+                                                    ))}
+                                                </div>
+                                            </section>
+                                        ))}
+                                    </div>
+                                </FeaturedSection>
+
+                                <FeaturedSection id="artefacts" title={copy.artifacts}>
+                                    <div className="flex flex-wrap gap-3">
+                                        {externalLinks.map((link) => (
+                                            <a
+                                                key={link.url}
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center rounded-md border border-subtle bg-card px-4 py-2.5 font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                            >
+                                                <ExternalLink className="mr-2 h-4 w-4" />
+                                                {link.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </FeaturedSection>
+                            </>
+                        ) : (
+                            <>
                         <FeaturedSection id="problem" title={labels.problemConstraints}>
                             <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
                                 <Body className="text-main">{localized(project.problem)}</Body>
@@ -1090,6 +1235,8 @@ function FeaturedProjectDetailLayout({
                                 <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
                             </article>
                         </FeaturedSection>
+                            </>
+                        )}
                     </div>
                 </div>
             </article>
@@ -1103,6 +1250,18 @@ function FeaturedFact({ label, value }: { label: string; value: string }) {
             <MetaLabel>{label}</MetaLabel>
             <p className="mt-2 text-sm leading-relaxed text-main">{value}</p>
         </article>
+    );
+}
+
+function ParagraphBlock({ text }: { text: string }) {
+    return (
+        <div className="max-w-4xl space-y-4">
+            {text.split(/\n\n/u).map((paragraph) => (
+                <Body key={paragraph} className="text-main">
+                    {paragraph}
+                </Body>
+            ))}
+        </div>
     );
 }
 
@@ -1282,61 +1441,116 @@ function FeaturedDiagramGallery({
     locale: Locale;
     projectTitle: string;
 }) {
-    const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale] ?? value.en;
-
     return (
         <div className="space-y-5">
-            {diagrams.map((diagram) => {
-                const summary = diagram.summary ? localized(diagram.summary) : [];
-
-                return (
-                    <details key={diagram.src} className="overflow-hidden rounded-lg border border-subtle bg-card" open>
-                        <summary className="cursor-pointer list-none border-b border-subtle p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
-                            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                                <div className="max-w-3xl space-y-1">
-                                    <CardTitle className="text-base">{localized(diagram.title)}</CardTitle>
-                                    <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
-                                </div>
-                                <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
-                                    {copy.openDiagram}
-                                </span>
-                            </div>
-                        </summary>
-                        <figure>
-                            <div className="bg-white p-3">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src={diagram.src}
-                                    alt={`${localized(diagram.title)} diagram for ${projectTitle}`}
-                                    className="h-auto w-full rounded-md"
-                                />
-                            </div>
-                            <a
-                                href={diagram.src}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mx-4 mb-4 inline-flex items-center rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
-                            >
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                {localized(diagram.title)}
-                            </a>
-                            {summary.length > 0 && (
-                                <div className="border-t border-subtle p-4">
-                                    <MetaLabel className="text-main">{copy.diagramReviewFocus}</MetaLabel>
-                                    <ul className="mt-3 grid gap-3 md:grid-cols-3">
-                                        {summary.map((item) => (
-                                            <li key={item} className="border-l-2 border-cyan-500 pl-3 text-sm leading-relaxed text-muted">
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </figure>
-                    </details>
-                );
-            })}
+            {diagrams.map((diagram) => (
+                <FeaturedDiagramFigure
+                    key={diagram.src}
+                    copy={copy}
+                    diagram={diagram}
+                    locale={locale}
+                    projectTitle={projectTitle}
+                />
+            ))}
         </div>
+    );
+}
+
+function FeaturedDiagramFigure({
+    copy,
+    diagram,
+    locale,
+    projectTitle,
+}: {
+    copy: DetailCopy;
+    diagram: ProjectDiagram;
+    locale: Locale;
+    projectTitle: string;
+}) {
+    const localized = <T extends string | string[]>(value: Record<Locale, T>) => value[locale] ?? value.en;
+    const summary = diagram.summary ? localized(diagram.summary) : [];
+    const alt = diagram.alt
+        ? localized(diagram.alt)
+        : `${localized(diagram.title)} diagram for ${projectTitle}`;
+    const isInfrastructureDiagram = diagram.src.startsWith("/images/projects/enterprise-self-hosted-infrastructure/");
+
+    if (isInfrastructureDiagram) {
+        return (
+            <figure className="break-inside-avoid overflow-hidden rounded-lg border border-subtle bg-card print:overflow-visible">
+                <figcaption className="border-b border-subtle p-4 print:break-after-avoid">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div className="max-w-3xl space-y-1">
+                            <CardTitle className="text-base">{localized(diagram.title)}</CardTitle>
+                            <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                        </div>
+                        <a
+                            href={diagram.src}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex shrink-0 items-center text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300 print:hidden"
+                        >
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            {locale === "de" ? "Vollständiges Diagramm öffnen" : copy.openDiagram}
+                        </a>
+                    </div>
+                </figcaption>
+                <div className="overflow-x-auto bg-slate-100 p-3 dark:bg-slate-300 print:overflow-visible print:bg-white print:p-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={diagram.src}
+                        alt={alt}
+                        className="h-auto w-full min-w-[720px] max-w-none rounded-md sm:min-w-0 sm:max-w-full print:min-w-0"
+                    />
+                </div>
+            </figure>
+        );
+    }
+
+    return (
+        <details className="overflow-hidden rounded-lg border border-subtle bg-card" open>
+            <summary className="cursor-pointer list-none border-b border-subtle p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset">
+                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                    <div className="max-w-3xl space-y-1">
+                        <CardTitle className="text-base">{localized(diagram.title)}</CardTitle>
+                        <p className="text-sm leading-relaxed text-muted">{localized(diagram.caption)}</p>
+                    </div>
+                    <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">
+                        {copy.openDiagram}
+                    </span>
+                </div>
+            </summary>
+            <figure>
+                <div className="overflow-x-auto bg-slate-100 p-3 dark:bg-slate-300">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src={diagram.src}
+                        alt={alt}
+                        className="h-auto w-full min-w-[720px] max-w-none rounded-md"
+                    />
+                </div>
+                <a
+                    href={diagram.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mx-4 mb-4 mt-4 inline-flex items-center rounded-md border border-subtle px-3 py-2 text-sm font-medium text-main transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    {localized(diagram.title)}
+                </a>
+                {summary.length > 0 && (
+                    <div className="border-t border-subtle p-4">
+                        <MetaLabel className="text-main">{copy.diagramReviewFocus}</MetaLabel>
+                        <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                            {summary.map((item) => (
+                                <li key={item} className="border-l-2 border-cyan-500 pl-3 text-sm leading-relaxed text-muted">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </figure>
+        </details>
     );
 }
 

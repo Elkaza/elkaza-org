@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             locale: "de",
             path: `/projects/${project.slug}`,
             title: `${project.title.de} | Mohamed Elkaza`,
-            description: project.oneLiner.de,
+            description: project.seoDescription?.de ?? project.oneLiner.de,
         }),
     };
 }

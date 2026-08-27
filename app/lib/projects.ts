@@ -18,6 +18,7 @@ export interface Project {
     year: string;
     title: LocalizedString;
     oneLiner: LocalizedString;
+    seoDescription?: LocalizedString;
     overview: LocalizedString;
     problem: LocalizedString;
     solution: LocalizedString;
@@ -42,6 +43,7 @@ export interface Project {
     diagrams?: {
         title: LocalizedString;
         caption: LocalizedString;
+        alt?: LocalizedString;
         summary?: LocalizedList;
         src: string;
     }[];
@@ -476,173 +478,155 @@ export const projects: Project[] = [
         status: "implemented",
         year: "2026",
         title: loc(
-            "Hybrid Self-Hosted Infrastructure & Privacy-First Analytics",
-            "Hybride Self-Hosted-Infrastruktur und datenschutzorientierte Webanalyse"
+            "Hybrid Self-Hosted Infrastructure & Operations",
+            "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "I operate a hybrid web and analytics platform with a hardened public VPS and a private Proxmox/Debian environment. Tailscale connects both systems, while Docker Compose, GitHub Actions, monitoring and VM backups support operations. Elkaza.org remains the portfolio on Vercel. Elkaza.at is delivered through the self-hosted VPS/Tailscale path. Plausible Analytics runs privately on the Proxmox/Debian side and stays connected through the first-party analytics domain.",
-            "Ich betreibe eine hybride Web- und Analytics-Plattform mit einem gehärteten öffentlichen VPS und einer privaten Proxmox-/Debian-Umgebung. Tailscale verbindet beide Systeme, während Docker Compose, GitHub Actions, Monitoring und VM-Backups den Betrieb unterstützen. Elkaza.org bleibt das Portfolio auf Vercel. Elkaza.at wird über den self-hosted VPS-/Tailscale-Pfad ausgeliefert. Plausible Analytics läuft privat auf der Proxmox-/Debian-Seite und bleibt über die eigene Analytics-Domain angebunden."
+            "An Ansible-managed hybrid platform combining public VPS ingress, authenticated private Tailscale transport, onsite containerized services, infrastructure monitoring, encrypted backups and tested recovery procedures.",
+            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, containerisierten Diensten vor Ort, Infrastruktur-Monitoring, verschlüsselten Backups und getesteten Wiederherstellungsverfahren."
+        ),
+        seoDescription: loc(
+            "Case study of a hybrid Linux infrastructure using public VPS ingress, authenticated private Tailscale transport, Ansible-managed configuration, monitoring, encrypted backups and tested recovery.",
+            "Fallstudie einer hybriden Linux-Infrastruktur mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, Ansible-verwalteter Konfiguration, Monitoring, verschlüsselten Backups und getesteter Wiederherstellung."
         ),
         overview: loc(
-            "This case study documents the move from rented convenience to owned infrastructure. The platform keeps public ingress lightweight in the cloud, runs application and analytics services on private Proxmox and Debian infrastructure, and uses automation for deployment, monitoring, and recovery. Elkaza.org remains the Vercel-hosted portfolio surface, while Elkaza.at is delivered through the self-hosted path. The result is not just a cheaper hosting setup; it is a privacy-first operating model where data paths, analytics, logs, and backups stay under direct control.",
-            "Ich betreibe eine hybride Web- und Analytics-Plattform mit einem gehärteten öffentlichen VPS und einer privaten Proxmox-/Debian-Umgebung. Tailscale verbindet beide Systeme, während Docker Compose, GitHub Actions, Monitoring und VM-Backups den Betrieb unterstützen. Elkaza.org bleibt das Portfolio auf Vercel. Elkaza.at wird über den self-hosted VPS-/Tailscale-Pfad ausgeliefert. Plausible Analytics läuft privat auf der Proxmox-/Debian-Seite und bleibt über die eigene Analytics-Domain angebunden."
+            "Internet-facing HTTP/HTTPS enters through a Public VPS Edge. Authenticated private transport over Tailscale connects that edge to onsite Docker services on Debian Core, hosted by Proxmox. Public ingress and administration remain separate; a WSL-based administration workstation runs Ansible against the Public VPS Edge, Debian Core and a Linux Canary Host.",
+            "Öffentlicher HTTP-/HTTPS-Verkehr erreicht die Umgebung über einen Public VPS Edge. Authentifizierter privater Transport über Tailscale verbindet diesen Edge mit den vor Ort betriebenen Docker-Diensten auf Debian Core, das auf Proxmox läuft. Öffentlicher Ingress und Administration bleiben getrennt; eine WSL-basierte Admin Workstation führt Ansible gegen Public VPS Edge, Debian Core und einen Linux Canary Host aus."
         ),
         problem: loc(
-            "SaaS subscriptions and third-party analytics tools create recurring cost, external data dependency, and fragile measurement when browser extensions or network filters block common tracker domains. At the same time, exposing a private server directly from a residential network would leak the home IP address and expand the public attack surface.",
-            "SaaS-Abonnements und Third-Party-Analytics erzeugen laufende Kosten, externe Datenabhängigkeit und brüchige Messbarkeit, wenn Browser-Erweiterungen oder Netzwerkfilter bekannte Tracker-Domains blockieren. Gleichzeitig würde die direkte Exponierung eines privaten Servers aus einem Heimnetz die private IP-Adresse sichtbar machen und die öffentliche Angriffsoberfläche vergrößern."
+            "I needed to operate public web services from a hybrid VPS/on-premises environment without exposing the residential network or administrative interfaces directly to the internet. The environment also needed repeatable configuration, observable service health and a recovery process that could be tested without modifying production data.",
+            "Ich musste öffentliche Webdienste in einer hybriden VPS-/On-Premises-Umgebung betreiben, ohne das private Wohnnetz oder Administrationsoberflächen direkt dem Internet auszusetzen. Gleichzeitig waren wiederholbare Konfigurationen, nachvollziehbare Service-Zustände und ein Wiederherstellungsprozess erforderlich, der ohne Veränderung von Produktionsdaten getestet werden kann."
         ),
         solution: loc(
-            "I built a hybrid-cloud architecture around a hardened public VPS, a private Proxmox VE host running a Debian 13 VM, and Docker Compose service stacks. The VPS acts as a minimal ingress shield with strict UFW policy and unattended upgrades, then forwards HTTP/S over a private Tailscale tunnel to the local platform. Nginx Proxy Manager terminates HTTPS for Elkaza.at, www.elkaza.at, and analytics.elkaza.at, routes the static web frontend and Plausible stack, and keeps the private runtime off the open internet. GitHub Actions automates Next.js production deployments, while Proxmox creates weekly snapshot-mode VM backups with keep-last-three local retention.",
-            "Ich habe eine Hybrid-Cloud-Architektur aus gehärtetem öffentlichem VPS, privatem Proxmox-VE-Host mit Debian-13-VM und Docker-Compose-Service-Stacks aufgebaut. Der VPS dient als minimaler Ingress-Schutzschild mit strikter UFW-Policy und Unattended Upgrades und leitet HTTP/S über einen privaten Tailscale-Tunnel an die lokale Plattform weiter. Nginx Proxy Manager terminiert HTTPS für Elkaza.at, www.elkaza.at und analytics.elkaza.at, routet das statische Web-Frontend und den Plausible-Stack und hält die private Runtime vom offenen Internet getrennt. GitHub Actions automatisiert Next.js-Production-Deployments, während Proxmox wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention erstellt."
+            "Host and service configuration is maintained as version-controlled Ansible inventory, roles, templates, handlers and focused playbooks. Relevant changes are evaluated with check mode and diffs before application. Assertions and post-change checks are used around sensitive changes such as SSH and firewall configuration, while repeated runs are used to check idempotence.",
+            "Host- und Servicekonfigurationen werden als versionierte Ansible-Inventare, Rollen, Templates, Handler und fokussierte Playbooks gepflegt. Relevante Änderungen werden vor der Anwendung im Check Mode und anhand von Diffs geprüft. Assertions und Post-Change-Checks begleiten sensible Änderungen an SSH- und Firewall-Konfigurationen; wiederholte Läufe prüfen die Idempotenz."
         ),
         architectureLabels: {
-            node: loc("Visitor path", "Besucherpfad"),
-            edge: loc("Private platform", "Private Plattform"),
-            cloud: loc("Public ingress", "Öffentlicher Ingress"),
+            node: loc("Public edge", "Öffentlicher Edge"),
+            edge: loc("Private overlay and onsite runtime", "Privates Overlay und lokale Runtime"),
+            cloud: loc("Separate administration", "Getrennte Administration"),
         },
         architecture: {
             node: loc(
-                "Visitors reach the site through controlled HTTPS endpoints and a first-party analytics subdomain, keeping analytics inside the Elkaza domain path instead of a generic third-party tracker host.",
-                "Besucher erreichen die Seite über kontrollierte HTTPS-Endpunkte und eine First-Party-Analytics-Subdomain, wodurch die Analytics-Auslieferung in einem eigenen Domain-Pfad bleibt statt über einen generischen Third-Party-Tracker-Host zu laufen."
+                "The Public VPS Edge accepts the required HTTP/HTTPS ingress without directly exposing the residential network.",
+                "Der Public VPS Edge akzeptiert den erforderlichen HTTP-/HTTPS-Ingress, ohne das private Wohnnetz direkt zu exponieren."
             ),
             edge: loc(
-                "A private Proxmox VE host runs a Debian 13 VM with Docker Compose services for the web stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, observability, and management.",
-                "Ein privater Proxmox-VE-Host betreibt eine Debian-13-VM mit Docker-Compose-Services für Web-Stack, Plausible, PostgreSQL, ClickHouse, Nginx Proxy Manager, Observability und Management."
+                "Tailscale provides authenticated private backend transport to Docker services on Debian Core, hosted by the onsite Proxmox system.",
+                "Tailscale stellt den authentifizierten privaten Backend-Transport zu den Docker-Diensten auf Debian Core bereit, das auf dem lokalen Proxmox-System läuft."
             ),
             cloud: loc(
-                "A low-cost public VPS provides hardened ingress, hides the residential IP address, and forwards traffic through Tailscale rather than requiring inbound ports on the local router.",
-                "Ein kostengünstiger öffentlicher VPS stellt gehärteten Ingress bereit, verbirgt die private Wohnanschluss-IP und leitet Traffic über Tailscale weiter, statt eingehende Ports am lokalen Router zu benötigen."
+                "The Admin Workstation / WSL follows a separate authenticated path and runs Ansible against the Public VPS Edge, Debian Core and Linux Canary Host.",
+                "Die Admin Workstation / WSL nutzt einen getrennten authentifizierten Pfad und führt Ansible gegen Public VPS Edge, Debian Core und Linux Canary Host aus."
             ),
         },
         security: loc(
-            "The platform reduces public exposure by separating ingress from the private runtime. Tailscale carries traffic over an encrypted overlay, UFW limits the VPS surface, Nginx Proxy Manager centralizes HTTPS routing, CrowdSec and Pi-hole add defensive layers, and the first-party Plausible setup avoids handing visitor analytics to a third-party tracking provider.",
-            "Die Plattform reduziert öffentliche Exponierung, indem Ingress und private Runtime getrennt werden. Tailscale transportiert Traffic über ein verschlüsseltes Overlay, UFW begrenzt die VPS-Oberfläche, Nginx Proxy Manager zentralisiert HTTPS-Routing, CrowdSec und Pi-hole ergänzen Schutzschichten, und das First-Party-Plausible-Setup vermeidet die Weitergabe von Besucher-Analytics an einen Third-Party-Tracking-Anbieter."
+            "Administrative paths remain private through Tailscale. On managed hosts where these controls apply, SSH uses key-based authentication with root login and password authentication disabled. Host firewalls apply deny-by-default inbound policies, while the Public VPS exposes only required web ingress. Web administration remains private, unused administrative or legacy services were disabled, and UFW, Fail2Ban and CrowdSec provide separate controls where configured.",
+            "Administrationspfade bleiben über Tailscale privat. Verwaltete SSH-Dienste nutzen schlüsselbasierte Authentifizierung; Root-Login und passwortbasierte Anmeldung sind dort deaktiviert, wo dies dokumentiert ist. Host-Firewalls arbeiten eingehend nach Deny-by-Default, während der Public VPS nur erforderlichen Web-Ingress veröffentlicht. Webbasierte Administration bleibt privat, ungenutzte administrative oder veraltete Dienste wurden deaktiviert, und UFW, Fail2Ban sowie CrowdSec wirken als getrennte Kontrollen, wo sie konfiguriert sind."
         ),
         reliability: loc(
-            "Proxmox runs a weekly 3:00 AM snapshot-mode backup of the Debian VM with zstd compression and keep-last-three local retention. Archive integrity has been checked, but the copies remain on the same physical NVMe; an encrypted off-site copy and full isolated restore test are still required for disaster recovery.",
-            "Proxmox erstellt wöchentlich um 03:00 Uhr ein Snapshot-Backup der Debian-VM mit zstd-Kompression und lokaler Keep-last-three-Retention. Die Archivintegrität wurde geprüft, die Kopien liegen jedoch auf derselben physischen NVMe; für Disaster Recovery fehlen noch eine verschlüsselte Offsite-Kopie und ein vollständiger isolierter Restore-Test."
+            "Uptime Kuma covers public availability and selected private infrastructure. Representative checks cover public websites, analytics, private operational services, reachability, disk state and backup freshness. A systemd oneshot service, triggered every 15 minutes by a timer, checks local disk and backup health; Telegram receives operational alerts.\n\nBackup verification covers archive integrity, required content and checksum validation. An isolated restore rehearsal demonstrates recoverability of selected application and database data without replacing production data. A separate operator-triggered Restic workflow can write an encrypted secondary copy to removable storage.",
+            "Uptime Kuma überwacht die öffentliche Erreichbarkeit und ausgewählte private Infrastruktur. Repräsentative Prüfungen decken öffentliche Websites, Analytics, private Betriebsdienste, Erreichbarkeit, Datenträgerzustand und Backup-Aktualität ab. Ein systemd-Oneshot-Dienst wird alle 15 Minuten durch einen Timer gestartet und prüft den lokalen Datenträger- und Backup-Zustand; Telegram empfängt Betriebsalarme.\n\nDie Backup-Prüfung umfasst Archivintegrität, erforderliche Inhalte und Prüfsummenvalidierung. Eine isolierte Restore-Probe weist die Wiederherstellbarkeit ausgewählter Anwendungs- und Datenbankdaten nach, ohne Produktionsdaten zu ersetzen. Ein separater, manuell ausgelöster Restic-Workflow kann eine verschlüsselte Sekundärkopie auf Wechselmedien schreiben."
         ),
         keyFeatures: locList(
             [
-                "Self-hosted Plausible Analytics with PostgreSQL and ClickHouse, served from analytics.elkaza.at as a first-party analytics path",
-                "Self-hosted Elkaza.at deployment through VPS TCP ingress, Tailscale, Nginx Proxy Manager, and a private static web container",
-                "Hardened VPS ingress shield with strict UFW policy, unattended upgrades, and no direct exposure of the residential IP",
-                "Tailscale reverse tunnel from public ingress to the private Proxmox platform without opening local router ports",
-                "GitHub Actions CI/CD for automated Next.js production deployments with minimal manual release handling",
-                "Weekly zstd-compressed Proxmox VM snapshots with keep-last-three local retention and verified archive integrity",
-                "Homepage-based local .lan dashboard mapping Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma, and Watchtower state",
+                "Ansible inventory, roles, templates, handlers, and focused playbooks manage repeatable host and service configuration with check mode, diffs, assertions, validation, and idempotence checks",
+                "Key-based SSH, hardened SSH settings, deny-by-default host firewalls, private management paths, and host-specific UFW, Fail2Ban, and CrowdSec controls reduce avoidable exposure",
+                "The private Fortress operations dashboard, built with Homepage and managed through Ansible, separates views for public services, monitoring, the Public VPS, Debian Core containers, and network infrastructure; it is reached through Tailscale Serve, and its former directly published application port is closed",
+                "Uptime Kuma groups representative website, analytics, private-service, infrastructure, disk, and backup-freshness checks, with Telegram notifications and a private status view",
+                "Application and database archives are checked for required members and checksums; an isolated restore rehearsal tests recovery, and Restic writes operator-triggered encrypted copies to removable storage",
             ],
             [
-                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse, ausgeliefert über analytics.elkaza.at als First-Party-Analytics-Pfad",
-                "Self-hosted Elkaza.at-Deployment über VPS-TCP-Ingress, Tailscale, Nginx Proxy Manager und einen privaten statischen Web-Container",
-                "Gehärteter VPS-Ingress-Schutzschild mit strikter UFW-Policy, Unattended Upgrades und ohne direkte Exponierung der privaten Wohnanschluss-IP",
-                "Tailscale-Reverse-Tunnel vom öffentlichen Ingress zur privaten Proxmox-Plattform ohne offene Ports am lokalen Router",
-                "GitHub Actions CI/CD für automatisierte Next.js-Production-Deployments mit minimaler manueller Release-Arbeit",
-                "Wöchentliche zstd-komprimierte Proxmox-VM-Snapshots mit lokaler Keep-last-three-Retention und verifizierter Archivintegrität",
-                "Lokales .lan-Dashboard auf Homepage-Basis mit YAML-State-Mapping für Netdata, Portainer, Dozzle, CrowdSec, Pi-hole, Uptime Kuma und Watchtower",
+                "Ansible-Inventar, Rollen, Templates, Handler und fokussierte Playbooks verwalten wiederholbare Host- und Servicekonfigurationen mit Check Mode, Diffs, Assertions, Validierung und Idempotenzprüfungen",
+                "Schlüsselbasiertes SSH, gehärtete SSH-Einstellungen, eingehende Deny-by-Default-Firewalls, private Managementpfade sowie hostspezifische UFW-, Fail2Ban- und CrowdSec-Kontrollen reduzieren vermeidbare Exponierung",
+                "Das private Fortress Operations Dashboard, mit Homepage umgesetzt und über Ansible verwaltet, trennt Ansichten für öffentliche Dienste, Monitoring, den Public VPS, Debian-Core-Container und Netzwerkinfrastruktur; es wird über Tailscale Serve erreicht, und der zuvor direkt veröffentlichte Anwendungsport ist geschlossen",
+                "Uptime Kuma gruppiert repräsentative Prüfungen für Websites, Analytics, private Dienste, Infrastruktur, Disk und Backup-Aktualität, ergänzt durch Telegram-Benachrichtigungen und eine private Statusansicht",
+                "Anwendungs- und Datenbankarchive werden auf erforderliche Inhalte und Prüfsummen geprüft; eine isolierte Restore-Probe testet die Wiederherstellung, und Restic schreibt manuell ausgelöste verschlüsselte Kopien auf Wechselmedien",
             ]
         ),
         results: locList(
             [
-                "Reduced dependency on paid SaaS subscriptions and third-party analytics domains",
-                "Kept visitor analytics under owner control while preserving privacy-oriented measurement",
-                "Hid the residential IP address and removed the need for open inbound ports on the local router",
-                "Turned deployment, monitoring, updates, and backups into repeatable DevOps routines",
-                "Scheduled local VM backups with keep-last-three retention and verified archive integrity",
+                "The environment separates public ingress from private administration, manages repeatable host and service configuration through Ansible, monitors service and backup health, and verifies application/data recovery through checksum validation and an isolated restore rehearsal",
+                "Public web ingress no longer requires direct inbound exposure of the residential network, while administrative interfaces remain on the private Tailscale path",
+                "Check mode, diff review, assertions, post-change checks and repeated runs provide evidence for sensitive configuration changes and idempotence",
+                "Monitoring covers representative service reachability, infrastructure health, disk state and backup freshness",
+                "Application and database archives are checked before use, and recovery has been rehearsed against an isolated target without replacing production data",
+                "An encrypted removable secondary copy is available through an operator-triggered Restic workflow",
             ],
             [
-                "Die Abhängigkeit von kostenpflichtigen SaaS-Abonnements und Third-Party-Analytics-Domains reduziert",
-                "Besucher-Analytics unter eigener Kontrolle gehalten und gleichzeitig privacy-orientierte Messbarkeit bewahrt",
-                "Die private Wohnanschluss-IP verborgen und offene eingehende Ports am lokalen Router vermieden",
-                "Deployment, Monitoring, Updates und Backups in wiederholbare DevOps-Routinen überführt",
-                "Lokale VM-Backups mit Keep-last-three-Retention geplant und Archivintegrität geprüft",
+                "Die Umgebung trennt öffentlichen Ingress von privater Administration, verwaltet wiederholbare Host- und Servicekonfigurationen mit Ansible, überwacht Service- und Backup-Zustände und überprüft die Wiederherstellbarkeit von Anwendungs- und Datenbeständen durch Prüfsummenvalidierung und eine isolierte Restore-Probe",
+                "Öffentlicher Web-Ingress erfordert keine direkte eingehende Exponierung des privaten Wohnnetzes mehr; Administrationsoberflächen bleiben auf dem privaten Tailscale-Pfad",
+                "Check Mode, Diff-Prüfung, Assertions, Post-Change-Checks und wiederholte Läufe liefern Nachweise für sensible Konfigurationsänderungen und Idempotenz",
+                "Das Monitoring deckt repräsentative Service-Erreichbarkeit, Infrastrukturzustand, Datenträgerzustand und Backup-Aktualität ab",
+                "Anwendungs- und Datenbankarchive werden vor der Nutzung geprüft; die Wiederherstellung wurde gegen ein isoliertes Ziel geprobt, ohne Produktionsdaten zu ersetzen",
+                "Eine verschlüsselte Sekundärkopie auf Wechselmedien steht über einen manuell ausgelösten Restic-Workflow zur Verfügung",
             ]
         ),
         tech: [
+            "Ansible",
+            "Linux",
             "Proxmox VE",
-            "Debian 13",
+            "Debian",
             "Docker Compose",
             "Tailscale",
-            "Plausible Analytics",
-            "PostgreSQL",
-            "ClickHouse",
-            "Nginx Proxy Manager",
-            "CrowdSec",
-            "Pi-hole",
             "UFW",
-            "GitHub Actions",
-            "Bash",
+            "Fail2Ban",
+            "CrowdSec",
             "Uptime Kuma",
-            "Netdata",
-            "Portainer",
-            "Dozzle",
-            "Watchtower",
-            "Homepage",
+            "systemd",
+            "Restic",
+            "Nginx",
+            "Telegram",
         ],
-        tags: ["Self-Hosted", "Privacy", "Analytics", "DevOps", "Hybrid Cloud"],
+        tags: ["Self-Hosted", "Configuration as Code", "Operations", "Backup", "Hybrid Cloud"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.org" },
         ],
         diagrams: [
             {
-                title: loc("System Context", "Systemkontext"),
+                title: loc(
+                    "Figure 1 — Hybrid Infrastructure Architecture and Trust Boundaries",
+                    "Abbildung 1 — Hybrid-Infrastruktur: Architektur und Vertrauensgrenzen"
+                ),
                 caption: loc(
-                    "System context of the hybrid portfolio and privacy-first analytics platform: the public site runs on Vercel, while first-party analytics traffic is routed through VPS/Tailscale to a private self-hosted Plausible stack.",
-                    "Systemkontext der hybriden Portfolio- und Privacy-First-Analytics-Plattform: Die öffentliche Seite läuft auf Vercel, während First-Party-Analytics-Traffic über VPS/Tailscale zu einem privaten self-hosted Plausible-Stack geroutet wird."
+                    "Overall runtime topology and the separate authenticated administration path.",
+                    "Gesamttopologie des Runtime-Pfads und des getrennten authentifizierten Administrationspfads."
                 ),
-                summary: locList(
-                    [
-                        "Public website hosting stays lightweight on Vercel while analytics ownership moves private",
-                        "A VPS ingress layer avoids exposing the residential IP or local router ports",
-                        "Operational paths for CI/CD, monitoring, and platform management are separated from visitor traffic",
-                    ],
-                    [
-                        "Die öffentliche Website-Auslieferung bleibt schlank auf Vercel, während Analytics privat betrieben wird",
-                        "Eine VPS-Ingress-Schicht vermeidet die Exponierung der privaten IP und lokaler Router-Ports",
-                        "CI/CD, Monitoring und Plattformmanagement sind vom Besuchertraffic getrennt",
-                    ]
+                alt: loc(
+                    "Hybrid infrastructure architecture showing internet traffic entering through a public VPS, reaching onsite Docker services over an authenticated Tailscale overlay, with a separate Ansible administration path.",
+                    "Hybrid-Infrastruktur mit öffentlichem VPS-Ingress, privaten Docker-Diensten über ein authentifiziertes Tailscale-Overlay und getrenntem Ansible-Verwaltungspfad."
                 ),
-                src: "/project-diagrams/enterprise-self-hosted-system-context.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-trust-boundaries.png",
             },
             {
-                title: loc("Container / Deployment View", "Container- / Deployment-Ansicht"),
+                title: loc(
+                    "Figure 2 — Configuration, Monitoring and Recovery Flow",
+                    "Abbildung 2 — Konfigurations-, Monitoring- und Wiederherstellungsablauf"
+                ),
                 caption: loc(
-                    "Container/deployment view of the hybrid portfolio platform: frontend deployment on Vercel, public VPS ingress, private Tailscale routing, and self-hosted Plausible/PostgreSQL containers on a Proxmox/Debian runtime.",
-                    "Container- und Deployment-Ansicht der hybriden Portfolio-Plattform: Frontend-Deployment auf Vercel, öffentlicher VPS-Ingress, privates Tailscale-Routing und self-hosted Plausible/PostgreSQL-Container auf einer Proxmox/Debian-Runtime."
+                    "Change validation, observability, alerting, backup verification and isolated recovery flow.",
+                    "Ablauf für Änderungsvalidierung, Observability, Alarmierung, Backup-Prüfung und isolierte Wiederherstellung."
                 ),
-                summary: locList(
-                    [
-                        "GitHub Actions deploys the public frontend while the private runtime owns analytics state",
-                        "Tailscale bridges the public VPS and private Proxmox/Debian runtime without direct inbound exposure",
-                        "Docker Compose groups Plausible, PostgreSQL, and backup handling into an operable service layer",
-                    ],
-                    [
-                        "GitHub Actions deployt das öffentliche Frontend, während die private Runtime den Analytics-State hält",
-                        "Tailscale verbindet öffentlichen VPS und private Proxmox/Debian-Runtime ohne direkte Inbound-Exponierung",
-                        "Docker Compose bündelt Plausible, PostgreSQL und Backups zu einer betreibbaren Service-Schicht",
-                    ]
+                alt: loc(
+                    "Operations flow showing version-controlled Ansible configuration with validation and idempotence checks, service and backup monitoring with Telegram alerting, and backup verification through checksum validation, isolated restore rehearsal and an operator-triggered encrypted secondary copy.",
+                    "Betriebsablauf mit versionierter Ansible-Konfiguration, Validierungs- und Idempotenzprüfungen, Service- und Backup-Monitoring mit Telegram-Alarmierung sowie Backup-Prüfung durch Prüfsummenvalidierung, isolierte Restore-Probe und manuell ausgelöste verschlüsselte Sekundärkopie."
                 ),
-                src: "/project-diagrams/enterprise-self-hosted-container-deployment.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/operations-and-recovery-flow.png",
             },
             {
-                title: loc("Data Flow View", "Datenfluss-Ansicht"),
+                title: loc(
+                    "Figure 3 — Access Paths and Service Exposure",
+                    "Abbildung 3 — Zugriffspfade und Dienstexposition"
+                ),
                 caption: loc(
-                    "Data flow view of the privacy-first analytics platform: public visitors load the Vercel-hosted frontend, first-party analytics events are routed through VPS/Tailscale to the private Plausible/PostgreSQL stack, while CI/CD, monitoring, and backups remain separated from runtime traffic.",
-                    "Datenfluss-Ansicht der Privacy-First-Analytics-Plattform: Besucher laden das Vercel-gehostete Frontend, First-Party-Analytics-Events laufen über VPS/Tailscale zum privaten Plausible/PostgreSQL-Stack, während CI/CD, Monitoring und Backups vom Runtime-Traffic getrennt bleiben."
+                    "Public, private and administrative access paths with their service-exposure boundaries.",
+                    "Öffentliche, private und administrative Zugriffspfade mit ihren Grenzen der Dienstexposition."
                 ),
-                summary: locList(
-                    [
-                        "Runtime user traffic, analytics events, CI/CD, monitoring, and backups are modeled as distinct flows",
-                        "First-party analytics requests travel through the controlled ingress path before private processing",
-                        "Backup and observability loops show recovery readiness rather than only happy-path hosting",
-                    ],
-                    [
-                        "User-Traffic, Analytics-Events, CI/CD, Monitoring und Backups sind als getrennte Flüsse modelliert",
-                        "First-Party-Analytics-Requests laufen über den kontrollierten Ingress-Pfad vor der privaten Verarbeitung",
-                        "Backup- und Observability-Schleifen zeigen Recovery-Fähigkeit statt nur Happy-Path-Hosting",
-                    ]
+                alt: loc(
+                    "Access-path diagram showing public traffic entering through a VPS and reaching public application services over Tailscale, private users accessing internal services through Tailscale, and a separate Ansible administration path.",
+                    "Zugriffspfad-Diagramm mit öffentlichem Verkehr über einen VPS zu veröffentlichten Anwendungsdiensten über Tailscale, privatem Zugriff auf interne Dienste über Tailscale und einem getrennten Ansible-Administrationspfad."
                 ),
-                src: "/project-diagrams/enterprise-self-hosted-data-flow.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/access-paths-and-service-exposure.png",
             },
         ],
         relatedProjectSlug: "vienna-fortress",
