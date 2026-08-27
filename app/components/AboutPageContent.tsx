@@ -16,17 +16,17 @@ const profileTools = ["Linux", "Docker", "Python", "SQL", "GitHub Actions"];
 const strongestAreas = {
   de: [
     { title: "Application Engineering", body: "Anforderungen, Fehlerbilder, Datenflüsse, Schnittstellen und technische Dokumentation strukturiert bearbeiten.", Icon: AppWindow },
-    { title: "Infrastructure & Operations", body: "Linux-, Docker-, Netzwerk- und Monitoring-Umgebungen nachvollziehbar betreiben und übergeben.", Icon: Server },
+    { title: "Infrastructure & Operations", body: "Linux-, Docker- und Netzwerkumgebungen mit Monitoring, nachvollziehbarer Konfiguration und klarer technischer Übergabe betreiben.", Icon: Server },
     { title: "Automation & Data", body: "Wiederkehrende Abläufe mit Python, SQL und CI/CD vereinfachen und Ergebnisse transparent darstellen.", Icon: Workflow },
   ],
   en: [
     { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
-    { title: "Infrastructure & Operations", body: "Operate and hand over Linux, Docker, networking and monitoring environments clearly.", Icon: Server },
+    { title: "Infrastructure & Operations", body: "Operate Linux, Docker and networking environments with monitoring, repeatable configuration and clear technical handover.", Icon: Server },
     { title: "Automation & Data", body: "Simplify recurring work with Python, SQL and CI/CD while keeping results transparent.", Icon: Workflow },
   ],
   ar: [
     { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
-    { title: "Infrastructure & Operations", body: "Operate and hand over Linux, Docker, networking and monitoring environments clearly.", Icon: Server },
+    { title: "Infrastructure & Operations", body: "Operate Linux, Docker and networking environments with monitoring, repeatable configuration and clear technical handover.", Icon: Server },
     { title: "Automation & Data", body: "Simplify recurring work with Python, SQL and CI/CD while keeping results transparent.", Icon: Workflow },
   ],
 } as const;

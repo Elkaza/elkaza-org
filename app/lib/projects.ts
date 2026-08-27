@@ -482,20 +482,20 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "An Ansible-managed hybrid platform combining public VPS ingress, authenticated private Tailscale transport, onsite containerized services, infrastructure monitoring, encrypted backups and tested recovery procedures.",
-            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, containerisierten Diensten vor Ort, Infrastruktur-Monitoring, verschlüsselten Backups und getesteten Wiederherstellungsverfahren."
+            "An Ansible-managed hybrid platform combining public VPS ingress, authenticated private Tailscale transport, onsite containerized services, infrastructure monitoring, encrypted backups and tested application and data recovery.",
+            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, containerisierten Diensten vor Ort, Infrastruktur-Monitoring, verschlüsselten Backups und getesteter Wiederherstellung von Anwendungs- und Datenbeständen."
         ),
         seoDescription: loc(
-            "Case study of a hybrid Linux infrastructure using public VPS ingress, authenticated private Tailscale transport, Ansible-managed configuration, monitoring, encrypted backups and tested recovery.",
-            "Fallstudie einer hybriden Linux-Infrastruktur mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, Ansible-verwalteter Konfiguration, Monitoring, verschlüsselten Backups und getesteter Wiederherstellung."
+            "Case study of a hybrid Linux infrastructure using public VPS ingress, authenticated private Tailscale connectivity, Ansible-managed configuration, monitoring, encrypted backups and tested application and data recovery.",
+            "Fallstudie zu einer hybriden Linux-Infrastruktur mit öffentlichem VPS-Ingress, authentifizierter privater Tailscale-Verbindung, Ansible-verwalteter Konfiguration, Monitoring, verschlüsselten Backups und getesteter Wiederherstellung von Anwendungs- und Datenbeständen."
         ),
         overview: loc(
-            "Internet-facing HTTP/HTTPS enters through a Public VPS Edge. Authenticated private transport over Tailscale connects that edge to onsite Docker services on Debian Core, hosted by Proxmox. Public ingress and administration remain separate; a WSL-based administration workstation runs Ansible against the Public VPS Edge, Debian Core and a Linux Canary Host.",
-            "Öffentlicher HTTP-/HTTPS-Verkehr erreicht die Umgebung über einen Public VPS Edge. Authentifizierter privater Transport über Tailscale verbindet diesen Edge mit den vor Ort betriebenen Docker-Diensten auf Debian Core, das auf Proxmox läuft. Öffentlicher Ingress und Administration bleiben getrennt; eine WSL-basierte Admin Workstation führt Ansible gegen Public VPS Edge, Debian Core und einen Linux Canary Host aus."
+            "Public HTTP/HTTPS traffic enters through the Public VPS Edge. Authenticated, encrypted private connectivity over Tailscale connects the public edge to onsite Docker services on Debian Core, hosted by Proxmox. Public ingress and administration remain separate; a WSL-based administration workstation runs Ansible against the Public VPS Edge, Debian Core and a Linux Canary Host.",
+            "Öffentlicher HTTP-/HTTPS-Verkehr erreicht die Umgebung über den Public VPS Edge. Eine authentifizierte und verschlüsselte private Verbindung über Tailscale verbindet diesen Edge mit den vor Ort betriebenen Docker-Diensten auf Debian Core, das auf Proxmox läuft. Öffentlicher Ingress und Administration bleiben getrennt. Eine WSL-Umgebung auf der Admin Workstation dient als Ansible-Control-Node für Public VPS Edge, Debian Core und einen Linux Canary Host."
         ),
         problem: loc(
-            "I needed to operate public web services from a hybrid VPS/on-premises environment without exposing the residential network or administrative interfaces directly to the internet. The environment also needed repeatable configuration, observable service health and a recovery process that could be tested without modifying production data.",
-            "Ich musste öffentliche Webdienste in einer hybriden VPS-/On-Premises-Umgebung betreiben, ohne das private Wohnnetz oder Administrationsoberflächen direkt dem Internet auszusetzen. Gleichzeitig waren wiederholbare Konfigurationen, nachvollziehbare Service-Zustände und ein Wiederherstellungsprozess erforderlich, der ohne Veränderung von Produktionsdaten getestet werden kann."
+            "I needed to operate public web services from a hybrid VPS/on-premises environment without exposing the residential network to direct public inbound traffic or exposing administrative interfaces publicly. The environment also needed repeatable configuration, observable service health and a recovery process that could be tested without modifying production data.",
+            "Ich musste öffentliche Webdienste in einer hybriden VPS-/On-Premises-Umgebung betreiben, ohne direkten öffentlichen Inbound-Verkehr zum privaten Wohnnetz oder öffentlich erreichbare Administrationsoberflächen zuzulassen. Gleichzeitig waren wiederholbare Konfigurationen, nachvollziehbare Service-Zustände und ein Wiederherstellungsprozess erforderlich, der ohne Veränderung von Produktionsdaten getestet werden kann."
         ),
         solution: loc(
             "Host and service configuration is maintained as version-controlled Ansible inventory, roles, templates, handlers and focused playbooks. Relevant changes are evaluated with check mode and diffs before application. Assertions and post-change checks are used around sensitive changes such as SSH and firewall configuration, while repeated runs are used to check idempotence.",
@@ -521,8 +521,8 @@ export const projects: Project[] = [
             ),
         },
         security: loc(
-            "Administrative paths remain private through Tailscale. On managed hosts where these controls apply, SSH uses key-based authentication with root login and password authentication disabled. Host firewalls apply deny-by-default inbound policies, while the Public VPS exposes only required web ingress. Web administration remains private, unused administrative or legacy services were disabled, and UFW, Fail2Ban and CrowdSec provide separate controls where configured.",
-            "Administrationspfade bleiben über Tailscale privat. Verwaltete SSH-Dienste nutzen schlüsselbasierte Authentifizierung; Root-Login und passwortbasierte Anmeldung sind dort deaktiviert, wo dies dokumentiert ist. Host-Firewalls arbeiten eingehend nach Deny-by-Default, während der Public VPS nur erforderlichen Web-Ingress veröffentlicht. Webbasierte Administration bleibt privat, ungenutzte administrative oder veraltete Dienste wurden deaktiviert, und UFW, Fail2Ban sowie CrowdSec wirken als getrennte Kontrollen, wo sie konfiguriert sind."
+            "Administrative paths remain private through Tailscale. On managed hosts where these controls apply, SSH uses key-based authentication with root login and password authentication disabled. Host firewalls apply deny-by-default inbound policies. Publicly exposed application ingress on the VPS is limited to the required HTTP/HTTPS endpoints, while administrative access remains private over Tailscale. Web administration remains private, unused administrative or legacy services were disabled, and UFW, Fail2Ban and CrowdSec provide separate controls where configured.",
+            "Administrationspfade bleiben über Tailscale privat. Verwaltete SSH-Dienste nutzen schlüsselbasierte Authentifizierung; Root-Login und passwortbasierte Anmeldung sind dort deaktiviert, wo dies dokumentiert ist. Host-Firewalls arbeiten eingehend nach Deny-by-Default. Der öffentlich erreichbare Anwendungs-Ingress auf dem VPS ist auf die erforderlichen HTTP-/HTTPS-Endpunkte beschränkt; administrative Zugriffe bleiben über Tailscale privat. Webbasierte Administration bleibt privat, ungenutzte administrative oder veraltete Dienste wurden deaktiviert, und UFW, Fail2Ban sowie CrowdSec wirken als getrennte Kontrollen, wo sie konfiguriert sind."
         ),
         reliability: loc(
             "Uptime Kuma covers public availability and selected private infrastructure. Representative checks cover public websites, analytics, private operational services, reachability, disk state and backup freshness. A systemd oneshot service, triggered every 15 minutes by a timer, checks local disk and backup health; Telegram receives operational alerts.\n\nBackup verification covers archive integrity, required content and checksum validation. An isolated restore rehearsal demonstrates recoverability of selected application and database data without replacing production data. A separate operator-triggered Restic workflow can write an encrypted secondary copy to removable storage.",
@@ -532,34 +532,34 @@ export const projects: Project[] = [
             [
                 "Ansible inventory, roles, templates, handlers, and focused playbooks manage repeatable host and service configuration with check mode, diffs, assertions, validation, and idempotence checks",
                 "Key-based SSH, hardened SSH settings, deny-by-default host firewalls, private management paths, and host-specific UFW, Fail2Ban, and CrowdSec controls reduce avoidable exposure",
-                "The private Fortress operations dashboard, built with Homepage and managed through Ansible, separates views for public services, monitoring, the Public VPS, Debian Core containers, and network infrastructure; it is reached through Tailscale Serve, and its former directly published application port is closed",
+                "The private Fortress operations dashboard, built with Homepage and managed through Ansible, separates views for public services, monitoring, the Public VPS, Debian Core containers, and network infrastructure; it is reached through Tailscale Serve, and its former directly published application port is closed.",
                 "Uptime Kuma groups representative website, analytics, private-service, infrastructure, disk, and backup-freshness checks, with Telegram notifications and a private status view",
                 "Application and database archives are checked for required members and checksums; an isolated restore rehearsal tests recovery, and Restic writes operator-triggered encrypted copies to removable storage",
             ],
             [
                 "Ansible-Inventar, Rollen, Templates, Handler und fokussierte Playbooks verwalten wiederholbare Host- und Servicekonfigurationen mit Check Mode, Diffs, Assertions, Validierung und Idempotenzprüfungen",
                 "Schlüsselbasiertes SSH, gehärtete SSH-Einstellungen, eingehende Deny-by-Default-Firewalls, private Managementpfade sowie hostspezifische UFW-, Fail2Ban- und CrowdSec-Kontrollen reduzieren vermeidbare Exponierung",
-                "Das private Fortress Operations Dashboard, mit Homepage umgesetzt und über Ansible verwaltet, trennt Ansichten für öffentliche Dienste, Monitoring, den Public VPS, Debian-Core-Container und Netzwerkinfrastruktur; es wird über Tailscale Serve erreicht, und der zuvor direkt veröffentlichte Anwendungsport ist geschlossen",
+                "Das private Fortress Operations Dashboard, mit Homepage umgesetzt und über Ansible verwaltet, trennt Ansichten für öffentliche Dienste, Monitoring, den Public VPS, Debian-Core-Container und Netzwerkinfrastruktur; es wird über Tailscale Serve erreicht, und der zuvor direkt veröffentlichte Anwendungsport ist geschlossen.",
                 "Uptime Kuma gruppiert repräsentative Prüfungen für Websites, Analytics, private Dienste, Infrastruktur, Disk und Backup-Aktualität, ergänzt durch Telegram-Benachrichtigungen und eine private Statusansicht",
                 "Anwendungs- und Datenbankarchive werden auf erforderliche Inhalte und Prüfsummen geprüft; eine isolierte Restore-Probe testet die Wiederherstellung, und Restic schreibt manuell ausgelöste verschlüsselte Kopien auf Wechselmedien",
             ]
         ),
         results: locList(
             [
-                "The environment separates public ingress from private administration, manages repeatable host and service configuration through Ansible, monitors service and backup health, and verifies application/data recovery through checksum validation and an isolated restore rehearsal",
-                "Public web ingress no longer requires direct inbound exposure of the residential network, while administrative interfaces remain on the private Tailscale path",
-                "Check mode, diff review, assertions, post-change checks and repeated runs provide evidence for sensitive configuration changes and idempotence",
-                "Monitoring covers representative service reachability, infrastructure health, disk state and backup freshness",
-                "Application and database archives are checked before use, and recovery has been rehearsed against an isolated target without replacing production data",
-                "An encrypted removable secondary copy is available through an operator-triggered Restic workflow",
+                "The environment separates public ingress from private administration, manages repeatable host and service configuration through Ansible, monitors service and backup health, and verifies application/data recovery through checksum validation and an isolated restore rehearsal.",
+                "Public web ingress no longer requires direct inbound exposure of the residential network, while administrative interfaces remain on the private Tailscale path.",
+                "Check mode, diff review, assertions, post-change checks and repeated runs provide evidence for sensitive configuration changes and idempotence.",
+                "Monitoring covers representative service reachability, infrastructure health, disk state and backup freshness.",
+                "Application and database archives are checked before use, and recovery has been rehearsed against an isolated target without replacing production data.",
+                "An encrypted removable secondary copy is available through an operator-triggered Restic workflow.",
             ],
             [
-                "Die Umgebung trennt öffentlichen Ingress von privater Administration, verwaltet wiederholbare Host- und Servicekonfigurationen mit Ansible, überwacht Service- und Backup-Zustände und überprüft die Wiederherstellbarkeit von Anwendungs- und Datenbeständen durch Prüfsummenvalidierung und eine isolierte Restore-Probe",
-                "Öffentlicher Web-Ingress erfordert keine direkte eingehende Exponierung des privaten Wohnnetzes mehr; Administrationsoberflächen bleiben auf dem privaten Tailscale-Pfad",
-                "Check Mode, Diff-Prüfung, Assertions, Post-Change-Checks und wiederholte Läufe liefern Nachweise für sensible Konfigurationsänderungen und Idempotenz",
-                "Das Monitoring deckt repräsentative Service-Erreichbarkeit, Infrastrukturzustand, Datenträgerzustand und Backup-Aktualität ab",
-                "Anwendungs- und Datenbankarchive werden vor der Nutzung geprüft; die Wiederherstellung wurde gegen ein isoliertes Ziel geprobt, ohne Produktionsdaten zu ersetzen",
-                "Eine verschlüsselte Sekundärkopie auf Wechselmedien steht über einen manuell ausgelösten Restic-Workflow zur Verfügung",
+                "Die Umgebung trennt öffentlichen Ingress von privater Administration, verwaltet wiederholbare Host- und Servicekonfigurationen mit Ansible, überwacht Service- und Backup-Zustände und überprüft die Wiederherstellbarkeit von Anwendungs- und Datenbeständen durch Prüfsummenvalidierung und eine isolierte Restore-Probe.",
+                "Öffentlicher Web-Ingress erfordert keine direkte eingehende Exponierung des privaten Wohnnetzes mehr; Administrationsoberflächen bleiben auf dem privaten Tailscale-Pfad.",
+                "Check Mode, Diff-Prüfung, Assertions, Post-Change-Checks und wiederholte Läufe liefern Nachweise für sensible Konfigurationsänderungen und Idempotenz.",
+                "Das Monitoring deckt repräsentative Service-Erreichbarkeit, Infrastrukturzustand, Datenträgerzustand und Backup-Aktualität ab.",
+                "Anwendungs- und Datenbankarchive werden vor der Nutzung geprüft; die Wiederherstellung wurde gegen ein isoliertes Ziel geprobt, ohne Produktionsdaten zu ersetzen.",
+                "Eine verschlüsselte Sekundärkopie auf Wechselmedien steht über einen manuell ausgelösten Restic-Workflow zur Verfügung.",
             ]
         ),
         tech: [
@@ -579,9 +579,7 @@ export const projects: Project[] = [
             "Telegram",
         ],
         tags: ["Self-Hosted", "Configuration as Code", "Operations", "Backup", "Hybrid Cloud"],
-        links: [
-            { label: "Live Site", url: "https://www.elkaza.org" },
-        ],
+        links: [],
         diagrams: [
             {
                 title: loc(

@@ -264,9 +264,9 @@ const FEATURED_COPY: Record<
       ar: "Public services needed a controlled internet entry point without exposing private administration.",
     },
     responsibility: {
-      de: "Öffentliche und private Netzwerkgrenzen, Ansible-Konfiguration, Monitoring und Wiederherstellungsverfahren entworfen, konfiguriert und im Betrieb.",
-      en: "Designed, configured and operate the public/private boundaries, Ansible configuration, monitoring and recovery procedures.",
-      ar: "Designed, configured and operate the public/private boundaries, Ansible configuration, monitoring and recovery procedures.",
+      de: "Hybrid-Umgebung entworfen, konfiguriert und heute im Betrieb – mit getrennten öffentlichen und privaten Zugriffspfaden, Ansible-Konfiguration, Monitoring und Wiederherstellungsablauf.",
+      en: "Designed, configured and now operate the hybrid environment, including its public/private boundaries, Ansible configuration, monitoring and recovery workflow.",
+      ar: "Designed, configured and now operate the hybrid environment's public/private boundaries, Ansible configuration, monitoring and recovery workflow.",
     },
     result: {
       de: "Live betriebene Hybrid-Umgebung mit privater Administration, Ansible-verwalteter Konfiguration, überwachtem Backup-Zustand und geprobter Wiederherstellung von Anwendungen und Daten.",
@@ -275,9 +275,9 @@ const FEATURED_COPY: Record<
     },
     tech: ["Ansible", "Linux", "Tailscale"],
     visualLabel: {
-      de: "Hybrid Cloud Architektur",
-      en: "Hybrid cloud architecture",
-      ar: "Hybrid cloud architecture",
+      de: "Hybrid-Infrastruktur mit öffentlichem VPS-Ingress, privatem Tailscale-Transport und Docker-Diensten vor Ort.",
+      en: "Hybrid infrastructure architecture with public VPS ingress, private Tailscale transport and onsite Docker services.",
+      ar: "Hybrid infrastructure architecture with public VPS ingress, private Tailscale transport and onsite Docker services.",
     },
   },
   "edgeguardian-edge-ai-safety-bubble": {

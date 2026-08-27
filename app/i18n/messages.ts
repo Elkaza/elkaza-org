@@ -149,7 +149,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_lead: "IT Infrastructure, Application & Automation Engineer",
     about_profile_h2: "Profil",
     about_profile_intro: "Ich bin Mohamed, IT Infrastructure & Application Engineer in Wien. Mein Hintergrund verbindet Application Engineering, Automatisierung und operative Netzwerk- und Systemerfahrung mit Wirtschaftsinformatik an der TU Wien sowie IoT & Intelligent Systems an der FH Technikum Wien.",
-    about_p1: "Ich arbeite gern an Systemen, die nicht nur in einer Demo funktionieren, sondern im Alltag verständlich, wartbar und nachvollziehbar bleiben: Anwendungen, Automatisierung, Infrastruktur, Monitoring und technische Übergaben.",
+    about_p1: "Ich konzentriere mich auf Systeme, die über die Demo hinaus verständlich und wartbar bleiben: Anwendungen, Automatisierung, Infrastruktur, Monitoring und technische Übergaben, die im täglichen Einsatz funktionieren.",
     // Value Statement
     about_value_statement: "Am stärksten bin ich an der Schnittstelle zwischen Software, Betrieb, Automatisierung und Nutzern.",
     about_education_title: "Akademische Grundlage",
@@ -565,7 +565,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     about_lead: "IT Infrastructure, Application & Automation Engineer",
     about_profile_h2: "Professional Profile",
     about_profile_intro: "I am Mohamed, an IT Infrastructure & Application Engineer based in Vienna. My background combines application engineering, automation and hands-on network and systems experience with Business Informatics at TU Wien and IoT & Intelligent Systems at FH Technikum Wien.",
-    about_p1: "I like working on systems that do more than look good in a demo: applications, automation, infrastructure, monitoring, and technical handovers that stay understandable and maintainable in daily use.",
+    about_p1: "I focus on systems that remain understandable and maintainable beyond the demo: applications, automation, infrastructure, monitoring and technical handovers that work in daily use.",
     // New: Value Statement
     about_value_statement: "I am strongest at the intersection of software, operations, automation, and users.",
     about_education_title: "Academic Foundation",
