@@ -23,7 +23,7 @@ const TYPE_LABELS: Record<ArchiveItem["type"], Record<"de" | "en", string>> = {
 
 const COPY = {
   de: {
-    title: "Search the Site",
+    title: "Archivsuche",
     intro: "Durchsuche Seiten und Projekte nach Thema, Jahr oder Technologie.",
     placeholder: "Suchen nach Docker, IoT, Python, Security...",
     allTypes: "Alle Typen",
@@ -87,18 +87,13 @@ export default function ArchivesSearch({ items }: { items: ArchiveItem[] }) {
   return (
     <main className="min-h-screen bg-page text-main transition-colors duration-300">
       <section className="mx-auto max-w-6xl px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-        <aside className="hidden self-start lg:sticky lg:top-20 lg:col-span-3 lg:block">
-          <div className="mb-3 h-1.5 w-20 bg-blue-600" />
+        <header className="mb-6 self-start lg:sticky lg:top-20 lg:col-span-3 lg:mb-0">
+          <div className="mb-3 hidden h-1.5 w-20 bg-blue-600 lg:block" />
           <h1 className="text-3xl font-bold">{copy.title}</h1>
           <p className="mt-3 text-muted">{copy.intro}</p>
-        </aside>
+        </header>
 
         <div className="lg:col-span-9">
-          <div className="mb-6 lg:hidden">
-            <h1 className="text-3xl font-bold">{copy.title}</h1>
-            <p className="mt-3 text-muted">{copy.intro}</p>
-          </div>
-
           <div className="mb-6 flex items-center gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={18} />
