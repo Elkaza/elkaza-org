@@ -560,7 +560,6 @@ function ProjectVisual({
             "w-full min-w-0 border-b border-subtle bg-page p-4",
             featured ? "h-44 sm:h-52" : "h-28 sm:h-32",
         ].join(" ")}
-            aria-label={`${project.title.en} visual`}
         >
             <div className="h-full rounded-lg border border-subtle bg-card p-3">
                 <div className="flex items-center gap-1.5">
