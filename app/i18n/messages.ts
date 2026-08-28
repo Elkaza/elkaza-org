@@ -788,8 +788,8 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     privacy_contact_desc: "For privacy-related questions, contact me at:",
 
     // Footer
-    footer_impressum: "Impressum",
-    footer_datenschutz: "Datenschutz",
+    footer_impressum: "Imprint (German)",
+    footer_datenschutz: "Privacy Policy (German)",
 
     // CV Page
     nav_cv: "CV",
