@@ -49,18 +49,18 @@ export default function TeachingPageContent() {
     return (
         <main className="min-h-screen bg-page text-main transition-colors duration-300">
             <section className="max-w-6xl mx-auto px-6 py-12 lg:grid lg:grid-cols-12 lg:gap-10">
-                <aside className="hidden lg:block lg:col-span-3 sticky top-20 self-start">
-                    <div className="w-20 h-1.5 bg-blue-600 mb-3" />
+                <header className="mb-6 self-start lg:sticky lg:top-20 lg:col-span-3 lg:mb-0">
+                    <div className="mb-3 hidden h-1.5 w-20 bg-blue-600 lg:block" />
                     <h1 className="text-3xl font-bold">{t("nav_teaching")}</h1>
-                    <p className="mt-2 text-muted italic">{t("teach_tagline")}</p>
-                </aside>
+                    <p className="mt-2 hidden text-muted italic lg:block">{t("teach_tagline")}</p>
+                </header>
 
                 <div className="lg:col-span-9">
                     <div className="grid sm:grid-cols-2 gap-8">
                         {cards.map((card) => (
                             <div key={card.title} className="group bg-card border border-subtle rounded-xl p-6 shadow-sm hover:shadow-lg transition">
                                 <card.icon className="text-blue-600 mb-3 w-8 h-8" />
-                                <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{card.title}</h3>
+                                <h2 className="text-xl font-semibold text-blue-700 dark:text-blue-400 mb-2">{card.title}</h2>
                                 <p className="text-main mb-4">{card.description}</p>
                                 <Link href={getLocalizedPath(card.href, activeLocale)} className="text-blue-700 dark:text-blue-400 font-medium hover:underline">
                                     {card.linkLabel}
