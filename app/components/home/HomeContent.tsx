@@ -31,7 +31,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["Linux", "Docker", "Python", "SQL", "GitHub Actions"];
+const TECH_CHIPS = ["Linux", "Docker", "Ansible", "Python", "SQL"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -77,10 +77,10 @@ const HOME_COPY: Localized<{
   finalCta: string;
 }> = {
   de: {
-    heroKicker: "Portfolio aus Wien - Software, Automatisierung und Infrastruktur",
+    heroKicker: "Portfolio aus Wien - Infrastruktur, Application Engineering und Automatisierung",
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
-    heroSupportingLine: "Hier dokumentiere ich ausgewählte Projekte aus Linux-Infrastruktur, Automatisierung, IoT und Edge AI – mit Architekturdiagrammen, Quellcode und nachvollziehbaren Ergebnissen.",
+    heroSupportingLine: "Meine Arbeit umfasst außerdem Application Support, technische Dokumentation und Projekterfahrung in IoT und Edge AI.",
     profileFacts: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: profile.workAuthorization.de },
@@ -91,9 +91,9 @@ const HOME_COPY: Localized<{
       label: "Mohamed Elkaza",
       title: profile.location.de,
       lines: [
-        "Application Engineering",
+        "Application Support & Engineering",
+        "Infrastructure & Operations",
         "Automation & Data",
-        "Infrastructure & IoT",
       ],
       languagesLabel: "Arbeitssprachen",
       languages: [
@@ -128,13 +128,13 @@ const HOME_COPY: Localized<{
     },
     workTitle: "Kernkompetenzen",
     finalCta:
-      "Offen für Rollen, in denen Software, Automatisierung, Infrastruktur und technische Dokumentation zusammenkommen.",
+      "Offen für Rollen in Application Engineering und Support, Infrastruktur-Betrieb sowie technischer Automatisierung.",
   },
   en: {
-    heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
+    heroKicker: "Vienna-based portfolio - infrastructure, application engineering and automation",
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
-    heroSupportingLine: "I connect software, automation and infrastructure so systems stay understandable, reliable and easy to hand over.",
+    heroSupportingLine: "My work also includes application support, technical documentation and project experience in IoT and Edge AI.",
     profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
@@ -145,9 +145,9 @@ const HOME_COPY: Localized<{
       label: "Mohamed Elkaza",
       title: profile.location.en,
       lines: [
-        "Application Engineering",
+        "Application Support & Engineering",
+        "Infrastructure & Operations",
         "Automation & Data",
-        "Infrastructure & IoT",
       ],
       languagesLabel: "Working languages",
       languages: [
@@ -182,7 +182,7 @@ const HOME_COPY: Localized<{
     },
     workTitle: "Core Capabilities",
     finalCta:
-      "Open to roles where software, automation, infrastructure and technical documentation meet.",
+      "Open to roles in application engineering and support, infrastructure operations and technical automation.",
   },
   ar: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
@@ -345,17 +345,17 @@ const WORK_AREAS: {
 }[] = [
   {
     title: {
-      de: "Application Engineering & Automation",
-      en: "Application Engineering & Automation",
+      de: "Application Support & Engineering",
+      en: "Application Support & Engineering",
       ar: "Application Engineering & Automation",
     },
     bullets: {
-      de: ["Analysiert Anforderungen, Fehlerbilder und Datenflüsse", "Automatisiert Workflows mit TypeScript, Python und SQL"],
-      en: ["Analyzes requirements, defects and data flows", "Automates workflows with TypeScript, Python and SQL"],
+      de: ["Analysiert Anwendungsprobleme und Datenflüsse", "Bewertet Anforderungen und dokumentiert technische Nachverfolgung"],
+      en: ["Troubleshoots application issues and data flows", "Analyzes requirements and documents technical follow-up"],
       ar: ["Analyzes requirements, defects and data flows", "Automates workflows with TypeScript, Python and SQL"],
     },
     Icon: Workflow,
-    tools: ["TypeScript", "Python", "SQL"],
+    tools: ["ServiceNow", "Jira", "Documentation"],
   },
   {
     title: {
@@ -364,26 +364,26 @@ const WORK_AREAS: {
       ar: "Infrastructure & Operations",
     },
     bullets: {
-      de: ["Betreibt Linux-, Docker- und Monitoring-Umgebungen", "Strukturiert Deployments, Backups und sichere Zugriffswege"],
-      en: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
+      de: ["Betreibt überwachte Linux-, Docker- und Netzwerkumgebungen", "Nutzt wiederholbare Konfiguration und dokumentierte Wiederherstellung"],
+      en: ["Operates monitored Linux, Docker and network environments", "Uses repeatable configuration and documented recovery"],
       ar: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
     },
     Icon: Server,
-    tools: ["Linux", "Docker", "Monitoring"],
+    tools: ["Linux", "Docker", "Ansible"],
   },
   {
     title: {
-      de: "IoT, Edge & Data",
-      en: "IoT, Edge & Data",
+      de: "Automation & Data",
+      en: "Automation & Data",
       ar: "IoT, Edge & Data",
     },
     bullets: {
-      de: ["Verbindet Sensorik, Telemetrie und Edge-Prototypen", "Macht Datenpfade über Dashboards, Logs und Reports nachvollziehbar"],
-      en: ["Connects sensors, telemetry and edge prototypes", "Makes data paths inspectable through dashboards, logs and reports"],
+      de: ["Automatisiert Abläufe mit Python und Skripting", "Nutzt SQL, Logs und Datenprüfungen zur Fehleranalyse"],
+      en: ["Automates workflows with Python and scripting", "Uses SQL, logs and data checks for troubleshooting"],
       ar: ["Connects sensors, telemetry and edge prototypes", "Makes data paths inspectable through dashboards, logs and reports"],
     },
     Icon: Cpu,
-    tools: ["Raspberry Pi", "MQTT", "Dashboards"],
+    tools: ["Python", "SQL", "Bash"],
   },
 ];
 

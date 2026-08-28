@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/",
   title: "Mohamed Elkaza | IT Infrastructure & Application Engineer",
-  description: "Portfolio von Mohamed Elkaza mit ausgewählten Projekten aus IT-Infrastruktur, Application Engineering, Automatisierung, IoT, Edge AI, Monitoring und nachvollziehbarer technischer Umsetzung.",
+  description: "Portfolio von Mohamed Elkaza mit Fokus auf IT-Infrastruktur, Application Engineering und Support, Linux, Docker und technische Automatisierung.",
 });
 
 export default function HomePage() {
