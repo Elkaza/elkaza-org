@@ -5,8 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/kontakt",
   title: "Kontakt | Mohamed Elkaza",
-  description:
-    "Kontakt zu Mohamed Elkaza für Praktikum, Masterarbeitskooperation, Junior Technical Roles, Datenautomatisierung, IoT, Edge AI, Infrastruktur, Monitoring und Application Engineering.",
+  description: "Kontakt zu Mohamed Elkaza für technische Rollen und Kooperationen in Application Engineering, Infrastruktur und Automatisierung.",
 });
 
 export default function KontaktPage() {

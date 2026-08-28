@@ -19,17 +19,6 @@ export default function DatenschutzPageContent() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-xl font-semibold">{t("privacy_contact_form_title")}</h2>
-                <p className="text-muted leading-relaxed">{t("privacy_contact_form_desc")}</p>
-                <ul className="list-disc ml-6 space-y-1 text-muted">
-                    <li>{t("privacy_data_name")}</li>
-                    <li>{t("privacy_data_email")}</li>
-                    <li>{t("privacy_data_subject")}</li>
-                    <li>{t("privacy_data_message")}</li>
-                </ul>
-            </section>
-
-            <section className="space-y-4">
                 <h2 className="text-xl font-semibold">{t("privacy_purpose_title")}</h2>
                 <p className="text-muted leading-relaxed">{t("privacy_purpose_desc")}</p>
             </section>
