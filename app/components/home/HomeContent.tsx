@@ -588,7 +588,7 @@ function HeroProfilePanel({
   copy: (typeof HOME_COPY)["en"]["profilePanel"];
 }) {
   return (
-    <aside className="min-w-0 rounded-lg border border-subtle bg-card p-4 lg:p-5">
+    <div className="min-w-0 rounded-lg border border-subtle bg-card p-4 lg:p-5">
       <div className="grid gap-4 sm:grid-cols-[160px_1fr] lg:grid-cols-1">
         <div className="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-lg border border-subtle bg-slate-100 dark:bg-slate-900">
           <Image
@@ -602,7 +602,9 @@ function HeroProfilePanel({
         </div>
 
         <div className="flex min-w-0 flex-col justify-center">
-          <CardTitle>{copy.label}</CardTitle>
+          <h2 className="break-words text-lg font-semibold leading-tight tracking-normal text-main">
+            {copy.label}
+          </h2>
           <p className="mt-1 text-sm font-medium text-muted">{copy.title}</p>
           <ul className="mt-5 divide-y divide-subtle border-y border-subtle text-sm leading-relaxed text-muted">
             {copy.lines.map((line) => (
@@ -614,7 +616,7 @@ function HeroProfilePanel({
           </ul>
         </div>
       </div>
-    </aside>
+    </div>
   );
 }
 
