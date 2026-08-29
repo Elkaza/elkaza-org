@@ -35,6 +35,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Verify launch and route policy
+        run: npm run verify:policy
+
       - name: Build
         run: npm run build
 
@@ -43,11 +46,12 @@ jobs:
 
       - name: Start Server & Run A11y Audit
         run: |
+          set -euo pipefail
           node scripts/serve-static-export.mjs out 3002 &
           SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
           sleep 3
-          PORT=3002 npm run a11y-audit || echo "A11y audit completed with warnings"
-          kill "$SERVER_PID" || true
+          PORT=3002 npm run a11y-audit
 
       # Upload a11y report
       - name: Upload A11y Report

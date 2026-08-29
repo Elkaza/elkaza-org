@@ -10,7 +10,7 @@ import {
     Wrench,
 } from "lucide-react";
 import CTA from "@/app/components/CTA";
-import { SITE_IS_PRELAUNCH } from "@/lib/siteStatus";
+import { SITE_CONTROLS } from "@/lib/siteStatus";
 
 interface ServicePageTemplateProps {
     locale: "de" | "en";
@@ -108,7 +108,7 @@ export default function ServicePageTemplate({
             <section className="hero-gradient-enhanced py-12 md:py-18">
                 <div className="mx-auto grid max-w-[1140px] gap-8 px-4 sm:px-6 md:grid-cols-[1.1fr_0.9fr] md:items-end">
                     <div>
-                        {SITE_IS_PRELAUNCH && (
+                        {SITE_CONTROLS.showPrelaunchUi && (
                             <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-[var(--primary)]">{l.prelaunch}</p>
                         )}
                         <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-light)] text-[var(--primary)]">
@@ -116,9 +116,9 @@ export default function ServicePageTemplate({
                         </div>
                         <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-[var(--text)] md:text-5xl">{title}</h1>
                         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--text-secondary)] md:text-xl">
-                            {SITE_IS_PRELAUNCH ? (locale === "de" ? "Möglicher künftiger Fokus: " : "Possible future focus: ") : ""}{promise}
+                            {SITE_CONTROLS.showPrelaunchUi ? (locale === "de" ? "Möglicher künftiger Fokus: " : "Possible future focus: ") : ""}{promise}
                         </p>
-                        {!SITE_IS_PRELAUNCH && <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[var(--text-secondary)]">
+                        {SITE_CONTROLS.commercialContent && <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[var(--text-secondary)]">
                             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5">
                                 <Clock className="h-4 w-4 text-[var(--primary)]" aria-hidden="true" />
                                 {l.timeline}: {timeline}
@@ -129,8 +129,8 @@ export default function ServicePageTemplate({
                             </span>
                         </div>}
                         <div className="mt-7">
-                            <CTA href={SITE_IS_PRELAUNCH ? (locale === "de" ? "/kontakt" : "/en/contact") : ctaHref}>
-                                {SITE_IS_PRELAUNCH ? l.statusCta : ctaAction}
+                            <CTA href={SITE_CONTROLS.showPrelaunchUi ? (locale === "de" ? "/kontakt" : "/en/contact") : ctaHref}>
+                                {SITE_CONTROLS.showPrelaunchUi ? l.statusCta : ctaAction}
                             </CTA>
                         </div>
                         <div className="mt-6 max-w-2xl border-l-2 border-[var(--primary)] pl-4">
@@ -238,7 +238,7 @@ export default function ServicePageTemplate({
                         <h2 className="text-2xl font-semibold text-[var(--text)]">{l.faq}</h2>
                     </div>
                     <div className="mx-auto max-w-3xl space-y-4">
-                        {([...(SITE_IS_PRELAUNCH ? [{
+                        {([...(SITE_CONTROLS.showPrelaunchUi ? [{
                             q: locale === "de" ? "Ist dieses Leistungskonzept bereits buchbar?" : "Can this service concept be ordered?",
                             a: locale === "de" ? "Nein. Die Seite beschreibt den geplanten Startumfang. Es werden derzeit keine Anfragen oder Aufträge angenommen." : "No. This page describes the intended initial scope. No inquiries or orders are currently accepted.",
                         }] : []), ...faqs]).map((faq, i) => (
@@ -263,8 +263,8 @@ export default function ServicePageTemplate({
             <section className="bg-[var(--surface)] py-12 md:py-16">
                 <div className="mx-auto max-w-[1140px] px-4 text-center sm:px-6">
                     <h2 className="mb-6 text-2xl font-semibold text-[var(--text)]">{finalCtaText}</h2>
-                    <CTA href={SITE_IS_PRELAUNCH ? (locale === "de" ? "/kontakt" : "/en/contact") : ctaHref}>
-                        {SITE_IS_PRELAUNCH ? l.statusCta : ctaAction}
+                    <CTA href={SITE_CONTROLS.showPrelaunchUi ? (locale === "de" ? "/kontakt" : "/en/contact") : ctaHref}>
+                        {SITE_CONTROLS.showPrelaunchUi ? l.statusCta : ctaAction}
                     </CTA>
                 </div>
             </section>

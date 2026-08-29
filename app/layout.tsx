@@ -5,8 +5,8 @@ import BackToTop from "@/app/components/BackToTop";
 import SiteInteractivity from "@/app/components/SiteInteractivity";
 import PrelaunchNotice from "@/app/components/PrelaunchNotice";
 import SkipLink from "@/app/components/SkipLink";
-import Script from "next/script";
-import { SITE_IS_PRELAUNCH } from "@/lib/siteStatus";
+import { robotsForRoute } from "@/lib/routePolicy";
+import { SITE_CONTROLS } from "@/lib/siteStatus";
 
 export function generateMetadata() {
   const base = "https://elkaza.at";
@@ -38,7 +38,7 @@ export function generateMetadata() {
       images: [{ url: `${base}/opengraph-image.png`, width: 1200, height: 630, alt: "Elkaza" }],
     },
     twitter: { card: "summary_large_image", images: [`${base}/opengraph-image.png`] },
-    robots: { index: false, follow: false, noarchive: true },
+    robots: robotsForRoute("/"),
   } as const;
 }
 
@@ -67,67 +67,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(SITE_IS_PRELAUNCH ? {
+            __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "@id": "https://elkaza.at/#website",
               url: "https://elkaza.at",
-              name: "Elkaza project preview",
-              description: "Private project website in preparation. No services are currently offered.",
+              name: "Elkaza",
               inLanguage: ["de-AT", "en"],
-            } : {
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "Organization",
-                  "@id": "https://elkaza.at/#organization",
-                  name: "Elkaza",
-                  url: "https://elkaza.at",
-                  logo: "https://elkaza.at/logo.png",
-                  description: "IT-Infrastruktur, Sicherheit und Automatisierung für KMU in Wien und Österreich.",
-                  email: "office@elkaza.at",
-                  areaServed: { "@type": "Country", name: "Austria" },
-                  sameAs: [],
-                },
-                {
-                  "@type": "LocalBusiness",
-                  "@id": "https://elkaza.at/#localbusiness",
-                  name: "Elkaza",
-                  url: "https://elkaza.at",
-                  email: "office@elkaza.at",
-                  address: {
-                    "@type": "PostalAddress",
-                    addressLocality: "Vienna",
-                    addressCountry: "AT",
-                  },
-                  priceRange: "€€",
-                  openingHours: "Mo-Fr 09:00-18:00",
-                },
-                {
-                  "@type": "WebSite",
-                  "@id": "https://elkaza.at/#website",
-                  url: "https://elkaza.at",
-                  name: "Elkaza",
-                  publisher: { "@id": "https://elkaza.at/#organization" },
-                  inLanguage: ["de-AT", "en"],
-                },
-              ],
             }),
           }}
         />
       </head>
       <body className="min-h-screen flex flex-col bg-[var(--bg)] text-[var(--text)]">
-        {!SITE_IS_PRELAUNCH && (
-          <Script
-            defer
-            data-domain="elkaza.at"
-            src="https://analytics.elkaza.at/js/script.js"
-            strategy="afterInteractive"
-          />
-        )}
         <SkipLink />
         <Header />
-        <PrelaunchNotice />
+        {SITE_CONTROLS.showPrelaunchUi && <PrelaunchNotice />}
 
         <div id="content" className="flex-1">{children}</div>
 

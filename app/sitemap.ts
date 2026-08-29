@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
-import { localizedPathPairs } from "@/lib/i18nPaths";
-import { SITE_IS_PRELAUNCH } from "@/lib/siteStatus";
+import { getAlternates } from "@/lib/i18nPaths";
+import { launchIndexableRoutes } from "@/lib/routePolicy";
+import { SITE_CONTROLS } from "@/lib/siteStatus";
 
 const baseUrl = "https://elkaza.at";
 export const dynamic = "force-static";
@@ -10,24 +11,19 @@ function absoluteUrl(path: string) {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  if (SITE_IS_PRELAUNCH) return [];
+  if (!SITE_CONTROLS.indexing) return [];
 
-  return localizedPathPairs.flatMap(({ dePath, enPath }) => {
+  return launchIndexableRoutes.map((path) => {
+    const { dePath, enPath } = getAlternates(path);
     const languages = {
       "de-AT": absoluteUrl(dePath),
       en: absoluteUrl(enPath),
       "x-default": absoluteUrl(dePath),
     };
 
-    return [
-      {
-        url: absoluteUrl(dePath),
-        alternates: { languages },
-      },
-      {
-        url: absoluteUrl(enPath),
-        alternates: { languages },
-      },
-    ];
+    return {
+      url: absoluteUrl(path),
+      alternates: { languages },
+    };
   });
 }

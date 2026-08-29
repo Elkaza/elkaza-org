@@ -137,75 +137,10 @@ addBreadcrumb('User completed checkout', 'conversion');
 
 ---
 
-### 6. **Plausible Analytics (Privacy-Friendly)** ✅
+### 6. **Commercial activation controls** ✅
 
-**File:** `lib/plausible.ts`
-
-**Features:**
-- 🔒 GDPR-compliant (no cookies, no consent needed)
-- 📈 Simple, privacy-focused analytics
-- 🎯 Custom event tracking
-- ⚡ Lightweight (~1.3KB)
-
-**Setup Required:**
-```bash
-1. Sign up at https://plausible.io
-2. Set NEXT_PUBLIC_PLAUSIBLE_DOMAIN=elkaza.at
-3. Add <PlausibleAnalytics /> to root layout
-```
-
-**Usage:**
-```typescript
-import { trackEvent, trackCTAClick, trackFormSubmission } from '@/lib/plausible';
-
-trackCTAClick('hero-cta', '/kontakt');
-trackFormSubmission('contact-form', true);
-```
-
----
-
-### 7. **React Hook Form + Zod Validation** ✅
-
-**Files Created:**
-- `lib/form-schemas.ts` - Reusable validation schemas
-- `app/components/FormFields.tsx` - Reusable form components
-
-**Schemas Included:**
-- ✅ Contact form validation
-- ✅ Newsletter signup
-- ✅ Quote request form
-
-**Usage:**
-```typescript
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { contactFormSchema, type ContactFormData } from '@/lib/form-schemas';
-import { FormInput, FormTextarea } from '@/app/components/FormFields';
-
-export default function ContactForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-  });
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormInput
-        label="Name"
-        {...register('name')}
-        error={errors.name}
-        required
-      />
-      <FormTextarea
-        label="Message"
-        {...register('message')}
-        error={errors.message}
-        required
-      />
-      <button type="submit">Send</button>
-    </form>
-  );
-}
-```
+Analytics and public contact are intentionally disabled and independently gated.
+The launch policy and generated static export are verified before deployment.
 
 ---
 
@@ -232,28 +167,9 @@ import { SuspenseBoundary } from '@/app/components/SuspenseBoundary';
 
 ---
 
-### 9. **Dynamic Service Page SEO Metadata** ✅
+### 9. **Localized page metadata** ✅
 
-**Files Created:**
-- `lib/metadata.ts` - Service metadata generators
-
-**Features:**
-- ✅ Open Graph tags for social sharing
-- ✅ Structured data (Schema.org)
-- ✅ Dynamic meta descriptions
-- ✅ Proper canonical URLs
-
-**Usage:**
-```typescript
-import { generateServiceMetadata, generateServiceSchema } from '@/lib/metadata';
-
-export const metadata = generateServiceMetadata({
-  slug: 'ai-adoption',
-  title: 'Secure AI Adoption - Elkaza'
-  description: '...',
-  keywords: ['AI', 'Adoption', 'Security'],
-});
-```
+Canonical, hreflang, robots, and sitemap behavior share the reviewed route policy.
 
 ---
 
@@ -385,11 +301,6 @@ New steps added:
   - [ ] Set `NEXT_PUBLIC_SENTRY_DSN`
   - [ ] Set `SENTRY_ENVIRONMENT=production`
 
-- [ ] **Plausible Analytics**
-  - [ ] Sign up
-  - [ ] Set `NEXT_PUBLIC_PLAUSIBLE_DOMAIN=elkaza.at`
-  - [ ] Add `<PlausibleAnalytics />` to root layout
-
 - [ ] **PWA Icons**
   - [ ] Create 192x192, 512x512, 96x96 PNG images
   - [ ] Place in `/public/`
@@ -456,16 +367,10 @@ GitHub Actions → Artifacts → playwright-report
    ```bash
    NEXT_PUBLIC_SENTRY_DSN=your-sentry-dsn
    SENTRY_ENVIRONMENT=production
-   NEXT_PUBLIC_PLAUSIBLE_DOMAIN=elkaza.at
    GEMINI_API_KEY=your-gemini-key
    ```
 
-4. **Update service page metadata:**
-   - Open each `/leistungen/[service]/page.tsx`
-   - Use `generateServiceMetadata()` from `lib/metadata.ts`
-   - Add proper `og:image` URLs
-
-5. **Create PWA icons:**
+4. **Create PWA icons:**
    - 192x192, 512x512, 96x96 PNGs
    - Place in `/public/`
 

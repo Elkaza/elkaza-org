@@ -1,29 +1,14 @@
-const deToEnMap: Record<string, string> = {
-    "/": "/en",
-    "/leistungen": "/en/services",
-    "/leistungen/networking": "/en/services/networking",
-    "/leistungen/security-baseline": "/en/services/security-baseline",
-    "/leistungen/automation": "/en/services/automation",
-    "/referenzen": "/en/case-studies",
-    "/ueber-uns": "/en/about",
-    "/kontakt": "/en/contact",
-    "/impressum": "/en/imprint",
-    "/datenschutz": "/en/privacy",
-    "/referenzen/netzwerk-modernisierung-handelsunternehmen": "/en/case-studies/network-modernization-retail",
-    "/referenzen/security-baseline-dienstleister": "/en/case-studies/security-baseline-it-service",
-    "/referenzen/zero-trust-finanzberatung": "/en/case-studies/zero-trust-fintech",
-    "/referenzen/ransomware-resilience-produktion": "/en/case-studies/ransomware-recovery-manufacturing",
-    "/referenzen/m365-sicherheit-compliance": "/en/case-studies/m365-security-audit",
-};
+import { localizedPathPairs } from "@/lib/routePolicy";
+
+const deToEnMap = Object.fromEntries(
+  localizedPathPairs.map(({ dePath, enPath }) => [dePath, enPath]),
+) as Record<string, string>;
 
 const enToDeMap = Object.fromEntries(
   Object.entries(deToEnMap).map(([dePath, enPath]) => [enPath, dePath])
 ) as Record<string, string>;
 
-export const localizedPathPairs = Object.entries(deToEnMap).map(([dePath, enPath]) => ({
-  dePath,
-  enPath,
-}));
+export { localizedPathPairs };
 
 function normalizePath(pathname: string): string {
   const path = pathname.split("?")[0].split("#")[0].replace(/\/+$/, "");

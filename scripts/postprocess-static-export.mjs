@@ -1,8 +1,11 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const outDir = path.resolve(process.cwd(), 'out');
 const englishDir = path.join(outDir, 'en');
+const execFileAsync = promisify(execFile);
 
 async function collectHtmlFiles(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -82,3 +85,26 @@ for (const filePath of exportFiles) {
 }
 
 console.log(`Created ${aliasesCreated} static RSC aliases.`);
+
+async function resolveGitSha() {
+  const configuredSha = process.env.BUILD_GIT_SHA;
+  if (configuredSha) return configuredSha;
+
+  const { stdout } = await execFileAsync('git', ['rev-parse', 'HEAD'], {
+    cwd: process.cwd(),
+    encoding: 'utf8',
+  });
+  return stdout.trim();
+}
+
+const gitSha = await resolveGitSha();
+if (!/^[0-9a-f]{40}$/i.test(gitSha)) {
+  throw new Error(`Invalid build Git SHA: ${gitSha}`);
+}
+
+await fs.writeFile(
+  path.join(outDir, 'version.json'),
+  `${JSON.stringify({ gitSha: gitSha.toLowerCase() }, null, 2)}\n`,
+  'utf8',
+);
+console.log(`Wrote version.json for ${gitSha.toLowerCase()}.`);

@@ -5,6 +5,8 @@ import FAQ from "@/app/components/FAQ";
 import HomeHero from "@/app/components/HomeHero";
 import { CurrentResearch } from "@/app/components/ThesisResearch";
 import { siteContent, type Locale } from "@/lib/siteContent";
+import { launchCtas } from "@/lib/launchCtas";
+import { SITE_CONTROLS } from "@/lib/siteStatus";
 
 const copy = {
   de: {
@@ -176,7 +178,7 @@ export default function ProfessionalHome({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="border-y border-[var(--status-border)] bg-[var(--status-bg)] py-12">
+      {SITE_CONTROLS.showPrelaunchUi ? <section className="border-y border-[var(--status-border)] bg-[var(--status-bg)] py-12">
         <div className="mx-auto flex max-w-[960px] flex-col gap-5 px-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-amber-500" aria-hidden="true" /><h2 className="text-xl font-semibold text-[var(--status-text)]">{c.statusTitle}</h2></div>
@@ -184,7 +186,16 @@ export default function ProfessionalHome({ locale }: { locale: Locale }) {
           </div>
           <Link href={statusHref} className="shrink-0 font-semibold text-[var(--primary)]">{c.statusLink} →</Link>
         </div>
-      </section>
+      </section> : <section className="border-y border-[var(--border)] bg-[var(--surface)] py-12">
+        <div className="mx-auto flex max-w-[960px] flex-col gap-5 px-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-2xl">
+            <h2 className="text-xl font-semibold text-[var(--text)]">{launchCtas[locale].homepagePrimary.label}</h2>
+          </div>
+          <Link href={launchCtas[locale].homepagePrimary.href} className="shrink-0 font-semibold text-[var(--primary)]">
+            {launchCtas[locale].navigation.label} →
+          </Link>
+        </div>
+      </section>}
 
       <FAQ items={siteContent.faqs[locale].items.slice(0, 4)} locale={locale} />
     </main>

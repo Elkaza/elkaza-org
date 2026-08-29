@@ -5,18 +5,20 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "next dev -p 3002",
-    "build": "next build && node scripts/postprocess-static-export.mjs",
+    "build": "next build && node scripts/postprocess-static-export.mjs && node --experimental-strip-types scripts/verify-build-contract.mjs",
     "start": "node scripts/serve-static-export.mjs out 3002",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "dev:3002": "next dev -p 3002",
     "start:3002": "node scripts/serve-static-export.mjs out 3002",
     "analyze": "ANALYZE=true next build",
-    "verify:production": "node scripts/verify-production.mjs",
+    "verify:production": "node --experimental-strip-types scripts/verify-production.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
-    "a11y-audit": "node scripts/a11y-audit.js"
+    "verify:policy": "node --experimental-strip-types scripts/verify-launch-policy.mjs",
+    "verify:export": "node --experimental-strip-types scripts/verify-build-contract.mjs",
+    "a11y-audit": "node --experimental-strip-types scripts/a11y-audit.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.552.0",
@@ -30,6 +32,7 @@
     "@types/node": "^20.19.43",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "axe-core": "^4.10.3",
     "baseline-browser-mapping": "^2.10.38",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.9",

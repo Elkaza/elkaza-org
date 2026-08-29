@@ -1,0 +1,41 @@
+{
+  "localizedPathPairs": [
+    { "dePath": "/", "enPath": "/en" },
+    { "dePath": "/leistungen", "enPath": "/en/services" },
+    { "dePath": "/leistungen/networking", "enPath": "/en/services/networking" },
+    { "dePath": "/leistungen/security-baseline", "enPath": "/en/services/security-baseline" },
+    { "dePath": "/leistungen/automation", "enPath": "/en/services/automation" },
+    { "dePath": "/referenzen", "enPath": "/en/case-studies" },
+    { "dePath": "/ueber-uns", "enPath": "/en/about" },
+    { "dePath": "/kontakt", "enPath": "/en/contact" },
+    { "dePath": "/impressum", "enPath": "/en/imprint" },
+    { "dePath": "/datenschutz", "enPath": "/en/privacy" },
+    { "dePath": "/referenzen/netzwerk-modernisierung-handelsunternehmen", "enPath": "/en/case-studies/network-modernization-retail" },
+    { "dePath": "/referenzen/security-baseline-dienstleister", "enPath": "/en/case-studies/security-baseline-it-service" },
+    { "dePath": "/referenzen/zero-trust-finanzberatung", "enPath": "/en/case-studies/zero-trust-fintech" },
+    { "dePath": "/referenzen/ransomware-resilience-produktion", "enPath": "/en/case-studies/ransomware-recovery-manufacturing" },
+    { "dePath": "/referenzen/m365-sicherheit-compliance", "enPath": "/en/case-studies/m365-security-audit" }
+  ],
+  "launchIndexablePaths": [
+    "/",
+    "/leistungen",
+    "/leistungen/security-baseline",
+    "/leistungen/networking",
+    "/leistungen/automation",
+    "/referenzen",
+    "/ueber-uns",
+    "/kontakt",
+    "/impressum",
+    "/datenschutz",
+    "/en",
+    "/en/services",
+    "/en/services/security-baseline",
+    "/en/services/networking",
+    "/en/services/automation",
+    "/en/case-studies",
+    "/en/about",
+    "/en/contact",
+    "/en/imprint",
+    "/en/privacy"
+  ]
+}

@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { Menu, X } from "lucide-react";
+import { launchCtas } from "@/lib/launchCtas";
+import { SITE_CONTROLS } from "@/lib/siteStatus";
 
 export default function Header() {
   const pathname = usePathname() || "/";
@@ -14,13 +16,17 @@ export default function Header() {
     { href: "/leistungen", label: "Leistungen" },
     { href: "/referenzen", label: "Szenarien" },
     { href: "/ueber-uns", label: "Über Elkaza" },
-    { href: "/kontakt", label: "Status / Kontakt" },
+    SITE_CONTROLS.commercialContent
+      ? launchCtas.de.navigation
+      : { href: "/kontakt", label: "Status / Kontakt" },
   ];
   const enItems = [
     { href: "/en/services", label: "Services" },
     { href: "/en/case-studies", label: "Scenarios" },
     { href: "/en/about", label: "About" },
-    { href: "/en/contact", label: "Status / Contact" },
+    SITE_CONTROLS.commercialContent
+      ? launchCtas.en.navigation
+      : { href: "/en/contact", label: "Status / Contact" },
   ];
 
   const renderNavItems = (items: typeof deItems, className = "site-nav-link") =>
