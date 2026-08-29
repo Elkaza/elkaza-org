@@ -3,7 +3,7 @@ import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createLocalizedMetadata({
     title: "Leistungen - Elkaza",
-    description: "Netzwerk, Security und Managed Operations für KMUs in Wien und Österreich.",
+    description: "Geplante, klar begrenzte Assessments für IT & Security, Infrastruktur und Zugänge sowie dokumentierte Automatisierung.",
     path: "/leistungen",
 });
 

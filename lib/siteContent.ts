@@ -1,10 +1,7 @@
 /**
- * Site content configuration
- * Edit this file to update copy across the site
+ * Shared bilingual content for the pre-launch site.
  */
-
 export const siteContent = {
-  // Brand
   brand: {
     name: "Elkaza",
     tagline: {
@@ -13,1047 +10,234 @@ export const siteContent = {
     },
   },
 
-  // Hero auxiliary data (Trust Strip)
   trust: {
     de: [
       "Standort: Wien",
       "Geplanter Fokus: KMU",
-      "Microsoft & Open Source",
+      "Assessment vor Umsetzung",
       "Konzeptphase",
       "Noch keine Auftragsannahme",
     ],
     en: [
       "Location: Vienna",
       "Planned focus: SMEs",
-      "Microsoft & Open Source",
+      "Assessment before implementation",
       "Concept stage",
       "Not accepting orders yet",
     ],
   },
 
-  // Outcomes for Stats Section
-  stats: {
-    de: [
-      { label: "Security-Lücken", value: "Minimiert", sub: "durch Baseline-Härtung" },
-      { label: "Wiederherstellung", value: "Schneller", sub: "dank getesteter Backups" },
-      { label: "VPN-Ausfälle", value: "Reduziert", sub: "durch Standardisierung" },
-    ],
-    en: [
-      { label: "Security Gaps", value: "Minimized", sub: "via baseline hardening" },
-      { label: "Recovery Time", value: "Faster", sub: "thanks to tested backups" },
-      { label: "VPN Outages", value: "Reduced", sub: "through standardization" },
-    ],
-  },
-
-  // Process Steps
   process: {
     de: [
       { step: 1, title: "Ist-Stand", desc: "Systeme, Zugänge, Backups und Dokumentation strukturiert erfassen." },
-      { step: 2, title: "Priorisierung", desc: "Risiken und Abhängigkeiten nachvollziehbar einordnen." },
+      { step: 2, title: "Priorisierung", desc: "Risiken, Lücken und Abhängigkeiten nachvollziehbar einordnen." },
       { step: 3, title: "Roadmap", desc: "Einen realistischen, klar begrenzten Maßnahmenplan dokumentieren." },
     ],
     en: [
       { step: 1, title: "Current state", desc: "Capture systems, access, backups, and documentation in a structured review." },
-      { step: 2, title: "Priorities", desc: "Classify risks and dependencies in a way stakeholders can follow." },
+      { step: 2, title: "Priorities", desc: "Classify risks, gaps, and dependencies in a way stakeholders can follow." },
       { step: 3, title: "Roadmap", desc: "Document a realistic and clearly bounded action plan." },
     ],
   },
 
-  // Homepage hero
   hero: {
     de: {
-      headline: "Ein Konzept für stabile IT-Infrastruktur in wachsenden Teams.",
+      headline: "Ein klarer Ausgangspunkt für verlässlichere IT in kleinen Unternehmen.",
       subheadline:
-        "Elkaza wird als mögliches zukünftiges Angebot für Netzwerk, Zugänge, Backups und dokumentierten IT-Betrieb entwickelt.",
+        "Elkaza wird als mögliches künftiges Angebot für IT- und Security-Assessments, Infrastruktur und dokumentierte Automatisierung entwickelt.",
       primaryCta: "Projektstatus ansehen",
       primaryCtaHref: "/kontakt",
-      secondaryCta: "Security Baseline ansehen",
+      secondaryCta: "Baseline Assessment ansehen",
       secondaryCtaHref: "/leistungen/security-baseline",
     },
     en: {
-      headline: "A concept for stable IT infrastructure in growing teams.",
+      headline: "A clear starting point for more reliable IT in small businesses.",
       subheadline:
-        "Elkaza is being developed as a possible future offering for networks, access, backups, and documented IT operations.",
+        "Elkaza is being developed as a possible future offering for IT and security assessments, infrastructure, and documented automation.",
       primaryCta: "View project status",
       primaryCtaHref: "/en/contact",
-      secondaryCta: "View Security Baseline",
+      secondaryCta: "View Baseline Assessment",
       secondaryCtaHref: "/en/services/security-baseline",
     },
   },
 
-  // Pain point cards
-  painPoints: {
-    de: [
-      {
-        title: "VPN bricht ab",
-        description:
-          "Homeoffice-Ausfälle, Beschwerden vom Team, Produktivitätsverlust.",
-      },
-      {
-        title: "Firewall-Wildwuchs",
-        description:
-          "Keiner weiß mehr, welche Regeln aktiv sind und warum.",
-      },
-      {
-        title: "Keine Runbooks",
-        description:
-          "Incidents dauern zu lange. Jeder Ausfall ist Improvisation.",
-      },
-      {
-        title: "Zugriffsrechte unklar",
-        description:
-          "Ex-Mitarbeiter haben noch Zugang. Wer darf was, ist nicht dokumentiert.",
-      },
-      {
-        title: "Backups nie getestet",
-        description:
-          "Sicherung läuft, aber ob Restore funktioniert, weiß keiner.",
-      },
-    ],
-    en: [
-      {
-        title: "VPN keeps dropping",
-        description:
-          "Home office outages, team complaints, lost productivity.",
-      },
-      {
-        title: "Firewall sprawl",
-        description:
-          "No one knows which rules are active or why.",
-      },
-      {
-        title: "No runbooks",
-        description:
-          "Incidents take too long. Every outage is improvisation.",
-      },
-      {
-        title: "Access rights unclear",
-        description:
-          "Former employees still have access. Who can do what is not documented.",
-      },
-      {
-        title: "Backups never tested",
-        description:
-          "Backup runs, but no one knows if restore actually works.",
-      },
-    ],
-  },
-
-  // Services
   services: {
     de: {
       overview: {
-        title: "Geplante Leistungsbereiche",
-        subtitle: "Zehn mögliche Bereiche, ein Ziel: verlässliche IT-Infrastruktur.",
+        title: "Drei geplante Leistungsbereiche",
+        subtitle: "Assessieren, stabilisieren und anschließend gezielt dokumentieren oder automatisieren.",
       },
       items: [
         {
-          slug: "networking",
-          title: "Netzwerk & Infrastruktur",
-          shortDescription:
-            "Stabile Verbindungen, saubere Segmentierung, sichere Remote-Zugänge.",
-          forWhom: [
-            "KMUs mit 10-200 Mitarbeitern",
-            "Büros mit wachsenden Teams",
-            "Remote- und Hybrid-Arbeitsplätze",
-          ],
-          outcomes: [
-            "Zuverlässiges Wi-Fi in allen Bereichen",
-            "Saubere Netzwerksegmentierung mit VLANs",
-            "Sichere Remote-Zugänge für Homeoffice",
-            "Dokumentierte Netzwerktopologie",
-          ],
-          included: [
-            "Netzwerk-Audit und Bestandsaufnahme",
-            "Topologie-Review und Optimierung",
-            "VLAN-Konzept und Umsetzung",
-            "Firewall-Regeln prüfen und bereinigen",
-            "Wi-Fi-Ausleuchtung und Verbesserungen",
-            "Monitoring-Grundlagen einrichten",
-          ],
-        },
-        {
           slug: "security-baseline",
-          title: "Security Baseline",
+          title: "IT & Security Baseline Assessment",
           shortDescription:
-            "Geplanter Schwerpunkt: Zugänge, MFA, Patch-Stand, Backups und Wiederherstellbarkeit.",
-          forWhom: [
-            "Unternehmen ohne dediziertes Security-Team",
-            "Teams, die Grundlagen absichern wollen",
-            "Firmen vor Audits oder Zertifizierungen",
-          ],
-          outcomes: [
-            "MFA für alle kritischen Systeme",
-            "Automatisiertes Patch-Management",
-            "Funktionierende Backup-Strategie",
-            "Least-Privilege-Zugriffskonzept",
-            "Zentrale Protokollierung",
-          ],
-          included: [
-            "Security-Assessment aktueller Stand",
-            "MFA-Rollout planen und umsetzen",
-            "Patch-Zyklen definieren",
-            "Backup-Konzept prüfen oder erstellen",
-            "Zugriffsrechte bereinigen",
-            "Logging zentralisieren",
-          ],
+            "Strukturierter Ist-Stand zu Zugängen, MFA, Backups, Updates, Abhängigkeiten und Dokumentationslücken.",
         },
         {
-          slug: "zero-trust",
-          title: "Zero Trust & Identity",
+          slug: "networking",
+          title: "Infrastruktur & Zugänge Review",
           shortDescription:
-            "Moderne Zugangskontrolle: MFA, Conditional Access, rollenbasierte Berechtigungen.",
-          forWhom: [
-            "Unternehmen mit hybriden Arbeitsmodellen",
-            "Teams mit externen Dienstleistern",
-            "Firmen mit sensiblen Daten",
-          ],
-          outcomes: [
-            "Conditional Access für alle Anwendungen",
-            "Rollenbasierte Zugriffssteuerung (RBAC)",
-            "Single Sign-On (SSO) wo möglich",
-            "Gerätecompliance-Prüfung",
-          ],
-          included: [
-            "Identity-Audit (Benutzer, Gruppen, Rollen)",
-            "Conditional-Access-Policies definieren",
-            "MFA für externe Zugriffe",
-            "Privileged Access Management",
-            "Session-Timeout und Gerätebindung",
-            "Dokumentation der Zugriffsmatrix",
-          ],
-        },
-        {
-          slug: "ransomware-resilience",
-          title: "Ransomware Resilience",
-          shortDescription:
-            "Immutable Backups, Recovery-Übungen, Incident-Runbooks für den Ernstfall.",
-          forWhom: [
-            "Unternehmen mit geschäftskritischen Daten",
-            "Firmen ohne getestete Recovery-Pläne",
-            "Teams, die Incident-Readiness verbessern wollen",
-          ],
-          outcomes: [
-            "Immutable Backups außerhalb der Produktivumgebung",
-            "Dokumentierte Recovery-Prozeduren",
-            "Regelmäßige Wiederherstellungstests",
-            "Runbooks für Incident-Response",
-          ],
-          included: [
-            "Backup-Architektur-Review",
-            "Immutable-Storage-Konzept umsetzen",
-            "Recovery-Drills planen und durchführen",
-            "Incident-Response-Runbooks erstellen",
-            "Kommunikationspläne für den Ernstfall",
-            "Lessons Learned dokumentieren",
-          ],
+            "Bestehende Topologie, administrative Zugangswege, Segmentierung und Firewall-Regeln nachvollziehbar prüfen.",
         },
         {
           slug: "automation",
-          title: "Automation & Platform Engineering",
+          title: "Automatisierung & Dokumentation Sprint",
           shortDescription:
-            "Automatisierung wiederkehrender Konfigurationen und Deployments.",
-          forWhom: [
-            "Wachsende Teams mit wiederkehrenden Aufgaben",
-            "Firmen, die Konsistenz über Umgebungen benötigen",
-            "IT-Abteilungen mit Automatisierungsbedarf",
-          ],
-          outcomes: [
-            "Wiederholbare, versionierte Infrastruktur",
-            "Reduzierte manuelle Konfiguration",
-            "Schnellere Bereitstellung neuer Systeme",
-            "Bessere Nachvollziehbarkeit von Änderungen",
-          ],
-          included: [
-            "IaC-Assessment (Terraform, Ansible, o.ä.)",
-            "Automatisierte Server-Konfiguration",
-            "Standardisierte Deployment-Pipelines",
-            "Secrets Management einrichten",
-            "Dokumentation der Automatisierung",
-            "Schulung des Teams",
-          ],
-        },
-        {
-          slug: "managed-ops",
-          title: "Managed Operations",
-          shortDescription:
-            "Laufende Betreuung: Monitoring, Patching, Backup-Prüfung, Incident-Response.",
-          forWhom: [
-            "Unternehmen ohne eigene IT-Abteilung",
-            "Teams, die Entlastung brauchen",
-            "Betriebe mit kritischen Systemen",
-          ],
-          outcomes: [
-            "Geplantes Monitoring Ihrer Systeme",
-            "Regelmäßige Sicherheits-Updates",
-            "Geprüfte Backups",
-            "Noch zu definierendes Störungs- und Eskalationsmodell",
-            "Monatliche Reports",
-          ],
-          included: [
-            "Einrichtung Monitoring-Plattform",
-            "Definierte Patch-Zyklen",
-            "Backup-Verifizierung",
-            "Incident-Response-Runbooks",
-            "Monatliches Reporting",
-            "Fester Ansprechpartner",
-          ],
-        },
-        {
-          slug: "cloud-saas-security",
-          title: "Cloud & SaaS Security",
-          shortDescription:
-            "Microsoft 365 / Google Workspace sicher betreiben – von Baseline bis Monitoring.",
-          forWhom: [
-            "Unternehmen mit M365 oder Google Workspace",
-            "Teams, die Collaboration sicher gestalten wollen",
-            "Firmen mit Compliance-Anforderungen (DSGVO, ISO)",
-          ],
-          outcomes: [
-            "Gehärteter Tenant nach Best Practices",
-            "Conditional Access und MFA für alle Benutzer",
-            "Sichere Mail-, Share- und Teams-Policies",
-            "Zentrales Logging und Alerting",
-            "Dokumentierte Security-Baseline",
-          ],
-          included: [
-            "Security Baseline / Tenant Hardening",
-            "Conditional Access, MFA, Rollen-Konzept",
-            "Secure Mail/Share/Teams Policies",
-            "Zentralisiertes Logging (Audit, Sign-in, Alerts)",
-            "Geräte-/Endpoint-Anbindung (falls vorhanden)",
-            "Secure Copilot/LLM Adoption (Policies, Data Boundaries, Audit)",
-            "Dokumentation und Übergabe",
-          ],
-        },
-        {
-          slug: "endpoint-security",
-          title: "Endpoint & Device Security",
-          shortDescription:
-            "Sichere Endgeräte durch Hardening, Device Management und Bedrohungserkennung.",
-          forWhom: [
-            "KMUs ohne zentrale Geräteverwaltung",
-            "Hybrid- und Remote-Teams",
-            "Unternehmen mit häufigen Phishing- oder Credential-Problemen",
-          ],
-          outcomes: [
-            "Standardisierte Geräte-Baseline",
-            "Verwaltetes Patch-Management",
-            "EDR-Abdeckung auf allen Endpunkten",
-            "Klare Device-Compliance-Regeln",
-          ],
-          included: [
-            "Geräte-Inventar erstellen",
-            "Baseline-Policies (Verschlüsselung, Updates)",
-            "MDM-Rollout (Intune, Jamf o.ä.)",
-            "EDR-Deployment und Konfiguration",
-            "Patch-Automatisierung einrichten",
-            "Reporting und Übergabe",
-          ],
-        },
-        {
-          slug: "ai-adoption",
-          title: "Secure AI Adoption",
-          shortDescription:
-            "KI-Tools nutzen, ohne sensible Daten zu gefährden.",
-          forWhom: [
-            "Microsoft 365 Tenants mit Copilot-Plänen",
-            "Teams, die ChatGPT oder andere LLMs nutzen",
-            "Organisationen mit sensiblen Kundendaten",
-          ],
-          outcomes: [
-            "Bereinigte Zugriffs- und Berechtigungsstruktur",
-            "Grundlegende Datenklassifizierung",
-            "Sichere Sharing-Defaults",
-            "KI-Nutzungsrichtlinien",
-          ],
-          included: [
-            "Zugriffsrechte-Review (Information Access)",
-            "SharePoint/Drive-Berechtigungen verschärfen",
-            "Conditional Access abstimmen",
-            "DLP/Retention-Grundlagen (wo sinnvoll)",
-            "KI-Acceptable-Use-Policy erstellen",
-            "Pilot-Rollout-Plan",
-          ],
-        },
-        {
-          slug: "nis2-compliance",
-          title: "NIS2 / Compliance Readiness",
-          shortDescription:
-            "Audit-fähige Sicherheitsbasis: Policies, Nachweise und Incident-Bereitschaft (keine Garantie).",
-          forWhom: [
-            "Zulieferer kritischer Sektoren",
-            "Firmen, die von Partnern Nachweise benötigen",
-            "Organisationen vor Audits oder Zertifizierungen",
-          ],
-          outcomes: [
-            "Risikobasierter Maßnahmenplan",
-            "Dokumentierte Kontrollen",
-            "Incident-Response-Grundlagen",
-            "Nachweispaket für Audits",
-          ],
-          included: [
-            "Gap-Assessment durchführen",
-            "Kontroll-Roadmap erstellen",
-            "Logging/Monitoring-Baseline einrichten",
-            "Backup- und Recovery-Nachweise",
-            "Incident-Runbooks und Tabletop-Übung",
-            "Dokumentationspaket zusammenstellen",
-          ],
+            "Kleine wiederkehrende Abläufe mit Linux, Ansible, Docker oder Skripten dokumentieren und gezielt vereinfachen.",
         },
       ],
     },
     en: {
       overview: {
-        title: "Planned service areas",
-        subtitle: "Ten possible areas, one goal: reliable IT infrastructure.",
+        title: "Three planned service areas",
+        subtitle: "Assess, stabilize, then document or automate a clearly defined workflow.",
       },
       items: [
         {
-          slug: "networking",
-          title: "Network & Infrastructure",
-          shortDescription:
-            "Stable connections, clean segmentation, secure remote access.",
-          forWhom: [
-            "SMEs with 10-200 employees",
-            "Offices with growing teams",
-            "Remote and hybrid workplaces",
-          ],
-          outcomes: [
-            "Reliable Wi-Fi in all areas",
-            "Clean network segmentation with VLANs",
-            "Secure remote access for home office",
-            "Documented network topology",
-          ],
-          included: [
-            "Network audit and inventory",
-            "Topology review and optimization",
-            "VLAN concept and implementation",
-            "Firewall rules review and cleanup",
-            "Wi-Fi coverage and improvements",
-            "Basic monitoring setup",
-          ],
-        },
-        {
           slug: "security-baseline",
-          title: "Security Baseline",
+          title: "IT & Security Baseline Assessment",
           shortDescription:
-            "Planned focus: access, MFA, patch status, backups, and recovery readiness.",
-          forWhom: [
-            "Companies without dedicated security teams",
-            "Teams looking to secure the basics",
-            "Firms preparing for audits or certifications",
-          ],
-          outcomes: [
-            "MFA for all critical systems",
-            "Automated patch management",
-            "Working backup strategy",
-            "Least-privilege access concept",
-            "Centralized logging",
-          ],
-          included: [
-            "Security assessment of current state",
-            "MFA rollout planning and execution",
-            "Define patch cycles",
-            "Review or create backup concept",
-            "Clean up access rights",
-            "Centralize logging",
-          ],
+            "A structured current-state review of access, MFA, backups, updates, dependencies, and documentation gaps.",
         },
         {
-          slug: "zero-trust",
-          title: "Zero Trust & Identity",
+          slug: "networking",
+          title: "Infrastructure & Access Review",
           shortDescription:
-            "Modern access control: MFA, conditional access, role-based permissions.",
-          forWhom: [
-            "Companies with hybrid work models",
-            "Teams with external contractors",
-            "Firms with sensitive data",
-          ],
-          outcomes: [
-            "Conditional access for all applications",
-            "Role-based access control (RBAC)",
-            "Single sign-on (SSO) where possible",
-            "Device compliance verification",
-          ],
-          included: [
-            "Identity audit (users, groups, roles)",
-            "Define conditional access policies",
-            "MFA for external access",
-            "Privileged access management",
-            "Session timeout and device binding",
-            "Access matrix documentation",
-          ],
-        },
-        {
-          slug: "ransomware-resilience",
-          title: "Ransomware Resilience",
-          shortDescription:
-            "Immutable backups, recovery drills, incident runbooks for emergencies.",
-          forWhom: [
-            "Companies with business-critical data",
-            "Firms without tested recovery plans",
-            "Teams looking to improve incident readiness",
-          ],
-          outcomes: [
-            "Immutable backups outside production environment",
-            "Documented recovery procedures",
-            "Regular restore tests",
-            "Incident response runbooks",
-          ],
-          included: [
-            "Backup architecture review",
-            "Implement immutable storage concept",
-            "Plan and execute recovery drills",
-            "Create incident response runbooks",
-            "Emergency communication plans",
-            "Document lessons learned",
-          ],
+            "Review existing topology, administrative access paths, segmentation, and firewall rules in a traceable way.",
         },
         {
           slug: "automation",
-          title: "Automation & Platform Engineering",
+          title: "Automation & Documentation Sprint",
           shortDescription:
-            "Automation of recurring configuration and deployment tasks.",
-          forWhom: [
-            "Growing teams with recurring tasks",
-            "Firms needing consistency across environments",
-            "IT departments with automation needs",
-          ],
-          outcomes: [
-            "Repeatable, versioned infrastructure",
-            "Reduced manual configuration",
-            "Faster provisioning of new systems",
-            "Better traceability of changes",
-          ],
-          included: [
-            "IaC assessment (Terraform, Ansible, etc.)",
-            "Automated server configuration",
-            "Standardized deployment pipelines",
-            "Set up secrets management",
-            "Automation documentation",
-            "Team training",
-          ],
-        },
-        {
-          slug: "managed-ops",
-          title: "Managed Operations",
-          shortDescription:
-            "Ongoing support: monitoring, patching, backup verification, incident response.",
-          forWhom: [
-            "Companies without in-house IT department",
-            "Teams that need relief",
-            "Businesses with critical systems",
-          ],
-          outcomes: [
-            "Planned monitoring of your systems",
-            "Regular security updates",
-            "Verified backups",
-            "Incident and escalation model still to be defined",
-            "Monthly reports",
-          ],
-          included: [
-            "Monitoring platform setup",
-            "Defined patch cycles",
-            "Backup verification",
-            "Incident response runbooks",
-            "Monthly reporting",
-            "Defined responsibility model",
-          ],
-        },
-        {
-          slug: "cloud-saas-security",
-          title: "Cloud & SaaS Security",
-          shortDescription:
-            "Operate Microsoft 365 / Google Workspace securely – from baseline to monitoring.",
-          forWhom: [
-            "Companies using M365 or Google Workspace",
-            "Teams looking to secure collaboration",
-            "Firms with compliance requirements (GDPR, ISO)",
-          ],
-          outcomes: [
-            "Hardened tenant following best practices",
-            "Conditional access and MFA for all users",
-            "Secure mail, share, and Teams policies",
-            "Centralized logging and alerting",
-            "Documented security baseline",
-          ],
-          included: [
-            "Security baseline / tenant hardening",
-            "Conditional access, MFA, role concept",
-            "Secure mail/share/Teams policies",
-            "Centralized logging (audit, sign-in, alerts)",
-            "Device/endpoint integration (if applicable)",
-            "Secure Copilot/LLM adoption (policies, data boundaries, audit)",
-            "Documentation and handover",
-          ],
-        },
-        {
-          slug: "endpoint-security",
-          title: "Endpoint & Device Security",
-          shortDescription:
-            "Secure endpoints with hardening, device management, and threat detection.",
-          forWhom: [
-            "SMEs without centralized device control",
-            "Hybrid and remote teams",
-            "Companies with frequent phishing or credential issues",
-          ],
-          outcomes: [
-            "Standardized device baseline",
-            "Managed patching",
-            "EDR coverage on all endpoints",
-            "Clear device compliance rules",
-          ],
-          included: [
-            "Device inventory",
-            "Baseline policies (encryption, updates)",
-            "MDM rollout (Intune, Jamf, etc.)",
-            "EDR deployment and configuration",
-            "Patch automation setup",
-            "Reporting and handover",
-          ],
-        },
-        {
-          slug: "ai-adoption",
-          title: "Secure AI Adoption",
-          shortDescription:
-            "Enable AI tools without exposing sensitive data.",
-          forWhom: [
-            "Microsoft 365 tenants planning Copilot",
-            "Teams using ChatGPT or other LLMs",
-            "Organizations with sensitive client data",
-          ],
-          outcomes: [
-            "Access and permission cleanup",
-            "Data classification basics",
-            "Safe sharing defaults",
-            "AI usage guidelines",
-          ],
-          included: [
-            "Information access review",
-            "SharePoint/Drive permission tightening",
-            "Conditional access alignment",
-            "DLP/retention basics where applicable",
-            "AI acceptable use policy",
-            "Pilot rollout plan",
-          ],
-        },
-        {
-          slug: "nis2-compliance",
-          title: "NIS2 / Compliance Readiness",
-          shortDescription:
-            "Build audit-ready security basics: policies, evidence, and incident readiness (no guarantees).",
-          forWhom: [
-            "Suppliers of critical sectors",
-            "Firms asked by partners for evidence",
-            "Organizations preparing for audits",
-          ],
-          outcomes: [
-            "Risk-based action plan",
-            "Documented controls",
-            "Incident response basics",
-            "Evidence pack for audits",
-          ],
-          included: [
-            "Gap assessment",
-            "Control roadmap",
-            "Logging/monitoring baseline",
-            "Backup and recovery proof points",
-            "Incident runbooks and tabletop exercise",
-            "Documentation pack",
-          ],
+            "Document and simplify a small recurring workflow with Linux, Ansible, Docker, or focused scripting.",
         },
       ],
     },
   },
 
-  // Packages
-  packages: {
-    de: {
-      title: "Pakete",
-      subtitle: "Geplante Modelle ohne aktuelles Angebot.",
-      custom: {
-        title: "Individuell / Enterprise",
-        desc: "Mögliche spätere Erweiterungen könnten dedizierte Betreuung, Compliance-Unterstützung oder größere Infrastrukturprojekte umfassen.",
-        cta: "Projektstatus ansehen",
-        href: "/kontakt",
-      },
-      faq: [
-        { q: "Sind Preise und Pakete bereits verbindlich?", a: "Nein. Die Pakete zeigen nur eine mögliche spätere Struktur. Preise, Umfang und Vertragsbedingungen sind noch nicht festgelegt." },
-        { q: "Gibt es schon Reaktionszeiten?", a: "Nein. Reaktionszeiten und Servicezeiten werden derzeit nicht zugesichert und würden erst in einem späteren Angebot definiert." },
-        { q: "Kann ich aktuell ein Paket buchen?", a: "Nein. Während der Vorbereitungsphase werden über diese Website keine Aufträge angenommen." },
-      ],
-      items: [
-        {
-          name: "Starter",
-          subtitle: "Assessment",
-
-          best_for: "Status Quo Check",
-          price: "ab 490 €",
-          priceNote: "einmalig",
-          duration: "1-2 Wochen",
-          description:
-            "Mögliches Modell für eine strukturierte Bestandsaufnahme mit priorisierten Empfehlungen.",
-          features: [
-            "Netzwerk-Audit (WLAN, LAN, Firewall)",
-            "Security-Quickcheck (MFA, Backups)",
-            "Dokumentation der Ist-Situation",
-            "Konkreter Maßnahmenplan (Roadmap)",
-            "Abschluss-Call zur Besprechung",
-
-            "---",
-
-            "Nicht enthalten: Technische Umsetzung / Fixes",
-          ],
-          cta: "Konzept ansehen",
-          popular: false,
-        },
-        {
-          name: "Growth",
-          subtitle: "Umsetzung",
-
-          best_for: "Problemlösung & Modernisierung",
-          price: "ab 2.900 €",
-          priceNote: "projektbasiert",
-          duration: "2-6 Wochen",
-          description:
-            "Mögliches Modell für spätere Umsetzung klar priorisierter Verbesserungen.",
-          features: [
-            "VLAN-Segmentierung & Firewall-Härtung",
-            "Wi-Fi-Optimierung (Abdeckung & Security)",
-            "MFA-Rollout & Admin-Absicherung",
-            "Backup-Konzept Prüfung & Anpassung",
-            "Dokumentation & Übergabe",
-
-            "---",
-
-            "Nicht enthalten: Laufender Support",
-          ],
-          cta: "Konzept ansehen",
-          popular: true,
-        },
-        {
-          name: "Managed",
-          subtitle: "Laufende Betreuung",
-
-          best_for: "Sicherheit & Ruhe",
-          price: "ab 890 €",
-          priceNote: "pro Monat",
-          duration: "fortlaufend (mtl. kündbar)",
-          description:
-            "Mögliches Modell für laufende Betreuung mit klaren Abläufen und Dokumentation.",
-          features: [
-            "Monitoring-Konzept (Netzwerk & Server)",
-            "Patch-Management (OS & 3rd Party)",
-            "Backup-Verifizierung (Restore-Tests)",
-            "Noch zu definierendes Störungs- und Eskalationsmodell",
-            "Monatliches Reporting",
-
-            "---",
-
-            "Nicht enthalten: Hardware-Kosten",
-          ],
-          cta: "Konzept ansehen",
-          popular: false,
-        },
-      ],
-    },
-    en: {
-      title: "Packages",
-      subtitle: "Planned models without a current offer.",
-      custom: {
-        title: "Custom / Enterprise",
-        desc: "Possible later extensions could include dedicated support, compliance assistance, or larger infrastructure projects.",
-        cta: "View project status",
-        href: "/en/contact",
-      },
-      faq: [
-        { q: "Are packages and prices already binding?", a: "No. The packages only show a possible later structure. Prices, scope, and contract terms are not fixed yet." },
-        { q: "Are response times defined already?", a: "No. Response and service hours are not currently guaranteed and would only be defined in a later offer." },
-        { q: "Can I order a package now?", a: "No. During the preparation phase, no orders are accepted through this website." },
-      ],
-      items: [
-        {
-          name: "Starter",
-          subtitle: "Assessment",
-
-          best_for: "Status Quo Check",
-          price: "from €490",
-          priceNote: "one-time",
-          duration: "1-2 weeks",
-          description:
-            "Possible model for a structured current-state review with prioritized recommendations.",
-          features: [
-            "Network audit",
-            "Security quick check",
-            "Endpoint baseline check (optional)",
-            "M365 permissions quick scan (optional)",
-            "Current state documentation",
-            "Prioritized action list",
-            "Final meeting",
-
-            "---",
-
-            "Not included: Implementation / Fixes",
-          ],
-          cta: "View concept",
-          popular: false,
-        },
-        {
-          name: "Growth",
-          subtitle: "Implementation",
-
-          best_for: "Problem Solving & Modernization",
-          price: "from €2,900",
-          priceNote: "project-based",
-          duration: "2-6 weeks",
-          description:
-            "Possible model for later implementation of clearly prioritized improvements.",
-          features: [
-            "Everything from Starter",
-            "VLAN segmentation",
-            "Firewall optimization",
-            "Wi-Fi improvements",
-            "MFA rollout",
-            "Backup concept",
-            "MDM/EDR rollout or Copilot readiness pilot (selectable)",
-            "Handover and documentation",
-
-            "---",
-
-            "Not included: Ongoing Support",
-          ],
-          cta: "View concept",
-          popular: true,
-        },
-        {
-          name: "Managed",
-          subtitle: "Ongoing Support",
-
-          best_for: "Security & Peace of Mind",
-          price: "from €890",
-          priceNote: "per month",
-          duration: "ongoing",
-          description:
-            "Possible model for ongoing support with clear routines and documentation.",
-          features: [
-            "Monitoring concept",
-            "Patch management",
-            "Backup verification",
-            "Incident response model",
-            "Monthly reporting",
-            "Defined responsibility model",
-            "Possible later add-on: endpoint and patch-status review",
-
-            "---",
-
-            "Not included: Hardware costs",
-          ],
-          cta: "View concept",
-          popular: false,
-        },
-      ],
-    },
-  },
-
-  // Case studies / Referenzen
   caseStudies: {
     de: {
       title: "Beispielszenarien",
-      subtitle: "Illustrative Situationen, mögliche Ansätze und Zielbilder; keine Kundenreferenzen.",
+      subtitle: "Fiktive Situationen, mögliche Ansätze und Zielbilder; keine Kundenreferenzen.",
       items: [
         {
           slug: "netzwerk-modernisierung-handelsunternehmen",
           title: "Netzwerk-Modernisierung für Handelsunternehmen",
-          tag: "Networking",
+          tag: "Infrastruktur",
           context: "Illustratives Handelsunternehmen mit mehreren Standorten.",
           problem: "Instabile Remote-Zugänge, uneinheitliches WLAN und eine nicht ausreichend dokumentierte Netzstruktur.",
           approach: "Möglich wären Bestandsaufnahme, Segmentierungskonzept, Review der Firewall-Regeln und aktualisierte Netzwerkdokumentation.",
-          result: "Ein nachvollziehbar segmentiertes Netzwerk mit klar dokumentierten Zugängen und Verbesserungsprioritäten.",
-          metrics: "",
+          result: "Mögliches Zielbild: nachvollziehbare Segmentierung, dokumentierte Zugangswege und priorisierte Verbesserungen.",
         },
         {
           slug: "security-baseline-dienstleister",
-          title: "Security Baseline für IT-Dienstleister",
-          tag: "Security",
+          title: "Security Baseline für einen Dienstleistungsbetrieb",
+          tag: "Baseline",
           context: "Illustrativer kleiner Dienstleistungsbetrieb ohne eigene Security-Rolle.",
           problem: "Uneinheitliche MFA-Nutzung, gemeinsam verwendete Admin-Zugänge und nicht dokumentierte Restore-Prüfungen.",
           approach: "Möglich wären ein Zugriffs- und MFA-Review, die Prüfung von Patch-Abläufen sowie ein dokumentierter Backup-Restore-Test.",
-          result: "Eine priorisierte Security-Baseline mit geklärten Zugängen, Restore-Nachweisen und nächsten Schritten.",
-          metrics: "",
+          result: "Mögliches Zielbild: priorisierte Grundlagen, geklärte Zugänge, Restore-Nachweise und praktische nächste Schritte.",
         },
         {
           slug: "zero-trust-finanzberatung",
           title: "Zugriffskonzept für hybrides Arbeiten",
-          tag: "Security",
+          tag: "Zugänge",
           context: "Illustratives KMU mit hybriden Arbeitsplätzen und externen Zugängen.",
           problem: "Uneinheitliche Zugriffsregeln und zu weit gefasste Berechtigungen erschweren die Kontrolle.",
-          approach: "Möglich wären ein Identitäts-Review, rollenbasierte Berechtigungen und dokumentierte Regeln für externe Zugriffe.",
-          result: "Ein nachvollziehbares Zielbild für Rollen, privilegierte Konten und externe Zugriffe.",
-          metrics: "",
+          approach: "Möglich wären ein Identitäts-Review, grundlegende Rollenbereinigung und dokumentierte Regeln für externe Zugriffe.",
+          result: "Mögliches Zielbild: nachvollziehbare Rollen, administrative Konten und externe Zugangswege.",
         },
         {
           slug: "ransomware-resilience-produktion",
           title: "Backup- und Restore-Bereitschaft",
-          tag: "Resilience",
+          tag: "Baseline",
           context: "Illustratives KMU mit geschäftskritischen Daten.",
-          problem: "Wenig Backup-Redundanz, Recovery-Strategie untestet, keine Incident-Runbooks.",
+          problem: "Wenig Backup-Redundanz, ungetestete Wiederherstellung und unklare Zuständigkeiten.",
           approach: "Möglich wären ein Architektur-Review, getrennte Sicherungskopien, ein geplanter Restore-Test und ein einfaches Runbook.",
-          result: "Ein dokumentiertes Zielbild für Sicherung, Wiederherstellung und Zuständigkeiten.",
-          metrics: "",
+          result: "Mögliches Zielbild: dokumentierte Sicherung, Wiederherstellung, Annahmen und Zuständigkeiten.",
         },
         {
           slug: "m365-sicherheit-compliance",
           title: "M365-Zugriffe und Freigaben",
-          tag: "Cloud Security",
+          tag: "Zugänge",
           context: "Illustratives KMU mit Microsoft 365 und externem Datenaustausch.",
-          problem: "Unsichere Sharing-Defaults in SharePoint, keine DLP, Teams-Policies nicht gehärtet.",
-          approach: "Möglich wären ein Review der Freigaben, Rollen und Protokollierung sowie priorisierte Konfigurationsänderungen.",
-          result: "Ein dokumentiertes Zielbild für interne und externe Freigaben mit klaren Verantwortlichkeiten.",
-          metrics: "",
+          problem: "Uneinheitliche Freigaben, zu breite Administratorrollen und unklare Verantwortlichkeiten.",
+          approach: "Möglich wären ein Review der Freigaben, MFA, Rollen und vorhandenen Protokollierung sowie priorisierte Konfigurationshinweise.",
+          result: "Mögliches Zielbild: nachvollziehbare interne und externe Freigaben mit klaren Verantwortlichkeiten.",
         },
       ],
     },
     en: {
-      title: "Illustrative Scenarios",
-      subtitle: "Illustrative situations, possible approaches, and target states; not customer references.",
+      title: "Illustrative scenarios",
+      subtitle: "Fictional situations, possible approaches, and target states; not customer references.",
       items: [
         {
           slug: "network-modernization-retail",
-          title: "Network Modernization for Retail Company",
-          tag: "Networking",
+          title: "Network Modernization for a Retail Business",
+          tag: "Infrastructure",
           context: "Illustrative retail business with several locations.",
           problem: "Unstable remote access, inconsistent Wi-Fi, and insufficient network documentation.",
           approach: "A possible approach would combine an inventory, segmentation concept, firewall-rule review, and updated network documentation.",
-          result: "A clearly segmented network with documented access paths and prioritized improvements.",
-          metrics: "",
+          result: "Possible target state: traceable segmentation, documented access paths, and prioritized improvements.",
         },
         {
           slug: "security-baseline-it-service",
-          title: "Security Baseline for IT Service Provider",
-          tag: "Security",
+          title: "Security Baseline for a Service Business",
+          tag: "Baseline",
           context: "Illustrative small service business without a dedicated security role.",
           problem: "Inconsistent MFA use, shared administrative access, and no documented restore verification.",
           approach: "A possible approach would review access and MFA, examine patch routines, and document a backup-restore test.",
-          result: "A prioritized security baseline with clarified access, restore evidence, and practical next steps.",
-          metrics: "",
+          result: "Possible target state: prioritized fundamentals, clarified access, restore evidence, and practical next steps.",
         },
         {
           slug: "zero-trust-fintech",
           title: "Access Model for Hybrid Work",
-          tag: "Security",
+          tag: "Access",
           context: "Illustrative SME with hybrid work and external access.",
           problem: "Inconsistent access rules and overly broad permissions make control difficult.",
-          approach: "A possible approach would review identities, define role-based permissions, and document rules for external access.",
-          result: "A clear target state for roles, privileged accounts, and external access.",
-          metrics: "",
+          approach: "A possible approach would review identities, clean up basic roles, and document rules for external access.",
+          result: "Possible target state: traceable roles, administrative accounts, and external access paths.",
         },
         {
           slug: "ransomware-recovery-manufacturing",
           title: "Backup and Restore Readiness",
-          tag: "Resilience",
+          tag: "Baseline",
           context: "Illustrative SME with business-critical data.",
-          problem: "Limited backup redundancy, untested recovery strategy, no incident runbooks.",
+          problem: "Limited backup redundancy, untested recovery, and unclear ownership.",
           approach: "A possible approach would review the architecture, separate backup copies, plan a restore test, and prepare a simple runbook.",
-          result: "A documented target state for backup, recovery, and ownership.",
-          metrics: "",
+          result: "Possible target state: documented backup, recovery, assumptions, and ownership.",
         },
         {
           slug: "m365-security-audit",
           title: "M365 Access and Sharing",
-          tag: "Cloud Security",
+          tag: "Access",
           context: "Illustrative SME using Microsoft 365 for external data exchange.",
-          problem: "Unsafe SharePoint sharing defaults, no DLP, Teams policies not hardened.",
-          approach: "A possible approach would review sharing, roles, and logging, then prioritize configuration changes.",
-          result: "A documented target state for internal and external sharing with clear ownership.",
-          metrics: "",
+          problem: "Inconsistent sharing, overly broad administrative roles, and unclear ownership.",
+          approach: "A possible approach would review sharing, MFA, roles, and available logging, then prioritize configuration guidance.",
+          result: "Possible target state: traceable internal and external sharing with clear ownership.",
         },
       ],
     },
   },
 
-  // FAQs
   faqs: {
     de: {
       title: "Häufig gestellte Fragen",
       items: [
-        { q: "Wie könnte ein späteres Projekt ablaufen?", a: "Geplant ist ein klar begrenztes Assessment mit Bestandsaufnahme, Priorisierung und dokumentierter Roadmap. Dauer und Umfang würden erst in einem konkreten künftigen Angebot festgelegt." },
-        { q: "Wie würden Änderungen abgesichert?", a: "Ein mögliches späteres Projekt würde Wartungsfenster, Tests und Rückfalloptionen passend zum jeweiligen System festlegen." },
-        { q: "Was wäre nach einem Projekt vorgesehen?", a: "Vorgesehen sind nachvollziehbare Dokumentation, Runbooks und eine geordnete Übergabe. Laufende Betreuung ist nur ein unvalidiertes Zukunftsmodell." },
-        { q: "Sind die Modelle bereits buchbar?", a: "Nein. Die dargestellten Modelle dokumentieren nur den aktuellen Planungsstand und sind noch keine Angebote." },
-        { q: "Stehen die Preise bereits fest?", a: "Nein. Preise, Leistungsumfang und Vertragsbedingungen werden erst vor einem späteren Marktstart verbindlich festgelegt." },
-        { q: "Würde Elkaza Sicherheit garantieren?", a: "Nein. Ein späteres Assessment könnte Risiken sichtbar machen und Grundlagen priorisieren, aber keine vollständige Sicherheit garantieren." },
-        { q: "Welche Reaktionszeit ist vorgesehen?", a: "Reaktionszeiten und Servicezeiten sind noch nicht festgelegt und werden derzeit nicht zugesichert." },
-        { q: "Ist Compliance-Beratung geplant?", a: "NIS2- und Compliance-Themen sind nur Teil der künftigen Roadmap. Elkaza beansprucht keine Audit-, Zertifizierungs- oder Rechtsberatungsfunktion." },
+        { q: "Wie könnte ein späteres erstes Projekt ablaufen?", a: "Geplant ist ein klar begrenztes Baseline Assessment mit Bestandsaufnahme, priorisierten Erkenntnissen und dokumentierter Roadmap." },
+        { q: "Ist die Umsetzung im Assessment enthalten?", a: "Nein. Das Assessment dokumentiert den Ist-Stand und nächste Schritte. Eine Umsetzung würde nur separat und mit eigenem Umfang vereinbart." },
+        { q: "Sind die Leistungen bereits buchbar?", a: "Nein. Die dargestellten Leistungen dokumentieren den aktuellen Planungsstand und sind noch keine Angebote." },
+        { q: "Garantiert Elkaza Sicherheit oder Compliance?", a: "Nein. Ein Assessment kann technische Risiken und Nachweise sichtbar machen, aber weder vollständige Sicherheit noch rechtliche Compliance garantieren." },
       ],
     },
     en: {
-      title: "Frequently Asked Questions",
+      title: "Frequently asked questions",
       items: [
-        { q: "How could a future project work?", a: "The planned starting model is a bounded assessment covering current state, priorities, and a documented roadmap. Timing and scope would only be set in a concrete future offer." },
-        { q: "How would changes be controlled?", a: "A possible future project would define maintenance windows, testing, and rollback options appropriate to the systems involved." },
-        { q: "What would happen after a project?", a: "The intended output includes clear documentation, runbooks, and an orderly handover. Ongoing support remains an unvalidated future model." },
-        { q: "Can these models be ordered already?", a: "No. The models shown only document the current planning stage and are not offers." },
-        { q: "Are prices already fixed?", a: "No. Prices, scope, and contract terms will only be defined before a future market launch." },
-        { q: "Would Elkaza guarantee security?", a: "No. A future assessment could identify risks and prioritize fundamentals, but it could not guarantee complete security." },
-        { q: "What response time is planned?", a: "Response and service hours are not yet defined and are not currently guaranteed." },
-        { q: "Is compliance consulting planned?", a: "NIS2 and compliance topics are only part of the future roadmap. Elkaza does not claim an audit, certification, or legal-advice role." },
-      ],
-    },
-  },
-
-  // Contact page
-  contact: {
-    de: {
-      title: "Kostenloses Erstgespräch vereinbaren",
-      subtitle:
-        "Erzählen Sie uns von Ihrer Situation. Wir melden uns innerhalb von 24 Stunden.",
-      form: {
-        name: "Name",
-        email: "E-Mail",
-        company: "Unternehmen",
-        message: "Wie können wir helfen?",
-        submit: "Nachricht senden",
-      },
-    },
-    en: {
-      title: "Schedule a Free Initial Consultation",
-      subtitle:
-        "Tell us about your situation. We will get back to you within 24 hours.",
-      form: {
-        name: "Name",
-        email: "Email",
-        company: "Company",
-        message: "How can we help?",
-        submit: "Send Message",
-      },
-    },
-  },
-
-  // Why us section
-  whyUs: {
-    de: {
-      title: "Warum Elkaza?",
-      lead: "Pragmatisch, partnerschaftlich, technisch fundiert.",
-      bullets: [
-        "Übergabepaket: Dokumentation, Runbooks, Zugangsliste",
-        "Baseline-Metriken: Patch-Stand, Backup-Status, MFA-Quote",
-        "Saubere Segmentierung statt Flat Network",
-        "Monitoring ab Tag 1, Alerting bei kritischen Events",
-        "Fester Ansprechpartner, klare Kommunikation",
-        "Ergebnisse messbar, wo möglich",
-      ],
-    },
-    en: {
-      title: "Why Elkaza?",
-      lead: "Pragmatic, partnership-oriented, technically sound.",
-      bullets: [
-        "Handover pack: documentation, runbooks, access list",
-        "Baseline metrics: patch status, backup health, MFA coverage",
-        "Clean segmentation instead of flat network",
-        "Monitoring from day 1, alerting on critical events",
-        "Dedicated contact, clear communication",
-        "Measurable results where possible",
+        { q: "How could a future first engagement work?", a: "The planned starting point is a bounded Baseline Assessment covering current state, prioritized findings, and a documented roadmap." },
+        { q: "Is implementation included in the assessment?", a: "No. The assessment documents the current state and next steps. Any implementation would require a separate, explicit scope." },
+        { q: "Can these services be ordered already?", a: "No. The services shown document the current planning stage and are not yet offers." },
+        { q: "Does Elkaza guarantee security or compliance?", a: "No. An assessment can identify technical risks and evidence gaps, but it cannot guarantee complete security or legal compliance." },
       ],
     },
   },

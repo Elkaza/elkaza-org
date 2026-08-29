@@ -3,84 +3,71 @@ import ServicePageTemplate from "@/app/components/ServicePageTemplate";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata = createLocalizedMetadata({
-    title: "Security Baseline - Elkaza",
-    description: "Practical security for SMBs: MFA, patching, backups, clear access rights.",
-    path: "/en/services/security-baseline",
+  title: "IT & Security Baseline Assessment - Elkaza",
+  description: "A planned, bounded assessment of access, MFA, backups, updates, dependencies, and IT documentation for SMEs.",
+  path: "/en/services/security-baseline",
 });
 
 export default function SecurityBaselinePage() {
-    return (
-        <ServicePageTemplate
-            locale="en"
-            icon={ShieldCheck}
-            title="Security Baseline"
-            promise="Get the basics right: MFA, patching, backups, access control."
-            ctaAction="Start Security Assessment"
-            ctaHref="/en/contact"
-            timeline="3-6 weeks"
-            deliverablesCount={6}
-            forWhom={[
-                "SMBs without a dedicated security team",
-                "Companies after a security incident",
-                "Growing teams with ad-hoc IT",
-                "Executives with compliance concerns",
-            ]}
-            outcomes={[
-                "MFA active on all accounts",
-                "Patch status documented and current",
-                "Backups tested and verified",
-                "Access rights cleaned up",
-                "Central logging established",
-            ]}
-            included={[
-                "Security posture review",
-                "MFA rollout and configuration",
-                "Patch management setup",
-                "Backup configuration and test run",
-                "Access rights audit",
-                "Documentation and handover",
-            ]}
-            deliverables={[
-                "Security assessment report with prioritized findings",
-                "MFA deployment documentation",
-                "Patch management policy and schedule",
-                "Backup verification report",
-                "Access rights cleanup summary",
-                "Central logging configuration",
-            ]}
-            tools={[
-                "Identity Provider (Entra ID, Google Workspace, Okta)",
-                "Patch Management (WSUS, Intune, Automox)",
-                "Backup Solutions (Veeam, Acronis, Cloud-native)",
-                "SIEM or Log Aggregation (Microsoft Sentinel, Graylog)",
-            ]}
-            exampleOutcomes={[
-                {
-                    context: "SMB, 35 employees, financial sector",
-                    before: "No MFA, shared admin passwords",
-                    after: "MFA on all accounts, individual credentials",
-                    result: "First phishing attack blocked.",
-                },
-                {
-                    context: "Manufacturing, 50 employees",
-                    before: "Backups existed but never tested",
-                    after: "Monthly restore tests established",
-                    result: "Restore in 4h instead of estimated 4 days.",
-                },
-            ]}
-            process={[
-                { step: "Assess", desc: "Security posture review and gap analysis.", time: "1 week" },
-                { step: "Implement", desc: "MFA, patching, backups, access cleanup.", time: "2-4 weeks" },
-                { step: "Run", desc: "Handover, training, optional managed support.", time: "Ongoing" },
-            ]}
-            faqs={[
-                { q: "What if we already have some security measures?", a: "We assess what you have and fill the gaps. Working systems won't be rebuilt." },
-                { q: "How do you prioritize what to fix first?", a: "We rank by risk and impact. Quick wins first, then deeper fixes." },
-                { q: "Will this disrupt our users?", a: "MFA rollout requires user action. We provide clear guides and support." },
-                { q: "Is this a one-time project or ongoing?", a: "Baseline is a project. We offer optional managed support for ongoing protection." },
-            ]}
-            trustNote="We follow the least-privilege principle. Admin access is temporary, documented, and removed after project end. All configurations belong to your company."
-            finalCtaText="Stop guessing about security. Build a clear baseline."
-        />
-    );
+  return (
+    <ServicePageTemplate
+      locale="en"
+      icon={ShieldCheck}
+      title="IT & Security Baseline Assessment"
+      promise="A structured current-state review with prioritized findings and a practical roadmap."
+      scopeNote="The assessment reviews and documents. Technical changes or implementation of recommendations are not automatically included and would require a separate, explicit scope."
+      ctaAction="Discuss the assessment"
+      ctaHref="/en/contact"
+      timeline="defined by the agreed scope"
+      deliverablesCount={5}
+      forWhom={[
+        "Small businesses without current, connected IT documentation",
+        "Growing teams with unclear administrative access",
+        "Organizations seeking a structured view of backups, updates, and dependencies",
+      ]}
+      outcomes={[
+        "A traceable current state for the systems reviewed",
+        "Prioritized technical and operational gaps",
+        "Documented access, dependencies, and assumptions",
+        "A practical sequence for possible next steps",
+      ]}
+      included={[
+        "Accounts, administrative roles, and external access paths",
+        "MFA and least-privilege fundamentals",
+        "Backup and restore readiness based on available evidence",
+        "Patch and update practices",
+        "Basic network and infrastructure overview",
+        "Operational dependencies and documentation gaps",
+      ]}
+      deliverables={[
+        "Current-state summary",
+        "Prioritized findings with clear rationale",
+        "Practical remediation roadmap",
+        "System, access, and dependency documentation",
+        "Assumptions, exclusions, and boundary for any later implementation",
+      ]}
+      tools={[
+        "Existing identity and administration interfaces",
+        "Available backup, update, and system evidence",
+        "Structured interviews and technical documentation",
+      ]}
+      evidence={{
+        href: "https://elkaza.org/projects/enterprise-self-hosted-infrastructure",
+        label: "Personal infrastructure project",
+        description: "A technical account of personally operated infrastructure. This is not client work or a customer reference.",
+      }}
+      process={[
+        { step: "Capture", desc: "Record systems, access, routines, and available evidence within the agreed boundary.", time: "Assessment" },
+        { step: "Prioritize", desc: "Classify gaps and dependencies by practical relevance.", time: "Prioritization" },
+        { step: "Document", desc: "Hand over the current state, roadmap, assumptions, and exclusions.", time: "Handover" },
+      ]}
+      faqs={[
+        { q: "Are identified issues fixed immediately?", a: "No. Assessment and implementation are separate scopes. Any implementation would follow its own technical and commercial definition." },
+        { q: "Does the assessment guarantee security or recoverability?", a: "No. It evaluates the visible current state and available evidence. It cannot guarantee complete security or a successful recovery." },
+        { q: "Is this compliance or legal advice?", a: "No. Technical controls and available evidence may be reviewed; legal interpretation, certification, and compliance assurance are excluded." },
+      ]}
+      trustNote="The scope, available evidence, and technical limitations are documented transparently. Findings apply only to the systems reviewed and the agreed point in time."
+      finalCtaText="Understand the current state before deciding what to change."
+    />
+  );
 }

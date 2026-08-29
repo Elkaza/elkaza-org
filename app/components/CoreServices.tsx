@@ -20,35 +20,35 @@ const CORE_SERVICES = ["security-baseline", "networking", "automation"];
 const servicePresentation = {
   de: {
     "security-baseline": {
-      title: "IT & Security Baseline",
-      scopes: ["Ist-Stand und Prioritäten", "MFA und administrative Zugänge", "Backup-/Restore-Bereitschaft", "Patch-Grundlagen und Dokumentation"],
+      title: "IT & Security Baseline Assessment",
+      scopes: ["Ist-Stand und Prioritäten", "MFA und administrative Zugänge", "Backup-/Restore-Bereitschaft", "Abhängigkeiten und Dokumentation"],
       Icon: ShieldCheck,
     },
     networking: {
-      title: "Infrastruktur & Zugänge",
-      scopes: ["Netzwerk und Remote-Zugriff", "Segmentierung und Berechtigungen", "System- und Zugangsübersicht", "Infrastruktur-Dokumentation"],
+      title: "Infrastruktur & Zugänge Review",
+      scopes: ["Bestehende Topologie", "Remote- und Admin-Zugänge", "Segmentierung und Firewall-Regeln", "Risiken und Dokumentation"],
       Icon: Network,
     },
     automation: {
-      title: "Automatisierung & dokumentierter Betrieb",
-      scopes: ["Wiederkehrende Aufgaben", "Linux und Docker, wo passend", "Monitoring-Konzepte und Runbooks", "Deployment-Dokumentation"],
+      title: "Automatisierung & Dokumentation Sprint",
+      scopes: ["Ein begrenzter Workflow", "Ansible, Linux und Docker", "Python, Bash und SQL, wo relevant", "Runbook und Übergabe"],
       Icon: Workflow,
     },
   },
   en: {
     "security-baseline": {
-      title: "IT & Security Baseline",
-      scopes: ["Current state and priorities", "MFA and administrative access", "Backup/restore readiness", "Patch fundamentals and documentation"],
+      title: "IT & Security Baseline Assessment",
+      scopes: ["Current state and priorities", "MFA and administrative access", "Backup/restore readiness", "Dependencies and documentation"],
       Icon: ShieldCheck,
     },
     networking: {
-      title: "Infrastructure & Access",
-      scopes: ["Networking and remote access", "Segmentation and permissions", "System and access overview", "Infrastructure documentation"],
+      title: "Infrastructure & Access Review",
+      scopes: ["Existing topology", "Remote and administrative access", "Segmentation and firewall rules", "Risks and documentation"],
       Icon: Network,
     },
     automation: {
-      title: "Automation & Documented Operations",
-      scopes: ["Recurring tasks", "Linux and Docker where appropriate", "Monitoring concepts and runbooks", "Deployment documentation"],
+      title: "Automation & Documentation Sprint",
+      scopes: ["One bounded workflow", "Ansible, Linux, and Docker", "Python, Bash, and SQL where relevant", "Runbook and handover"],
       Icon: Workflow,
     },
   },

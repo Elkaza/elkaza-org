@@ -9,17 +9,10 @@ export { default as BackToTop } from './BackToTop';
 
 // Hero & Featured
 export { default as InteractiveHero } from './InteractiveHero';
-export { default as ServiceCards } from './ServiceCards';
 export { default as MicroCaseStudy } from './MicroCaseStudy';
 
 // Content sections
-export { default as ServicesFAQ } from './ServicesFAQ';
 export { default as ServicePageTemplate } from './ServicePageTemplate';
-export { default as ServicesSection } from './ServicesSection';
-export { default as ServicesSectionDE } from './ServicesSectionDE';
-export { default as RelatedServices } from './RelatedServices';
-export { default as TypicalOutcomes } from './TypicalOutcomes';
-export { default as WhatYouGet } from './WhatYouGet';
 
 export { default as CTA } from './CTA';
 
@@ -32,4 +25,3 @@ export { default as ScrollProgress } from './ScrollProgress';
 export { default as ScrollReveal } from './ScrollReveal';
 export { default as SearchModal } from './SearchModal';
 export { default as CategoryTabs } from './CategoryTabs';
-export { default as SecurityCallout } from './SecurityCallout';

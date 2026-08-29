@@ -36,7 +36,7 @@ export default async function CaseStudyDetailEnPage({
         <div className="max-w-4xl mx-auto px-6">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--primary)]">Illustrative scenario · not a customer reference</p>
           <p className="text-sm font-medium text-[var(--muted)]">{cs.tag}</p>
-          <h1 className="mt-4 mb-3 text-[2.5rem] font-bold leading-tight tracking-tight text-[var(--text)] md:text-5xl">{cs.title}</h1>
+          <h1 className="mt-4 mb-3 text-[2.5rem] font-bold leading-tight tracking-tight text-[var(--text)] [overflow-wrap:anywhere] md:text-5xl">{cs.title}</h1>
           <p className="text-xl text-[var(--text-secondary)]">{cs.result}</p>
         </div>
       </section>

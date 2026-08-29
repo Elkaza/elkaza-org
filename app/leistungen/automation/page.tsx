@@ -1,82 +1,69 @@
-import { Cog } from "lucide-react";
+import { Workflow } from "lucide-react";
 import ServicePageTemplate from "@/app/components/ServicePageTemplate";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata = createLocalizedMetadata({
-    title: "Automation & Platform Engineering - Elkaza",
-    description: "Weniger manuelle Arbeit. Weniger Fehler. Terraform, Ansible, CI/CD.",
-    path: "/leistungen/automation",
+  title: "Automatisierung & Dokumentation Sprint - Elkaza",
+  description: "Geplanter Sprint für kleine wiederkehrende IT-Abläufe, Ansible, Linux, Docker, Python, Bash und nachvollziehbare Dokumentation.",
+  path: "/leistungen/automation",
 });
 
 export default function AutomationPage() {
-    return (
-        <ServicePageTemplate
-            locale="de"
-            icon={Cog}
-            title="Automation & Platform Engineering"
-            promise="Weniger manuelle Arbeit. Weniger Fehler. Skalierbare Infrastruktur auf Knopfdruck."
-            ctaAction="Automatisierungspotenzial prüfen"
-            ctaHref="/kontakt"
-            timeline="3-8 Wochen"
-            deliverablesCount={4}
-            forWhom={[
-                "Teams, die zu viel Zeit mit wiederkehrenden Tasks verbringen",
-                "Unternehmen mit 'Snowflake'-Servern (jeder ist anders)",
-                "Entwickler, die auf Infrastruktur warten müssen",
-                "Organisationen, die schnelle Skalierung brauchen",
-            ]}
-            outcomes={[
-                "Reproduzierbare Umgebungen (Infrastructure as Code)",
-                "Schnellere Deployments ohne manuelle Fehler",
-                "Selbstdokumentierende Infrastruktur",
-                "Mehr Zeit für wertschöpfende Arbeit",
-            ]}
-            included={[
-                "Analyse manueller Prozesse und Pain-Points",
-                "Implementierung von Infrastructure as Code (Terraform/OpenTofu)",
-                "Konfigurationsmanagement (Ansible/Intune)",
-                "CI/CD-Pipeline-Optimierung",
-                "Containerisierung (Docker/Kubernetes Basics)",
-            ]}
-            deliverables={[
-                "IaC-Repository (Git) mit Dokumentation",
-                "Automatisierte Playbooks und Skripte",
-                "CI/CD-Pipeline-Definitionen",
-                "Schulung: 'Wie nutze ich das neue Setup'",
-            ]}
-            tools={[
-                "Terraform / OpenTofu",
-                "Ansible",
-                "GitLab CI / GitHub Actions",
-                "Docker / Kubernetes",
-                "PowerShell / Python",
-            ]}
-            exampleOutcomes={[
-                {
-                    context: "SaaS-Startup, Deployments manuell",
-                    before: "Deployment dauerte 4h, oft Fehler",
-                    after: "Git-Push löst Deployment aus (10 Min)",
-                    result: "3x so viele Releases pro Woche möglich.",
-                },
-                {
-                    context: "IT-Dienstleister, 50 Server",
-                    before: "Konfigurationen 'driften' auseinander",
-                    after: "Ansible erzwingt Standard-Config jede Nacht",
-                    result: "Compliance-Status immer grün, weniger Incidents.",
-                },
-            ]}
-            process={[
-                { step: "Discovery", desc: "Manuelle 'Zeitfresser' identifizieren.", time: "1 Woche" },
-                { step: "Code", desc: "Skripte und Templates entwickeln.", time: "2-5 Wochen" },
-                { step: "Enable", desc: "Team schulen und Übergabe.", time: "1-2 Wochen" },
-            ]}
-            faqs={[
-                { q: "Lohnt sich das für kleine Umgebungen?", a: "Ja. Schon einfache Skripte für User-Onboarding sparen Stunden und vermeiden Fehler." },
-                { q: "Müssen wir Programmieren lernen?", a: "Grundkenntnisse helfen, sind aber kein Muss. Wir bauen Self-Service-Lösungen." },
-                { q: "Was ist, wenn die Automation bricht?", a: "Wir bauen Fehlerbehandlung und Logging ein. Zudem gibt es Support in der Anfangsphase." },
-            ]}
-            trustNote="Automatisierung braucht hohe Rechte. Wir sichern die Pipelines und Credentials strikt ab (Secrets Management)."
-            finalCtaText="Automatisieren Sie den langweiligen Kram."
-        />
-    );
+  return (
+    <ServicePageTemplate
+      locale="de"
+      icon={Workflow}
+      title="Automatisierung & Dokumentation Sprint"
+      promise="Einen klar begrenzten operativen Ablauf dokumentieren, vereinfachen und soweit sinnvoll wiederholbar machen."
+      scopeNote="Der Sprint konzentriert sich auf einen kleinen, abgegrenzten Workflow. Enterprise Platform Engineering, Kubernetes-Betrieb und umfassende Infrastrukturtransformationen sind nicht Teil des Startumfangs."
+      ctaAction="Sprint besprechen"
+      ctaHref="/kontakt"
+      timeline="abhängig vom ausgewählten Workflow"
+      deliverablesCount={5}
+      forWhom={[
+        "Kleine Teams mit wiederkehrenden manuellen IT-Aufgaben",
+        "Linux- oder Docker-Umgebungen mit personenabhängigen Abläufen",
+        "Betriebe, die Konfigurationen und Betriebswissen nachvollziehbar festhalten möchten",
+      ]}
+      outcomes={[
+        "Dokumentierter Ausgangsprozess und klare Abgrenzung",
+        "Wiederholbarer Ablauf mit überprüfbaren Schritten",
+        "Nachvollziehbare Konfiguration und Fehlerbehandlung",
+        "Runbook für Betrieb, Übergabe und manuelle Rückfalloption",
+      ]}
+      included={[
+        "Auswahl eines klar begrenzten wiederkehrenden Workflows",
+        "Ansible für passende Konfigurationsaufgaben",
+        "Linux- und Docker-Abläufe, wo sie bereits zur Umgebung passen",
+        "Kleine Automatisierungen mit Python oder Bash",
+        "SQL für gezielte Datenabfragen, wenn fachlich erforderlich",
+        "Konfigurations-, Ablauf- und Übergabedokumentation",
+      ]}
+      deliverables={[
+        "Dokumentierter Ausgangs- und Zielprozess",
+        "Versionierte Playbooks oder Skripte",
+        "Konfigurations- und Abhängigkeitsübersicht",
+        "Runbook mit Prüfung und Rückfalloption",
+        "Annahmen, Grenzen und offene nächste Schritte",
+      ]}
+      tools={["Ansible", "Linux", "Docker", "Python", "Bash", "SQL, wo relevant"]}
+      evidence={{
+        href: "https://elkaza.org/projects/enterprise-self-hosted-infrastructure",
+        label: "Technischer Projektbericht",
+        description: "Persönliches Infrastrukturprojekt mit Linux-, Container- und Automatisierungsbezug. Kein Kundenprojekt und keine Kundenreferenz.",
+      }}
+      process={[
+        { step: "Abgrenzen", desc: "Einen geeigneten Workflow, Schnittstellen und eine manuelle Rückfalloption festhalten.", time: "Scope" },
+        { step: "Umsetzen", desc: "Kleine, prüfbare Automatisierung entwickeln und in einer kontrollierten Umgebung testen.", time: "Build & Test" },
+        { step: "Übergeben", desc: "Code, Konfiguration, Runbook, Grenzen und Wartungshinweise dokumentieren.", time: "Handover" },
+      ]}
+      faqs={[
+        { q: "Ist das eine vollständige Plattform-Modernisierung?", a: "Nein. Der geplante Startumfang ist ein kleiner Sprint für einen klar abgegrenzten Workflow." },
+        { q: "Ist Terraform oder Kubernetes Teil des Angebots?", a: "Nicht im primären Startumfang. Im Mittelpunkt stehen nachweisbare kleine Automatisierungen mit Ansible, Linux, Docker und Skripten." },
+        { q: "Was passiert, wenn die Automatisierung fehlschlägt?", a: "Prüfschritte, Logging und eine dokumentierte manuelle Rückfalloption gehören zur technischen Abgrenzung. Fehlerfreiheit kann nicht garantiert werden." },
+      ]}
+      trustNote="Automatisierung wird nur innerhalb des vereinbarten Umfangs und mit dokumentierten Berechtigungen betrachtet. Zugangsdaten gehören nicht in Skripte oder Repositories."
+      finalCtaText="Einen kleinen Ablauf nachvollziehbar und wiederholbar machen."
+    />
+  );
 }

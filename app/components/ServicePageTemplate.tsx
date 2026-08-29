@@ -1,6 +1,7 @@
 import {
     Check,
     Clock,
+    ExternalLink,
     FileText,
     HelpCircle,
     LucideIcon,
@@ -16,6 +17,7 @@ interface ServicePageTemplateProps {
     icon: LucideIcon;
     title: string;
     promise: string;
+    scopeNote: string;
     ctaAction: string;
     ctaHref: string;
     timeline: string;
@@ -25,7 +27,7 @@ interface ServicePageTemplateProps {
     included: string[];
     deliverables: string[];
     tools?: string[];
-    exampleOutcomes: { context: string; before: string; after: string; result: string }[];
+    evidence?: { href: string; label: string; description: string };
     process: { step: string; desc: string; time: string }[];
     faqs: { q: string; a: string }[];
     trustNote: string;
@@ -39,10 +41,8 @@ const labels = {
         whatWeDo: "Vorgesehener Umfang",
         deliverables: "Mögliche Dokumentation",
         tools: "Mögliche Werkzeuge",
-        exampleOutcomes: "Beispiel-Ergebnisse (illustrativ)",
-        before: "Vorher",
-        after: "Nachher",
-        result: "Ergebnis",
+        boundary: "Abgrenzung",
+        evidence: "Technischer Nachweis",
         process: "Möglicher Ablauf",
         faq: "Häufige Fragen",
         timeline: "Typische Dauer",
@@ -56,10 +56,8 @@ const labels = {
         whatWeDo: "Intended scope",
         deliverables: "Possible documentation",
         tools: "Possible tools",
-        exampleOutcomes: "Example outcomes (illustrative)",
-        before: "Before",
-        after: "After",
-        result: "Result",
+        boundary: "Scope boundary",
+        evidence: "Technical evidence",
         process: "Possible process",
         faq: "FAQ",
         timeline: "Typical timeline",
@@ -87,6 +85,7 @@ export default function ServicePageTemplate({
     icon: Icon,
     title,
     promise,
+    scopeNote,
     ctaAction,
     ctaHref,
     timeline,
@@ -96,6 +95,7 @@ export default function ServicePageTemplate({
     included,
     deliverables,
     tools,
+    evidence,
     process,
     faqs,
     trustNote,
@@ -133,6 +133,10 @@ export default function ServicePageTemplate({
                                 {SITE_IS_PRELAUNCH ? l.statusCta : ctaAction}
                             </CTA>
                         </div>
+                        <div className="mt-6 max-w-2xl border-l-2 border-[var(--primary)] pl-4">
+                            <p className="text-sm font-semibold text-[var(--text)]">{l.boundary}</p>
+                            <p className="mt-1 text-sm leading-relaxed text-[var(--text-secondary)]">{scopeNote}</p>
+                        </div>
                     </div>
 
                     <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[var(--shadow-sm)]">
@@ -167,6 +171,18 @@ export default function ServicePageTemplate({
                     </div>
                 </div>
             </section>
+
+            {evidence && (
+                <section className="bg-[var(--surface)] py-8">
+                    <div className="mx-auto max-w-[1140px] px-4 sm:px-6">
+                        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--primary)]">{l.evidence}</p>
+                        <a href={evidence.href} rel="noreferrer" className="mt-3 inline-flex items-center gap-2 font-semibold text-[var(--text)] hover:text-[var(--primary)]">
+                            {evidence.label}<ExternalLink className="h-4 w-4" aria-hidden="true" />
+                        </a>
+                        <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-[var(--text-secondary)]">{evidence.description}</p>
+                    </div>
+                </section>
+            )}
 
             <section className="bg-[var(--bg)] py-12 md:py-16">
                 <div className="mx-auto grid max-w-[1140px] gap-5 px-4 sm:px-6 md:grid-cols-2">
@@ -222,10 +238,10 @@ export default function ServicePageTemplate({
                         <h2 className="text-2xl font-semibold text-[var(--text)]">{l.faq}</h2>
                     </div>
                     <div className="mx-auto max-w-3xl space-y-4">
-                        {(SITE_IS_PRELAUNCH ? [{
+                        {([...(SITE_IS_PRELAUNCH ? [{
                             q: locale === "de" ? "Ist dieses Leistungskonzept bereits buchbar?" : "Can this service concept be ordered?",
-                            a: locale === "de" ? "Nein. Diese Seite bewahrt Quellmaterial für eine mögliche Zukunfts-Roadmap. Umfang, Liefermodell, Zeitplan und Vertragsbedingungen sind nicht validiert." : "No. This page preserves source material for a possible future roadmap. Scope, delivery model, timeline, and contract terms have not been validated.",
-                        }] : faqs).map((faq, i) => (
+                            a: locale === "de" ? "Nein. Die Seite beschreibt den geplanten Startumfang. Es werden derzeit keine Anfragen oder Aufträge angenommen." : "No. This page describes the intended initial scope. No inquiries or orders are currently accepted.",
+                        }] : []), ...faqs]).map((faq, i) => (
                             <div key={i} className="rounded-xl border border-[var(--border)] bg-[var(--bg)] p-5">
                                 <h3 className="mb-2 text-base font-semibold text-[var(--text)]">{faq.q}</h3>
                                 <p className="text-sm leading-relaxed text-[var(--text-secondary)]">{faq.a}</p>

@@ -19,7 +19,7 @@ test.describe('Language Switching', () => {
 
     // English content should be visible
     const englishHeading = page.getByRole('heading', {
-      name: /IT Infrastructure|Security for SMEs/i,
+      name: /clear starting point|IT Infrastructure|Security for SMEs/i,
       level: 1,
     });
     await expect(englishHeading).toBeVisible();
@@ -54,8 +54,8 @@ test.describe('Language Switching', () => {
 
   test('service pages available in both languages', async ({ page }) => {
     // Visit German service page
-    await page.goto('/leistungen/ai-adoption');
-    await expect(page).toHaveURL('/leistungen/ai-adoption');
+    await page.goto('/leistungen/security-baseline');
+    await expect(page).toHaveURL('/leistungen/security-baseline');
 
     // Check if English version exists
     const englishPath = await page.evaluate(() => {

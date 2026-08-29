@@ -1,82 +1,69 @@
-import { Cog } from "lucide-react";
+import { Workflow } from "lucide-react";
 import ServicePageTemplate from "@/app/components/ServicePageTemplate";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata = createLocalizedMetadata({
-    title: "Automation & Platform Engineering - Elkaza",
-    description: "Less manual work. Fewer errors. Terraform, Ansible, CI/CD.",
-    path: "/en/services/automation",
+  title: "Automation & Documentation Sprint - Elkaza",
+  description: "A planned sprint for small recurring IT workflows using Ansible, Linux, Docker, Python, Bash, and traceable documentation.",
+  path: "/en/services/automation",
 });
 
 export default function AutomationPage() {
-    return (
-        <ServicePageTemplate
-            locale="en"
-            icon={Cog}
-            title="Automation & Platform Engineering"
-            promise="Less manual work. Fewer errors. Scalable infrastructure at the push of a button."
-            ctaAction="Check Automation Potential"
-            ctaHref="/en/contact"
-            timeline="3-8 weeks"
-            deliverablesCount={4}
-            forWhom={[
-                "Teams spending too much time on repetitive tasks",
-                "Companies with 'Snowflake' servers (each unique)",
-                "Developers waiting for infrastructure",
-                "Organizations needing fast scalability",
-            ]}
-            outcomes={[
-                "Reproducible environments (Infrastructure as Code)",
-                "Faster deployments with zero manual errors",
-                "Self-documenting infrastructure",
-                "More time for value-adding work",
-            ]}
-            included={[
-                "Analysis of manual processes and pain points",
-                "Implementation of Infrastructure as Code (Terraform/OpenTofu)",
-                "Configuration Management (Ansible/Intune)",
-                "CI/CD pipeline optimization",
-                "Containerization (Docker/Kubernetes basics)",
-            ]}
-            deliverables={[
-                "IaC repository (Git) with documentation",
-                "Automated playbooks and scripts",
-                "CI/CD pipeline definitions",
-                "Training: 'How to use the new setup'",
-            ]}
-            tools={[
-                "Terraform / OpenTofu",
-                "Ansible",
-                "GitLab CI / GitHub Actions",
-                "Docker / Kubernetes",
-                "PowerShell / Python",
-            ]}
-            exampleOutcomes={[
-                {
-                    context: "SaaS Startup, manual deployments",
-                    before: "Deployment took 4h, prone to errors",
-                    after: "Git push triggers deployment (10 mins)",
-                    result: "3x more releases per week possible.",
-                },
-                {
-                    context: "IT Service Provider, 50 servers",
-                    before: "Configurations drifting apart",
-                    after: "Ansible enforces standard config nightly",
-                    result: "Compliance status always green, fewer incidents.",
-                },
-            ]}
-            process={[
-                { step: "Discovery", desc: "Identify manual time-wasters.", time: "1 week" },
-                { step: "Code", desc: "Develop scripts and templates.", time: "2-5 weeks" },
-                { step: "Enable", desc: "Train team and handover.", time: "1-2 weeks" },
-            ]}
-            faqs={[
-                { q: "Is this worth it for small environments?", a: "Yes. Even simple scripts for user onboarding save hours and prevent errors." },
-                { q: "Do we need to learn coding?", a: "Basics help, but aren't mandatory. We build self-service solutions." },
-                { q: "What if the automation breaks?", a: "We build in error handling and logging. Plus, we offer support during the rollout phase." },
-            ]}
-            trustNote="Automation requires high privileges. We strictly secure pipelines and credentials (Secrets Management)."
-            finalCtaText="Automate the boring stuff."
-        />
-    );
+  return (
+    <ServicePageTemplate
+      locale="en"
+      icon={Workflow}
+      title="Automation & Documentation Sprint"
+      promise="Document, simplify, and where appropriate make one bounded operational workflow repeatable."
+      scopeNote="The sprint focuses on one small, bounded workflow. Enterprise platform engineering, Kubernetes operations, and broad infrastructure transformations are outside the initial scope."
+      ctaAction="Discuss the sprint"
+      ctaHref="/en/contact"
+      timeline="defined by the selected workflow"
+      deliverablesCount={5}
+      forWhom={[
+        "Small teams with recurring manual IT tasks",
+        "Linux or Docker environments with person-dependent routines",
+        "Organizations seeking traceable configuration and operational knowledge",
+      ]}
+      outcomes={[
+        "Documented starting process and clear boundary",
+        "Repeatable workflow with verifiable steps",
+        "Traceable configuration and error handling",
+        "Runbook for operation, handover, and manual fallback",
+      ]}
+      included={[
+        "Selection of one clearly bounded recurring workflow",
+        "Ansible for suitable configuration tasks",
+        "Linux and Docker workflows where they already fit the environment",
+        "Small automations using Python or Bash",
+        "SQL for focused data queries where relevant",
+        "Configuration, process, and handover documentation",
+      ]}
+      deliverables={[
+        "Documented starting and target process",
+        "Versioned playbooks or scripts",
+        "Configuration and dependency overview",
+        "Runbook with checks and fallback path",
+        "Assumptions, limits, and open next steps",
+      ]}
+      tools={["Ansible", "Linux", "Docker", "Python", "Bash", "SQL where relevant"]}
+      evidence={{
+        href: "https://elkaza.org/projects/enterprise-self-hosted-infrastructure",
+        label: "Technical project report",
+        description: "A personal infrastructure project involving Linux, containers, and automation. This is not client work or a customer reference.",
+      }}
+      process={[
+        { step: "Bound", desc: "Define one suitable workflow, its interfaces, and a manual fallback path.", time: "Scope" },
+        { step: "Build", desc: "Develop a small, testable automation and verify it in a controlled environment.", time: "Build & test" },
+        { step: "Hand over", desc: "Document code, configuration, runbook, limits, and maintenance notes.", time: "Handover" },
+      ]}
+      faqs={[
+        { q: "Is this a complete platform modernization?", a: "No. The intended initial scope is a small sprint around one clearly bounded workflow." },
+        { q: "Are Terraform or Kubernetes part of the offer?", a: "Not in the primary initial scope. The focus is on evidenced, small automations using Ansible, Linux, Docker, and scripting." },
+        { q: "What happens if the automation fails?", a: "Checks, logging, and a documented manual fallback are part of the technical boundary. Error-free operation cannot be guaranteed." },
+      ]}
+      trustNote="Automation is considered only within the agreed boundary and with documented permissions. Credentials do not belong in scripts or repositories."
+      finalCtaText="Make one small workflow traceable and repeatable."
+    />
+  );
 }

@@ -3,84 +3,71 @@ import ServicePageTemplate from "@/app/components/ServicePageTemplate";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata = createLocalizedMetadata({
-    title: "Security Baseline - Elkaza",
-    description: "Praktische Sicherheit für KMUs: MFA, Patching, Backups, klare Zugriffsrechte.",
-    path: "/leistungen/security-baseline",
+  title: "IT & Security Baseline Assessment - Elkaza",
+  description: "Geplantes, klar begrenztes Assessment für Zugänge, MFA, Backups, Updates, Abhängigkeiten und IT-Dokumentation in KMU.",
+  path: "/leistungen/security-baseline",
 });
 
 export default function SecurityBaselinePage() {
-    return (
-        <ServicePageTemplate
-            locale="de"
-            icon={ShieldCheck}
-            title="Security Baseline"
-            promise="Die Grundlagen richtig machen: MFA, Patching, Backups, Zugriffskontrolle."
-            ctaAction="Security Assessment starten"
-            ctaHref="/kontakt"
-            timeline="3-6 Wochen"
-            deliverablesCount={6}
-            forWhom={[
-                "KMUs ohne dediziertes Security-Team",
-                "Unternehmen nach einem Sicherheitsvorfall",
-                "Wachsende Teams mit Ad-hoc-IT",
-                "Geschäftsführer mit Compliance-Bedenken",
-            ]}
-            outcomes={[
-                "MFA auf allen Konten aktiv",
-                "Patch-Status dokumentiert und aktuell",
-                "Backups getestet und verifiziert",
-                "Zugriffsrechte bereinigt",
-                "Zentrales Logging eingerichtet",
-            ]}
-            included={[
-                "Security-Posture-Review",
-                "MFA-Rollout und Konfiguration",
-                "Patch-Management-Setup",
-                "Backup-Konfiguration und Testlauf",
-                "Zugriffsrechte-Audit",
-                "Dokumentation und Übergabe",
-            ]}
-            deliverables={[
-                "Security-Assessment-Bericht mit priorisierten Ergebnissen",
-                "MFA-Deployment-Dokumentation",
-                "Patch-Management-Policy und Zeitplan",
-                "Backup-Verifizierungsbericht",
-                "Zugriffsrechte-Bereinigung Zusammenfassung",
-                "Zentrales Logging Konfiguration",
-            ]}
-            tools={[
-                "Identity Provider (Entra ID, Google Workspace, Okta)",
-                "Patch-Management (WSUS, Intune, Automox)",
-                "Backup-Lösungen (Veeam, Acronis, Cloud-native)",
-                "SIEM oder Log-Aggregation (Microsoft Sentinel, Graylog)",
-            ]}
-            exampleOutcomes={[
-                {
-                    context: "KMU, 35 Mitarbeiter, Finanzbranche",
-                    before: "Keine MFA, geteilte Admin-Passwörter",
-                    after: "MFA auf allen Konten, individuelle Zugangsdaten",
-                    result: "Erste Phishing-Attacke abgewehrt.",
-                },
-                {
-                    context: "Produktionsbetrieb, 50 Mitarbeiter",
-                    before: "Backups existierten, aber nie getestet",
-                    after: "Monatliche Restore-Tests etabliert",
-                    result: "Restore in 4h statt geschätzten 4 Tagen.",
-                },
-            ]}
-            process={[
-                { step: "Analyse", desc: "Security-Posture-Review und Gap-Analyse.", time: "1 Woche" },
-                { step: "Umsetzung", desc: "MFA, Patching, Backups, Access-Cleanup.", time: "2-4 Wochen" },
-                { step: "Betrieb", desc: "Übergabe, Schulung, optionaler Managed Support.", time: "Laufend" },
-            ]}
-            faqs={[
-                { q: "Was, wenn wir schon einige Sicherheitsmaßnahmen haben?", a: "Wir bewerten, was Sie haben, und füllen die Lücken. Funktionierende Systeme werden nicht neu gemacht." },
-                { q: "Wie priorisieren Sie, was zuerst behoben wird?", a: "Wir ordnen nach Risiko und Auswirkung. Schnelle Erfolge zuerst, dann tiefere Korrekturen." },
-                { q: "Wird das unsere Benutzer stören?", a: "MFA-Rollout erfordert Benutzeraktion. Wir liefern klare Anleitungen und Support." },
-                { q: "Ist das ein einmaliges Projekt oder laufend?", a: "Baseline ist ein Projekt. Wir bieten optionalen Managed Support für laufenden Schutz." },
-            ]}
-            trustNote="Wir arbeiten nach dem Least-Privilege-Prinzip. Admin-Zugänge sind temporär, dokumentiert und werden nach Projektende entfernt. Alle Konfigurationen gehören Ihrem Unternehmen."
-            finalCtaText="Schluss mit Raten bei der Sicherheit. Klare Baseline schaffen."
-        />
-    );
+  return (
+    <ServicePageTemplate
+      locale="de"
+      icon={ShieldCheck}
+      title="IT & Security Baseline Assessment"
+      promise="Ein strukturierter Ist-Stand mit priorisierten Erkenntnissen und einer praktischen Roadmap."
+      scopeNote="Das Assessment prüft und dokumentiert. Technische Änderungen oder die Umsetzung einzelner Empfehlungen sind nicht automatisch enthalten und würden nur separat mit eigenem Umfang vereinbart."
+      ctaAction="Assessment besprechen"
+      ctaHref="/kontakt"
+      timeline="abhängig vom vereinbarten Umfang"
+      deliverablesCount={5}
+      forWhom={[
+        "Kleine Unternehmen ohne aktuelle, zusammenhängende IT-Dokumentation",
+        "Wachsende Teams mit unklaren administrativen Zugängen",
+        "Betriebe, die Backups, Updates und Abhängigkeiten strukturiert einordnen möchten",
+      ]}
+      outcomes={[
+        "Nachvollziehbarer Ist-Stand der betrachteten Systeme",
+        "Priorisierte technische und organisatorische Lücken",
+        "Dokumentierte Zugänge, Abhängigkeiten und Annahmen",
+        "Praktische Reihenfolge für mögliche nächste Schritte",
+      ]}
+      included={[
+        "Konten, administrative Rollen und externe Zugangswege",
+        "MFA- und Least-Privilege-Grundlagen",
+        "Backup- und Restore-Bereitschaft auf Basis vorhandener Nachweise",
+        "Patch- und Update-Praktiken",
+        "Grundlegender Netzwerk- und Infrastrukturüberblick",
+        "Betriebliche Abhängigkeiten und Dokumentationslücken",
+      ]}
+      deliverables={[
+        "Zusammenfassung des aktuellen Stands",
+        "Priorisierte Erkenntnisse mit nachvollziehbarer Begründung",
+        "Praktische Remediation-Roadmap",
+        "System-, Zugangs- und Abhängigkeitsdokumentation",
+        "Annahmen, Ausschlüsse und Abgrenzung einer möglichen späteren Umsetzung",
+      ]}
+      tools={[
+        "Vorhandene Identitäts- und Administrationsoberflächen",
+        "Bestehende Backup-, Update- und Systemnachweise",
+        "Strukturierte Interviews und technische Dokumentation",
+      ]}
+      evidence={{
+        href: "https://elkaza.org/projects/enterprise-self-hosted-infrastructure",
+        label: "Persönliches Infrastrukturprojekt",
+        description: "Technischer Projektbericht zu einer selbst betriebenen Infrastruktur. Kein Kundenprojekt und keine Kundenreferenz.",
+      }}
+      process={[
+        { step: "Erfassen", desc: "Systeme, Zugänge, Abläufe und vorhandene Nachweise innerhalb des vereinbarten Umfangs aufnehmen.", time: "Assessment" },
+        { step: "Einordnen", desc: "Lücken und Abhängigkeiten nach praktischer Relevanz priorisieren.", time: "Priorisierung" },
+        { step: "Dokumentieren", desc: "Ist-Stand, Roadmap, Annahmen und Ausschlüsse nachvollziehbar übergeben.", time: "Übergabe" },
+      ]}
+      faqs={[
+        { q: "Werden erkannte Probleme direkt behoben?", a: "Nein. Das Assessment und eine spätere Umsetzung sind getrennte Umfänge. Eine Umsetzung würde erst nach einer eigenen technischen und kommerziellen Abgrenzung erfolgen." },
+        { q: "Garantiert das Assessment Sicherheit oder Wiederherstellbarkeit?", a: "Nein. Es bewertet den sichtbaren Ist-Stand und vorhandene Nachweise. Es kann weder vollständige Sicherheit noch eine erfolgreiche Wiederherstellung garantieren." },
+        { q: "Ist das eine Compliance- oder Rechtsberatung?", a: "Nein. Technische Kontrollen und vorhandene Nachweise können eingeordnet werden; rechtliche Bewertung, Zertifizierung und Compliance-Bestätigung sind ausgeschlossen." },
+      ]}
+      trustNote="Der Umfang, die verfügbaren Nachweise und technische Grenzen werden transparent dokumentiert. Aussagen beziehen sich nur auf die tatsächlich betrachteten Systeme und den vereinbarten Prüfzeitpunkt."
+      finalCtaText="Zuerst verstehen, dann gezielt entscheiden."
+    />
+  );
 }

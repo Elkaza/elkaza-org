@@ -3,82 +3,66 @@ import ServicePageTemplate from "@/app/components/ServicePageTemplate";
 import { createLocalizedMetadata } from "@/lib/metadata";
 
 export const metadata = createLocalizedMetadata({
-    title: "Netzwerk & Infrastruktur - Elkaza",
-    description: "Stabile Verbindungen, saubere Segmentierung, sichere Remote-Zugänge für wachsende Teams.",
-    path: "/leistungen/networking",
+  title: "Infrastruktur & Zugänge Review - Elkaza",
+  description: "Geplanter Review bestehender Topologie, administrativer Zugänge, Remote-Zugriff, Segmentierung, Firewall-Regeln und Dokumentation.",
+  path: "/leistungen/networking",
 });
 
 export default function NetworkingPage() {
-    return (
-        <ServicePageTemplate
-            locale="de"
-            icon={Network}
-            title="Netzwerk & Infrastruktur"
-            promise="Stabile Verbindungen, saubere Segmentierung, sichere Remote-Zugänge für wachsende Teams."
-            ctaAction="Netzwerk-Check anfragen"
-            ctaHref="/kontakt"
-            timeline="2-6 Wochen"
-            deliverablesCount={6}
-            forWhom={[
-                "Unternehmen mit wachsendem Team und Netzwerk-Engpässen",
-                "Büros mit schlechter Wi-Fi-Abdeckung",
-                "Teams, die sicheres VPN für Home-Office brauchen",
-                "Firmen mit unstrukturierter, 'gewachsener' IT",
-            ]}
-            outcomes={[
-                "Stabiles Wi-Fi in allen Büros",
-                "Sichere Trennung von Gäste- und Internes-Netz",
-                "Performanter VPN-Zugang für Remote-User",
-                "Volle Transparenz über verbundene Geräte",
-            ]}
-            included={[
-                "Status-Quo-Analyse und Site Survey",
-                "Netzwerk-Design und Segmentierung (VLANs)",
-                "Firewall-Konfiguration und Härtung",
-                "Wi-Fi-Optimierung",
-                "VPN / Remote Access Einrichtung",
-                "Dokumentation und Übergabe",
-            ]}
-            deliverables={[
-                "Netzwerk-Topologie-Diagramm",
-                "IP-Adress- und VLAN-Plan",
-                "Firewall-Regelwerk-Dokumentation",
-                "Wi-Fi-Ausleuchtungsbericht (Heatmap)",
-                "VPN-Zugangsdaten und Anleitungen",
-                "Monitoring-Zugriff",
-            ]}
-            tools={[
-                "Firewalls (Fortinet, Sophos, OPNsense)",
-                "Switching & Wi-Fi (Ubiquiti, Aruba, Cisco Meraki)",
-                "Monitoring (PRTG, Checkmk, Zabbix)",
-                "VPN (WireGuard, OpenVPN, IPsec)",
-            ]}
-            exampleOutcomes={[
-                {
-                    context: "Agentur, 40 Mitarbeiter, Altbau",
-                    before: "Häufige Wi-Fi-Abbrüche, langsames NAS",
-                    after: "Wi-Fi 6 Abdeckung, 10GbE Backbone",
-                    result: "Keine Beschwerden mehr, Backups 5x schneller.",
-                },
-                {
-                    context: "Dienstleister, Hybrid-Work",
-                    before: "VPN unsicher, Zugriff auf alles für jeden",
-                    after: "Segmentierte VLANs, VPN nur für Nötiges",
-                    result: "Sicherheitsaudit bestanden, Risiko minimiert.",
-                },
-            ]}
-            process={[
-                { step: "Analyse", desc: "Audit der Infrastruktur und Anforderungen.", time: "1 Woche" },
-                { step: "Design", desc: "Planung der Segmentierung und Hardware.", time: "1-2 Wochen" },
-                { step: "Umsetzung", desc: "Konfiguration, Umbau, Test.", time: "1-3 Wochen" },
-            ]}
-            faqs={[
-                { q: "Gibt es Ausfallzeiten während der Umstellung?", a: "Wir planen kritische Arbeiten außerhalb der Geschäftszeiten (Abends/Wochenende)." },
-                { q: "Müssen wir neue Hardware kaufen?", a: "Nicht zwingend. Wir nutzen vorhandene Geräte, wo es sinnvoll ist. Austausch nur bei Engpässen oder EOL." },
-                { q: "Unterstützen Sie auch Home-Office-Anbindungen?", a: "Ja, wir richten sichere VPNs oder SASE-Lösungen für Remote-Mitarbeiter ein." },
-            ]}
-            trustNote="Netzwerkzugriff ist sensibel. Wir dokumentieren alle Änderungen lückenlos. Passwörter werden in Ihrem Passwort-Manager hinterlegt."
-            finalCtaText="Schluss mit wackeligem WLAN und unsicheren Netzen."
-        />
-    );
+  return (
+    <ServicePageTemplate
+      locale="de"
+      icon={Network}
+      title="Infrastruktur & Zugänge Review"
+      promise="Bestehende Zugangswege und Infrastruktur verständlich erfassen, Risiken priorisieren und Dokumentationslücken schließen."
+      scopeNote="Der Review bewertet die bestehende Umgebung. Umbauten, Hardwarebeschaffung, Migrationen oder laufender Betrieb sind nicht enthalten und müssten separat geplant werden."
+      ctaAction="Review besprechen"
+      ctaHref="/kontakt"
+      timeline="abhängig von Standorten und Umfang"
+      deliverablesCount={5}
+      forWhom={[
+        "Kleine Unternehmen mit gewachsener oder wenig dokumentierter Infrastruktur",
+        "Teams mit unklaren Remote- oder Administratorzugängen",
+        "Betriebe, die Segmentierung und Firewall-Regeln strukturiert prüfen möchten",
+      ]}
+      outcomes={[
+        "Nachvollziehbare bestehende Topologie",
+        "Dokumentierte administrative und externe Zugangswege",
+        "Priorisierte Risiken bei Segmentierung und Zugriffsregeln",
+        "Konkrete Dokumentations- und Stabilisierungsschritte",
+      ]}
+      included={[
+        "Review der bestehenden Netz- und Systemtopologie",
+        "Remote-, externe und administrative Zugangswege",
+        "Grundlagen der Segmentierung",
+        "Review vorhandener Firewall- und Zugriffsregeln",
+        "Infrastruktur-Dokumentation und betriebliche Abhängigkeiten",
+        "Erkennbare Betriebsrisiken innerhalb des vereinbarten Umfangs",
+      ]}
+      deliverables={[
+        "Aktualisierte Topologieübersicht",
+        "Dokumentierte Zugangswege und Zuständigkeiten",
+        "Priorisierte technische Feststellungen",
+        "Übersicht relevanter Firewall- und Segmentierungsfragen",
+        "Annahmen, Ausschlüsse und praktische nächste Schritte",
+      ]}
+      tools={[
+        "Vorhandene Firewall-, Switch- und VPN-Konfigurationen",
+        "Bestehende Netzwerkpläne und Systeminventare",
+        "Gezielte technische Bestandsaufnahme",
+      ]}
+      process={[
+        { step: "Sichten", desc: "Vorhandene Pläne, Konfigurationen und Zugangswege innerhalb des Umfangs erfassen.", time: "Bestandsaufnahme" },
+        { step: "Prüfen", desc: "Topologie, Regeln, Segmentierung und Abhängigkeiten nachvollziehbar bewerten.", time: "Review" },
+        { step: "Dokumentieren", desc: "Feststellungen, Risiken und mögliche nächste Schritte geordnet übergeben.", time: "Übergabe" },
+      ]}
+      faqs={[
+        { q: "Werden Firewall oder Netzwerk direkt umgebaut?", a: "Nein. Der Review ist zunächst eine Bewertung. Änderungen würden separat geplant, getestet und freigegeben." },
+        { q: "Ist eine bestimmte Herstellerplattform erforderlich?", a: "Nein. Ausgangspunkt ist die bestehende Umgebung. Produktnamen werden nicht als pauschale Lieferfähigkeit oder Zertifizierung verstanden." },
+        { q: "Ist laufendes Monitoring enthalten?", a: "Nein. Laufendes Monitoring, Incident Response, Supportzeiten und SLA-ähnliche Leistungen sind nicht Teil dieses Startumfangs." },
+      ]}
+      trustNote="Es werden nur die zugänglichen Systeme und bereitgestellten Informationen bewertet. Der Review ist keine Garantie für Verfügbarkeit, Sicherheit oder vollständige Fehlerfreiheit."
+      finalCtaText="Zugangswege und Abhängigkeiten zuerst nachvollziehbar machen."
+    />
+  );
 }
