@@ -19,6 +19,17 @@ curl_head() {
   curl --fail --silent --show-error --max-time "$CURL_MAX_TIME" --head "$@"
 }
 
+assert_status() {
+  local expected="$1"
+  shift
+  local actual
+  actual="$(curl --silent --show-error --max-time "$CURL_MAX_TIME" --output /dev/null --write-out '%{http_code}' "$@")"
+  if [[ "$actual" != "$expected" ]]; then
+    echo "Unexpected HTTP status $actual (expected $expected): $*" >&2
+    exit 1
+  fi
+}
+
 cd "$PROJECT_DIR"
 
 echo "==> Updating source"
@@ -50,6 +61,8 @@ curl_head "$BACKEND_URL/" >/dev/null
 curl_head "$BACKEND_URL/kontakt/" >/dev/null
 curl_head --resolve elkaza.at:443:127.0.0.1 "$SITE_URL/" >/dev/null
 curl_head --resolve elkaza.at:443:127.0.0.1 "$SITE_URL/kontakt/" >/dev/null
+assert_status 404 "$BACKEND_URL/__elkaza_missing_route__/"
+assert_status 404 --resolve elkaza.at:443:127.0.0.1 "$SITE_URL/__elkaza_missing_route__/"
 
 www_location="$(curl --silent --show-error --max-time "$CURL_MAX_TIME" --head --resolve www.elkaza.at:443:127.0.0.1 https://www.elkaza.at/ | awk 'tolower($1)=="location:" {print $2}' | tr -d '\r')"
 if [[ "$www_location" != "$SITE_URL/" ]]; then

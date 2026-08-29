@@ -67,7 +67,10 @@ export function ThesisEducation({ locale }: { locale: Locale }) {
         <div className="mt-4 border-t border-[var(--border)] pt-6">
           <p className="font-semibold text-[var(--text)]">{c.education}</p>
           <p className="mt-1 text-sm font-medium text-[var(--text-secondary)]">{c.detailMeta}</p>
-          <h2 id="thesis-education-title" className="mt-4 max-w-[35ch] text-2xl font-semibold leading-snug text-[var(--text)]">
+          <h2
+            id="thesis-education-title"
+            className={`mt-4 max-w-[35ch] text-2xl font-semibold leading-snug text-[var(--text)] ${locale === "de" ? "[overflow-wrap:anywhere]" : ""}`}
+          >
             {c.detailTitle}
           </h2>
           <dl className="mt-6 grid gap-5 text-sm sm:grid-cols-2">

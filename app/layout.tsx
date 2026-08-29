@@ -10,7 +10,6 @@ import { SITE_IS_PRELAUNCH } from "@/lib/siteStatus";
 
 export function generateMetadata() {
   const base = "https://elkaza.at";
-  const canonical = `${base}/`;
   return {
     metadataBase: new URL(base),
     title: "Elkaza - Networking, Security & Automation",
@@ -32,9 +31,7 @@ export function generateMetadata() {
     formatDetection: {
       telephone: false,
     },
-    alternates: { canonical, languages: { "de-AT": `${base}/`, en: `${base}/en/` } },
     openGraph: {
-      url: canonical,
       siteName: "Elkaza",
       locale: "de_AT",
       type: "website",

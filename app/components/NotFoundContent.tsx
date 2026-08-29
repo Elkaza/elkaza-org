@@ -14,7 +14,7 @@ export default function NotFoundContent() {
         home: "Back to homepage",
         services: "View concepts",
         helpful: "Helpful links:",
-        links: [["/en/contact", "Contact"], ["/en/packages", "Packages"], ["/en/case-studies", "Scenarios"], ["/en/about", "About"]],
+        links: [["/en/contact", "Contact"], ["/en/case-studies", "Scenarios"], ["/en/about", "About"]],
       }
     : {
         title: "Seite nicht gefunden",
@@ -22,7 +22,7 @@ export default function NotFoundContent() {
         home: "Zur Startseite",
         services: "Konzepte ansehen",
         helpful: "Hilfreiche Links:",
-        links: [["/kontakt", "Kontakt"], ["/pakete", "Pakete"], ["/referenzen", "Szenarien"], ["/ueber-uns", "Über uns"]],
+        links: [["/kontakt", "Kontakt"], ["/referenzen", "Szenarien"], ["/ueber-uns", "Über uns"]],
       };
 
   return (

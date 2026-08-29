@@ -10,15 +10,10 @@ const siteInteractivityScript = String.raw`
     "/leistungen/cloud-saas-security": "/en/services/cloud-saas-security",
     "/leistungen/endpoint-security": "/en/services/endpoint-security",
     "/leistungen/ai-adoption": "/en/services/ai-adoption",
-    "/leistungen/ki-automatisierung": "/en/services/ai-automation",
-    "/leistungen/digitalstrategie": "/en/services/digital-strategy",
-    "/leistungen/digitale-produkte": "/en/services/digital-products",
     "/leistungen/nis2-compliance": "/en/services/nis2-compliance",
     "/leistungen/ransomware-resilience": "/en/services/ransomware-resilience",
     "/leistungen/zero-trust": "/en/services/zero-trust",
-    "/pakete": "/en/packages",
     "/referenzen": "/en/case-studies",
-    "/insights": "/en/insights",
     "/ueber-uns": "/en/about",
     "/kontakt": "/en/contact",
     "/impressum": "/en/imprint",
@@ -27,8 +22,7 @@ const siteInteractivityScript = String.raw`
     "/referenzen/security-baseline-dienstleister": "/en/case-studies/security-baseline-it-service",
     "/referenzen/zero-trust-finanzberatung": "/en/case-studies/zero-trust-fintech",
     "/referenzen/ransomware-resilience-produktion": "/en/case-studies/ransomware-recovery-manufacturing",
-    "/referenzen/m365-sicherheit-compliance": "/en/case-studies/m365-security-audit",
-    "/insights/ki-strategie-fuer-kmus": "/en/insights/ai-strategy-for-smes"
+    "/referenzen/m365-sicherheit-compliance": "/en/case-studies/m365-security-audit"
   };
 
   var reversePairs = {};
@@ -58,12 +52,6 @@ const siteInteractivityScript = String.raw`
     }
     if (path.indexOf("/en/case-studies/") === 0) {
       return "/referenzen" + path.slice("/en/case-studies".length);
-    }
-    if (path.indexOf("/insights/") === 0) {
-      return "/en" + path;
-    }
-    if (path.indexOf("/en/insights/") === 0) {
-      return path.slice("/en".length) || "/";
     }
     return path.indexOf("/en") === 0 ? "/" : "/en";
   }
