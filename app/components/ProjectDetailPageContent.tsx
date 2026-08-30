@@ -470,8 +470,9 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
     const localizedResults = localized(project.results);
     const localizedFeatures = localized(project.keyFeatures);
     const hasDiagrams = Boolean(project.diagrams && project.diagrams.length > 0);
+    const isBleMqttPlatform = project.slug === "rpi-ble-mqtt-gateway";
     const snapshotItems = [
-        { label: copy.role, body: getRoleDescription(project.category, locale) },
+        { label: copy.role, body: getRoleDescription(project.slug, project.category, locale) },
         { label: copy.scope, body: conciseText(localized(project.solution), 230) },
         { label: copy.constraints, body: conciseText(`${localized(project.security)} ${localized(project.reliability)}`, 230) },
         ...(localizedResults[0] ? [{ label: copy.resultLabel, body: localizedResults[0] }] : []),
@@ -481,7 +482,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         conciseText(localized(project.security), 190),
         conciseText(localized(project.reliability), 190),
     ];
-    const futureItems = getFutureItems(locale, hasDiagrams);
+    const futureItems = getFutureItems(locale, hasDiagrams || isBleMqttPlatform);
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
 
@@ -509,7 +510,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                 </Link>
 
                 <header className="grid gap-5 rounded-lg border border-subtle bg-card p-4 sm:p-5 md:grid-cols-[minmax(0,1fr)_280px] md:gap-6 md:p-7">
-                    <div className="space-y-5">
+                    <div className="min-w-0 space-y-5">
                         <div className="flex flex-wrap items-center gap-3 text-sm text-muted">
                             <span className="rounded-full border border-subtle bg-page px-3 py-1">
                                 {copy.category[project.category]}
@@ -539,7 +540,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                         </div>
                     </div>
 
-                    <aside className="min-w-0 rounded-lg border border-subtle bg-page/70 p-4">
+                    <div className="min-w-0 rounded-lg border border-subtle bg-page/70 p-4">
                         <p className="border-l-2 border-blue-600 pl-2 text-xs font-extrabold uppercase tracking-normal text-main">
                             {copy.stackPreview}
                         </p>
@@ -575,7 +576,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                 ))}
                             </div>
                         )}
-                    </aside>
+                    </div>
                 </header>
 
                 {project.images && project.images.length > 0 && (
@@ -628,20 +629,22 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                             },
                         ]}
                     />
-                    <div className="grid gap-4 md:grid-cols-3">
-                        <ArchitectureCard
-                            title={project.architectureLabels ? localized(project.architectureLabels.node) : copy.node}
-                            body={localized(project.architecture.node)}
-                        />
-                        <ArchitectureCard
-                            title={project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge}
-                            body={localized(project.architecture.edge)}
-                        />
-                        <ArchitectureCard
-                            title={project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud}
-                            body={localized(project.architecture.cloud)}
-                        />
-                    </div>
+                    {!isBleMqttPlatform && (
+                        <div className="grid gap-4 md:grid-cols-3">
+                            <ArchitectureCard
+                                title={project.architectureLabels ? localized(project.architectureLabels.node) : copy.node}
+                                body={localized(project.architecture.node)}
+                            />
+                            <ArchitectureCard
+                                title={project.architectureLabels ? localized(project.architectureLabels.edge) : copy.edge}
+                                body={localized(project.architecture.edge)}
+                            />
+                            <ArchitectureCard
+                                title={project.architectureLabels ? localized(project.architectureLabels.cloud) : copy.cloud}
+                                body={localized(project.architecture.cloud)}
+                            />
+                        </div>
+                    )}
                 </section>
 
                 {project.diagrams && project.diagrams.length > 0 && (
@@ -708,7 +711,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     </section>
                 )}
 
-                {!hasDiagrams && (
+                {!hasDiagrams && !isBleMqttPlatform && (
                     <DiagramOverview
                         copy={copy}
                         architectureLabels={[
@@ -971,7 +974,7 @@ function FeaturedProjectDetailLayout({
                 </Link>
 
                 <header id="overview" className="scroll-mt-28 grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
-                    <div className="space-y-5">
+                    <div className="min-w-0 space-y-5">
                         <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-normal">
                             <span className={`rounded-full border px-3 py-1 ${getOutcomeClassName(outcomeValue)}`}>
                                 {outcomeValue}
@@ -995,10 +998,10 @@ function FeaturedProjectDetailLayout({
                         </div>
                     </div>
 
-                    <aside className="grid gap-3 rounded-lg border border-subtle bg-card p-4">
+                    <div className="grid gap-3 rounded-lg border border-subtle bg-card p-4">
                         <FeaturedFact label={copy.role} value={localized(config.role)} />
                         {keyResult && <FeaturedFact label={labels.keyResult} value={keyResult} />}
-                    </aside>
+                    </div>
                 </header>
 
                 <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
@@ -1508,7 +1511,12 @@ function FeaturedDiagramFigure({
                 </div>
             </summary>
             <figure>
-                <div className="overflow-x-auto bg-slate-100 p-3 dark:bg-slate-300">
+                <div
+                    className="overflow-x-auto bg-slate-100 p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset dark:bg-slate-300"
+                    role="region"
+                    aria-label={`${localized(diagram.title)} — ${locale === "de" ? "scrollbarer Diagrammbereich" : "scrollable diagram area"}`}
+                    tabIndex={0}
+                >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         src={diagram.src}
@@ -1557,7 +1565,13 @@ function conciseText(text: string, maxLength: number) {
     return `${clipped.slice(0, lastSpace > 120 ? lastSpace : maxLength).trimEnd()}...`;
 }
 
-function getRoleDescription(category: string, locale: Locale) {
+function getRoleDescription(slug: string, category: string, locale: Locale) {
+    if (slug === "rpi-ble-mqtt-gateway") {
+        return locale === "de"
+            ? "End-to-End-IoT-Integration: BLE-Ingestion, sicherer MQTT-Transport, containerisierte Dienste, Telemetrieverarbeitung, Zeitreihenspeicherung, Dashboarding und Betriebsdokumentation."
+            : "End-to-end IoT integration: BLE ingestion, secure MQTT transport, containerized services, telemetry processing, time-series storage, dashboarding and operational documentation.";
+    }
+
     const roles: Record<Locale, Record<string, string>> = {
         en: {
             "featured-aiot": "End-to-end engineering: hardware integration, edge inference, sensor fusion, dashboard output, and operational documentation.",

@@ -708,7 +708,6 @@ export const projects: Project[] = [
             { label: "GitHub", url: "https://github.com/Elkaza/secure-ble-mqtt-monitoring-platform" },
         ],
         images: [
-            "/images/architecture.png",
             "/images/nodered-flow.png",
             "/images/sensor-data.png",
             "/images/influxdb-data.png",

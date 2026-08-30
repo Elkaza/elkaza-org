@@ -12,6 +12,7 @@ export type ProfileExperience = {
   title: Record<Locale, string>;
   period: string;
   bullets: Record<Locale, string[]>;
+  tools: Record<Locale, string[]>;
 };
 
 export type ProfileEducation = {
@@ -93,6 +94,11 @@ export const profile = {
           "Supported experienced application engineers with customer requests and technical follow-up.",
         ],
       },
+      tools: {
+        de: ["S1000D", "S4000P", "Anforderungsanalyse", "Technische Publikationen"],
+        en: ["S1000D", "S4000P", "Requirements Analysis", "Technical Publications"],
+        ar: ["S1000D", "S4000P", "Requirements Analysis", "Technical Publications"],
+      },
     },
     {
       organization: { de: "Raiffeisen Bank International AG", en: "Raiffeisen Bank International AG", ar: "Raiffeisen Bank International AG" },
@@ -115,6 +121,11 @@ export const profile = {
           "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
           "Worked with ADO.IT and structured operational IT information.",
         ],
+      },
+      tools: {
+        de: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
+        en: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
+        ar: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
       },
     },
     {
@@ -139,6 +150,11 @@ export const profile = {
           "Supported coordination between product management, business stakeholders and technical teams.",
         ],
       },
+      tools: {
+        de: ["Enterprise Architecture", "Anforderungsanalyse", "Prototyping", "Stakeholder-Koordination"],
+        en: ["Enterprise Architecture", "Requirements Analysis", "Prototyping", "Stakeholder Coordination"],
+        ar: ["Enterprise Architecture", "Requirements Analysis", "Prototyping", "Stakeholder Coordination"],
+      },
     },
     {
       organization: { de: "Universität Benghazi", en: "University of Benghazi", ar: "University of Benghazi" },
@@ -160,6 +176,11 @@ export const profile = {
           "Supported workplace hardware, software, network access and infrastructure troubleshooting.",
           "Documented technical issues, resolution paths and operating procedures.",
         ],
+      },
+      tools: {
+        de: ["TCP/IP", "LAN/WLAN", "Windows", "Netzwerk-Fehleranalyse", "IT Support"],
+        en: ["TCP/IP", "LAN/WLAN", "Windows", "Network Troubleshooting", "IT Support"],
+        ar: ["TCP/IP", "LAN/WLAN", "Windows", "Network Troubleshooting", "IT Support"],
       },
     },
   ] satisfies ProfileExperience[],

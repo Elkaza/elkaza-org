@@ -12,7 +12,9 @@ import {
 } from "lucide-react";
 import type { SimpleIcon } from "simple-icons";
 import {
+  siAnsible,
   siArduino,
+  siBluetooth,
   siC,
   siClickhouse,
   siConfluence,
@@ -21,8 +23,10 @@ import {
   siDebian,
   siDocker,
   siEspressif,
+  siGit,
   siGithub,
   siGithubactions,
+  siGrafana,
   siGnubash,
   siHtml5,
   siInfluxdb,
@@ -40,6 +44,7 @@ import {
   siPihole,
   siPlausibleanalytics,
   siPortainer,
+  siPodman,
   siPostgresql,
   siProxmox,
   siPython,
@@ -61,7 +66,11 @@ import {
 } from "simple-icons";
 
 const brandIcons: Record<string, SimpleIcon> = {
+  ansible: siAnsible,
   arduino: siArduino,
+  ble: siBluetooth,
+  bluetooth: siBluetooth,
+  "bluetooth low energy": siBluetooth,
   c: siC,
   "c++": siCplusplus,
   clickhouse: siClickhouse,
@@ -72,8 +81,10 @@ const brandIcons: Record<string, SimpleIcon> = {
   "docker compose": siDocker,
   esp32: siEspressif,
   espressif: siEspressif,
+  git: siGit,
   github: siGithub,
   "github actions": siGithubactions,
+  grafana: siGrafana,
   bash: siGnubash,
   "gnu bash": siGnubash,
   html: siHtml5,
@@ -97,6 +108,8 @@ const brandIcons: Record<string, SimpleIcon> = {
   plausible: siPlausibleanalytics,
   "plausible analytics": siPlausibleanalytics,
   portainer: siPortainer,
+  podman: siPodman,
+  "podman compose": siPodman,
   postgresql: siPostgresql,
   postgres: siPostgresql,
   proxmox: siProxmox,
@@ -140,16 +153,22 @@ function findBrandIcon(name: string) {
   if (normalized.includes("typescript")) return siTypescript;
   if (normalized.includes("javascript")) return siJavascript;
   if (normalized.includes("python")) return siPython;
+  if (normalized.includes("ansible")) return siAnsible;
   if (normalized.includes("docker")) return siDocker;
+  if (normalized.includes("podman")) return siPodman;
   if (normalized.includes("github actions")) return siGithubactions;
   if (normalized.includes("github")) return siGithub;
   if (normalized.includes("next")) return siNextdotjs;
   if (normalized.includes("tailwind")) return siTailwindcss;
   if (normalized.includes("raspberry pi")) return siRaspberrypi;
+  if (normalized.includes("bluetooth") || normalized === "ble") return siBluetooth;
   if (normalized.includes("arduino")) return siArduino;
   if (normalized.includes("esp32")) return siEspressif;
   if (normalized.includes("proxmox")) return siProxmox;
   if (normalized.includes("postgres")) return siPostgresql;
+  if (normalized.includes("influxdb")) return siInfluxdb;
+  if (normalized.includes("grafana")) return siGrafana;
+  if (normalized.includes("mqtt")) return siMqtt;
   if (normalized.includes("clickhouse")) return siClickhouse;
   if (normalized.includes("plausible")) return siPlausibleanalytics;
   if (normalized.includes("nginx proxy manager")) return siNginxproxymanager;
@@ -230,10 +249,12 @@ export function TechLogo({
   name,
   className = "h-3.5 w-3.5",
   decorative = true,
+  monochrome = false,
 }: {
   name: string;
   className?: string;
   decorative?: boolean;
+  monochrome?: boolean;
 }) {
   const icon = findBrandIcon(name);
 
@@ -243,7 +264,7 @@ export function TechLogo({
         aria-hidden={decorative || undefined}
         aria-label={decorative ? undefined : `${icon.title} logo`}
         className={className}
-        fill={`#${icon.hex}`}
+        fill={monochrome ? "currentColor" : `#${icon.hex}`}
         role={decorative ? undefined : "img"}
         viewBox="0 0 24 24"
       >
@@ -259,21 +280,31 @@ export function TechLogo({
 export function TechBadge({
   name,
   className = "",
-  iconClassName = "h-3.5 w-3.5",
+  iconClassName = "h-4 w-4",
+  variant = "auto",
 }: {
   name: string;
   className?: string;
   iconClassName?: string;
+  variant?: "auto" | "brand" | "concept";
 }) {
+  const showBrandIcon = variant !== "concept" && Boolean(findBrandIcon(name));
+
   return (
     <span
       className={[
-        "inline-flex min-w-0 items-center gap-1.5 rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-main",
+        "inline-flex max-w-full items-center gap-1.5 rounded-md border border-subtle bg-page px-2.5 py-1 text-xs font-medium text-main",
         className,
       ].join(" ")}
     >
-      <TechLogo name={name} className={`${iconClassName} shrink-0 text-blue-700 dark:text-blue-300`} />
-      <span className="min-w-0 truncate">{name}</span>
+      {showBrandIcon && (
+        <TechLogo
+          name={name}
+          className={`${iconClassName} shrink-0 text-blue-700 dark:text-blue-300`}
+          monochrome
+        />
+      )}
+      <span className="whitespace-nowrap">{name}</span>
     </span>
   );
 }

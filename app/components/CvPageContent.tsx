@@ -129,6 +129,16 @@ export default function CvPageContent() {
                         <li key={bullet} className="flex gap-2"><span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" aria-hidden="true" /><span>{bullet}</span></li>
                       ))}
                     </ul>
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold uppercase tracking-normal text-muted">
+                        {locale === "de" ? "Technologien & Tools" : "Technologies & Tools"}
+                      </p>
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {experience.tools[locale].map((tool) => (
+                          <TechBadge key={tool} name={tool} className="bg-card text-muted" />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </article>
