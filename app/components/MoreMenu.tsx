@@ -63,7 +63,7 @@ export default function MoreMenu() {
         ref={buttonRef}
         type="button"
         id="more-links-button"
-        aria-label="More links"
+        aria-label={t("a11y_more_links")}
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls="more-links-menu"

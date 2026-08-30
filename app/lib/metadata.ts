@@ -23,7 +23,7 @@ export function generatePersonSchema() {
         affiliation: [
             {
                 "@type": "EducationalOrganization",
-                name: "Technische Universitaet Wien",
+                name: "TU Wien",
             },
             {
                 "@type": "EducationalOrganization",
@@ -49,7 +49,6 @@ export function generatePersonSchema() {
             "Windows Server",
             "Linux",
             "Proxmox VE",
-            "Systems Administration",
             "Application Engineering",
             "Technical Implementation",
             "Business Analysis",

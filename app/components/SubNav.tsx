@@ -6,7 +6,7 @@ import MoreMenu from "./MoreMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import { useLocale } from "../LocaleProvider";
-import { getLocalizedPath } from "../lib/localizedRoutes";
+import { getLocalizedPath, normalizePath } from "../lib/localizedRoutes";
 import { Suspense, useEffect, useState } from "react";
 
 const links = [
@@ -18,6 +18,16 @@ const links = [
 export default function SubNav() {
   const pathname = usePathname();
   const { locale, t } = useLocale();
+  const activeLocale = locale === "en" ? "en" : "de";
+  const currentPath = normalizePath(pathname ?? "/");
+  const getNavState = (href: string) => {
+    const localizedHref = getLocalizedPath(href, activeLocale);
+    const isActive = currentPath === localizedHref
+      || (href === "/projects" && currentPath.startsWith(`${localizedHref}/`));
+
+    return { href: localizedHref, isActive };
+  };
+  const contact = getNavState("/kontakt");
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -27,7 +37,7 @@ export default function SubNav() {
   }, []);
   return (
     <nav
-      aria-label="Top navigation"
+      aria-label={t("a11y_top_navigation")}
       className={`transition-all duration-300 ${scrolled
         ? "bg-page/80 backdrop-blur-md border-b border-subtle shadow-sm"
         : "bg-transparent border-b border-transparent"
@@ -42,28 +52,32 @@ export default function SubNav() {
 
         {/* Center tabs */}
         <div className="hidden lg:flex gap-6 text-sm">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={getLocalizedPath(l.href, locale === "en" ? "en" : "de")}
-              aria-current={pathname === getLocalizedPath(l.href, locale === "en" ? "en" : "de") ? "page" : undefined}
-              className={
-                "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
-                (pathname === l.href
-                  ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
-                  : "text-muted border-transparent")
-              }
-            >
-              {t(`nav_${l.label.toLowerCase()}`)}
-            </Link>
-          ))}
+          {links.map((l) => {
+            const navState = getNavState(l.href);
+
+            return (
+              <Link
+                key={l.href}
+                href={navState.href}
+                aria-current={navState.isActive ? "page" : undefined}
+                className={
+                  "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
+                  (navState.isActive
+                    ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
+                    : "text-muted border-transparent")
+                }
+              >
+                {t(`nav_${l.label.toLowerCase()}`)}
+              </Link>
+            );
+          })}
           {/* Contact Link with locale check */}
           <Link
-            href={locale === "de" ? "/kontakt" : "/en/contact"}
-            aria-current={pathname === "/en/contact" || pathname === "/kontakt" ? "page" : undefined}
+            href={contact.href}
+            aria-current={contact.isActive ? "page" : undefined}
             className={
               "whitespace-nowrap pb-2 border-b-2 transition-colors hover:text-blue-700 dark:hover:text-blue-400 hover:border-blue-500 " +
-              (pathname === "/en/contact" || pathname === "/kontakt"
+              (contact.isActive
                 ? "text-blue-700 dark:text-blue-400 border-blue-600 font-semibold border-b-[3px]"
                 : "text-muted border-transparent")
             }

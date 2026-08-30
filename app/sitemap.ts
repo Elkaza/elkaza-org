@@ -4,8 +4,6 @@ import { absoluteUrl } from "./lib/seo";
 import { getAlternatePaths, getLocalizedPath } from "./lib/localizedRoutes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-
   const localizedStaticPages = [
     "/",
     "/about",
@@ -31,18 +29,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const englishPaths = localizedPages.map((path) => getLocalizedPath(path, "en"));
   const allPages = [...germanPaths, ...englishPaths];
 
-  return allPages.map((path) => ({
-    url: absoluteUrl(path),
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: path === "/" ? 1.0 : path.startsWith("/projects/") ? 0.6 : 0.7,
-    alternates: localizedPages.includes(getLocalizedPath(path, "de"))
-      ? {
-          languages: {
-            de: absoluteUrl(getAlternatePaths(path).de),
-            en: absoluteUrl(getAlternatePaths(path).en),
-          },
-        }
-      : undefined,
-  }));
+  return allPages.map((path) => {
+    const basePath = getLocalizedPath(path, "de");
+
+    return {
+      url: absoluteUrl(path),
+      changeFrequency: "monthly",
+      priority: basePath === "/" ? 1.0 : basePath.startsWith("/projects/") ? 0.6 : 0.7,
+      alternates: localizedPages.includes(basePath)
+        ? {
+            languages: {
+              de: absoluteUrl(getAlternatePaths(path).de),
+              en: absoluteUrl(getAlternatePaths(path).en),
+            },
+          }
+        : undefined,
+    };
+  });
 }

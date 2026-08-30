@@ -6,6 +6,7 @@ import SiteFooter from "@/app/components/SiteFooter";
 import SubNav from "@/app/components/SubNav";
 import { ThemeProvider } from "@/app/components/ThemeProvider";
 import { generatePersonSchema, generateWebSiteSchema } from "@/app/lib/metadata";
+import { MESSAGES } from "@/app/i18n/messages";
 import type { ActiveLocale } from "@/app/lib/localizedRoutes";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -41,7 +42,7 @@ export default function RootDocument({
           />
         )}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">Skip to content</a>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] bg-white text-blue-700 dark:bg-gray-900 dark:text-blue-400 border border-blue-300 rounded px-3 py-1">{MESSAGES[locale].a11y_skip_to_content}</a>
           <LocaleProvider initialLocale={locale}>
             <header className="sticky top-0 z-50">
               <SubNav />

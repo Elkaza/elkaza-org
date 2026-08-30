@@ -20,6 +20,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     search: "Suche",
     legal_location: "Wien, Österreich",
     back_to_top: "Nach oben",
+    a11y_skip_to_content: "Zum Inhalt springen",
+    a11y_top_navigation: "Hauptnavigation",
+    a11y_more_links: "Weitere Links",
 
     // Security Page
     nav_security: "Security",
@@ -411,6 +414,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     search: "Search",
     legal_location: "Vienna, Austria",
     back_to_top: "Back to top",
+    a11y_skip_to_content: "Skip to content",
+    a11y_top_navigation: "Top navigation",
+    a11y_more_links: "More links",
 
     // Security Page
     nav_security: "Security",
@@ -816,6 +822,9 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     nav_certifications: "الشهادات",
     search: "بحث",
     legal_location: "فيينا، النمسا",
+    a11y_skip_to_content: "Skip to content",
+    a11y_top_navigation: "Top navigation",
+    a11y_more_links: "More links",
 
     nav_resources: "\u0627\u0644\u0645\u0648\u0627\u0631\u062F",
     btn_learn: "\u0627\u0639\u0631\u0641 \u0627\u0644\u0645\u0632\u064A\u062F",
