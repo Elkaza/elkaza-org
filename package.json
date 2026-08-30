@@ -14,7 +14,6 @@
     "generate-favicons": "node scripts/generate-favicons.js"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "lucide-react": "^0.553.0",
     "next": "^16.2.9",
     "next-themes": "^0.4.6",

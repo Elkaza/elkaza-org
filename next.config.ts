@@ -5,6 +5,9 @@ const analyticsOrigin = 'https://analytics.elkaza.at';
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  experimental: {
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

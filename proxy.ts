@@ -26,7 +26,7 @@ export function proxy() {
     "img-src 'self' data: https:",
     `style-src 'self' 'unsafe-inline' 'nonce-${n}'`,
     `script-src 'self' ${analyticsOrigin} 'unsafe-inline' 'unsafe-eval'`,
-    `connect-src 'self' ${analyticsOrigin} https://generativelanguage.googleapis.com`,
+    `connect-src 'self' ${analyticsOrigin}`,
     "form-action 'self'",
     "upgrade-insecure-requests",
   ].join("; ");
