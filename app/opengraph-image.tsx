@@ -29,7 +29,7 @@ export default function OgImage() {
       >
         <div style={{ fontSize: 80, fontWeight: 800, marginBottom: 16 }}>Elkaza</div>
         <div style={{ fontSize: 36, opacity: 0.9 }}>
-          Digital Transformation • Enterprise Architecture • AI
+          IT Infrastructure • Application Engineering • Automation
         </div>
         <div style={{ fontSize: 26, marginTop: 8, opacity: 0.7 }}>elkaza.org</div>
       </div>

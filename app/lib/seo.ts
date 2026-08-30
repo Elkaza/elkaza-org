@@ -5,6 +5,8 @@ import { getAlternatePaths, getLocalizedPath } from "./localizedRoutes";
 import { profile } from "./profile";
 
 const siteUrl = profile.websiteUrl;
+const siteName = "Mohamed Elkaza Portfolio";
+const socialImage = absoluteUrl("/opengraph-image");
 
 export function absoluteUrl(path: string) {
   if (path === "/") return siteUrl;
@@ -40,8 +42,24 @@ export function localizedMetadata({
       title,
       description,
       url: absoluteUrl(localizedPath),
+      siteName,
+      type: "website",
       locale: locale === "de" ? "de_AT" : "en_US",
       alternateLocale: locale === "de" ? ["en_US"] : ["de_AT"],
+      images: [
+        {
+          url: socialImage,
+          width: 1200,
+          height: 630,
+          alt: locale === "de" ? "Portfolio von Mohamed Elkaza" : "Mohamed Elkaza portfolio",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [socialImage],
     },
   };
 }

@@ -2,6 +2,19 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== 'production';
 const analyticsOrigin = 'https://analytics.elkaza.at';
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "form-action 'self'",
+  "img-src 'self' blob: data:",
+  "font-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  `script-src 'self' ${analyticsOrigin} 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
+  `connect-src 'self' ${analyticsOrigin}`,
+  ...(isDev ? [] : ['upgrade-insecure-requests']),
+].join('; ');
 
 const nextConfig: NextConfig = {
   devIndicators: false,
@@ -19,8 +32,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            // Unsafe-eval is required for Next.js hot reloading in dev, but removed in prod for security.
-            value: `default-src 'self'; script-src 'self' ${analyticsOrigin} ${isDev ? "'unsafe-eval'" : ""} 'unsafe-inline'; connect-src 'self' ${analyticsOrigin}; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self';`
+            value: contentSecurityPolicy,
           },
           {
             key: 'X-Content-Type-Options',
