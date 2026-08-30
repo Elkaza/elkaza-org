@@ -412,7 +412,7 @@ export default function HomeContent() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-subtle py-3 text-sm font-semibold text-secondary">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-y border-subtle py-3 text-sm font-semibold text-secondary lg:min-h-[6.375rem]">
             {copy.profileFacts.map((item, index) => (
               <span key={item.label} className="inline-flex items-center gap-2">
                 <span className="text-muted">{item.label}</span>

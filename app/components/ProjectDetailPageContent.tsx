@@ -558,17 +558,21 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                             <img
                                 src={project.images[0]}
                                 alt={`${project.title.en} dashboard screenshot`}
+                                loading="lazy"
+                                decoding="async"
                                 className="h-auto w-full rounded-lg"
                             />
                         </section>
                     ) : (
-                        <section className="grid gap-4 md:grid-cols-2">
+                        <section className="grid items-start gap-4 md:grid-cols-2">
                             {project.images.map((image, index) => (
                                 <div key={image} className="overflow-hidden rounded-lg border border-subtle bg-card p-2">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={image}
                                         alt={`${project.title.en} image ${index + 1}`}
+                                        loading="lazy"
+                                        decoding="async"
                                         className="w-full h-auto rounded-lg"
                                     />
                                 </div>
@@ -666,6 +670,8 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                             <img
                                                 src={diagram.src}
                                                 alt={`${localized(diagram.title)} diagram for ${project.title.en}`}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className="w-full min-w-[640px] max-w-none rounded-md md:min-w-[720px]"
                                             />
                                         </div>
@@ -1124,6 +1130,8 @@ function FeaturedProjectDetailLayout({
                                             <img
                                                 src={image}
                                                 alt={`${project.title.en} validation image ${index + 1}`}
+                                                loading="lazy"
+                                                decoding="async"
                                                 className="h-auto w-full rounded-md"
                                             />
                                         </figure>
@@ -1457,6 +1465,8 @@ function FeaturedDiagramFigure({
                     <img
                         src={diagram.src}
                         alt={alt}
+                        loading="lazy"
+                        decoding="async"
                         className="h-auto w-full min-w-[720px] max-w-none rounded-md sm:min-w-0 sm:max-w-full print:min-w-0"
                     />
                 </div>
@@ -1488,6 +1498,8 @@ function FeaturedDiagramFigure({
                     <img
                         src={diagram.src}
                         alt={alt}
+                        loading="lazy"
+                        decoding="async"
                         className="h-auto w-full min-w-[720px] max-w-none rounded-md"
                     />
                 </div>

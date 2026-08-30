@@ -184,7 +184,7 @@ export default function CvPageContent() {
         </CvSection>
 
         <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-3">
             {profile.education.map((education) => (
               <article key={education.institution} className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
                 <div className="flex items-start gap-3">

@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { ProjectStatusBadge } from "./ui/ProjectStatusBadge";
@@ -345,7 +346,7 @@ function FeaturedProjectCard({
 
     return (
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
-            <ProjectVisual project={project} featured />
+            <ProjectVisual locale={locale} project={project} featured />
             <div className="flex flex-1 flex-col p-5">
                 <ProjectMeta copy={copy} locale={locale} project={project} />
                 <CardTitle className="text-xl">{getShortTitle(project, locale)}</CardTitle>
@@ -424,7 +425,7 @@ function CompactProjectCard({
 
     return (
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
-            <ProjectVisual project={project} />
+            <ProjectVisual locale={locale} project={project} />
             <div className="flex flex-1 flex-col p-4">
                 <ProjectMeta copy={copy} locale={locale} project={project} compact />
                 <CardTitle className="text-base">{getShortTitle(project, locale)}</CardTitle>
@@ -483,9 +484,11 @@ function ProjectMeta({
 }
 
 function ProjectVisual({
+    locale,
     project,
     featured = false,
 }: {
+    locale: Locale;
     project: Project;
     featured?: boolean;
 }) {
@@ -499,12 +502,17 @@ function ProjectVisual({
                     featured ? "h-44 p-3 sm:h-52 sm:p-4" : "h-28 p-3 sm:h-32",
                 ].join(" ")}
             >
-                <div className="h-full w-full overflow-hidden rounded-md border border-subtle bg-white shadow-inner shadow-slate-200/60">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                <div className="relative h-full w-full overflow-hidden rounded-md border border-subtle bg-white shadow-inner shadow-slate-200/60">
+                    <Image
                         src={src}
-                        alt={`${project.title.en} visual`}
-                        className="h-full w-full object-contain p-2"
+                        alt={project.title[locale]}
+                        fill
+                        loading="lazy"
+                        sizes={featured
+                            ? "(min-width: 1024px) 30vw, calc(100vw - 3rem)"
+                            : "(min-width: 1280px) 30vw, (min-width: 768px) 45vw, calc(100vw - 3rem)"}
+                        unoptimized={src.endsWith(".svg")}
+                        className="object-contain p-2"
                     />
                 </div>
             </div>
