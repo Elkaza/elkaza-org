@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Award, Calendar } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
-import { certifications, sortCertifications, CertCategory } from "@/app/lib/certifications";
+import { certifications, sortCertifications, type CertCategory, type CertType } from "@/app/lib/certifications";
 import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 
@@ -28,8 +28,21 @@ export default function CertificationsPageContent() {
         return cert.category === selectedCategory;
     });
 
+    const certificationGroups = [
+        {
+            id: "professional-certifications",
+            titleKey: "cert_section_prof",
+            items: filteredCerts.filter(cert => cert.type === "professional_certification"),
+        },
+        {
+            id: "courses-and-training",
+            titleKey: "cert_section_learning",
+            items: filteredCerts.filter(cert => cert.type !== "professional_certification"),
+        },
+    ].filter(group => group.items.length > 0);
+
     // Helper for Type Badge Styles & Text
-    const getTypeBadge = (type: string) => {
+    const getTypeBadge = (type: CertType) => {
         switch (type) {
             case "professional_certification":
                 // Accent (sky blue) for certifications
@@ -50,8 +63,8 @@ export default function CertificationsPageContent() {
             <div className="max-w-4xl mx-auto px-6 py-12">
                 {/* Header */}
                 <div className="mb-8">
-                    <Link href={getLocalizedPath("/about", activeLocale)} className="inline-flex items-center text-sm text-muted hover:text-blue-600 dark:hover:text-blue-400 mb-6 transition-colors font-medium">
-                        <ArrowLeft className="w-4 h-4 mr-1" />
+                    <Link href={getLocalizedPath("/about", activeLocale)} className="mb-6 inline-flex items-center rounded-sm text-sm font-medium text-muted transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page dark:hover:text-blue-400">
+                        <ArrowLeft className="mr-1 h-4 w-4" aria-hidden="true" />
                         {t("cert_nav_back")}
                     </Link>
                     <h1 className="text-3xl font-bold mb-2 text-main">{t("cert_list_title")}</h1>
@@ -69,9 +82,11 @@ export default function CertificationsPageContent() {
                         const isActive = selectedCategory === f.value;
                         return (
                             <button
+                                type="button"
                                 key={f.value}
                                 onClick={() => setSelectedCategory(f.value as CertCategory | "All")}
-                                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all border ${isActive
+                                aria-pressed={isActive}
+                                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-page ${isActive
                                     ? "bg-blue-600 text-white border-blue-600 shadow-sm"
                                     : "bg-card text-main border-subtle hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-700 dark:hover:text-blue-300 hover:border-blue-200 dark:hover:border-blue-800"
                                     }`}
@@ -83,67 +98,73 @@ export default function CertificationsPageContent() {
                 </div>
 
                 {/* List */}
-                <div className="space-y-6">
-                    {filteredCerts.map((cert) => {
-                        return (
-                            <div key={cert.id} className="bg-card border border-subtle hover:border-blue-200 dark:hover:border-blue-800 rounded-xl p-6 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-all duration-200">
-                                {/* Icon Column */}
-                                <div className="shrink-0">
-                                    <OrganizationLogo name={cert.organizationName} size="lg" decorative={false} />
-                                </div>
-
-                                {/* Content Column */}
-                                <div className="flex-1 min-w-0">
-                                    {/* Title */}
-                                    <h3 className="text-lg font-bold text-main leading-snug mb-1">
-                                        {t(cert.titleKey)}
-                                    </h3>
-
-                                    {/* Subtitle: Issuer + Badge */}
-                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4">
-                                        <span className="text-main text-sm font-medium">{t(cert.issuerKey)}</span>
-                                        {getTypeBadge(cert.type)}
-                                    </div>
-
-                                    {/* Meta Row */}
-                                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted mb-5">
-                                        {/* Date (Primary) */}
-                                        <div className="flex items-center text-main">
-                                            <Calendar className="w-4 h-4 mr-2 text-blue-600 dark:text-blue-400" />
-                                            <span>{t(cert.dateLabelKey)}</span>
+                <div className="space-y-10">
+                    {certificationGroups.map(group => (
+                        <section key={group.id} aria-labelledby={group.id}>
+                            <h2 id={group.id} className="mb-4 text-xl font-semibold text-main">
+                                {t(group.titleKey)}
+                            </h2>
+                            <div className="space-y-6">
+                                {group.items.map(cert => (
+                                    <article key={cert.id} className="flex flex-col gap-6 rounded-xl border border-subtle bg-card p-6 shadow-sm transition-all duration-200 hover:border-blue-200 hover:shadow-md dark:hover:border-blue-800 md:flex-row">
+                                        {/* Icon Column */}
+                                        <div className="shrink-0">
+                                            <OrganizationLogo name={cert.organizationName} size="lg" decorative={false} />
                                         </div>
 
-                                        {/* Grade */}
-                                        {cert.gradeKey && (
-                                            <div className="flex items-center">
-                                                <Award className="w-4 h-4 mr-2 text-amber-500" />
-                                                <span className="font-medium text-main">{t(cert.gradeKey)}</span>
-                                            </div>
-                                        )}
+                                        {/* Content Column */}
+                                        <div className="min-w-0 flex-1">
+                                            {/* Title */}
+                                            <h3 className="mb-1 text-lg font-bold leading-snug text-main">
+                                                {t(cert.titleKey)}
+                                            </h3>
 
-                                        {/* ECTS Badge */}
-                                        {cert.ects && (
-                                            <div className="flex items-center">
-                                                <span className="badge badge-primary font-bold">
-                                                    {cert.ects} ECTS
-                                                </span>
+                                            {/* Subtitle: Issuer + Badge */}
+                                            <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+                                                <span className="text-sm font-medium text-main">{t(cert.issuerKey)}</span>
+                                                {getTypeBadge(cert.type)}
                                             </div>
-                                        )}
 
-                                        {/* Provider Key */}
-                                        {cert.providerKey && (
-                                            <div className="flex items-center">
-                                                <span className="text-secondary text-xs border-l border-subtle pl-3">
-                                                    {t(cert.providerKey)}
-                                                </span>
+                                            {/* Meta Row */}
+                                            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
+                                                {/* Date (Primary) */}
+                                                <div className="flex items-center text-main">
+                                                    <Calendar className="mr-2 h-4 w-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                                                    <span>{t(cert.dateLabelKey)}</span>
+                                                </div>
+
+                                                {/* Grade */}
+                                                {cert.gradeKey && (
+                                                    <div className="flex items-center">
+                                                        <Award className="mr-2 h-4 w-4 text-amber-500" aria-hidden="true" />
+                                                        <span className="font-medium text-main">{t(cert.gradeKey)}</span>
+                                                    </div>
+                                                )}
+
+                                                {/* ECTS Badge */}
+                                                {cert.ects && (
+                                                    <div className="flex items-center">
+                                                        <span className="badge badge-primary font-bold">
+                                                            {cert.ects} ECTS
+                                                        </span>
+                                                    </div>
+                                                )}
+
+                                                {/* Provider Key */}
+                                                {cert.providerKey && (
+                                                    <div className="flex items-center">
+                                                        <span className="border-l border-subtle pl-3 text-xs text-secondary">
+                                                            {t(cert.providerKey)}
+                                                        </span>
+                                                    </div>
+                                                )}
                                             </div>
-                                        )}
-                                    </div>
-
-                                </div>
+                                        </div>
+                                    </article>
+                                ))}
                             </div>
-                        );
-                    })}
+                        </section>
+                    ))}
 
                     {filteredCerts.length === 0 && (
                         <p className="text-muted italic text-center py-8">{t("cert_empty")}</p>
