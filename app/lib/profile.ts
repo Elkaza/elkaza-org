@@ -232,7 +232,7 @@ export const profile = {
     { title: "IPMA Level D (cPMA)", issuer: "pma / IPMA", year: "2025" },
     { title: "Modern Management, Project Management", issuer: "University of Graz", year: "2025" },
     { title: "Career Essentials in Business Analysis", issuer: "LinkedIn Learning", year: "2023" },
-    { title: "Excel 365 VBA (Expert)", issuer: "Microsoft Excel", year: "2022" },
+    { title: "Excel 365 VBA (Expert)", issuer: "Raiffeisen Bank International", year: "2022" },
   ] satisfies ProfileCertification[],
   cvDownloads: {
     de: null,
