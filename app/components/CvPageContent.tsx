@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  ArrowRight,
   Award,
   BookOpen,
   BriefcaseBusiness,
@@ -16,42 +17,51 @@ import {
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
+import { projects } from "../lib/projects";
 import { mioProject } from "../lib/research";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
+import { ProjectStatusBadge } from "./ui/ProjectStatusBadge";
 import { TechBadge } from "./ui/TechBadge";
 
-const selectedProjects = [
+const appliedEngineeringProjectLinks = [
   {
     slug: "enterprise-self-hosted-infrastructure",
-    title: "Self-Hosted Infrastructure",
-    description: {
-      de: "Betreibe eine hybride VPS-/Proxmox-/Debian-Umgebung mit authentifizierter privater Tailscale-Administration und containerisierten Diensten. Nutze Ansible für wiederholbare Host-/Servicekonfigurationen mit Validierungs- und Idempotenzprüfungen. Überwache Service- und Backup-Zustände und pflege verifizierte Anwendungs-/Datenbackups mit isolierter Restore-Probe.",
-      en: "Operate a hybrid VPS/Proxmox/Debian environment with authenticated private Tailscale administration and containerized services. Use Ansible for repeatable host/service configuration with validation and idempotence checks. Monitor service and backup health and maintain verified application/data backups with an isolated restore rehearsal.",
-      ar: "Operate a hybrid VPS/Proxmox/Debian environment with authenticated private Tailscale administration and containerized services. Use Ansible for repeatable host/service configuration with validation and idempotence checks. Monitor service and backup health and maintain verified application/data backups with an isolated restore rehearsal.",
+    area: {
+      de: "Infrastruktur",
+      en: "Infrastructure",
+      ar: "Infrastructure",
     },
-    tags: ["Ansible", "Linux", "Tailscale", "Restic"],
+    title: "Self-Hosted Infrastructure",
+  },
+  {
+    slug: "rpi-ble-mqtt-gateway",
+    area: {
+      de: "IoT / Vernetzte Systeme",
+      en: "IoT / Connected Systems",
+      ar: "IoT / Connected Systems",
+    },
+    title: "Secure BLE/MQTT Monitoring Platform",
   },
   {
     slug: "edgeguardian-edge-ai-safety-bubble",
+    area: {
+      de: "Edge AI",
+      en: "Edge AI",
+      ar: "Edge AI",
+    },
     title: "EdgeGuardian",
-    description: {
-      de: "Demonstrierter Edge-AI-Prototyp mit Kamera, LiDAR, ESP32 und lokaler Entscheidungslogik.",
-      en: "Demonstrated edge-AI prototype with camera, LiDAR, ESP32 and local decision logic.",
-      ar: "Demonstrated edge-AI prototype with camera, LiDAR, ESP32 and local decision logic.",
-    },
-    tags: ["Raspberry Pi 5", "Hailo-8L", "LiDAR", "ESP32"],
-  },
-  {
-    slug: "tinyml-vibration-anomaly-detection",
-    title: "TinyML Vibration Detection",
-    description: {
-      de: "Akademischer Arduino-Prototyp für lokale Vibrationsklassifikation mit reproduzierbarer Validierung.",
-      en: "Academic Arduino prototype for local vibration classification with reproducible validation.",
-      ar: "Academic Arduino prototype for local vibration classification with reproducible validation.",
-    },
-    tags: ["Arduino", "IMU", "C++", "TinyML"],
   },
 ] as const;
+
+const appliedEngineeringProjects = appliedEngineeringProjectLinks.map((link) => {
+  const project = projects.find((entry) => entry.slug === link.slug);
+
+  if (!project) {
+    throw new Error(`Missing CV project bridge entry: ${link.slug}`);
+  }
+
+  return { ...link, project };
+});
 
 const skillGroups = [
   ["cv_skill_platform_title", "cv_skill_platform_items"],
@@ -146,6 +156,33 @@ export default function CvPageContent() {
           </div>
         </CvSection>
 
+        <CvSection icon={Code2} title={locale === "de" ? "Angewandte technische Projekte" : "Applied Engineering Work"}>
+          <p className="max-w-4xl text-sm leading-7 text-secondary md:text-base">
+            {locale === "de"
+              ? "Aktuelle Projekte erweitern meine berufliche Grundlage in Application Engineering, Infrastruktur und Automatisierung um vernetzte Systeme und Edge Computing."
+              : "Recent projects extend my professional foundation in application engineering, infrastructure and automation into connected systems and edge computing."}
+          </p>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {appliedEngineeringProjects.map(({ area, project, slug, title }) => (
+              <Link
+                key={slug}
+                href={getLocalizedPath(`/projects/${slug}`, activeLocale)}
+                className="group flex min-w-0 flex-col rounded-lg border border-subtle bg-page/70 p-4 transition-colors hover:border-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-xs font-extrabold uppercase tracking-normal text-muted">{area[locale]}</p>
+                  <ProjectStatusBadge status={project.status} locale={locale} size="xs" />
+                </div>
+                <h3 className="mt-3 font-semibold leading-snug text-main">{title}</h3>
+                <span className="mt-auto inline-flex items-center pt-4 text-sm font-semibold text-blue-700 group-hover:underline dark:text-blue-300">
+                  {locale === "de" ? "Fallstudie ansehen" : "View case study"}
+                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </CvSection>
+
         <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
           <div className="grid gap-4 md:grid-cols-3">
             {profile.education.map((education) => (
@@ -180,18 +217,6 @@ export default function CvPageContent() {
               <p className="mt-2 text-sm text-muted">{mio.programme}</p>
               <p className="mt-3 text-sm leading-7 text-secondary">{mio.description}</p>
             </article>
-          </div>
-        </CvSection>
-
-        <CvSection icon={Code2} title={locale === "de" ? "Ausgewählte Projekte" : "Selected Projects"}>
-          <div className="grid gap-4 md:grid-cols-3">
-            {selectedProjects.map((project) => (
-              <Link key={project.slug} href={getLocalizedPath(`/projects/${project.slug}`, activeLocale)} className="flex flex-col rounded-lg border border-subtle bg-page/70 p-4 transition hover:border-blue-400">
-                <h3 className="font-semibold text-main">{project.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-6 text-muted">{project.description[locale]}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">{project.tags.map((tag) => <TechBadge key={tag} name={tag} className="bg-card text-muted" />)}</div>
-              </Link>
-            ))}
           </div>
         </CvSection>
 

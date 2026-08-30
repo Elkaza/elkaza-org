@@ -9,7 +9,18 @@ export type ProjectCategory =
     | "security-infrastructure"
     | "delivery-platform";
 
-export type ProjectStatus = "implemented" | "in-progress" | "planned";
+export type ProjectStatus =
+    | "live"
+    | "implemented"
+    | "demonstrated-prototype"
+    | "academic-prototype"
+    | "in-progress"
+    | "planned";
+
+export type ProjectHighlight = {
+    value: LocalizedString;
+    label: LocalizedString;
+};
 
 export interface Project {
     slug: string;
@@ -36,6 +47,7 @@ export interface Project {
     reliability: LocalizedString;
     keyFeatures: LocalizedList;
     results: LocalizedList;
+    highlights?: ProjectHighlight[];
     tech: string[];
     tags: string[];
     links: { label: string; url: string }[];
@@ -57,7 +69,7 @@ export const projects: Project[] = [
     {
         slug: "edgeguardian-edge-ai-safety-bubble",
         category: "featured-aiot",
-        status: "implemented",
+        status: "demonstrated-prototype",
         year: "2026",
         title: loc(
             "EdgeGuardian: Edge AI Safety Bubble for Machine Monitoring",
@@ -138,6 +150,12 @@ export const projects: Project[] = [
                 "Dashboard-Reason-Cards und CSV-Logs machten die Zustandswechsel während der Demo nachvollziehbar",
             ]
         ),
+        highlights: [
+            { value: loc("~30 FPS", "~30 FPS"), label: loc("Demo throughput", "Demo-Durchsatz") },
+            { value: loc("Local inference", "Lokale Inferenz"), label: loc("Raspberry Pi 5 + Hailo-8L", "Raspberry Pi 5 + Hailo-8L") },
+            { value: loc("Camera + LiDAR", "Kamera + LiDAR"), label: loc("Fused sensing", "Fusionierte Sensorik") },
+            { value: loc("SAFE → WARNING → ALERT → SAFE", "SAFE → WARNING → ALERT → SAFE"), label: loc("Demonstrated state sequence", "Demonstrierte Zustandsfolge") },
+        ],
         tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "Python", "Flask"],
         tags: ["Edge AI", "AIoT", "Sensor Fusion", "Raspberry Pi", "Embedded"],
         links: [
@@ -190,7 +208,7 @@ export const projects: Project[] = [
     {
         slug: "tinyml-vibration-anomaly-detection",
         category: "featured-aiot",
-        status: "implemented",
+        status: "academic-prototype",
         year: "2026",
         title: loc(
             "TinyML Vibration Anomaly Detection on Arduino Nano 33 BLE Sense Rev2",
@@ -271,6 +289,11 @@ export const projects: Project[] = [
                 "Live-Demo zeigte stabiles Board als NORMAL, Tippen/Schütteln als ANOMALY, anhaltende Bewegung als ALERT und Rückkehr zu NORMAL",
             ]
         ),
+        highlights: [
+            { value: loc("98.61%", "98,61 %"), label: loc("Offline test accuracy · synthetic dataset", "Offline-Testgenauigkeit · synthetischer Datensatz") },
+            { value: loc("~1 ms", "~1 ms"), label: loc("Measured inference latency", "Gemessene Inferenzlatenz") },
+            { value: loc("12% flash · 19% RAM", "12 % Flash · 19 % RAM"), label: loc("Compiled resource usage", "Kompilierte Ressourcennutzung") },
+        ],
         tech: ["Arduino Nano 33 BLE Sense Rev2", "C++", "Python", "TinyML", "IMU", "Softmax"],
         tags: ["TinyML", "Embedded", "Arduino", "Signal Processing", "AIoT"],
         links: [
@@ -466,6 +489,10 @@ export const projects: Project[] = [
                 "Code, Notebook, HTML-Report, PDF-Instruktion und Prediction-Datei für die Abgabe paketiert",
             ]
         ),
+        highlights: [
+            { value: loc("R² 0.9914", "R² 0,9914"), label: loc("Best held-out model", "Bestes Hold-out-Modell") },
+            { value: loc("~1.19%", "~1,19 %"), label: loc("Normalized MAE", "Normalisierte MAE") },
+        ],
         tech: ["Python", "scikit-learn", "Pandas", "Jupyter", "Regression", "Feature Engineering"],
         tags: ["Machine Learning", "Regression", "Python", "Data Analysis"],
         links: [
@@ -475,7 +502,7 @@ export const projects: Project[] = [
     {
         slug: "enterprise-self-hosted-infrastructure",
         category: "security-infrastructure",
-        status: "implemented",
+        status: "live",
         year: "2026",
         title: loc(
             "Hybrid Self-Hosted Infrastructure & Operations",
@@ -562,6 +589,12 @@ export const projects: Project[] = [
                 "Eine verschlüsselte Sekundärkopie auf Wechselmedien steht über einen manuell ausgelösten Restic-Workflow zur Verfügung.",
             ]
         ),
+        highlights: [
+            { value: loc("15-minute checks", "15-Minuten-Prüfungen"), label: loc("Disk and backup health", "Datenträger- und Backup-Zustand") },
+            { value: loc("Private administration", "Private Administration"), label: loc("Separate Tailscale path", "Getrennter Tailscale-Pfad") },
+            { value: loc("Ansible-managed", "Ansible-verwaltet"), label: loc("Repeatable configuration", "Wiederholbare Konfiguration") },
+            { value: loc("Restore rehearsed", "Restore geprobt"), label: loc("Isolated recovery target", "Isoliertes Wiederherstellungsziel") },
+        ],
         tech: [
             "Ansible",
             "Linux",
@@ -702,6 +735,12 @@ export const projects: Project[] = [
                 "Ein stärkeres Portfolio-Signal für Systemintegration, Observability und sicheres Deployment auf dem Raspberry Pi geschaffen",
             ]
         ),
+        highlights: [
+            { value: loc("TLS / X.509", "TLS / X.509"), label: loc("Secured MQTT transport", "Abgesicherter MQTT-Transport") },
+            { value: loc("Podman Compose", "Podman Compose"), label: loc("Containerized services", "Containerisierte Dienste") },
+            { value: loc("InfluxDB", "InfluxDB"), label: loc("Time-series storage", "Zeitreihenspeicherung") },
+            { value: loc("Grafana", "Grafana"), label: loc("Telemetry visualization", "Telemetrievisualisierung") },
+        ],
         tech: ["Raspberry Pi 5", "Python", "Podman Compose", "Mosquitto MQTT", "Node-RED", "InfluxDB", "Grafana", "BLE", "TLS", "X.509"],
         tags: ["IoT", "Monitoring", "Security", "MQTT"],
         links: [

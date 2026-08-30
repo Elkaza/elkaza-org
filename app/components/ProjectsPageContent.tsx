@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
+import { ProjectStatusBadge } from "./ui/ProjectStatusBadge";
 import { TechBadge } from "./ui/TechBadge";
 import { BodyLarge, CardTitle, Eyebrow, PageTitle, SectionTitle } from "./ui/Typography";
 import { projects, type Project } from "../lib/projects";
 import { getLocalizedPath, type ActiveLocale } from "../lib/localizedRoutes";
 import type { Locale } from "../i18n/messages";
-import type { ProjectStatus } from "../lib/projects";
 
 type ProjectDomain =
     | "iot-edge-ai"
@@ -28,7 +28,6 @@ type Copy = {
     result: string;
     tech: string;
     year: string;
-    status: Record<ProjectStatus, string>;
     domains: Record<ProjectDomain, string>;
 };
 
@@ -193,27 +192,9 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
         ar: "Public and private paths are separated, configuration is repeatable, and application/data recovery has been rehearsed against an isolated target.",
     },
     "tinyml-vibration-anomaly-detection": {
-        en: "An Arduino prototype now demonstrates NORMAL, ANOMALY, and ALERT states in a live demo.",
-        de: "Ein Arduino-Prototyp zeigt jetzt NORMAL-, ANOMALY- und ALERT-Zustände in einer Live-Demo.",
-        ar: "An Arduino prototype now demonstrates NORMAL, ANOMALY, and ALERT states in a live demo.",
-    },
-};
-
-const FEATURED_STATUS_LABELS: Record<string, Record<Locale, string>> = {
-    "enterprise-self-hosted-infrastructure": {
-        en: "Live in operation",
-        de: "Im Betrieb",
-        ar: "Live in operation",
-    },
-    "edgeguardian-edge-ai-safety-bubble": {
-        en: "Demonstrated prototype",
-        de: "Demonstrierter Prototyp",
-        ar: "Demonstrated prototype",
-    },
-    "tinyml-vibration-anomaly-detection": {
-        en: "Academic prototype",
-        de: "Akademischer Prototyp",
-        ar: "Academic prototype",
+        en: "The Arduino demo shows NORMAL, ANOMALY, and ALERT states with recovery to NORMAL.",
+        de: "Die Arduino-Demo zeigt NORMAL-, ANOMALY- und ALERT-Zustände mit Rückkehr zu NORMAL.",
+        ar: "The Arduino demo shows NORMAL, ANOMALY, and ALERT states with recovery to NORMAL.",
     },
 };
 
@@ -230,11 +211,6 @@ const COPY: Record<Locale, Copy> = {
         result: "Result",
         tech: "Tech",
         year: "Year",
-        status: {
-            implemented: "Implemented",
-            "in-progress": "In progress",
-            planned: "Planned",
-        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -254,11 +230,6 @@ const COPY: Record<Locale, Copy> = {
         result: "Ergebnis",
         tech: "Tech",
         year: "Jahr",
-        status: {
-            implemented: "Umgesetzt",
-            "in-progress": "In Arbeit",
-            planned: "Geplant",
-        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -278,11 +249,6 @@ const COPY: Record<Locale, Copy> = {
         result: "Result",
         tech: "Tech",
         year: "Year",
-        status: {
-            implemented: "Implemented",
-            "in-progress": "In progress",
-            planned: "Planned",
-        },
         domains: {
             "iot-edge-ai": "IoT & Edge AI",
             "infrastructure-devops": "Infrastructure & DevOps",
@@ -381,11 +347,7 @@ function FeaturedProjectCard({
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-950/5 dark:hover:border-blue-500">
             <ProjectVisual project={project} featured />
             <div className="flex flex-1 flex-col p-5">
-                <ProjectMeta
-                    copy={copy}
-                    project={project}
-                    statusLabel={getFeaturedStatusLabel(project, locale, copy.status[project.status])}
-                />
+                <ProjectMeta copy={copy} locale={locale} project={project} />
                 <CardTitle className="text-xl">{getShortTitle(project, locale)}</CardTitle>
                 <p className="mt-3 break-words text-sm leading-relaxed text-muted">
                     {FEATURED_SUMMARIES[project.slug]?.[locale] ?? compactText(project.oneLiner[locale], 145)}
@@ -464,7 +426,7 @@ function CompactProjectCard({
         <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-subtle bg-card shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500">
             <ProjectVisual project={project} />
             <div className="flex flex-1 flex-col p-4">
-                <ProjectMeta copy={copy} project={project} compact />
+                <ProjectMeta copy={copy} locale={locale} project={project} compact />
                 <CardTitle className="text-base">{getShortTitle(project, locale)}</CardTitle>
                 <p className="mt-2 break-words text-sm leading-relaxed text-muted sm:min-h-[3rem]">
                     {getCardSummary(project, locale)}
@@ -498,32 +460,26 @@ function CompactProjectCard({
 
 function ProjectMeta({
     copy,
+    locale,
     project,
     compact = false,
-    statusLabel,
 }: {
     copy: Copy;
+    locale: Locale;
     project: Project;
     compact?: boolean;
-    statusLabel?: string;
 }) {
     return (
         <div className={`mb-3 flex flex-wrap items-center gap-2 ${compact ? "text-[11px]" : "text-xs"}`}>
             <span className="rounded-full border border-subtle bg-page px-2.5 py-1 font-semibold text-muted">
                 {copy.domains[getProjectDomain(project)]}
             </span>
-            <span className={`rounded-full border px-2.5 py-1 font-semibold ${getStatusClassName(project.status)}`}>
-                {statusLabel ?? copy.status[project.status]}
-            </span>
+            <ProjectStatusBadge status={project.status} locale={locale} size="xs" />
             <span className="rounded-full border border-subtle bg-page px-2.5 py-1 font-semibold text-muted">
                 {copy.year}: {project.year}
             </span>
         </div>
     );
-}
-
-function getFeaturedStatusLabel(project: Project, locale: Locale, fallback: string) {
-    return FEATURED_STATUS_LABELS[project.slug]?.[locale] ?? fallback;
 }
 
 function ProjectVisual({
@@ -615,18 +571,6 @@ function getCardSummary(project: Project, locale: Locale) {
 
 function getCardResult(project: Project, locale: Locale, result: string) {
     return CARD_RESULTS[project.slug]?.[locale] ?? compactText(result, 145);
-}
-
-function getStatusClassName(status: ProjectStatus) {
-    if (status === "implemented") {
-        return "border-emerald-700/30 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-950/30 dark:text-emerald-200";
-    }
-
-    if (status === "in-progress") {
-        return "border-blue-700/30 bg-blue-50 text-blue-900 dark:border-blue-400/40 dark:bg-blue-950/30 dark:text-blue-200";
-    }
-
-    return "border-amber-700/30 bg-amber-50 text-amber-900 dark:border-amber-400/40 dark:bg-amber-950/30 dark:text-amber-200";
 }
 
 function compactText(text: string, maxLength: number) {

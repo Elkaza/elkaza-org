@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "@/app/LocaleProvider";
+import { ProjectStatusBadge } from "@/app/components/ui/ProjectStatusBadge";
 import { TechBadge } from "@/app/components/ui/TechBadge";
 import { BodyLarge, CardTitle, Eyebrow, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import type { Locale } from "@/app/i18n/messages";
@@ -269,9 +270,9 @@ const FEATURED_COPY: Record<
       ar: "Designed, configured and now operate the hybrid environment's public/private boundaries, Ansible configuration, monitoring and recovery workflow.",
     },
     result: {
-      de: "Live betriebene Hybrid-Umgebung mit privater Administration, Ansible-verwalteter Konfiguration, überwachtem Backup-Zustand und geprobter Wiederherstellung von Anwendungen und Daten.",
-      en: "Live hybrid environment with private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
-      ar: "Live hybrid environment with private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
+      de: "Private Administration, Ansible-verwaltete Konfiguration, überwachter Backup-Zustand und geprobte Wiederherstellung von Anwendungen und Daten.",
+      en: "Private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
+      ar: "Private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
     },
     tech: ["Ansible", "Linux", "Tailscale"],
     visualLabel: {
@@ -297,9 +298,9 @@ const FEATURED_COPY: Record<
       ar: "Connected Raspberry Pi, Hailo, camera, LiDAR, and ESP32 into a prototype decision flow.",
     },
     result: {
-      de: "Als Prototyp dokumentiert, mit Architekturdiagrammen, Code und sichtbarer SAFE/WARNING/ALERT-Logik.",
-      en: "Documented as a prototype with architecture diagrams, code, and visible SAFE/WARNING/ALERT logic.",
-      ar: "Documented as a prototype with architecture diagrams, code, and visible SAFE/WARNING/ALERT logic.",
+      de: "Architekturdiagramme, Code und sichtbare SAFE/WARNING/ALERT-Logik dokumentieren den Entscheidungsfluss.",
+      en: "Architecture diagrams, code, and visible SAFE/WARNING/ALERT logic document the decision flow.",
+      ar: "Architecture diagrams, code, and visible SAFE/WARNING/ALERT logic document the decision flow.",
     },
     tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "ESP32"],
     visualLabel: {
@@ -325,9 +326,9 @@ const FEATURED_COPY: Record<
       ar: "Implemented IMU features, softmax model, C++ export, and Serial Monitor demo.",
     },
     result: {
-      de: "Akademischer Prototyp mit Quellcode, Modellvergleich und reproduzierbarer Validierung.",
-      en: "Academic prototype with source code, model comparison, and reproducible validation.",
-      ar: "Academic prototype with source code, model comparison, and reproducible validation.",
+      de: "Quellcode, Modellvergleich und reproduzierbare Validierung dokumentieren den Embedded-Workflow.",
+      en: "Source code, model comparison, and reproducible validation document the embedded workflow.",
+      ar: "Source code, model comparison, and reproducible validation document the embedded workflow.",
     },
     tech: ["Arduino Nano 33", "IMU", "C++", "Softmax", "TinyML"],
     visualLabel: {
@@ -645,6 +646,7 @@ function FeaturedProjectCard({
       />
 
       <div className="flex flex-1 flex-col p-5">
+        <ProjectStatusBadge status={project.status} locale={locale} className="mb-3 self-start" />
         <CardTitle className="text-xl">{projectCopy.title[locale]}</CardTitle>
         <div className="mt-4 divide-y divide-subtle border-y border-subtle text-sm leading-relaxed">
           {[

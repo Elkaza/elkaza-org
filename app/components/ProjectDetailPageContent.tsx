@@ -13,10 +13,12 @@ import {
 } from "lucide-react";
 import { notFound } from "next/navigation";
 import { useLocale } from "@/app/LocaleProvider";
+import { ProjectHighlights } from "@/app/components/ui/ProjectHighlights";
+import { ProjectStatusBadge } from "@/app/components/ui/ProjectStatusBadge";
 import { TechBadge } from "@/app/components/ui/TechBadge";
 import { Body, BodyLarge, CardTitle, MetaLabel, PageTitle, SectionTitle } from "@/app/components/ui/Typography";
 import { projects } from "@/app/lib/projects";
-import { getProjectStatusLabel, getProjectTagLabel } from "@/app/lib/projectDisplay";
+import { getProjectTagLabel } from "@/app/lib/projectDisplay";
 import { getLocalizedPath } from "@/app/lib/localizedRoutes";
 import type { Locale } from "@/app/i18n/messages";
 
@@ -56,7 +58,6 @@ type DetailCopy = {
     systemOverviewDiagram: string;
     deploymentDiagram: string;
     dataFlowDiagram: string;
-    status: string;
     related: string;
     relatedDescription: string;
     githubLabel: string;
@@ -73,9 +74,7 @@ type LocalizedString = Record<Locale, string>;
 type ProjectDiagram = NonNullable<(typeof projects)[number]["diagrams"]>[number];
 
 type FeaturedDetailConfig = {
-    outcome: LocalizedString;
     role: LocalizedString;
-    keyResultIndex: number;
     limitation?: LocalizedString;
     validation: Record<Locale, string[]>;
     nextStep: LocalizedString;
@@ -127,7 +126,6 @@ const COPY: Record<string, DetailCopy> = {
         systemOverviewDiagram: "System overview diagram",
         deploymentDiagram: "Deployment diagram",
         dataFlowDiagram: "Data flow diagram",
-        status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project connects with the rest of the work.",
         githubLabel: "View source on GitHub",
@@ -175,7 +173,6 @@ const COPY: Record<string, DetailCopy> = {
         deploymentDiagram: "Deployment-Diagramm",
         dataFlowDiagram: "Datenfluss-Diagramm",
         openDiagram: "Diagramm öffnen",
-        status: "Status",
         related: "Verwandtes Projekt",
         relatedDescription: "Die angrenzende Fallstudie zeigt, wie dieses Projekt mit der restlichen Arbeit zusammenhängt.",
         githubLabel: "Quellcode auf GitHub ansehen",
@@ -223,7 +220,6 @@ const COPY: Record<string, DetailCopy> = {
         systemOverviewDiagram: "System overview diagram",
         deploymentDiagram: "Deployment diagram",
         dataFlowDiagram: "Data flow diagram",
-        status: "Status",
         related: "Related Project",
         relatedDescription: "Follow the adjacent case study to see how this project connects with the rest of the work.",
         githubLabel: "View source on GitHub",
@@ -242,7 +238,6 @@ const stackLabel = (en: string, de: string): LocalizedString => ({ en, de, ar: e
 
 const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
     en: {
-        keyResult: "Key result",
         problemConstraints: "Problem and constraints",
         whatBuilt: "What I built",
         implementation: "Implementation",
@@ -253,7 +248,6 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
         plannedWork: "Planned work",
     },
     de: {
-        keyResult: "Wichtigstes Ergebnis",
         problemConstraints: "Problem und Rahmenbedingungen",
         whatBuilt: "Was ich gebaut habe",
         implementation: "Umsetzung",
@@ -264,7 +258,6 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
         plannedWork: "Geplante Arbeit",
     },
     ar: {
-        keyResult: "Key result",
         problemConstraints: "Problem and constraints",
         whatBuilt: "What I built",
         implementation: "Implementation",
@@ -278,17 +271,11 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
 
 const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig> = {
     "enterprise-self-hosted-infrastructure": {
-        outcome: {
-            en: "Live in operation",
-            de: "Im Betrieb",
-            ar: "Live in operation",
-        },
         role: {
             en: "I designed, configured and now operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
             de: "Ich habe die Hybrid-Umgebung entworfen und konfiguriert und betreibe sie heute – von den öffentlichen und privaten Netzwerkgrenzen über Linux-Härtung und Ansible-Konfigurationsverwaltung bis zu containerisierten Diensten, Monitoring und Wiederherstellungsverfahren.",
             ar: "I designed, configured and now operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
         },
-        keyResultIndex: 0,
         limitation: {
             en: "The environment is intentionally small and does not provide high availability or automatic failover. The encrypted removable secondary copy requires operator action, and current recovery verification covers application/data restoration rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
             de: "Die Umgebung ist bewusst klein gehalten und bietet weder Hochverfügbarkeit noch automatisches Failover. Die verschlüsselte Sekundärkopie auf Wechselmedien erfordert einen Eingriff durch den Betreiber; die aktuelle Wiederherstellungsprüfung deckt Anwendungs- und Datenwiederherstellung statt vollständiger Infrastrukturrekonstruktion ab. Ein Teil der Ressourcenprovisionierung liegt außerhalb der Ansible-verwalteten Konfiguration.",
@@ -339,17 +326,11 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         ],
     },
     "edgeguardian-edge-ai-safety-bubble": {
-        outcome: {
-            en: "Demonstrated prototype",
-            de: "Demonstrierter Prototyp",
-            ar: "Demonstrated prototype",
-        },
         role: {
             en: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
             de: "Ich integrierte Kamera, Hailo-Beschleuniger, LiDAR und ESP32 und implementierte anschließend die Fusionslogik, das Dashboard und die CSV-Protokollierung.",
             ar: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
         },
-        keyResultIndex: 1,
         limitation: {
             en: "Prototype only - not a certified safety system.",
             de: "Nur ein Prototyp - kein zertifiziertes Sicherheitssystem.",
@@ -397,17 +378,11 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         ],
     },
     "tinyml-vibration-anomaly-detection": {
-        outcome: {
-            en: "Academic prototype",
-            de: "Akademischer Prototyp",
-            ar: "Academic prototype",
-        },
         role: {
             en: "I built the pipeline from synthetic-data generation and feature extraction to model training, C++ export and on-device inference.",
             de: "Ich entwickelte die Pipeline von der synthetischen Datengenerierung und Merkmalsextraktion bis zum Modelltraining, C++-Export und zur Inferenz auf dem Arduino.",
             ar: "I built the pipeline from synthetic-data generation and feature extraction to model training, C++ export and on-device inference.",
         },
-        keyResultIndex: 0,
         validation: {
             en: [
                 "Trained and evaluated the classifier offline on the synthetic balanced dataset.",
@@ -475,7 +450,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
         { label: copy.role, body: getRoleDescription(project.slug, project.category, locale) },
         { label: copy.scope, body: conciseText(localized(project.solution), 230) },
         { label: copy.constraints, body: conciseText(`${localized(project.security)} ${localized(project.reliability)}`, 230) },
-        ...(localizedResults[0] ? [{ label: copy.resultLabel, body: localizedResults[0] }] : []),
+        ...(localizedResults[0] && !project.highlights ? [{ label: copy.resultLabel, body: localizedResults[0] }] : []),
     ];
     const challengeItems = [
         conciseText(localized(project.problem), 190),
@@ -515,10 +490,7 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                             <span className="rounded-full border border-subtle bg-page px-3 py-1">
                                 {copy.category[project.category]}
                             </span>
-                            <span className="inline-flex items-center gap-2 rounded-full border border-subtle bg-page px-3 py-1 font-medium text-main">
-                                <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
-                                {copy.status}: {getProjectStatusLabel(project.status, locale)}
-                            </span>
+                            <ProjectStatusBadge status={project.status} locale={locale} />
                             <span>{project.year}</span>
                         </div>
 
@@ -605,6 +577,8 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                     )
                 )}
 
+                {project.highlights && <ProjectHighlights highlights={project.highlights} locale={locale} />}
+
                 <CaseSnapshot title={copy.snapshot} items={snapshotItems} />
 
                 <section className="space-y-4">
@@ -682,7 +656,12 @@ export default function ProjectDetailPageContent({ slug }: { slug: string }) {
                                                 {copy.openDiagram}
                                             </a>
                                         </div>
-                                        <div className="overflow-x-auto bg-white p-3">
+                                        <div
+                                            className="overflow-x-auto bg-white p-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
+                                            role="region"
+                                            aria-label={`${localized(diagram.title)} — ${locale === "de" ? "scrollbarer Diagrammbereich" : "scrollable diagram area"}`}
+                                            tabIndex={0}
+                                        >
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={diagram.src}
@@ -915,8 +894,6 @@ function FeaturedProjectDetailLayout({
     const localizedValidation = localized(config.validation);
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
-    const keyResult = localizedResults[config.keyResultIndex] ?? localizedResults[0];
-    const outcomeValue = localized(config.outcome);
     const isInfrastructureCaseStudy = project.slug === "enterprise-self-hosted-infrastructure";
     const tocItems = useMemo(
         () =>
@@ -976,9 +953,7 @@ function FeaturedProjectDetailLayout({
                 <header id="overview" className="scroll-mt-28 grid gap-6 border-b border-subtle pb-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
                     <div className="min-w-0 space-y-5">
                         <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-normal">
-                            <span className={`rounded-full border px-3 py-1 ${getOutcomeClassName(outcomeValue)}`}>
-                                {outcomeValue}
-                            </span>
+                            <ProjectStatusBadge status={project.status} locale={locale} />
                             <span className="rounded-full border border-subtle bg-card px-3 py-1 text-muted">
                                 {project.year}
                             </span>
@@ -1000,9 +975,10 @@ function FeaturedProjectDetailLayout({
 
                     <div className="grid gap-3 rounded-lg border border-subtle bg-card p-4">
                         <FeaturedFact label={copy.role} value={localized(config.role)} />
-                        {keyResult && <FeaturedFact label={labels.keyResult} value={keyResult} />}
                     </div>
                 </header>
+
+                {project.highlights && <ProjectHighlights highlights={project.highlights} locale={locale} />}
 
                 <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
                     <FeaturedTableOfContents activeId={activeSection} items={tocItems} locale={locale} />
@@ -1309,15 +1285,6 @@ function ResultGrid({ items }: { items: string[] }) {
             })}
         </div>
     );
-}
-
-function getOutcomeClassName(outcome: string) {
-    const normalized = outcome.toLowerCase();
-    if (normalized.includes("live") || normalized.includes("betrieb")) {
-        return "border-emerald-700/30 bg-emerald-50 text-emerald-900 dark:border-emerald-400/40 dark:bg-emerald-950/30 dark:text-emerald-200";
-    }
-
-    return "border-amber-700/30 bg-amber-50 text-amber-950 dark:border-amber-400/40 dark:bg-amber-950/20 dark:text-amber-100";
 }
 
 function FeaturedTableOfContents({

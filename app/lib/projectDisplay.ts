@@ -27,17 +27,26 @@ export function getProjectTagLabel(tag: string, locale: Locale) {
 
 const STATUS_LABELS: Record<Locale, Record<ProjectStatus, string>> = {
     de: {
+        live: "Im Betrieb",
         implemented: "Umgesetzt",
+        "demonstrated-prototype": "Demonstrierter Prototyp",
+        "academic-prototype": "Akademischer Prototyp",
         "in-progress": "In Arbeit",
         planned: "Geplant",
     },
     en: {
+        live: "Live in operation",
         implemented: "Implemented",
+        "demonstrated-prototype": "Demonstrated prototype",
+        "academic-prototype": "Academic prototype",
         "in-progress": "In progress",
         planned: "Planned",
     },
     ar: {
+        live: "Live in operation",
         implemented: "Implemented",
+        "demonstrated-prototype": "Demonstrated prototype",
+        "academic-prototype": "Academic prototype",
         "in-progress": "In progress",
         planned: "Planned",
     },
