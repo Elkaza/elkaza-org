@@ -95,9 +95,9 @@ export const profile = {
         ],
       },
       tools: {
-        de: ["S1000D", "S4000P", "Anforderungsanalyse", "Technische Publikationen"],
-        en: ["S1000D", "S4000P", "Requirements Analysis", "Technical Publications"],
-        ar: ["S1000D", "S4000P", "Requirements Analysis", "Technical Publications"],
+        de: ["HICO TechDoc-Suite", "XSLT", "XML", "S1000D", "S4000P", "Technische Publikationen"],
+        en: ["HICO TechDoc-Suite", "XSLT", "XML", "S1000D", "S4000P", "Technical Publications"],
+        ar: ["HICO TechDoc-Suite", "XSLT", "XML", "S1000D", "S4000P", "Technical Publications"],
       },
     },
     {
@@ -109,23 +109,23 @@ export const profile = {
         de: [
           "Automatisierungslösungen mit Python und VBA entwickelt.",
           "Eine ServiceNow-API-Integration sowie Aufgabenplanung mit Jira und ServiceNow unterstützt.",
-          "Mit ADO.IT und strukturierten betrieblichen IT-Informationen gearbeitet.",
+          "Mit ADOIT und strukturierten betrieblichen IT-Informationen gearbeitet.",
         ],
         en: [
           "Developed automation solutions using Python and VBA.",
           "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
-          "Worked with ADO.IT and structured operational IT information.",
+          "Worked with ADOIT and structured operational IT information.",
         ],
         ar: [
           "Developed automation solutions using Python and VBA.",
           "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
-          "Worked with ADO.IT and structured operational IT information.",
+          "Worked with ADOIT and structured operational IT information.",
         ],
       },
       tools: {
-        de: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
-        en: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
-        ar: ["Python", "VBA", "ServiceNow", "Jira", "ADO.IT", "REST API"],
+        de: ["Python", "VBA", "ServiceNow (ITSM)", "Jira", "ADOIT", "ArchiMate", "REST API"],
+        en: ["Python", "VBA", "ServiceNow (ITSM)", "Jira", "ADOIT", "ArchiMate", "REST API"],
+        ar: ["Python", "VBA", "ServiceNow (ITSM)", "Jira", "ADOIT", "ArchiMate", "REST API"],
       },
     },
     {
@@ -151,9 +151,9 @@ export const profile = {
         ],
       },
       tools: {
-        de: ["Enterprise Architecture", "Anforderungsanalyse", "Prototyping", "Stakeholder-Koordination"],
-        en: ["Enterprise Architecture", "Requirements Analysis", "Prototyping", "Stakeholder Coordination"],
-        ar: ["Enterprise Architecture", "Requirements Analysis", "Prototyping", "Stakeholder Coordination"],
+        de: ["ADOIT", "ADONIS", "ArchiMate", "Enterprise Architecture", "Anforderungsanalyse", "Prototyping"],
+        en: ["ADOIT", "ADONIS", "ArchiMate", "Enterprise Architecture", "Requirements Analysis", "Prototyping"],
+        ar: ["ADOIT", "ADONIS", "ArchiMate", "Enterprise Architecture", "Requirements Analysis", "Prototyping"],
       },
     },
     {
@@ -178,9 +178,9 @@ export const profile = {
         ],
       },
       tools: {
-        de: ["TCP/IP", "LAN/WLAN", "Windows", "Netzwerk-Fehleranalyse", "IT Support"],
-        en: ["TCP/IP", "LAN/WLAN", "Windows", "Network Troubleshooting", "IT Support"],
-        ar: ["TCP/IP", "LAN/WLAN", "Windows", "Network Troubleshooting", "IT Support"],
+        de: ["Cisco Routing & Switching", "Windows Server 2008 R2", "MikroTik", "TCP/IP", "LAN/WLAN", "Netzwerk-Fehleranalyse"],
+        en: ["Cisco Routing & Switching", "Windows Server 2008 R2", "MikroTik", "TCP/IP", "LAN/WLAN", "Network Troubleshooting"],
+        ar: ["Cisco Routing & Switching", "Windows Server 2008 R2", "MikroTik", "TCP/IP", "LAN/WLAN", "Network Troubleshooting"],
       },
     },
   ] satisfies ProfileExperience[],
