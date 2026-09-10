@@ -47,6 +47,13 @@ export interface Project {
     reliability: LocalizedString;
     keyFeatures: LocalizedList;
     results: LocalizedList;
+    hybridLab?: {
+        title: LocalizedString;
+        overview: LocalizedString;
+        implementation: LocalizedList;
+        validation: LocalizedList;
+        scopeNote: LocalizedString;
+    };
     highlights?: ProjectHighlight[];
     tech: string[];
     tags: string[];
@@ -509,12 +516,12 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "An Ansible-managed hybrid platform combining public VPS ingress, authenticated private Tailscale transport, onsite containerized services, infrastructure monitoring, encrypted backups and tested application and data recovery.",
-            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, authentifiziertem privatem Tailscale-Transport, containerisierten Diensten vor Ort, Infrastruktur-Monitoring, verschlüsselten Backups und getesteter Wiederherstellung von Anwendungs- und Datenbeständen."
+            "An Ansible-managed hybrid platform combining public VPS ingress, private Tailscale administration, onsite containerized services, monitoring and verified recovery, with a separate Windows Server 2022 and Azure Arc learning lab.",
+            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, privater Administration über Tailscale, containerisierten Diensten vor Ort, Monitoring und verifizierter Wiederherstellung sowie einem getrennten Lernlabor für Windows Server 2022 und Azure Arc."
         ),
         seoDescription: loc(
-            "Case study of a hybrid Linux infrastructure using public VPS ingress, authenticated private Tailscale connectivity, Ansible-managed configuration, monitoring, encrypted backups and tested application and data recovery.",
-            "Fallstudie zu einer hybriden Linux-Infrastruktur mit öffentlichem VPS-Ingress, authentifizierter privater Tailscale-Verbindung, Ansible-verwalteter Konfiguration, Monitoring, verschlüsselten Backups und getesteter Wiederherstellung von Anwendungs- und Datenbeständen."
+            "Case study of a hybrid Linux and Docker platform with private Tailscale administration, Ansible-managed configuration, verified recovery, and a separate Windows Server 2022 and Azure Arc learning lab.",
+            "Fallstudie zu einer hybriden Linux- und Docker-Plattform mit privater Tailscale-Administration, Ansible-verwalteter Konfiguration, verifizierter Wiederherstellung und einem getrennten Windows-Server-2022- und Azure-Arc-Lernlabor."
         ),
         overview: loc(
             "Public HTTP/HTTPS traffic enters through the Public VPS Edge. Authenticated, encrypted private connectivity over Tailscale connects the public edge to onsite Docker services on Debian Core, hosted by Proxmox. Public ingress and administration remain separate; a WSL-based administration workstation runs Ansible against the Public VPS Edge, Debian Core and a Linux Canary Host.",
@@ -552,8 +559,8 @@ export const projects: Project[] = [
             "Administrationspfade bleiben über Tailscale privat. Verwaltete SSH-Dienste nutzen schlüsselbasierte Authentifizierung; Root-Login und passwortbasierte Anmeldung sind dort deaktiviert, wo dies dokumentiert ist. Host-Firewalls arbeiten eingehend nach Deny-by-Default. Der öffentlich erreichbare Anwendungs-Ingress auf dem VPS ist auf die erforderlichen HTTP-/HTTPS-Endpunkte beschränkt; administrative Zugriffe bleiben über Tailscale privat. Webbasierte Administration bleibt privat, ungenutzte administrative oder veraltete Dienste wurden deaktiviert, und UFW, Fail2Ban sowie CrowdSec wirken als getrennte Kontrollen, wo sie konfiguriert sind."
         ),
         reliability: loc(
-            "Uptime Kuma covers public availability and selected private infrastructure. Representative checks cover public websites, analytics, private operational services, reachability, disk state and backup freshness. A systemd oneshot service, triggered every 15 minutes by a timer, checks local disk and backup health; Telegram receives operational alerts.\n\nBackup verification covers archive integrity, required content and checksum validation. An isolated restore rehearsal demonstrates recoverability of selected application and database data without replacing production data. A separate operator-triggered Restic workflow can write an encrypted secondary copy to removable storage.",
-            "Uptime Kuma überwacht die öffentliche Erreichbarkeit und ausgewählte private Infrastruktur. Repräsentative Prüfungen decken öffentliche Websites, Analytics, private Betriebsdienste, Erreichbarkeit, Datenträgerzustand und Backup-Aktualität ab. Ein systemd-Oneshot-Dienst wird alle 15 Minuten durch einen Timer gestartet und prüft den lokalen Datenträger- und Backup-Zustand; Telegram empfängt Betriebsalarme.\n\nDie Backup-Prüfung umfasst Archivintegrität, erforderliche Inhalte und Prüfsummenvalidierung. Eine isolierte Restore-Probe weist die Wiederherstellbarkeit ausgewählter Anwendungs- und Datenbankdaten nach, ohne Produktionsdaten zu ersetzen. Ein separater, manuell ausgelöster Restic-Workflow kann eine verschlüsselte Sekundärkopie auf Wechselmedien schreiben."
+            "Uptime Kuma covers public availability and selected private infrastructure. Representative checks cover public websites, analytics, private operational services, reachability, disk state and backup freshness. A systemd oneshot service, triggered every 15 minutes by a timer, checks local disk and backup health; Telegram receives operational alerts.\n\nAn encrypted Restic copy was written to a dedicated external SSD, then checked for repository integrity and a full data read. SHA-256 and gzip/archive checks passed. PostgreSQL was restored into an isolated temporary container with 50 application tables present, ClickHouse filesystem extraction was verified, and temporary plaintext staging data was removed afterward.",
+            "Uptime Kuma überwacht die öffentliche Erreichbarkeit und ausgewählte private Infrastruktur. Repräsentative Prüfungen decken öffentliche Websites, Analytics, private Betriebsdienste, Erreichbarkeit, Datenträgerzustand und Backup-Aktualität ab. Ein systemd-Oneshot-Dienst wird alle 15 Minuten durch einen Timer gestartet und prüft den lokalen Datenträger- und Backup-Zustand; Telegram empfängt Betriebsalarme.\n\nEine verschlüsselte Restic-Kopie wurde auf eine dedizierte externe SSD geschrieben und anschließend auf Repository-Integrität sowie durch vollständiges Lesen der Daten geprüft. SHA-256- und gzip-/Archivprüfungen waren erfolgreich. PostgreSQL wurde in einem isolierten temporären Container wiederhergestellt; dabei waren 50 Anwendungstabellen vorhanden. Die Dateisystemextraktion von ClickHouse wurde verifiziert und temporär bereitgestellte Klartextdaten wurden anschließend entfernt."
         ),
         keyFeatures: locList(
             [
@@ -561,14 +568,14 @@ export const projects: Project[] = [
                 "Key-based SSH, hardened SSH settings, deny-by-default host firewalls, private management paths, and host-specific UFW, Fail2Ban, and CrowdSec controls reduce avoidable exposure",
                 "The private Fortress operations dashboard, built with Homepage and managed through Ansible, separates views for public services, monitoring, the Public VPS, Debian Core containers, and network infrastructure; it is reached through Tailscale Serve, and its former directly published application port is closed.",
                 "Uptime Kuma groups representative website, analytics, private-service, infrastructure, disk, and backup-freshness checks, with Telegram notifications and a private status view",
-                "Application and database archives are checked for required members and checksums; an isolated restore rehearsal tests recovery, and Restic writes operator-triggered encrypted copies to removable storage",
+                "Encrypted Restic backup to a dedicated external SSD, full-data-read and archive checks, isolated PostgreSQL recovery, and verified ClickHouse extraction provide concrete recovery evidence",
             ],
             [
                 "Ansible-Inventar, Rollen, Templates, Handler und fokussierte Playbooks verwalten wiederholbare Host- und Servicekonfigurationen mit Check Mode, Diffs, Assertions, Validierung und Idempotenzprüfungen",
                 "Schlüsselbasiertes SSH, gehärtete SSH-Einstellungen, eingehende Deny-by-Default-Firewalls, private Managementpfade sowie hostspezifische UFW-, Fail2Ban- und CrowdSec-Kontrollen reduzieren vermeidbare Exponierung",
                 "Das private Fortress Operations Dashboard, mit Homepage umgesetzt und über Ansible verwaltet, trennt Ansichten für öffentliche Dienste, Monitoring, den Public VPS, Debian-Core-Container und Netzwerkinfrastruktur; es wird über Tailscale Serve erreicht, und der zuvor direkt veröffentlichte Anwendungsport ist geschlossen.",
                 "Uptime Kuma gruppiert repräsentative Prüfungen für Websites, Analytics, private Dienste, Infrastruktur, Disk und Backup-Aktualität, ergänzt durch Telegram-Benachrichtigungen und eine private Statusansicht",
-                "Anwendungs- und Datenbankarchive werden auf erforderliche Inhalte und Prüfsummen geprüft; eine isolierte Restore-Probe testet die Wiederherstellung, und Restic schreibt manuell ausgelöste verschlüsselte Kopien auf Wechselmedien",
+                "Verschlüsseltes Restic-Backup auf eine dedizierte externe SSD, vollständige Lese- und Archivprüfungen, isolierte PostgreSQL-Wiederherstellung und verifizierte ClickHouse-Extraktion liefern konkrete Wiederherstellungsnachweise",
             ]
         ),
         results: locList(
@@ -577,18 +584,56 @@ export const projects: Project[] = [
                 "Public web ingress no longer requires direct inbound exposure of the residential network, while administrative interfaces remain on the private Tailscale path.",
                 "Check mode, diff review, assertions, post-change checks and repeated runs provide evidence for sensitive configuration changes and idempotence.",
                 "Monitoring covers representative service reachability, infrastructure health, disk state and backup freshness.",
-                "Application and database archives are checked before use, and recovery has been rehearsed against an isolated target without replacing production data.",
-                "An encrypted removable secondary copy is available through an operator-triggered Restic workflow.",
+                "SHA-256 and gzip/archive checks passed, and the encrypted Restic repository passed integrity and full-data-read checks on a dedicated external SSD.",
+                "PostgreSQL recovery was verified in an isolated temporary container with 50 application tables present; ClickHouse filesystem extraction was also verified and temporary plaintext staging data was removed.",
             ],
             [
                 "Die Umgebung trennt öffentlichen Ingress von privater Administration, verwaltet wiederholbare Host- und Servicekonfigurationen mit Ansible, überwacht Service- und Backup-Zustände und überprüft die Wiederherstellbarkeit von Anwendungs- und Datenbeständen durch Prüfsummenvalidierung und eine isolierte Restore-Probe.",
                 "Öffentlicher Web-Ingress erfordert keine direkte eingehende Exponierung des privaten Wohnnetzes mehr; Administrationsoberflächen bleiben auf dem privaten Tailscale-Pfad.",
                 "Check Mode, Diff-Prüfung, Assertions, Post-Change-Checks und wiederholte Läufe liefern Nachweise für sensible Konfigurationsänderungen und Idempotenz.",
                 "Das Monitoring deckt repräsentative Service-Erreichbarkeit, Infrastrukturzustand, Datenträgerzustand und Backup-Aktualität ab.",
-                "Anwendungs- und Datenbankarchive werden vor der Nutzung geprüft; die Wiederherstellung wurde gegen ein isoliertes Ziel geprobt, ohne Produktionsdaten zu ersetzen.",
-                "Eine verschlüsselte Sekundärkopie auf Wechselmedien steht über einen manuell ausgelösten Restic-Workflow zur Verfügung.",
+                "SHA-256- und gzip-/Archivprüfungen waren erfolgreich; außerdem bestand das verschlüsselte Restic-Repository auf einer dedizierten externen SSD die Integritätsprüfung und das vollständige Lesen der Daten.",
+                "Die PostgreSQL-Wiederherstellung wurde in einem isolierten temporären Container mit 50 vorhandenen Anwendungstabellen verifiziert; auch die ClickHouse-Dateisystemextraktion wurde geprüft und temporär bereitgestellte Klartextdaten wurden entfernt.",
             ]
         ),
+        hybridLab: {
+            title: loc(
+                "Windows Server and Azure Arc Hybrid Lab Extension",
+                "Windows Server und Azure Arc als Hybrid-Laberweiterung"
+            ),
+            overview: loc(
+                "To broaden hands-on hybrid administration beyond the production Linux and Docker platform, I added a separate Windows Server 2022 Datacenter learning lab on Exoscale. Azure Arc connects the server as a hybrid machine for inventory, tags and Azure control-plane visibility; paid extensions and Azure benefits remain disabled.",
+                "Um die praktische Hybrid-Administration über die produktive Linux- und Docker-Plattform hinaus zu erweitern, habe ich auf Exoscale ein getrenntes Lernlabor mit Windows Server 2022 Datacenter aufgebaut. Azure Arc bindet den Hybridserver für Inventarisierung, Tags und Sichtbarkeit in der Azure-Steuerungsebene an; kostenpflichtige Erweiterungen und Azure-Benefits bleiben deaktiviert."
+            ),
+            implementation: locList(
+                [
+                    "Tailscale provides the private administration path. Public RDP, WinRM and IIS access was tested and confirmed closed; Windows Firewall restricts WinRM to the Ansible controller.",
+                    "Ansible manages Windows roles and firewall state over PowerShell and WinRM with NTLM message encryption. Basic authentication and unencrypted WinRM payloads are disabled, while credentials remain in an encrypted vault outside Git.",
+                    "Ansible installs and manages a private IIS learning site bound only to the Tailscale interface, with TCP 80 accepted only from the administration workstation. Azure Arc onboarding and IIS configuration are documented as code.",
+                ],
+                [
+                    "Tailscale stellt den privaten Administrationspfad bereit. Öffentliche Zugriffe über RDP, WinRM und IIS wurden getestet und als geschlossen bestätigt; die Windows Firewall beschränkt WinRM auf den Ansible-Control-Node.",
+                    "Ansible verwaltet Windows-Rollen und den Firewall-Zustand über PowerShell und WinRM mit NTLM-Nachrichtenverschlüsselung. Basic Authentication und unverschlüsselte WinRM-Nutzdaten sind deaktiviert; die Zugangsdaten verbleiben in einem verschlüsselten Vault außerhalb von Git.",
+                    "Ansible installiert und verwaltet eine private IIS-Lernseite, die ausschließlich an die Tailscale-Schnittstelle gebunden ist; TCP 80 wird nur von der Admin Workstation akzeptiert. Azure-Arc-Onboarding und IIS-Konfiguration sind als Code dokumentiert.",
+                ]
+            ),
+            validation: locList(
+                [
+                    "The private IIS endpoint returned HTTP 200 while public RDP, WinRM and IIS access remained closed.",
+                    "The final IIS idempotence run reported ok=9, changed=0, unreachable=0 and failed=0.",
+                    "The final Windows audit reported ok=3, changed=0, unreachable=0 and failed=0.",
+                ],
+                [
+                    "Der private IIS-Endpunkt lieferte HTTP 200, während öffentliche Zugriffe über RDP, WinRM und IIS geschlossen blieben.",
+                    "Der abschließende IIS-Idempotenzlauf meldete ok=9, changed=0, unreachable=0 und failed=0.",
+                    "Das abschließende Windows-Audit meldete ok=3, changed=0, unreachable=0 und failed=0.",
+                ]
+            ),
+            scopeNote: loc(
+                "This lab demonstrates practical Windows Server 2022 administration, Azure Arc hybrid-server onboarding, and PowerShell/WinRM automation. It is not a production Windows workload or production Azure deployment and does not carry public platform traffic.",
+                "Dieses Labor zeigt praktische Windows-Server-2022-Administration, Azure-Arc-Onboarding eines Hybrid-Servers sowie PowerShell-/WinRM-Automatisierung. Es ist weder ein produktiver Windows-Workload noch ein produktives Azure-Deployment und verarbeitet keinen öffentlichen Plattformverkehr."
+            ),
+        },
         highlights: [
             { value: loc("15-minute checks", "15-Minuten-Prüfungen"), label: loc("Disk and backup health", "Datenträger- und Backup-Zustand") },
             { value: loc("Private administration", "Private Administration"), label: loc("Separate Tailscale path", "Getrennter Tailscale-Pfad") },
@@ -610,6 +655,11 @@ export const projects: Project[] = [
             "Restic",
             "Nginx",
             "Telegram",
+            "Windows Server 2022",
+            "Azure Arc",
+            "PowerShell",
+            "WinRM",
+            "IIS",
         ],
         tags: ["Self-Hosted", "Configuration as Code", "Operations", "Backup", "Hybrid Cloud"],
         links: [],
@@ -1453,8 +1503,8 @@ export const projects: Project[] = [
             "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Der private Hosting-Server wird über Tailscale erreicht statt direkt über den Heimrouter exponiert, TLS ist in Nginx Proxy Manager zentralisiert, und der Web-Container erzwingt HSTS, CSP, X-Frame-Options, Referrer-Policy und Schutz gegen MIME-Sniffing. Öffentlicher Ingress bleibt auf den kontrollierten HTTP/S-Pfad für Website und Analytics beschränkt."
         ),
         reliability: loc(
-            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and weekly snapshot-mode VM backups with keep-last-three local retention reduce manual deployment risk and improve recovery readiness. The deployment workflow tests both the private backend path and the local ingress path. An encrypted off-site copy and full isolated restore test remain pending.",
-            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschlüsselte Offsite-Kopie und ein vollständiger isolierter Restore-Test stehen noch aus."
+            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and weekly snapshot-mode VM backups with keep-last-three local retention reduce manual deployment risk and improve recovery readiness. The deployment workflow tests both the private backend path and the local ingress path. An encrypted Restic copy on a dedicated external SSD passed repository integrity and full-data-read checks; isolated PostgreSQL recovery and ClickHouse filesystem extraction were also verified.",
+            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschlüsselte Restic-Kopie auf einer dedizierten externen SSD bestand die Repository-Integritätsprüfung und das vollständige Lesen der Daten; auch die isolierte PostgreSQL-Wiederherstellung und die ClickHouse-Dateisystemextraktion wurden verifiziert."
         ),
         keyFeatures: locList(
             [

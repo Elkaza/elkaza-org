@@ -32,7 +32,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["Linux", "Docker", "Ansible", "Python", "SQL"];
+const TECH_CHIPS = ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Azure Arc", "Python", "SQL"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -265,16 +265,16 @@ const FEATURED_COPY: Record<
       ar: "Public services needed a controlled internet entry point without exposing private administration.",
     },
     responsibility: {
-      de: "Hybrid-Umgebung entworfen, konfiguriert und heute im Betrieb – mit getrennten öffentlichen und privaten Zugriffspfaden, Ansible-Konfiguration, Monitoring und Wiederherstellungsablauf.",
-      en: "Designed, configured and now operate the hybrid environment, including its public/private boundaries, Ansible configuration, monitoring and recovery workflow.",
-      ar: "Designed, configured and now operate the hybrid environment's public/private boundaries, Ansible configuration, monitoring and recovery workflow.",
+      de: "Die Linux-/Docker-Plattform entworfen und im Betrieb; anschließend um ein dokumentiertes Hybrid-Labor mit Windows Server 2022 und Azure Arc erweitert, das über Tailscale mit Ansible verwaltet wird.",
+      en: "Designed and operate the Linux/Docker platform, then added a documented Windows Server 2022 and Azure Arc hybrid lab managed with Ansible over Tailscale.",
+      ar: "Designed and operate the Linux/Docker platform, then added a documented Windows Server 2022 and Azure Arc hybrid lab managed with Ansible over Tailscale.",
     },
     result: {
-      de: "Private Administration, Ansible-verwaltete Konfiguration, überwachter Backup-Zustand und geprobte Wiederherstellung von Anwendungen und Daten.",
-      en: "Private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
-      ar: "Private administration, Ansible-managed configuration, monitored backup health and a rehearsed application/data restore procedure.",
+      de: "Private Administration, wiederholbare Linux- und Windows-Konfiguration, überwachter Backup-Zustand und verifizierte Wiederherstellung von Anwendungen und Daten.",
+      en: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
+      ar: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
     },
-    tech: ["Ansible", "Linux", "Tailscale"],
+    tech: ["Ansible", "Linux", "Windows Server 2022", "Azure Arc", "Tailscale"],
     visualLabel: {
       de: "Hybrid-Infrastruktur mit öffentlichem VPS-Ingress, privatem Tailscale-Transport und Docker-Diensten vor Ort.",
       en: "Hybrid infrastructure architecture with public VPS ingress, private Tailscale transport and onsite Docker services.",
@@ -365,12 +365,12 @@ const WORK_AREAS: {
       ar: "Infrastructure & Operations",
     },
     bullets: {
-      de: ["Betreibt überwachte Linux-, Docker- und Netzwerkumgebungen", "Nutzt wiederholbare Konfiguration und dokumentierte Wiederherstellung"],
-      en: ["Operates monitored Linux, Docker and network environments", "Uses repeatable configuration and documented recovery"],
+      de: ["Betreibt überwachte Linux-, Windows-Server-, Docker- und Netzwerkumgebungen", "Nutzt Ansible und PowerShell für wiederholbare Konfiguration sowie Tailscale und Azure Arc für private Hybrid-Administration"],
+      en: ["Operates monitored Linux, Windows Server, Docker and network environments", "Uses Ansible and PowerShell for repeatable configuration, with Tailscale and Azure Arc for private hybrid administration"],
       ar: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
     },
     Icon: Server,
-    tools: ["Linux", "Docker", "Ansible"],
+    tools: ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Azure Arc"],
   },
   {
     title: {

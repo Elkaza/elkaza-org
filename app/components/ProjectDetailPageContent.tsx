@@ -277,22 +277,22 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             ar: "I designed, configured and now operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
         },
         limitation: {
-            en: "The environment is intentionally small and does not provide high availability or automatic failover. The encrypted removable secondary copy requires operator action, and current recovery verification covers application/data restoration rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
-            de: "Die Umgebung ist bewusst klein gehalten und bietet weder Hochverfügbarkeit noch automatisches Failover. Die verschlüsselte Sekundärkopie auf Wechselmedien erfordert einen Eingriff durch den Betreiber; die aktuelle Wiederherstellungsprüfung deckt Anwendungs- und Datenwiederherstellung statt vollständiger Infrastrukturrekonstruktion ab. Ein Teil der Ressourcenprovisionierung liegt außerhalb der Ansible-verwalteten Konfiguration.",
-            ar: "The environment is intentionally small and does not provide high availability or automatic failover. The encrypted removable secondary copy requires operator action, and current recovery verification covers application/data restoration rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
+            en: "The environment is intentionally small and does not provide high availability or automatic failover. The external Restic copy is operator-triggered rather than scheduled, and current recovery evidence covers application and database data rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
+            de: "Die Umgebung ist bewusst klein gehalten und bietet weder Hochverfügbarkeit noch automatisches Failover. Die externe Restic-Kopie wird manuell statt zeitgesteuert ausgelöst; die aktuellen Wiederherstellungsnachweise decken Anwendungs- und Datenbankdaten statt einer vollständigen Infrastrukturrekonstruktion ab. Ein Teil der Ressourcenprovisionierung liegt außerhalb der Ansible-verwalteten Konfiguration.",
+            ar: "The environment is intentionally small and does not provide high availability or automatic failover. The external Restic copy is operator-triggered rather than scheduled, and current recovery evidence covers application and database data rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
         },
         validation: {
             en: [
                 "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
                 "Applied SSH and firewall changes with post-change configuration, connectivity, and public-exposure checks to reduce lockout risk.",
                 "Verified the 15-minute disk/backup-health check against backup presence, minimum size, checksum availability, and freshness, with Telegram notification.",
-                "Validated application/database archive members and checksums, restored selected data to an isolated target, and exercised the operator-triggered encrypted Restic copy to removable storage.",
+                "Validated SHA-256 and gzip/archive checks, completed Restic integrity and full-data-read checks, restored PostgreSQL to an isolated temporary container, and verified ClickHouse filesystem extraction.",
             ],
             de: [
                 "Relevante Ansible-Änderungen im Check Mode ausgeführt, Diffs und Assertions geprüft und die Ausführung zur Idempotenzprüfung wiederholt.",
                 "SSH- und Firewall-Änderungen mit Post-Change-Prüfungen für Konfiguration, Konnektivität und öffentliche Exponierung angewendet, um das Lockout-Risiko zu reduzieren.",
                 "Die 15-minütige Disk-/Backup-Health-Prüfung gegen Backup-Vorhandensein, Mindestgröße, Prüfsummenverfügbarkeit und Aktualität samt Telegram-Benachrichtigung verifiziert.",
-                "Inhalte und Prüfsummen der Anwendungs-/Datenbankarchive validiert, ausgewählte Daten in einem isolierten Ziel wiederhergestellt und die manuell ausgelöste verschlüsselte Restic-Kopie auf Wechselmedien ausgeführt.",
+                "SHA-256- und gzip-/Archivprüfungen validiert, Restic-Integritätsprüfung und vollständiges Lesen der Daten abgeschlossen, PostgreSQL in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion verifiziert.",
             ],
             ar: [
                 "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
@@ -302,9 +302,9 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             ],
         },
         nextStep: {
-            en: "Broaden declarative provisioning coverage and repeat the isolated application/data restore rehearsal on a documented schedule.",
-            de: "Den Umfang deklarativer Provisionierung erweitern und die isolierte Restore-Probe für Anwendungen und Daten nach einem dokumentierten Zeitplan wiederholen.",
-            ar: "Broaden declarative provisioning coverage and repeat the isolated application/data restore rehearsal on a documented schedule.",
+            en: "Add a second rotated or independent immutable backup destination and establish a verified recurring VPS backup.",
+            de: "Ein zweites rotierendes oder unabhängiges unveränderliches Backup-Ziel ergänzen und ein verifiziertes, regelmäßig ausgeführtes VPS-Backup etablieren.",
+            ar: "Add a second rotated or independent immutable backup destination and establish a verified recurring VPS backup.",
         },
         stackGroups: [
             {
@@ -314,6 +314,10 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             {
                 label: stackLabel("Configuration & Networking", "Konfiguration & Netzwerk"),
                 tech: ["Ansible", "Tailscale", "systemd"],
+            },
+            {
+                label: stackLabel("Windows hybrid lab", "Windows-Hybrid-Labor"),
+                tech: ["Windows Server 2022", "Azure Arc", "PowerShell", "WinRM", "IIS"],
             },
             {
                 label: stackLabel("Security", "Sicherheit"),
@@ -901,6 +905,7 @@ function FeaturedProjectDetailLayout({
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
     const isInfrastructureCaseStudy = project.slug === "enterprise-self-hosted-infrastructure";
+    const hybridLab = project.hybridLab;
     const tocItems = useMemo(
         () =>
             isInfrastructureCaseStudy
@@ -910,6 +915,7 @@ function FeaturedProjectDetailLayout({
                     { id: "architecture", label: locale === "de" ? "Architektur & Vertrauensgrenzen" : "Architecture & trust boundaries" },
                     { id: "configuration-management", label: locale === "de" ? "Konfigurationsmanagement" : "Configuration management" },
                     { id: "operations-recovery", label: locale === "de" ? "Betrieb & Wiederherstellung" : "Operations & recovery" },
+                    ...(hybridLab ? [{ id: "windows-hybrid-lab", label: locale === "de" ? "Windows-Hybrid-Labor" : "Windows hybrid lab" }] : []),
                     { id: "security-access", label: locale === "de" ? "Härtung & Zugriffsmodell" : "Hardening & access model" },
                     { id: "results", label: locale === "de" ? "Verifizierte Betriebsergebnisse" : "Verified operational outcomes" },
                     { id: "limitations", label: locale === "de" ? "Aktuelle Grenzen" : "Current limitations" },
@@ -926,7 +932,7 @@ function FeaturedProjectDetailLayout({
                     { id: "artefacts", label: locale === "de" ? "Artefakte" : "Artefacts" },
                     { id: "next-step", label: locale === "de" ? "Nächster Schritt" : "Next step" },
                 ],
-        [isInfrastructureCaseStudy, locale]
+        [hybridLab, isInfrastructureCaseStudy, locale]
     );
     const tocIds = useMemo(() => tocItems.map((item) => item.id), [tocItems]);
     const activeSection = useActiveSection(tocIds);
@@ -1036,6 +1042,27 @@ function FeaturedProjectDetailLayout({
                                         />
                                     )}
                                 </FeaturedSection>
+
+                                {hybridLab && (
+                                    <FeaturedSection id="windows-hybrid-lab" title={localized(hybridLab.title)}>
+                                        <Body className="max-w-4xl text-main">{localized(hybridLab.overview)}</Body>
+                                        <div className="space-y-3">
+                                            <MetaLabel className="text-main">
+                                                {locale === "de" ? "Umsetzung" : "Implementation"}
+                                            </MetaLabel>
+                                            <FlatList items={localized(hybridLab.implementation)} />
+                                        </div>
+                                        <div className="space-y-3">
+                                            <MetaLabel className="text-main">
+                                                {locale === "de" ? "Validierung" : "Validation"}
+                                            </MetaLabel>
+                                            <ValidationList items={localized(hybridLab.validation)} />
+                                        </div>
+                                        <p className="max-w-4xl border-l-2 border-blue-500 pl-4 text-sm leading-relaxed text-muted">
+                                            {localized(hybridLab.scopeNote)}
+                                        </p>
+                                    </FeaturedSection>
+                                )}
 
                                 <FeaturedSection
                                     id="security-access"

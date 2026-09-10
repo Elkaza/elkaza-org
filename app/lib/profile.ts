@@ -36,8 +36,8 @@ export const profile = {
     ar: "IT Infrastructure & Application Engineer",
   },
   introduction: {
-    de: "Ich betreibe Linux- und Docker-Umgebungen, analysiere Anwendungsprobleme und automatisiere Betriebsabläufe mit Ansible, Python und SQL.",
-    en: "I operate Linux and Docker environments, troubleshoot applications, and automate workflows with Ansible, Python and SQL.",
+    de: "Ich betreibe Linux-, Windows-Server- und Docker-Umgebungen, analysiere Anwendungsprobleme und automatisiere Betriebsabläufe mit Ansible, PowerShell, Python und SQL.",
+    en: "I operate Linux, Windows Server and Docker environments, troubleshoot applications, and automate operational workflows with Ansible, PowerShell, Python and SQL.",
     ar: "I build and operate reliable Linux, Docker and automation systems, combining application support, technical documentation and hands-on IoT and Edge AI work.",
   },
   location: {
