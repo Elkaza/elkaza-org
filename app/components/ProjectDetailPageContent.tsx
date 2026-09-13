@@ -68,7 +68,8 @@ type DetailCopy = {
 type FeaturedProjectSlug =
     | "enterprise-self-hosted-infrastructure"
     | "edgeguardian-edge-ai-safety-bubble"
-    | "tinyml-vibration-anomaly-detection";
+    | "tinyml-vibration-anomaly-detection"
+    | "rpi-ble-mqtt-gateway";
 
 type LocalizedString = Record<Locale, string>;
 type ProjectDiagram = NonNullable<(typeof projects)[number]["diagrams"]>[number];
@@ -77,6 +78,10 @@ type FeaturedDetailConfig = {
     role: LocalizedString;
     limitation?: LocalizedString;
     validation: Record<Locale, string[]>;
+    evidence?: {
+        alt: LocalizedString;
+        caption: LocalizedString;
+    }[];
     nextStep: LocalizedString;
     stackGroups: {
         label: LocalizedString;
@@ -232,6 +237,7 @@ const FEATURED_DETAIL_SLUGS = new Set<string>([
     "enterprise-self-hosted-infrastructure",
     "edgeguardian-edge-ai-safety-bubble",
     "tinyml-vibration-anomaly-detection",
+    "rpi-ble-mqtt-gateway",
 ]);
 
 const stackLabel = (en: string, de: string): LocalizedString => ({ en, de, ar: en });
@@ -425,6 +431,94 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             {
                 label: stackLabel("Validation", "Validierung"),
                 tech: ["Serial Monitor", "Offline test set", "Flash/RAM report"],
+            },
+        ],
+    },
+    "rpi-ble-mqtt-gateway": {
+        role: {
+            en: "End-to-end IoT integration: BLE ingestion, secure MQTT transport, containerized services, telemetry processing, time-series storage, dashboarding and operational documentation.",
+            de: "End-to-End-IoT-Integration: BLE-Ingestion, sicherer MQTT-Transport, containerisierte Dienste, Telemetrieverarbeitung, Zeitreihenspeicherung, Dashboarding und Betriebsdokumentation.",
+            ar: "End-to-end IoT integration: BLE ingestion, secure MQTT transport, containerized services, telemetry processing, time-series storage, dashboarding and operational documentation.",
+        },
+        validation: {
+            en: [
+                "Confirmed that Node-RED received temperature and humidity messages from MQTT and exposed normalized payload values in its debug output.",
+                "Confirmed that the processing flow routes telemetry from Mosquitto through a transformation step to InfluxDB while retaining a debug branch for inspection.",
+                "Queried InfluxDB Data Explorer and found persisted temperature and humidity fields in the sensor_data measurement.",
+                "Reviewed the public repository to confirm that local environment files, generated tokens and private certificate material are excluded.",
+            ],
+            de: [
+                "Bestätigt, dass Node-RED Temperatur- und Feuchtigkeitsnachrichten über MQTT empfängt und normalisierte Payload-Werte im Debug-Output ausgibt.",
+                "Bestätigt, dass der Verarbeitungsflow Telemetrie von Mosquitto über einen Transformationsschritt nach InfluxDB leitet und parallel einen Debug-Zweig zur Prüfung beibehält.",
+                "InfluxDB Data Explorer abgefragt und persistierte Temperatur- und Feuchtigkeitsfelder in der Measurement sensor_data nachgewiesen.",
+                "Das öffentliche Repository darauf geprüft, dass lokale Umgebungsdateien, generierte Tokens und privates Zertifikatsmaterial ausgeschlossen sind.",
+            ],
+            ar: [
+                "Confirmed that Node-RED received temperature and humidity messages from MQTT and exposed normalized payload values in its debug output.",
+                "Confirmed that the processing flow routes telemetry from Mosquitto through a transformation step to InfluxDB while retaining a debug branch for inspection.",
+                "Queried InfluxDB Data Explorer and found persisted temperature and humidity fields in the sensor_data measurement.",
+                "Reviewed the public repository to confirm that local environment files, generated tokens and private certificate material are excluded.",
+            ],
+        },
+        evidence: [
+            {
+                alt: {
+                    en: "Node-RED flow connecting Mosquitto input to a processing function, InfluxDB output and debug output",
+                    de: "Node-RED-Flow vom Mosquitto-Eingang über eine Verarbeitungsfunktion zu InfluxDB- und Debug-Ausgabe",
+                    ar: "Node-RED flow connecting Mosquitto input to a processing function, InfluxDB output and debug output",
+                },
+                caption: {
+                    en: "Processing path: Mosquitto input, payload transformation, InfluxDB write and debug inspection.",
+                    de: "Verarbeitungspfad: Mosquitto-Eingang, Payload-Transformation, InfluxDB-Schreibvorgang und Debug-Prüfung.",
+                    ar: "Processing path: Mosquitto input, payload transformation, InfluxDB write and debug inspection.",
+                },
+            },
+            {
+                alt: {
+                    en: "Node-RED debug output showing MQTT temperature and humidity payload values",
+                    de: "Node-RED-Debug-Ausgabe mit Temperatur- und Feuchtigkeitswerten aus MQTT-Payloads",
+                    ar: "Node-RED debug output showing MQTT temperature and humidity payload values",
+                },
+                caption: {
+                    en: "Runtime evidence: alternating temperature and humidity payloads received in Node-RED.",
+                    de: "Laufzeitnachweis: abwechselnde Temperatur- und Feuchtigkeits-Payloads in Node-RED empfangen.",
+                    ar: "Runtime evidence: alternating temperature and humidity payloads received in Node-RED.",
+                },
+            },
+            {
+                alt: {
+                    en: "InfluxDB Data Explorer table showing stored sensor_data temperature and humidity fields",
+                    de: "InfluxDB-Data-Explorer-Tabelle mit gespeicherten Temperatur- und Feuchtigkeitsfeldern der Measurement sensor_data",
+                    ar: "InfluxDB Data Explorer table showing stored sensor_data temperature and humidity fields",
+                },
+                caption: {
+                    en: "Persistence evidence: temperature and humidity fields stored in the sensor_data measurement.",
+                    de: "Persistenznachweis: Temperatur- und Feuchtigkeitsfelder in der Measurement sensor_data gespeichert.",
+                    ar: "Persistence evidence: temperature and humidity fields stored in the sensor_data measurement.",
+                },
+            },
+        ],
+        nextStep: {
+            en: "Add a repeatable end-to-end integration test that follows a synthetic BLE payload through MQTT processing to the persisted metric and dashboard query.",
+            de: "Einen wiederholbaren End-to-End-Integrationstest ergänzen, der eine synthetische BLE-Payload über MQTT-Verarbeitung bis zur persistierten Metrik und Dashboard-Abfrage verfolgt.",
+            ar: "Add a repeatable end-to-end integration test that follows a synthetic BLE payload through MQTT processing to the persisted metric and dashboard query.",
+        },
+        stackGroups: [
+            {
+                label: stackLabel("Hardware & Ingestion", "Hardware & Ingestion"),
+                tech: ["Raspberry Pi 5", "ESP32", "BLE", "Python"],
+            },
+            {
+                label: stackLabel("Messaging & Processing", "Messaging & Verarbeitung"),
+                tech: ["Mosquitto MQTT", "TLS", "X.509", "Node-RED"],
+            },
+            {
+                label: stackLabel("Data & Visualization", "Daten & Visualisierung"),
+                tech: ["InfluxDB", "Grafana"],
+            },
+            {
+                label: stackLabel("Runtime & Secrets", "Runtime & Secrets"),
+                tech: ["Podman Compose", "Podman secrets"],
             },
         ],
     },
@@ -1156,11 +1250,18 @@ function FeaturedProjectDetailLayout({
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
                                                 src={image}
-                                                alt={`${project.title.en} validation image ${index + 1}`}
+                                                alt={config.evidence?.[index]
+                                                    ? localized(config.evidence[index].alt)
+                                                    : `${localized(project.title)} validation image ${index + 1}`}
                                                 loading="lazy"
                                                 decoding="async"
                                                 className="h-auto w-full rounded-md"
                                             />
+                                            {config.evidence?.[index] && (
+                                                <figcaption className="px-2 pb-1 pt-3 text-sm leading-relaxed text-muted">
+                                                    {localized(config.evidence[index].caption)}
+                                                </figcaption>
+                                            )}
                                         </figure>
                                     ))}
                                 </div>
