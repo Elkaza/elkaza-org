@@ -278,9 +278,9 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
 const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig> = {
     "enterprise-self-hosted-infrastructure": {
         role: {
-            en: "I designed, configured and now operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
-            de: "Ich habe die Hybrid-Umgebung entworfen und konfiguriert und betreibe sie heute – von den öffentlichen und privaten Netzwerkgrenzen über Linux-Härtung und Ansible-Konfigurationsverwaltung bis zu containerisierten Diensten, Monitoring und Wiederherstellungsverfahren.",
-            ar: "I designed, configured and now operate the hybrid environment, including its public/private network boundaries, Linux hardening, Ansible configuration management, containerized services, monitoring and recovery procedures.",
+            en: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible automation, host firewalls, Azure Arc integration, monitoring and recovery validation.",
+            de: "Ich habe dieses hybride Infrastrukturlabor entworfen und konfiguriert und betreibe es heute – einschließlich Public-/Private-Grenzen, Linux- und Windows-Administration, Ansible-Automatisierung, Host-Firewalls, Azure-Arc-Integration, Monitoring und Recovery-Validierung.",
+            ar: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible automation, host firewalls, Azure Arc integration, monitoring and recovery validation.",
         },
         limitation: {
             en: "The environment is intentionally small and does not provide high availability or automatic failover. The external Restic copy is operator-triggered rather than scheduled, and current recovery evidence covers application and database data rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
@@ -289,22 +289,25 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         },
         validation: {
             en: [
-                "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
-                "Applied SSH and firewall changes with post-change configuration, connectivity, and public-exposure checks to reduce lockout risk.",
-                "Verified the 15-minute disk/backup-health check against backup presence, minimum size, checksum availability, and freshness, with Telegram notification.",
-                "Validated SHA-256 and gzip/archive checks, completed Restic integrity and full-data-read checks, restored PostgreSQL to an isolated temporary container, and verified ClickHouse filesystem extraction.",
+                "Debian Azure Arc audit: changed=0, unreachable=0, failed=0.",
+                "Windows security audit: no baseline violations; changed=0, unreachable=0, failed=0.",
+                "Windows remote-access hardening idempotency check: changed=0, failed=0.",
+                "Private IIS validation: public access remained blocked while private access over Tailscale returned HTTP 200.",
+                "Recovery validation: SHA-256 and archive checks passed; PostgreSQL was restored to an isolated temporary container and ClickHouse filesystem extraction was verified.",
             ],
             de: [
-                "Relevante Ansible-Änderungen im Check Mode ausgeführt, Diffs und Assertions geprüft und die Ausführung zur Idempotenzprüfung wiederholt.",
-                "SSH- und Firewall-Änderungen mit Post-Change-Prüfungen für Konfiguration, Konnektivität und öffentliche Exponierung angewendet, um das Lockout-Risiko zu reduzieren.",
-                "Die 15-minütige Disk-/Backup-Health-Prüfung gegen Backup-Vorhandensein, Mindestgröße, Prüfsummenverfügbarkeit und Aktualität samt Telegram-Benachrichtigung verifiziert.",
-                "SHA-256- und gzip-/Archivprüfungen validiert, Restic-Integritätsprüfung und vollständiges Lesen der Daten abgeschlossen, PostgreSQL in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion verifiziert.",
+                "Debian-Azure-Arc-Audit: changed=0, unreachable=0, failed=0.",
+                "Windows-Sicherheitsaudit: keine Baseline-Verletzungen; changed=0, unreachable=0, failed=0.",
+                "Idempotenzprüfung der Windows-Remote-Access-Härtung: changed=0, failed=0.",
+                "Private-IIS-Validierung: Öffentlicher Zugriff blieb blockiert, während der private Zugriff über Tailscale HTTP 200 lieferte.",
+                "Recovery-Validierung: SHA-256- und Archivprüfungen waren erfolgreich; PostgreSQL wurde in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion wurde verifiziert.",
             ],
             ar: [
-                "Ran relevant Ansible changes in check mode, inspected diffs and assertions, then repeated execution to check idempotence.",
-                "Applied SSH and firewall changes with post-change configuration, connectivity, and public-exposure checks to reduce lockout risk.",
-                "Verified the 15-minute disk/backup-health check against backup presence, minimum size, checksum availability, and freshness, with Telegram notification.",
-                "Validated application/database archive members and checksums, restored selected data to an isolated target, and exercised the operator-triggered encrypted Restic copy to removable storage.",
+                "Debian Azure Arc audit: changed=0, unreachable=0, failed=0.",
+                "Windows security audit: no baseline violations; changed=0, unreachable=0, failed=0.",
+                "Windows remote-access hardening idempotency check: changed=0, failed=0.",
+                "Private IIS validation: public access remained blocked while private access over Tailscale returned HTTP 200.",
+                "Recovery validation: SHA-256 and archive checks passed; PostgreSQL was restored to an isolated temporary container and ClickHouse filesystem extraction was verified.",
             ],
         },
         nextStep: {
@@ -314,24 +317,28 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
         },
         stackGroups: [
             {
-                label: stackLabel("Platform", "Plattform"),
-                tech: ["Proxmox VE", "Debian", "Docker Compose", "Nginx"],
+                label: stackLabel("Compute & operating systems", "Compute & Betriebssysteme"),
+                tech: ["Proxmox VE", "Ubuntu Server 22.04", "Debian 13", "Windows Server 2022"],
             },
             {
-                label: stackLabel("Configuration & Networking", "Konfiguration & Netzwerk"),
-                tech: ["Ansible", "Tailscale", "systemd"],
+                label: stackLabel("Containers & ingress", "Container & Ingress"),
+                tech: ["Docker Compose", "Nginx", "Nginx Proxy Manager"],
             },
             {
-                label: stackLabel("Windows hybrid lab", "Windows-Hybrid-Labor"),
-                tech: ["Windows Server 2022", "Azure Arc", "PowerShell", "WinRM", "IIS"],
+                label: stackLabel("Automation & private management", "Automatisierung & private Administration"),
+                tech: ["Git", "Ansible", "Tailscale", "PowerShell", "SSH", "WinRM"],
+            },
+            {
+                label: stackLabel("Hybrid governance", "Hybrid-Governance"),
+                tech: ["Azure Arc", "Azure Resource Graph"],
             },
             {
                 label: stackLabel("Security", "Sicherheit"),
-                tech: ["UFW", "Fail2Ban", "CrowdSec"],
+                tech: ["UFW", "Fail2Ban", "CrowdSec", "Microsoft Defender", "Windows Firewall"],
             },
             {
                 label: stackLabel("Monitoring & Recovery", "Monitoring & Wiederherstellung"),
-                tech: ["Uptime Kuma", "Restic", "Telegram"],
+                tech: ["Uptime Kuma", "Netdata", "systemd", "Restic", "Telegram"],
             },
         ],
     },
@@ -996,6 +1003,8 @@ function FeaturedProjectDetailLayout({
     const localizedResults = localized(project.results);
     const localizedFeatures = localized(project.keyFeatures);
     const localizedValidation = localized(config.validation);
+    const localizedLessons = project.lessons ? localized(project.lessons) : [];
+    const reliabilitySections = localized(project.reliability).split(/\n\n/u);
     const githubLink = project.links.find((link) => link.url.includes("github.com"));
     const externalLinks = project.links.filter((link) => !link.url.includes("github.com"));
     const isInfrastructureCaseStudy = project.slug === "enterprise-self-hosted-infrastructure";
@@ -1005,14 +1014,19 @@ function FeaturedProjectDetailLayout({
             isInfrastructureCaseStudy
                 ? [
                     { id: "overview", label: locale === "de" ? "Überblick" : "Overview" },
-                    { id: "operational-problem", label: locale === "de" ? "Betriebsproblem" : "Operational problem" },
-                    { id: "architecture", label: locale === "de" ? "Architektur & Vertrauensgrenzen" : "Architecture & trust boundaries" },
-                    { id: "configuration-management", label: locale === "de" ? "Konfigurationsmanagement" : "Configuration management" },
-                    { id: "operations-recovery", label: locale === "de" ? "Betrieb & Wiederherstellung" : "Operations & recovery" },
+                    { id: "problem", label: locale === "de" ? "Problem" : "Problem" },
+                    { id: "architecture-overview", label: locale === "de" ? "Architekturüberblick" : "Architecture overview" },
+                    { id: "design-decisions", label: locale === "de" ? "Designentscheidungen" : "Design decisions" },
+                    { id: "trust-boundaries", label: locale === "de" ? "Vertrauensgrenzen" : "Trust boundaries" },
+                    { id: "implementation", label: locale === "de" ? "Umsetzung" : "Implementation" },
+                    { id: "security-model", label: locale === "de" ? "Sicherheitsmodell" : "Security model" },
                     ...(hybridLab ? [{ id: "windows-hybrid-lab", label: locale === "de" ? "Windows-Hybrid-Labor" : "Windows hybrid lab" }] : []),
-                    { id: "security-access", label: locale === "de" ? "Härtung & Zugriffsmodell" : "Hardening & access model" },
-                    { id: "results", label: locale === "de" ? "Verifizierte Betriebsergebnisse" : "Verified operational outcomes" },
+                    { id: "operations-recovery", label: locale === "de" ? "Betrieb & Recovery" : "Operations & recovery" },
+                    { id: "verification", label: locale === "de" ? "Verifikation" : "Verification" },
+                    { id: "monitoring", label: locale === "de" ? "Monitoring" : "Monitoring" },
+                    { id: "backup-recovery", label: locale === "de" ? "Backup & Recovery" : "Backup & recovery" },
                     { id: "limitations", label: locale === "de" ? "Aktuelle Grenzen" : "Current limitations" },
+                    { id: "lessons", label: locale === "de" ? "Erkenntnisse" : "Takeaways" },
                     { id: "stack", label: locale === "de" ? "Technologien" : "Technology" },
                 ]
                 : [
@@ -1092,16 +1106,13 @@ function FeaturedProjectDetailLayout({
                     <div className="min-w-0 space-y-10">
                         {isInfrastructureCaseStudy ? (
                             <>
-                                <FeaturedSection
-                                    id="operational-problem"
-                                    title={locale === "de" ? "Betriebsproblem" : "Operational problem"}
-                                >
+                                <FeaturedSection id="problem" title={locale === "de" ? "Problem" : "Problem"}>
                                     <Body className="max-w-4xl text-main">{localized(project.problem)}</Body>
                                 </FeaturedSection>
 
                                 <FeaturedSection
-                                    id="architecture"
-                                    title={locale === "de" ? "Architektur und Vertrauensgrenzen" : "Architecture and trust boundaries"}
+                                    id="architecture-overview"
+                                    title={locale === "de" ? "Architekturüberblick" : "Architecture overview"}
                                 >
                                     <Body className="max-w-4xl text-main">{localized(project.overview)}</Body>
                                     {project.diagrams?.[0] && (
@@ -1115,18 +1126,16 @@ function FeaturedProjectDetailLayout({
                                 </FeaturedSection>
 
                                 <FeaturedSection
-                                    id="configuration-management"
-                                    title={locale === "de" ? "Konfigurationsmanagement mit Ansible" : "Configuration management with Ansible"}
+                                    id="design-decisions"
+                                    title={locale === "de" ? "Designentscheidungen" : "Design decisions"}
                                 >
-                                    <Body className="max-w-4xl text-main">{localized(project.solution)}</Body>
-                                    <ValidationList items={localizedValidation.slice(0, 2)} />
+                                    <FlatList items={localizedFeatures} />
                                 </FeaturedSection>
 
                                 <FeaturedSection
-                                    id="operations-recovery"
-                                    title={locale === "de" ? "Betrieb und Wiederherstellung" : "Operations and recovery"}
+                                    id="trust-boundaries"
+                                    title={locale === "de" ? "Architektur und Vertrauensgrenzen" : "Architecture and trust boundaries"}
                                 >
-                                    <ParagraphBlock text={localized(project.reliability)} />
                                     {project.diagrams?.[1] && (
                                         <FeaturedDiagramFigure
                                             copy={copy}
@@ -1135,6 +1144,24 @@ function FeaturedProjectDetailLayout({
                                             projectTitle={project.title.en}
                                         />
                                     )}
+                                    <ArchitectureFlow
+                                        caption={locale === "de" ? "Anwendungs-, Management- und Control-Plane-Pfade" : "Application, management and control-plane paths"}
+                                        nodes={architectureNodes}
+                                    />
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="implementation"
+                                    title={locale === "de" ? "Umsetzung und Automatisierung" : "Implementation and automation"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.solution)}</Body>
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="security-model"
+                                    title={locale === "de" ? "Sicherheitsmodell" : "Security model"}
+                                >
+                                    <Body className="max-w-4xl text-main">{localized(project.security)}</Body>
                                 </FeaturedSection>
 
                                 {hybridLab && (
@@ -1146,12 +1173,6 @@ function FeaturedProjectDetailLayout({
                                             </MetaLabel>
                                             <FlatList items={localized(hybridLab.implementation)} />
                                         </div>
-                                        <div className="space-y-3">
-                                            <MetaLabel className="text-main">
-                                                {locale === "de" ? "Validierung" : "Validation"}
-                                            </MetaLabel>
-                                            <ValidationList items={localized(hybridLab.validation)} />
-                                        </div>
                                         <p className="max-w-4xl border-l-2 border-blue-500 pl-4 text-sm leading-relaxed text-muted">
                                             {localized(hybridLab.scopeNote)}
                                         </p>
@@ -1159,15 +1180,9 @@ function FeaturedProjectDetailLayout({
                                 )}
 
                                 <FeaturedSection
-                                    id="security-access"
-                                    title={locale === "de" ? "Security-Härtung und Zugriffsmodell" : "Security hardening and access model"}
+                                    id="operations-recovery"
+                                    title={locale === "de" ? "Betrieb, Automatisierung und Recovery" : "Operations, automation and recovery"}
                                 >
-                                    <Body className="max-w-4xl text-main">{localized(project.security)}</Body>
-                                    {localizedFeatures[2] && (
-                                        <p className="max-w-4xl border-l-2 border-blue-500 pl-4 text-sm leading-relaxed text-muted">
-                                            {localizedFeatures[2]}
-                                        </p>
-                                    )}
                                     {project.diagrams?.[2] && (
                                         <FeaturedDiagramFigure
                                             copy={copy}
@@ -1179,10 +1194,37 @@ function FeaturedProjectDetailLayout({
                                 </FeaturedSection>
 
                                 <FeaturedSection
-                                    id="results"
-                                    title={locale === "de" ? "Verifizierte Betriebsergebnisse" : "Verified operational outcomes"}
+                                    id="verification"
+                                    title={locale === "de" ? "Verifikationsnachweise" : "Verification evidence"}
                                 >
-                                    <FlatList items={localizedResults.slice(1)} />
+                                    <ValidationList items={localizedValidation} />
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="monitoring"
+                                    title={locale === "de" ? "Monitoring und Betrieb" : "Monitoring and operations"}
+                                >
+                                    <Body className="max-w-4xl text-main">{reliabilitySections[0]}</Body>
+                                    {project.diagrams?.[3] && (
+                                        <FeaturedDiagramFigure
+                                            copy={copy}
+                                            diagram={project.diagrams[3]}
+                                            locale={locale}
+                                            projectTitle={project.title.en}
+                                        />
+                                    )}
+                                </FeaturedSection>
+
+                                <FeaturedSection
+                                    id="backup-recovery"
+                                    title={locale === "de" ? "Backup und Recovery" : "Backup and recovery"}
+                                >
+                                    <Body className="max-w-4xl text-main">{reliabilitySections[1] ?? reliabilitySections[0]}</Body>
+                                    <p className="max-w-4xl border-l-2 border-blue-500 pl-4 text-sm font-medium leading-relaxed text-main">
+                                        {locale === "de"
+                                            ? "Backups gelten erst dann als belastbar, wenn die Wiederherstellung getestet wurde."
+                                            : "Backups are not treated as sufficient until recovery has been tested."}
+                                    </p>
                                 </FeaturedSection>
 
                                 <FeaturedSection
@@ -1197,6 +1239,15 @@ function FeaturedProjectDetailLayout({
                                         <p className="mt-2 leading-relaxed text-main">{localized(config.nextStep)}</p>
                                     </article>
                                 </FeaturedSection>
+
+                                {localizedLessons.length > 0 && (
+                                    <FeaturedSection
+                                        id="lessons"
+                                        title={locale === "de" ? "Technische Erkenntnisse" : "Engineering takeaways"}
+                                    >
+                                        <FlatList items={localizedLessons} />
+                                    </FeaturedSection>
+                                )}
 
                                 <FeaturedSection id="stack" title={locale === "de" ? "Technologien" : "Technology"}>
                                     <div className="divide-y divide-subtle border-y border-subtle">
@@ -1348,18 +1399,6 @@ function FeaturedFact({ label, value }: { label: string; value: string }) {
             <MetaLabel>{label}</MetaLabel>
             <p className="mt-2 text-sm leading-relaxed text-main">{value}</p>
         </article>
-    );
-}
-
-function ParagraphBlock({ text }: { text: string }) {
-    return (
-        <div className="max-w-4xl space-y-4">
-            {text.split(/\n\n/u).map((paragraph) => (
-                <Body key={paragraph} className="text-main">
-                    {paragraph}
-                </Body>
-            ))}
-        </div>
     );
 }
 

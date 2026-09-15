@@ -107,9 +107,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Edge AI safety monitoring with camera, LiDAR, and local decision logic.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Hybrid Linux infrastructure with public VPS ingress, private Tailscale administration, Ansible-managed configuration, monitoring and tested recovery.",
-        de: "Hybride Linux-Infrastruktur mit öffentlichem VPS-Ingress, privater Tailscale-Administration, Ansible-verwalteter Konfiguration, Monitoring und getesteter Wiederherstellung.",
-        ar: "Hybrid Linux infrastructure with public VPS ingress, private Tailscale administration, Ansible-managed configuration, monitoring and tested recovery.",
+        en: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and tested recovery.",
+        de: "Hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung.",
+        ar: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and tested recovery.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "Embedded vibration classification from IMU features through model export and device-side inference.",
@@ -160,9 +160,9 @@ const CARD_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Private cloud stack for files, sync, and controlled access.",
     },
     "elkaza-at": {
-        en: "Static Next.js site with lightweight deployment workflow.",
-        de: "Statische Next.js-Seite mit leichtgewichtigem Deployment-Workflow.",
-        ar: "Static Next.js site with lightweight deployment workflow.",
+        en: "Unreleased static-site prototype with a validated hybrid deployment workflow.",
+        de: "Unveröffentlichter Static-Site-Prototyp mit validiertem Hybrid-Deployment-Workflow.",
+        ar: "Unreleased static-site prototype with a validated hybrid deployment workflow.",
     },
     "austria-tourism-dashboard": {
         en: "Python-generated dashboard for Austrian tourism analysis.",

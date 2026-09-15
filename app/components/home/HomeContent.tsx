@@ -265,9 +265,9 @@ const FEATURED_COPY: Record<
       ar: "Public services needed a controlled internet entry point without exposing private administration.",
     },
     responsibility: {
-      de: "Die Linux-/Docker-Plattform entworfen und im Betrieb; anschließend um ein dokumentiertes Hybrid-Labor mit Windows Server 2022 und Azure Arc erweitert, das über Tailscale mit Ansible verwaltet wird.",
-      en: "Designed and operate the Linux/Docker platform, then added a documented Windows Server 2022 and Azure Arc hybrid lab managed with Ansible over Tailscale.",
-      ar: "Designed and operate the Linux/Docker platform, then added a documented Windows Server 2022 and Azure Arc hybrid lab managed with Ansible over Tailscale.",
+      de: "Die hybride Linux-/Windows-Infrastruktur mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung und Azure-Arc-Governance entworfen und umgesetzt.",
+      en: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation and Azure Arc governance.",
+      ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation and Azure Arc governance.",
     },
     result: {
       de: "Private Administration, wiederholbare Linux- und Windows-Konfiguration, überwachter Backup-Zustand und verifizierte Wiederherstellung von Anwendungen und Daten.",
@@ -276,9 +276,9 @@ const FEATURED_COPY: Record<
     },
     tech: ["Ansible", "Linux", "Windows Server 2022", "Azure Arc", "Tailscale"],
     visualLabel: {
-      de: "Hybrid-Infrastruktur mit öffentlichem VPS-Ingress, privatem Tailscale-Transport und Docker-Diensten vor Ort.",
-      en: "Hybrid infrastructure architecture with public VPS ingress, private Tailscale transport and onsite Docker services.",
-      ar: "Hybrid infrastructure architecture with public VPS ingress, private Tailscale transport and onsite Docker services.",
+      de: "Hybrid-Infrastruktur mit Public Edge VPS, lokaler Proxmox-/Debian-Plattform, Windows-Server-Labor, privater Tailscale-Administration und Azure-Arc-Governance.",
+      en: "Hybrid infrastructure with a Public Edge VPS, on-site Proxmox/Debian platform, Windows Server lab, private Tailscale administration and Azure Arc governance.",
+      ar: "Hybrid infrastructure with a Public Edge VPS, on-site Proxmox/Debian platform, Windows Server lab, private Tailscale administration and Azure Arc governance.",
     },
   },
   "edgeguardian-edge-ai-safety-bubble": {

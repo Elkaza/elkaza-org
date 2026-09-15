@@ -47,6 +47,7 @@ export interface Project {
     reliability: LocalizedString;
     keyFeatures: LocalizedList;
     results: LocalizedList;
+    lessons?: LocalizedList;
     hybridLab?: {
         title: LocalizedString;
         overview: LocalizedString;
@@ -516,129 +517,153 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "An Ansible-managed hybrid platform combining public VPS ingress, private Tailscale administration, onsite containerized services, monitoring and verified recovery, with a separate Windows Server 2022 and Azure Arc learning lab.",
-            "Eine mit Ansible verwaltete Hybrid-Plattform mit öffentlichem VPS-Ingress, privater Administration über Tailscale, containerisierten Diensten vor Ort, Monitoring und verifizierter Wiederherstellung sowie einem getrennten Lernlabor für Windows Server 2022 und Azure Arc."
+            "An Ansible-managed hybrid infrastructure lab that separates public ingress from private administration across Linux and Windows systems, with Azure Arc governance, monitoring and tested recovery.",
+            "Ein mit Ansible verwaltetes hybrides Infrastrukturlabor, das öffentlichen Ingress von privater Administration über Linux- und Windows-Systeme hinweg trennt – mit Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung."
         ),
         seoDescription: loc(
-            "Case study of a hybrid Linux and Docker platform with private Tailscale administration, Ansible-managed configuration, verified recovery, and a separate Windows Server 2022 and Azure Arc learning lab.",
-            "Fallstudie zu einer hybriden Linux- und Docker-Plattform mit privater Tailscale-Administration, Ansible-verwalteter Konfiguration, verifizierter Wiederherstellung und einem getrennten Windows-Server-2022- und Azure-Arc-Lernlabor."
+            "Engineering case study of a hybrid Linux and Windows infrastructure lab using Proxmox, Docker, Ansible over Tailscale, Azure Arc governance, monitoring and tested recovery.",
+            "Technische Fallstudie zu einem hybriden Linux- und Windows-Infrastrukturlabor mit Proxmox, Docker, Ansible über Tailscale, Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung."
         ),
         overview: loc(
-            "Public HTTP/HTTPS traffic enters through the Public VPS Edge. Authenticated, encrypted private connectivity over Tailscale connects the public edge to onsite Docker services on Debian Core, hosted by Proxmox. Public ingress and administration remain separate; a WSL-based administration workstation runs Ansible against the Public VPS Edge, Debian Core and a Linux Canary Host.",
-            "Öffentlicher HTTP-/HTTPS-Verkehr erreicht die Umgebung über den Public VPS Edge. Eine authentifizierte und verschlüsselte private Verbindung über Tailscale verbindet diesen Edge mit den vor Ort betriebenen Docker-Diensten auf Debian Core, das auf Proxmox läuft. Öffentlicher Ingress und Administration bleiben getrennt. Eine WSL-Umgebung auf der Admin Workstation dient als Ansible-Control-Node für Public VPS Edge, Debian Core und einen Linux Canary Host."
+            "The lab spans a Public Edge VPS, an on-site Proxmox and Debian platform, and an external Windows Server environment. Tailscale carries private administration and the edge-to-application path; Git and Ansible provide version-controlled desired state and automated Linux and Windows configuration. Azure Arc adds outbound-only inventory and governance without hosting the managed systems.",
+            "Das Labor umfasst einen Public Edge VPS, eine lokale Proxmox- und Debian-Plattform sowie eine externe Windows-Server-Umgebung. Tailscale transportiert die private Administration und den Edge-to-Application-Pfad; Git und Ansible liefern versionierten Sollzustand sowie automatisierte Linux- und Windows-Konfiguration. Azure Arc ergänzt ausgehend angebundene Inventarisierung und Governance, ohne die verwalteten Systeme zu hosten."
         ),
         problem: loc(
-            "I needed to operate public web services from a hybrid VPS/on-premises environment without exposing the residential network to direct public inbound traffic or exposing administrative interfaces publicly. The environment also needed repeatable configuration, observable service health and a recovery process that could be tested without modifying production data.",
-            "Ich musste öffentliche Webdienste in einer hybriden VPS-/On-Premises-Umgebung betreiben, ohne direkten öffentlichen Inbound-Verkehr zum privaten Wohnnetz oder öffentlich erreichbare Administrationsoberflächen zuzulassen. Gleichzeitig waren wiederholbare Konfigurationen, nachvollziehbare Service-Zustände und ein Wiederherstellungsprozess erforderlich, der ohne Veränderung von Produktionsdaten getestet werden kann."
+            "Selected web workloads needed a controlled public entry point while administration remained private across local and external compute. The environment also needed repeatable Linux and Windows configuration, runtime visibility, protected backups with recovery evidence, and cross-environment governance without moving the systems into Azure.",
+            "Ausgewählte Web-Workloads benötigten einen kontrollierten öffentlichen Einstieg, während die Administration über lokale und externe Compute-Ressourcen hinweg privat bleiben sollte. Zusätzlich waren wiederholbare Linux- und Windows-Konfiguration, Runtime-Sichtbarkeit, geschützte Backups mit Wiederherstellungsnachweis und umgebungsübergreifende Governance erforderlich, ohne die Systeme nach Azure zu verlagern."
         ),
         solution: loc(
-            "Host and service configuration is maintained as version-controlled Ansible inventory, roles, templates, handlers and focused playbooks. Relevant changes are evaluated with check mode and diffs before application. Assertions and post-change checks are used around sensitive changes such as SSH and firewall configuration, while repeated runs are used to check idempotence.",
-            "Host- und Servicekonfigurationen werden als versionierte Ansible-Inventare, Rollen, Templates, Handler und fokussierte Playbooks gepflegt. Relevante Änderungen werden vor der Anwendung im Check Mode und anhand von Diffs geprüft. Assertions und Post-Change-Checks begleiten sensible Änderungen an SSH- und Firewall-Konfigurationen; wiederholte Läufe prüfen die Idempotenz."
+            "Git stores the desired configuration and operational documentation. Ansible applies Linux configuration through SSH and Windows configuration through WinRM over Tailscale. Relevant changes are reviewed with syntax checks, check mode and diffs before application; assertions, post-change verification and repeated runs cover connectivity-sensitive firewall, SSH and RDP changes. The Administration Controller also acts as the first canary for reviewed Linux hardening changes.",
+            "Git speichert den gewünschten Konfigurationszustand und die Betriebsdokumentation. Ansible wendet Linux-Konfiguration über SSH und Windows-Konfiguration über WinRM via Tailscale an. Relevante Änderungen werden vor der Anwendung mit Syntaxprüfungen, Check Mode und Diffs geprüft; Assertions, Post-Change-Verifikation und wiederholte Läufe decken konnektivitätssensitive Firewall-, SSH- und RDP-Änderungen ab. Der Administration Controller dient außerdem als erster Canary für geprüfte Linux-Hardening-Änderungen."
         ),
         architectureLabels: {
-            node: loc("Public edge", "Öffentlicher Edge"),
-            edge: loc("Private overlay and onsite runtime", "Privates Overlay und lokale Runtime"),
-            cloud: loc("Separate administration", "Getrennte Administration"),
+            node: loc("Public application traffic", "Öffentlicher Anwendungsverkehr"),
+            edge: loc("Private management traffic", "Privater Managementverkehr"),
+            cloud: loc("Azure Arc control plane", "Azure-Arc-Steuerungsebene"),
         },
         architecture: {
             node: loc(
-                "The Public VPS Edge accepts the required HTTP/HTTPS ingress without directly exposing the residential network.",
-                "Der Public VPS Edge akzeptiert den erforderlichen HTTP-/HTTPS-Ingress, ohne das private Wohnnetz direkt zu exponieren."
+                "Internet traffic follows public DNS to the Public Edge VPS, then ports 80 and 443 are forwarded over the encrypted Tailscale path to the On-site Server, Nginx Proxy Manager and an approved application container.",
+                "Internetverkehr folgt dem öffentlichen DNS zum Public Edge VPS; anschließend werden die Ports 80 und 443 über den verschlüsselten Tailscale-Pfad zum On-site Server, zu Nginx Proxy Manager und einem freigegebenen Anwendungscontainer weitergeleitet."
             ),
             edge: loc(
-                "Tailscale provides authenticated private backend transport to Docker services on Debian Core, hosted by the onsite Proxmox system.",
-                "Tailscale stellt den authentifizierten privaten Backend-Transport zu den Docker-Diensten auf Debian Core bereit, das auf dem lokalen Proxmox-System läuft."
+                "The Administration Controller reaches managed Linux systems through SSH and the Hybrid Windows Lab through WinRM over Tailscale; RDP and the private IIS site remain on the same private administration network.",
+                "Der Administration Controller erreicht verwaltete Linux-Systeme über SSH und das Hybrid Windows Lab über WinRM via Tailscale; RDP und die private IIS-Seite bleiben im selben privaten Administrationsnetz."
             ),
             cloud: loc(
-                "The Admin Workstation / WSL follows a separate authenticated path and runs Ansible against the Public VPS Edge, Debian Core and Linux Canary Host.",
-                "Die Admin Workstation / WSL nutzt einen getrennten authentifizierten Pfad und führt Ansible gegen Public VPS Edge, Debian Core und Linux Canary Host aus."
+                "The On-site Debian Server and Hybrid Windows Lab connect outbound over HTTPS port 443 to Azure Arc for hybrid inventory, resource visibility and Azure Resource Graph; no inbound Azure Arc management port is required.",
+                "Der On-site Debian Server und das Hybrid Windows Lab verbinden sich ausgehend über HTTPS-Port 443 mit Azure Arc für Hybrid-Inventarisierung, Ressourcensichtbarkeit und Azure Resource Graph; ein eingehender Azure-Arc-Managementport ist nicht erforderlich."
             ),
         },
         security: loc(
-            "Administrative paths remain private through Tailscale. On managed hosts where these controls apply, SSH uses key-based authentication with root login and password authentication disabled. Host firewalls apply deny-by-default inbound policies. Publicly exposed application ingress on the VPS is limited to the required HTTP/HTTPS endpoints, while administrative access remains private over Tailscale. Web administration remains private, unused administrative or legacy services were disabled, and UFW, Fail2Ban and CrowdSec provide separate controls where configured.",
-            "Administrationspfade bleiben über Tailscale privat. Verwaltete SSH-Dienste nutzen schlüsselbasierte Authentifizierung; Root-Login und passwortbasierte Anmeldung sind dort deaktiviert, wo dies dokumentiert ist. Host-Firewalls arbeiten eingehend nach Deny-by-Default. Der öffentlich erreichbare Anwendungs-Ingress auf dem VPS ist auf die erforderlichen HTTP-/HTTPS-Endpunkte beschränkt; administrative Zugriffe bleiben über Tailscale privat. Webbasierte Administration bleibt privat, ungenutzte administrative oder veraltete Dienste wurden deaktiviert, und UFW, Fail2Ban sowie CrowdSec wirken als getrennte Kontrollen, wo sie konfiguriert sind."
+            "The security model uses defense in depth: public ingress is separated from administration, management paths use Tailscale, and host firewalls restrict inbound access. The Public Edge VPS uses UFW and Fail2ban; the On-site Server combines UFW with Docker-aware firewall policy. On Windows, Microsoft Defender and Windows Firewall remain enabled, RDP requires Network Level Authentication, WinRM Basic authentication and unencrypted communication are disabled, SMBv1 is disabled, insecure SMB guest logons are blocked, and IIS remains private.",
+            "Das Sicherheitsmodell folgt Defense in Depth: Öffentlicher Ingress ist von der Administration getrennt, Managementpfade nutzen Tailscale und Host-Firewalls beschränken eingehende Zugriffe. Der Public Edge VPS verwendet UFW und Fail2ban; der On-site Server kombiniert UFW mit einer Docker-aware Firewall-Policy. Unter Windows bleiben Microsoft Defender und Windows Firewall aktiv, RDP erfordert Network Level Authentication, WinRM Basic Authentication und unverschlüsselte Kommunikation sind deaktiviert, SMBv1 ist abgeschaltet, unsichere SMB-Gastanmeldungen sind blockiert und IIS bleibt privat."
         ),
         reliability: loc(
-            "Uptime Kuma covers public availability and selected private infrastructure. Representative checks cover public websites, analytics, private operational services, reachability, disk state and backup freshness. A systemd oneshot service, triggered every 15 minutes by a timer, checks local disk and backup health; Telegram receives operational alerts.\n\nAn encrypted Restic copy was written to a dedicated external SSD, then checked for repository integrity and a full data read. SHA-256 and gzip/archive checks passed. PostgreSQL was restored into an isolated temporary container with 50 application tables present, ClickHouse filesystem extraction was verified, and temporary plaintext staging data was removed afterward.",
-            "Uptime Kuma überwacht die öffentliche Erreichbarkeit und ausgewählte private Infrastruktur. Repräsentative Prüfungen decken öffentliche Websites, Analytics, private Betriebsdienste, Erreichbarkeit, Datenträgerzustand und Backup-Aktualität ab. Ein systemd-Oneshot-Dienst wird alle 15 Minuten durch einen Timer gestartet und prüft den lokalen Datenträger- und Backup-Zustand; Telegram empfängt Betriebsalarme.\n\nEine verschlüsselte Restic-Kopie wurde auf eine dedizierte externe SSD geschrieben und anschließend auf Repository-Integrität sowie durch vollständiges Lesen der Daten geprüft. SHA-256- und gzip-/Archivprüfungen waren erfolgreich. PostgreSQL wurde in einem isolierten temporären Container wiederhergestellt; dabei waren 50 Anwendungstabellen vorhanden. Die Dateisystemextraktion von ClickHouse wurde verifiziert und temporär bereitgestellte Klartextdaten wurden anschließend entfernt."
+            "Uptime Kuma monitors service availability, Netdata provides host metrics, and CrowdSec contributes threat and security visibility. A recurring systemd health check covers disk state and backup freshness, with operational notifications sent through Telegram.\n\nThe backup workflow uses fail-fast execution, locking, atomic archive publication, restricted permissions, integrity checks and SHA-256 checksum sidecars. Recovery checks go beyond backup creation: Restic repository integrity and full-data-read checks passed, PostgreSQL was restored to an isolated temporary container with 50 application tables present, and ClickHouse filesystem extraction was verified before temporary plaintext staging data was removed.",
+            "Uptime Kuma überwacht die Service-Verfügbarkeit, Netdata liefert Host-Metriken und CrowdSec ergänzt Bedrohungs- und Security-Sichtbarkeit. Eine wiederkehrende systemd-Health-Prüfung deckt Datenträgerzustand und Backup-Aktualität ab; operative Benachrichtigungen werden über Telegram versendet.\n\nDer Backup-Workflow nutzt Fail-fast-Ausführung, Locking, atomare Archivveröffentlichung, eingeschränkte Berechtigungen, Integritätsprüfungen und SHA-256-Prüfsummen-Sidecars. Recovery-Prüfungen gehen über die reine Backup-Erstellung hinaus: Restic-Repository-Integrität und vollständiges Lesen der Daten waren erfolgreich, PostgreSQL wurde mit 50 vorhandenen Anwendungstabellen in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion wurde verifiziert, bevor temporäre Klartext-Staging-Daten entfernt wurden."
         ),
         keyFeatures: locList(
             [
-                "Ansible inventory, roles, templates, handlers, and focused playbooks manage repeatable host and service configuration with check mode, diffs, assertions, validation, and idempotence checks",
-                "Key-based SSH, hardened SSH settings, deny-by-default host firewalls, private management paths, and host-specific UFW, Fail2Ban, and CrowdSec controls reduce avoidable exposure",
-                "The private Fortress operations dashboard, built with Homepage and managed through Ansible, separates views for public services, monitoring, the Public VPS, Debian Core containers, and network infrastructure; it is reached through Tailscale Serve, and its former directly published application port is closed.",
-                "Uptime Kuma groups representative website, analytics, private-service, infrastructure, disk, and backup-freshness checks, with Telegram notifications and a private status view",
-                "Encrypted Restic backup to a dedicated external SSD, full-data-read and archive checks, isolated PostgreSQL recovery, and verified ClickHouse extraction provide concrete recovery evidence",
+                "Public Edge VPS: keeps public HTTP/HTTPS ingress separate from the main application host and exposes no administrative service publicly",
+                "Tailscale: provides encrypted private connectivity for administration and distributed system paths without opening management services to the internet",
+                "Proxmox and the On-site Server: separate the local virtualization layer from Debian and Docker Compose application workloads",
+                "Hybrid Windows Lab: adds practical Windows Server administration and hardening while remaining isolated from public ingress",
+                "Git and Ansible: provide version-controlled desired state, repeatable Linux and Windows configuration, check-mode review, audits and idempotency checks",
+                "Azure Arc: adds inventory and governance across environments without replacing Ansible, Tailscale or the underlying compute platforms",
             ],
             [
-                "Ansible-Inventar, Rollen, Templates, Handler und fokussierte Playbooks verwalten wiederholbare Host- und Servicekonfigurationen mit Check Mode, Diffs, Assertions, Validierung und Idempotenzprüfungen",
-                "Schlüsselbasiertes SSH, gehärtete SSH-Einstellungen, eingehende Deny-by-Default-Firewalls, private Managementpfade sowie hostspezifische UFW-, Fail2Ban- und CrowdSec-Kontrollen reduzieren vermeidbare Exponierung",
-                "Das private Fortress Operations Dashboard, mit Homepage umgesetzt und über Ansible verwaltet, trennt Ansichten für öffentliche Dienste, Monitoring, den Public VPS, Debian-Core-Container und Netzwerkinfrastruktur; es wird über Tailscale Serve erreicht, und der zuvor direkt veröffentlichte Anwendungsport ist geschlossen.",
-                "Uptime Kuma gruppiert repräsentative Prüfungen für Websites, Analytics, private Dienste, Infrastruktur, Disk und Backup-Aktualität, ergänzt durch Telegram-Benachrichtigungen und eine private Statusansicht",
-                "Verschlüsseltes Restic-Backup auf eine dedizierte externe SSD, vollständige Lese- und Archivprüfungen, isolierte PostgreSQL-Wiederherstellung und verifizierte ClickHouse-Extraktion liefern konkrete Wiederherstellungsnachweise",
+                "Public Edge VPS: trennt öffentlichen HTTP-/HTTPS-Ingress vom Hauptanwendungshost und exponiert keine Administrationsdienste öffentlich",
+                "Tailscale: stellt verschlüsselte private Konnektivität für Administration und verteilte Systempfade bereit, ohne Managementdienste zum Internet zu öffnen",
+                "Proxmox und der On-site Server: trennen die lokale Virtualisierungsschicht von Debian- und Docker-Compose-Anwendungsworkloads",
+                "Hybrid Windows Lab: ergänzt praktische Windows-Server-Administration und -Härtung und bleibt vom öffentlichen Ingress isoliert",
+                "Git und Ansible: liefern versionierten Sollzustand, wiederholbare Linux- und Windows-Konfiguration, Check-Mode-Prüfung, Audits und Idempotenzkontrollen",
+                "Azure Arc: ergänzt Inventarisierung und Governance über mehrere Umgebungen hinweg, ohne Ansible, Tailscale oder die zugrunde liegenden Compute-Plattformen zu ersetzen",
             ]
         ),
         results: locList(
             [
-                "The environment separates public ingress from private administration, manages repeatable host and service configuration through Ansible, monitors service and backup health, and verifies application/data recovery through checksum validation and an isolated restore rehearsal.",
-                "Public web ingress no longer requires direct inbound exposure of the residential network, while administrative interfaces remain on the private Tailscale path.",
-                "Check mode, diff review, assertions, post-change checks and repeated runs provide evidence for sensitive configuration changes and idempotence.",
-                "Monitoring covers representative service reachability, infrastructure health, disk state and backup freshness.",
-                "SHA-256 and gzip/archive checks passed, and the encrypted Restic repository passed integrity and full-data-read checks on a dedicated external SSD.",
-                "PostgreSQL recovery was verified in an isolated temporary container with 50 application tables present; ClickHouse filesystem extraction was also verified and temporary plaintext staging data was removed.",
+                "Public application ingress is separated from private administration across the hybrid environment.",
+                "Ansible automates and validates configuration across Linux and Windows systems over private Tailscale paths.",
+                "Azure Arc provides outbound-only inventory and governance visibility for the On-site Debian Server and Hybrid Windows Lab.",
+                "Uptime Kuma, Netdata and CrowdSec provide service, host and security visibility without promoting an undefined uptime percentage.",
+                "Backup integrity checks and an isolated PostgreSQL restore provide tested recovery evidence rather than relying on backup existence alone.",
             ],
             [
-                "Die Umgebung trennt öffentlichen Ingress von privater Administration, verwaltet wiederholbare Host- und Servicekonfigurationen mit Ansible, überwacht Service- und Backup-Zustände und überprüft die Wiederherstellbarkeit von Anwendungs- und Datenbeständen durch Prüfsummenvalidierung und eine isolierte Restore-Probe.",
-                "Öffentlicher Web-Ingress erfordert keine direkte eingehende Exponierung des privaten Wohnnetzes mehr; Administrationsoberflächen bleiben auf dem privaten Tailscale-Pfad.",
-                "Check Mode, Diff-Prüfung, Assertions, Post-Change-Checks und wiederholte Läufe liefern Nachweise für sensible Konfigurationsänderungen und Idempotenz.",
-                "Das Monitoring deckt repräsentative Service-Erreichbarkeit, Infrastrukturzustand, Datenträgerzustand und Backup-Aktualität ab.",
-                "SHA-256- und gzip-/Archivprüfungen waren erfolgreich; außerdem bestand das verschlüsselte Restic-Repository auf einer dedizierten externen SSD die Integritätsprüfung und das vollständige Lesen der Daten.",
-                "Die PostgreSQL-Wiederherstellung wurde in einem isolierten temporären Container mit 50 vorhandenen Anwendungstabellen verifiziert; auch die ClickHouse-Dateisystemextraktion wurde geprüft und temporär bereitgestellte Klartextdaten wurden entfernt.",
+                "Öffentlicher Anwendungs-Ingress ist in der hybriden Umgebung von privater Administration getrennt.",
+                "Ansible automatisiert und validiert die Konfiguration von Linux- und Windows-Systemen über private Tailscale-Pfade.",
+                "Azure Arc liefert ausgehend angebundene Inventarisierungs- und Governance-Sichtbarkeit für den On-site Debian Server und das Hybrid Windows Lab.",
+                "Uptime Kuma, Netdata und CrowdSec liefern Service-, Host- und Security-Sichtbarkeit, ohne eine nicht definierte Uptime-Prozentzahl zu bewerben.",
+                "Backup-Integritätsprüfungen und eine isolierte PostgreSQL-Wiederherstellung liefern getestete Recovery-Nachweise, statt sich allein auf die Existenz von Backups zu verlassen.",
+            ]
+        ),
+        lessons: locList(
+            [
+                "Architecture diagrams are clearer when compute, connectivity, configuration management, governance and observability are shown as distinct concerns.",
+                "Private administration reduces public attack surface, but it still requires host-level firewall and authentication controls.",
+                "Configuration automation becomes more reliable when paired with review, read-only audits, post-change checks and idempotency verification.",
+                "Backup integrity is incomplete until representative data has been restored and checked in isolation.",
+                "Hybrid governance does not require centralizing every workload on one cloud platform.",
+            ],
+            [
+                "Architekturdiagramme werden verständlicher, wenn Compute, Konnektivität, Konfigurationsmanagement, Governance und Observability als getrennte Aspekte dargestellt werden.",
+                "Private Administration reduziert die öffentliche Angriffsfläche, benötigt aber weiterhin Host-Firewalls und Authentifizierungskontrollen.",
+                "Konfigurationsautomatisierung wird verlässlicher, wenn sie mit Review, Read-only-Audits, Post-Change-Checks und Idempotenzprüfung kombiniert wird.",
+                "Backup-Integrität ist unvollständig, solange repräsentative Daten nicht isoliert wiederhergestellt und geprüft wurden.",
+                "Hybride Governance erfordert nicht, jeden Workload auf einer einzigen Cloud-Plattform zu zentralisieren.",
             ]
         ),
         hybridLab: {
             title: loc(
-                "Windows Server and Azure Arc Hybrid Lab Extension",
-                "Windows Server und Azure Arc als Hybrid-Laberweiterung"
+                "Hybrid Windows Lab and Azure Arc Governance",
+                "Hybrid Windows Lab und Azure-Arc-Governance"
             ),
             overview: loc(
-                "To broaden hands-on hybrid administration beyond the production Linux and Docker platform, I added a separate Windows Server 2022 Datacenter learning lab on Exoscale. Azure Arc connects the server as a hybrid machine for inventory, tags and Azure control-plane visibility; paid extensions and Azure benefits remain disabled.",
-                "Um die praktische Hybrid-Administration über die produktive Linux- und Docker-Plattform hinaus zu erweitern, habe ich auf Exoscale ein getrenntes Lernlabor mit Windows Server 2022 Datacenter aufgebaut. Azure Arc bindet den Hybridserver für Inventarisierung, Tags und Sichtbarkeit in der Azure-Steuerungsebene an; kostenpflichtige Erweiterungen und Azure-Benefits bleiben deaktiviert."
+                "The separate Windows Server 2022 Datacenter environment broadens the lab beyond Linux and Docker operations. Azure Arc represents both the Hybrid Windows Lab and On-site Debian Server as connected hybrid machines through outbound HTTPS for inventory, tags and control-plane visibility. Tailscale remains the private administration path, while paid Azure extensions and Azure benefits remain disabled.",
+                "Die getrennte Windows-Server-2022-Datacenter-Umgebung erweitert das Labor über Linux- und Docker-Betrieb hinaus. Azure Arc bildet sowohl das Hybrid Windows Lab als auch den On-site Debian Server über ausgehendes HTTPS als verbundene Hybridmaschinen für Inventarisierung, Tags und Sichtbarkeit in der Steuerungsebene ab. Tailscale bleibt der private Administrationspfad; kostenpflichtige Azure-Erweiterungen und Azure-Benefits bleiben deaktiviert."
             ),
             implementation: locList(
                 [
-                    "Tailscale provides the private administration path. Public RDP, WinRM and IIS access was tested and confirmed closed; Windows Firewall restricts WinRM to the Ansible controller.",
+                    "Tailscale provides the private administration path. Public RDP, WinRM and IIS access was tested and confirmed closed; Windows Firewall restricts RDP, WinRM and the private IIS site to the administration workstation.",
                     "Ansible manages Windows roles and firewall state over PowerShell and WinRM with NTLM message encryption. Basic authentication and unencrypted WinRM payloads are disabled, while credentials remain in an encrypted vault outside Git.",
-                    "Ansible installs and manages a private IIS learning site bound only to the Tailscale interface, with TCP 80 accepted only from the administration workstation. Azure Arc onboarding and IIS configuration are documented as code.",
+                    "A dedicated hardening playbook creates the restricted RDP rule before disabling broad built-in RDP rules, verifies the resulting firewall state and connectivity, and restores the prior rules on verification failure.",
+                    "A read-only security audit checks Defender, firewall profiles, RDP with Network Level Authentication, SMB settings, local administration, TLS configuration and update state. SMBv1 server support and insecure SMB guest logons are disabled.",
+                    "Azure Arc onboarding for the On-site Debian Server and Hybrid Windows Lab, the private IIS configuration, security audit and remote-access hardening are documented as code.",
                 ],
                 [
-                    "Tailscale stellt den privaten Administrationspfad bereit. Öffentliche Zugriffe über RDP, WinRM und IIS wurden getestet und als geschlossen bestätigt; die Windows Firewall beschränkt WinRM auf den Ansible-Control-Node.",
+                    "Tailscale stellt den privaten Administrationspfad bereit. Öffentliche Zugriffe über RDP, WinRM und IIS wurden getestet und als geschlossen bestätigt; die Windows Firewall beschränkt RDP, WinRM und die private IIS-Seite auf den Administration Controller.",
                     "Ansible verwaltet Windows-Rollen und den Firewall-Zustand über PowerShell und WinRM mit NTLM-Nachrichtenverschlüsselung. Basic Authentication und unverschlüsselte WinRM-Nutzdaten sind deaktiviert; die Zugangsdaten verbleiben in einem verschlüsselten Vault außerhalb von Git.",
-                    "Ansible installiert und verwaltet eine private IIS-Lernseite, die ausschließlich an die Tailscale-Schnittstelle gebunden ist; TCP 80 wird nur von der Admin Workstation akzeptiert. Azure-Arc-Onboarding und IIS-Konfiguration sind als Code dokumentiert.",
+                    "Ein eigenes Hardening-Playbook erstellt die eingeschränkte RDP-Regel vor der Deaktivierung breiter integrierter RDP-Regeln, prüft anschließend Firewall-Zustand und Konnektivität und stellt bei einer fehlgeschlagenen Prüfung die vorherigen Regeln wieder her.",
+                    "Ein Read-only-Sicherheitsaudit prüft Defender, Firewall-Profile, RDP mit Network Level Authentication, SMB-Einstellungen, lokale Administration, TLS-Konfiguration und Update-Status. SMBv1-Serverunterstützung und unsichere SMB-Gastanmeldungen sind deaktiviert.",
+                    "Azure-Arc-Onboarding für den On-site Debian Server und das Hybrid Windows Lab, die private IIS-Konfiguration, das Sicherheitsaudit und die Remote-Access-Härtung sind als Code dokumentiert.",
                 ]
             ),
             validation: locList(
                 [
                     "The private IIS endpoint returned HTTP 200 while public RDP, WinRM and IIS access remained closed.",
                     "The final IIS idempotence run reported ok=9, changed=0, unreachable=0 and failed=0.",
-                    "The final Windows audit reported ok=3, changed=0, unreachable=0 and failed=0.",
+                    "The final Windows security audit reported no baseline violations and completed with changed=0, unreachable=0 and failed=0.",
+                    "A follow-up hardening check-mode run completed with changed=0 and failed=0, confirming idempotence.",
+                    "Azure Resource Graph showed the On-site Debian Server and Hybrid Windows Lab connected through Azure Arc.",
                 ],
                 [
                     "Der private IIS-Endpunkt lieferte HTTP 200, während öffentliche Zugriffe über RDP, WinRM und IIS geschlossen blieben.",
                     "Der abschließende IIS-Idempotenzlauf meldete ok=9, changed=0, unreachable=0 und failed=0.",
-                    "Das abschließende Windows-Audit meldete ok=3, changed=0, unreachable=0 und failed=0.",
+                    "Das abschließende Windows-Sicherheitsaudit meldete keine Baseline-Verletzungen und endete mit changed=0, unreachable=0 und failed=0.",
+                    "Ein anschließender Hardening-Lauf im Check Mode endete mit changed=0 und failed=0 und bestätigte damit die Idempotenz.",
+                    "Azure Resource Graph zeigte den On-site Debian Server und das Hybrid Windows Lab als über Azure Arc verbunden.",
                 ]
             ),
             scopeNote: loc(
-                "This lab demonstrates practical Windows Server 2022 administration, Azure Arc hybrid-server onboarding, and PowerShell/WinRM automation. It is not a production Windows workload or production Azure deployment and does not carry public platform traffic.",
-                "Dieses Labor zeigt praktische Windows-Server-2022-Administration, Azure-Arc-Onboarding eines Hybrid-Servers sowie PowerShell-/WinRM-Automatisierung. Es ist weder ein produktiver Windows-Workload noch ein produktives Azure-Deployment und verarbeitet keinen öffentlichen Plattformverkehr."
+                "This enterprise-inspired lab demonstrates practical Windows Server 2022 administration, Azure Arc onboarding for Windows and Debian, and PowerShell/WinRM automation. It is not a production Windows workload or an Azure-hosted compute environment and does not carry public application traffic.",
+                "Dieses Enterprise-inspirierte Labor zeigt praktische Windows-Server-2022-Administration, Azure-Arc-Onboarding für Windows und Debian sowie PowerShell-/WinRM-Automatisierung. Es ist weder ein produktiver Windows-Workload noch eine in Azure gehostete Compute-Umgebung und verarbeitet keinen öffentlichen Anwendungsverkehr."
             ),
         },
         highlights: [
-            { value: loc("15-minute checks", "15-Minuten-Prüfungen"), label: loc("Disk and backup health", "Datenträger- und Backup-Zustand") },
-            { value: loc("Private administration", "Private Administration"), label: loc("Separate Tailscale path", "Getrennter Tailscale-Pfad") },
-            { value: loc("Ansible-managed", "Ansible-verwaltet"), label: loc("Repeatable configuration", "Wiederholbare Konfiguration") },
-            { value: loc("Restore rehearsed", "Restore geprobt"), label: loc("Isolated recovery target", "Isoliertes Wiederherstellungsziel") },
+            { value: loc("Public / private split", "Public-/Private-Trennung"), label: loc("Ingress and administration", "Ingress und Administration") },
+            { value: loc("Linux + Windows", "Linux + Windows"), label: loc("Ansible-managed configuration", "Ansible-verwaltete Konfiguration") },
+            { value: loc("Outbound HTTPS", "Ausgehendes HTTPS"), label: loc("Azure Arc governance", "Azure-Arc-Governance") },
+            { value: loc("Restore tested", "Restore getestet"), label: loc("Isolated recovery evidence", "Isolierter Recovery-Nachweis") },
         ],
         tech: [
             "Ansible",
@@ -657,57 +682,75 @@ export const projects: Project[] = [
             "Telegram",
             "Windows Server 2022",
             "Azure Arc",
+            "Azure Resource Graph",
             "PowerShell",
             "WinRM",
             "IIS",
+            "Microsoft Defender",
+            "Windows Firewall",
         ],
-        tags: ["Self-Hosted", "Configuration as Code", "Operations", "Backup", "Hybrid Cloud"],
+        tags: ["Hybrid Infrastructure", "Configuration as Code", "Operations", "Backup", "Defense in Depth"],
         links: [],
         diagrams: [
             {
                 title: loc(
-                    "Figure 1 — Hybrid Infrastructure Architecture and Trust Boundaries",
-                    "Abbildung 1 — Hybrid-Infrastruktur: Architektur und Vertrauensgrenzen"
+                    "Figure 1 — High-level Hybrid Infrastructure",
+                    "Abbildung 1 — Hybride Infrastruktur im Überblick"
                 ),
                 caption: loc(
-                    "Overall runtime topology and the separate authenticated administration path.",
-                    "Gesamttopologie des Runtime-Pfads und des getrennten authentifizierten Administrationspfads."
+                    "High-level view of the hybrid infrastructure, showing public ingress, local and external compute, private configuration management, and cross-environment governance and operations.",
+                    "Überblick über die hybride Infrastruktur mit öffentlichem Ingress, lokalen und externen Compute-Ressourcen, privatem Konfigurationsmanagement sowie umgebungsübergreifender Governance und Betrieb."
                 ),
                 alt: loc(
-                    "Hybrid infrastructure architecture showing internet traffic entering through a public VPS, reaching onsite Docker services over an authenticated Tailscale overlay, with a separate Ansible administration path.",
-                    "Hybrid-Infrastruktur mit öffentlichem VPS-Ingress, privaten Docker-Diensten über ein authentifiziertes Tailscale-Overlay und getrenntem Ansible-Verwaltungspfad."
+                    "High-level hybrid infrastructure overview showing a Public Edge VPS, an on-site Proxmox and Debian platform, a private Windows Server lab, Tailscale with Git and Ansible for administration, and Azure Arc, monitoring, backup and recovery as cross-environment operational capabilities.",
+                    "Überblick einer hybriden Infrastruktur mit Public Edge VPS, lokaler Proxmox- und Debian-Plattform, privatem Windows-Server-Labor, Tailscale mit Git und Ansible für die Administration sowie Azure Arc, Monitoring, Backup und Recovery als umgebungsübergreifenden Betriebsfunktionen."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-trust-boundaries.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-overview.png",
             },
             {
                 title: loc(
-                    "Figure 2 — Configuration, Monitoring and Recovery Flow",
-                    "Abbildung 2 — Konfigurations-, Monitoring- und Wiederherstellungsablauf"
+                    "Figure 2 — Architecture and Trust Boundaries",
+                    "Abbildung 2 — Architektur und Vertrauensgrenzen"
                 ),
                 caption: loc(
-                    "Change validation, observability, alerting, backup verification and isolated recovery flow.",
-                    "Ablauf für Änderungsvalidierung, Observability, Alarmierung, Backup-Prüfung und isolierte Wiederherstellung."
+                    "Hybrid infrastructure deployment showing public ingress, private administration over Tailscale, and outbound Azure Arc governance.",
+                    "Hybrides Infrastruktur-Deployment mit öffentlichem Ingress, privater Administration über Tailscale und ausgehend angebundener Azure-Arc-Governance."
                 ),
                 alt: loc(
-                    "Operations flow showing version-controlled Ansible configuration with validation and idempotence checks, service and backup monitoring with Telegram alerting, and backup verification through checksum validation, isolated restore rehearsal and an operator-triggered encrypted secondary copy.",
-                    "Betriebsablauf mit versionierter Ansible-Konfiguration, Validierungs- und Idempotenzprüfungen, Service- und Backup-Monitoring mit Telegram-Alarmierung sowie Backup-Prüfung durch Prüfsummenvalidierung, isolierte Restore-Probe und manuell ausgelöste verschlüsselte Sekundärkopie."
+                    "Detailed hybrid infrastructure architecture showing Internet and public DNS, a Public Edge VPS, an on-site Proxmox-hosted Debian server, private Tailscale administration, an external Windows Server lab, monitoring, and outbound Azure Arc governance.",
+                    "Detaillierte Hybrid-Infrastrukturarchitektur mit Internet und öffentlichem DNS, Public Edge VPS, lokalem Proxmox-gehostetem Debian-Server, privater Tailscale-Administration, externem Windows-Server-Labor, Monitoring und ausgehender Azure-Arc-Governance."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/operations-and-recovery-flow.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-architecture.png",
             },
             {
                 title: loc(
-                    "Figure 3 — Access Paths and Service Exposure",
-                    "Abbildung 3 — Zugriffspfade und Dienstexposition"
+                    "Figure 3 — Operations, Automation and Recovery",
+                    "Abbildung 3 — Betrieb, Automatisierung und Recovery"
                 ),
                 caption: loc(
-                    "Public, private and administrative access paths with their service-exposure boundaries.",
-                    "Öffentliche, private und administrative Zugriffspfade mit ihren Grenzen der Dienstexposition."
+                    "Infrastructure operations workflow covering version-controlled configuration, validation, Ansible automation, monitoring, backup integrity, and tested recovery.",
+                    "Infrastruktur-Betriebsworkflow mit versionierter Konfiguration, Validierung, Ansible-Automatisierung, Monitoring, Backup-Integrität und getesteter Wiederherstellung."
                 ),
                 alt: loc(
-                    "Access-path diagram showing public traffic entering through a VPS and reaching public application services over Tailscale, private users accessing internal services through Tailscale, and a separate Ansible administration path.",
-                    "Zugriffspfad-Diagramm mit öffentlichem Verkehr über einen VPS zu veröffentlichten Anwendungsdiensten über Tailscale, privatem Zugriff auf interne Dienste über Tailscale und einem getrennten Ansible-Administrationspfad."
+                    "Infrastructure operations workflow from Git-based desired state through pre-deployment validation, Ansible configuration management, post-change verification, continuous monitoring, recurring backups, recovery testing, and validated recovery.",
+                    "Infrastruktur-Betriebsworkflow vom Git-basierten Sollzustand über Pre-Deployment-Validierung, Ansible-Konfigurationsmanagement, Post-Change-Verifikation, kontinuierliches Monitoring und wiederkehrende Backups bis zu Recovery-Test und validierter Wiederherstellung."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/access-paths-and-service-exposure.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-recovery-workflow.png",
+            },
+            {
+                title: loc(
+                    "Figure 4 — Sanitized Operations Dashboard",
+                    "Abbildung 4 — Bereinigtes Betriebsdashboard"
+                ),
+                caption: loc(
+                    "Sanitized operational overview showing documented service management, security visibility, hybrid governance, and recovery validation.",
+                    "Bereinigte Betriebsübersicht mit dokumentiertem Service-Management, Security-Transparenz, hybrider Governance und validierter Wiederherstellung."
+                ),
+                alt: loc(
+                    "Sanitized operations dashboard showing three managed environments, private administration, Azure Arc governance, configuration automation, monitoring, security controls, and validated recovery.",
+                    "Bereinigtes Betriebsdashboard mit drei verwalteten Umgebungen, privater Administration, Azure-Arc-Governance, Konfigurationsautomatisierung, Monitoring, Sicherheitskontrollen und validierter Wiederherstellung."
+                ),
+                src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-dashboard.png",
             },
         ],
         relatedProjectSlug: "vienna-fortress",
@@ -1063,8 +1106,8 @@ export const projects: Project[] = [
             "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
         ),
         solution: loc(
-            "I built the stack on Proxmox 9.1 and Debian 13, then deployed Dockerized services for reverse proxying, DNS filtering, security detection, monitoring, status checks, log viewing, update automation, internal service discovery, and the Elkaza.at/Plausible runtime path. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statusprüfungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und den Elkaza.at-/Plausible-Runtime-Pfad bereitgestellt. Zusätzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
+            "I built the stack on Proxmox 9.1 and Debian 13, then deployed Dockerized services for reverse proxying, DNS filtering, security detection, monitoring, status checks, log viewing, update automation, internal service discovery, and an unreleased static-site/Plausible runtime prototype. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
+            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statusprüfungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und einen unveröffentlichten Static-Site-/Plausible-Runtime-Prototyp bereitgestellt. Zusätzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
         ),
         architecture: {
             node: loc(
@@ -1092,7 +1135,7 @@ export const projects: Project[] = [
             [
                 "Layered security with Pi-hole DNS filtering, persistent ingress rules, and CrowdSec detection",
                 "Reverse-proxied service access through Nginx Proxy Manager",
-                "Private runtime foundation for Elkaza.at static hosting and first-party Plausible analytics",
+                "Private runtime foundation for an unreleased static-site prototype and first-party Plausible analytics",
                 "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
                 "Stabilized a React-based Proxmox API integration for dashboard visibility",
                 "Watchtower-driven container update workflow for routine maintenance",
@@ -1100,7 +1143,7 @@ export const projects: Project[] = [
             [
                 "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung, persistenten Ingress-Regeln und CrowdSec Detection",
                 "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
-                "Private Runtime-Basis für statische Elkaza.at-Auslieferung und First-Party-Plausible-Analytics",
+                "Private Runtime-Basis für einen unveröffentlichten Static-Site-Prototyp und First-Party-Plausible-Analytics",
                 "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
                 "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit stabilisiert",
                 "Ein Watchtower-gesteuerter Container-Update-Workflow für die Regelwartung",
@@ -1125,15 +1168,12 @@ export const projects: Project[] = [
         tech: ["Debian 13", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
         tags: ["Security", "Infrastructure", "Operations", "Platform"],
         links: [],
-        images: [
-            "/images/vienna-fortress-dashboard.png",
-        ],
         diagrams: [
             {
                 title: loc("Private Infrastructure and Operations Platform", "Private Infrastruktur- und Betriebsplattform"),
                 caption: loc(
-                    "The Vienna Fortress architecture shows the split between public admin/user entry, the public VPS edge, the private Tailscale transport, and the Proxmox/Debian Docker runtime where web, analytics, security, observability, operations, and backup services are separated.",
-                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen öffentlichem Admin-/User-Einstieg, Public-VPS-Edge, privatem Tailscale-Transport und der Proxmox-/Debian-Docker-Runtime, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
+                    "The Vienna Fortress architecture shows the split between public admin/user entry, the Public Edge VPS, the private Tailscale transport, and the On-site Server runtime where web, analytics, security, observability, operations, and backup services are separated.",
+                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen öffentlichem Admin-/User-Einstieg, Public Edge VPS, privatem Tailscale-Transport und der Runtime des On-site Servers, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
                 ),
                 summary: locList(
                     [
@@ -1202,14 +1242,14 @@ export const projects: Project[] = [
         keyFeatures: locList(
             [
                 "ED25519-based SSH hardening with passwordless administration",
-                "Zero-trust Tailscale overlay across mobile workstations, cloud VPS, and private on-premises infrastructure",
+                "Private Tailscale overlay across mobile workstations, cloud VPS, and private on-premises infrastructure",
                 "Pi-hole with Unbound for full recursive DNS instead of third-party resolvers",
                 "Exit-node routing and IP forwarding for encrypted transit on untrusted networks",
                 "Interface-aware UFW policy allowing trusted overlay traffic while restricting other ingress",
             ],
             [
                 "ED25519-basiertes SSH-Hardening mit passwortloser Administration",
-                "Zero-Trust-Tailscale-Overlay über mobile Workstations, Cloud-VPS und private On-Premises-Infrastruktur",
+                "Privates Tailscale-Overlay über mobile Workstations, Cloud-VPS und private On-Premises-Infrastruktur",
                 "Pi-hole mit Unbound für vollständige rekursive DNS-Auflösung statt Third-Party-Resolvern",
                 "Exit-Node-Routing und IP-Forwarding für verschlüsselten Transit in unsicheren Netzen",
                 "Interface-basierte UFW-Policy, die vertrauenswürdigen Overlay-Traffic erlaubt und anderen Ingress einschränkt",
@@ -1230,7 +1270,7 @@ export const projects: Project[] = [
             ]
         ),
         tech: ["Tailscale", "WireGuard", "OpenSSH", "ED25519", "Proxmox", "Debian 13", "Pi-hole", "Unbound", "UFW", "sysctl", "btop"],
-        tags: ["Security", "Networking", "Hybrid Cloud", "Zero Trust"],
+        tags: ["Security", "Networking", "Hybrid Cloud", "Defense in Depth"],
         links: [],
         diagrams: [
             {
@@ -1465,108 +1505,77 @@ export const projects: Project[] = [
         status: "implemented",
         year: "2025",
         title: loc(
-            "Hybrid Cloud Deployment Platform",
-            "Hybrid-Cloud-Deployment-Plattform"
+            "Unreleased Hybrid Deployment Prototype",
+            "Unveröffentlichter Hybrid-Deployment-Prototyp"
         ),
         oneLiner: loc(
-            "Elkaza.at runs on a self-hosted hybrid deployment platform where vps1 handles public ingress and CI/CD control, while debian-core serves the hardened static frontend, analytics, observability, and backups through Docker.",
-            "Elkaza.at läuft auf einer self-hosted Hybrid-Deployment-Plattform, bei der vps1 den öffentlichen Ingress und die CI/CD-Steuerung übernimmt, während debian-core das gehärtete statische Frontend, Analytics, Observability und Backups über Docker ausliefert."
+            "Implemented an unreleased static-site deployment prototype across a Public Edge VPS and an On-site Server, with private Tailscale transport, containerized services and a repeatable delivery workflow.",
+            "Einen unveröffentlichten Deployment-Prototyp für eine statische Website über Public Edge VPS und On-site Server umgesetzt – mit privatem Tailscale-Transport, containerisierten Diensten und wiederholbarem Delivery-Workflow."
         ),
         overview: loc(
-            "Elkaza.at is operated as a self-hosted deployment environment. Public HTTP/S traffic reaches vps1 first, where Nginx stream proxying forwards ports 80 and 443 over Tailscale to debian-core. The private Debian/Proxmox host runs Docker Compose, Nginx Proxy Manager, a static Nginx container for the exported Next.js frontend, and the Plausible analytics stack behind the same controlled ingress path.",
-            "Elkaza.at wird als produktionsnahes Self-Hosted-Deployment-Environment betrieben. Öffentlicher HTTP/S-Traffic erreicht zuerst vps1, wo Nginx-Stream-Proxying die Ports 80 und 443 über Tailscale an debian-core weiterleitet. Der private Debian-/Proxmox-Host betreibt Docker Compose, Nginx Proxy Manager, einen statischen Nginx-Container für den exportierten Next.js-Frontend-Build und den Plausible-Analytics-Stack hinter demselben kontrollierten Ingress-Pfad."
+            "The deployment environment and delivery path were implemented as an engineering prototype, but Elkaza.at is not presented as a released public website. The architecture separates a thin edge layer from a private Debian and Docker runtime and uses Tailscale for the inter-system path.",
+            "Die Deployment-Umgebung und der Delivery-Pfad wurden als technischer Prototyp umgesetzt; Elkaza.at wird jedoch nicht als veröffentlichte öffentliche Website dargestellt. Die Architektur trennt eine schlanke Edge-Schicht von einer privaten Debian- und Docker-Runtime und nutzt Tailscale für den systemübergreifenden Pfad."
         ),
         problem: loc(
-            "A simple static VPS setup was not enough to demonstrate client-grade operations. The platform needed stronger automation, lower public exposure, reliable recovery options, and a deployment model that separates cloud build responsibilities from private hosting infrastructure.",
-            "Ein einfacher statischer VPS-Betrieb reichte nicht aus, um clientfähige Operations zu demonstrieren. Die Plattform brauchte stärkere Automatisierung, geringere öffentliche Exponierung, verlässliche Recovery-Optionen und ein Deployment-Modell, das Cloud-Build-Verantwortung von privater Hosting-Infrastruktur trennt."
+            "A simple static VPS workflow did not exercise the desired separation between delivery automation, edge ingress and a private runtime. The prototype therefore needed repeatable validation and a clearer boundary between public and privately managed infrastructure.",
+            "Ein einfacher statischer VPS-Workflow bildete die gewünschte Trennung zwischen Delivery-Automatisierung, Edge-Ingress und privater Runtime nicht ab. Der Prototyp benötigte deshalb wiederholbare Validierung und eine klarere Grenze zwischen öffentlicher und privat verwalteter Infrastruktur."
         ),
         solution: loc(
-            "Elkaza upgraded the deployment into a fully automated CI/CD flow. GitHub Actions connects to vps1, refreshes the production checkout, runs linting, type checks, and the static Next.js build, then rsyncs the exported site over Tailscale into the debian-core Docker mount. Nginx Proxy Manager terminates the multi-domain certificate for elkaza.at, www.elkaza.at, and analytics.elkaza.at, applies the canonical www-to-apex redirect, and routes traffic to the web and analytics containers. The backend Nginx config adds compression, cache policy, HSTS, CSP, and other baseline security headers.",
-            "Elkaza hat das Deployment zu einem vollautomatisierten CI/CD-Flow ausgebaut. GitHub Actions verbindet sich mit vps1, aktualisiert den Production-Checkout, führt Linting, Type-Checks und den statischen Next.js-Build aus und synchronisiert den exportierten Build über Tailscale in den Docker-Mount auf debian-core. Nginx Proxy Manager terminiert das Multi-Domain-Zertifikat für elkaza.at, www.elkaza.at und analytics.elkaza.at, setzt den kanonischen www-zu-Apex-Redirect und routet Traffic zu Web- und Analytics-Containern. Die Backend-Nginx-Konfiguration ergänzt Kompression, Cache-Policy, HSTS, CSP und weitere grundlegende Security-Header."
+            "The delivery workflow validates linting, type checks and the static Next.js build before synchronizing the export through the Public Edge VPS to the On-site Server over Tailscale. Docker Compose and Nginx Proxy Manager provide the private runtime and routing structure. This documents an implemented deployment path, not a public release claim.",
+            "Der Delivery-Workflow validiert Linting, Type-Checks und den statischen Next.js-Build, bevor der Export über den Public Edge VPS und Tailscale zum On-site Server synchronisiert wird. Docker Compose und Nginx Proxy Manager stellen die private Runtime- und Routing-Struktur bereit. Dies dokumentiert einen umgesetzten Deployment-Pfad, keine öffentliche Veröffentlichung."
         ),
         architecture: {
             node: loc(
-                "Client browsers receive the canonical HTTPS site from elkaza.at, with www redirected to the apex domain and analytics delivered through the first-party analytics.elkaza.at subdomain.",
-                "Client-Browser erhalten die kanonische HTTPS-Seite über elkaza.at, wobei www auf die Apex-Domain umgeleitet wird und Analytics über die First-Party-Subdomain analytics.elkaza.at ausgeliefert wird."
+                "The intended request path begins at the Public Edge VPS and forwards approved application traffic over Tailscale to the private runtime.",
+                "Der vorgesehene Request-Pfad beginnt am Public Edge VPS und leitet freigegebenen Anwendungsverkehr über Tailscale zur privaten Runtime weiter."
             ),
             edge: loc(
-                "debian-core hosts the private runtime layer with Docker Compose, Nginx Proxy Manager, the elkaza-web static Nginx container, Plausible, PostgreSQL, ClickHouse, observability, and backup services.",
-                "debian-core hostet die private Runtime-Schicht mit Docker Compose, Nginx Proxy Manager, dem statischen Nginx-Container elkaza-web, Plausible, PostgreSQL, ClickHouse, Observability und Backup-Services."
+                "The On-site Server hosts the private runtime layer with Docker Compose, Nginx Proxy Manager, static web services, observability and backup components.",
+                "Der On-site Server hostet die private Runtime-Schicht mit Docker Compose, Nginx Proxy Manager, statischen Webdiensten, Observability- und Backup-Komponenten."
             ),
             cloud: loc(
-                "vps1 stays deliberately thin: it is the public TCP ingress and deployment control point, forwarding web traffic and release artifacts to debian-core over the private Tailscale overlay.",
-                "vps1 bleibt bewusst schlank: Der Server ist öffentlicher TCP-Ingress und Deployment-Kontrollpunkt und leitet Web-Traffic sowie Release-Artefakte über das private Tailscale-Overlay an debian-core weiter."
+                "The Public Edge VPS remains deliberately thin and acts as the deployment relay and intended TCP ingress layer rather than storing primary application data.",
+                "Der Public Edge VPS bleibt bewusst schlank und dient als Deployment-Relay sowie vorgesehene TCP-Ingress-Schicht, statt primäre Anwendungsdaten zu speichern."
             ),
         },
         security: loc(
-            "The architecture follows a Zero-Trust access model. The private hosting server is reached over Tailscale rather than exposed directly through the home router, TLS is centralized in Nginx Proxy Manager, and the web container enforces HSTS, CSP, X-Frame-Options, Referrer-Policy, and MIME-sniffing protection. Public ingress is limited to the controlled HTTP/S path needed to serve the website and analytics.",
-            "Die Architektur folgt einem Zero-Trust-Zugriffsmodell. Der private Hosting-Server wird über Tailscale erreicht statt direkt über den Heimrouter exponiert, TLS ist in Nginx Proxy Manager zentralisiert, und der Web-Container erzwingt HSTS, CSP, X-Frame-Options, Referrer-Policy und Schutz gegen MIME-Sniffing. Öffentlicher Ingress bleibt auf den kontrollierten HTTP/S-Pfad für Website und Analytics beschränkt."
+            "The prototype applies defense in depth: the private runtime is reached over Tailscale rather than through direct router exposure, ingress and administration are separated, and baseline web security headers are configured at the application layer.",
+            "Der Prototyp nutzt Defense in Depth: Die private Runtime wird über Tailscale statt durch direkte Router-Exponierung erreicht, Ingress und Administration sind getrennt und grundlegende Web-Security-Header werden auf Anwendungsebene konfiguriert."
         ),
         reliability: loc(
-            "Automated builds, scripted rsync releases, bounded smoke checks, service separation, and weekly snapshot-mode VM backups with keep-last-three local retention reduce manual deployment risk and improve recovery readiness. The deployment workflow tests both the private backend path and the local ingress path. An encrypted Restic copy on a dedicated external SSD passed repository integrity and full-data-read checks; isolated PostgreSQL recovery and ClickHouse filesystem extraction were also verified.",
-            "Automatisierte Builds, geskriptete rsync-Releases, begrenzte Smoke-Checks, Service-Trennung und wöchentliche VM-Snapshot-Backups mit lokaler Keep-last-three-Retention reduzieren manuelles Deployment-Risiko und verbessern die Recovery-Bereitschaft. Der Deployment-Workflow prüft den privaten Backend-Pfad und den lokalen Ingress-Pfad. Eine verschlüsselte Restic-Kopie auf einer dedizierten externen SSD bestand die Repository-Integritätsprüfung und das vollständige Lesen der Daten; auch die isolierte PostgreSQL-Wiederherstellung und die ClickHouse-Dateisystemextraktion wurden verifiziert."
+            "Automated builds, scripted synchronization, bounded smoke checks and service separation reduce manual delivery risk. Backup integrity and isolated recovery evidence belong to the underlying infrastructure case study rather than proving that this unreleased site has a production availability commitment.",
+            "Automatisierte Builds, geskriptete Synchronisierung, begrenzte Smoke-Checks und Service-Trennung reduzieren manuelle Delivery-Risiken. Backup-Integrität und isolierte Recovery-Nachweise gehören zur zugrunde liegenden Infrastruktur-Fallstudie und belegen keine Production-Verfügbarkeitszusage für diese unveröffentlichte Website."
         ),
         keyFeatures: locList(
             [
-                "Public vps1 TCP ingress for ports 80 and 443, forwarded over Tailscale to the private debian-core runtime",
-                "Nginx Proxy Manager termination for elkaza.at, www.elkaza.at, and analytics.elkaza.at with canonical www-to-apex redirect",
-                "Dockerized elkaza-web Nginx container serving the static Next.js export with gzip, long-lived asset caching, HSTS, and CSP",
-                "GitHub Actions deployment through vps1 with linting, type checks, static build, rsync release, and smoke checks",
-                "Self-hosted Plausible analytics with PostgreSQL and ClickHouse behind a first-party analytics subdomain",
-                "Observability and operations layer with Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole, and scheduled local VM backups",
+                "Public Edge VPS as a thin deployment relay and intended TCP ingress layer",
+                "Private Tailscale transport to the On-site Server runtime",
+                "Dockerized static Next.js export behind Nginx Proxy Manager",
+                "Automated lint, typecheck, build, synchronization and smoke-check workflow",
             ],
             [
-                "Öffentlicher vps1-TCP-Ingress für die Ports 80 und 443, über Tailscale an die private debian-core-Runtime weitergeleitet",
-                "Nginx-Proxy-Manager-Terminierung für elkaza.at, www.elkaza.at und analytics.elkaza.at mit kanonischem www-zu-Apex-Redirect",
-                "Dockerisierter elkaza-web-Nginx-Container, der den statischen Next.js-Export mit gzip, langlebigem Asset-Caching, HSTS und CSP ausliefert",
-                "GitHub-Actions-Deployment über vps1 mit Linting, Type-Checks, statischem Build, rsync-Release und Smoke-Checks",
-                "Self-hosted Plausible Analytics mit PostgreSQL und ClickHouse hinter einer First-Party-Analytics-Subdomain",
-                "Observability- und Operations-Schicht mit Uptime Kuma, Netdata, Portainer, Dozzle, Watchtower, CrowdSec, Pi-hole und geplanten lokalen VM-Backups",
+                "Public Edge VPS als schlankes Deployment-Relay und vorgesehene TCP-Ingress-Schicht",
+                "Privater Tailscale-Transport zur Runtime des On-site Servers",
+                "Dockerisierter statischer Next.js-Export hinter Nginx Proxy Manager",
+                "Automatisierter Workflow für Linting, Typecheck, Build, Synchronisierung und Smoke-Checks",
             ]
         ),
         results: locList(
             [
-                "Moved Elkaza.at from a manual static VPS workflow to a repeatable self-hosted deployment platform",
-                "Reduced exposure by keeping the private runtime behind Tailscale instead of direct home-router ingress",
-                "Improved production behavior with canonical redirects, strict TLS coverage, compression, cache headers, HSTS, CSP, and static asset caching",
-                "Validated the deployment workflow with passing lint, typecheck, build, backend smoke checks, ingress smoke checks, and GitHub Actions deployment",
-                "Created a client-facing infrastructure case study around automation, security, performance, and operational maturity",
+                "Implemented a repeatable hybrid deployment prototype without presenting Elkaza.at as a released public site",
+                "Kept the private runtime behind Tailscale instead of direct router ingress",
+                "Validated lint, typecheck, build, synchronization and smoke-check stages",
             ],
             [
-                "Elkaza.at von einem manuellen statischen VPS-Workflow zu einer wiederholbaren Self-Hosted-Deployment-Plattform weiterentwickelt",
-                "Die Exponierung reduziert, indem die private Runtime hinter Tailscale statt hinter direktem Heimrouter-Ingress bleibt",
-                "Das Production-Verhalten durch kanonische Redirects, strikte TLS-Abdeckung, Kompression, Cache-Header, HSTS, CSP und Static-Asset-Caching verbessert",
-                "Den Deployment-Workflow mit erfolgreichen Lint-, Typecheck-, Build-, Backend-Smoke-, Ingress-Smoke- und GitHub-Actions-Deployments validiert",
-                "Eine kundenorientierte Infrastruktur-Fallstudie zu Automatisierung, Sicherheit, Performance und operativer Reife geschaffen",
+                "Einen wiederholbaren Hybrid-Deployment-Prototyp umgesetzt, ohne Elkaza.at als veröffentlichte öffentliche Website darzustellen",
+                "Die private Runtime hinter Tailscale statt hinter direktem Router-Ingress gehalten",
+                "Lint-, Typecheck-, Build-, Synchronisierungs- und Smoke-Check-Stufen validiert",
             ]
         ),
         tech: ["Next.js", "TypeScript", "GitHub Actions", "Bash", "Tailscale", "Docker Compose", "Nginx", "Nginx Proxy Manager", "Plausible Analytics", "PostgreSQL", "ClickHouse"],
-        tags: ["Web", "Hybrid Cloud", "Zero Trust", "Automation"],
+        tags: ["Web", "Hybrid Infrastructure", "Defense in Depth", "Automation"],
         links: [
-            { label: "Live Site", url: "https://www.elkaza.at" },
             { label: "GitHub", url: "https://github.com/Elkaza/elkaza-web" },
-        ],
-        diagrams: [
-            {
-                title: loc("Elkaza.at Deployment Architecture", "Elkaza.at-Deployment-Architektur"),
-                caption: loc(
-                    "Current request and deployment path for Elkaza.at: public traffic reaches vps1, Nginx streams HTTP/S over Tailscale to debian-core, Nginx Proxy Manager terminates HTTPS and routes to static web and analytics containers, while GitHub Actions deploys through vps1.",
-                    "Aktueller Request- und Deployment-Pfad für Elkaza.at: Öffentlicher Traffic erreicht vps1, Nginx streamt HTTP/S über Tailscale zu debian-core, Nginx Proxy Manager terminiert HTTPS und routet zu statischen Web- und Analytics-Containern, während GitHub Actions über vps1 deployt."
-                ),
-                summary: locList(
-                    [
-                        "Separates public ingress, private runtime, and CI/CD control so each part has a clear responsibility",
-                        "Shows why the private Debian host is not directly exposed even though Elkaza.at is public",
-                        "Documents the current hardening changes: canonical redirect, SAN certificate, security headers, caching, and smoke checks",
-                    ],
-                    [
-                        "Trennt öffentlichen Ingress, private Runtime und CI/CD-Steuerung mit klarer Verantwortung je Schicht",
-                        "Zeigt, warum der private Debian-Host nicht direkt exponiert ist, obwohl Elkaza.at öffentlich erreichbar ist",
-                        "Dokumentiert die aktuellen Hardening-Änderungen: kanonischer Redirect, SAN-Zertifikat, Security-Header, Caching und Smoke-Checks",
-                    ]
-                ),
-                src: "/project-diagrams/elkaza-at-delivery-architecture.svg",
-            },
         ],
         relatedProjectSlug: "elkaza-org",
     },

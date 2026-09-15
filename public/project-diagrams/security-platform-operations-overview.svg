@@ -33,7 +33,7 @@
   <path class="green" d="M510 208 V304" /><path class="green" d="M785 208 V304" /><path class="green" d="M1058 208 V304" /><path class="green" d="M1345 208 V284 H1218 V304" />
 
   <rect x="408" y="480" width="190" height="72" rx="8" class="card" /><text x="503" y="525" text-anchor="middle" class="sub">elkaza.org</text>
-  <rect x="640" y="480" width="190" height="72" rx="8" class="card" /><text x="735" y="525" text-anchor="middle" class="sub">elkaza.at</text>
+  <rect x="640" y="480" width="190" height="72" rx="8" class="card" /><text x="735" y="525" text-anchor="middle" class="sub">Static web prototype</text>
   <rect x="890" y="480" width="190" height="72" rx="8" class="card" /><text x="985" y="511" text-anchor="middle" class="sub">Plausible</text><text x="985" y="536" text-anchor="middle" class="sub">Analytics</text>
   <rect x="1220" y="456" width="230" height="72" rx="8" class="card" /><text x="1335" y="502" text-anchor="middle" class="sub">PostgreSQL</text>
   <rect x="1220" y="550" width="230" height="72" rx="8" class="card" /><text x="1335" y="596" text-anchor="middle" class="sub">ClickHouse</text>
