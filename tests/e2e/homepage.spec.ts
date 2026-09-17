@@ -30,12 +30,12 @@ test.describe('Homepage', () => {
     await expect(serviceLinks.first()).toBeVisible();
   });
 
-  test('presents the ongoing TU Wien thesis without completion wording', async ({ page }) => {
+  test('presents the ongoing FH master project without completion wording', async ({ page }) => {
     await page.goto('/');
 
-    const research = page.getByRole('region', { name: 'Rahmenwerk für Enterprise Coherence Governance' });
-    await expect(research).toContainText('Diplomarbeit · TU Wien · In Arbeit');
-    await expect(research).toContainText('Systematische Literaturrecherche');
+    const research = page.getByRole('region', { name: 'Secure Edge AI Gateway for IoT Networks' });
+    await expect(research).toContainText('MIO-3 Master\'s Project · FH Technikum Wien · In Arbeit');
+    await expect(research).toContainText('Edge AI');
     await expect(research).not.toContainText(/abgeschlossen|eingereicht|verteidigt|benotet/i);
   });
 

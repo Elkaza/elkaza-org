@@ -3,39 +3,37 @@ import type { Locale } from "@/lib/siteContent";
 const copy = {
   de: {
     eyebrow: "Aktuelle Forschung",
-    compactMeta: "Diplomarbeit · TU Wien · In Arbeit",
-    education: "TU Wien · Wirtschaftsinformatik",
-    detailMeta: "Diplomarbeit · In Arbeit · 2026",
-    compactTitle: "Rahmenwerk für Enterprise Coherence Governance",
-    detailTitle:
-      "Rahmenwerk für Enterprise Coherence Governance: Methodenintegration bei Unternehmenstransformationen in Österreich",
+    compactMeta: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit",
+    education: "FH Technikum Wien · MSc Internet of Things & Intelligent Systems",
+    detailMeta: "MIO-3 Master's Project · In Arbeit · 2026",
+    compactTitle: "Secure Edge AI Gateway for IoT Networks",
+    detailTitle: "Secure Edge AI Gateway for IoT Networks",
     summary:
-      "Untersuchung, wie Methoden und Disziplinen wie Enterprise Architecture, IT-Governance, IT Service Management, Projekt- und Portfoliomanagement, Agile und Change Management bei Unternehmenstransformationen koordiniert werden können.",
+      "Entwurf und prototypische Evaluation eines sicheren Edge-AI-Gateways für IoT-Netzwerke mit Fokus auf verständliche, wartbare und kontrollierte Betriebsmodelle.",
     compactMethods:
-      "Systematische Literaturrecherche · Analyse österreichischer Stellenanzeigen · Experteninterviews · Design Science Research",
+      "Systematische Literaturrecherche · Architektur- und Prototypentwicklung · Evaluationskonzept",
     methodsLabel: "Methoden",
     detailMethods:
-      "Systematische Literaturrecherche, Analyse österreichischer Stellenanzeigen, Experteninterviews, Design Science Research und Method Engineering.",
-    advisorLabel: "Betreuung",
-    advisor: "Univ.Prof. Dr. Henderik A. Proper",
+      "Systematische Literaturrecherche, Architektur- und Prototypentwicklung sowie evaluative Analyse mit Design Science Research.",
+    advisorLabel: "Status",
+    advisor: "Thema und Betreuung noch in Abstimmung.",
   },
   en: {
     eyebrow: "Current research",
-    compactMeta: "Master's Thesis / Diplomarbeit · TU Wien · In progress",
-    education: "TU Wien · Business Informatics",
-    detailMeta: "Master's Thesis / Diplomarbeit · In progress · 2026",
-    compactTitle: "A Framework for Enterprise Coherence Governance",
-    detailTitle:
-      "A Framework for Enterprise Coherence Governance: Method Integration During Organizational Transformation in Austria",
+    compactMeta: "MIO-3 Master's Project · FH Technikum Wien · In progress",
+    education: "FH Technikum Wien · MSc Internet of Things & Intelligent Systems",
+    detailMeta: "MIO-3 Master's Project · In progress · 2026",
+    compactTitle: "Secure Edge AI Gateway for IoT Networks",
+    detailTitle: "Secure Edge AI Gateway for IoT Networks",
     summary:
-      "Research on how methods and disciplines such as enterprise architecture, IT governance, IT service management, project and portfolio management, Agile and change management can be coordinated during organizational transformation.",
+      "Design and prototypical evaluation of a secure edge AI gateway for IoT networks with a focus on understandable, maintainable, and governable operations.",
     compactMethods:
-      "Systematic Literature Review · Austrian Job-Market Analysis · Expert Interviews · Design Science Research",
+      "Systematic Literature Review · Architecture and Prototype Development · Evaluation Concept",
     methodsLabel: "Research methods",
     detailMethods:
-      "Systematic Literature Review, Austrian job-advertisement analysis, expert interviews, Design Science Research and method engineering.",
-    advisorLabel: "Advisor",
-    advisor: "Univ.Prof. Dr. Henderik A. Proper",
+      "Systematic literature review, architecture and prototype development, and evaluative analysis using Design Science Research.",
+    advisorLabel: "Status",
+    advisor: "Topic and supervision under clarification.",
   },
 } as const;
 

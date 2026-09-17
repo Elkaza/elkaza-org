@@ -24,18 +24,18 @@ test.describe('Language Switching', () => {
     });
     await expect(englishHeading).toBeVisible();
 
-    const research = page.getByRole('region', { name: 'A Framework for Enterprise Coherence Governance' });
-    await expect(research).toContainText("Master's Thesis / Diplomarbeit · TU Wien · In progress");
+    const research = page.getByRole('region', { name: 'Secure Edge AI Gateway for IoT Networks' });
+    await expect(research).toContainText("MIO-3 Master's Project · FH Technikum Wien · In progress");
   });
 
-  test('about pages show consistent ongoing thesis education entries', async ({ page }) => {
+  test('about pages show consistent ongoing academic work entries', async ({ page }) => {
     await page.goto('/ueber-uns');
-    await expect(page.getByText('TU Wien · Wirtschaftsinformatik')).toBeVisible();
-    await expect(page.getByText('Diplomarbeit · In Arbeit · 2026')).toBeVisible();
+    await expect(page.getByText('FH Technikum Wien · MSc Internet of Things & Intelligent Systems')).toBeVisible();
+    await expect(page.getByText('MIO-3 Master\'s Project · FH Technikum Wien · In Arbeit · 2026')).toBeVisible();
 
     await page.goto('/en/about');
-    await expect(page.getByText('TU Wien · Business Informatics')).toBeVisible();
-    await expect(page.getByText("Master's Thesis / Diplomarbeit · In progress · 2026")).toBeVisible();
+    await expect(page.getByText('FH Technikum Wien · MSc Internet of Things & Intelligent Systems')).toBeVisible();
+    await expect(page.getByText("MIO-3 Master's Project · FH Technikum Wien · In progress · 2026")).toBeVisible();
   });
 
   test('language switcher toggles between versions', async ({ page }) => {
