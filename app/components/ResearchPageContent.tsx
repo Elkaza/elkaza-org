@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, CheckCircle2, FlaskConical, Network, School } from "lucide-react";
+import { School } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { mioProject, thesisResearch } from "../lib/research";
 
@@ -17,40 +17,6 @@ export default function ResearchPageContent() {
           <h1 className="mt-4 text-4xl font-bold tracking-normal md:text-5xl">{research.pageTitle}</h1>
           <p className="mt-4 max-w-3xl text-secondary">{research.pageIntro}</p>
         </header>
-
-        <section className="mt-8 rounded-xl border border-blue-200/70 bg-blue-50/60 p-6 dark:border-blue-900/70 dark:bg-blue-950/20 md:p-8" aria-labelledby="thesis-title">
-          <div className="flex items-start gap-4">
-            <BookOpen className="mt-1 h-8 w-8 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-            <div className="min-w-0">
-              <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{research.directionLabel}</p>
-              <h2 id="thesis-title" className="mt-3 max-w-4xl break-words text-2xl font-semibold leading-snug text-main md:text-3xl">{research.thesisTitle}</h2>
-              <p className="mt-3 text-sm font-semibold text-secondary">{research.thesisLabel}</p>
-              <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-                <div><dt className="font-semibold text-main">Status</dt><dd className="mt-1 text-muted">{research.status}</dd></div>
-              </dl>
-            </div>
-          </div>
-
-          <div className="mt-8 border-t border-blue-200/70 pt-7 dark:border-blue-900/70">
-            <p className="max-w-4xl leading-8 text-secondary">{research.question}</p>
-          </div>
-
-          <div className="mt-7 grid gap-5 md:grid-cols-2">
-            <article className="rounded-xl border border-subtle bg-card p-6 shadow-sm">
-              <div className="flex items-center gap-3"><FlaskConical className="h-6 w-6 text-blue-600" aria-hidden="true" /><h3 className="text-xl font-semibold">{research.methodsTitle}</h3></div>
-              <ul className="mt-5 space-y-3 text-sm leading-6 text-secondary">{research.methods.map((method) => <li key={method} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" aria-hidden="true" /><span>{method}</span></li>)}</ul>
-            </article>
-            <article className="rounded-xl border border-subtle bg-card p-6 shadow-sm">
-              <div className="flex items-center gap-3"><Network className="h-6 w-6 text-blue-600" aria-hidden="true" /><h3 className="text-xl font-semibold">{research.artifactTitle}</h3></div>
-              <p className="mt-5 text-sm leading-7 text-secondary">{research.artifact}</p>
-            </article>
-          </div>
-
-          <div className="mt-7 rounded-xl border border-subtle bg-card p-6">
-            <h3 className="text-xl font-semibold">{research.currentStatusTitle}</h3>
-            <p className="mt-3 max-w-4xl leading-7 text-secondary">{research.currentStatus}</p>
-          </div>
-        </section>
 
         <section className="mt-8 rounded-xl border border-subtle bg-card p-6 shadow-sm md:p-8" aria-labelledby="mio-title">
           <div className="flex items-start gap-4">
