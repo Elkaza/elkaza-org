@@ -67,27 +67,4 @@ jobs:
           path: .
           extra_args: --only-verified
 
-  deploy:
-    name: Deploy to Fortress via Tailscale
-    needs: [build, secrets-scan]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Connect to Tailscale
-        uses: tailscale/github-action@v3
-        with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
-
-      - name: Deploy to live static mount
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          port: 22
-          script: |
-            set -euo pipefail
-            ~/deploy-elkaza.sh
-
-
 
