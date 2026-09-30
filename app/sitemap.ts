@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/archives",
     "/research",
+    "/research/secure-edge-ai-iot-gateway",
     "/projects",
     "/security",
     "/teaching",

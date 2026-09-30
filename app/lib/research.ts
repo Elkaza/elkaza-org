@@ -134,37 +134,34 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
 };
 
 export const mioProject: Record<Locale, AcademicProjectContent> = {
-  de: {
-    title: "Secure Edge AI Gateway for IoT Networks (Arbeitstitel)",
-    institution: "FH Technikum Wien",
-    programme: "MSc Internet of Things & Intelligent Systems",
-    module: "MIO-3 Master's Project",
-    year: "2026",
-    status: "In Arbeit",
-    label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026",
-    description:
-      "Ein Secure-Edge-/IoT-Projekt, dessen konkreter Umfang derzeit mit dem Betreuer abgestimmt wird. Als mögliche Richtung wird eine leichtgewichtige Identifikation von IoT-Geräten und die Erkennung unbekannter oder unerwarteter Geräte am Gateway untersucht.",
+  "de": {
+    "institution": "FH Technikum Wien",
+    "programme": "MSc Internet of Things & Intelligent Systems",
+    "module": "MIO-3 Master's Project",
+    "year": "2026–2027",
+    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Arbeitstitel)",
+    "status": "In Arbeit",
+    "label": "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026–2027",
+    "description": "Das Projekt untersucht, ob leichtgewichtige ML-Verfahren Manipulationen von IoT-Sensordaten direkt am Edge Gateway erkennen können. Geplant ist ein isoliertes Testbed mit Raspberry Pi 5, ESP32-S3 und ASAIR AM2302, um statistische und ML-Verfahren hinsichtlich Erkennungsleistung und Ressourcenbedarf zu vergleichen. Der Forschungsumfang wird noch mit der Betreuung abgestimmt."
   },
-  en: {
-    title: "Secure Edge AI Gateway for IoT Networks (Working title)",
-    institution: "FH Technikum Wien",
-    programme: "MSc Internet of Things & Intelligent Systems",
-    module: "MIO-3 Master's Project",
-    year: "2026",
-    status: "In progress",
-    label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026",
-    description:
-      "A secure edge/IoT project whose detailed scope is currently being defined with the supervisor. A possible direction being explored is lightweight identification of IoT devices and detection of unknown or unexpected devices at the gateway.",
+  "en": {
+    "institution": "FH Technikum Wien",
+    "programme": "MSc Internet of Things & Intelligent Systems",
+    "module": "MIO-3 Master's Project",
+    "year": "2026–2027",
+    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Working title)",
+    "status": "In progress",
+    "label": "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026–2027",
+    "description": "This project investigates whether lightweight ML methods can detect manipulation of IoT sensor data directly at an edge gateway. An isolated testbed with Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 is planned to compare statistical and ML methods for detection effectiveness and resource usage. Final scope alignment with the supervisor is pending."
   },
-  ar: {
-    title: "Secure Edge AI Gateway for IoT Networks (Working title)",
-    institution: "FH Technikum Wien",
-    programme: "MSc Internet of Things & Intelligent Systems",
-    module: "MIO-3 Master's Project",
-    year: "2026",
-    status: "In progress",
-    label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026",
-    description:
-      "A secure edge/IoT project whose detailed scope is currently being defined with the supervisor. A possible direction being explored is lightweight identification of IoT devices and detection of unknown or unexpected devices at the gateway.",
-  },
+  "ar": {
+    "institution": "FH Technikum Wien",
+    "programme": "MSc Internet of Things & Intelligent Systems",
+    "module": "MIO-3 Master's Project",
+    "year": "2026–2027",
+    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Working title)",
+    "status": "In progress",
+    "label": "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026–2027",
+    "description": "This project investigates whether lightweight ML methods can detect manipulation of IoT sensor data directly at an edge gateway. An isolated testbed with Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 is planned to compare statistical and ML methods for detection effectiveness and resource usage. Final scope alignment with the supervisor is pending."
+  }
 };

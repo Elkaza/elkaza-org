@@ -1,6 +1,7 @@
 "use client";
 
 import { School } from "lucide-react";
+import Link from "next/link";
 import { useLocale } from "../LocaleProvider";
 import { mioProject, thesisResearch } from "../lib/research";
 
@@ -27,6 +28,13 @@ export default function ResearchPageContent() {
               <p className="mt-3 text-sm font-semibold text-secondary">{mio.label}</p>
               <p className="mt-2 text-sm text-muted">{mio.programme}</p>
               <p className="mt-5 max-w-4xl leading-8 text-secondary">{mio.description}</p>
+              <ul className="mt-5 flex flex-wrap gap-2" aria-label="Research topics">
+                {["IoT Security", "Edge AI", "Anomaly Detection", "Data Integrity", "Edge Computing"].map((tag) => <li key={tag} className="rounded-md border border-subtle px-3 py-1 text-xs text-secondary">{tag}</li>)}
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-5 text-sm font-semibold text-blue-800 dark:text-blue-300">
+                <Link className="underline underline-offset-4" href={`${locale === "de" ? "" : "/en"}/research/secure-edge-ai-iot-gateway`}>{locale === "de" ? "Projekt ansehen" : "View project"}</Link>
+                <a className="underline underline-offset-4" href="https://github.com/Elkaza/secure-edge-ai-iot-gateway">GitHub</a>
+              </div>
             </div>
           </div>
         </section>

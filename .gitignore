@@ -34,3 +34,13 @@ ENHANCEMENT_SUMMARY.md
 published-projects/
 tourism-dashboard/
 
+# Test & review artifacts
+.exam_prep/
+.tmp/
+review-artifacts/
+screenshots/
+test-results/
+playwright-report/
+*.patch
+exoscale-pdf.png
+
