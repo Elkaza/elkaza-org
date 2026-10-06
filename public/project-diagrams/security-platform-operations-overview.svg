@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 980" role="img" aria-labelledby="title desc">
   <title id="title">Security and Platform Operations</title>
-  <desc id="desc">Layered security overview showing access and network controls, filtering and defense, web analytics, observability, operations, and the public and private trust boundaries.</desc>
+  <desc id="desc">Sanitized layered-security overview showing separated public and administrative paths, persistent host and Docker filtering, detection-only CrowdSec, web analytics, independent monitoring, operations, and representative recovery validation.</desc>
   <defs>
     <marker id="arrow-blue" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="strokeWidth"><path d="M1 1 L9 5.5 L1 10 Z" fill="#0f63d8" /></marker>
     <marker id="arrow-green" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="strokeWidth"><path d="M1 1 L9 5.5 L1 10 Z" fill="#15803d" /></marker>
@@ -11,29 +11,29 @@
   </defs>
   <rect class="page" width="1800" height="980" />
   <text x="900" y="58" text-anchor="middle" class="title">Security &amp; Platform Operations</text>
-  <rect x="20" y="84" width="360" height="158" rx="8" class="row" /><text x="104" y="170" class="label">1. Access &amp; Network</text>
-  <rect x="20" y="260" width="360" height="148" rx="8" class="rowGreen" /><text x="104" y="340" class="label">2. Filtering &amp; Defense</text>
+  <rect x="20" y="84" width="360" height="158" rx="8" class="row" /><text x="72" y="170" class="label">1. Ingress &amp; Access</text>
+  <rect x="20" y="260" width="360" height="148" rx="8" class="rowGreen" /><text x="72" y="340" class="label">2. Filter &amp; Detect</text>
   <rect x="20" y="424" width="360" height="226" rx="8" class="row" /><text x="104" y="515" class="label">3. Web &amp; Analytics</text>
   <rect x="20" y="668" width="360" height="112" rx="8" class="rowGreen" /><text x="104" y="735" class="label">4. Observability</text>
   <rect x="20" y="794" width="360" height="104" rx="8" class="rowGreen" /><text x="104" y="858" class="label">5. Operations</text>
 
-  <rect x="380" y="84" width="1110" height="158" rx="8" class="trust" /><text x="1560" y="170" text-anchor="middle" class="boundary" fill="#0f63d8">Public web surface</text>
-  <rect x="380" y="260" width="1110" height="148" rx="8" class="trustGreen" /><text x="1560" y="332" text-anchor="middle" class="boundary" fill="#15803d">Private</text><text x="1560" y="363" text-anchor="middle" class="boundary" fill="#15803d">management plane</text>
+  <rect x="380" y="84" width="1110" height="158" rx="8" class="trust" /><text x="1595" y="156" text-anchor="middle" class="boundary" fill="#0f63d8">Separated web</text><text x="1595" y="187" text-anchor="middle" class="boundary" fill="#0f63d8">and admin paths</text>
+  <rect x="380" y="260" width="1110" height="148" rx="8" class="trustGreen" /><text x="1595" y="332" text-anchor="middle" class="boundary" fill="#15803d">Private</text><text x="1595" y="363" text-anchor="middle" class="boundary" fill="#15803d">control plane</text>
   <rect x="380" y="424" width="1330" height="226" rx="8" class="trust" /><text x="1600" y="532" text-anchor="middle" class="boundary" fill="#0f63d8">Private</text><text x="1600" y="563" text-anchor="middle" class="boundary" fill="#0f63d8">data plane</text>
 
   <rect x="408" y="132" width="205" height="76" rx="8" class="card" /><text x="510" y="178" text-anchor="middle" class="sub">Tailscale</text>
   <rect x="682" y="132" width="205" height="76" rx="8" class="card" /><text x="785" y="178" text-anchor="middle" class="sub">SSH aliases</text>
   <rect x="955" y="132" width="205" height="76" rx="8" class="card" /><text x="1058" y="178" text-anchor="middle" class="sub">UFW</text>
-  <rect x="1230" y="132" width="230" height="76" rx="8" class="card" /><text x="1345" y="165" text-anchor="middle" class="sub">Nginx Proxy</text><text x="1345" y="190" text-anchor="middle" class="sub">Manager</text>
+  <rect x="1230" y="132" width="230" height="76" rx="8" class="card" /><text x="1345" y="158" text-anchor="middle" class="sub">Nginx Proxy Manager</text><text x="1345" y="184" text-anchor="middle" class="small">restricted PROXY ingress</text>
   <path class="blue" d="M613 170 H682" /><path class="blue" d="M887 170 H955" /><path class="blue" d="M1160 170 H1230" /><path class="blue" d="M1345 208 V450 H525" />
 
   <rect x="500" y="304" width="210" height="72" rx="8" class="card" /><text x="605" y="333" text-anchor="middle" class="sub">Pi-hole</text><text x="605" y="357" text-anchor="middle" class="small">DNS filtering</text>
-  <rect x="792" y="304" width="240" height="72" rx="8" class="card" /><text x="912" y="333" text-anchor="middle" class="sub">CrowdSec</text><text x="912" y="357" text-anchor="middle" class="small">intrusion response</text>
-  <rect x="1100" y="304" width="236" height="72" rx="8" class="card" /><text x="1218" y="333" text-anchor="middle" class="sub">Reduced</text><text x="1218" y="357" text-anchor="middle" class="small">public exposure</text>
+  <rect x="792" y="304" width="240" height="72" rx="8" class="card" /><text x="912" y="333" text-anchor="middle" class="sub">CrowdSec</text><text x="912" y="357" text-anchor="middle" class="small">detection + CAPI intelligence</text>
+  <rect x="1100" y="304" width="236" height="72" rx="8" class="card" /><text x="1218" y="333" text-anchor="middle" class="sub">Persistent policy</text><text x="1218" y="357" text-anchor="middle" class="small">UFW + DOCKER-USER</text>
   <path class="green" d="M510 208 V304" /><path class="green" d="M785 208 V304" /><path class="green" d="M1058 208 V304" /><path class="green" d="M1345 208 V284 H1218 V304" />
 
   <rect x="408" y="480" width="190" height="72" rx="8" class="card" /><text x="503" y="525" text-anchor="middle" class="sub">elkaza.org</text>
-  <rect x="640" y="480" width="190" height="72" rx="8" class="card" /><text x="735" y="525" text-anchor="middle" class="sub">Static web prototype</text>
+  <rect x="640" y="480" width="190" height="72" rx="8" class="card" /><text x="735" y="511" text-anchor="middle" class="sub">Containerized</text><text x="735" y="536" text-anchor="middle" class="sub">portfolio site</text>
   <rect x="890" y="480" width="190" height="72" rx="8" class="card" /><text x="985" y="511" text-anchor="middle" class="sub">Plausible</text><text x="985" y="536" text-anchor="middle" class="sub">Analytics</text>
   <rect x="1220" y="456" width="230" height="72" rx="8" class="card" /><text x="1335" y="502" text-anchor="middle" class="sub">PostgreSQL</text>
   <rect x="1220" y="550" width="230" height="72" rx="8" class="card" /><text x="1335" y="596" text-anchor="middle" class="sub">ClickHouse</text>
@@ -44,18 +44,18 @@
   <rect x="408" y="696" width="195" height="64" rx="8" class="card" /><text x="505" y="735" text-anchor="middle" class="sub">Netdata</text>
   <rect x="678" y="696" width="220" height="64" rx="8" class="card" /><text x="788" y="735" text-anchor="middle" class="sub">Uptime Kuma</text>
   <rect x="954" y="696" width="195" height="64" rx="8" class="card" /><text x="1052" y="735" text-anchor="middle" class="sub">Dozzle</text>
-  <rect x="1228" y="696" width="225" height="64" rx="8" class="card" /><text x="1340" y="724" text-anchor="middle" class="sub">Service health</text><text x="1340" y="748" text-anchor="middle" class="sub">and logs</text>
+  <rect x="1228" y="696" width="225" height="64" rx="8" class="card" /><text x="1340" y="724" text-anchor="middle" class="sub">Better Stack</text><text x="1340" y="748" text-anchor="middle" class="small">external check + heartbeat</text>
 
   <rect x="408" y="818" width="195" height="58" rx="8" class="card" /><text x="505" y="854" text-anchor="middle" class="sub">Portainer</text>
   <rect x="678" y="818" width="220" height="58" rx="8" class="card" /><text x="788" y="854" text-anchor="middle" class="sub">Watchtower</text>
-  <rect x="954" y="818" width="195" height="58" rx="8" class="card" /><text x="1052" y="854" text-anchor="middle" class="sub">Backups</text>
+  <rect x="954" y="818" width="195" height="58" rx="8" class="card" /><text x="1052" y="844" text-anchor="middle" class="sub">Backups</text><text x="1052" y="864" text-anchor="middle" class="small">representative restore</text>
   <rect x="1228" y="818" width="225" height="58" rx="8" class="card" /><text x="1340" y="854" text-anchor="middle" class="sub">Docker Compose</text>
   <path class="green" d="M503 552 V696" /><path class="green" d="M735 552 V696" /><path class="green" d="M985 552 V696" /><path class="green" d="M1335 622 V696" />
   <path class="green" d="M505 760 V818" /><path class="green" d="M788 760 V818" /><path class="green" d="M1052 760 V818" /><path class="green" d="M1340 760 V818" />
   <path class="green" d="M1149 847 H1228" /><path class="green" d="M1453 847 H1518 V620 H1450" />
 
   <rect x="205" y="932" width="1380" height="44" rx="9" fill="#f8fbff" stroke="#0f63d8" stroke-width="1.7" />
-  <text x="895" y="962" text-anchor="middle" class="outcome">Private access paths, controlled exposure, first-party analytics, and clear service visibility.</text>
+  <text x="825" y="962" text-anchor="middle" class="outcome">Layered access, persistent filtering, detection, independent checks, and recovery evidence.</text>
   <rect x="1468" y="898" width="300" height="76" rx="8" class="card" />
   <path class="blue" d="M1492 922 H1552" /><text x="1568" y="928" class="legend">Blue arrow = runtime traffic</text>
   <path class="green" d="M1492 956 H1552" /><text x="1568" y="950" class="legend">Green dashed arrow =</text><text x="1568" y="968" class="legend">operations, security, monitoring</text>

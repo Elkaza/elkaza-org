@@ -107,9 +107,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Edge AI safety monitoring with camera, LiDAR, and local decision logic.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and tested recovery.",
-        de: "Hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung.",
-        ar: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and tested recovery.",
+        en: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and representative recovery validation.",
+        de: "Hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung.",
+        ar: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and representative recovery validation.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "Embedded vibration classification from IMU features through model export and device-side inference.",
@@ -117,9 +117,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Embedded vibration classification from IMU features through model export and device-side inference.",
     },
     "elkaza-org": {
-        en: "Multilingual TypeScript portfolio platform with structured content and CI-enabled publishing.",
-        de: "Mehrsprachige TypeScript-Portfolio-Plattform mit strukturierten Inhalten und CI-gestütztem Publishing.",
-        ar: "Multilingual TypeScript portfolio platform with structured content and CI-enabled publishing.",
+        en: "Multilingual TypeScript portfolio with CI validation and monitored self-hosted delivery.",
+        de: "Mehrsprachiges TypeScript-Portfolio mit CI-Validierung und überwachter Self-Hosted-Auslieferung.",
+        ar: "Multilingual TypeScript portfolio with CI validation and monitored self-hosted delivery.",
     },
 };
 
