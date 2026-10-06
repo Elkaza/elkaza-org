@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 980" role="img" aria-labelledby="title desc">
   <title id="title">The Vienna Fortress: Private Infrastructure and Operations Platform</title>
-  <desc id="desc">Architecture diagram showing public admin access, public VPS edge, private Tailscale overlay, and the private Proxmox Debian Docker runtime used by the Vienna Fortress platform.</desc>
+  <desc id="desc">Sanitized architecture diagram showing separate public-user and private-administration paths, a thin public VPS edge, private Tailscale transport, restricted reverse-proxy ingress, and the Proxmox Debian Docker runtime used by the Vienna Fortress platform.</desc>
   <defs>
     <marker id="arrow-blue" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto" markerUnits="strokeWidth">
       <path d="M1 1 L9 5.5 L1 10 Z" fill="#0f63d8" />
@@ -23,7 +23,7 @@
   <text x="900" y="54" text-anchor="middle" class="title">The Vienna Fortress: Private Infrastructure &amp; Operations Platform</text>
 
   <rect x="24" y="90" width="294" height="690" rx="16" class="zone" />
-  <text x="54" y="136" class="zone-title">1. Public / Admin Access</text>
+  <text x="54" y="136" class="zone-title">1. Users / Admins</text>
   <rect x="62" y="190" width="176" height="142" rx="10" class="card" />
   <text x="150" y="247" text-anchor="middle" class="icon">ADMIN</text>
   <text x="150" y="305" text-anchor="middle" class="label">Admin browser</text>
@@ -35,7 +35,7 @@
   <text x="150" y="707" text-anchor="middle" class="label">Public users</text>
 
   <rect x="360" y="90" width="322" height="690" rx="16" class="zone" />
-  <text x="432" y="136" class="zone-title">2. Public VPS Edge</text>
+  <text x="432" y="136" class="zone-title">2. Public Edge</text>
   <rect x="392" y="196" width="260" height="490" rx="18" class="card" />
   <text x="522" y="238" text-anchor="middle" class="label">Public VPS Edge</text>
   <rect x="414" y="334" width="216" height="82" rx="8" class="box" />
@@ -44,16 +44,16 @@
   <text x="514" y="389" class="sub">stream proxy</text>
   <rect x="414" y="438" width="216" height="82" rx="8" class="box" />
   <text x="456" y="489" class="icon">&gt;_</text>
-  <text x="514" y="470" class="sub">SSH</text>
-  <text x="514" y="493" class="sub">deployment target</text>
+  <text x="514" y="470" class="sub">Private admin</text>
+  <text x="514" y="493" class="sub">and release relay</text>
   <rect x="414" y="553" width="216" height="92" rx="8" class="box" />
   <text x="456" y="611" class="icon">WWW</text>
-  <text x="514" y="589" class="sub">Public ingress:</text>
-  <text x="514" y="614" class="sub">SSH, HTTP, HTTPS</text>
+  <text x="585" y="589" text-anchor="middle" class="small">Public ingress</text>
+  <text x="585" y="614" text-anchor="middle" class="small">HTTP / HTTPS</text>
   <text x="522" y="724" text-anchor="middle" class="sub">Single public ingress point</text>
 
   <rect x="726" y="90" width="300" height="690" rx="16" class="zone" />
-  <text x="754" y="136" class="zone-title">3. Private Tailscale Overlay</text>
+  <text x="754" y="136" class="zone-title">3. Private Overlay</text>
   <rect x="760" y="275" width="210" height="374" rx="12" class="card" />
   <text x="865" y="370" text-anchor="middle" class="icon">LOCK</text>
   <text x="865" y="442" text-anchor="middle" class="label">Encrypted</text>
@@ -65,7 +65,7 @@
   <text x="865" y="643" text-anchor="middle" class="sub">Private admin path</text>
 
   <rect x="1064" y="90" width="710" height="850" rx="16" class="zone" />
-  <text x="1240" y="136" class="zone-title">4. Private Proxmox / Debian Runtime</text>
+  <text x="1240" y="136" class="zone-title">4. Proxmox / Debian Runtime</text>
   <rect x="1120" y="160" width="610" height="62" rx="8" class="box" />
   <text x="1425" y="200" text-anchor="middle" class="label">Proxmox host</text>
   <rect x="1120" y="245" width="610" height="62" rx="8" class="box" />
@@ -75,7 +75,8 @@
   <rect x="1118" y="396" width="190" height="184" rx="8" class="box" />
   <text x="1213" y="420" text-anchor="middle" class="sub">Web &amp; Routing</text>
   <rect x="1136" y="442" width="154" height="48" rx="7" class="card" />
-  <text x="1213" y="473" text-anchor="middle" class="small">Nginx Proxy Manager</text>
+  <text x="1213" y="463" text-anchor="middle" class="small">Nginx Proxy Manager</text>
+  <text x="1213" y="480" text-anchor="middle" class="tiny">restricted PROXY ingress</text>
   <rect x="1136" y="512" width="154" height="48" rx="7" class="card" />
   <text x="1213" y="543" text-anchor="middle" class="small">elkaza-web</text>
   <rect x="1330" y="396" width="205" height="184" rx="8" class="box" />
@@ -86,8 +87,8 @@
   <rect x="1570" y="396" width="160" height="184" rx="8" class="box" />
   <text x="1650" y="420" text-anchor="middle" class="sub">Security</text>
   <rect x="1588" y="434" width="124" height="42" rx="7" class="card" /><text x="1650" y="462" text-anchor="middle" class="small">Pi-hole</text>
-  <rect x="1588" y="489" width="124" height="42" rx="7" class="card" /><text x="1650" y="517" text-anchor="middle" class="small">CrowdSec</text>
-  <rect x="1588" y="544" width="124" height="42" rx="7" class="card" /><text x="1650" y="572" text-anchor="middle" class="small">UFW</text>
+  <rect x="1588" y="489" width="124" height="42" rx="7" class="card" /><text x="1650" y="508" text-anchor="middle" class="small">CrowdSec</text><text x="1650" y="524" text-anchor="middle" class="tiny">detection only</text>
+  <rect x="1588" y="544" width="124" height="42" rx="7" class="card" /><text x="1650" y="563" text-anchor="middle" class="small">Host + Docker</text><text x="1650" y="579" text-anchor="middle" class="tiny">firewall policy</text>
   <rect x="1102" y="672" width="180" height="190" rx="10" class="box" />
   <text x="1192" y="702" text-anchor="middle" class="sub">Observability</text>
   <rect x="1120" y="720" width="144" height="38" rx="7" class="card" /><text x="1192" y="745" text-anchor="middle" class="small">Netdata</text>

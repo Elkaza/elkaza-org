@@ -762,7 +762,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cv_summary_focus3: "Secure infrastructure and monitoring",
     cv_summary_focus4: "Requirements, documentation, and implementation",
     cv_infra_title: "Current Infrastructure Work",
-    cv_infra_intro: "Current infrastructure work connects a Public Edge VPS, an on-site Proxmox and Debian platform, and a separate Windows Server lab. Private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and tested recovery provide the shared operating model.",
+    cv_infra_intro: "Current infrastructure work connects a Public Edge VPS, an on-site Proxmox and Debian platform, and a separate Windows Server lab. Private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and representative application/data recovery validation provide the shared operating model.",
     cv_infra_short1: "Public Edge VPS and on-site Proxmox/Debian runtime for selected services",
     cv_infra_short2: "Ansible configuration management for Linux and Windows over SSH and WinRM",
     cv_infra_short3: "Tailscale overlay networking and Azure Arc hybrid governance",

@@ -517,12 +517,12 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "An Ansible-managed hybrid infrastructure lab that separates public ingress from private administration across Linux and Windows systems, with Azure Arc governance, monitoring and tested recovery.",
-            "Ein mit Ansible verwaltetes hybrides Infrastrukturlabor, das öffentlichen Ingress von privater Administration über Linux- und Windows-Systeme hinweg trennt – mit Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung."
+            "An Ansible-managed hybrid infrastructure lab that separates public ingress from private administration across Linux and Windows systems, with Azure Arc governance, monitoring and representative recovery validation.",
+            "Ein mit Ansible verwaltetes hybrides Infrastrukturlabor, das öffentlichen Ingress von privater Administration über Linux- und Windows-Systeme hinweg trennt – mit Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung."
         ),
         seoDescription: loc(
-            "Engineering case study of a hybrid Linux and Windows infrastructure lab using Proxmox, Docker, Ansible over Tailscale, Azure Arc governance, monitoring and tested recovery.",
-            "Technische Fallstudie zu einem hybriden Linux- und Windows-Infrastrukturlabor mit Proxmox, Docker, Ansible über Tailscale, Azure-Arc-Governance, Monitoring und getesteter Wiederherstellung."
+            "Engineering case study of a hybrid Linux and Windows infrastructure lab using Proxmox, Docker, Ansible over Tailscale, Azure Arc governance, monitoring and representative recovery validation.",
+            "Technische Fallstudie zu einem hybriden Linux- und Windows-Infrastrukturlabor mit Proxmox, Docker, Ansible über Tailscale, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung."
         ),
         overview: loc(
             "The lab spans a Public Edge VPS, an on-site Proxmox and Debian platform, and an external Windows Server environment. Tailscale carries private administration and the edge-to-application path; Git and Ansible provide version-controlled desired state and automated Linux and Windows configuration. Azure Arc adds outbound-only inventory and governance without hosting the managed systems.",
@@ -543,8 +543,8 @@ export const projects: Project[] = [
         },
         architecture: {
             node: loc(
-                "Internet traffic follows public DNS to the Public Edge VPS, then ports 80 and 443 are forwarded over the encrypted Tailscale path to the On-site Server, Nginx Proxy Manager and an approved application container.",
-                "Internetverkehr folgt dem öffentlichen DNS zum Public Edge VPS; anschließend werden die Ports 80 und 443 über den verschlüsselten Tailscale-Pfad zum On-site Server, zu Nginx Proxy Manager und einem freigegebenen Anwendungscontainer weitergeleitet."
+                "Public HTTP(S) traffic reaches the Public Edge VPS and is forwarded over the encrypted Tailscale path to restricted PROXY-protocol listeners on the On-site Server. Nginx Proxy Manager preserves the original client address before routing approved traffic to the application container.",
+                "Öffentlicher HTTP(S)-Verkehr erreicht den Public Edge VPS und wird über den verschlüsselten Tailscale-Pfad an eingeschränkte PROXY-Protocol-Listener auf dem On-site Server weitergeleitet. Nginx Proxy Manager bewahrt die ursprüngliche Client-Adresse, bevor freigegebener Verkehr zum Anwendungscontainer geroutet wird."
             ),
             edge: loc(
                 "The Administration Controller reaches managed Linux systems through SSH and the Hybrid Windows Lab through WinRM over Tailscale; RDP and the private IIS site remain on the same private administration network.",
@@ -556,12 +556,12 @@ export const projects: Project[] = [
             ),
         },
         security: loc(
-            "The security model uses defense in depth: public ingress is separated from administration, management paths use Tailscale, and host firewalls restrict inbound access. The Public Edge VPS uses UFW and Fail2ban; the On-site Server combines UFW with Docker-aware firewall policy. On Windows, Microsoft Defender and Windows Firewall remain enabled, RDP requires Network Level Authentication, WinRM Basic authentication and unencrypted communication are disabled, SMBv1 is disabled, insecure SMB guest logons are blocked, and IIS remains private.",
-            "Das Sicherheitsmodell folgt Defense in Depth: Öffentlicher Ingress ist von der Administration getrennt, Managementpfade nutzen Tailscale und Host-Firewalls beschränken eingehende Zugriffe. Der Public Edge VPS verwendet UFW und Fail2ban; der On-site Server kombiniert UFW mit einer Docker-aware Firewall-Policy. Unter Windows bleiben Microsoft Defender und Windows Firewall aktiv, RDP erfordert Network Level Authentication, WinRM Basic Authentication und unverschlüsselte Kommunikation sind deaktiviert, SMBv1 ist abgeschaltet, unsichere SMB-Gastanmeldungen sind blockiert und IIS bleibt privat."
+            "The security model uses defense in depth: public ingress is separated from administration, management paths use Tailscale, and host firewalls restrict inbound access. The Public Edge VPS uses UFW and Fail2ban; the On-site Server combines UFW with a persistent Docker-aware firewall policy that limits the private web listeners to the trusted edge peer. CrowdSec consumes reverse-proxy logs with the preserved client address for detection and community threat intelligence; no active bouncer is claimed. On Windows, Microsoft Defender and Windows Firewall remain enabled, RDP requires Network Level Authentication, WinRM Basic authentication and unencrypted communication are disabled, SMBv1 is disabled, insecure SMB guest logons are blocked, and IIS remains private.",
+            "Das Sicherheitsmodell folgt Defense in Depth: Öffentlicher Ingress ist von der Administration getrennt, Managementpfade nutzen Tailscale und Host-Firewalls beschränken eingehende Zugriffe. Der Public Edge VPS verwendet UFW und Fail2ban; der On-site Server kombiniert UFW mit einer persistenten Docker-aware Firewall-Policy, die die privaten Web-Listener auf den vertrauenswürdigen Edge-Peer beschränkt. CrowdSec verarbeitet Reverse-Proxy-Logs mit erhaltener Client-Adresse für Erkennung und Community Threat Intelligence; ein aktiver Bouncer wird nicht behauptet. Unter Windows bleiben Microsoft Defender und Windows Firewall aktiv, RDP erfordert Network Level Authentication, WinRM Basic Authentication und unverschlüsselte Kommunikation sind deaktiviert, SMBv1 ist abgeschaltet, unsichere SMB-Gastanmeldungen sind blockiert und IIS bleibt privat."
         ),
         reliability: loc(
-            "Uptime Kuma monitors service availability, Netdata provides host metrics, and CrowdSec contributes threat and security visibility. A recurring systemd health check covers disk state and backup freshness, with operational notifications sent through Telegram.\n\nThe backup workflow uses fail-fast execution, locking, atomic archive publication, restricted permissions, integrity checks and SHA-256 checksum sidecars. Recovery checks go beyond backup creation: Restic repository integrity and full-data-read checks passed, PostgreSQL was restored to an isolated temporary container with 50 application tables present, and ClickHouse filesystem extraction was verified before temporary plaintext staging data was removed.",
-            "Uptime Kuma überwacht die Service-Verfügbarkeit, Netdata liefert Host-Metriken und CrowdSec ergänzt Bedrohungs- und Security-Sichtbarkeit. Eine wiederkehrende systemd-Health-Prüfung deckt Datenträgerzustand und Backup-Aktualität ab; operative Benachrichtigungen werden über Telegram versendet.\n\nDer Backup-Workflow nutzt Fail-fast-Ausführung, Locking, atomare Archivveröffentlichung, eingeschränkte Berechtigungen, Integritätsprüfungen und SHA-256-Prüfsummen-Sidecars. Recovery-Prüfungen gehen über die reine Backup-Erstellung hinaus: Restic-Repository-Integrität und vollständiges Lesen der Daten waren erfolgreich, PostgreSQL wurde mit 50 vorhandenen Anwendungstabellen in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion wurde verifiziert, bevor temporäre Klartext-Staging-Daten entfernt wurden."
+            "Uptime Kuma monitors internal service availability, Better Stack provides an external website check and an independent host heartbeat, Netdata provides host metrics, and CrowdSec contributes detection visibility. A recurring systemd health check covers disk state and backup freshness, with operational notifications sent through Telegram.\n\nThe backup workflow uses fail-fast execution, locking, atomic archive publication, restricted permissions, integrity checks and SHA-256 checksum sidecars. Recovery checks go beyond backup creation: Restic repository integrity and full-data-read checks passed, PostgreSQL was restored to an isolated temporary container with 50 application tables present, and ClickHouse filesystem extraction was verified before temporary plaintext staging data was removed. This is representative application/data recovery evidence, not a completed full-infrastructure disaster-recovery test.",
+            "Uptime Kuma überwacht die interne Service-Verfügbarkeit, Better Stack liefert eine externe Website-Prüfung und einen unabhängigen Host-Heartbeat, Netdata stellt Host-Metriken bereit und CrowdSec ergänzt Detection-Sichtbarkeit. Eine wiederkehrende systemd-Health-Prüfung deckt Datenträgerzustand und Backup-Aktualität ab; operative Benachrichtigungen werden über Telegram versendet.\n\nDer Backup-Workflow nutzt Fail-fast-Ausführung, Locking, atomare Archivveröffentlichung, eingeschränkte Berechtigungen, Integritätsprüfungen und SHA-256-Prüfsummen-Sidecars. Recovery-Prüfungen gehen über die reine Backup-Erstellung hinaus: Restic-Repository-Integrität und vollständiges Lesen der Daten waren erfolgreich, PostgreSQL wurde mit 50 vorhandenen Anwendungstabellen in einem isolierten temporären Container wiederhergestellt und die ClickHouse-Dateisystemextraktion wurde verifiziert, bevor temporäre Klartext-Staging-Daten entfernt wurden. Dies ist ein repräsentativer Nachweis für die Wiederherstellung von Anwendungen und Daten, kein abgeschlossener vollständiger Infrastruktur-Disaster-Recovery-Test."
         ),
         keyFeatures: locList(
             [
@@ -587,14 +587,14 @@ export const projects: Project[] = [
                 "Ansible automates and validates configuration across Linux and Windows systems over private Tailscale paths.",
                 "Azure Arc provides outbound-only inventory and governance visibility for the On-site Debian Server and Hybrid Windows Lab.",
                 "Uptime Kuma, Netdata and CrowdSec provide service, host and security visibility without promoting an undefined uptime percentage.",
-                "Backup integrity checks and an isolated PostgreSQL restore provide tested recovery evidence rather than relying on backup existence alone.",
+                "Backup integrity checks and an isolated PostgreSQL restore provide representative application/data recovery evidence rather than relying on backup existence alone.",
             ],
             [
                 "Öffentlicher Anwendungs-Ingress ist in der hybriden Umgebung von privater Administration getrennt.",
                 "Ansible automatisiert und validiert die Konfiguration von Linux- und Windows-Systemen über private Tailscale-Pfade.",
                 "Azure Arc liefert ausgehend angebundene Inventarisierungs- und Governance-Sichtbarkeit für den On-site Debian Server und das Hybrid Windows Lab.",
                 "Uptime Kuma, Netdata und CrowdSec liefern Service-, Host- und Security-Sichtbarkeit, ohne eine nicht definierte Uptime-Prozentzahl zu bewerben.",
-                "Backup-Integritätsprüfungen und eine isolierte PostgreSQL-Wiederherstellung liefern getestete Recovery-Nachweise, statt sich allein auf die Existenz von Backups zu verlassen.",
+                "Backup-Integritätsprüfungen und eine isolierte PostgreSQL-Wiederherstellung liefern repräsentative Recovery-Nachweise für Anwendungen und Daten, statt sich allein auf die Existenz von Backups zu verlassen.",
             ]
         ),
         lessons: locList(
@@ -728,12 +728,12 @@ export const projects: Project[] = [
                     "Abbildung 3 — Betrieb, Automatisierung und Recovery"
                 ),
                 caption: loc(
-                    "Infrastructure operations workflow covering version-controlled configuration, validation, Ansible automation, monitoring, backup integrity, and tested recovery.",
-                    "Infrastruktur-Betriebsworkflow mit versionierter Konfiguration, Validierung, Ansible-Automatisierung, Monitoring, Backup-Integrität und getesteter Wiederherstellung."
+                    "Infrastructure operations workflow covering version-controlled configuration, validation, Ansible automation, monitoring, backup integrity, and representative recovery testing.",
+                    "Infrastruktur-Betriebsworkflow mit versionierter Konfiguration, Validierung, Ansible-Automatisierung, Monitoring, Backup-Integrität und repräsentativen Recovery-Tests."
                 ),
                 alt: loc(
-                    "Infrastructure operations workflow from Git-based desired state through pre-deployment validation, Ansible configuration management, post-change verification, continuous monitoring, recurring backups, recovery testing, and validated recovery.",
-                    "Infrastruktur-Betriebsworkflow vom Git-basierten Sollzustand über Pre-Deployment-Validierung, Ansible-Konfigurationsmanagement, Post-Change-Verifikation, kontinuierliches Monitoring und wiederkehrende Backups bis zu Recovery-Test und validierter Wiederherstellung."
+                    "Infrastructure operations workflow from Git-based desired state through pre-deployment validation, Ansible configuration management, post-change verification, continuous monitoring, recurring backups, and representative application/data recovery validation.",
+                    "Infrastruktur-Betriebsworkflow vom Git-basierten Sollzustand über Pre-Deployment-Validierung, Ansible-Konfigurationsmanagement, Post-Change-Verifikation, kontinuierliches Monitoring und wiederkehrende Backups bis zur repräsentativen Recovery-Validierung von Anwendungen und Daten."
                 ),
                 src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-recovery-workflow.png",
             },
@@ -744,11 +744,11 @@ export const projects: Project[] = [
                 ),
                 caption: loc(
                     "Sanitized operational overview showing documented service management, security visibility, hybrid governance, and recovery validation.",
-                    "Bereinigte Betriebsübersicht mit dokumentiertem Service-Management, Security-Transparenz, hybrider Governance und validierter Wiederherstellung."
+                    "Bereinigte Betriebsübersicht mit dokumentiertem Service-Management, Security-Transparenz, hybrider Governance und repräsentativer Recovery-Validierung für Anwendungen und Daten."
                 ),
                 alt: loc(
-                    "Sanitized operations dashboard showing three managed environments, private administration, Azure Arc governance, configuration automation, monitoring, security controls, and validated recovery.",
-                    "Bereinigtes Betriebsdashboard mit drei verwalteten Umgebungen, privater Administration, Azure-Arc-Governance, Konfigurationsautomatisierung, Monitoring, Sicherheitskontrollen und validierter Wiederherstellung."
+                    "Sanitized operations dashboard showing three managed environments, private administration, Azure Arc governance, configuration automation, monitoring, security controls, and representative application/data recovery validation.",
+                    "Bereinigtes Betriebsdashboard mit drei verwalteten Umgebungen, privater Administration, Azure-Arc-Governance, Konfigurationsautomatisierung, Monitoring, Sicherheitskontrollen und repräsentativer Recovery-Validierung für Anwendungen und Daten."
                 ),
                 src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-dashboard.png",
             },
@@ -1172,8 +1172,8 @@ export const projects: Project[] = [
             {
                 title: loc("Private Infrastructure and Operations Platform", "Private Infrastruktur- und Betriebsplattform"),
                 caption: loc(
-                    "The Vienna Fortress architecture shows the split between public admin/user entry, the Public Edge VPS, the private Tailscale transport, and the On-site Server runtime where web, analytics, security, observability, operations, and backup services are separated.",
-                    "Die Vienna-Fortress-Architektur zeigt die Trennung zwischen öffentlichem Admin-/User-Einstieg, Public Edge VPS, privatem Tailscale-Transport und der Runtime des On-site Servers, in der Web, Analytics, Security, Observability, Operations und Backups getrennt betrieben werden."
+                    "The Vienna Fortress architecture shows separate public-user and private-administration paths, the thin Public Edge VPS, private Tailscale transport, and the On-site Server runtime where web, analytics, detection, observability, operations, and backup services are separated.",
+                    "Die Vienna-Fortress-Architektur zeigt getrennte Pfade für öffentliche Nutzer und private Administration, den schlanken Public Edge VPS, privaten Tailscale-Transport und die Runtime des On-site Servers, in der Web, Analytics, Detection, Observability, Operations und Backups getrennt betrieben werden."
                 ),
                 summary: locList(
                     [
@@ -1399,15 +1399,15 @@ export const projects: Project[] = [
     {
         slug: "elkaza-org",
         category: "delivery-platform",
-        status: "implemented",
-        year: "2025",
+        status: "live",
+        year: "2025–2026",
         title: loc(
             "Engineering Portfolio Platform",
             "Engineering-Portfolio-Plattform"
         ),
         oneLiner: loc(
-            "Built a multilingual portfolio platform with structured content, CI-enabled deployment, and maintainable publishing workflows.",
-            "Entwickelt eine mehrsprachige Portfolio-Plattform mit strukturierten Inhalten, CI-gestütztem Deployment und wartbaren Publishing-Workflows."
+            "Built a multilingual portfolio platform with structured content, CI validation, and a monitored self-hosted delivery path.",
+            "Entwickelt eine mehrsprachige Portfolio-Plattform mit strukturierten Inhalten, CI-Validierung und einem überwachten Self-Hosted-Auslieferungspfad."
         ),
         overview: loc(
             "This portfolio is implemented as a Next.js App Router site with TypeScript, static generation, German and English routes, localized metadata, and reusable project components.",
@@ -1418,42 +1418,49 @@ export const projects: Project[] = [
             "Eine persönliche Website muss schnell, wartbar und über mehrere Inhaltsbereiche hinweg leicht aktualisierbar sein, ohne dass jede Änderung zu manueller Mehrarbeit wird."
         ),
         solution: loc(
-            "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, and GitHub-connected deployment. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
-            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-Actions-Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
+            "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, GitHub Actions validation, and a controlled self-hosted release path. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
+            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten, GitHub-Actions-Validierung und einem kontrollierten Self-Hosted-Release-Pfad umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
         ),
+        architectureLabels: {
+            node: loc("Public request path", "Öffentlicher Request-Pfad"),
+            edge: loc("Private delivery path", "Privater Auslieferungspfad"),
+            cloud: loc("Source and validation", "Source und Validierung"),
+        },
         architecture: {
             node: loc(
-                "The browser receives statically generated German and English pages with project, CV, blog, and case-study routes.",
-                "Der Browser erhält statisch generierte deutsche und englische Seiten mit Projekt-, CV-, Blog- und Fallstudienrouten."
+                "Visitors reach the public edge over HTTPS. Approved web traffic crosses a private Tailscale path to Nginx Proxy Manager and the containerized site runtime; administration is not exposed on the public request path.",
+                "Besucher erreichen den Public Edge über HTTPS. Freigegebener Webverkehr läuft über einen privaten Tailscale-Pfad zu Nginx Proxy Manager und zur containerisierten Site-Runtime; die Administration ist nicht Teil des öffentlichen Request-Pfads."
             ),
             edge: loc(
-                "Vercel handles hosting, previews, and runtime operation for the public site experience.",
-                "Vercel übernimmt Auslieferung, Preview-Deployments und Hosting für die öffentliche Site-Erfahrung."
+                "The edge forwards only approved web traffic to restricted PROXY-protocol listeners. The reverse proxy preserves the original client address, applies centralized routing, and sends requests to the portfolio service.",
+                "Der Edge leitet ausschließlich freigegebenen Webverkehr an eingeschränkte PROXY-Protocol-Listener weiter. Der Reverse Proxy bewahrt die ursprüngliche Client-Adresse, zentralisiert das Routing und übergibt Requests an den Portfolio-Service."
             ),
             cloud: loc(
-                "GitHub acts as the source-of-truth platform for version control and deployment-triggered updates.",
-                "GitHub fungiert als Source-of-Truth für Versionskontrolle und deploymentgesteuerte Aktualisierungen."
+                "GitHub is the source of truth. GitHub Actions installs dependencies and runs linting, type checks, builds, and secret scanning before an approved revision is released to the self-hosted runtime.",
+                "GitHub ist die Source of Truth. GitHub Actions installiert Abhängigkeiten und führt Linting, Type-Checks, Builds sowie Secret-Scanning aus, bevor eine freigegebene Revision in die Self-Hosted-Runtime gelangt."
             ),
         },
         security: loc(
-            "A managed deployment model, minimal backend surface, and controlled content workflow keep the public platform simpler and safer to operate.",
-            "Ein gemanagtes Deployment-Modell, minimale Backend-Oberfläche und ein kontrollierter Content-Workflow halten die öffentliche Plattform einfacher und sicherer im Betrieb."
+            "The site uses layered exposure: a thin public edge, private inter-host transport, restricted container ingress, centralized reverse proxying, security headers, and CrowdSec log-based detection. Public architecture documentation intentionally omits addresses, credentials, and actionable firewall details.",
+            "Die Site nutzt mehrschichtige Exponierung: einen schlanken Public Edge, privaten Inter-Host-Transport, eingeschränkten Container-Ingress, zentralen Reverse Proxy, Security Header und logbasierte CrowdSec-Erkennung. Die öffentliche Architekturdokumentation lässt Adressen, Zugangsdaten und unmittelbar nutzbare Firewall-Details bewusst aus."
         ),
         reliability: loc(
-            "Version-controlled content and preview deployments reduce publishing risk and make site changes easier to review before release.",
-            "Versionskontrollierte Inhalte und Preview-Deployments reduzieren Publishing-Risiken und machen Site-Änderungen vor dem Release besser prüfbar."
+            "Version-controlled content and CI checks reduce publishing risk. Uptime Kuma observes the internal service path, Better Stack checks the public endpoint and host heartbeat independently, and the production revision endpoint supports post-release verification.",
+            "Versionskontrollierte Inhalte und CI-Prüfungen reduzieren Publishing-Risiken. Uptime Kuma beobachtet den internen Service-Pfad, Better Stack prüft unabhängig den öffentlichen Endpunkt und den Host-Heartbeat, und der Production-Revision-Endpunkt unterstützt die Verifikation nach Releases."
         ),
         keyFeatures: locList(
             [
                 "Multilingual content model for projects, CV, and writing",
                 "Reusable component structure for maintainable site evolution",
-                "GitHub-connected deployment workflow",
+                "GitHub Actions gates for linting, type checks, builds, and secret scanning",
+                "Hybrid public-edge to private-runtime delivery path",
                 "Localized metadata, canonical URLs, reciprocal hreflang, and sitemap generation",
             ],
             [
                 "Mehrsprachiges Inhaltsmodell für Projekte, CV und Fachtexte",
                 "Wiederverwendbare Komponentenstruktur für wartbare Weiterentwicklung",
-                "Deployment-Workflow über GitHub Actions",
+                "GitHub-Actions-Gates für Linting, Type-Checks, Builds und Secret-Scanning",
+                "Hybrider Auslieferungspfad vom Public Edge zur privaten Runtime",
                 "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang und Sitemap-Generierung",
             ]
         ),
@@ -1461,15 +1468,15 @@ export const projects: Project[] = [
             [
                 "Built German and English SSR routes with static generation for portfolio pages and project details",
                 "Added localized metadata, canonical URLs, reciprocal hreflang, sitemap output, and production SHA verification",
-                "Connected GitHub-based validation and Vercel deployment to the portfolio release flow",
+                "Connected GitHub-based validation to a monitored self-hosted release and runtime path",
             ],
             [
                 "Deutsche und englische SSR-Routen mit statischer Generierung für Portfolio-Seiten und Projektdetails aufgebaut",
                 "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang, Sitemap-Ausgabe und Production-SHA-Verifikation ergänzt",
-                "GitHub-basierte Validierung und Vercel-Deployment mit dem Portfolio-Release-Flow verbunden",
+                "GitHub-basierte Validierung mit einem überwachten Self-Hosted-Release- und Runtime-Pfad verbunden",
             ]
         ),
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
+        tech: ["Next.js", "TypeScript", "Tailwind CSS", "GitHub Actions", "Docker", "Nginx Proxy Manager", "Tailscale", "Better Stack"],
         tags: ["Web", "Platform", "CI/CD"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.org" },
@@ -1479,18 +1486,18 @@ export const projects: Project[] = [
             {
                 title: loc("System / Deployment / Content Flow", "System-, Deployment- und Content-Flow"),
                 caption: loc(
-                    "End-to-end architecture view for the portfolio platform: local content work, GitHub source control, CI validation, Vercel deployment, public routes, and optional privacy-first analytics.",
-                    "End-to-End-Architekturansicht der Portfolio-Plattform: lokale Content-Arbeit, GitHub als Source of Truth, CI-Validierung, Vercel-Deployment, öffentliche Routen und optionale privacy-first Analytics."
+                    "Sanitized end-to-end architecture for the portfolio platform: local content work, GitHub source control, CI validation, controlled release, hybrid self-hosted delivery, monitoring, and privacy-oriented analytics.",
+                    "Bereinigte End-to-End-Architektur der Portfolio-Plattform: lokale Content-Arbeit, GitHub als Source of Truth, CI-Validierung, kontrollierter Release, hybride Self-Hosted-Auslieferung, Monitoring und privacy-orientierte Analytics."
                 ),
                 summary: locList(
                     [
-                        "Shows source control, structured content, CI validation, preview deployment, production release, and visitor access in one inspection view",
-                        "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
+                        "Shows source control, structured content, CI validation, controlled release, public ingress, and private runtime in one inspection view",
+                        "Matches the current platform model: Next.js, GitHub Actions, a public edge, Tailscale, Docker, Nginx Proxy Manager, monitoring, and Plausible Analytics",
                         "Shows the reusable project and case-study components that feed the generated routes",
                     ],
                     [
-                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einer kompakten Architekturansicht",
-                        "Passt zum realen Plattform-Stack: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel und Plausible Analytics",
+                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, kontrollierten Release, öffentlichen Ingress und private Runtime in einer kompakten Architekturansicht",
+                        "Passt zum aktuellen Plattformmodell: Next.js, GitHub Actions, Public Edge, Tailscale, Docker, Nginx Proxy Manager, Monitoring und Plausible Analytics",
                         "Zeigt die wiederverwendbaren Projekt- und Fallstudienkomponenten, die die generierten Routen speisen",
                     ]
                 ),
