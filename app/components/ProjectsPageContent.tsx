@@ -117,9 +117,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Embedded vibration classification from IMU features through model export and device-side inference.",
     },
     "elkaza-org": {
-        en: "Multilingual TypeScript portfolio with CI validation and monitored self-hosted delivery.",
-        de: "Mehrsprachiges TypeScript-Portfolio mit CI-Validierung und überwachter Self-Hosted-Auslieferung.",
-        ar: "Multilingual TypeScript portfolio with CI validation and monitored self-hosted delivery.",
+        en: "Multilingual TypeScript portfolio platform with structured content and CI-enabled publishing.",
+        de: "Mehrsprachige TypeScript-Portfolio-Plattform mit strukturierten Inhalten und CI-gestütztem Publishing.",
+        ar: "Multilingual TypeScript portfolio platform with structured content and CI-enabled publishing.",
     },
 };
 
