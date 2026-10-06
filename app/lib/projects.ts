@@ -1399,15 +1399,15 @@ export const projects: Project[] = [
     {
         slug: "elkaza-org",
         category: "delivery-platform",
-        status: "live",
-        year: "2025–2026",
+        status: "implemented",
+        year: "2025",
         title: loc(
             "Engineering Portfolio Platform",
             "Engineering-Portfolio-Plattform"
         ),
         oneLiner: loc(
-            "Built a multilingual portfolio platform with structured content, CI validation, and a monitored self-hosted delivery path.",
-            "Entwickelt eine mehrsprachige Portfolio-Plattform mit strukturierten Inhalten, CI-Validierung und einem überwachten Self-Hosted-Auslieferungspfad."
+            "Built a multilingual portfolio platform with structured content, CI-enabled deployment, and maintainable publishing workflows.",
+            "Entwickelt eine mehrsprachige Portfolio-Plattform mit strukturierten Inhalten, CI-gestütztem Deployment und wartbaren Publishing-Workflows."
         ),
         overview: loc(
             "This portfolio is implemented as a Next.js App Router site with TypeScript, static generation, German and English routes, localized metadata, and reusable project components.",
@@ -1418,49 +1418,42 @@ export const projects: Project[] = [
             "Eine persönliche Website muss schnell, wartbar und über mehrere Inhaltsbereiche hinweg leicht aktualisierbar sein, ohne dass jede Änderung zu manueller Mehrarbeit wird."
         ),
         solution: loc(
-            "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, GitHub Actions validation, and a controlled self-hosted release path. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
-            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten, GitHub-Actions-Validierung und einem kontrollierten Self-Hosted-Release-Pfad umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
+            "I built the site on Next.js App Router with TypeScript, lightweight i18n, reusable content components, and GitHub-connected deployment. The result is a maintainable publishing platform that supports projects, CV, blog content, and technical case studies.",
+            "Ich habe die Seite mit Next.js App Router, TypeScript, leichtgewichtigem i18n, wiederverwendbaren Inhaltskomponenten und GitHub-Actions-Deployment umgesetzt. Das Ergebnis ist eine wartbare Publishing-Plattform für Projekte, CV, Blog-Inhalte und technische Fallstudien."
         ),
-        architectureLabels: {
-            node: loc("Public request path", "Öffentlicher Request-Pfad"),
-            edge: loc("Private delivery path", "Privater Auslieferungspfad"),
-            cloud: loc("Source and validation", "Source und Validierung"),
-        },
         architecture: {
             node: loc(
-                "Visitors reach the public edge over HTTPS. Approved web traffic crosses a private Tailscale path to Nginx Proxy Manager and the containerized site runtime; administration is not exposed on the public request path.",
-                "Besucher erreichen den Public Edge über HTTPS. Freigegebener Webverkehr läuft über einen privaten Tailscale-Pfad zu Nginx Proxy Manager und zur containerisierten Site-Runtime; die Administration ist nicht Teil des öffentlichen Request-Pfads."
+                "The browser receives statically generated German and English pages with project, CV, blog, and case-study routes.",
+                "Der Browser erhält statisch generierte deutsche und englische Seiten mit Projekt-, CV-, Blog- und Fallstudienrouten."
             ),
             edge: loc(
-                "The edge forwards only approved web traffic to restricted PROXY-protocol listeners. The reverse proxy preserves the original client address, applies centralized routing, and sends requests to the portfolio service.",
-                "Der Edge leitet ausschließlich freigegebenen Webverkehr an eingeschränkte PROXY-Protocol-Listener weiter. Der Reverse Proxy bewahrt die ursprüngliche Client-Adresse, zentralisiert das Routing und übergibt Requests an den Portfolio-Service."
+                "Vercel handles hosting, previews, and runtime operation for the public site experience.",
+                "Vercel übernimmt Auslieferung, Preview-Deployments und Hosting für die öffentliche Site-Erfahrung."
             ),
             cloud: loc(
-                "GitHub is the source of truth. GitHub Actions installs dependencies and runs linting, type checks, builds, and secret scanning before an approved revision is released to the self-hosted runtime.",
-                "GitHub ist die Source of Truth. GitHub Actions installiert Abhängigkeiten und führt Linting, Type-Checks, Builds sowie Secret-Scanning aus, bevor eine freigegebene Revision in die Self-Hosted-Runtime gelangt."
+                "GitHub acts as the source-of-truth platform for version control and deployment-triggered updates.",
+                "GitHub fungiert als Source-of-Truth für Versionskontrolle und deploymentgesteuerte Aktualisierungen."
             ),
         },
         security: loc(
-            "The site uses layered exposure: a thin public edge, private inter-host transport, restricted container ingress, centralized reverse proxying, security headers, and CrowdSec log-based detection. Public architecture documentation intentionally omits addresses, credentials, and actionable firewall details.",
-            "Die Site nutzt mehrschichtige Exponierung: einen schlanken Public Edge, privaten Inter-Host-Transport, eingeschränkten Container-Ingress, zentralen Reverse Proxy, Security Header und logbasierte CrowdSec-Erkennung. Die öffentliche Architekturdokumentation lässt Adressen, Zugangsdaten und unmittelbar nutzbare Firewall-Details bewusst aus."
+            "A managed deployment model, minimal backend surface, and controlled content workflow keep the public platform simpler and safer to operate.",
+            "Ein gemanagtes Deployment-Modell, minimale Backend-Oberfläche und ein kontrollierter Content-Workflow halten die öffentliche Plattform einfacher und sicherer im Betrieb."
         ),
         reliability: loc(
-            "Version-controlled content and CI checks reduce publishing risk. Uptime Kuma observes the internal service path, Better Stack checks the public endpoint and host heartbeat independently, and the production revision endpoint supports post-release verification.",
-            "Versionskontrollierte Inhalte und CI-Prüfungen reduzieren Publishing-Risiken. Uptime Kuma beobachtet den internen Service-Pfad, Better Stack prüft unabhängig den öffentlichen Endpunkt und den Host-Heartbeat, und der Production-Revision-Endpunkt unterstützt die Verifikation nach Releases."
+            "Version-controlled content and preview deployments reduce publishing risk and make site changes easier to review before release.",
+            "Versionskontrollierte Inhalte und Preview-Deployments reduzieren Publishing-Risiken und machen Site-Änderungen vor dem Release besser prüfbar."
         ),
         keyFeatures: locList(
             [
                 "Multilingual content model for projects, CV, and writing",
                 "Reusable component structure for maintainable site evolution",
-                "GitHub Actions gates for linting, type checks, builds, and secret scanning",
-                "Hybrid public-edge to private-runtime delivery path",
+                "GitHub-connected deployment workflow",
                 "Localized metadata, canonical URLs, reciprocal hreflang, and sitemap generation",
             ],
             [
                 "Mehrsprachiges Inhaltsmodell für Projekte, CV und Fachtexte",
                 "Wiederverwendbare Komponentenstruktur für wartbare Weiterentwicklung",
-                "GitHub-Actions-Gates für Linting, Type-Checks, Builds und Secret-Scanning",
-                "Hybrider Auslieferungspfad vom Public Edge zur privaten Runtime",
+                "Deployment-Workflow über GitHub Actions",
                 "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang und Sitemap-Generierung",
             ]
         ),
@@ -1468,15 +1461,15 @@ export const projects: Project[] = [
             [
                 "Built German and English SSR routes with static generation for portfolio pages and project details",
                 "Added localized metadata, canonical URLs, reciprocal hreflang, sitemap output, and production SHA verification",
-                "Connected GitHub-based validation to a monitored self-hosted release and runtime path",
+                "Connected GitHub-based validation and Vercel deployment to the portfolio release flow",
             ],
             [
                 "Deutsche und englische SSR-Routen mit statischer Generierung für Portfolio-Seiten und Projektdetails aufgebaut",
                 "Lokalisierte Metadata, kanonische URLs, reziprokes hreflang, Sitemap-Ausgabe und Production-SHA-Verifikation ergänzt",
-                "GitHub-basierte Validierung mit einem überwachten Self-Hosted-Release- und Runtime-Pfad verbunden",
+                "GitHub-basierte Validierung und Vercel-Deployment mit dem Portfolio-Release-Flow verbunden",
             ]
         ),
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "GitHub Actions", "Docker", "Nginx Proxy Manager", "Tailscale", "Better Stack"],
+        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "GitHub"],
         tags: ["Web", "Platform", "CI/CD"],
         links: [
             { label: "Live Site", url: "https://www.elkaza.org" },
@@ -1486,18 +1479,18 @@ export const projects: Project[] = [
             {
                 title: loc("System / Deployment / Content Flow", "System-, Deployment- und Content-Flow"),
                 caption: loc(
-                    "Sanitized end-to-end architecture for the portfolio platform: local content work, GitHub source control, CI validation, controlled release, hybrid self-hosted delivery, monitoring, and privacy-oriented analytics.",
-                    "Bereinigte End-to-End-Architektur der Portfolio-Plattform: lokale Content-Arbeit, GitHub als Source of Truth, CI-Validierung, kontrollierter Release, hybride Self-Hosted-Auslieferung, Monitoring und privacy-orientierte Analytics."
+                    "End-to-end architecture view for the portfolio platform: local content work, GitHub source control, CI validation, Vercel deployment, public routes, and optional privacy-first analytics.",
+                    "End-to-End-Architekturansicht der Portfolio-Plattform: lokale Content-Arbeit, GitHub als Source of Truth, CI-Validierung, Vercel-Deployment, öffentliche Routen und optionale privacy-first Analytics."
                 ),
                 summary: locList(
                     [
-                        "Shows source control, structured content, CI validation, controlled release, public ingress, and private runtime in one inspection view",
-                        "Matches the current platform model: Next.js, GitHub Actions, a public edge, Tailscale, Docker, Nginx Proxy Manager, monitoring, and Plausible Analytics",
+                        "Shows source control, structured content, CI validation, preview deployment, production release, and visitor access in one inspection view",
+                        "Matches the actual platform technologies: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel, and Plausible Analytics",
                         "Shows the reusable project and case-study components that feed the generated routes",
                     ],
                     [
-                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, kontrollierten Release, öffentlichen Ingress und private Runtime in einer kompakten Architekturansicht",
-                        "Passt zum aktuellen Plattformmodell: Next.js, GitHub Actions, Public Edge, Tailscale, Docker, Nginx Proxy Manager, Monitoring und Plausible Analytics",
+                        "Zeigt Source Control, strukturierte Inhalte, CI-Validierung, Preview-Deployment, Produktionsauslieferung und Besucherzugriff in einer kompakten Architekturansicht",
+                        "Passt zum realen Plattform-Stack: Next.js, TypeScript, Tailwind CSS, GitHub Actions, Vercel und Plausible Analytics",
                         "Zeigt die wiederverwendbaren Projekt- und Fallstudienkomponenten, die die generierten Routen speisen",
                     ]
                 ),
