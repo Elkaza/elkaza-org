@@ -4,8 +4,8 @@ import { localizedMetadata } from "@/app/lib/seo";
 export const metadata = localizedMetadata({
   "locale": "en",
   "path": "/research/secure-edge-ai-iot-gateway",
-  "title": "Secure Edge AI Gateway for IoT Sensor Networks | Mohamed Elkaza",
-  "description": "Master's research at FH Technikum Wien investigating lightweight edge-based anomaly detection for IoT sensor-data integrity using Raspberry Pi 5, ESP32-S3 and controlled experiments."
+  "title": "IoT Sensor Integrity at the Edge | Mohamed Elkaza",
+  "description": "MIO-3 research scope on detecting manipulated measurements from authenticated IoT sensor nodes at a resource-constrained edge gateway."
 });
 
 export default function Page() { return <SecureEdgeResearchPage locale="en" />; }

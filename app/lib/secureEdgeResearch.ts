@@ -1,41 +1,171 @@
 export const researchQuestions = [
-  "How can normal multivariate IoT sensor behaviour be represented to support the detection of sensor-data integrity attacks?",
-  "How effectively can lightweight anomaly-detection methods detect different forms of sensor-data manipulation compared with a statistical baseline?",
-  "What trade-offs arise between attack-detection performance and edge-resource consumption when detection is executed on a resource-constrained IoT gateway?",
+  "How can legitimate sensor behaviour be represented using causal temporal and physical-consistency features to support the detection of manipulated sensor values?",
+  "How do lightweight anomaly-detection methods compare with a statistical baseline in terms of precision, recall, F1-score, false-alarm rate, and detection delay across different forms and levels of sensor-data manipulation?",
+  "What trade-offs arise between detection quality (F1-score, false-alarm rate, detection delay) and edge-resource consumption (inference latency, CPU usage, memory usage) on a resource-constrained IoT gateway?",
 ];
 
-export const researchMethods = ["Statistical Baseline", "Isolation Forest", "One-Class SVM"];
-export const researchScenarios = ["Spike / False-Data Injection", "Persistent Bias", "Gradual Drift", "Stuck / Frozen Values"];
+export const researchMethods = [
+  "Modified Z-score (statistical baseline)",
+  "Isolation Forest",
+  "One-Class SVM",
+];
+
+export const researchScenarios = [
+  "Spike / false-data injection",
+  "Persistent bias",
+  "Gradual drift",
+  "Stuck / frozen values",
+];
+
 export const repositoryUrl = "https://github.com/Elkaza/secure-edge-ai-iot-gateway";
 
 export const projectText = {
   de: {
-    back: "Zur Forschungsübersicht", status: "In Arbeit", scope: "Arbeitstitel · aktueller Forschungsumfang; finale Abstimmung mit der Betreuung steht aus.",
-    overviewTitle: "Kurzbeschreibung",
-    overview: "IoT-Sensorsysteme erzeugen kontinuierlich Betriebsdaten. Manipulierte Messwerte können deren Integrität und darauf aufbauende Entscheidungen beeinträchtigen. Das Projekt untersucht, ob leichtgewichtige Anomalieerkennung direkt auf einem ressourcenbeschränkten Edge Gateway möglich ist. Umweltsensordaten dienen als legitime Verhaltensbasis und experimentelle Arbeitslast; allgemeine Umweltanomalien sind nicht das primäre Forschungsproblem. Kontrollierte Manipulationen werden ausschließlich im isolierten Forschungstestbed erzeugt. Geplant ist die Evaluierung von Erkennungsleistung und Ressourcenbedarf.",
-    objectiveTitle: "Forschungsziel", objective: "Ziel ist der Entwurf und die experimentelle Evaluierung eines reproduzierbaren Prototyps für lokales Sicherheitsmonitoring von Sensor-Data Integrity. Leichtgewichtige statistische und Machine-Learning-Verfahren sollen Manipulationen von Sensorbeobachtungen erkennen. Implementierung und experimentelle Ergebnisse stehen noch aus.",
-    questionsTitle: "Forschungsfragen", draft: "Aktueller Entwurf",
-    architectureTitle: "Systemarchitektur", architecture: "Geplanter Live-Datenpfad: ASAIR AM2302 → ESP32-S3 → Wi-Fi / MQTT → unveränderte Weiterleitung oder Controlled Attack Injection → Raspberry Pi 5 Edge Security Gateway → statistische / ML-Erkennung → Normalzustand oder Sicherheitsalarm. Historische Umweltdaten können nach Klärung des Zugangs kontrolliert in dasselbe Isolated Research Testbed eingespielt werden. Die FH-Produktionsinfrastruktur liegt ausdrücklich außerhalb des Angriffsumfangs.",
-    experimentTitle: "Experimenteller Ansatz", experiment: "Legitime Sensordaten → Vorverarbeitung → Modellierung normalen Verhaltens → Controlled Attack Injection → unabhängiger Vergleich der Erkennungsverfahren → Ausführung auf dem Raspberry Pi 5 → Evaluierung von Erkennungsleistung und Ressourcenbedarf. RQ1 adressiert die Verhaltensmodellierung, RQ2 den Methodenvergleich und die Erkennungsleistung, RQ3 die Edge-Ausführung und Ressourcenmessung.",
-    methodsTitle: "Untersuchte Verfahren", methods: "Im geplanten Vergleich dient die Statistical Baseline als transparente Referenz. Isolation Forest und One-Class SVM bieten alternative Ansätze, um Abweichungen vom normalen Sensorverhalten zu erkennen. Pro Experiment wird ein Verfahren unabhängig evaluiert; eine Rangfolge ist noch nicht bekannt.",
-    scenariosTitle: "Kontrollierte Angriffsszenarien", scenarios: "Die folgenden Manipulationen sind ausschließlich als kontrollierte Experimente im isolierten Forschungstestbed vorgesehen.", optionalReplay: "Replay — optionales späteres Experiment",
-    platformTitle: "Testplattform", software: "Software / Protokolle (geplant)", hardware: "Hardware", hardwareItems: ["Raspberry Pi 5", "ESP32-S3-DevKitC-1", "ASAIR AM2302", "microSD-Speicher und lokales Netzwerk"],
-    evaluationTitle: "Evaluierung", evaluation: "Untersucht werden die Zielkonflikte zwischen Erkennungsleistung und Rechenaufwand am Edge Gateway. Messergebnisse liegen noch nicht vor.", detection: "Erkennungsleistung", resources: "Edge-Ressourcen", delay: "Detection Delay, soweit anwendbar",
-    boundaryTitle: "Abgrenzung", boundary: "Im Umfang liegt Sensor-Data Integrity Monitoring durch kontrollierte Manipulation von Sensorbeobachtungen. Ausgeschlossen sind allgemeine IDS, Malware-Erkennung, Firmware-Exploits, WLAN- und Passwortangriffe, MQTT-Broker-Exploits, kryptografische Angriffe sowie Angriffe auf die FH-Produktionsinfrastruktur.",
-    statusTitle: "Aktueller Stand", available: "Vorhanden / konzipiert", next: "In Vorbereitung / geplant", availableItems: ["Initialer Forschungsumfang definiert", "Raspberry Pi 5, ESP32-S3 und ASAIR AM2302 verfügbar", "Initiale Systemarchitektur und Forschungsmethodik entworfen"], nextItems: ["Finale Abstimmung des Forschungsumfangs und Klärung des Datenzugangs", "Testbed-Aufbau und Datenerfassung", "Statistische Baseline und ML-Experimente", "Edge-Benchmarking"], fullSize: "Diagramm in Originalgröße öffnen",
+    back: "Zur Forschungsübersicht",
+    statusLine: "MIO-3-Masterprojekt / geplante Masterarbeitsrichtung",
+    programmeLine: "FH Technikum Wien · MSc Internet of Things & Intelligent Systems",
+    scopeDate: "Aktueller Forschungsumfang: Oktober 2026",
+    approvalNote: "Der Themenumfang ist noch nicht als Masterarbeit formal genehmigt.",
+    overviewTitle: "Forschungsproblem",
+    overview:
+      "Das Projekt untersucht die Integrität von Sensordaten auf der Anwendungs- und Payload-Ebene eines authentifizierten MQTT-Sensorsystems. Im Mittelpunkt steht die Frage, ob ein ressourcenbeschränktes Edge Gateway verdächtige semantische Veränderungen in Messwerten erkennen kann, obwohl die Nachricht von einem legitimen, authentifizierten und autorisierten Gerät stammt. Es geht weder um die Umgehung der MQTT-Authentifizierung noch darum, gewöhnliche Umweltabweichungen als Angriff zu klassifizieren.",
+    objectiveTitle: "Forschungsziel",
+    objective:
+      "Geplant ist ein reproduzierbares Testbed, in dem eine statistische Baseline und zwei leichtgewichtige Verfahren auf demselben Raspberry Pi 5 verglichen werden. Jedes Verfahren wird einzeln auf kontrolliert manipulierten Sensorströmen evaluiert.",
+    threatTitle: "Bedrohungsmodell",
+    threat:
+      "TLS, MQTT-Client-Authentifizierung und Topic-ACLs werden vorausgesetzt. Das betrachtete Szenario ist ein legitimer Sensorknoten, der kompromittiert wurde oder aus einem anderen Grund syntaktisch gültige, aber manipulierte Messwerte sendet. Transport- und Zugriffssicherheit sind bestehende Kontrollen und nicht Teil der Experimente.",
+    questionsTitle: "Forschungsfragen",
+    draft: "Aktueller Forschungsumfang · Oktober 2026",
+    architectureTitle: "Systemarchitektur",
+    architecture:
+      "ASAIR AM2302 → ESP32-S3-DevKitC-1 → Wi-Fi / authentifiziertes MQTT → kontrollierte Manipulationsschicht im isolierten Testbed → Raspberry Pi 5 → Vorverarbeitung und kausale, zeitliche sowie physikalische Konsistenzmerkmale → ein unabhängig ausgewähltes Verfahren → Anomaly Score / Sicherheitsentscheidung → Experimentprotokollierung.",
+    experimentTitle: "Experimenteller Ablauf",
+    experiment:
+      "Zuerst werden lokale ESP32-S3-/AM2302-Messungen für legitimes Verhalten erfasst. Anschließend werden gelabelte Manipulationen mit unterschiedlicher Stärke, Rate oder Dauer eingespeist. Die statistische Baseline, Isolation Forest und One-Class SVM werden getrennt ausgeführt und mit denselben Erkennungs- und Ressourcenmetriken verglichen.",
+    methodsTitle: "Erkennungsverfahren",
+    methods:
+      "Die Modified-Z-Score-Baseline, Isolation Forest und One-Class SVM werden als unabhängige Detektoren verglichen. Sie stimmen nicht gemeinsam ab und bilden kein Ensemble.",
+    scenariosTitle: "Kontrollierte Manipulationen",
+    scenarios:
+      "Die Manipulationsstärke ist eine experimentelle Variable. Stärke, Rate oder Dauer werden von offensichtlich bis subtil variiert. Alle Versuche finden ausschließlich im isolierten Forschungstestbed statt.",
+    optionalReplay: "Replay (optional)",
+    platformTitle: "Testplattform",
+    software: "Software / Protokolle",
+    hardware: "Kernhardware",
+    hardwareItems: ["Raspberry Pi 5", "ESP32-S3-DevKitC-1", "ASAIR AM2302"],
+    optionalHardware:
+      "Ein Arduino Nano 33 BLE Sense Rev2 kann optional als nicht manipulierter Referenzsensor für Cross-Sensor-Konsistenz eingesetzt werden. Er ist keine Voraussetzung für den Kernversuch.",
+    dataTitle: "Daten",
+    dataIntro:
+      "Die Kerndaten werden lokal mit ESP32-S3 und AM2302 erhoben. Zusätzlich kann ein historischer Datensatz verwendet werden, ohne die Sicherheitslabels der kontrollierten Versuche zu ersetzen.",
+    dataItems: [
+      "Bevorzugt: autorisierte historische FH-Umwelt- oder Wetterdaten, falls der Zugang genehmigt wird",
+      "Öffentlicher Fallback: AIRWISE",
+      "Ground-Truth-Sicherheitslabels existieren nur für bewusst injizierte Manipulationen",
+      "Umweltanomalien sind nicht automatisch Cybersecurity-Angriffe",
+    ],
+    evaluationTitle: "Evaluierung",
+    evaluation:
+      "Jedes Verfahren wird separat bewertet. Die Auswertung verbindet Erkennungsqualität mit dem Ressourcenverbrauch auf dem Edge Gateway.",
+    detection: "Erkennung",
+    resources: "Edge-Ressourcen",
+    boundaryTitle: "Umfang und Sicherheit",
+    boundaryItems: [
+      "Manipulationsexperimente finden ausschließlich in einem isolierten Forschungstestbed statt.",
+      "Angriffe gegen die FH-Produktionsinfrastruktur sind ausgeschlossen.",
+      "Das Projekt ist kein allgemeines IoT-Intrusion-Detection-System.",
+      "Ein Anomaly- oder Security-Alert zeigt verdächtiges Verhalten, ist aber kein Beweis für böswillige Absicht.",
+      "Wi-Fi-, TLS- und MQTT-Zugriffsschutz werden vorausgesetzt und nicht angegriffen.",
+    ],
+    statusTitle: "Aktueller Stand",
+    available: "Definiert / vorhanden",
+    next: "Nächste Schritte",
+    availableItems: [
+      "Forschungsumfang vom Oktober 2026 definiert",
+      "Raspberry Pi 5, ESP32-S3 und ASAIR AM2302 vorhanden",
+      "Systemarchitektur und experimenteller Ablauf entworfen",
+    ],
+    nextItems: [
+      "Formale Abstimmung des Umfangs und Klärung des FH-Datenzugangs",
+      "Testbed-Aufbau und lokale Datenerfassung",
+      "Feature-Definition und getrennte Detektor-Experimente",
+      "Erkennungs- und Ressourcenmessung auf dem Raspberry Pi 5",
+    ],
+    fullSize: "Diagramm in Originalgröße öffnen",
   },
   en: {
-    back: "Back to research", status: "In progress", scope: "Working title · current research scope; final alignment with the supervisor is pending.",
-    overviewTitle: "Overview", overview: "IoT sensor systems continuously generate operational data. Manipulated observations can compromise data integrity and downstream decisions. This project investigates whether lightweight anomaly detection can run directly on a resource-constrained edge gateway. Environmental sensor data provides the legitimate behavioural baseline and experimental workload; generic environmental anomaly detection is not the primary research problem. Controlled manipulations will be generated only in an isolated research testbed. Evaluation will cover detection effectiveness and edge-resource usage.",
-    objectiveTitle: "Research objective", objective: "The objective is to design and experimentally evaluate a reproducible edge-based security monitoring prototype for Sensor-Data Integrity using lightweight statistical and machine-learning approaches. Implementation and experimental results are still pending.",
-    questionsTitle: "Research questions", draft: "Current draft",
-    architectureTitle: "System architecture", architecture: "Planned live path: ASAIR AM2302 → ESP32-S3 → Wi-Fi / MQTT → pass-through or Controlled Attack Injection → Raspberry Pi 5 Edge Security Gateway → statistical / ML detection → normal or security alert. Historical environmental data may be replayed into the same Isolated Research Testbed once access is clarified. FH production infrastructure is outside the attack scope.",
-    experimentTitle: "Experimental approach", experiment: "Legitimate sensor data → preprocessing → normal-behaviour modelling → Controlled Attack Injection → independent comparison of detection methods → Raspberry Pi 5 deployment → detection and resource evaluation. RQ1 maps to normal-behaviour modelling; RQ2 to detection methods and detection evaluation; RQ3 to edge deployment and resource evaluation.",
-    methodsTitle: "Planned detection methods", methods: "The Statistical Baseline provides a transparent reference. Isolation Forest and One-Class SVM offer alternative approaches to identifying deviations from normal sensor behaviour. One method will be evaluated independently per experiment; no ranking has been established.",
-    scenariosTitle: "Controlled security scenarios", scenarios: "These manipulations are planned exclusively as controlled experiments inside the isolated research testbed.", optionalReplay: "Replay — optional later experiment",
-    platformTitle: "Experimental platform", software: "Software / protocols (planned)", hardware: "Hardware", hardwareItems: ["Raspberry Pi 5", "ESP32-S3-DevKitC-1", "ASAIR AM2302", "microSD storage and local networking"],
-    evaluationTitle: "Evaluation", evaluation: "The study will investigate the trade-off between detection effectiveness and computational cost at the edge gateway. No measurement results are available yet.", detection: "Detection effectiveness", resources: "Edge resources", delay: "Detection Delay, where applicable",
-    boundaryTitle: "Research scope", boundary: "Sensor-Data Integrity Monitoring through controlled manipulation of sensor observations is in scope. Generic IDS, malware detection, firmware exploitation, Wi-Fi attacks, credential attacks, MQTT broker exploitation, cryptographic attacks and attacks against FH production infrastructure are outside scope.",
-    statusTitle: "Current status", available: "Available / designed", next: "In preparation / planned", availableItems: ["Initial research scope defined", "Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 available", "Initial system architecture and research methodology designed"], nextItems: ["Final scope alignment and data-access clarification", "Testbed setup and data acquisition", "Statistical baseline implementation and ML experiments", "Edge benchmarking"], fullSize: "Open original-size diagram",
+    back: "Back to research",
+    statusLine: "MIO-3 Master's Project / planned Master's thesis direction",
+    programmeLine: "FH Technikum Wien · MSc Internet of Things & Intelligent Systems",
+    scopeDate: "Current research scope: October 2026",
+    approvalNote: "This scope has not received final formal approval as a Master's thesis topic.",
+    overviewTitle: "Research problem",
+    overview:
+      "This project studies sensor-data integrity at the application and payload layer of an authenticated MQTT sensor system. It asks whether a resource-constrained edge gateway can flag suspicious semantic changes in sensor values when a message comes from a legitimate, authenticated and authorised device. It does not study bypassing MQTT authentication, and it does not treat ordinary environmental variation as an attack.",
+    objectiveTitle: "Research objective",
+    objective:
+      "The plan is to build a reproducible testbed and compare one statistical baseline with two lightweight detection methods on the same Raspberry Pi 5. Each method will be evaluated separately on controlled, manipulated sensor streams.",
+    threatTitle: "Threat model",
+    threat:
+      "TLS, MQTT client authentication and topic ACLs are assumed to be in place. The threat is a legitimate sensor node that has been compromised or otherwise sends manipulated but syntactically valid measurements. Transport and access security are existing controls, not experimental targets.",
+    questionsTitle: "Research questions",
+    draft: "Current research scope · October 2026",
+    architectureTitle: "System architecture",
+    architecture:
+      "ASAIR AM2302 → ESP32-S3-DevKitC-1 → Wi-Fi / authenticated MQTT → controlled manipulation layer in the isolated testbed → Raspberry Pi 5 → preprocessing and causal temporal and physical-consistency features → one independently selected detector → anomaly score / security decision → experiment logging.",
+    experimentTitle: "Experimental procedure",
+    experiment:
+      "Local ESP32-S3 and AM2302 measurements will first establish legitimate behaviour. Labelled manipulations will then be introduced at different magnitudes, rates or durations. The statistical baseline, Isolation Forest and One-Class SVM will run separately and be compared using the same detection and resource metrics.",
+    methodsTitle: "Detection methods",
+    methods:
+      "The modified Z-score baseline, Isolation Forest and One-Class SVM will be compared as independent detectors. They will not vote together and will not form an ensemble.",
+    scenariosTitle: "Controlled manipulations",
+    scenarios:
+      "Attack subtlety is an experimental variable. Magnitude, rate or duration will range from obvious to subtle. All manipulation experiments will take place only inside the isolated research testbed.",
+    optionalReplay: "Replay (optional)",
+    platformTitle: "Experimental platform",
+    software: "Software / protocols",
+    hardware: "Core hardware",
+    hardwareItems: ["Raspberry Pi 5", "ESP32-S3-DevKitC-1", "ASAIR AM2302"],
+    optionalHardware:
+      "An Arduino Nano 33 BLE Sense Rev2 may be used as an unmanipulated reference sensor for cross-sensor consistency. It is not required for the core experiment.",
+    dataTitle: "Data",
+    dataIntro:
+      "The core dataset will be collected locally with the ESP32-S3 and AM2302. An additional historical dataset may be used, but it will not replace the security labels from controlled experiments.",
+    dataItems: [
+      "Preferred: authorised historical FH environmental or weather data, if access is granted",
+      "Public fallback: AIRWISE",
+      "Ground-truth security labels exist only for deliberately injected manipulations",
+      "Environmental anomalies are not automatically cybersecurity attacks",
+    ],
+    evaluationTitle: "Evaluation",
+    evaluation:
+      "Each method will be evaluated separately. The analysis will relate detection quality to resource consumption on the edge gateway.",
+    detection: "Detection",
+    resources: "Edge resources",
+    boundaryTitle: "Scope and safety",
+    boundaryItems: [
+      "Manipulation experiments will take place only in an isolated research testbed.",
+      "Attacks against FH production infrastructure are out of scope.",
+      "This is not a general-purpose IoT intrusion-detection project.",
+      "An anomaly or security alert indicates suspicious behaviour, not proof of malicious intent.",
+      "Wi-Fi, TLS and MQTT access controls are assumed and will not be attacked.",
+    ],
+    statusTitle: "Current status",
+    available: "Defined / available",
+    next: "Next steps",
+    availableItems: [
+      "October 2026 research scope defined",
+      "Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 available",
+      "System architecture and experimental procedure drafted",
+    ],
+    nextItems: [
+      "Formal scope alignment and FH data-access decision",
+      "Testbed setup and local data collection",
+      "Feature definition and separate detector experiments",
+      "Detection and resource measurements on Raspberry Pi 5",
+    ],
+    fullSize: "Open original-size diagram",
   },
 };

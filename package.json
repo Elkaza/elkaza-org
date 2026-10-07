@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build && npm run verify:i18n-output",
+    "build": "next build && npm run verify:i18n-output && npm run verify:privacy",
     "start": "next start -p 3001",
     "lint": "eslint",
     "typecheck": "tsc --noEmit --incremental false",
     "verify:production": "node scripts/verify-production.mjs",
     "verify:i18n-output": "node scripts/verify-i18n-output.mjs",
+    "verify:privacy": "node scripts/verify-public-content.mjs",
     "generate-favicons": "node scripts/generate-favicons.js"
   },
   "dependencies": {

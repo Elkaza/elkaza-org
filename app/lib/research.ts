@@ -57,7 +57,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Integrationsrahmen / Metamodell zur Darstellung der Beziehungen zwischen Methoden, Disziplinen, Rollen, Artefakten und Governance-Mechanismen.",
     currentStatusTitle: "Aktueller Stand",
     currentStatus:
-      "Literaturrecherche, Stellenanzeigenanalyse und konzeptionelle Arbeit werden derzeit als explorative Forschung fortgeführt. Es werden keine abgeschlossenen, validierten oder veröffentlichten Ergebnisse beansprucht.",
+      "Literaturrecherche, Stellenanzeigenanalyse und konzeptionelle Arbeit laufen. Die Ergebnisse sind noch nicht validiert oder veröffentlicht.",
     interestsTitle: "Forschungsinteressen",
     interests: [
       "Enterprise Architecture & Transformation Governance",
@@ -90,7 +90,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The literature review, job-ad analysis and conceptual work are continuing as exploratory research. No completed, validated or published results are claimed.",
+      "The literature review, job-ad analysis and conceptual work are in progress. Results have not yet been validated or published.",
     interestsTitle: "Research interests",
     interests: [
       "Enterprise Architecture & Transformation Governance",
@@ -123,7 +123,7 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
       "Integration framework / metamodel representing relationships between methods, disciplines, roles, artifacts, and governance mechanisms.",
     currentStatusTitle: "Current status",
     currentStatus:
-      "The literature review, job-ad analysis and conceptual work are continuing as exploratory research. No completed, validated or published results are claimed.",
+      "The literature review, job-ad analysis and conceptual work are in progress. Results have not yet been validated or published.",
     interestsTitle: "Research interests",
     interests: [
       "Enterprise Architecture & Transformation Governance",
@@ -134,34 +134,34 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
 };
 
 export const mioProject: Record<Locale, AcademicProjectContent> = {
-  "de": {
-    "institution": "FH Technikum Wien",
-    "programme": "MSc Internet of Things & Intelligent Systems",
-    "module": "MIO-3 Master's Project",
-    "year": "2026–2027",
-    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Arbeitstitel)",
-    "status": "In Arbeit",
-    "label": "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026–2027",
-    "description": "Das Projekt untersucht, ob leichtgewichtige ML-Verfahren Manipulationen von IoT-Sensordaten direkt am Edge Gateway erkennen können. Geplant ist ein isoliertes Testbed mit Raspberry Pi 5, ESP32-S3 und ASAIR AM2302, um statistische und ML-Verfahren hinsichtlich Erkennungsleistung und Ressourcenbedarf zu vergleichen. Der Forschungsumfang wird noch mit der Betreuung abgestimmt."
+  de: {
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "Oktober 2026",
+    title: "Integritätsmanipulation durch authentifizierte IoT-Sensorknoten am Edge Gateway",
+    status: "MIO-3 / geplante Masterarbeitsrichtung",
+    label: "MIO-3-Masterprojekt / geplante Masterarbeitsrichtung · Forschungsumfang Oktober 2026",
+    description: "Untersucht wird, ob ein Raspberry Pi 5 manipulierte, aber syntaktisch gültige Messwerte eines authentifizierten MQTT-Sensorknotens erkennen kann. Eine statistische Baseline, Isolation Forest und One-Class SVM werden getrennt im isolierten Testbed verglichen. Der Themenumfang ist noch nicht formal als Masterarbeit genehmigt.",
   },
-  "en": {
-    "institution": "FH Technikum Wien",
-    "programme": "MSc Internet of Things & Intelligent Systems",
-    "module": "MIO-3 Master's Project",
-    "year": "2026–2027",
-    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Working title)",
-    "status": "In progress",
-    "label": "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026–2027",
-    "description": "This project investigates whether lightweight ML methods can detect manipulation of IoT sensor data directly at an edge gateway. An isolated testbed with Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 is planned to compare statistical and ML methods for detection effectiveness and resource usage. Final scope alignment with the supervisor is pending."
+  en: {
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "October 2026",
+    title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway",
+    status: "MIO-3 / planned Master's thesis direction",
+    label: "MIO-3 Master's Project / planned Master's thesis direction · Research scope October 2026",
+    description: "The project asks whether a Raspberry Pi 5 can detect manipulated but syntactically valid measurements from an authenticated MQTT sensor node. A statistical baseline, Isolation Forest and One-Class SVM will be compared separately in an isolated testbed. The scope has not received final formal approval as a Master's thesis topic.",
   },
-  "ar": {
-    "institution": "FH Technikum Wien",
-    "programme": "MSc Internet of Things & Intelligent Systems",
-    "module": "MIO-3 Master's Project",
-    "year": "2026–2027",
-    "title": "Secure Edge AI Gateway for IoT Sensor Networks (Working title)",
-    "status": "In progress",
-    "label": "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026–2027",
-    "description": "This project investigates whether lightweight ML methods can detect manipulation of IoT sensor data directly at an edge gateway. An isolated testbed with Raspberry Pi 5, ESP32-S3 and ASAIR AM2302 is planned to compare statistical and ML methods for detection effectiveness and resource usage. Final scope alignment with the supervisor is pending."
-  }
+  ar: {
+    institution: "FH Technikum Wien",
+    programme: "MSc Internet of Things & Intelligent Systems",
+    module: "MIO-3 Master's Project",
+    year: "October 2026",
+    title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway",
+    status: "MIO-3 / planned Master's thesis direction",
+    label: "MIO-3 Master's Project / planned Master's thesis direction · Research scope October 2026",
+    description: "The project asks whether a Raspberry Pi 5 can detect manipulated but syntactically valid measurements from an authenticated MQTT sensor node. A statistical baseline, Isolation Forest and One-Class SVM will be compared separately in an isolated testbed. The scope has not received final formal approval as a Master's thesis topic.",
+  },
 };

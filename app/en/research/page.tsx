@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "en",
   path: "/research",
   title: "Current Academic Work | Mohamed Elkaza",
-  description: "Proposed research direction for a TU Wien diploma thesis; topic and supervision are under clarification. FH Technikum Wien MIO-3 master's project on secure edge AI.",
+  description: "Current academic work at TU Wien and FH Technikum Wien, including a planned MIO-3 thesis direction on sensor-data integrity at an edge gateway.",
 });
 
 export default function EnglishResearchPage() {

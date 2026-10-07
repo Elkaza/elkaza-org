@@ -32,7 +32,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Azure Arc", "Python", "SQL"];
+const TECH_CHIPS = ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Tailscale", "CrowdSec", "Python", "SQL"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -43,16 +43,6 @@ const HOME_COPY: Localized<{
     label: string;
     value: string;
   }[];
-  profilePanel: {
-    label: string;
-    title: string;
-    lines: string[];
-    languagesLabel: string;
-    languages: {
-      name: string;
-      level: string;
-    }[];
-  };
   ctas: {
     projects: string;
     cv: string;
@@ -78,31 +68,16 @@ const HOME_COPY: Localized<{
   finalCta: string;
 }> = {
   de: {
-    heroKicker: "Portfolio aus Wien - Infrastruktur, Application Engineering und Automatisierung",
+    heroKicker: "Portfolio aus Wien - Infrastruktur, Security Operations und Application Engineering",
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
-    heroSupportingLine: "Meine Arbeit umfasst außerdem Application Support, technische Dokumentation und Projekterfahrung in IoT und Edge AI.",
+    heroSupportingLine: "Derzeit vertiefe ich Infrastruktur-Sicherheit, Monitoring und Incident-Analyse durch eigene Systeme und den Junior Cybersecurity Analyst Path der HTB Academy.",
     profileFacts: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: profile.workAuthorization.de },
       { label: "Deutsch", value: "B2" },
       { label: "Englisch", value: "C1" },
     ],
-    profilePanel: {
-      label: "Mohamed Elkaza",
-      title: profile.location.de,
-      lines: [
-        "Application Support & Engineering",
-        "Infrastructure & Operations",
-        "Automation & Data",
-      ],
-      languagesLabel: "Arbeitssprachen",
-      languages: [
-        { name: "Arabisch", level: "Muttersprache" },
-        { name: "Englisch", level: "C1" },
-        { name: "Deutsch", level: "B2" },
-      ],
-    },
     ctas: {
       projects: "Projekte ansehen",
       cv: "CV ansehen",
@@ -120,43 +95,28 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Aktuelle akademische Arbeit",
       title: "Forschung und Masterprojekt",
-      description: "Zwei laufende akademische Arbeiten, deren Ergebnisse und Artefakte noch nicht abgeschlossen sind.",
+      description: "Aktuelle Arbeiten an TU Wien und FH Technikum Wien. Beide Themen befinden sich noch in Entwicklung.",
       items: [
         { title: "TU Wien Diplomarbeit", label: "Themen- und Betreuungsabstimmung" },
-        { title: "Secure Edge AI Gateway for IoT Networks (Arbeitstitel)", label: "MIO-3 Master's Project · FH Technikum Wien · In Arbeit · 2026" },
+        { title: "Integritätsmanipulation authentifizierter IoT-Sensorknoten am Edge Gateway", label: "MIO-3 / geplante Masterarbeitsrichtung · Forschungsumfang Oktober 2026" },
       ],
       cta: "Akademische Arbeit ansehen",
     },
     workTitle: "Kernkompetenzen",
     finalCta:
-      "Offen für Rollen in Application Engineering und Support, Infrastruktur-Betrieb sowie technischer Automatisierung.",
+      "Offen für Rollen in Application Engineering, Infrastruktur-Betrieb und Junior Security Operations.",
   },
   en: {
-    heroKicker: "Vienna-based portfolio - infrastructure, application engineering and automation",
+    heroKicker: "Vienna-based portfolio - infrastructure, security operations and application engineering",
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
-    heroSupportingLine: "My work also includes application support, technical documentation and project experience in IoT and Edge AI.",
+    heroSupportingLine: "I am currently developing infrastructure-security, monitoring and incident-analysis skills through my own systems and HTB Academy's Junior Cybersecurity Analyst path.",
     profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
     ],
-    profilePanel: {
-      label: "Mohamed Elkaza",
-      title: profile.location.en,
-      lines: [
-        "Application Support & Engineering",
-        "Infrastructure & Operations",
-        "Automation & Data",
-      ],
-      languagesLabel: "Working languages",
-      languages: [
-        { name: "Arabic", level: "Native" },
-        { name: "English", level: "C1" },
-        { name: "German", level: "B2" },
-      ],
-    },
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -174,16 +134,16 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Current Academic Work",
       title: "Research and master's project",
-      description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
+      description: "Current work at TU Wien and FH Technikum Wien. Both topics are still in development.",
       items: [
         { title: "TU Wien Diploma Thesis", label: "Topic and supervision under clarification" },
-        { title: "Secure Edge AI Gateway for IoT Networks (Working title)", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+        { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",
     },
     workTitle: "Core Capabilities",
     finalCta:
-      "Open to roles in application engineering and support, infrastructure operations and technical automation.",
+      "Open to application engineering, infrastructure operations and junior security operations roles.",
   },
   ar: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
@@ -197,21 +157,6 @@ const HOME_COPY: Localized<{
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
     ],
-    profilePanel: {
-      label: "Working profile",
-      title: "Practical systems with a clear operations path",
-      lines: [
-        "Web and data workflows",
-        "Linux, Docker, monitoring and backups",
-        "IoT, Edge AI and technical documentation",
-      ],
-      languagesLabel: "Working languages",
-      languages: [
-        { name: "Arabic", level: "Native" },
-        { name: "English", level: "C1" },
-        { name: "German", level: "B2" },
-      ],
-    },
     ctas: {
       projects: "View Projects",
       cv: "View CV",
@@ -229,16 +174,16 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Current Academic Work",
       title: "Research and master's project",
-      description: "Two ongoing academic work items whose results and artifacts are not yet complete.",
+      description: "Current work at TU Wien and FH Technikum Wien. Both topics are still in development.",
       items: [
         { title: "TU Wien Diploma Thesis", label: "Topic and supervision under clarification" },
-        { title: "Secure Edge AI Gateway for IoT Networks (Working title)", label: "MIO-3 Master's Project · FH Technikum Wien · In progress · 2026" },
+        { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",
     },
     workTitle: "Capabilities & Stack",
     finalCta:
-      "Looking for someone who can build, automate and operate practical technical systems?",
+      "Open to application engineering, infrastructure operations and junior security operations roles.",
   },
 };
 
@@ -265,16 +210,16 @@ const FEATURED_COPY: Record<
       ar: "Public services needed a controlled internet entry point without exposing private administration.",
     },
     responsibility: {
-      de: "Die hybride Linux-/Windows-Infrastruktur mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung und Azure-Arc-Governance entworfen und umgesetzt.",
-      en: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation and Azure Arc governance.",
-      ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation and Azure Arc governance.",
+      de: "Die hybride Linux-/Windows-Infrastruktur mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Host-Firewalls und CrowdSec-Erkennung entworfen und umgesetzt.",
+      en: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation, host firewalls and CrowdSec detection.",
+      ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation, host firewalls and CrowdSec detection.",
     },
     result: {
       de: "Private Administration, wiederholbare Linux- und Windows-Konfiguration, überwachter Backup-Zustand und verifizierte Wiederherstellung von Anwendungen und Daten.",
       en: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
       ar: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
     },
-    tech: ["Ansible", "Linux", "Windows Server 2022", "Azure Arc", "Tailscale"],
+    tech: ["Ansible", "Linux", "Tailscale", "CrowdSec", "Restic"],
     visualLabel: {
       de: "Hybrid-Infrastruktur mit Public Edge VPS, lokaler Proxmox-/Debian-Plattform, Windows-Server-Labor, privater Tailscale-Administration und Azure-Arc-Governance.",
       en: "Hybrid infrastructure with a Public Edge VPS, on-site Proxmox/Debian platform, Windows Server lab, private Tailscale administration and Azure Arc governance.",
@@ -360,17 +305,17 @@ const WORK_AREAS: {
   },
   {
     title: {
-      de: "Infrastructure & Operations",
-      en: "Infrastructure & Operations",
-      ar: "Infrastructure & Operations",
+      de: "Infrastructure & Security Operations",
+      en: "Infrastructure & Security Operations",
+      ar: "Infrastructure & Security Operations",
     },
     bullets: {
-      de: ["Betreibt überwachte Linux-, Windows-Server-, Docker- und Netzwerkumgebungen", "Nutzt Ansible und PowerShell für wiederholbare Konfiguration sowie Tailscale und Azure Arc für private Hybrid-Administration"],
-      en: ["Operates monitored Linux, Windows Server, Docker and network environments", "Uses Ansible and PowerShell for repeatable configuration, with Tailscale and Azure Arc for private hybrid administration"],
-      ar: ["Operates Linux, Docker and monitoring environments", "Structures deployments, backups and secure access paths"],
+      de: ["Betreibt überwachte Linux-, Windows-Server-, Docker- und Netzwerkumgebungen", "Härtet Zugriff und Ingress mit Tailscale, UFW/iptables, CrowdSec und wiederholbarer Konfiguration"],
+      en: ["Operates monitored Linux, Windows Server, Docker and network environments", "Hardens access and ingress with Tailscale, UFW/iptables, CrowdSec and repeatable configuration"],
+      ar: ["Operates monitored Linux, Windows Server, Docker and network environments", "Hardens access and ingress with Tailscale, UFW/iptables, CrowdSec and repeatable configuration"],
     },
     Icon: Server,
-    tools: ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Azure Arc"],
+    tools: ["Linux", "Ansible", "Tailscale", "CrowdSec"],
   },
   {
     title: {
@@ -401,8 +346,8 @@ export default function HomeContent() {
 
   return (
     <main className="mx-auto flex w-full max-w-6xl min-w-0 flex-col overflow-hidden px-5 py-10 text-main sm:px-6 md:py-14">
-      <section className="grid gap-10 border-b border-subtle pb-10 md:pb-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.75fr)] lg:items-center">
-        <div className="space-y-7">
+      <section className="border-b border-subtle pb-10 md:pb-14">
+        <div className="max-w-4xl space-y-7">
           <div className="space-y-5">
             <Eyebrow>{copy.heroKicker}</Eyebrow>
             <PageTitle>{copy.heroTitle}</PageTitle>
@@ -459,7 +404,6 @@ export default function HomeContent() {
           </div>
         </div>
 
-        <HeroProfilePanel copy={copy.profilePanel} />
       </section>
 
       <section className="mt-14 space-y-6" aria-labelledby="featured-work">
@@ -580,44 +524,6 @@ export default function HomeContent() {
         </div>
       </section>
     </main>
-  );
-}
-
-function HeroProfilePanel({
-  copy,
-}: {
-  copy: (typeof HOME_COPY)["en"]["profilePanel"];
-}) {
-  return (
-    <div className="min-w-0 rounded-lg border border-subtle bg-card p-4 lg:p-5">
-      <div className="grid gap-4 sm:grid-cols-[160px_1fr] lg:grid-cols-1">
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-[220px] overflow-hidden rounded-lg border border-subtle bg-slate-100 dark:bg-slate-900">
-          <Image
-            src="/images/me.jpg"
-            alt="Mohamed Elkaza"
-            fill
-            priority
-            sizes="(min-width: 1024px) 320px, 220px"
-            className="object-contain"
-          />
-        </div>
-
-        <div className="flex min-w-0 flex-col justify-center">
-          <h2 className="break-words text-lg font-semibold leading-tight tracking-normal text-main">
-            {copy.label}
-          </h2>
-          <p className="mt-1 text-sm font-medium text-muted">{copy.title}</p>
-          <ul className="mt-5 divide-y divide-subtle border-y border-subtle text-sm leading-relaxed text-muted">
-            {copy.lines.map((line) => (
-              <li key={line} className="flex gap-2 py-2.5">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-500" />
-                <span>{line}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
   );
 }
 
