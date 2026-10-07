@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Hybrid infrastructure overview</title>
+  <desc id="desc">High-level view of public ingress through a thin edge VPS and Tailscale, an on-site Proxmox and Debian Core platform, a Windows lab, private administration, external monitoring, Azure Arc governance, and backup and recovery.</desc>
+  <defs>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef5ff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f62d6"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#14804a"/>
+      <stop offset="1" stop-color="#22a65a"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6334c6"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#14305c" flood-opacity=".12"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0l12 6-12 6z" fill="#1769d2"/></marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0l12 6-12 6z" fill="#159653"/></marker>
+    <marker id="arrowViolet" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0l12 6-12 6z" fill="#7040d6"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#102447}.kicker{font-size:18px;font-weight:800;letter-spacing:2px;fill:#1769d2}.h1{font-size:38px;font-weight:800}.sub{font-size:19px;fill:#52647d}.zone{font-size:18px;font-weight:800;letter-spacing:1px;fill:#fff}.cardTitle{font-size:23px;font-weight:800}.body{font-size:17px;fill:#43556f}.small{font-size:15px;fill:#53657e}.pill{font-size:14px;font-weight:700}.label{font-size:15px;font-weight:800}.white{fill:#fff}.blueText{fill:#1769d2}.greenText{fill:#14804a}.violetText{fill:#7040d6}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#page)"/>
+  <text x="64" y="58" class="kicker">HYBRID INFRASTRUCTURE · CURRENT STATE</text>
+  <text x="64" y="105" class="h1">Public delivery, private management, observable operations</text>
+  <text x="64" y="139" class="sub">Sanitized overview — no public management ports, credentials, private addresses, or customer data shown</text>
+
+  <!-- Public flow -->
+  <rect x="64" y="182" width="212" height="166" rx="16" fill="#fff" stroke="#9fc4f7" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="64" y="182" width="212" height="42" rx="16" fill="url(#blue)"/>
+  <path d="M64 208h212v16H64z" fill="url(#blue)"/>
+  <text x="86" y="210" class="zone">PUBLIC USERS</text>
+  <circle cx="112" cy="270" r="25" fill="#e8f2ff" stroke="#1769d2" stroke-width="2"/>
+  <path d="M91 270h42M112 245c-8 8-11 17-11 25s3 17 11 25M112 245c8 8 11 17 11 25s-3 17-11 25M88 270a24 24 0 1048 0 24 24 0 10-48 0" fill="none" stroke="#1769d2" stroke-width="2"/>
+  <text x="151" y="266" class="cardTitle">Internet</text>
+  <text x="151" y="291" class="body">DNS + HTTPS</text>
+  <text x="86" y="326" class="small">Portfolio and service traffic</text>
+
+  <rect x="358" y="182" width="260" height="166" rx="16" fill="#fff" stroke="#9fc4f7" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="358" y="182" width="260" height="42" rx="16" fill="url(#blue)"/>
+  <path d="M358 208h260v16H358z" fill="url(#blue)"/>
+  <text x="380" y="210" class="zone">PUBLIC EDGE VPS</text>
+  <rect x="382" y="246" width="48" height="56" rx="7" fill="#dfeeff" stroke="#1769d2" stroke-width="2"/>
+  <path d="M394 260h24M394 274h24M394 288h15" stroke="#1769d2" stroke-width="3" stroke-linecap="round"/>
+  <text x="448" y="258" class="cardTitle">Thin ingress</text>
+  <text x="448" y="284" class="body">HTTP(S) relay only</text>
+  <text x="382" y="326" class="small">No application or management UI</text>
+
+  <rect x="704" y="182" width="428" height="268" rx="16" fill="#fff" stroke="#84d5aa" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="704" y="182" width="428" height="42" rx="16" fill="url(#green)"/>
+  <path d="M704 208h428v16H704z" fill="url(#green)"/>
+  <text x="726" y="210" class="zone">ON-SITE PLATFORM · PROXMOX</text>
+  <rect x="730" y="245" width="376" height="70" rx="12" fill="#effaf4" stroke="#75c99c"/>
+  <text x="752" y="274" class="cardTitle">Debian Core</text>
+  <text x="752" y="299" class="body">Docker Compose runtime</text>
+  <rect x="730" y="334" width="112" height="85" rx="10" fill="#f7fbff" stroke="#b7cae4"/>
+  <text x="746" y="363" class="label">Ingress</text>
+  <text x="746" y="388" class="small">NPM</text>
+  <text x="746" y="407" class="small">client IP kept</text>
+  <rect x="852" y="334" width="112" height="85" rx="10" fill="#f7fbff" stroke="#b7cae4"/>
+  <text x="868" y="363" class="label">Services</text>
+  <text x="868" y="388" class="small">elkaza.at</text>
+  <text x="868" y="407" class="small">analytics</text>
+  <rect x="974" y="334" width="132" height="85" rx="10" fill="#f7fbff" stroke="#b7cae4"/>
+  <text x="990" y="363" class="label">Security</text>
+  <text x="990" y="388" class="small">CrowdSec</text>
+  <text x="990" y="407" class="small">detection + CAPI</text>
+
+  <rect x="1218" y="182" width="318" height="268" rx="16" fill="#fff" stroke="#c3a8fa" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1218" y="182" width="318" height="42" rx="16" fill="url(#violet)"/>
+  <path d="M1218 208h318v16h-318z" fill="url(#violet)"/>
+  <text x="1240" y="210" class="zone">HYBRID WINDOWS LAB</text>
+  <rect x="1244" y="246" width="60" height="70" rx="8" fill="#f0eaff" stroke="#7040d6" stroke-width="2"/>
+  <path d="M1257 261h34v40h-34zM1274 261v40M1257 281h34" fill="none" stroke="#7040d6" stroke-width="2"/>
+  <text x="1322" y="264" class="cardTitle">Windows Server</text>
+  <text x="1322" y="290" class="body">private lab workload</text>
+  <line x1="1244" y1="334" x2="1510" y2="334" stroke="#d9ccf5"/>
+  <text x="1244" y="365" class="body">• WinRM administration</text>
+  <text x="1244" y="393" class="body">• Defender + firewall baseline</text>
+  <text x="1244" y="421" class="body">• Azure Arc connected</text>
+
+  <!-- Main application arrows -->
+  <path d="M276 265H350" fill="none" stroke="#1769d2" stroke-width="5" marker-end="url(#arrowBlue)"/>
+  <text x="286" y="248" class="label blueText">HTTPS</text>
+  <path d="M618 265H696" fill="none" stroke="#1769d2" stroke-width="5" marker-end="url(#arrowBlue)"/>
+  <text x="660" y="222" text-anchor="middle" class="label blueText">PRIVATE</text>
+  <text x="660" y="241" text-anchor="middle" class="label blueText">TAILSCALE</text>
+
+  <!-- Private management -->
+  <rect x="64" y="516" width="520" height="142" rx="16" fill="#fff" stroke="#76c99b" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="64" y="516" width="520" height="42" rx="16" fill="url(#green)"/>
+  <path d="M64 542h520v16H64z" fill="url(#green)"/>
+  <text x="86" y="544" class="zone">PRIVATE MANAGEMENT</text>
+  <text x="90" y="593" class="cardTitle">Admin workstation</text>
+  <text x="90" y="620" class="body">Git → Ansible → SSH / WinRM over Tailscale</text>
+  <rect x="405" y="579" width="148" height="34" rx="17" fill="#eaf9f1" stroke="#70c896"/>
+  <text x="429" y="601" class="pill greenText">NO PUBLIC ADMIN</text>
+  <text x="90" y="642" class="small">Version-controlled, repeatable Linux and Windows configuration</text>
+  <path d="M584 586H674V450" fill="none" stroke="#159653" stroke-width="4" stroke-dasharray="10 8" marker-end="url(#arrowGreen)"/>
+  <path d="M584 610H1176V450" fill="none" stroke="#159653" stroke-width="4" stroke-dasharray="10 8" marker-end="url(#arrowGreen)"/>
+
+  <!-- Cross-cutting operations -->
+  <rect x="624" y="516" width="912" height="294" rx="16" fill="#fff" stroke="#9fc4f7" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="624" y="516" width="912" height="42" rx="16" fill="url(#blue)"/>
+  <path d="M624 542h912v16H624z" fill="url(#blue)"/>
+  <text x="646" y="544" class="zone">GOVERNANCE, OBSERVABILITY &amp; RECOVERY</text>
+
+  <rect x="650" y="584" width="264" height="190" rx="12" fill="#f4f8ff" stroke="#b8d1f4"/>
+  <circle cx="690" cy="624" r="23" fill="#e3efff"/>
+  <path d="M677 625l9 9 18-22" fill="none" stroke="#1769d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="725" y="618" class="cardTitle">Monitoring</text>
+  <text x="725" y="644" class="small">inside + outside view</text>
+  <text x="670" y="686" class="body">• Better Stack website check</text>
+  <text x="670" y="714" class="body">• Debian Core heartbeat</text>
+  <text x="670" y="742" class="body">• Uptime Kuma + Netdata</text>
+
+  <rect x="948" y="584" width="264" height="190" rx="12" fill="#f7f3ff" stroke="#cbb8f4"/>
+  <circle cx="988" cy="624" r="23" fill="#ede5ff"/>
+  <path d="M976 635l12-26 12 26z" fill="none" stroke="#7040d6" stroke-width="4"/>
+  <text x="1023" y="618" class="cardTitle">Azure Arc</text>
+  <text x="1023" y="644" class="small">outbound control plane</text>
+  <text x="968" y="686" class="body">• Hybrid inventory</text>
+  <text x="968" y="714" class="body">• Resource visibility</text>
+  <text x="968" y="742" class="body">• No inbound Arc port</text>
+
+  <rect x="1246" y="584" width="264" height="190" rx="12" fill="#fff8ee" stroke="#f4bf7c"/>
+  <circle cx="1286" cy="624" r="23" fill="#fff0dc"/>
+  <path d="M1273 619h26v20h-26zM1277 614h18" fill="none" stroke="#dd6b13" stroke-width="4" stroke-linejoin="round"/>
+  <text x="1321" y="618" class="cardTitle">Recovery</text>
+  <text x="1321" y="644" class="small">evidence, not claims</text>
+  <text x="1266" y="686" class="body">• Restic integrity</text>
+  <text x="1266" y="714" class="body">• Isolated DB restore</text>
+  <text x="1266" y="742" class="body">• Representative scope</text>
+
+  <path d="M918 450v62" fill="none" stroke="#1769d2" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrowBlue)"/>
+  <path d="M1378 450v62" fill="none" stroke="#7040d6" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrowViolet)"/>
+
+  <rect x="64" y="835" width="1472" height="36" rx="18" fill="#e8f1ff"/>
+  <text x="800" y="859" text-anchor="middle" class="small">Security boundary: public delivery is separated from private administration; diagrams intentionally omit exploitable detail.</text>
+</svg>
