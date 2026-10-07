@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "en",
   path: "/cv",
   title: "CV | Mohamed Elkaza",
-  description: "CV of Mohamed Elkaza covering application engineering, automation, infrastructure, IT operations, networking, monitoring, and IoT specialization.",
+  description: "CV of Mohamed Elkaza covering application engineering, infrastructure and security operations, automation, networking, monitoring, and secure IoT research.",
 });
 
 export default function EnglishCvPage() {

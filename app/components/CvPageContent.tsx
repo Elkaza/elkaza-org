@@ -12,6 +12,7 @@ import {
   Mail,
   MapPin,
   School,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
@@ -27,9 +28,9 @@ const appliedEngineeringProjectLinks = [
   {
     slug: "enterprise-self-hosted-infrastructure",
     area: {
-      de: "Infrastruktur",
-      en: "Infrastructure",
-      ar: "Infrastructure",
+      de: "Infrastruktur & Security",
+      en: "Infrastructure & Security",
+      ar: "Infrastructure & Security",
     },
     title: "Self-Hosted Infrastructure",
   },
@@ -94,24 +95,24 @@ export default function CvPageContent() {
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8 text-main sm:px-6 md:py-14 print:max-w-none print:px-0 print:py-0">
-      <section className="rounded-xl border border-subtle bg-card p-5 shadow-sm md:p-8 print:border-0 print:p-0 print:shadow-none">
+      <section className="border-b border-subtle pb-8 print:border-0 print:p-0">
         <p className="text-sm font-extrabold uppercase tracking-normal text-main">{t("cv_title")}</p>
         <h1 className="mt-2 text-3xl font-bold tracking-normal text-main md:text-4xl">{profile.name}</h1>
         <p className="mt-2 text-lg font-semibold text-secondary">{profile.title[locale]}</p>
         <div className="mt-5 flex flex-wrap gap-2 text-sm text-muted">
-          <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+          <span className="inline-flex items-center gap-2 pr-3">
             <MapPin className="h-4 w-4" aria-hidden="true" />
             {profile.location[locale]}
           </span>
-          <span className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5">
+          <span className="inline-flex items-center gap-2 border-l border-subtle px-3">
             {profile.workAuthorization[locale]}
           </span>
-          <a className="inline-flex items-center gap-2 rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={`mailto:${profile.email}`}>
+          <a className="inline-flex items-center gap-2 border-l border-subtle px-3 hover:text-blue-700" href={`mailto:${profile.email}`}>
             <Mail className="h-4 w-4" aria-hidden="true" />
             {profile.email}
           </a>
-          <a className="rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={profile.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a className="rounded-md border border-subtle bg-page px-3 py-1.5 hover:text-blue-700" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          <a className="border-l border-subtle px-3 hover:text-blue-700" href={profile.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="border-l border-subtle px-3 hover:text-blue-700" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </section>
 
@@ -183,10 +184,45 @@ export default function CvPageContent() {
           </div>
         </CvSection>
 
+        <CvSection icon={ShieldCheck} title={locale === "de" ? "Cybersecurity-Weiterbildung" : "Cybersecurity Development"}>
+          <div className="max-w-4xl border-l-2 border-blue-600 pl-4">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+              <div>
+                <h3 className="font-semibold text-main">HTB Academy · Junior Cybersecurity Analyst Path</h3>
+                <p className="mt-1 text-sm text-muted">Hack The Box Academy</p>
+              </div>
+              <span className="shrink-0 text-sm font-semibold text-blue-800 dark:text-blue-300">
+                {locale === "de" ? "In Bearbeitung" : "In progress"}
+              </span>
+            </div>
+            <p className="mt-3 text-sm leading-7 text-secondary">
+              {locale === "de"
+                ? "Laufender Lernpfad zu Informationssicherheit, Netzwerken, Linux und Bash. Er ergänzt meine praktische Arbeit an gehärteter und überwachter Infrastruktur."
+                : "Ongoing learning path covering information security, networking, Linux and Bash. It complements my practical work on hardened and monitored infrastructure."}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {["Information Security", "Networking", "Linux Fundamentals", "Bash"].map((topic) => <TechBadge key={topic} name={topic} className="bg-page text-muted" />)}
+            </div>
+          </div>
+        </CvSection>
+
+        <CvSection icon={Code2} title={t("cv_skills_title")}>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {skillGroups.map(([titleKey, itemsKey]) => (
+              <article key={titleKey} className="border-t border-subtle pt-4 print:break-inside-avoid">
+                <h3 className="font-semibold text-main">{t(titleKey)}</h3>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {t(itemsKey).split("|").map((item) => item.trim()).filter(Boolean).map((item) => <TechBadge key={item} name={item} className="bg-card text-muted" />)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </CvSection>
+
         <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
           <div className="grid gap-4 lg:grid-cols-3">
             {profile.education.map((education) => (
-              <article key={education.institution} className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
+              <article key={education.institution} className="border-t border-subtle pt-4 print:break-inside-avoid">
                 <div className="flex items-start gap-3">
                   <OrganizationLogo name={education.institution} size="sm" decorative={false} />
                   <div>
@@ -202,7 +238,7 @@ export default function CvPageContent() {
 
         <CvSection icon={BookOpen} title={locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"} accent>
           <div className="grid gap-5 lg:grid-cols-2">
-            <article className="rounded-lg border border-blue-200/70 bg-card p-5 dark:border-blue-900/70 print:break-inside-avoid">
+            <article className="border-l-2 border-blue-600 pl-4 print:break-inside-avoid">
               <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{cvResearch.status}</p>
               <p className="mt-3 text-sm font-semibold text-main">{cvResearch.label}</p>
               <h3 className="mt-1 text-lg font-semibold leading-snug text-main">{cvResearch.title}</h3>
@@ -211,7 +247,7 @@ export default function CvPageContent() {
                 {locale === "de" ? "Forschung ansehen" : "View research"}
               </Link>
             </article>
-            <article className="rounded-lg border border-subtle bg-card p-5 print:break-inside-avoid">
+            <article className="border-l-2 border-blue-600 pl-4 print:break-inside-avoid">
               <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{mio.label}</p>
               <h3 className="mt-2 text-lg font-semibold leading-snug text-main">{mio.title}</h3>
               <p className="mt-2 text-sm text-muted">{mio.programme}</p>
@@ -220,23 +256,10 @@ export default function CvPageContent() {
           </div>
         </CvSection>
 
-        <CvSection icon={Code2} title={t("cv_skills_title")}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {skillGroups.map(([titleKey, itemsKey]) => (
-              <article key={titleKey} className="rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
-                <h3 className="font-semibold text-main">{t(titleKey)}</h3>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {t(itemsKey).split("|").map((item) => item.trim()).filter(Boolean).map((item) => <TechBadge key={item} name={item} className="bg-card text-muted" />)}
-                </div>
-              </article>
-            ))}
-          </div>
-        </CvSection>
-
         <CvSection icon={Award} title={locale === "de" ? "Zertifizierungen" : "Certifications"}>
           <div className="grid gap-3 sm:grid-cols-2">
             {profile.certifications.map((certification, index) => (
-              <article key={certification.title} className="flex items-start gap-3 rounded-lg border border-subtle bg-page/70 p-4 print:break-inside-avoid">
+              <article key={certification.title} className="flex items-start gap-3 border-t border-subtle pt-4 print:break-inside-avoid">
                 {certificationOrganizations[index] && <OrganizationLogo name={certificationOrganizations[index]} size="sm" decorative={false} />}
                 <div><h3 className="text-sm font-semibold leading-6 text-main">{certification.title}</h3><p className="mt-1 text-sm text-muted">{certification.issuer} · {certification.year}</p></div>
               </article>
@@ -246,11 +269,11 @@ export default function CvPageContent() {
 
         <CvSection icon={Languages} title={locale === "de" ? "Sprachen" : "Languages"}>
           <div className="flex flex-wrap gap-3">
-            {profile.languages.map((language) => <p key={language.code} className="rounded-md border border-subtle bg-page px-3 py-2 text-sm"><span className="font-semibold text-main">{language.name[locale]}</span><span className="text-muted"> · {language.level[locale]}</span></p>)}
+            {profile.languages.map((language) => <p key={language.code} className="border-l border-subtle px-3 py-1 text-sm first:border-l-0 first:pl-0"><span className="font-semibold text-main">{language.name[locale]}</span><span className="text-muted"> · {language.level[locale]}</span></p>)}
           </div>
         </CvSection>
 
-        <section className="rounded-xl border border-blue-200/70 bg-blue-50/70 p-5 shadow-sm dark:border-blue-900/70 dark:bg-blue-950/20 md:p-6 print:hidden">
+        <section className="border-t border-blue-300 pt-7 dark:border-blue-800 print:hidden">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div><h2 className="text-xl font-semibold text-main">{t("cv_request_title")}</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-muted">{t("cv_request_desc")}</p></div>
             <a href={`mailto:${profile.email}`} className="inline-flex items-center justify-center gap-2 rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"><Mail className="h-4 w-4" aria-hidden="true" />{t("cv_request_cta")}</a>
@@ -263,8 +286,8 @@ export default function CvPageContent() {
 
 function CvSection({ icon: Icon, title, children, accent = false }: { icon: LucideIcon; title: string; children: React.ReactNode; accent?: boolean }) {
   return (
-    <section className={`rounded-xl border p-5 shadow-sm md:p-6 print:p-4 print:shadow-none ${accent ? "border-blue-200/70 bg-blue-50/50 dark:border-blue-900/70 dark:bg-blue-950/20" : "border-subtle bg-card"}`}>
-      <div className="mb-5 flex items-center gap-3"><span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-subtle bg-accent/10 text-accent"><Icon className="h-5 w-5" aria-hidden="true" /></span><h2 className="text-xl font-semibold text-main md:text-2xl">{title}</h2></div>
+    <section className={`border-t pt-7 print:break-inside-auto print:pt-4 ${accent ? "border-blue-300 dark:border-blue-800" : "border-subtle"}`}>
+      <div className="mb-5 flex items-center gap-3"><Icon className="h-5 w-5 shrink-0 text-blue-600 dark:text-blue-400" aria-hidden="true" /><h2 className="text-xl font-semibold text-main md:text-2xl">{title}</h2></div>
       {children}
     </section>
   );

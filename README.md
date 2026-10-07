@@ -10,6 +10,7 @@ Professional portfolio and project website for Mohamed Elkaza, built with Next.j
 - Project and case-study pages for infrastructure, automation, IoT, Edge AI, and data work
 - Responsive design with light and dark themes
 - Security headers through the Next.js request proxy
+- Automated checks that keep private addressing, credentials, and personal portrait assets out of the public build
 - Production verification for deployed revision, route pairs, redirects, sitemap, robots.txt, and internal links
 
 ## Tech Stack
@@ -65,6 +66,14 @@ npm run verify:production
 ```
 
 This checks the live portfolio pages, `robots.txt`, and `sitemap.xml` for expected public content. It also catches accidental returns of hidden sections such as the old start section or PDF download wording.
+
+### Public-content privacy check
+
+```bash
+npm run verify:privacy
+```
+
+This checks the publishable `app/` and `public/` trees for private network addresses, credential signatures, private-key material, sensitive configuration files, and portrait assets that are intentionally excluded from the public portfolio. The disclosure rules are documented in `docs/public-private-content-policy.md`.
 
 ## Project Structure
 

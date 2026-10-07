@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/research",
   title: "Aktuelle akademische Arbeit | Mohamed Elkaza",
-  description: "Vorgeschlagene Forschungsrichtung für eine TU-Wien-Diplomarbeit; Themen- und Betreuungsabstimmung läuft. MIO-3-Masterprojekt zu Secure Edge AI an der FH Technikum Wien.",
+  description: "Aktuelle akademische Arbeit an TU Wien und FH Technikum Wien, darunter eine geplante MIO-3-Masterarbeitsrichtung zur Sensordatenintegrität am Edge Gateway.",
 });
 
 export default function ResearchPage() {

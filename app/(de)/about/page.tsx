@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/about",
   title: "Über mich | Mohamed Elkaza",
-  description: "Berufliches Profil von Mohamed Elkaza mit Fokus auf Application Engineering, Automatisierung, Infrastruktur, IoT, Monitoring, technische Dokumentation und Wirtschaftsinformatik.",
+  description: "Berufliches Profil von Mohamed Elkaza zu Application Engineering, Infrastruktur- und Security-Betrieb, Automatisierung und sicherer IoT-Forschung.",
 });
 
 export default function AboutPage() {
