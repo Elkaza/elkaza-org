@@ -705,7 +705,7 @@ export const projects: Project[] = [
                     "High-level hybrid infrastructure overview showing a Public Edge VPS, an on-site Proxmox and Debian platform, a private Windows Server lab, Tailscale with Git and Ansible for administration, and Azure Arc, monitoring, backup and recovery as cross-environment operational capabilities.",
                     "Überblick einer hybriden Infrastruktur mit Public Edge VPS, lokaler Proxmox- und Debian-Plattform, privatem Windows-Server-Labor, Tailscale mit Git und Ansible für die Administration sowie Azure Arc, Monitoring, Backup und Recovery als umgebungsübergreifenden Betriebsfunktionen."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-overview.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-overview.svg",
             },
             {
                 title: loc(
@@ -720,7 +720,7 @@ export const projects: Project[] = [
                     "Detailed hybrid infrastructure architecture showing Internet and public DNS, a Public Edge VPS, an on-site Proxmox-hosted Debian server, private Tailscale administration, an external Windows Server lab, monitoring, and outbound Azure Arc governance.",
                     "Detaillierte Hybrid-Infrastrukturarchitektur mit Internet und öffentlichem DNS, Public Edge VPS, lokalem Proxmox-gehostetem Debian-Server, privater Tailscale-Administration, externem Windows-Server-Labor, Monitoring und ausgehender Azure-Arc-Governance."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-architecture.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/hybrid-infrastructure-architecture.svg",
             },
             {
                 title: loc(
@@ -735,7 +735,7 @@ export const projects: Project[] = [
                     "Infrastructure operations workflow from Git-based desired state through pre-deployment validation, Ansible configuration management, post-change verification, continuous monitoring, recurring backups, and representative application/data recovery validation.",
                     "Infrastruktur-Betriebsworkflow vom Git-basierten Sollzustand über Pre-Deployment-Validierung, Ansible-Konfigurationsmanagement, Post-Change-Verifikation, kontinuierliches Monitoring und wiederkehrende Backups bis zur repräsentativen Recovery-Validierung von Anwendungen und Daten."
                 ),
-                src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-recovery-workflow.png",
+                src: "/images/projects/enterprise-self-hosted-infrastructure/infrastructure-operations-recovery-workflow.svg",
             },
             {
                 title: loc(
