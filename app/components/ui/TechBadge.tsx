@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   BarChart3,
   Code2,
@@ -14,8 +15,10 @@ import type { SimpleIcon } from "simple-icons";
 import {
   siAnsible,
   siArduino,
+  siBetterstack,
   siBluetooth,
   siC,
+  siCisco,
   siClickhouse,
   siConfluence,
   siCplusplus,
@@ -34,6 +37,7 @@ import {
   siJira,
   siJson,
   siLinux,
+  siMikrotik,
   siMqtt,
   siMysql,
   siNetdata,
@@ -68,10 +72,13 @@ import {
 const brandIcons: Record<string, SimpleIcon> = {
   ansible: siAnsible,
   arduino: siArduino,
+  "better stack": siBetterstack,
   ble: siBluetooth,
   bluetooth: siBluetooth,
   "bluetooth low energy": siBluetooth,
   c: siC,
+  cisco: siCisco,
+  "cisco routing & switching": siCisco,
   "c++": siCplusplus,
   clickhouse: siClickhouse,
   confluence: siConfluence,
@@ -94,6 +101,7 @@ const brandIcons: Record<string, SimpleIcon> = {
   jira: siJira,
   json: siJson,
   linux: siLinux,
+  mikrotik: siMikrotik,
   mqtt: siMqtt,
   mysql: siMysql,
   netdata: siNetdata,
@@ -138,6 +146,49 @@ const brandIcons: Record<string, SimpleIcon> = {
   yolov8: siYolo,
 };
 
+type BrandAsset = {
+  alt: string;
+  src: string;
+  wide?: boolean;
+};
+
+const brandAssets: Record<string, BrandAsset> = {
+  "azure arc": {
+    alt: "Microsoft Azure logo",
+    src: "/technology-logos/azure.svg",
+  },
+  "hico techdoc-suite": {
+    alt: "HICO logo",
+    src: "/organization-logos/hico.png",
+    wide: true,
+  },
+  "oracle sql": {
+    alt: "Oracle logo",
+    src: "/technology-logos/oracle.svg",
+    wide: true,
+  },
+  powershell: {
+    alt: "PowerShell logo",
+    src: "/technology-logos/powershell.svg",
+  },
+  vba: {
+    alt: "Visual Basic logo",
+    src: "/technology-logos/visualbasic.svg",
+  },
+  "visual basic": {
+    alt: "Visual Basic logo",
+    src: "/technology-logos/visualbasic.svg",
+  },
+  "windows server": {
+    alt: "Windows logo",
+    src: "/technology-logos/windows.svg",
+  },
+  "windows server 2008 r2": {
+    alt: "Windows logo",
+    src: "/technology-logos/windows.svg",
+  },
+};
+
 function normalizeTechName(name: string) {
   return name
     .trim()
@@ -153,6 +204,7 @@ function findBrandIcon(name: string) {
   if (normalized.includes("typescript")) return siTypescript;
   if (normalized.includes("javascript")) return siJavascript;
   if (normalized.includes("python")) return siPython;
+  if (normalized.includes("better stack")) return siBetterstack;
   if (normalized.includes("ansible")) return siAnsible;
   if (normalized.includes("docker")) return siDocker;
   if (normalized.includes("podman")) return siPodman;
@@ -165,6 +217,8 @@ function findBrandIcon(name: string) {
   if (normalized.includes("arduino")) return siArduino;
   if (normalized.includes("esp32")) return siEspressif;
   if (normalized.includes("proxmox")) return siProxmox;
+  if (normalized.includes("cisco")) return siCisco;
+  if (normalized.includes("mikrotik")) return siMikrotik;
   if (normalized.includes("postgres")) return siPostgresql;
   if (normalized.includes("influxdb")) return siInfluxdb;
   if (normalized.includes("grafana")) return siGrafana;
@@ -175,6 +229,17 @@ function findBrandIcon(name: string) {
   if (normalized.includes("nginx")) return siNginx;
   if (normalized.includes("scikit")) return siScikitlearn;
   if (normalized.includes("yolo")) return siYolo;
+
+  return null;
+}
+
+function findBrandAsset(name: string) {
+  const normalized = normalizeTechName(name);
+
+  if (brandAssets[normalized]) return brandAssets[normalized];
+  if (normalized.includes("hico") && normalized.includes("techdoc")) {
+    return brandAssets["hico techdoc-suite"];
+  }
 
   return null;
 }
@@ -256,6 +321,21 @@ export function TechLogo({
   decorative?: boolean;
   monochrome?: boolean;
 }) {
+  const asset = findBrandAsset(name);
+
+  if (asset) {
+    return (
+      <Image
+        src={asset.src}
+        alt={decorative ? "" : asset.alt}
+        aria-hidden={decorative || undefined}
+        width={48}
+        height={24}
+        className={`${asset.wide ? "h-4 w-7" : className} shrink-0 object-contain`}
+      />
+    );
+  }
+
   const icon = findBrandIcon(name);
 
   if (icon) {
@@ -288,7 +368,7 @@ export function TechBadge({
   iconClassName?: string;
   variant?: "auto" | "brand" | "concept";
 }) {
-  const showBrandIcon = variant !== "concept" && Boolean(findBrandIcon(name));
+  const showBrandIcon = variant !== "concept" && Boolean(findBrandIcon(name) || findBrandAsset(name));
 
   return (
     <span
