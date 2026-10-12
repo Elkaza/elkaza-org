@@ -17,6 +17,7 @@ export type ProfileExperience = {
 
 export type ProfileEducation = {
   institution: string;
+  websiteUrl?: Record<Locale, string>;
   program: Record<Locale, string>;
   period: Record<Locale, string>;
   details: Record<Locale, string[]>;
@@ -223,6 +224,11 @@ export const profile = {
     },
     {
       institution: "VWU",
+      websiteUrl: {
+        de: "https://vorstudienlehrgang.oead.at/de/wien",
+        en: "https://vorstudienlehrgang.oead.at/en/vienna",
+        ar: "https://vorstudienlehrgang.oead.at/en/vienna",
+      },
       program: {
         de: "Vorstudienlehrgang der Wiener Universitäten",
         en: "University Preparation Programme of the Vienna Universities",

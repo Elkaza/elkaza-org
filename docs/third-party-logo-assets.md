@@ -11,3 +11,7 @@ The following SVG files were adapted from the [Devicon](https://github.com/devic
 - `public/technology-logos/windows.svg`
 
 All product names, logos, and brands remain the property of their respective owners. Other compact brand marks are supplied by the project's existing `simple-icons` dependency or existing organization-logo assets.
+
+The VWU education entry uses the current OeAD Vorstudienlehrgänge header mark from the official [Vienna programme website](https://vorstudienlehrgang.oead.at/en/vienna), retrieved on 2026-10-12 and displayed only for institutional identification:
+
+- `public/organization-logos/vwu-oead.png`

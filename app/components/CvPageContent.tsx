@@ -227,7 +227,18 @@ export default function CvPageContent() {
                 <div className="flex items-start gap-3">
                   <OrganizationLogo name={education.institution} size="sm" decorative={false} />
                   <div>
-                    <h3 className="font-semibold leading-snug text-main">{education.program[locale]} · {education.institution}</h3>
+                    <h3 className="font-semibold leading-snug text-main">
+                      {education.program[locale]} · {education.websiteUrl ? (
+                        <a
+                          href={education.websiteUrl[locale]}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-700 underline decoration-blue-300 underline-offset-2 hover:decoration-blue-700 dark:text-blue-300"
+                        >
+                          {education.institution}
+                        </a>
+                      ) : education.institution}
+                    </h3>
                     <p className="mt-2 text-sm font-medium text-muted">{education.period[locale]}</p>
                     {education.details[locale].map((detail) => <p key={detail} className="mt-1 text-sm leading-6 text-secondary">{detail}</p>)}
                   </div>

@@ -11,7 +11,8 @@ type OrganizationKind =
   | "rbi"
   | "tuWien"
   | "uniBenghazi"
-  | "uniGraz";
+  | "uniGraz"
+  | "vwu";
 
 type OrganizationMark = {
   label: string;
@@ -72,6 +73,13 @@ const organizationMarks: Record<string, OrganizationMark> = {
     kind: "uniGraz",
     assetSrc: "/organization-logos/uni-graz.svg",
   },
+  vwu: {
+    label: "VWU — Vorstudienlehrgang der Wiener Universitäten",
+    initials: "VWU",
+    kind: "vwu",
+    assetSrc: "/organization-logos/vwu-oead.png",
+    wide: true,
+  },
 };
 
 const frameClasses: Record<OrganizationKind, string> = {
@@ -86,6 +94,7 @@ const frameClasses: Record<OrganizationKind, string> = {
   tuWien: "border-[#f0c3c3] bg-white text-[#c8102e]",
   uniBenghazi: "border-[#b9c5d8] bg-white text-[#1d3762]",
   uniGraz: "border-[#e6c64a] bg-white text-black",
+  vwu: "border-[#cbd5e1] bg-white text-[#111827]",
 };
 
 const squareSizeClasses = {
@@ -124,6 +133,7 @@ function findOrganizationMark(name: string): OrganizationMark {
   if (normalized.includes("graz") || normalized.includes("uni for life")) return organizationMarks["university of graz"];
   if (normalized.includes("linkedin")) return organizationMarks["linkedin learning"];
   if (normalized.includes("cyberu")) return organizationMarks.cyberu;
+  if (normalized === "vwu" || normalized.includes("vorstudienlehrgang")) return organizationMarks.vwu;
 
   const initials = name
     .split(/\s+/u)
