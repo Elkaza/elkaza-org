@@ -4,8 +4,8 @@ import { localizedMetadata } from "@/app/lib/seo";
 export const metadata = localizedMetadata({
   locale: "de",
   path: "/",
-  title: "Mohamed Elkaza | IT Infrastructure & Application Engineer",
-  description: "Portfolio von Mohamed Elkaza zu IT-Infrastruktur, Application Engineering, Security Operations, Automatisierung und sicherer IoT-Forschung.",
+  title: "Mohamed Elkaza – IT System Engineer (Vienna)",
+  description: "IT-Infrastruktur, Application Support, Automatisierung, Security Operations und sichere IoT-/Edge-Projekte von Mohamed Elkaza in Wien.",
 });
 
 export default function HomePage() {

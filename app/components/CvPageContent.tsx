@@ -64,33 +64,22 @@ const appliedEngineeringProjects = appliedEngineeringProjectLinks.map((link) => 
   return { ...link, project };
 });
 
-const skillGroups = [
-  ["cv_skill_platform_title", "cv_skill_platform_items"],
-  ["cv_skill_automation_title", "cv_skill_automation_items"],
-  ["cv_skill_networking_title", "cv_skill_networking_items"],
-  ["cv_skill_operations_title", "cv_skill_operations_items"],
-  ["cv_skill_software_title", "cv_skill_software_items"],
-  ["cv_skill_projectManagement_title", "cv_skill_projectManagement_items"],
-] as const;
-
-const certificationOrganizations = ["pma / IPMA", "University of Graz", "LinkedIn Learning", null] as const;
-
 export default function CvPageContent() {
   const { locale, t } = useLocale();
   const activeLocale = locale === "en" ? "en" : "de";
   const mio = mioProject[locale];
   const cvResearch = locale === "de"
     ? {
-        status: "Diplomarbeit: Themen- und Betreuungsabstimmung läuft",
-        label: "Vorgeschlagene Forschungsrichtung:",
-        title: "Enterprise Coherence Governance und Methodenintegration bei Unternehmenstransformationen",
-        methods: "Aktuelle explorative Forschung: Systematische Literaturrecherche · Analyse österreichischer Stellenanzeigen · Design Science Research",
+        status: "Masterarbeit in Arbeit seit 10/2026 · geplante Abgabe 04/2027",
+        label: "Arbeitstitel:",
+        title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
+        methods: "Betreuer: Dr. Vincenzo De Maio · Co-Betreuerin: Prof. Ivona Brandić",
       }
     : {
-        status: "Diploma thesis: topic and supervision currently under clarification",
-        label: "Proposed research direction:",
-        title: "Enterprise Coherence Governance and method integration during organizational transformation",
-        methods: "Current exploratory research: Systematic Literature Review · Austrian Job-Ad Analysis · Design Science Research",
+        status: "Master's thesis in progress since 10/2026 · planned submission 04/2027",
+        label: "Working title:",
+        title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
+        methods: "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić",
       };
 
   return (
@@ -114,6 +103,12 @@ export default function CvPageContent() {
           <a className="border-l border-subtle px-3 hover:text-blue-700" href={profile.linkedinUrl} target="_blank" rel="noreferrer">LinkedIn</a>
           <a className="border-l border-subtle px-3 hover:text-blue-700" href={profile.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
         </div>
+        {(profile.cvDownloads.en || profile.cvDownloads.de) && (
+          <div className="mt-5 flex flex-wrap gap-2 print:hidden">
+            {profile.cvDownloads.en && <a href={profile.cvDownloads.en} download className="inline-flex items-center rounded-md border border-subtle px-3 py-2 text-sm font-semibold text-main hover:border-blue-500">CV (EN)</a>}
+            {profile.cvDownloads.de && <a href={profile.cvDownloads.de} download className="inline-flex items-center rounded-md border border-subtle px-3 py-2 text-sm font-semibold text-main hover:border-blue-500">Lebenslauf (DE)</a>}
+          </div>
+        )}
       </section>
 
       <div className="mt-8 space-y-8 print:mt-6 print:space-y-5">
@@ -207,12 +202,18 @@ export default function CvPageContent() {
         </CvSection>
 
         <CvSection icon={Code2} title={t("cv_skills_title")}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {skillGroups.map(([titleKey, itemsKey]) => (
-              <article key={titleKey} className="border-t border-subtle pt-4 print:break-inside-avoid">
-                <h3 className="font-semibold text-main">{t(titleKey)}</h3>
+          <p className="mb-5 max-w-4xl text-sm leading-6 text-muted">
+            {locale === "de"
+              ? "Die Gruppen zeigen, wo die Kenntnisse erworben und praktisch eingesetzt wurden. Projekt-, Labor- und Studienerfahrung wird nicht als Berufserfahrung dargestellt."
+              : "The groups show where each skill was developed and used. Project, lab and academic work is not presented as professional experience."}
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {profile.skillGroups.map((group) => (
+              <article key={group.title.en} className="border-t border-subtle pt-4 print:break-inside-avoid">
+                <h3 className="font-semibold text-main">{group.title[locale]}</h3>
+                <p className="mt-1 text-xs leading-5 text-muted">{group.description[locale]}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {t(itemsKey).split("|").map((item) => item.trim()).filter(Boolean).map((item) => <TechBadge key={item} name={item} className="bg-card text-muted" />)}
+                  {group.items[locale].map((item) => <TechBadge key={item} name={item} className="bg-card text-muted" />)}
                 </div>
               </article>
             ))}
@@ -220,7 +221,7 @@ export default function CvPageContent() {
         </CvSection>
 
         <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {profile.education.map((education) => (
               <article key={education.institution} className="border-t border-subtle pt-4 print:break-inside-avoid">
                 <div className="flex items-start gap-3">
@@ -258,9 +259,9 @@ export default function CvPageContent() {
 
         <CvSection icon={Award} title={locale === "de" ? "Zertifizierungen" : "Certifications"}>
           <div className="grid gap-3 sm:grid-cols-2">
-            {profile.certifications.map((certification, index) => (
+            {profile.certifications.map((certification) => (
               <article key={certification.title} className="flex items-start gap-3 border-t border-subtle pt-4 print:break-inside-avoid">
-                {certificationOrganizations[index] && <OrganizationLogo name={certificationOrganizations[index]} size="sm" decorative={false} />}
+                <OrganizationLogo name={certification.issuer} size="sm" decorative={false} />
                 <div><h3 className="text-sm font-semibold leading-6 text-main">{certification.title}</h3><p className="mt-1 text-sm text-muted">{certification.issuer} · {certification.year}</p></div>
               </article>
             ))}

@@ -17,6 +17,9 @@ export default function CertificationsPageContent() {
         { labelKey: "cert_filter_pm", value: "project_management" },
         { labelKey: "cert_filter_ba", value: "business_analysis" },
         { labelKey: "cert_filter_excel", value: "excel_vba" },
+        { labelKey: "cert_filter_language", value: "language" },
+        { labelKey: "cert_filter_academic", value: "academic_recognition" },
+        { labelKey: "cert_filter_security", value: "cybersecurity" },
     ];
 
     // Sorting
@@ -32,12 +35,17 @@ export default function CertificationsPageContent() {
         {
             id: "professional-certifications",
             titleKey: "cert_section_prof",
-            items: filteredCerts.filter(cert => cert.type === "professional_certification"),
+            items: filteredCerts.filter(cert => cert.type === "professional_certification" || cert.type === "language_certificate"),
+        },
+        {
+            id: "academic-credentials",
+            titleKey: "cert_section_academic",
+            items: filteredCerts.filter(cert => cert.type === "university_course" || cert.type === "degree_assessment"),
         },
         {
             id: "courses-and-training",
             titleKey: "cert_section_learning",
-            items: filteredCerts.filter(cert => cert.type !== "professional_certification"),
+            items: filteredCerts.filter(cert => cert.type === "professional_training" || cert.type === "learning_path"),
         },
     ].filter(group => group.items.length > 0);
 
@@ -53,6 +61,12 @@ export default function CertificationsPageContent() {
             case "professional_training":
                 // Neutral for trainings
                 return <span className="badge badge-neutral">{t("cert_type_training")}</span>;
+            case "language_certificate":
+                return <span className="badge badge-neutral">{t("cert_type_language")}</span>;
+            case "degree_assessment":
+                return <span className="badge badge-neutral">{t("cert_type_assessment")}</span>;
+            case "learning_path":
+                return <span className="badge badge-neutral">{t("cert_type_path")}</span>;
             default:
                 return <span className="badge badge-neutral">{type}</span>;
         }

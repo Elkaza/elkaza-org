@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { AppWindow, ArrowRight, BookOpen, Languages, Mail, Server, ShieldCheck, Workflow } from "lucide-react";
+import { AppWindow, ArrowRight, BookOpen, BriefcaseBusiness, Languages, Mail, Server, ShieldCheck, Workflow } from "lucide-react";
 import { useLocale } from "../LocaleProvider";
 import { getLocalizedPath } from "../lib/localizedRoutes";
 import { profile } from "../lib/profile";
@@ -60,8 +60,40 @@ export default function AboutPageContent() {
               </article>
             ))}
           </div>
-          <Link href={getLocalizedPath("/cv", activeLocale)} className="mt-5 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">
-            {locale === "de" ? "Berufserfahrung im CV" : "Professional experience in the CV"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+        </section>
+
+        <section className="mt-12 border-t border-subtle pt-10" aria-labelledby="professional-experience">
+          <div className="flex items-center gap-3">
+            <BriefcaseBusiness className="h-7 w-7 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+            <h2 id="professional-experience" className="text-2xl font-semibold text-main">
+              {locale === "de" ? "Berufserfahrung" : "Professional experience"}
+            </h2>
+          </div>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            {profile.employment.map((experience) => (
+              <article key={`${experience.organization.en}-${experience.period}`} className="border-t border-subtle pt-4">
+                <div className="flex items-start gap-3">
+                  <OrganizationLogo name={experience.organization.en} size="sm" decorative={false} />
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-main">{experience.title[locale]}</h3>
+                    <p className="mt-1 text-sm text-muted">
+                      {experience.organization[locale]} · {experience.period}
+                    </p>
+                  </div>
+                </div>
+                <ul className="mt-3 space-y-1.5 text-sm leading-6 text-secondary">
+                  {experience.bullets[locale].slice(0, 2).map((bullet) => (
+                    <li key={bullet} className="flex gap-2">
+                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" aria-hidden="true" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <Link href={getLocalizedPath("/cv", activeLocale)} className="mt-6 inline-flex items-center font-semibold text-blue-700 hover:underline dark:text-blue-300">
+            {locale === "de" ? "Vollständigen CV ansehen" : "View full CV"}<ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
           </Link>
         </section>
 
@@ -92,7 +124,7 @@ export default function AboutPageContent() {
               ? "Nach Abschluss meiner laufenden Masterstudien erwäge ich ernsthaft eine Promotion. Besonders interessieren mich sichere IoT- und Edge-Systeme sowie Sicherheitsmechanismen, die sich experimentell bewerten lassen."
               : "After completing my current master's studies, I am seriously considering doctoral research. I am particularly interested in secure IoT and edge systems, and in security mechanisms that can be evaluated experimentally."}
           </p>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {profile.education.map((education) => (
               <article key={education.institution} className="border-t border-subtle pt-5">
                 <OrganizationLogo name={education.institution} size="sm" decorative={false} />
@@ -111,8 +143,12 @@ export default function AboutPageContent() {
               <h2 id="about-research" className="text-2xl font-semibold leading-snug text-main">{locale === "de" ? "Aktuelle akademische Arbeit" : "Current Academic Work"}</h2>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <article className="border-l-2 border-blue-600 pl-4">
-                  <h3 className="font-semibold text-main">{locale === "de" ? "TU Wien Diplomarbeit" : "TU Wien Diploma Thesis"}</h3>
-                  <p className="mt-2 text-sm text-muted">{locale === "de" ? "Themen- und Betreuungsabstimmung" : "Topic and supervision under clarification"}</p>
+                  <h3 className="font-semibold text-main">Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers</h3>
+                  <p className="mt-2 text-sm text-muted">
+                    {locale === "de"
+                      ? "TU Wien Masterarbeit · in Arbeit seit 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić"
+                      : "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić"}
+                  </p>
                 </article>
                 <article className="border-l-2 border-blue-600 pl-4">
                   <h3 className="font-semibold text-main">{mio.title}</h3>
