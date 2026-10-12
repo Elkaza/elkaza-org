@@ -27,6 +27,7 @@ type Copy = {
     github: string;
     live: string;
     result: string;
+    role: string;
     tech: string;
     year: string;
     domains: Record<ProjectDomain, string>;
@@ -130,9 +131,9 @@ const CARD_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Runs real-time vibration classification on Arduino IMU data.",
     },
     "rpi-ble-mqtt-gateway": {
-        en: "Collects BLE sensor data and moves it through a secured MQTT path.",
-        de: "Erfasst BLE-Sensordaten und transportiert sie über einen abgesicherten MQTT-Pfad.",
-        ar: "Collects BLE sensor data and moves it through a secured MQTT path.",
+        en: "Collects BLE sensor data and protects MQTT transport with mutual TLS and X.509 client certificates.",
+        de: "Erfasst BLE-Sensordaten und schützt den MQTT-Transport mit gegenseitigem TLS und X.509-Client-Zertifikaten.",
+        ar: "Collects BLE sensor data and protects MQTT transport with mutual TLS and X.509 client certificates.",
     },
     "ble-edge-gateway": {
         en: "Containerized BLE gateway that forwards sensor data into an edge pipeline.",
@@ -210,6 +211,7 @@ const COPY: Record<Locale, Copy> = {
         github: "GitHub",
         live: "Live",
         result: "Result",
+        role: "Role",
         tech: "Tech",
         year: "Year",
         domains: {
@@ -229,6 +231,7 @@ const COPY: Record<Locale, Copy> = {
         github: "GitHub",
         live: "Live",
         result: "Ergebnis",
+        role: "Rolle",
         tech: "Tech",
         year: "Jahr",
         domains: {
@@ -248,6 +251,7 @@ const COPY: Record<Locale, Copy> = {
         github: "GitHub",
         live: "Live",
         result: "Result",
+        role: "Role",
         tech: "Tech",
         year: "Year",
         domains: {
@@ -353,6 +357,9 @@ function FeaturedProjectCard({
                 <p className="mt-3 break-words text-sm leading-relaxed text-muted">
                     {FEATURED_SUMMARIES[project.slug]?.[locale] ?? compactText(project.oneLiner[locale], 145)}
                 </p>
+                <p className="mt-3 text-xs leading-5 text-secondary">
+                    <span className="font-semibold text-main">{copy.role}:</span> {getProjectRoleLabel(project, locale)}
+                </p>
 
                 {result && (
                     <p className="mt-4 break-words text-sm leading-relaxed text-main">
@@ -432,6 +439,9 @@ function CompactProjectCard({
                 <p className="mt-2 break-words text-sm leading-relaxed text-muted sm:min-h-[3rem]">
                     {getCardSummary(project, locale)}
                 </p>
+                <p className="mt-3 text-xs leading-5 text-secondary">
+                    <span className="font-semibold text-main">{copy.role}:</span> {getProjectRoleLabel(project, locale)}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                     {project.tech.slice(0, 3).map((tech) => (
                         <TechBadge key={tech} name={tech} />
@@ -481,6 +491,24 @@ function ProjectMeta({
             </span>
         </div>
     );
+}
+
+function getProjectRoleLabel(project: Project, locale: Locale) {
+    const academicProjects = new Set(["tinyml-vibration-anomaly-detection", "random-walk-gravity-regression"]);
+
+    if (academicProjects.has(project.slug)) {
+        return locale === "de" ? "Akademisches Projekt" : "Academic project";
+    }
+
+    if (project.slug === "enterprise-self-hosted-infrastructure") {
+        return locale === "de" ? "Selbst aufgebaut und betrieben" : "Built and operated by me";
+    }
+
+    if (project.slug === "edgeguardian-edge-ai-safety-bubble") {
+        return locale === "de" ? "Selbst umgesetzt · demonstrierter Prototyp" : "Built by me · demonstrated prototype";
+    }
+
+    return locale === "de" ? "Eigenes Projekt" : "Own project";
 }
 
 function ProjectVisual({

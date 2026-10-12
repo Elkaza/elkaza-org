@@ -39,6 +39,7 @@ const HOME_COPY: Localized<{
   heroTitle: string;
   heroSubheadline: string;
   heroSupportingLine: string;
+  openToLabel: string;
   profileFacts: {
     label: string;
     value: string;
@@ -72,11 +73,14 @@ const HOME_COPY: Localized<{
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
     heroSupportingLine: "Derzeit vertiefe ich Infrastruktur-Sicherheit, Monitoring und Incident-Analyse durch eigene Systeme und den Junior Cybersecurity Analyst Path der HTB Academy.",
+    openToLabel: "Offen für",
     profileFacts: [
       { label: "Standort", value: profile.location.de },
       { label: "Arbeitsmarkt", value: profile.workAuthorization.de },
+      { label: "Verfügbarkeit", value: profile.availability.de },
       { label: "Deutsch", value: "B2" },
       { label: "Englisch", value: "C1" },
+      { label: "Arabisch", value: "Muttersprache" },
     ],
     ctas: {
       projects: "Projekte ansehen",
@@ -95,27 +99,30 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Aktuelle akademische Arbeit",
       title: "Forschung und Masterprojekt",
-      description: "Aktuelle Arbeiten an TU Wien und FH Technikum Wien. Beide Themen befinden sich noch in Entwicklung.",
+      description: "Die TU-Wien-Masterarbeit läuft seit Oktober 2026. An der FH Technikum Wien ist die Sensordatenintegrität am Edge Gateway die geplante Masterarbeitsrichtung.",
       items: [
-        { title: "TU Wien Diplomarbeit", label: "Themen- und Betreuungsabstimmung" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien Masterarbeit · in Arbeit seit 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
         { title: "Integritätsmanipulation authentifizierter IoT-Sensorknoten am Edge Gateway", label: "MIO-3 / geplante Masterarbeitsrichtung · Forschungsumfang Oktober 2026" },
       ],
       cta: "Akademische Arbeit ansehen",
     },
     workTitle: "Kernkompetenzen",
     finalCta:
-      "Offen für Rollen in Application Engineering, Infrastruktur-Betrieb und Junior Security Operations.",
+      "Offen für System Engineering, Application Support, IoT/OT, Junior Security Operations und Junior Research Engineering.",
   },
   en: {
     heroKicker: "Vienna-based portfolio - infrastructure, security operations and application engineering",
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
     heroSupportingLine: "I am currently developing infrastructure-security, monitoring and incident-analysis skills through my own systems and HTB Academy's Junior Cybersecurity Analyst path.",
+    openToLabel: "Open to",
     profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
+      { label: "Availability", value: profile.availability.en },
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
+      { label: "Arabic", value: "Native" },
     ],
     ctas: {
       projects: "View Projects",
@@ -134,16 +141,16 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Current Academic Work",
       title: "Research and master's project",
-      description: "Current work at TU Wien and FH Technikum Wien. Both topics are still in development.",
+      description: "The TU Wien master's thesis has been in progress since October 2026. Sensor-data integrity at an edge gateway is the planned thesis direction at FH Technikum Wien.",
       items: [
-        { title: "TU Wien Diploma Thesis", label: "Topic and supervision under clarification" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
         { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",
     },
     workTitle: "Core Capabilities",
     finalCta:
-      "Open to application engineering, infrastructure operations and junior security operations roles.",
+      "Open to system engineering, application support, IoT/OT, junior security operations and junior research engineering roles.",
   },
   ar: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
@@ -151,11 +158,14 @@ const HOME_COPY: Localized<{
     heroSubheadline: profile.introduction.en,
     heroSupportingLine:
       "Arabic localization is in progress. Until then, the technical portfolio content is shown in English.",
+    openToLabel: "Open to",
     profileFacts: [
       { label: "Location", value: profile.location.en },
       { label: "Work access", value: profile.workAuthorization.en },
+      { label: "Availability", value: profile.availability.en },
       { label: "German", value: "B2" },
       { label: "English", value: "C1" },
+      { label: "Arabic", value: "Native" },
     ],
     ctas: {
       projects: "View Projects",
@@ -174,16 +184,16 @@ const HOME_COPY: Localized<{
     research: {
       eyebrow: "Current Academic Work",
       title: "Research and master's project",
-      description: "Current work at TU Wien and FH Technikum Wien. Both topics are still in development.",
+      description: "The TU Wien master's thesis has been in progress since October 2026. Sensor-data integrity at an edge gateway is the planned thesis direction at FH Technikum Wien.",
       items: [
-        { title: "TU Wien Diploma Thesis", label: "Topic and supervision under clarification" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
         { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",
     },
     workTitle: "Capabilities & Stack",
     finalCta:
-      "Open to application engineering, infrastructure operations and junior security operations roles.",
+      "Open to system engineering, application support, IoT/OT, junior security operations and junior research engineering roles.",
   },
 };
 
@@ -219,7 +229,7 @@ const FEATURED_COPY: Record<
       en: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
       ar: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
     },
-    tech: ["Ansible", "Linux", "Tailscale", "CrowdSec", "Restic"],
+    tech: ["Ansible", "Bash", "Linux", "Tailscale", "CrowdSec", "Restic"],
     visualLabel: {
       de: "Hybrid-Infrastruktur mit Public Edge VPS, lokaler Proxmox-/Debian-Plattform, Windows-Server-Labor, privater Tailscale-Administration und Azure-Arc-Governance.",
       en: "Hybrid infrastructure with a Public Edge VPS, on-site Proxmox/Debian platform, Windows Server lab, private Tailscale administration and Azure Arc governance.",
@@ -238,16 +248,16 @@ const FEATURED_COPY: Record<
       ar: "Local safety states needed to be inferred at the edge from sensor and camera input.",
     },
     responsibility: {
-      de: "Raspberry Pi, Hailo, Kamera, LiDAR und ESP32 zu einem prototypischen Entscheidungsfluss verbunden.",
-      en: "Connected Raspberry Pi, Hailo, camera, LiDAR, and ESP32 into a prototype decision flow.",
-      ar: "Connected Raspberry Pi, Hailo, camera, LiDAR, and ESP32 into a prototype decision flow.",
+      de: "Raspberry Pi, Hailo, Kamera und LiDAR integriert und die ESP32-Firmware in C/C++ für den prototypischen Entscheidungsfluss geschrieben.",
+      en: "Integrated Raspberry Pi, Hailo, camera and LiDAR, and wrote the ESP32 firmware in C/C++ for the prototype decision flow.",
+      ar: "Integrated Raspberry Pi, Hailo, camera and LiDAR, and wrote the ESP32 firmware in C/C++ for the prototype decision flow.",
     },
     result: {
       de: "Architekturdiagramme, Code und sichtbare SAFE/WARNING/ALERT-Logik dokumentieren den Entscheidungsfluss.",
       en: "Architecture diagrams, code, and visible SAFE/WARNING/ALERT logic document the decision flow.",
       ar: "Architecture diagrams, code, and visible SAFE/WARNING/ALERT logic document the decision flow.",
     },
-    tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "ESP32"],
+    tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8", "LiDAR", "C/C++"],
     visualLabel: {
       de: "Edge AI Architektur",
       en: "Edge AI architecture",
@@ -368,6 +378,11 @@ export default function HomeContent() {
               </span>
             ))}
           </div>
+
+          <p className="max-w-4xl text-sm leading-6 text-secondary">
+            <span className="font-semibold text-main">{copy.openToLabel}:</span>{" "}
+            {profile.openTo[locale].join(" · ")}
+          </p>
 
           <div className="flex flex-wrap gap-2">
             {TECH_CHIPS.map((chip) => (

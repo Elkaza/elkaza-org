@@ -1,8 +1,8 @@
 
-import { Award, BookOpen, ScrollText, FileSpreadsheet, LucideIcon } from "lucide-react";
+import { Award, BookOpen, FileCheck2, FileSpreadsheet, GraduationCap, Languages, LucideIcon, ScrollText, ShieldCheck } from "lucide-react";
 
-export type CertType = "professional_certification" | "university_course" | "professional_training";
-export type CertCategory = "project_management" | "business_analysis" | "excel_vba";
+export type CertType = "professional_certification" | "university_course" | "professional_training" | "language_certificate" | "degree_assessment" | "learning_path";
+export type CertCategory = "project_management" | "business_analysis" | "excel_vba" | "language" | "academic_recognition" | "cybersecurity";
 
 export type Certification = {
     id: string;
@@ -86,7 +86,59 @@ export const certifications: Certification[] = [
         availabilityKey: "cert_avail_req",
         tags: ["Excel/VBA"],
         icon: FileSpreadsheet,
-    }
+    },
+    {
+        id: "htb-junior-cybersecurity-analyst",
+        titleKey: "cert_htb_title",
+        issuerKey: "cert_htb_issuer",
+        organizationName: "Hack The Box Academy",
+        type: "learning_path",
+        category: "cybersecurity",
+        dateLabelKey: "cert_htb_date",
+        validFrom: "2026-10-01",
+        availabilityKey: "cert_status_progress",
+        tags: ["Cybersecurity"],
+        icon: ShieldCheck,
+    },
+    {
+        id: "aptis-c1",
+        titleKey: "cert_aptis_title",
+        issuerKey: "cert_aptis_issuer",
+        organizationName: "British Council",
+        type: "language_certificate",
+        category: "language",
+        dateLabelKey: "cert_aptis_date",
+        issuedDate: "2020-09-03",
+        availabilityKey: "cert_avail_req",
+        tags: ["English", "C1"],
+        icon: Languages,
+    },
+    {
+        id: "enic-naric",
+        titleKey: "cert_enic_title",
+        issuerKey: "cert_enic_issuer",
+        organizationName: "ENIC NARIC Austria",
+        type: "degree_assessment",
+        category: "academic_recognition",
+        dateLabelKey: "cert_enic_date",
+        issuedDate: "2020-10-20",
+        availabilityKey: "cert_avail_req",
+        tags: ["Degree Assessment"],
+        icon: FileCheck2,
+    },
+    {
+        id: "oesd-b2",
+        titleKey: "cert_oesd_title",
+        issuerKey: "cert_oesd_issuer",
+        organizationName: "ÖSD",
+        type: "language_certificate",
+        category: "language",
+        dateLabelKey: "cert_oesd_date",
+        issuedDate: "2019-06-24",
+        availabilityKey: "cert_avail_req",
+        tags: ["German", "B2"],
+        icon: GraduationCap,
+    },
 ];
 
 // Helper to get effective date for sorting
@@ -99,7 +151,10 @@ export const sortCertifications = (items: Certification[]): Certification[] => {
     const typePriority: Record<CertType, number> = {
         "professional_certification": 1,
         "university_course": 2,
-        "professional_training": 3
+        "language_certificate": 2,
+        "degree_assessment": 2,
+        "professional_training": 3,
+        "learning_path": 4,
     };
 
     return [...items].sort((a, b) => {

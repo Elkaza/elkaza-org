@@ -326,7 +326,7 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             },
             {
                 label: stackLabel("Automation & private management", "Automatisierung & private Administration"),
-                tech: ["Git", "Ansible", "Tailscale", "PowerShell", "SSH", "WinRM"],
+                tech: ["Git", "Ansible", "Bash", "Tailscale", "PowerShell", "SSH", "WinRM"],
             },
             {
                 label: stackLabel("Hybrid governance", "Hybrid-Governance"),
@@ -344,9 +344,9 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
     },
     "edgeguardian-edge-ai-safety-bubble": {
         role: {
-            en: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
-            de: "Ich integrierte Kamera, Hailo-Beschleuniger, LiDAR und ESP32 und implementierte anschließend die Fusionslogik, das Dashboard und die CSV-Protokollierung.",
-            ar: "I integrated the camera, Hailo accelerator, LiDAR and ESP32, then implemented the fusion logic, dashboard and CSV logging.",
+            en: "I integrated the camera, Hailo accelerator and LiDAR, wrote the ESP32-S3 firmware in C/C++, and implemented the fusion logic, dashboard and CSV logging.",
+            de: "Ich integrierte Kamera, Hailo-Beschleuniger und LiDAR, schrieb die ESP32-S3-Firmware in C/C++ und implementierte die Fusionslogik, das Dashboard und die CSV-Protokollierung.",
+            ar: "I integrated the camera, Hailo accelerator and LiDAR, wrote the ESP32-S3 firmware in C/C++, and implemented the fusion logic, dashboard and CSV logging.",
         },
         limitation: {
             en: "Prototype only - not a certified safety system.",
@@ -382,7 +382,7 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             },
             {
                 label: stackLabel("Edge Software", "Edge-Software"),
-                tech: ["Python", "Flask", "YOLOv8n"],
+                tech: ["Python", "C/C++", "Flask", "YOLOv8n"],
             },
             {
                 label: stackLabel("Sensor Fusion", "Sensorfusion"),

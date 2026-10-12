@@ -96,8 +96,8 @@ export const projects: Project[] = [
             "Maschinenbereiche werden gefährlich, wenn Personen in den Arbeitsbereich beweglicher Teile gelangen. Eine reine Cloud-Kamera-Pipeline würde Latenz, Datenschutzrisiken und Netzabhängigkeit erzeugen; reine Kameraerkennung bestätigt zudem keine physische Distanz."
         ),
         solution: loc(
-            "I implemented the decision loop on a Raspberry Pi 5. The camera pipeline detects the person class with YOLO on the Hailo-8L accelerator, the Hokuyo LiDAR provides measured distance, and the fusion script applies confidence thresholds, stale-data checks, and hysteresis before sending state commands to the ESP32 and updating the dashboard.",
-            "Ich habe die Entscheidungslogik auf einem Raspberry Pi 5 umgesetzt. Die Kamera-Pipeline erkennt die Klasse Person mit YOLO auf dem Hailo-8L-Beschleuniger, der Hokuyo-LiDAR liefert die gemessene Distanz, und das Fusionsskript nutzt Confidence-Schwellen, Stale-Data-Prüfung und Hysterese, bevor ESP32-Kommandos und Dashboard-Updates erzeugt werden."
+            "I implemented the decision loop on a Raspberry Pi 5 and wrote the ESP32-S3 firmware in C/C++. The camera pipeline detects the person class with YOLO on the Hailo-8L accelerator, the Hokuyo LiDAR provides measured distance, and the fusion script applies confidence thresholds, stale-data checks, and hysteresis before sending state commands to the ESP32 and updating the dashboard.",
+            "Ich habe die Entscheidungslogik auf einem Raspberry Pi 5 umgesetzt und die ESP32-S3-Firmware in C/C++ geschrieben. Die Kamera-Pipeline erkennt die Klasse Person mit YOLO auf dem Hailo-8L-Beschleuniger, der Hokuyo-LiDAR liefert die gemessene Distanz, und das Fusionsskript nutzt Confidence-Schwellen, Stale-Data-Prüfung und Hysterese, bevor ESP32-Kommandos und Dashboard-Updates erzeugt werden."
         ),
         architectureLabels: {
             node: loc("Sensing and actuation", "Sensorik und Aktuatorik"),
@@ -131,7 +131,7 @@ export const projects: Project[] = [
                 "Hailo-8L accelerated YOLO person detection on Raspberry Pi 5",
                 "Hokuyo LiDAR distance confirmation for camera-LiDAR sensor fusion",
                 "SAFE/WARNING/ALERT state machine with hysteresis and stale-data checks",
-                "ESP32-S3 serial command test for actuator integration",
+                "ESP32-S3 firmware written in C/C++ for serial command handling and actuator integration",
                 "Dark browser dashboard reading live CSV logs with last update age and event table",
                 "Final logs and outputs with Hailo, LiDAR, fusion, dashboard, ESP32, and Telegram traces",
             ],
@@ -139,7 +139,7 @@ export const projects: Project[] = [
                 "Hailo-8L-beschleunigte YOLO-Personenerkennung auf Raspberry Pi 5",
                 "Hokuyo-LiDAR-Distanzbestätigung für Kamera-LiDAR-Sensorfusion",
                 "SAFE/WARNING/ALERT-State-Machine mit Hysterese und Stale-Data-Prüfung",
-                "ESP32-S3-Serial-Kommandos als Aktuatornachweis",
+                "ESP32-S3-Firmware in C/C++ für Serial-Kommandos und Aktuatorintegration",
                 "Dark-Mode-Browser-Dashboard mit Live-CSV-Logs, Update-Alter und Event-Tabelle",
                 "Finale Ausgaben und Protokolle mit Hailo-, LiDAR-, Fusion-, Dashboard-, ESP32- und Telegram-Traces",
             ]
@@ -164,7 +164,7 @@ export const projects: Project[] = [
             { value: loc("Camera + LiDAR", "Kamera + LiDAR"), label: loc("Fused sensing", "Fusionierte Sensorik") },
             { value: loc("SAFE → WARNING → ALERT → SAFE", "SAFE → WARNING → ALERT → SAFE"), label: loc("Demonstrated state sequence", "Demonstrierte Zustandsfolge") },
         ],
-        tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "Python", "Flask"],
+        tech: ["Raspberry Pi 5", "Hailo-8L", "YOLOv8n", "Hokuyo LiDAR", "ESP32-S3", "C/C++", "Python", "Flask"],
         tags: ["Edge AI", "AIoT", "Sensor Fusion", "Raspberry Pi", "Embedded"],
         links: [
             { label: "GitHub", url: "https://github.com/Elkaza/edgeguardian-edge-ai-safety-bubble" },
@@ -667,6 +667,7 @@ export const projects: Project[] = [
         ],
         tech: [
             "Ansible",
+            "Bash",
             "Linux",
             "Proxmox VE",
             "Debian",
@@ -834,7 +835,7 @@ export const projects: Project[] = [
             { value: loc("InfluxDB", "InfluxDB"), label: loc("Time-series storage", "Zeitreihenspeicherung") },
             { value: loc("Grafana", "Grafana"), label: loc("Telemetry visualization", "Telemetrievisualisierung") },
         ],
-        tech: ["Raspberry Pi 5", "Python", "Podman Compose", "Mosquitto MQTT", "Node-RED", "InfluxDB", "Grafana", "BLE", "TLS", "X.509"],
+        tech: ["Raspberry Pi 5", "TLS/X.509", "Mosquitto MQTT", "Podman Compose", "Python", "Node-RED", "InfluxDB", "Grafana", "BLE"],
         tags: ["IoT", "Monitoring", "Security", "MQTT"],
         links: [
             { label: "GitHub", url: "https://github.com/Elkaza/secure-ble-mqtt-monitoring-platform" },

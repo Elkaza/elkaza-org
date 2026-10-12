@@ -28,6 +28,12 @@ export type ProfileCertification = {
   year: string;
 };
 
+export type ProfileSkillGroup = {
+  title: Record<Locale, string>;
+  description: Record<Locale, string>;
+  items: Record<Locale, string[]>;
+};
+
 export const profile = {
   name: "Mohamed Elkaza",
   title: {
@@ -36,9 +42,9 @@ export const profile = {
     ar: "IT Infrastructure & Application Engineer",
   },
   introduction: {
-    de: "Ich betreibe Linux-, Windows-Server- und Docker-Umgebungen, analysiere Anwendungsprobleme und automatisiere Betriebsabläufe mit Ansible, PowerShell, Python und SQL.",
-    en: "I operate Linux, Windows Server and Docker environments, troubleshoot applications, and automate operational workflows with Ansible, PowerShell, Python and SQL.",
-    ar: "I build and operate reliable Linux, Docker and automation systems, combining application support, technical documentation and hands-on IoT and Edge AI work.",
+    de: "Ich verbinde Berufserfahrung in Application Engineering, IT-Support und Netzwerken mit eigener Linux-/Windows-Infrastruktur, Automatisierung und sicheren IoT-Projekten.",
+    en: "I combine professional experience in application engineering, IT support and networking with hands-on Linux/Windows infrastructure, automation and secure IoT projects.",
+    ar: "I combine professional experience in application engineering, IT support and networking with hands-on Linux/Windows infrastructure, automation and secure IoT projects.",
   },
   location: {
     de: "Wien, Österreich",
@@ -49,6 +55,16 @@ export const profile = {
     de: "Uneingeschränkter Arbeitsmarktzugang in Österreich",
     en: "Unrestricted access to the Austrian labour market",
     ar: "Unrestricted access to the Austrian labour market",
+  },
+  availability: {
+    de: "Ab sofort verfügbar",
+    en: "Available immediately",
+    ar: "Available immediately",
+  },
+  openTo: {
+    de: ["System Engineering / Administration", "Application Support", "IoT / OT", "Junior Security Operations", "Junior Research Engineering"],
+    en: ["System engineering / administration", "Application support", "IoT / OT", "Junior security operations", "Junior research engineering"],
+    ar: ["System engineering / administration", "Application support", "IoT / OT", "Junior security operations", "Junior research engineering"],
   },
   email: "contact@elkaza.org",
   websiteUrl: "https://elkaza.org",
@@ -76,22 +92,19 @@ export const profile = {
       organization: { de: "HiCo-ICS", en: "HiCo-ICS", ar: "HiCo-ICS" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Application Engineer", en: "Application Engineer", ar: "Application Engineer" },
-      period: "2023",
+      period: "08/2023–11/2023",
       bullets: {
         de: [
           "Anforderungen für arabische PDF-Publikationen mit einer bestehenden Softwarelösung bewertet.",
-          "Mit technischen Produktkonzepten und Standards wie S1000D und S4000P gearbeitet.",
-          "Erfahrene Application Engineers bei Kundenanfragen und technischer Nachverfolgung unterstützt.",
+          "Erfahrene Application Engineers bei Kundenanfragen, Systemtests, technischer Nachverfolgung und Dokumentation unterstützt.",
         ],
         en: [
           "Evaluated requirements for Arabic PDF publications using an existing software solution.",
-          "Worked with technical product concepts and standards including S1000D and S4000P.",
-          "Supported experienced application engineers with customer requests and technical follow-up.",
+          "Supported experienced application engineers with customer requests, system testing, technical follow-up and documentation.",
         ],
         ar: [
           "Evaluated requirements for Arabic PDF publications using an existing software solution.",
-          "Worked with technical product concepts and standards including S1000D and S4000P.",
-          "Supported experienced application engineers with customer requests and technical follow-up.",
+          "Supported experienced application engineers with customer requests, system testing, technical follow-up and documentation.",
         ],
       },
       tools: {
@@ -104,22 +117,19 @@ export const profile = {
       organization: { de: "Raiffeisen Bank International AG", en: "Raiffeisen Bank International AG", ar: "Raiffeisen Bank International AG" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Junior IT Consultant", en: "Junior IT Consultant", ar: "Junior IT Consultant" },
-      period: "2022",
+      period: "07/2022–12/2022",
       bullets: {
         de: [
           "Automatisierungslösungen mit Python und VBA entwickelt.",
-          "Eine ServiceNow-API-Integration sowie Aufgabenplanung mit Jira und ServiceNow unterstützt.",
-          "Mit ADOIT und strukturierten betrieblichen IT-Informationen gearbeitet.",
+          "ServiceNow-API-Integration, Aufgabenplanung mit Jira und ServiceNow sowie technische und prozessuale Dokumentation unterstützt.",
         ],
         en: [
           "Developed automation solutions using Python and VBA.",
-          "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
-          "Worked with ADOIT and structured operational IT information.",
+          "Supported ServiceNow API integration, task planning in Jira and ServiceNow, and technical and process documentation.",
         ],
         ar: [
           "Developed automation solutions using Python and VBA.",
-          "Supported a ServiceNow API integration and task planning in Jira and ServiceNow.",
-          "Worked with ADOIT and structured operational IT information.",
+          "Supported ServiceNow API integration, task planning in Jira and ServiceNow, and technical and process documentation.",
         ],
       },
       tools: {
@@ -132,22 +142,19 @@ export const profile = {
       organization: { de: "BOC Group", en: "BOC Group", ar: "BOC Group" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Product Management Intern", en: "Product Management Intern", ar: "Product Management Intern" },
-      period: "2021–2022",
+      period: "11/2021–01/2022",
       bullets: {
         de: [
           "Fachliche Anforderungen für Enterprise-Architecture-Software analysiert.",
-          "Stakeholder-Anforderungen in technische Konzepte und Prototypen übersetzt.",
-          "Abstimmung zwischen Product Management, Fachbereichen und technischen Teams unterstützt.",
+          "Stakeholder-Anforderungen in technische Konzepte und Prototypen übersetzt und die Abstimmung zwischen Product Management, Fachbereichen und technischen Teams unterstützt.",
         ],
         en: [
           "Analysed business requirements for enterprise-architecture software.",
-          "Translated stakeholder needs into technical concepts and prototypes.",
-          "Supported coordination between product management, business stakeholders and technical teams.",
+          "Translated stakeholder needs into technical concepts and prototypes and supported coordination between product, business and technical teams.",
         ],
         ar: [
           "Analysed business requirements for enterprise-architecture software.",
-          "Translated stakeholder needs into technical concepts and prototypes.",
-          "Supported coordination between product management, business stakeholders and technical teams.",
+          "Translated stakeholder needs into technical concepts and prototypes and supported coordination between product, business and technical teams.",
         ],
       },
       tools: {
@@ -158,23 +165,20 @@ export const profile = {
     },
     {
       organization: { de: "Universität Benghazi", en: "University of Benghazi", ar: "University of Benghazi" },
-      title: { de: "Network & Infrastructure Engineer", en: "Network & Infrastructure Engineer", ar: "Network & Infrastructure Engineer" },
-      period: "2013–2016",
+      title: { de: "Network Engineer", en: "Network Engineer", ar: "Network Engineer" },
+      period: "12/2013–12/2015",
       bullets: {
         de: [
-          "First-Level-IT-Support für mehr als 1.000 Anwender geleistet.",
-          "Arbeitsplatzhardware, Software, Netzwerkzugänge und Infrastrukturprobleme betreut.",
-          "Fehlerbilder, Lösungswege und technische Abläufe dokumentiert.",
+          "Zwei Jahre technischer Support für mehr als 1.000 Anwender sowie Betreuung von Arbeitsplatzhardware und Windows-Systemen.",
+          "TCP/IP-, LAN/WLAN-, Cisco- und MikroTik-Netzwerke einschließlich Routing, Switching, DNS, DHCP und Fehleranalyse betreut.",
         ],
         en: [
-          "Provided first-level IT support for more than 1,000 users.",
-          "Supported workplace hardware, software, network access and infrastructure troubleshooting.",
-          "Documented technical issues, resolution paths and operating procedures.",
+          "Provided two years of technical support for more than 1,000 users, workplace hardware and Windows systems.",
+          "Supported TCP/IP, LAN/WLAN, Cisco and MikroTik networks, including routing, switching, DNS, DHCP and troubleshooting.",
         ],
         ar: [
-          "Provided first-level IT support for more than 1,000 users.",
-          "Supported workplace hardware, software, network access and infrastructure troubleshooting.",
-          "Documented technical issues, resolution paths and operating procedures.",
+          "Provided two years of technical support for more than 1,000 users, workplace hardware and Windows systems.",
+          "Supported TCP/IP, LAN/WLAN, Cisco and MikroTik networks, including routing, switching, DNS, DHCP and troubleshooting.",
         ],
       },
       tools: {
@@ -192,29 +196,43 @@ export const profile = {
         en: "MSc Internet of Things & Intelligent Systems",
         ar: "MSc Internet of Things & Intelligent Systems",
       },
-      period: { de: "2025–2027 (voraussichtlich)", en: "2025–2027 (expected)", ar: "2025–2027 (expected)" },
+      period: { de: "09/2025–09/2027 (voraussichtlich)", en: "09/2025–09/2027 (expected)", ar: "09/2025–09/2027 (expected)" },
       details: {
-        de: ["Laufend"],
-        en: ["In progress"],
-        ar: ["In progress"],
+        de: ["Berufsbegleitend", "Geplante Masterarbeitsrichtung: Integritätsmanipulation authentifizierter IoT-Sensorknoten am Edge Gateway"],
+        en: ["Part-time", "Planned thesis direction: integrity manipulation of authenticated IoT sensor nodes at an edge gateway"],
+        ar: ["Part-time", "Planned thesis direction: integrity manipulation of authenticated IoT sensor nodes at an edge gateway"],
       },
     },
     {
       institution: "TU Wien",
       program: {
-        de: "Masterstudium Wirtschaftsinformatik",
-        en: "Master's Programme in Business Informatics",
-        ar: "Master's Programme in Business Informatics",
+        de: "MSc Wirtschaftsinformatik",
+        en: "MSc Business Informatics",
+        ar: "MSc Business Informatics",
       },
       period: {
-        de: "2018–2026 (voraussichtlich)",
-        en: "2018–2026 (expected)",
-        ar: "2018–2026 (expected)",
+        de: "10/2018–2021 Lehrveranstaltungen · Masterarbeit seit 10/2026",
+        en: "10/2018–2021 coursework · thesis since 10/2026",
+        ar: "10/2018–2021 coursework · thesis since 10/2026",
       },
       details: {
-        de: ["Diplomarbeit: Themen- und Betreuungsabstimmung läuft", "Angestrebter Abschlussgrad: Diplom-Ingenieur"],
-        en: ["Diploma thesis: topic and supervision currently under clarification", "Target degree: Diplom-Ingenieur"],
-        ar: ["Diploma thesis: topic and supervision currently under clarification", "Target degree: Diplom-Ingenieur"],
+        de: ["90 ECTS Lehrveranstaltungen", "Masterarbeit in Arbeit: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Betreuung: Dr. Vincenzo De Maio · Co-Betreuung: Prof. Ivona Brandić · geplante Abgabe 04/2027"],
+        en: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić · planned submission 04/2027"],
+        ar: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić · planned submission 04/2027"],
+      },
+    },
+    {
+      institution: "VWU",
+      program: {
+        de: "Vorstudienlehrgang der Wiener Universitäten",
+        en: "University Preparation Programme of the Vienna Universities",
+        ar: "University Preparation Programme of the Vienna Universities",
+      },
+      period: { de: "01/2017–08/2018", en: "01/2017–08/2018", ar: "01/2017–08/2018" },
+      details: {
+        de: ["Deutsch für die Universitätszulassung; Ergänzungsprüfung im 06/2018 bestanden"],
+        en: ["German for university admission; supplementary examination passed in 06/2018"],
+        ar: ["German for university admission; supplementary examination passed in 06/2018"],
       },
     },
     {
@@ -225,15 +243,78 @@ export const profile = {
         ar: "BSc Information Technology",
       },
       period: { de: "2008–2013", en: "2008–2013", ar: "2008–2013" },
-      details: { de: ["Abgeschlossen"], en: ["Completed"], ar: ["Completed"] },
+      details: {
+        de: ["Fachbereich Computernetzwerke & Kommunikation", "ENIC NARIC: gleichwertig mit einem österreichischen Bachelorabschluss in Informatik"],
+        en: ["Department of Computer Networks & Communication", "ENIC NARIC: equivalent to an Austrian Bachelor's degree in Informatics"],
+        ar: ["Department of Computer Networks & Communication", "ENIC NARIC: equivalent to an Austrian Bachelor's degree in Informatics"],
+      },
     },
   ] satisfies ProfileEducation[],
   certifications: [
-    { title: "IPMA Level D (cPMA)", issuer: "pma / IPMA", year: "2025" },
-    { title: "Modern Management, Project Management", issuer: "University of Graz", year: "2025" },
-    { title: "Career Essentials in Business Analysis", issuer: "LinkedIn Learning", year: "2023" },
+    { title: "IPMA Level D: Certified Project Management Associate", issuer: "pma / IPMA", year: "2025–2030" },
+    { title: "Modern Management: Projektmanagement (10 ECTS, with distinction)", issuer: "University of Graz / UNI for LIFE", year: "2025" },
+    { title: "Business Analysis Foundations", issuer: "LinkedIn Learning", year: "2023" },
     { title: "Excel 365 VBA (Expert)", issuer: "Raiffeisen Bank International", year: "2022" },
+    { title: "Aptis English Business C1", issuer: "British Council", year: "2020" },
+    { title: "ENIC NARIC Degree Assessment", issuer: "ENIC NARIC Austria", year: "2020" },
+    { title: "ÖSD Zertifikat B2", issuer: "ÖSD", year: "2019" },
+    { title: "Junior Cybersecurity Analyst Path (in progress)", issuer: "HTB Academy", year: "2026" },
   ] satisfies ProfileCertification[],
+  skillGroups: [
+    {
+      title: { de: "Berufliche Praxis", en: "Professional", ar: "Professional" },
+      description: {
+        de: "In bezahlten Rollen eingesetzt.",
+        en: "Used in paid roles.",
+        ar: "Used in paid roles.",
+      },
+      items: {
+        de: ["TCP/IP", "Routing & Switching", "Cisco", "MikroTik", "DNS/DHCP", "User- & Hardware-Support", "Python", "VBA", "ServiceNow API", "Jira", "Systemtests / QA", "Technische Dokumentation", "XML/XSLT"],
+        en: ["TCP/IP", "Routing & Switching", "Cisco", "MikroTik", "DNS/DHCP", "User & hardware support", "Python", "VBA", "ServiceNow API", "Jira", "System testing / QA", "Technical documentation", "XML/XSLT"],
+        ar: ["TCP/IP", "Routing & Switching", "Cisco", "MikroTik", "DNS/DHCP", "User & hardware support", "Python", "VBA", "ServiceNow API", "Jira", "System testing / QA", "Technical documentation", "XML/XSLT"],
+      },
+    },
+    {
+      title: { de: "Eigene Projekte", en: "Own projects", ar: "Own projects" },
+      description: {
+        de: "Selbst aufgebaut, dokumentiert und betrieben.",
+        en: "Built, documented and operated independently.",
+        ar: "Built, documented and operated independently.",
+      },
+      items: {
+        de: ["Linux (Debian/Ubuntu)", "Proxmox VE", "Docker / Podman", "Ansible", "Bash", "GitHub Actions", "Tailscale", "UFW/iptables", "Fail2Ban", "CrowdSec", "Nginx", "Uptime Kuma", "Netdata", "Grafana", "Restic", "MQTT / BLE", "TLS/X.509", "C/C++ (ESP32)"],
+        en: ["Linux (Debian/Ubuntu)", "Proxmox VE", "Docker / Podman", "Ansible", "Bash", "GitHub Actions", "Tailscale", "UFW/iptables", "Fail2Ban", "CrowdSec", "Nginx", "Uptime Kuma", "Netdata", "Grafana", "Restic", "MQTT / BLE", "TLS/X.509", "C/C++ (ESP32)"],
+        ar: ["Linux (Debian/Ubuntu)", "Proxmox VE", "Docker / Podman", "Ansible", "Bash", "GitHub Actions", "Tailscale", "UFW/iptables", "Fail2Ban", "CrowdSec", "Nginx", "Uptime Kuma", "Netdata", "Grafana", "Restic", "MQTT / BLE", "TLS/X.509", "C/C++ (ESP32)"],
+      },
+    },
+    {
+      title: { de: "Learning Lab", en: "Learning lab", ar: "Learning lab" },
+      description: {
+        de: "Praktische Laborumgebung, keine Berufspraxis.",
+        en: "Hands-on lab work, not professional experience.",
+        ar: "Hands-on lab work, not professional experience.",
+      },
+      items: {
+        de: ["Windows Server", "Active Directory", "Group Policy", "PowerShell"],
+        en: ["Windows Server", "Active Directory", "Group Policy", "PowerShell"],
+        ar: ["Windows Server", "Active Directory", "Group Policy", "PowerShell"],
+      },
+    },
+    {
+      title: { de: "Studium", en: "Studies", ar: "Studies" },
+      description: {
+        de: "Im akademischen Kontext erworben.",
+        en: "Developed through university coursework and projects.",
+        ar: "Developed through university coursework and projects.",
+      },
+      items: {
+        de: ["SQL / relationale Datenbanken", "TinyML", "Datenanalyse", "IoT Security", "IT Governance", "Enterprise Architecture", "Business Intelligence"],
+        en: ["SQL / relational databases", "TinyML", "Data analysis", "IoT security", "IT governance", "Enterprise architecture", "Business intelligence"],
+        ar: ["SQL / relational databases", "TinyML", "Data analysis", "IoT security", "IT governance", "Enterprise architecture", "Business intelligence"],
+      },
+    },
+  ] satisfies ProfileSkillGroup[],
+  // TODO(Mohamed): add privacy-reviewed, company-neutral EN/DE CV PDFs under public/cv/.
   cvDownloads: {
     de: null,
     en: null,
