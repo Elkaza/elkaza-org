@@ -43,9 +43,9 @@ export const profile = {
     ar: "IT Infrastructure & Application Engineer",
   },
   introduction: {
-    de: "Ich verbinde Berufserfahrung in Application Engineering, IT-Support und Netzwerken mit eigener Linux-/Windows-Infrastruktur, Automatisierung und sicheren IoT-Projekten.",
-    en: "I combine professional experience in application engineering, IT support and networking with hands-on Linux/Windows infrastructure, automation and secure IoT projects.",
-    ar: "I combine professional experience in application engineering, IT support and networking with hands-on Linux/Windows infrastructure, automation and secure IoT projects.",
+    de: "Ich habe im Application Engineering, IT-Consulting und Netzwerk-Support gearbeitet. In meinem eigenen Lab betreibe ich Linux- und Windows-Systeme, automatisiere Konfigurationen, überwache Dienste und teste Wiederherstellungen.",
+    en: "I have worked in application engineering, IT consulting and network support. In my own lab, I run Linux and Windows systems, automate configuration, monitor services and test recovery.",
+    ar: "I have worked in application engineering, IT consulting and network support. In my own lab, I run Linux and Windows systems, automate configuration, monitor services and test recovery.",
   },
   location: {
     de: "Wien, Österreich",
@@ -93,7 +93,7 @@ export const profile = {
       organization: { de: "HiCo-ICS", en: "HiCo-ICS", ar: "HiCo-ICS" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Application Engineer", en: "Application Engineer", ar: "Application Engineer" },
-      period: "08/2023–11/2023",
+      period: "2023",
       bullets: {
         de: [
           "Anforderungen für arabische PDF-Publikationen mit einer bestehenden Softwarelösung bewertet.",
@@ -118,7 +118,7 @@ export const profile = {
       organization: { de: "Raiffeisen Bank International AG", en: "Raiffeisen Bank International AG", ar: "Raiffeisen Bank International AG" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Junior IT Consultant", en: "Junior IT Consultant", ar: "Junior IT Consultant" },
-      period: "07/2022–12/2022",
+      period: "2022",
       bullets: {
         de: [
           "Automatisierungslösungen mit Python und VBA entwickelt.",
@@ -143,7 +143,7 @@ export const profile = {
       organization: { de: "BOC Group", en: "BOC Group", ar: "BOC Group" },
       location: { de: "Wien", en: "Vienna", ar: "Vienna" },
       title: { de: "Product Management Intern", en: "Product Management Intern", ar: "Product Management Intern" },
-      period: "11/2021–01/2022",
+      period: "2021–2022",
       bullets: {
         de: [
           "Fachliche Anforderungen für Enterprise-Architecture-Software analysiert.",
@@ -167,7 +167,7 @@ export const profile = {
     {
       organization: { de: "Universität Benghazi", en: "University of Benghazi", ar: "University of Benghazi" },
       title: { de: "Network Engineer", en: "Network Engineer", ar: "Network Engineer" },
-      period: "12/2013–12/2015",
+      period: "2013–2015",
       bullets: {
         de: [
           "Zwei Jahre technischer Support für mehr als 1.000 Anwender sowie Betreuung von Arbeitsplatzhardware und Windows-Systemen.",

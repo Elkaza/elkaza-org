@@ -10,23 +10,23 @@ import Certifications from "./Certifications";
 import { OrganizationLogo } from "./ui/OrganizationLogo";
 import { TechBadge } from "./ui/TechBadge";
 
-const profileTools = ["Linux", "Windows Server", "Docker", "Ansible", "CrowdSec", "Python"];
+const profileTools = ["Linux", "Ansible", "CrowdSec", "Python"];
 
 const strongestAreas = {
   de: [
-    { title: "Application Engineering", body: "Anforderungen, Fehlerbilder, Datenflüsse, Schnittstellen und technische Dokumentation strukturiert bearbeiten.", Icon: AppWindow },
-    { title: "Infrastructure & Security Operations", body: "Linux-, Windows- und Docker-Umgebungen betreiben, Zugriffswege härten, Logs auswerten und Recovery nachvollziehbar testen.", Icon: Server },
-    { title: "Research & Automation", body: "Wiederkehrende Abläufe mit Python, SQL und CI/CD vereinfachen und technische Fragen mit überprüfbaren Experimenten bearbeiten.", Icon: Workflow },
+    { title: "Application Engineering", body: "Ich verfolge Anwendungsprobleme über Anforderungen, Datenflüsse und Schnittstellen und dokumentiere, was als Nächstes zu tun ist.", Icon: AppWindow },
+    { title: "Infrastructure & Security Operations", body: "In meinem Lab trenne ich öffentlichen Ingress von privater Administration, prüfe Logs und stelle Dienste aus Backups wieder her.", Icon: Server },
+    { title: "Research & Automation", body: "Ich nutze Python und SQL für Automatisierung und baue kontrollierte Experimente für Edge AI und IoT-Sicherheit auf.", Icon: Workflow },
   ],
   en: [
-    { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
-    { title: "Infrastructure & Security Operations", body: "Operate Linux, Windows and Docker environments, harden access paths, examine logs and test recovery in a traceable way.", Icon: Server },
-    { title: "Research & Automation", body: "Simplify recurring work with Python, SQL and CI/CD, and investigate technical questions through verifiable experiments.", Icon: Workflow },
+    { title: "Application Engineering", body: "I trace application problems across requirements, data flows and interfaces, then document what needs to happen next.", Icon: AppWindow },
+    { title: "Infrastructure & Security Operations", body: "In my lab, I separate public ingress from private administration, inspect logs and restore services from backups.", Icon: Server },
+    { title: "Research & Automation", body: "I use Python and SQL for automation and build controlled experiments for edge AI and IoT security.", Icon: Workflow },
   ],
   ar: [
-    { title: "Application Engineering", body: "Work systematically with requirements, defects, data flows, interfaces and technical documentation.", Icon: AppWindow },
-    { title: "Infrastructure & Security Operations", body: "Operate Linux, Windows and Docker environments, harden access paths, examine logs and test recovery in a traceable way.", Icon: Server },
-    { title: "Research & Automation", body: "Simplify recurring work with Python, SQL and CI/CD, and investigate technical questions through verifiable experiments.", Icon: Workflow },
+    { title: "Application Engineering", body: "I trace application problems across requirements, data flows and interfaces, then document what needs to happen next.", Icon: AppWindow },
+    { title: "Infrastructure & Security Operations", body: "In my lab, I separate public ingress from private administration, inspect logs and restore services from backups.", Icon: Server },
+    { title: "Research & Automation", body: "I use Python and SQL for automation and build controlled experiments for edge AI and IoT security.", Icon: Workflow },
   ],
 } as const;
 
@@ -106,12 +106,9 @@ export default function AboutPageContent() {
               </h2>
               <p className="mt-3 leading-7 text-secondary">
                 {locale === "de"
-                  ? "Ich arbeite derzeit am Junior Cybersecurity Analyst Path der HTB Academy. Der laufende Lernpfad ergänzt meine Infrastrukturpraxis um Informationssicherheit, Netzwerke, Linux und Bash."
-                  : "I am currently working through HTB Academy's Junior Cybersecurity Analyst path. The ongoing training adds information security, networking, Linux and Bash to my infrastructure practice."}
+                  ? "Ich arbeite derzeit am Junior Cybersecurity Analyst Path der HTB Academy und wende die Inhalte direkt in meinem Lab an: durch Log-Analyse, gehärtete Zugriffswege sowie dokumentierte Incident- und Recovery-Abläufe."
+                  : "I am currently working through HTB Academy's Junior Cybersecurity Analyst path and applying the material directly in my lab through log analysis, hardened access paths, and documented incident and recovery procedures."}
               </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["Information Security", "Networking", "Linux Fundamentals", "Bash"].map((topic) => <TechBadge key={topic} name={topic} className="bg-page" />)}
-              </div>
             </div>
           </div>
         </section>
@@ -121,8 +118,8 @@ export default function AboutPageContent() {
           <p className="mt-3 max-w-3xl leading-7 text-muted">{t("about_education_intro")}</p>
           <p className="mt-3 max-w-3xl leading-7 text-secondary">
             {locale === "de"
-              ? "Nach Abschluss meiner laufenden Masterstudien erwäge ich ernsthaft eine Promotion. Besonders interessieren mich sichere IoT- und Edge-Systeme sowie Sicherheitsmechanismen, die sich experimentell bewerten lassen."
-              : "After completing my current master's studies, I am seriously considering doctoral research. I am particularly interested in secure IoT and edge systems, and in security mechanisms that can be evaluated experimentally."}
+              ? "Nach den laufenden Masterarbeiten erwäge ich eine Promotion. Mich interessieren dabei sichere IoT- und Edge-Systeme sowie Versuche, deren Aufbau und Ergebnisse sich nachvollziehen lassen."
+              : "I am considering doctoral research after the current master's work. I am particularly interested in secure IoT and edge systems and in experiments whose setup and results can be reproduced."}
           </p>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {profile.education.map((education) => (

@@ -1,5 +1,5 @@
 import ArchivesSearch from "@/app/components/ArchivesSearch";
-import { buildArchiveItems } from "@/app/(de)/archives/page";
+import { buildArchiveItems } from "@/app/lib/archive";
 import { localizedMetadata } from "@/app/lib/seo";
 
 export const metadata = localizedMetadata({

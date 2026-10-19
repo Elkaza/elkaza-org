@@ -32,7 +32,7 @@ const FEATURED_PROJECT_SLUGS = [
 
 type FeaturedSlug = (typeof FEATURED_PROJECT_SLUGS)[number];
 
-const TECH_CHIPS = ["Linux", "Windows Server", "Docker", "Ansible", "PowerShell", "Tailscale", "CrowdSec", "Python", "SQL"];
+const TECH_CHIPS = ["Linux", "Windows Server", "Ansible", "CrowdSec", "Python", "Docker"];
 
 const HOME_COPY: Localized<{
   heroKicker: string;
@@ -72,7 +72,7 @@ const HOME_COPY: Localized<{
     heroKicker: "Portfolio aus Wien - Infrastruktur, Security Operations und Application Engineering",
     heroTitle: profile.title.de,
     heroSubheadline: profile.introduction.de,
-    heroSupportingLine: "Derzeit vertiefe ich Infrastruktur-Sicherheit, Monitoring und Incident-Analyse durch eigene Systeme und den Junior Cybersecurity Analyst Path der HTB Academy.",
+    heroSupportingLine: "Darauf baue ich meinen Schwerpunkt Security Operations auf: mit CrowdSec-gestützter Infrastruktur, Log-Analyse und dem Junior Cybersecurity Analyst Path der HTB Academy.",
     openToLabel: "Offen für",
     profileFacts: [
       { label: "Standort", value: profile.location.de },
@@ -108,13 +108,13 @@ const HOME_COPY: Localized<{
     },
     workTitle: "Kernkompetenzen",
     finalCta:
-      "Offen für System Engineering, Application Support, IoT/OT, Junior Security Operations und Junior Research Engineering.",
+      "Ich suche eine Rolle, in der ich Infrastruktur- und Application-Support-Erfahrung mit meinem wachsenden Security-Schwerpunkt verbinden kann.",
   },
   en: {
     heroKicker: "Vienna-based portfolio - infrastructure, security operations and application engineering",
     heroTitle: profile.title.en,
     heroSubheadline: profile.introduction.en,
-    heroSupportingLine: "I am currently developing infrastructure-security, monitoring and incident-analysis skills through my own systems and HTB Academy's Junior Cybersecurity Analyst path.",
+    heroSupportingLine: "I am building on that background for security operations through CrowdSec-backed infrastructure work, log analysis and HTB Academy's Junior Cybersecurity Analyst path.",
     openToLabel: "Open to",
     profileFacts: [
       { label: "Location", value: profile.location.en },
@@ -150,7 +150,7 @@ const HOME_COPY: Localized<{
     },
     workTitle: "Core Capabilities",
     finalCta:
-      "Open to system engineering, application support, IoT/OT, junior security operations and junior research engineering roles.",
+      "I am looking for a role where I can combine infrastructure and application-support experience with my growing security focus.",
   },
   ar: {
     heroKicker: "Vienna-based portfolio - software, automation and infrastructure",
@@ -225,9 +225,9 @@ const FEATURED_COPY: Record<
       ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation, host firewalls and CrowdSec detection.",
     },
     result: {
-      de: "Private Administration, wiederholbare Linux- und Windows-Konfiguration, überwachter Backup-Zustand und verifizierte Wiederherstellung von Anwendungen und Daten.",
-      en: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
-      ar: "Private administration, repeatable Linux and Windows configuration, monitored backup health and verified application/data recovery.",
+      de: "Die Administration bleibt auf privaten Pfaden; Ansible verwaltet Host-Konfigurationen, und isolierte Recovery-Tests decken Anwendung und Daten ab.",
+      en: "Administration stays on private paths; Ansible manages host configuration, and isolated recovery tests cover the application and its data.",
+      ar: "Administration stays on private paths; Ansible manages host configuration, and isolated recovery tests cover the application and its data.",
     },
     tech: ["Ansible", "Bash", "Linux", "Tailscale", "CrowdSec", "Restic"],
     visualLabel: {
@@ -281,9 +281,9 @@ const FEATURED_COPY: Record<
       ar: "Implemented IMU features, softmax model, C++ export, and Serial Monitor demo.",
     },
     result: {
-      de: "Quellcode, Modellvergleich und reproduzierbare Validierung dokumentieren den Embedded-Workflow.",
-      en: "Source code, model comparison, and reproducible validation document the embedded workflow.",
-      ar: "Source code, model comparison, and reproducible validation document the embedded workflow.",
+      de: "Das Repository enthält Feature-Pipeline, Modellvergleich und Validierung auf dem Gerät.",
+      en: "The repository records the feature pipeline, model comparison and validation on the device.",
+      ar: "The repository records the feature pipeline, model comparison and validation on the device.",
     },
     tech: ["Arduino Nano 33", "IMU", "C++", "Softmax", "TinyML"],
     visualLabel: {
@@ -297,7 +297,6 @@ const WORK_AREAS: {
   title: Localized<string>;
   bullets: Localized<string[]>;
   Icon: LucideIcon;
-  tools: string[];
 }[] = [
   {
     title: {
@@ -306,12 +305,11 @@ const WORK_AREAS: {
       ar: "Application Engineering & Automation",
     },
     bullets: {
-      de: ["Analysiert Anwendungsprobleme und Datenflüsse", "Bewertet Anforderungen und dokumentiert technische Nachverfolgung"],
-      en: ["Troubleshoots application issues and data flows", "Analyzes requirements and documents technical follow-up"],
-      ar: ["Analyzes requirements, defects and data flows", "Automates workflows with TypeScript, Python and SQL"],
+      de: ["Verfolgt Anwendungsfehler über Anfragen, Datenflüsse und Schnittstellen", "Überführt Anforderungen und Testergebnisse in technische Notizen für die weitere Bearbeitung"],
+      en: ["Traces application defects across requests, data flows and interfaces", "Turns requirements and test findings into technical notes for follow-up"],
+      ar: ["Traces application defects across requests, data flows and interfaces", "Turns requirements and test findings into technical notes for follow-up"],
     },
     Icon: Workflow,
-    tools: ["ServiceNow", "Jira", "Documentation"],
   },
   {
     title: {
@@ -320,12 +318,11 @@ const WORK_AREAS: {
       ar: "Infrastructure & Security Operations",
     },
     bullets: {
-      de: ["Betreibt überwachte Linux-, Windows-Server-, Docker- und Netzwerkumgebungen", "Härtet Zugriff und Ingress mit Tailscale, UFW/iptables, CrowdSec und wiederholbarer Konfiguration"],
-      en: ["Operates monitored Linux, Windows Server, Docker and network environments", "Hardens access and ingress with Tailscale, UFW/iptables, CrowdSec and repeatable configuration"],
-      ar: ["Operates monitored Linux, Windows Server, Docker and network environments", "Hardens access and ingress with Tailscale, UFW/iptables, CrowdSec and repeatable configuration"],
+      de: ["Betreibt Linux-, Windows-Server- und Container-Dienste im eigenen Lab", "Trennt öffentlichen Ingress von privater Administration und testet die Wiederherstellung aus Backups"],
+      en: ["Runs Linux, Windows Server and container services in a self-hosted lab", "Separates public ingress from private administration and tests recovery from backups"],
+      ar: ["Runs Linux, Windows Server and container services in a self-hosted lab", "Separates public ingress from private administration and tests recovery from backups"],
     },
     Icon: Server,
-    tools: ["Linux", "Ansible", "Tailscale", "CrowdSec"],
   },
   {
     title: {
@@ -334,12 +331,11 @@ const WORK_AREAS: {
       ar: "IoT, Edge & Data",
     },
     bullets: {
-      de: ["Automatisiert Abläufe mit Python und Skripting", "Nutzt SQL, Logs und Datenprüfungen zur Fehleranalyse"],
-      en: ["Automates workflows with Python and scripting", "Uses SQL, logs and data checks for troubleshooting"],
-      ar: ["Connects sensors, telemetry and edge prototypes", "Makes data paths inspectable through dashboards, logs and reports"],
+      de: ["Nutzt Python und Bash, um wiederkehrende Betriebsaufgaben zu reduzieren", "Prüft Logs und SQL-Daten, um Fehler einzugrenzen und Ergebnisse zu kontrollieren"],
+      en: ["Uses Python and Bash to remove repetitive operational work", "Queries logs and SQL data to find faults and verify results"],
+      ar: ["Uses Python and Bash to remove repetitive operational work", "Queries logs and SQL data to find faults and verify results"],
     },
     Icon: Cpu,
-    tools: ["Python", "SQL", "Bash"],
   },
 ];
 
@@ -472,7 +468,7 @@ export default function HomeContent() {
       <section className="mt-16 space-y-6 border-y border-subtle py-10" aria-labelledby="work-on">
         <SectionTitle id="work-on">{copy.workTitle}</SectionTitle>
         <div className="grid gap-4 md:grid-cols-3">
-          {WORK_AREAS.map(({ title, bullets, Icon, tools }) => (
+          {WORK_AREAS.map(({ title, bullets, Icon }) => (
             <article
               key={title.en}
               className="flex h-full min-w-0 flex-col rounded-lg border border-subtle bg-card p-4"
@@ -491,16 +487,6 @@ export default function HomeContent() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
-                {tools.map((tool) => (
-                  <TechBadge
-                    key={tool}
-                    name={tool}
-                    className="bg-page px-2 py-0.5 text-[11px]"
-                    iconClassName="h-3.5 w-3.5"
-                  />
-                ))}
-              </div>
             </article>
           ))}
         </div>
