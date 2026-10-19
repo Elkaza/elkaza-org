@@ -73,13 +73,11 @@ export default function CvPageContent() {
         status: "Masterarbeit in Arbeit seit 10/2026 · geplante Abgabe 04/2027",
         label: "Arbeitstitel:",
         title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
-        methods: "Betreuer: Dr. Vincenzo De Maio · Co-Betreuerin: Prof. Ivona Brandić",
       }
     : {
         status: "Master's thesis in progress since 10/2026 · planned submission 04/2027",
         label: "Working title:",
         title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
-        methods: "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić",
       };
 
   return (
@@ -221,14 +219,16 @@ export default function CvPageContent() {
         </CvSection>
 
         <CvSection icon={School} title={locale === "de" ? "Ausbildung" : "Education"}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 print:grid-cols-2">
             {profile.education.map((education) => (
-              <article key={education.institution} className="border-t border-subtle pt-4 print:break-inside-avoid">
-                <div className="flex items-start gap-3">
-                  <OrganizationLogo name={education.institution} size="sm" decorative={false} />
-                  <div>
-                    <h3 className="font-semibold leading-snug text-main">
-                      {education.program[locale]} · {education.websiteUrl ? (
+              <article
+                key={education.institution}
+                className="h-full rounded-xl border border-subtle bg-card p-5 shadow-sm print:break-inside-avoid print:p-4 print:shadow-none"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-wide text-muted">
+                      {education.websiteUrl ? (
                         <a
                           href={education.websiteUrl[locale]}
                           target="_blank"
@@ -238,11 +238,22 @@ export default function CvPageContent() {
                           {education.institution}
                         </a>
                       ) : education.institution}
-                    </h3>
-                    <p className="mt-2 text-sm font-medium text-muted">{education.period[locale]}</p>
-                    {education.details[locale].map((detail) => <p key={detail} className="mt-1 text-sm leading-6 text-secondary">{detail}</p>)}
+                    </p>
+                    <h3 className="mt-2 text-base font-semibold leading-snug text-main">{education.program[locale]}</h3>
                   </div>
+                  <OrganizationLogo name={education.institution} size="sm" decorative={false} />
                 </div>
+                <p className="mt-4 inline-flex rounded-full border border-subtle bg-page px-2.5 py-1 text-xs font-semibold tabular-nums text-muted">
+                  {education.period[locale]}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm leading-6 text-secondary">
+                  {education.details[locale].map((detail) => (
+                    <li key={detail} className="flex gap-2">
+                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-blue-600" aria-hidden="true" />
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
@@ -254,7 +265,6 @@ export default function CvPageContent() {
               <p className="text-sm font-semibold text-blue-800 dark:text-blue-300">{cvResearch.status}</p>
               <p className="mt-3 text-sm font-semibold text-main">{cvResearch.label}</p>
               <h3 className="mt-1 text-lg font-semibold leading-snug text-main">{cvResearch.title}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted">{cvResearch.methods}</p>
               <Link href={getLocalizedPath("/research", activeLocale)} className="mt-4 inline-flex text-sm font-semibold text-blue-700 hover:underline dark:text-blue-300">
                 {locale === "de" ? "Forschung ansehen" : "View research"}
               </Link>

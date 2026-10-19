@@ -1,8 +1,8 @@
 
-import { Award, BookOpen, FileCheck2, FileSpreadsheet, GraduationCap, Languages, LucideIcon, ScrollText, ShieldCheck } from "lucide-react";
+import { Award, BookOpen, FileSpreadsheet, GraduationCap, Languages, LucideIcon, ScrollText, ShieldCheck } from "lucide-react";
 
-export type CertType = "professional_certification" | "university_course" | "professional_training" | "language_certificate" | "degree_assessment" | "learning_path";
-export type CertCategory = "project_management" | "business_analysis" | "excel_vba" | "language" | "academic_recognition" | "cybersecurity";
+export type CertType = "professional_certification" | "university_course" | "professional_training" | "language_certificate" | "learning_path";
+export type CertCategory = "project_management" | "business_analysis" | "excel_vba" | "language" | "cybersecurity";
 
 export type Certification = {
     id: string;
@@ -114,19 +114,6 @@ export const certifications: Certification[] = [
         icon: Languages,
     },
     {
-        id: "enic-naric",
-        titleKey: "cert_enic_title",
-        issuerKey: "cert_enic_issuer",
-        organizationName: "ENIC NARIC Austria",
-        type: "degree_assessment",
-        category: "academic_recognition",
-        dateLabelKey: "cert_enic_date",
-        issuedDate: "2020-10-20",
-        availabilityKey: "cert_avail_req",
-        tags: ["Degree Assessment"],
-        icon: FileCheck2,
-    },
-    {
         id: "oesd-b2",
         titleKey: "cert_oesd_title",
         issuerKey: "cert_oesd_issuer",
@@ -152,7 +139,6 @@ export const sortCertifications = (items: Certification[]): Certification[] => {
         "professional_certification": 1,
         "university_course": 2,
         "language_certificate": 2,
-        "degree_assessment": 2,
         "professional_training": 3,
         "learning_path": 4,
     };

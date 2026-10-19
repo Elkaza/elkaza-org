@@ -101,7 +101,7 @@ const HOME_COPY: Localized<{
       title: "Forschung und Masterprojekt",
       description: "Die TU-Wien-Masterarbeit läuft seit Oktober 2026. An der FH Technikum Wien ist die Sensordatenintegrität am Edge Gateway die geplante Masterarbeitsrichtung.",
       items: [
-        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien Masterarbeit · in Arbeit seit 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien Masterarbeit · in Arbeit seit 10/2026" },
         { title: "Integritätsmanipulation authentifizierter IoT-Sensorknoten am Edge Gateway", label: "MIO-3 / geplante Masterarbeitsrichtung · Forschungsumfang Oktober 2026" },
       ],
       cta: "Akademische Arbeit ansehen",
@@ -143,7 +143,7 @@ const HOME_COPY: Localized<{
       title: "Research and master's project",
       description: "The TU Wien master's thesis has been in progress since October 2026. Sensor-data integrity at an edge gateway is the planned thesis direction at FH Technikum Wien.",
       items: [
-        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026" },
         { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",
@@ -186,7 +186,7 @@ const HOME_COPY: Localized<{
       title: "Research and master's project",
       description: "The TU Wien master's thesis has been in progress since October 2026. Sensor-data integrity at an edge gateway is the planned thesis direction at FH Technikum Wien.",
       items: [
-        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić" },
+        { title: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", label: "TU Wien master's thesis · in progress since 10/2026" },
         { title: "Detecting Integrity Manipulation by Authenticated IoT Sensor Nodes at a Resource-Constrained Edge Gateway", label: "MIO-3 / planned Master's thesis direction · Research scope October 2026" },
       ],
       cta: "View Academic Work",

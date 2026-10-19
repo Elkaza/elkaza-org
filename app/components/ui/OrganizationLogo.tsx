@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { siHackthebox } from "simple-icons";
 
 type OrganizationKind =
   | "boc"
@@ -6,12 +7,14 @@ type OrganizationKind =
   | "fhTechnikum"
   | "generic"
   | "hico"
+  | "htb"
   | "ipma"
   | "linkedin"
   | "rbi"
   | "tuWien"
   | "uniBenghazi"
   | "uniGraz"
+  | "osd"
   | "vwu";
 
 type OrganizationMark = {
@@ -38,6 +41,16 @@ const organizationMarks: Record<string, OrganizationMark> = {
     kind: "hico",
     assetSrc: "/organization-logos/hico.png",
     wide: true,
+  },
+  "hack the box academy": {
+    label: "Hack The Box Academy",
+    initials: "HTB",
+    kind: "htb",
+  },
+  "htb academy": {
+    label: "Hack The Box Academy",
+    initials: "HTB",
+    kind: "htb",
   },
   ipma: { label: "IPMA", initials: "IPMA", kind: "ipma" },
   "linkedin learning": {
@@ -73,6 +86,12 @@ const organizationMarks: Record<string, OrganizationMark> = {
     kind: "uniGraz",
     assetSrc: "/organization-logos/uni-graz.svg",
   },
+  "ösd": {
+    label: "Österreichisches Sprachdiplom Deutsch",
+    initials: "ÖSD",
+    kind: "osd",
+    assetSrc: "/organization-logos/osd.png",
+  },
   vwu: {
     label: "VWU — Vorstudienlehrgang der Wiener Universitäten",
     initials: "VWU",
@@ -88,12 +107,14 @@ const frameClasses: Record<OrganizationKind, string> = {
   fhTechnikum: "border-[#bfd9ee] bg-white text-[#006eb6]",
   generic: "border-subtle bg-white text-main",
   hico: "border-[#bde3dc] bg-white text-[#0f766e]",
+  htb: "border-[#9fef00] bg-[#111927] text-[#9fef00]",
   ipma: "border-[#b9c9e7] bg-white text-[#1f4d8f]",
   linkedin: "border-[#0a66c2] bg-[#0a66c2] text-white",
   rbi: "border-[#f2d400] bg-[#ffe500] text-black",
   tuWien: "border-[#f0c3c3] bg-white text-[#c8102e]",
   uniBenghazi: "border-[#b9c5d8] bg-white text-[#1d3762]",
   uniGraz: "border-[#e6c64a] bg-white text-black",
+  osd: "border-[#0d7abb] bg-white text-[#0d7abb]",
   vwu: "border-[#cbd5e1] bg-white text-[#111827]",
 };
 
@@ -133,6 +154,8 @@ function findOrganizationMark(name: string): OrganizationMark {
   if (normalized.includes("graz") || normalized.includes("uni for life")) return organizationMarks["university of graz"];
   if (normalized.includes("linkedin")) return organizationMarks["linkedin learning"];
   if (normalized.includes("cyberu")) return organizationMarks.cyberu;
+  if (normalized.includes("hack the box") || normalized.includes("htb academy")) return organizationMarks["hack the box academy"];
+  if (normalized === "ösd" || normalized.includes("sprachdiplom")) return organizationMarks["ösd"];
   if (normalized === "vwu" || normalized.includes("vorstudienlehrgang")) return organizationMarks.vwu;
 
   const initials = name
@@ -209,6 +232,12 @@ function BrandMark({ mark, size }: { mark: OrganizationMark; size: keyof typeof 
       );
     case "linkedin":
       return <span className={`${size === "sm" ? "text-base" : "text-lg"} font-black tracking-tight`}>in</span>;
+    case "htb":
+      return (
+        <svg aria-hidden="true" className="h-[68%] w-[68%]" fill={`#${siHackthebox.hex}`} viewBox="0 0 24 24">
+          <path d={siHackthebox.path} />
+        </svg>
+      );
     case "fhTechnikum":
       return (
         <span className="grid leading-none text-center">

@@ -10,8 +10,6 @@ type ResearchContent = {
   status: string;
   directionLabel: string;
   question: string;
-  methodsTitle: string;
-  methods: string[];
   artifactTitle: string;
   artifact: string;
   currentStatusTitle: string;
@@ -44,11 +42,6 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     directionLabel: "Arbeitstitel",
     question:
       "Die Masterarbeit im Studium Wirtschaftsinformatik läuft unter diesem Arbeitstitel. Forschungsfrage und Methodik werden hier erst ergänzt, wenn der genaue Zuschnitt feststeht.",
-    methodsTitle: "Betreuung",
-    methods: [
-      "Betreuer · Dr. Vincenzo De Maio",
-      "Co-Betreuerin · Prof. Ivona Brandić",
-    ],
     artifactTitle: "Arbeitstitel",
     artifact: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
     currentStatusTitle: "Aktueller Stand",
@@ -73,11 +66,6 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     directionLabel: "Working title",
     question:
       "The Business Informatics master's thesis is in progress under this working title. The detailed research question and methodology will be added here once the scope is settled.",
-    methodsTitle: "Supervision",
-    methods: [
-      "Supervisor · Dr. Vincenzo De Maio",
-      "Co-supervisor · Prof. Ivona Brandić",
-    ],
     artifactTitle: "Working title",
     artifact: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
     currentStatusTitle: "Current status",
@@ -102,11 +90,6 @@ export const thesisResearch: Record<Locale, ResearchContent> = {
     directionLabel: "Working title",
     question:
       "The Business Informatics master's thesis is in progress under this working title. The detailed research question and methodology will be added here once the scope is settled.",
-    methodsTitle: "Supervision",
-    methods: [
-      "Supervisor · Dr. Vincenzo De Maio",
-      "Co-supervisor · Prof. Ivona Brandić",
-    ],
     artifactTitle: "Working title",
     artifact: "Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers",
     currentStatusTitle: "Current status",

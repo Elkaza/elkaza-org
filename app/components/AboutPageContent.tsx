@@ -124,13 +124,20 @@ export default function AboutPageContent() {
               ? "Nach Abschluss meiner laufenden Masterstudien erwäge ich ernsthaft eine Promotion. Besonders interessieren mich sichere IoT- und Edge-Systeme sowie Sicherheitsmechanismen, die sich experimentell bewerten lassen."
               : "After completing my current master's studies, I am seriously considering doctoral research. I am particularly interested in secure IoT and edge systems, and in security mechanisms that can be evaluated experimentally."}
           </p>
-          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
             {profile.education.map((education) => (
-              <article key={education.institution} className="border-t border-subtle pt-5">
-                <OrganizationLogo name={education.institution} size="sm" decorative={false} />
-                <h3 className="mt-4 font-semibold leading-snug text-main">{education.program[locale]} · {education.institution}</h3>
-                <p className="mt-2 text-sm font-medium text-muted">{education.period[locale]}</p>
-                {education.details[locale].map((detail) => <p key={detail} className="mt-1 text-sm leading-6 text-secondary">{detail}</p>)}
+              <article key={education.institution} className="rounded-xl border border-subtle bg-card p-5 shadow-sm">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-wide text-muted">{education.institution}</p>
+                    <h3 className="mt-2 font-semibold leading-snug text-main">{education.program[locale]}</h3>
+                  </div>
+                  <OrganizationLogo name={education.institution} size="sm" decorative={false} />
+                </div>
+                <p className="mt-4 text-sm font-semibold text-muted">{education.period[locale]}</p>
+                <ul className="mt-3 space-y-1.5 text-sm leading-6 text-secondary">
+                  {education.details[locale].map((detail) => <li key={detail}>{detail}</li>)}
+                </ul>
               </article>
             ))}
           </div>
@@ -146,8 +153,8 @@ export default function AboutPageContent() {
                   <h3 className="font-semibold text-main">Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers</h3>
                   <p className="mt-2 text-sm text-muted">
                     {locale === "de"
-                      ? "TU Wien Masterarbeit · in Arbeit seit 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić"
-                      : "TU Wien master's thesis · in progress since 10/2026 · Dr. Vincenzo De Maio / Prof. Ivona Brandić"}
+                      ? "TU Wien Masterarbeit · in Arbeit seit 10/2026"
+                      : "TU Wien master's thesis · in progress since 10/2026"}
                   </p>
                 </article>
                 <article className="border-l-2 border-blue-600 pl-4">

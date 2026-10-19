@@ -15,3 +15,7 @@ All product names, logos, and brands remain the property of their respective own
 The VWU education entry uses the current OeAD Vorstudienlehrgänge header mark from the official [Vienna programme website](https://vorstudienlehrgang.oead.at/en/vienna), retrieved on 2026-10-12 and displayed only for institutional identification:
 
 - `public/organization-logos/vwu-oead.png`
+
+The ÖSD certificate entry uses the organization image published in the structured metadata of the official [ÖSD website](https://osd.at/), retrieved on 2026-10-19 and displayed only for issuer identification:
+
+- `public/organization-logos/osd.png`

@@ -217,6 +217,7 @@ function findBrandIcon(name: string) {
   if (normalized.includes("arduino")) return siArduino;
   if (normalized.includes("esp32")) return siEspressif;
   if (normalized.includes("proxmox")) return siProxmox;
+  if (normalized.startsWith("linux")) return siLinux;
   if (normalized.includes("cisco")) return siCisco;
   if (normalized.includes("mikrotik")) return siMikrotik;
   if (normalized.includes("postgres")) return siPostgresql;

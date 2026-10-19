@@ -203,7 +203,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_list_title: "Zertifikate & Weiterbildung",
     cert_list_subtitle: "Verifizierte Zertifikate, Hochschulkurse, Sprachnachweise und laufende Weiterbildung. Es werden keine Scans veröffentlicht.",
     cert_section_prof: "Berufliche & sprachliche Zertifikate",
-    cert_section_academic: "Hochschulkurse & Anerkennungen",
+    cert_section_academic: "Hochschulkurse",
     cert_section_learning: "Kurse & berufliche Weiterbildung",
     cert_avail_req: "Nachweis auf Anfrage verfügbar",
     cert_status_progress: "In Bearbeitung",
@@ -214,7 +214,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_filter_ba: "Business-Analyse",
     cert_filter_excel: "Excel/VBA",
     cert_filter_language: "Sprachen",
-    cert_filter_academic: "Anerkennungen",
     cert_filter_security: "Cybersecurity",
 
     // Arten
@@ -222,7 +221,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_type_uni: "Universitätskurs",
     cert_type_training: "Berufliche Weiterbildung",
     cert_type_language: "Sprachzertifikat",
-    cert_type_assessment: "Abschlussbewertung",
     cert_type_path: "Lernpfad",
 
     // Daten
@@ -252,10 +250,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_aptis_title: "Aptis English Business C1",
     cert_aptis_issuer: "British Council",
     cert_aptis_date: "03. September 2020",
-
-    cert_enic_title: "ENIC NARIC Abschlussbewertung",
-    cert_enic_issuer: "ENIC NARIC Austria",
-    cert_enic_date: "20. Oktober 2020",
 
     cert_oesd_title: "ÖSD Zertifikat B2",
     cert_oesd_issuer: "ÖSD",
@@ -615,7 +609,7 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_list_title: "Certifications & Training",
     cert_list_subtitle: "Verified certifications, university courses, language credentials and current training. Certificate scans are not published.",
     cert_section_prof: "Professional & language certificates",
-    cert_section_academic: "University courses & recognition",
+    cert_section_academic: "University courses",
     cert_section_learning: "Courses & professional training",
     cert_avail_req: "Available on request",
     cert_status_progress: "In progress",
@@ -626,7 +620,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_filter_ba: "Business Analysis",
     cert_filter_excel: "Excel/VBA",
     cert_filter_language: "Languages",
-    cert_filter_academic: "Recognition",
     cert_filter_security: "Cybersecurity",
 
     // Types
@@ -634,7 +627,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_type_uni: "University course",
     cert_type_training: "Professional training",
     cert_type_language: "Language certificate",
-    cert_type_assessment: "Degree assessment",
     cert_type_path: "Learning path",
 
     // Data keys
@@ -668,10 +660,6 @@ export const MESSAGES: Record<Locale, Record<string, string>> = {
     cert_aptis_title: "Aptis English Business C1",
     cert_aptis_issuer: "British Council",
     cert_aptis_date: "3 September 2020",
-
-    cert_enic_title: "ENIC NARIC Degree Assessment",
-    cert_enic_issuer: "ENIC NARIC Austria",
-    cert_enic_date: "20 October 2020",
 
     cert_oesd_title: "ÖSD Zertifikat B2",
     cert_oesd_issuer: "ÖSD",

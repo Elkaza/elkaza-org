@@ -27,10 +27,6 @@ export default function ResearchPageContent() {
               <h2 id="tu-research-title" className="mt-3 text-2xl font-semibold leading-snug text-main md:text-3xl">{research.thesisTitle}</h2>
               <p className="mt-3 text-sm font-semibold text-secondary">{research.thesisLabel} · {research.status}</p>
               <p className="mt-5 max-w-4xl leading-8 text-secondary">{research.question}</p>
-              <h3 className="mt-6 font-semibold text-main">{research.methodsTitle}</h3>
-              <ul className="mt-3 flex flex-wrap gap-2" aria-label={research.methodsTitle}>
-                {research.methods.map((method) => <li key={method} className="rounded-md border border-subtle px-3 py-1 text-xs text-secondary">{method}</li>)}
-              </ul>
               <p className="mt-5 max-w-4xl text-sm leading-7 text-muted">{research.currentStatus}</p>
             </div>
           </div>

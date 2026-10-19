@@ -217,9 +217,9 @@ export const profile = {
         ar: "10/2018–2021 coursework · thesis since 10/2026",
       },
       details: {
-        de: ["90 ECTS Lehrveranstaltungen", "Masterarbeit in Arbeit: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Betreuung: Dr. Vincenzo De Maio · Co-Betreuung: Prof. Ivona Brandić · geplante Abgabe 04/2027"],
-        en: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić · planned submission 04/2027"],
-        ar: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers", "Supervisor: Dr. Vincenzo De Maio · co-supervisor: Prof. Ivona Brandić · planned submission 04/2027"],
+        de: ["90 ECTS Lehrveranstaltungen", "Masterarbeit in Arbeit: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers"],
+        en: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers"],
+        ar: ["90 ECTS coursework", "Master's thesis in progress: Energy-Aware Placement of AI Inference Across Device, Edge and Cloud Tiers"],
       },
     },
     {
@@ -250,9 +250,9 @@ export const profile = {
       },
       period: { de: "2008–2013", en: "2008–2013", ar: "2008–2013" },
       details: {
-        de: ["Fachbereich Computernetzwerke & Kommunikation", "ENIC NARIC: gleichwertig mit einem österreichischen Bachelorabschluss in Informatik"],
-        en: ["Department of Computer Networks & Communication", "ENIC NARIC: equivalent to an Austrian Bachelor's degree in Informatics"],
-        ar: ["Department of Computer Networks & Communication", "ENIC NARIC: equivalent to an Austrian Bachelor's degree in Informatics"],
+        de: ["Fachbereich Computernetzwerke & Kommunikation"],
+        en: ["Department of Computer Networks & Communication"],
+        ar: ["Department of Computer Networks & Communication"],
       },
     },
   ] satisfies ProfileEducation[],
@@ -262,7 +262,6 @@ export const profile = {
     { title: "Business Analysis Foundations", issuer: "LinkedIn Learning", year: "2023" },
     { title: "Excel 365 VBA (Expert)", issuer: "Raiffeisen Bank International", year: "2022" },
     { title: "Aptis English Business C1", issuer: "British Council", year: "2020" },
-    { title: "ENIC NARIC Degree Assessment", issuer: "ENIC NARIC Austria", year: "2020" },
     { title: "ÖSD Zertifikat B2", issuer: "ÖSD", year: "2019" },
     { title: "Junior Cybersecurity Analyst Path (in progress)", issuer: "HTB Academy", year: "2026" },
   ] satisfies ProfileCertification[],
