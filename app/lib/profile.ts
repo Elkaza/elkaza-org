@@ -63,9 +63,9 @@ export const profile = {
     ar: "Available immediately",
   },
   openTo: {
-    de: ["System Engineering / Administration", "Application Support", "IoT / OT", "Junior Security Operations", "Junior Research Engineering"],
-    en: ["System engineering / administration", "Application support", "IoT / OT", "Junior security operations", "Junior research engineering"],
-    ar: ["System engineering / administration", "Application support", "IoT / OT", "Junior security operations", "Junior research engineering"],
+    de: ["Infrastructure & Application Operations", "Junior Security Operations", "Sichere IoT- und Edge-Forschung"],
+    en: ["Infrastructure & application operations", "Junior security operations", "Secure IoT and edge research"],
+    ar: ["Infrastructure & application operations", "Junior security operations", "Secure IoT and edge research"],
   },
   email: "contact@elkaza.org",
   websiteUrl: "https://elkaza.org",

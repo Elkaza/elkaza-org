@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "en",
   path: "/projects",
   title: "Engineering Case Studies | Mohamed Elkaza",
-  description: "Implemented case studies across application engineering, automation, IoT, Edge AI, TinyML, infrastructure, monitoring, dashboards, and technical implementation.",
+  description: "Projects from Mohamed Elkaza's infrastructure lab, university work and embedded-systems development, with implementation details and verification evidence.",
 });
 
 export default function EnglishProjectsPage() {

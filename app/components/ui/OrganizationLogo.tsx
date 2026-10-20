@@ -1,8 +1,10 @@
 import Image from "next/image";
+import { Languages } from "lucide-react";
 import { siHackthebox } from "simple-icons";
 
 type OrganizationKind =
   | "boc"
+  | "britishCouncil"
   | "cyberu"
   | "fhTechnikum"
   | "generic"
@@ -27,6 +29,11 @@ type OrganizationMark = {
 
 const organizationMarks: Record<string, OrganizationMark> = {
   "boc group": { label: "BOC Group", initials: "BOC", kind: "boc" },
+  "british council": {
+    label: "British Council",
+    initials: "BC",
+    kind: "britishCouncil",
+  },
   cyberu: { label: "CyberU", initials: "CU", kind: "cyberu" },
   "fh technikum wien": {
     label: "FH Technikum Wien",
@@ -103,6 +110,7 @@ const organizationMarks: Record<string, OrganizationMark> = {
 
 const frameClasses: Record<OrganizationKind, string> = {
   boc: "border-[#d7dee8] bg-white text-[#183153]",
+  britishCouncil: "border-[#cbd5e1] bg-white text-[#1e3a5f]",
   cyberu: "border-[#d7e0ff] bg-white text-[#4259d6]",
   fhTechnikum: "border-[#bfd9ee] bg-white text-[#006eb6]",
   generic: "border-subtle bg-white text-main",
@@ -286,6 +294,8 @@ function BrandMark({ mark, size }: { mark: OrganizationMark; size: keyof typeof 
           </text>
         </svg>
       );
+    case "britishCouncil":
+      return <Languages aria-hidden="true" className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} strokeWidth={1.8} />;
     case "hico":
       return <span className={`${sizeTextClasses[size]} font-black tracking-tight`}>HiCo</span>;
     case "uniBenghazi":

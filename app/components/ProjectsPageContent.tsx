@@ -203,7 +203,7 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
 const COPY: Record<Locale, Copy> = {
     en: {
         title: "Engineering Case Studies",
-        subtitle: "A curated set of implemented systems across software engineering, IoT, edge AI, infrastructure, and data automation.",
+        subtitle: "Projects from my infrastructure lab, university work and embedded-systems development. Each case study explains the problem, what I implemented and how I verified the result.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         archive: "View Archive",
@@ -223,7 +223,7 @@ const COPY: Record<Locale, Copy> = {
     },
     de: {
         title: "Technische Fallstudien",
-        subtitle: "Kuratierte technische Fallstudien aus Software Engineering, IoT, Edge AI, Infrastruktur und Datenautomatisierung.",
+        subtitle: "Projekte aus meinem Infrastrukturlabor, dem Studium und der Embedded-Entwicklung. Jede Fallstudie zeigt das Problem, meine Umsetzung und wie ich das Ergebnis geprüft habe.",
         featuredTitle: "Ausgewählte Fallstudien",
         browseTitle: "Weitere Projekte",
         archive: "Archiv ansehen",
@@ -243,7 +243,7 @@ const COPY: Record<Locale, Copy> = {
     },
     ar: {
         title: "Engineering Projects",
-        subtitle: "Selected case studies across software engineering, IoT, edge AI, infrastructure, and data automation.",
+        subtitle: "Projects from my infrastructure lab, university work and embedded-systems development. Each case study explains the problem, what I implemented and how I verified the result.",
         featuredTitle: "Featured Case Studies",
         browseTitle: "More Projects",
         archive: "View Archive",

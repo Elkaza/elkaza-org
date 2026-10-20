@@ -5,7 +5,7 @@ export const metadata = localizedMetadata({
   locale: "de",
   path: "/projects",
   title: "Technische Fallstudien | Mohamed Elkaza",
-  description: "Umgesetzte technische Fallstudien zu Application Engineering, Automatisierung, IoT, Edge AI, TinyML, Infrastruktur, Monitoring, Dashboards und nachvollziehbarer technischer Umsetzung.",
+  description: "Projekte aus Mohamed Elkazas Infrastrukturlabor, Studium und Embedded-Entwicklung mit Details zur Umsetzung und Verifikation.",
 });
 
 export default function ProjectsPage() {
