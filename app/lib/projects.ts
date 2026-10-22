@@ -744,8 +744,8 @@ export const projects: Project[] = [
                     "Abbildung 4 — Bereinigtes Betriebsdashboard"
                 ),
                 caption: loc(
-                    "Sanitized operational overview showing documented service management, security visibility, hybrid governance, and recovery validation.",
-                    "Bereinigte Betriebsübersicht mit dokumentiertem Service-Management, Security-Transparenz, hybrider Governance und repräsentativer Recovery-Validierung für Anwendungen und Daten."
+                    "Sanitized evidence snapshot showing three managed environments, private administration, operational controls, Azure Arc governance, and representative recovery validation.",
+                    "Bereinigte Nachweisübersicht zu drei verwalteten Umgebungen, privater Administration, Betriebskontrollen, Azure-Arc-Governance und repräsentativer Recovery-Validierung."
                 ),
                 alt: loc(
                     "Sanitized operations dashboard showing three managed environments, private administration, Azure Arc governance, configuration automation, monitoring, security controls, and representative application/data recovery validation.",
