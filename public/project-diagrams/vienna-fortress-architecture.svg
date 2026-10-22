@@ -87,7 +87,7 @@
   <rect x="1570" y="396" width="160" height="184" rx="8" class="box" />
   <text x="1650" y="420" text-anchor="middle" class="sub">Security</text>
   <rect x="1588" y="434" width="124" height="42" rx="7" class="card" /><text x="1650" y="462" text-anchor="middle" class="small">Pi-hole</text>
-  <rect x="1588" y="489" width="124" height="42" rx="7" class="card" /><text x="1650" y="508" text-anchor="middle" class="small">CrowdSec</text><text x="1650" y="524" text-anchor="middle" class="tiny">detection only</text>
+  <rect x="1588" y="489" width="124" height="42" rx="7" class="card" /><text x="1650" y="508" text-anchor="middle" class="small">CrowdSec</text><text x="1650" y="524" text-anchor="middle" class="tiny">log-based detection</text>
   <rect x="1588" y="544" width="124" height="42" rx="7" class="card" /><text x="1650" y="563" text-anchor="middle" class="small">Host + Docker</text><text x="1650" y="579" text-anchor="middle" class="tiny">firewall policy</text>
   <rect x="1102" y="672" width="180" height="190" rx="10" class="box" />
   <text x="1192" y="702" text-anchor="middle" class="sub">Observability</text>

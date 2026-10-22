@@ -278,14 +278,14 @@ const FEATURED_LABELS: Record<Locale, Record<string, string>> = {
 const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig> = {
     "enterprise-self-hosted-infrastructure": {
         role: {
-            en: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible automation, host firewalls, Azure Arc integration, monitoring and recovery validation.",
-            de: "Ich habe dieses hybride Infrastrukturlabor entworfen und konfiguriert und betreibe es heute – einschließlich Public-/Private-Grenzen, Linux- und Windows-Administration, Ansible-Automatisierung, Host-Firewalls, Azure-Arc-Integration, Monitoring und Recovery-Validierung.",
-            ar: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible automation, host firewalls, Azure Arc integration, monitoring and recovery validation.",
+            en: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible-based hardening, host firewalls, Azure Arc integration, monitoring and recovery validation.",
+            de: "Ich habe dieses hybride Infrastrukturlabor entworfen und konfiguriert und betreibe es heute – einschließlich Public-/Private-Grenzen, Linux- und Windows-Administration, Ansible-basierter Härtung, Host-Firewalls, Azure-Arc-Integration, Monitoring und Recovery-Validierung.",
+            ar: "I designed, configured and now operate this hybrid infrastructure lab, including its public/private boundaries, Linux and Windows administration, Ansible-based hardening, host firewalls, Azure Arc integration, monitoring and recovery validation.",
         },
         limitation: {
-            en: "The environment is intentionally small and does not provide high availability or automatic failover. The external Restic copy is operator-triggered rather than scheduled, and current recovery evidence covers application and database data rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
-            de: "Die Umgebung ist bewusst klein gehalten und bietet weder Hochverfügbarkeit noch automatisches Failover. Die externe Restic-Kopie wird manuell statt zeitgesteuert ausgelöst; die aktuellen Wiederherstellungsnachweise decken Anwendungs- und Datenbankdaten statt einer vollständigen Infrastrukturrekonstruktion ab. Ein Teil der Ressourcenprovisionierung liegt außerhalb der Ansible-verwalteten Konfiguration.",
-            ar: "The environment is intentionally small and does not provide high availability or automatic failover. The external Restic copy is operator-triggered rather than scheduled, and current recovery evidence covers application and database data rather than complete infrastructure reconstruction. Some resource provisioning remains outside Ansible-managed configuration.",
+            en: "The published validation is deliberately scoped to representative application and database recovery evidence. Internal identifiers and sensitive operating details are omitted, and Ansible is described only where configuration is managed reproducibly.",
+            de: "Die veröffentlichte Validierung ist bewusst auf repräsentative Recovery-Nachweise für Anwendungen und Datenbanken begrenzt. Interne Kennungen und sensible Betriebsdetails bleiben unveröffentlicht; Ansible wird nur dort genannt, wo Konfiguration reproduzierbar verwaltet wird.",
+            ar: "The published validation is deliberately scoped to representative application and database recovery evidence. Internal identifiers and sensitive operating details are omitted, and Ansible is described only where configuration is managed reproducibly.",
         },
         validation: {
             en: [
@@ -311,9 +311,9 @@ const FEATURED_DETAIL_CONFIGS: Record<FeaturedProjectSlug, FeaturedDetailConfig>
             ],
         },
         nextStep: {
-            en: "Add a second rotated or independent immutable backup destination and establish a verified recurring VPS backup.",
-            de: "Ein zweites rotierendes oder unabhängiges unveränderliches Backup-Ziel ergänzen und ein verifiziertes, regelmäßig ausgeführtes VPS-Backup etablieren.",
-            ar: "Add a second rotated or independent immutable backup destination and establish a verified recurring VPS backup.",
+            en: "Continue periodic recovery rehearsals and documented lifecycle reviews as the managed systems evolve.",
+            de: "Mit der Weiterentwicklung der verwalteten Systeme regelmäßige Recovery-Proben und dokumentierte Lifecycle-Reviews fortführen.",
+            ar: "Continue periodic recovery rehearsals and documented lifecycle reviews as the managed systems evolve.",
         },
         stackGroups: [
             {

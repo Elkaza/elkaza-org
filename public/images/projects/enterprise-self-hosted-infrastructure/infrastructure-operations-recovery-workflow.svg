@@ -1,142 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">Infrastructure operations, automation and recovery workflow</title>
-  <desc id="desc">Workflow from Git-based desired state through review, Ansible automation, validation, monitoring, backup integrity, and representative application and data recovery evidence.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc" lang="en">
+  <title id="title">Operations, automation and recovery</title>
+  <desc id="desc">An eight-step evidence lifecycle: version-controlled desired state; pre-change validation; Ansible-based Linux and Windows configuration and hardening; post-change verification and idempotency checks; monitoring and security visibility; backup and archive integrity checks; representative PostgreSQL and ClickHouse application and data recovery validation; and documented, intentionally scoped operational evidence.</desc>
   <defs>
-    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9fbff"/><stop offset="1" stop-color="#edf4ff"/></linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#13294b" flood-opacity=".11"/></filter>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0l12 6-12 6z" fill="#27496f"/></marker>
-    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0l12 6-12 6z" fill="#188b4e"/></marker>
-    <style>
-      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#102447}.kicker{font-size:18px;font-weight:800;letter-spacing:2px;fill:#1769d2}.h1{font-size:37px;font-weight:800}.sub{font-size:18px;fill:#52647d}.stage{font-size:17px;font-weight:800;fill:#fff;letter-spacing:.5px}.cardTitle{font-size:21px;font-weight:800}.body{font-size:16px;fill:#40536e}.small{font-size:14px;fill:#52647d}.label{font-size:14px;font-weight:800}.blue{fill:#1769d2}.green{fill:#188b4e}.orange{fill:#d96810}.red{fill:#b83d36}.white{fill:#fff}
-    </style>
+    <style>text{font-family:Arial,Helvetica,sans-serif} </style>
+    <marker id="app" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="admin" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#08745b"/>
+    </marker>
+    <marker id="gov" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#6d28d9"/>
+    </marker>
+    <marker id="step" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1 L11 6 L1 11 Z" fill="#0f172a"/>
+    </marker>
   </defs>
-  <rect width="1600" height="900" fill="url(#page)"/>
-  <text x="56" y="52" class="kicker">OPERATIONS · AUTOMATION · RECOVERY</text>
-  <text x="56" y="96" class="h1">Changes become evidence through a repeatable control loop</text>
-  <text x="56" y="128" class="sub">Versioned intent, cautious deployment, continuous signals, verified backups and bounded recovery claims</text>
-
-  <!-- Main workflow -->
-  <g filter="url(#shadow)">
-    <rect x="50" y="185" width="210" height="292" rx="14" fill="#fff" stroke="#73a9ea" stroke-width="2"/>
-    <rect x="50" y="185" width="210" height="58" rx="14" fill="#1769d2"/>
-    <path d="M50 225h210v18H50z" fill="#1769d2"/>
-    <text x="155" y="211" text-anchor="middle" class="stage">1 · DESIRED STATE</text>
-    <text x="76" y="281" class="cardTitle">Git repository</text>
-    <text x="76" y="321" class="body">• Ansible roles</text>
-    <text x="76" y="351" class="body">• Inventory + vars</text>
-    <text x="76" y="381" class="body">• Runbooks</text>
-    <text x="76" y="411" class="body">• Reviewable history</text>
-    <rect x="76" y="435" width="158" height="25" rx="12" fill="#e7f1ff"/>
-    <text x="155" y="452" text-anchor="middle" class="label blue">SOURCE OF TRUTH</text>
-
-    <rect x="310" y="185" width="210" height="292" rx="14" fill="#fff" stroke="#82c9a1" stroke-width="2"/>
-    <rect x="310" y="185" width="210" height="58" rx="14" fill="#188b4e"/>
-    <path d="M310 225h210v18H310z" fill="#188b4e"/>
-    <text x="415" y="211" text-anchor="middle" class="stage">2 · REVIEW</text>
-    <text x="336" y="281" class="cardTitle">Pre-flight gates</text>
-    <text x="336" y="321" class="body">• Syntax checks</text>
-    <text x="336" y="351" class="body">• Check mode + diff</text>
-    <text x="336" y="381" class="body">• Scope confirmation</text>
-    <text x="336" y="411" class="body">• Secret hygiene</text>
-    <rect x="336" y="435" width="158" height="25" rx="12" fill="#e8f7ef"/>
-    <text x="415" y="452" text-anchor="middle" class="label green">BEFORE CHANGE</text>
-
-    <rect x="570" y="185" width="210" height="292" rx="14" fill="#fff" stroke="#73a9ea" stroke-width="2"/>
-    <rect x="570" y="185" width="210" height="58" rx="14" fill="#1769d2"/>
-    <path d="M570 225h210v18H570z" fill="#1769d2"/>
-    <text x="675" y="211" text-anchor="middle" class="stage">3 · AUTOMATE</text>
-    <text x="596" y="281" class="cardTitle">Ansible</text>
-    <text x="596" y="321" class="body">• Linux via SSH</text>
-    <text x="596" y="351" class="body">• Windows via WinRM</text>
-    <text x="596" y="381" class="body">• Private Tailscale</text>
-    <text x="596" y="411" class="body">• Controlled apply</text>
-    <rect x="596" y="435" width="158" height="25" rx="12" fill="#e7f1ff"/>
-    <text x="675" y="452" text-anchor="middle" class="label blue">REPEATABLE</text>
-
-    <rect x="830" y="185" width="210" height="292" rx="14" fill="#fff" stroke="#82c9a1" stroke-width="2"/>
-    <rect x="830" y="185" width="210" height="58" rx="14" fill="#188b4e"/>
-    <path d="M830 225h210v18H830z" fill="#188b4e"/>
-    <text x="935" y="211" text-anchor="middle" class="stage">4 · VERIFY</text>
-    <text x="856" y="281" class="cardTitle">Post-change</text>
-    <text x="856" y="321" class="body">• Reachability</text>
-    <text x="856" y="351" class="body">• Service health</text>
-    <text x="856" y="381" class="body">• Security baseline</text>
-    <text x="856" y="411" class="body">• Idempotence</text>
-    <rect x="856" y="435" width="158" height="25" rx="12" fill="#e8f7ef"/>
-    <text x="935" y="452" text-anchor="middle" class="label green">EVIDENCE</text>
-
-    <rect x="1090" y="185" width="210" height="292" rx="14" fill="#fff" stroke="#82c9a1" stroke-width="2"/>
-    <rect x="1090" y="185" width="210" height="58" rx="14" fill="#188b4e"/>
-    <path d="M1090 225h210v18h-210z" fill="#188b4e"/>
-    <text x="1195" y="211" text-anchor="middle" class="stage">5 · OBSERVE</text>
-    <text x="1116" y="281" class="cardTitle">Live signals</text>
-    <text x="1116" y="321" class="body">• Better Stack</text>
-    <text x="1116" y="351" class="body">• Uptime Kuma</text>
-    <text x="1116" y="381" class="body">• Netdata</text>
-    <text x="1116" y="411" class="body">• CrowdSec + logs</text>
-    <rect x="1116" y="435" width="158" height="25" rx="12" fill="#e8f7ef"/>
-    <text x="1195" y="452" text-anchor="middle" class="label green">CONTINUOUS</text>
-
-    <rect x="1350" y="185" width="200" height="292" rx="14" fill="#fff" stroke="#edaa60" stroke-width="2"/>
-    <rect x="1350" y="185" width="200" height="58" rx="14" fill="#d96810"/>
-    <path d="M1350 225h200v18h-200z" fill="#d96810"/>
-    <text x="1450" y="211" text-anchor="middle" class="stage">6 · PROTECT</text>
-    <text x="1376" y="281" class="cardTitle">Backup pipeline</text>
-    <text x="1376" y="321" class="body">• Lock + fail fast</text>
-    <text x="1376" y="351" class="body">• Atomic publish</text>
-    <text x="1376" y="381" class="body">• Restricted perms</text>
-    <text x="1376" y="411" class="body">• SHA-256 + Restic</text>
-    <rect x="1376" y="435" width="148" height="25" rx="12" fill="#fff0df"/>
-    <text x="1450" y="452" text-anchor="middle" class="label orange">SCHEDULED</text>
-  </g>
-
-  <path d="M260 331h42" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M520 331h42" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M780 331h42" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M1040 331h42" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M1300 331h42" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <!-- Feedback loop -->
-  <path d="M935 477v42H675v-34" fill="none" stroke="#188b4e" stroke-width="3" stroke-dasharray="9 7" marker-end="url(#arrowGreen)"/>
-  <text x="805" y="510" text-anchor="middle" class="label green">correct drift, then verify again</text>
-
-  <!-- Recovery evidence -->
-  <rect x="50" y="567" width="1500" height="245" rx="18" fill="#fff" stroke="#a9c4e6" stroke-width="2" filter="url(#shadow)"/>
-  <text x="78" y="608" class="cardTitle">Representative recovery validation</text>
-  <text x="78" y="636" class="small">The test proves selected application/data recovery paths; it does not claim full-infrastructure disaster recovery or automatic failover.</text>
-
-  <rect x="78" y="666" width="252" height="112" rx="12" fill="#f5f9ff" stroke="#acc9eb"/>
-  <text x="98" y="698" class="cardTitle">1 · Read integrity</text>
-  <text x="98" y="729" class="body">Restic repository check</text>
-  <text x="98" y="756" class="small">including full data read</text>
-  <path d="M330 722h38" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <rect x="376" y="666" width="252" height="112" rx="12" fill="#f5f9ff" stroke="#acc9eb"/>
-  <text x="396" y="698" class="cardTitle">2 · Isolated restore</text>
-  <text x="396" y="729" class="body">PostgreSQL recovery target</text>
-  <text x="396" y="756" class="small">50 tables validated</text>
-  <path d="M628 722h38" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <rect x="674" y="666" width="252" height="112" rx="12" fill="#f5f9ff" stroke="#acc9eb"/>
-  <text x="694" y="698" class="cardTitle">3 · Data extraction</text>
-  <text x="694" y="729" class="body">ClickHouse archive sample</text>
-  <text x="694" y="756" class="small">content can be recovered</text>
-  <path d="M926 722h38" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <rect x="972" y="666" width="252" height="112" rx="12" fill="#f3fbf6" stroke="#82c9a1"/>
-  <text x="992" y="698" class="cardTitle">4 · Record result</text>
-  <text x="992" y="729" class="body">Timestamp + outcome</text>
-  <text x="992" y="756" class="small">repeatable recovery evidence</text>
-  <path d="M1224 722h38" fill="none" stroke="#27496f" stroke-width="4" marker-end="url(#arrow)"/>
-
-  <rect x="1270" y="650" width="252" height="144" rx="12" fill="#e8f7ef" stroke="#55b77d" stroke-width="2"/>
-  <circle cx="1310" cy="694" r="22" fill="#188b4e"/>
-  <path d="M1299 694l8 8 15-18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="1345" y="688" class="cardTitle">Bounded claim</text>
-  <text x="1345" y="716" class="body">Application + data</text>
-  <text x="1292" y="753" class="small">Validated, documented,</text>
-  <text x="1292" y="775" class="small">and intentionally scoped</text>
-
-  <rect x="50" y="838" width="1500" height="34" rx="17" fill="#fff0df"/>
-  <text x="800" y="861" text-anchor="middle" class="small">Known boundary: no automatic failover and no proof of full host or complete infrastructure rebuild.</text>
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="64" y="58" font-size="22" font-weight="700" fill="#1d4ed8">03 / OPERATIONS &amp; RECOVERY</text>
+  <text x="64" y="112" font-size="42" font-weight="700" fill="#0f172a">Operations, automation and recovery</text>
+  <text x="64" y="155" font-size="24" font-weight="400" fill="#475569">From versioned configuration to representative application and data recovery evidence</text>
+  <rect x="64" y="220" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="88" y="260" font-size="23" font-weight="700" fill="#1d4ed8">01</text>
+  <text x="88" y="307" font-size="25" font-weight="650" fill="#0f172a">Desired state</text>
+  <text x="88" y="352" font-size="23" font-weight="400" fill="#334155">Version-controlled</text>
+  <text x="88" y="384" font-size="23" font-weight="400" fill="#334155">configuration in Git</text>
+  <rect x="444" y="220" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="468" y="260" font-size="23" font-weight="700" fill="#1d4ed8">02</text>
+  <text x="468" y="307" font-size="25" font-weight="650" fill="#0f172a">Pre-change validation</text>
+  <text x="468" y="352" font-size="23" font-weight="400" fill="#334155">Validate the intended</text>
+  <text x="468" y="384" font-size="23" font-weight="400" fill="#334155">change before applying</text>
+  <rect x="824" y="220" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="848" y="260" font-size="23" font-weight="700" fill="#1d4ed8">03</text>
+  <text x="848" y="307" font-size="25" font-weight="650" fill="#0f172a">Ansible hardening</text>
+  <text x="848" y="352" font-size="23" font-weight="400" fill="#334155">Reproducible configuration</text>
+  <text x="848" y="384" font-size="23" font-weight="400" fill="#334155">for Linux and Windows</text>
+  <rect x="1204" y="220" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="1228" y="260" font-size="23" font-weight="700" fill="#1d4ed8">04</text>
+  <text x="1228" y="307" font-size="25" font-weight="650" fill="#0f172a">Post-change verification</text>
+  <text x="1228" y="352" font-size="23" font-weight="400" fill="#334155">Idempotency checks</text>
+  <text x="1228" y="384" font-size="23" font-weight="400" fill="#334155">Repeated runs stay stable</text>
+  <rect x="1204" y="480" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="1228" y="520" font-size="23" font-weight="700" fill="#1d4ed8">05</text>
+  <text x="1228" y="567" font-size="25" font-weight="650" fill="#0f172a">Operational visibility</text>
+  <text x="1228" y="612" font-size="23" font-weight="400" fill="#334155">Monitoring and</text>
+  <text x="1228" y="644" font-size="23" font-weight="400" fill="#334155">security visibility</text>
+  <rect x="824" y="480" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="848" y="520" font-size="23" font-weight="700" fill="#1d4ed8">06</text>
+  <text x="848" y="567" font-size="25" font-weight="650" fill="#0f172a">Backup integrity</text>
+  <text x="848" y="612" font-size="23" font-weight="400" fill="#334155">Backup / archive</text>
+  <text x="848" y="644" font-size="23" font-weight="400" fill="#334155">integrity checks</text>
+  <rect x="444" y="480" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="468" y="520" font-size="23" font-weight="700" fill="#1d4ed8">07</text>
+  <text x="468" y="567" font-size="25" font-weight="650" fill="#0f172a">Recovery validation</text>
+  <text x="468" y="612" font-size="23" font-weight="400" fill="#334155">Representative application</text>
+  <text x="468" y="644" font-size="23" font-weight="400" fill="#334155">and data recovery</text>
+  <rect x="64" y="480" width="332" height="210" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="88" y="520" font-size="23" font-weight="700" fill="#1d4ed8">08</text>
+  <text x="88" y="567" font-size="25" font-weight="650" fill="#0f172a">Operational evidence</text>
+  <text x="88" y="612" font-size="23" font-weight="400" fill="#334155">Documented validation</text>
+  <text x="88" y="644" font-size="23" font-weight="400" fill="#334155">and recovery results</text>
+  <path d="M396 325h48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M776 325h48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M1156 325h48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M1370 430V480" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M1204 585h-48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M824 585h-48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <path d="M444 585h-48" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <rect x="64" y="720" width="1472" height="76" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/>
+  <text x="88" y="752" font-size="25" font-weight="600" fill="#0f172a">Validated recovery scope: representative PostgreSQL and ClickHouse application/data recovery.</text>
+  <text x="88" y="782" font-size="24" font-weight="400" fill="#334155">Evidence is documented and intentionally scoped.</text>
+  <path d="M64 818H1536" stroke="#cbd5e1"/>
+  <path d="M64 852H120" fill="none" stroke="#0f172a" stroke-width="3" marker-end="url(#step)"/>
+  <text x="136" y="860" font-size="22" font-weight="400" fill="#334155">Evidence sequence · follow steps 01–08</text>
 </svg>

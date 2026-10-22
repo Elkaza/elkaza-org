@@ -517,24 +517,24 @@ export const projects: Project[] = [
             "Hybride Self-Hosted-Infrastruktur & Betrieb"
         ),
         oneLiner: loc(
-            "An Ansible-managed hybrid infrastructure lab that separates public ingress from private administration across Linux and Windows systems, with Azure Arc governance, monitoring and representative recovery validation.",
-            "Ein mit Ansible verwaltetes hybrides Infrastrukturlabor, das öffentlichen Ingress von privater Administration über Linux- und Windows-Systeme hinweg trennt – mit Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung."
+            "A hybrid Linux and Windows infrastructure lab with separated public ingress, private administration, Ansible-based hardening, Azure Arc governance, monitoring and representative recovery validation.",
+            "Ein hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Administration, Ansible-basierter Härtung, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung."
         ),
         seoDescription: loc(
             "Engineering case study of a hybrid Linux and Windows infrastructure lab using Proxmox, Docker, Ansible over Tailscale, Azure Arc governance, monitoring and representative recovery validation.",
             "Technische Fallstudie zu einem hybriden Linux- und Windows-Infrastrukturlabor mit Proxmox, Docker, Ansible über Tailscale, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung."
         ),
         overview: loc(
-            "The lab spans a Public Edge VPS, an on-site Proxmox and Debian platform, and an external Windows Server environment. Tailscale carries private administration and the edge-to-application path; Git and Ansible provide version-controlled desired state and automated Linux and Windows configuration. Azure Arc adds outbound-only inventory and governance without hosting the managed systems.",
-            "Das Labor umfasst einen Public Edge VPS, eine lokale Proxmox- und Debian-Plattform sowie eine externe Windows-Server-Umgebung. Tailscale transportiert die private Administration und den Edge-to-Application-Pfad; Git und Ansible liefern versionierten Sollzustand sowie automatisierte Linux- und Windows-Konfiguration. Azure Arc ergänzt ausgehend angebundene Inventarisierung und Governance, ohne die verwalteten Systeme zu hosten."
+            "The lab spans a Public Edge VPS, an on-site Proxmox and Debian platform, and an external Windows Server environment. Tailscale carries private administration and the edge-to-application path; Git and Ansible support reviewed, reproducible hardening across Linux and Windows. Azure Arc adds outbound-only inventory and governance without hosting the managed systems.",
+            "Das Labor umfasst einen Public Edge VPS, eine lokale Proxmox- und Debian-Plattform sowie eine externe Windows-Server-Umgebung. Tailscale transportiert die private Administration und den Edge-to-Application-Pfad; Git und Ansible unterstützen geprüfte, reproduzierbare Härtung über Linux und Windows hinweg. Azure Arc ergänzt ausgehend angebundene Inventarisierung und Governance, ohne die verwalteten Systeme zu hosten."
         ),
         problem: loc(
             "Selected web workloads needed a controlled public entry point while administration remained private across local and external compute. The environment also needed repeatable Linux and Windows configuration, runtime visibility, protected backups with recovery evidence, and cross-environment governance without moving the systems into Azure.",
             "Ausgewählte Web-Workloads benötigten einen kontrollierten öffentlichen Einstieg, während die Administration über lokale und externe Compute-Ressourcen hinweg privat bleiben sollte. Zusätzlich waren wiederholbare Linux- und Windows-Konfiguration, Runtime-Sichtbarkeit, geschützte Backups mit Wiederherstellungsnachweis und umgebungsübergreifende Governance erforderlich, ohne die Systeme nach Azure zu verlagern."
         ),
         solution: loc(
-            "Git stores the desired configuration and operational documentation. Ansible applies Linux configuration through SSH and Windows configuration through WinRM over Tailscale. Relevant changes are reviewed with syntax checks, check mode and diffs before application; assertions, post-change verification and repeated runs cover connectivity-sensitive firewall, SSH and RDP changes. The Administration Controller also acts as the first canary for reviewed Linux hardening changes.",
-            "Git speichert den gewünschten Konfigurationszustand und die Betriebsdokumentation. Ansible wendet Linux-Konfiguration über SSH und Windows-Konfiguration über WinRM via Tailscale an. Relevante Änderungen werden vor der Anwendung mit Syntaxprüfungen, Check Mode und Diffs geprüft; Assertions, Post-Change-Verifikation und wiederholte Läufe decken konnektivitätssensitive Firewall-, SSH- und RDP-Änderungen ab. Der Administration Controller dient außerdem als erster Canary für geprüfte Linux-Hardening-Änderungen."
+            "Git stores reviewed configuration and operational documentation. Ansible supports reproducible Linux and Windows hardening through SSH and WinRM over Tailscale. Relevant changes are reviewed with syntax checks, check mode and diffs before application; assertions, post-change verification and repeated runs cover connectivity-sensitive firewall, SSH and RDP changes. The Administration Controller also acts as the first canary for reviewed Linux hardening changes.",
+            "Git speichert geprüfte Konfiguration und Betriebsdokumentation. Ansible unterstützt die reproduzierbare Härtung von Linux und Windows über SSH und WinRM via Tailscale. Relevante Änderungen werden vor der Anwendung mit Syntaxprüfungen, Check Mode und Diffs geprüft; Assertions, Post-Change-Verifikation und wiederholte Läufe decken konnektivitätssensitive Firewall-, SSH- und RDP-Änderungen ab. Der Administration Controller dient außerdem als erster Canary für geprüfte Linux-Hardening-Änderungen."
         ),
         architectureLabels: {
             node: loc("Public application traffic", "Öffentlicher Anwendungsverkehr"),
@@ -556,8 +556,8 @@ export const projects: Project[] = [
             ),
         },
         security: loc(
-            "The security model uses defense in depth: public ingress is separated from administration, management paths use Tailscale, and host firewalls restrict inbound access. The Public Edge VPS uses UFW and Fail2ban; the On-site Server combines UFW with a persistent Docker-aware firewall policy that limits the private web listeners to the trusted edge peer. CrowdSec consumes reverse-proxy logs with the preserved client address for detection and community threat intelligence; no active bouncer is claimed. On Windows, Microsoft Defender and Windows Firewall remain enabled, RDP requires Network Level Authentication, WinRM Basic authentication and unencrypted communication are disabled, SMBv1 is disabled, insecure SMB guest logons are blocked, and IIS remains private.",
-            "Das Sicherheitsmodell folgt Defense in Depth: Öffentlicher Ingress ist von der Administration getrennt, Managementpfade nutzen Tailscale und Host-Firewalls beschränken eingehende Zugriffe. Der Public Edge VPS verwendet UFW und Fail2ban; der On-site Server kombiniert UFW mit einer persistenten Docker-aware Firewall-Policy, die die privaten Web-Listener auf den vertrauenswürdigen Edge-Peer beschränkt. CrowdSec verarbeitet Reverse-Proxy-Logs mit erhaltener Client-Adresse für Erkennung und Community Threat Intelligence; ein aktiver Bouncer wird nicht behauptet. Unter Windows bleiben Microsoft Defender und Windows Firewall aktiv, RDP erfordert Network Level Authentication, WinRM Basic Authentication und unverschlüsselte Kommunikation sind deaktiviert, SMBv1 ist abgeschaltet, unsichere SMB-Gastanmeldungen sind blockiert und IIS bleibt privat."
+            "The security model uses defense in depth: public ingress is separated from administration, management paths use Tailscale, and host firewalls restrict inbound access. The Public Edge VPS uses UFW and Fail2ban; the On-site Server combines UFW with a persistent Docker-aware firewall policy that limits the private web listeners to the trusted edge peer. CrowdSec consumes reverse-proxy logs with the preserved client address for log-based detection and community threat intelligence. On Windows, Microsoft Defender and Windows Firewall remain enabled, RDP requires Network Level Authentication, WinRM Basic authentication and unencrypted communication are disabled, SMBv1 is disabled, insecure SMB guest logons are blocked, and IIS remains private.",
+            "Das Sicherheitsmodell folgt Defense in Depth: Öffentlicher Ingress ist von der Administration getrennt, Managementpfade nutzen Tailscale und Host-Firewalls beschränken eingehende Zugriffe. Der Public Edge VPS verwendet UFW und Fail2ban; der On-site Server kombiniert UFW mit einer persistenten Docker-aware Firewall-Policy, die die privaten Web-Listener auf den vertrauenswürdigen Edge-Peer beschränkt. CrowdSec verarbeitet Reverse-Proxy-Logs mit erhaltener Client-Adresse für log-basierte Erkennung und Community Threat Intelligence. Unter Windows bleiben Microsoft Defender und Windows Firewall aktiv, RDP erfordert Network Level Authentication, WinRM Basic Authentication und unverschlüsselte Kommunikation sind deaktiviert, SMBv1 ist abgeschaltet, unsichere SMB-Gastanmeldungen sind blockiert und IIS bleibt privat."
         ),
         reliability: loc(
             "Uptime Kuma monitors internal service availability, Better Stack provides an external website check and an independent host heartbeat, Netdata provides host metrics, and CrowdSec contributes detection visibility. A recurring systemd health check covers disk state and backup freshness, with operational notifications sent through Telegram.\n\nThe backup workflow uses fail-fast execution, locking, atomic archive publication, restricted permissions, integrity checks and SHA-256 checksum sidecars. Recovery checks go beyond backup creation: Restic repository integrity and full-data-read checks passed, PostgreSQL was restored to an isolated temporary container with 50 application tables present, and ClickHouse filesystem extraction was verified before temporary plaintext staging data was removed. This is representative application/data recovery evidence, not a completed full-infrastructure disaster-recovery test.",
@@ -569,7 +569,7 @@ export const projects: Project[] = [
                 "Tailscale: provides encrypted private connectivity for administration and distributed system paths without opening management services to the internet",
                 "Proxmox and the On-site Server: separate the local virtualization layer from Debian and Docker Compose application workloads",
                 "Hybrid Windows Lab: adds practical Windows Server administration and hardening while remaining isolated from public ingress",
-                "Git and Ansible: provide version-controlled desired state, repeatable Linux and Windows configuration, check-mode review, audits and idempotency checks",
+                "Git and Ansible: support version-controlled hardening, check-mode review, audits and idempotency checks across Linux and Windows",
                 "Azure Arc: adds inventory and governance across environments without replacing Ansible, Tailscale or the underlying compute platforms",
             ],
             [
@@ -577,21 +577,21 @@ export const projects: Project[] = [
                 "Tailscale: stellt verschlüsselte private Konnektivität für Administration und verteilte Systempfade bereit, ohne Managementdienste zum Internet zu öffnen",
                 "Proxmox und der On-site Server: trennen die lokale Virtualisierungsschicht von Debian- und Docker-Compose-Anwendungsworkloads",
                 "Hybrid Windows Lab: ergänzt praktische Windows-Server-Administration und -Härtung und bleibt vom öffentlichen Ingress isoliert",
-                "Git und Ansible: liefern versionierten Sollzustand, wiederholbare Linux- und Windows-Konfiguration, Check-Mode-Prüfung, Audits und Idempotenzkontrollen",
+                "Git und Ansible: unterstützen versionierte Härtung, Check-Mode-Prüfung, Audits und Idempotenzkontrollen über Linux und Windows hinweg",
                 "Azure Arc: ergänzt Inventarisierung und Governance über mehrere Umgebungen hinweg, ohne Ansible, Tailscale oder die zugrunde liegenden Compute-Plattformen zu ersetzen",
             ]
         ),
         results: locList(
             [
                 "Public application ingress is separated from private administration across the hybrid environment.",
-                "Ansible automates and validates configuration across Linux and Windows systems over private Tailscale paths.",
+                "Ansible supports reproducible hardening and validation across Linux and Windows systems over private Tailscale paths.",
                 "Azure Arc provides outbound-only inventory and governance visibility for the On-site Debian Server and Hybrid Windows Lab.",
                 "Uptime Kuma, Netdata and CrowdSec provide service, host and security visibility without promoting an undefined uptime percentage.",
                 "Backup integrity checks and an isolated PostgreSQL restore provide representative application/data recovery evidence rather than relying on backup existence alone.",
             ],
             [
                 "Öffentlicher Anwendungs-Ingress ist in der hybriden Umgebung von privater Administration getrennt.",
-                "Ansible automatisiert und validiert die Konfiguration von Linux- und Windows-Systemen über private Tailscale-Pfade.",
+                "Ansible unterstützt reproduzierbare Härtung und Validierung von Linux- und Windows-Systemen über private Tailscale-Pfade.",
                 "Azure Arc liefert ausgehend angebundene Inventarisierungs- und Governance-Sichtbarkeit für den On-site Debian Server und das Hybrid Windows Lab.",
                 "Uptime Kuma, Netdata und CrowdSec liefern Service-, Host- und Security-Sichtbarkeit, ohne eine nicht definierte Uptime-Prozentzahl zu bewerben.",
                 "Backup-Integritätsprüfungen und eine isolierte PostgreSQL-Wiederherstellung liefern repräsentative Recovery-Nachweise für Anwendungen und Daten, statt sich allein auf die Existenz von Backups zu verlassen.",
@@ -661,9 +661,9 @@ export const projects: Project[] = [
         },
         highlights: [
             { value: loc("Public / private split", "Public-/Private-Trennung"), label: loc("Ingress and administration", "Ingress und Administration") },
-            { value: loc("Linux + Windows", "Linux + Windows"), label: loc("Ansible-managed configuration", "Ansible-verwaltete Konfiguration") },
+            { value: loc("Linux + Windows", "Linux + Windows"), label: loc("Reproducible hardening", "Reproduzierbare Härtung") },
             { value: loc("Outbound HTTPS", "Ausgehendes HTTPS"), label: loc("Azure Arc governance", "Azure-Arc-Governance") },
-            { value: loc("Restore tested", "Restore getestet"), label: loc("Isolated recovery evidence", "Isolierter Recovery-Nachweis") },
+            { value: loc("Recovery validated", "Recovery validiert"), label: loc("Representative application/data evidence", "Repräsentativer Anwendungs-/Datennachweis") },
         ],
         tech: [
             "Ansible",
@@ -729,8 +729,8 @@ export const projects: Project[] = [
                     "Abbildung 3 — Betrieb, Automatisierung und Recovery"
                 ),
                 caption: loc(
-                    "Infrastructure operations workflow covering version-controlled configuration, validation, Ansible automation, monitoring, backup integrity, and representative recovery testing.",
-                    "Infrastruktur-Betriebsworkflow mit versionierter Konfiguration, Validierung, Ansible-Automatisierung, Monitoring, Backup-Integrität und repräsentativen Recovery-Tests."
+                    "Infrastructure operations workflow covering version-controlled configuration, validation, Ansible-based hardening, monitoring, backup integrity, and representative recovery testing.",
+                    "Infrastruktur-Betriebsworkflow mit versionierter Konfiguration, Validierung, Ansible-basierter Härtung, Monitoring, Backup-Integrität und repräsentativen Recovery-Tests."
                 ),
                 alt: loc(
                     "Infrastructure operations workflow from Git-based desired state through pre-deployment validation, Ansible configuration management, post-change verification, continuous monitoring, recurring backups, and representative application/data recovery validation.",
@@ -1095,79 +1095,79 @@ export const projects: Project[] = [
             "The Vienna Fortress"
         ),
         oneLiner: loc(
-            "Built a hardened Proxmox and Docker operations platform that combines layered security, real-time observability, reverse proxying, and automated container lifecycle management.",
-            "Eine gehärtete Proxmox- und Docker-Betriebsplattform aufgebaut, die mehrschichtige Sicherheit, Echtzeit-Observability, Reverse Proxying und automatisiertes Container-Lifecycle-Management verbindet."
+            "Built a read-only security operations view for a hardened Proxmox and Docker platform, then used its evidence to resolve a client-IP attribution incident and support a controlled Proxmox VE 8-to-9.2 upgrade.",
+            "Eine schreibgeschützte Security-Operations-Sicht für eine gehärtete Proxmox- und Docker-Plattform aufgebaut und ihre Nachweise genutzt, um einen Fehler in der Client-IP-Zuordnung zu beheben und ein kontrolliertes Upgrade von Proxmox VE 8 auf 9.2 durchzuführen."
         ),
         overview: loc(
-            "The Vienna Fortress turns a basic private infrastructure lab into a clearer internal platform and private runtime anchor for selected public services. The project focuses on defense in depth, service visibility, operational hygiene, and a central dashboard-driven control plane for self-hosted services.",
-            "The Vienna Fortress entwickelt ein einfaches privates Infrastruktur-Lab zu einer produktionsnäheren internen Plattform und privaten Runtime-Basis für ausgewählte öffentliche Services weiter. Im Fokus stehen Defense in Depth, Service-Sichtbarkeit, operative Hygiene und eine zentrale dashboardgetriebene Control Plane für Self-Hosted-Services."
+            "The Vienna Fortress is the operational-security layer of the private infrastructure platform. It combines a sanitized, read-only operations view with least-privilege collection, disciplined daily checks, incident analysis, and documented lifecycle change management instead of presenting a simple inventory of installed tools.",
+            "The Vienna Fortress bildet die Operational-Security-Schicht der privaten Infrastrukturplattform. Die Fallstudie verbindet eine bereinigte, schreibgeschützte Betriebsansicht mit Least-Privilege-Datenerfassung, disziplinierten täglichen Prüfungen, Incident-Analyse und dokumentiertem Lifecycle-Change-Management, statt lediglich installierte Tools aufzulisten."
         ),
         problem: loc(
-            "Deploying individual tools is easy; building a secure and operable platform is harder. The environment needed layered protection, live health visibility, reliable log access, and a clean way to surface Proxmox state inside a frontend dashboard without brittle ad hoc scripts.",
-            "Einzelne Tools zu deployen ist einfach; daraus eine sichere und betreibbare Plattform zu machen ist deutlich schwieriger. Die Umgebung brauchte mehrschichtigen Schutz, Live-Sicht auf den Systemzustand, verlässlichen Log-Zugriff und einen sauberen Weg, Proxmox-Zustand in einem Frontend-Dashboard sichtbar zu machen, ohne fragile Ad-hoc-Skripte."
+            "A growing self-hosted platform needed trustworthy evidence across service availability, detection, DNS filtering, virtualization, access, TLS, patching, and backup hygiene. It also needed a safer way to diagnose cross-layer incidents and perform major hypervisor lifecycle work without exposing management data publicly.",
+            "Eine wachsende Self-Hosted-Plattform benötigte belastbare Nachweise zu Service-Verfügbarkeit, Detection, DNS-Filterung, Virtualisierung, Zugriffen, TLS, Patching und Backup-Hygiene. Zusätzlich war ein sicherer Weg erforderlich, schichtübergreifende Incidents zu analysieren und größere Hypervisor-Lifecycle-Änderungen durchzuführen, ohne Managementdaten öffentlich offenzulegen."
         ),
         solution: loc(
-            "I built the stack on Proxmox 9.1 and Debian 13, then deployed Dockerized services for reverse proxying, DNS filtering, security detection, monitoring, status checks, log viewing, update automation, internal service discovery, and an unreleased static-site/Plausible runtime prototype. I also stabilized the Proxmox API integration used by a React-based dashboard by validating authentication flow, isolating response mismatches, and adapting request handling so virtualization data could render reliably.",
-            "Ich habe den Stack auf Proxmox 9.1 und Debian 13 aufgebaut und darauf Dockerisierte Services für Reverse Proxying, DNS-Filterung, Security Detection, Monitoring, Statusprüfungen, Log-Einsicht, Update-Automatisierung, interne Service-Übersicht und einen unveröffentlichten Static-Site-/Plausible-Runtime-Prototyp bereitgestellt. Zusätzlich habe ich die Proxmox-API-Integration eines React-basierten Dashboards stabilisiert, indem ich den Authentifizierungsfluss validiert, Antwortabweichungen isoliert und das Request-Handling so angepasst habe, dass Virtualisierungsdaten verlässlich dargestellt werden."
+            "I built a standard-library Python collector that runs every 60 seconds as a hardened systemd service and writes a secret-free JSON snapshot. An unprivileged read-only Nginx container serves the operations view to an explicit device allowlist, while Proxmox data is collected through an auditor-role API token with certificate pinning. The resulting evidence exposed a broken reverse-proxy trust chain that attributed every CrowdSec event to the edge system; I corrected the trusted hop, added an administration-network detection whitelist, and verified real-client attribution from an external mobile network. I then upgraded the hypervisor from Proxmox VE 8 to 9.2 using verified backup evidence, an independent copy, the vendor pre-check, rollback-capable package-source changes, local-console fallback, and tmux.",
+            "Ich habe einen Python-Collector ausschließlich mit der Standardbibliothek umgesetzt, der alle 60 Sekunden als gehärteter systemd-Service läuft und einen Secret-freien JSON-Snapshot schreibt. Ein unprivilegierter, schreibgeschützter Nginx-Container stellt die Betriebsansicht für eine explizite Geräte-Allowlist bereit; Proxmox-Daten werden über einen API-Token mit Auditor-Rolle und Zertifikat-Pinning gelesen. Die daraus gewonnenen Nachweise deckten eine fehlerhafte Reverse-Proxy-Trust-Kette auf, durch die jedes CrowdSec-Ereignis dem Edge-System zugeordnet wurde. Ich korrigierte den vertrauenswürdigen Hop, ergänzte eine Detection-Whitelist für das Administrationsnetz und verifizierte die echte Client-Zuordnung über ein externes Mobilfunknetz. Anschließend aktualisierte ich den Hypervisor mit verifiziertem Backup-Nachweis, unabhängiger Kopie, Hersteller-Precheck, rollback-fähiger Paketquellen-Umstellung, lokalem Konsolen-Fallback und tmux von Proxmox VE 8 auf 9.2."
         ),
         architecture: {
             node: loc(
-                "Admins and users consume services through Homepage and reverse-proxied entry points, while the dashboard layer surfaces service and virtualization state in one place.",
-                "Admins und Nutzer greifen über Homepage und reverse-proxied Einstiegspunkte auf Services zu, während die Dashboard-Schicht Service- und Virtualisierungszustand an einer Stelle sichtbar macht."
+                "The read-only operations view brings together service checks, detection events, DNS-filtering state, virtualization health, access evidence, TLS status, patch state, and backup age without exposing secrets to the frontend.",
+                "Die schreibgeschützte Betriebsansicht führt Service-Prüfungen, Detection-Ereignisse, DNS-Filterzustand, Virtualisierungszustand, Zugriffsnachweise, TLS-Status, Patch-Stand und Backup-Alter zusammen, ohne Secrets im Frontend offenzulegen."
             ),
             edge: loc(
-                "A Proxmox 9.1 host runs a Debian 13 VM and Docker services including Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower, and Homepage.",
-                "Ein Proxmox-9.1-Host betreibt eine Debian-13-VM und Docker-Services wie Nginx Proxy Manager, Pi-hole, CrowdSec, Netdata, Uptime Kuma, Dozzle, Watchtower und Homepage."
+                "A Proxmox VE 9.2 host runs the Debian 13 and Docker platform. The collector reads only the operational evidence it needs, and the presentation layer remains separate from management credentials and write-capable interfaces.",
+                "Ein Proxmox-VE-9.2-Host betreibt die Debian-13- und Docker-Plattform. Der Collector liest ausschließlich die benötigten Betriebsnachweise; die Präsentationsschicht bleibt von Management-Zugangsdaten und schreibfähigen Schnittstellen getrennt."
             ),
             cloud: loc(
-                "The core platform is local-first; public exposure is added through a separate VPS and Tailscale ingress path for selected services without opening local router ports.",
-                "Die Kernplattform ist local-first; öffentliche Exponierung wird für ausgewählte Services über einen separaten VPS- und Tailscale-Ingress-Pfad ergänzt, ohne lokale Router-Ports zu öffnen."
+                "Selected public services enter through a separate Public Edge VPS and Tailscale path. Administration remains private, and real-client attribution is preserved and verified across the reverse-proxy chain.",
+                "Ausgewählte öffentliche Services erreichen die Plattform über einen getrennten Public Edge VPS und Tailscale-Pfad. Die Administration bleibt privat; die Zuordnung der realen Client-Adresse wird über die Reverse-Proxy-Kette erhalten und verifiziert."
             ),
         },
         security: loc(
-            "Security is layered instead of concentrated in one component: Pi-hole handles DNS filtering, CrowdSec provides detection and community threat intelligence, persistent host and Docker rules control ingress, Nginx Proxy Manager centralizes service exposure, and workload separation on Proxmox limits blast radius.",
-            "Sicherheit ist geschichtet statt auf eine einzelne Komponente konzentriert: Pi-hole übernimmt DNS-Filterung, CrowdSec liefert Erkennung und Community Threat Intelligence, persistente Host- und Docker-Regeln kontrollieren den Ingress, Nginx Proxy Manager zentralisiert Service-Exponierung, und die Workload-Trennung auf Proxmox begrenzt den Schadensradius."
+            "The dashboard follows least privilege: a read-only Proxmox auditor role, pinned certificate authority, a root-protected secrets file outside the frontend, a hardened systemd collector, and an unprivileged Nginx container with Linux capabilities removed. Root SSH on the hypervisors is key-only, administration uses the private Tailscale path, and CrowdSec consumes corrected reverse-proxy client attribution for log-based detection and threat intelligence.",
+            "Das Dashboard folgt Least Privilege: schreibgeschützte Proxmox-Auditor-Rolle, gepinnte Zertifizierungsstelle, eine root-geschützte Secret-Datei außerhalb des Frontends, ein gehärteter systemd-Collector und ein unprivilegierter Nginx-Container ohne Linux-Capabilities. Root-SSH auf den Hypervisoren ist ausschließlich schlüsselbasiert, die Administration nutzt den privaten Tailscale-Pfad und CrowdSec verarbeitet die korrigierte Client-Zuordnung des Reverse Proxys für log-basierte Detection und Threat Intelligence."
         ),
         reliability: loc(
-            "Netdata, Uptime Kuma, and Dozzle provide metrics, health checks, and log visibility, while Watchtower automates the container update lifecycle and reduces manual drift across long-running services.",
-            "Netdata, Uptime Kuma und Dozzle liefern Metriken, Health Checks und Log-Sichtbarkeit, während Watchtower den Container-Update-Lifecycle automatisiert und manuellen Drift über langlebige Services hinweg reduziert."
+            "A daily read-only health check records website, TLS, service, detection, backup, and infrastructure state in a dated log. Each material change is documented with objective, evidence, risk, rollback, verification, and lessons. The Proxmox VE 8-to-9.2 upgrade took about 45 minutes, required about eight minutes of website downtime across two reboots, and completed without failures.",
+            "Eine tägliche, schreibgeschützte Zustandsprüfung protokolliert Website-, TLS-, Service-, Detection-, Backup- und Infrastrukturstatus in einer datierten Auswertung. Jede wesentliche Änderung wird mit Ziel, Nachweisen, Risiko, Rollback, Verifikation und Lessons Learned dokumentiert. Das Upgrade von Proxmox VE 8 auf 9.2 dauerte rund 45 Minuten, verursachte über zwei Neustarts hinweg etwa acht Minuten Website-Ausfallzeit und wurde ohne Fehler abgeschlossen."
         ),
         keyFeatures: locList(
             [
-                "Layered security with Pi-hole DNS filtering, persistent ingress rules, and CrowdSec detection",
-                "Reverse-proxied service access through Nginx Proxy Manager",
-                "Private runtime foundation for an unreleased static-site prototype and first-party Plausible analytics",
-                "Netdata, Uptime Kuma, and Dozzle for metrics, uptime checks, and live container logs",
-                "Stabilized a React-based Proxmox API integration for dashboard visibility",
-                "Watchtower-driven container update workflow for routine maintenance",
+                "Read-only operations dashboard spanning availability, detection, DNS filtering, virtualization, access, TLS, patching, and backup hygiene",
+                "Standard-library Python collector running every 60 seconds as a hardened systemd service",
+                "Secret-free JSON presentation through an unprivileged Nginx container and explicit device allowlist",
+                "Read-only Proxmox auditor token with certificate pinning and secrets kept outside the frontend",
+                "Reverse-proxy real-client attribution diagnosed, corrected, and verified from an external network",
+                "Controlled Proxmox VE 8-to-9.2 lifecycle upgrade with backup evidence, rollback preparation, console fallback, and tmux",
             ],
             [
-                "Mehrschichtige Sicherheit mit Pi-hole-DNS-Filterung, persistenten Ingress-Regeln und CrowdSec Detection",
-                "Reverse-proxied Service-Zugriff über Nginx Proxy Manager",
-                "Private Runtime-Basis für einen unveröffentlichten Static-Site-Prototyp und First-Party-Plausible-Analytics",
-                "Netdata, Uptime Kuma und Dozzle für Metriken, Uptime-Checks und Live-Container-Logs",
-                "Eine React-basierte Proxmox-API-Integration für Dashboard-Sichtbarkeit stabilisiert",
-                "Ein Watchtower-gesteuerter Container-Update-Workflow für die Regelwartung",
+                "Schreibgeschütztes Betriebsdashboard für Verfügbarkeit, Detection, DNS-Filterung, Virtualisierung, Zugriffe, TLS, Patching und Backup-Hygiene",
+                "Python-Collector ausschließlich mit Standardbibliothek, der alle 60 Sekunden als gehärteter systemd-Service läuft",
+                "Secret-freie JSON-Darstellung über einen unprivilegierten Nginx-Container und eine explizite Geräte-Allowlist",
+                "Schreibgeschützter Proxmox-Auditor-Token mit Zertifikat-Pinning und Secrets außerhalb des Frontends",
+                "Real-Client-Zuordnung des Reverse Proxys analysiert, korrigiert und aus einem externen Netz verifiziert",
+                "Kontrolliertes Proxmox-VE-8-auf-9.2-Lifecycle-Upgrade mit Backup-Nachweis, Rollback-Vorbereitung, Konsolen-Fallback und tmux",
             ]
         ),
         results: locList(
             [
-                "Turned a generic private lab into a hardened internal platform with clearer operational boundaries",
-                "Added real-time visibility across service health, metrics, and logs",
-                "Resolved a cross-layer integration mismatch between frontend code and the Proxmox API",
-                "Reduced routine maintenance effort through automated container updates",
-                "Created a scalable baseline for adding future internal tools without reworking the control plane",
+                "Restored trustworthy real-client attribution across the proxy and detection pipeline",
+                "Unified operational evidence in a sanitized read-only view without exposing infrastructure secrets",
+                "Completed the Proxmox VE 8-to-9.2 upgrade in about 45 minutes with about eight minutes of website downtime and zero failures",
+                "Established daily evidence-producing health checks and structured change records",
+                "Demonstrated incident analysis, least-privilege design, Linux lifecycle management, and rollback-oriented change planning",
             ],
             [
-                "Ein generisches privates Lab in eine gehärtete interne Plattform mit klareren Betriebsgrenzen überführt",
-                "Echtzeit-Sicht auf Service-Zustand, Metriken und Logs geschaffen",
-                "Ein schichtübergreifendes Integrationsproblem zwischen Frontend-Code und der Proxmox-API gelöst",
-                "Den Wartungsaufwand durch automatisierte Container-Updates reduziert",
-                "Eine skalierbare Basis für weitere interne Tools geschaffen, ohne die Control Plane neu aufbauen zu müssen",
+                "Belastbare Real-Client-Zuordnung über Proxy- und Detection-Pipeline wiederhergestellt",
+                "Betriebsnachweise in einer bereinigten, schreibgeschützten Ansicht gebündelt, ohne Infrastruktur-Secrets offenzulegen",
+                "Upgrade auf Proxmox VE 9.2 in rund 45 Minuten mit etwa acht Minuten Website-Ausfallzeit und ohne Fehler abgeschlossen",
+                "Tägliche Zustandsprüfungen mit Nachweis und strukturierte Change Records etabliert",
+                "Incident-Analyse, Least-Privilege-Design, Linux-Lifecycle-Management und rollback-orientierte Änderungsplanung praktisch belegt",
             ]
         ),
-        tech: ["Debian 13", "Proxmox 9.1", "Docker", "Nginx Proxy Manager", "Pi-hole", "CrowdSec", "Netdata", "Uptime Kuma", "Dozzle", "Watchtower", "Homepage"],
-        tags: ["Security", "Infrastructure", "Operations", "Platform"],
+        tech: ["Python", "systemd", "Proxmox VE 9.2", "Debian 13", "Docker", "Nginx", "CrowdSec", "Tailscale", "Uptime Kuma", "Netdata"],
+        tags: ["Security Operations", "Incident Analysis", "Infrastructure", "Change Management"],
         links: [],
         diagrams: [
             {

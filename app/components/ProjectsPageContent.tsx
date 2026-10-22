@@ -108,9 +108,9 @@ const FEATURED_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "Edge AI safety monitoring with camera, LiDAR, and local decision logic.",
     },
     "enterprise-self-hosted-infrastructure": {
-        en: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and representative recovery validation.",
-        de: "Hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung.",
-        ar: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible automation, Azure Arc governance, monitoring and representative recovery validation.",
+        en: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible-based hardening, Azure Arc governance, monitoring and representative recovery validation.",
+        de: "Hybrides Linux- und Windows-Infrastrukturlabor mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-basierter Härtung, Azure-Arc-Governance, Monitoring und repräsentativer Recovery-Validierung.",
+        ar: "Hybrid Linux and Windows infrastructure lab with separated public ingress, private Tailscale administration, Ansible-based hardening, Azure Arc governance, monitoring and representative recovery validation.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "Embedded vibration classification from IMU features through model export and device-side inference.",
@@ -146,9 +146,9 @@ const CARD_SUMMARIES: Record<string, Record<Locale, string>> = {
         ar: "FreeRTOS sensor node for structured embedded telemetry.",
     },
     "vienna-fortress": {
-        en: "Hardened Proxmox and Docker operations platform.",
-        de: "Gehärtete Proxmox- und Docker-Betriebsplattform.",
-        ar: "Hardened Proxmox and Docker operations platform.",
+        en: "Read-only security operations view with verified incident analysis and controlled Proxmox lifecycle work.",
+        de: "Schreibgeschützte Security-Operations-Sicht mit verifizierter Incident-Analyse und kontrolliertem Proxmox-Lifecycle-Management.",
+        ar: "Read-only security operations view with verified incident analysis and controlled Proxmox lifecycle work.",
     },
     "home-security-lab": {
         en: "Layered security lab with DNS filtering, access control, and monitoring.",
@@ -192,6 +192,11 @@ const CARD_RESULTS: Record<string, Record<Locale, string>> = {
         en: "Public and private paths are separated, configuration is repeatable, and application/data recovery has been rehearsed against an isolated target.",
         de: "Öffentliche und private Pfade sind getrennt, Konfigurationen sind wiederholbar, und die Wiederherstellung von Anwendungen und Daten wurde gegen ein isoliertes Ziel geprobt.",
         ar: "Public and private paths are separated, configuration is repeatable, and application/data recovery has been rehearsed against an isolated target.",
+    },
+    "vienna-fortress": {
+        en: "Corrected real-client attribution and completed the Proxmox VE 8-to-9.2 upgrade with about eight minutes of downtime and zero failures.",
+        de: "Die Real-Client-Zuordnung korrigiert und das Upgrade von Proxmox VE 8 auf 9.2 mit etwa acht Minuten Ausfallzeit und ohne Fehler abgeschlossen.",
+        ar: "Corrected real-client attribution and completed the Proxmox VE 8-to-9.2 upgrade with about eight minutes of downtime and zero failures.",
     },
     "tinyml-vibration-anomaly-detection": {
         en: "The Arduino demo shows NORMAL, ANOMALY, and ALERT states with recovery to NORMAL.",

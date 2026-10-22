@@ -220,14 +220,14 @@ const FEATURED_COPY: Record<
       ar: "Public services needed a controlled internet entry point without exposing private administration.",
     },
     responsibility: {
-      de: "Die hybride Linux-/Windows-Infrastruktur mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-Automatisierung, Host-Firewalls und CrowdSec-Erkennung entworfen und umgesetzt.",
-      en: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation, host firewalls and CrowdSec detection.",
-      ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible automation, host firewalls and CrowdSec detection.",
+      de: "Die hybride Linux-/Windows-Infrastruktur mit getrenntem öffentlichem Ingress, privater Tailscale-Administration, Ansible-basierter Härtung, Host-Firewalls und CrowdSec-Erkennung entworfen und umgesetzt.",
+      en: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible-based hardening, host firewalls and CrowdSec detection.",
+      ar: "Designed and implemented the hybrid Linux/Windows environment with separated public ingress, private Tailscale administration, Ansible-based hardening, host firewalls and CrowdSec detection.",
     },
     result: {
-      de: "Die Administration bleibt auf privaten Pfaden; Ansible verwaltet Host-Konfigurationen, und isolierte Recovery-Tests decken Anwendung und Daten ab.",
-      en: "Administration stays on private paths; Ansible manages host configuration, and isolated recovery tests cover the application and its data.",
-      ar: "Administration stays on private paths; Ansible manages host configuration, and isolated recovery tests cover the application and its data.",
+      de: "Die Administration bleibt auf privaten Pfaden; Ansible unterstützt reproduzierbare Host-Härtung, und isolierte Recovery-Tests decken Anwendung und Daten ab.",
+      en: "Administration stays on private paths; Ansible supports reproducible host hardening, and isolated recovery tests cover the application and its data.",
+      ar: "Administration stays on private paths; Ansible supports reproducible host hardening, and isolated recovery tests cover the application and its data.",
     },
     tech: ["Ansible", "Bash", "Linux", "Tailscale", "CrowdSec", "Restic"],
     visualLabel: {
